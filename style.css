@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
+
+@font-face {
+    font-family: 'poppins';
+    src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', 'Poppins', sans-serif;
+}
+
+:root {
+    /* 🔵🔵🔵 */
+    /* ⚠️ Please don't change the color value for this one (if ? then you have to change all colorCode in JavaScript file too */
+    --bg-color-blue: #BBD6FD;
+    --accentLightTint-blue: #E2EEFF;
+    --darkerColor-blue: #3569b2;
+    --darkColor-blue: #4382EC;
+    --textColorDark-blue: #1b3041;
+
+    /* 🔴🔴🔴 */
+    --bg-color-red: #FDBDBD;
+    --accentLightTint-red: #ffe7e7;
+    --darkerColor-red: #B23535;
+    --darkColor-red: #EC4343;
+    --textColorDark-red: #411B1B;
+
+    /* 🟢🟢🟢 */
+    --bg-color-green: #C7E4C7;
+    --accentLightTint-green: #E1F1E1;
+    --darkerColor-green: #458245;
+    --darkColor-green: #5CBA5C;
+    --textColorDark-green: #1B411B;
+
+    /* 🩷💗🩷 */
+    --bg-color-pink: #F9C8D6;
+    --accentLightTint-pink: #FFEBF2;
+    --darkerColor-pink: #B24B64;
+    --darkColor-pink: #EC5E78;
+    --textColorDark-pink: #411B28;
+
+    /* 🟠🟠🟠 */
+    --bg-color-orange: #FFD8B2;
+    --accentLightTint-orange: #FFEDD5;
+    --darkerColor-orange: #B26D3E;
+    --darkColor-orange: #EC844D;
+    --textColorDark-orange: #412B1E;
+
+    /* 🟣🟣🟣 */
+    --bg-color-purple: #DAC2E8;
+    --accentLightTint-purple: #E9E2F3;
+    --darkerColor-purple: #724B8F;
+    --darkColor-purple: #9563B5;
+    --textColorDark-purple: #2D1B3E;
+
+    --gap: 30px;
+    --round: 30px;
+}
+
+/* Theme */
+/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
+
+.accentColor {
+    fill: var(--darkColor-blue);
+}
+
+.bgLightTint {
+    fill: var(--accentLightTint-blue);
+    background-color: var(--accentLightTint-blue);
+}
+
+/* ⚫🟣🟡🔵🔴🟠⚪🟢 */
+
+body {
+    background-color: var(--bg-color-blue);
+    color: var(--textColorDark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.centerDiv {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: fit-content;
+    height: fit-content;
+    /* background-color: #17a638; */
+}
+
+/* ____________Clock_____________________---- */
+#clock {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    position: relative;
+}
+
+#clock svg {
+    position: absolute;
+    animation: clockAnm 1s;
+}
+
+@keyframes clockAnm {
+    from {
+        transform: rotate(40deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.clock .centerPoint {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.clock .centerPoint .sui {
+    position: absolute;
+    width: 20px;
+    height: 100px;
+    background-color: var(--darkColor-blue);
+    top: -90px;
+    transform-origin: bottom;
+    border-radius: 10px;
+}
+
+#hour {
+    height: 80px;
+    top: -70px;
+    background-color: var(--darkerColor-blue);
+    transform: rotate(90deg);
+}
+
+#hour::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: var(--darkerColor-blue);
+    bottom: -10px;
+    border-radius: 100px;
+}
+
+#minute {
+    z-index: 9 !important;
+}
+
+#minute::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: var(--darkColor-blue);
+    bottom: -10px;
+    border-radius: 100px;
+}
+
+#second {
+    background-color: #00000000;
+}
+
+#second::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--darkColor-blue);
+    top: -28px;
+    border-radius: 100%;
+}
+
+/* ---------------------- */
+.ttteexxtt {
+    position: absolute;
+    /* background-color: yellow; */
+    bottom: 18px;
+    /*Because search engnies has margin-bottom 20px*/
+    left: 5px;
+}
+
+#userText {
+    font-family: 'poppins';
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+#date {
+    font-size: 1.4rem;
+}
+
+/* __________end of clock___________________ */
+.leftDiv {
+    /* padding-right: 100px; */
+    transform: translateX(-100px);
+    /* background-color: rgba(102, 51, 153, 0.404); */
+    /* height: fit-content; */
+}
+
+.rightDiv {
+    position: relative;
+    width: 640px;
+    transform: translateX(100px);
+}
+
+.rightDiv .topDiv {
+    height: 180px;
+    height: 196px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* lrectangle______________________ */
+.rightDiv .topDiv .lrectangle {
+    height: 100%;
+    width: 100%;
+    border-radius: var(--round);
+    padding: 20px;
+    position: relative;
+}
+
+#conditionText {
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+}
+
+.cconnt {
+    width: calc(100% - 40px);
+    bottom: 20px;
+    height: fit-content;
+    position: absolute;
+}
+
+.tilesContainer {
+    height: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.tilesContainer .tiles {
+    background-color: #ffffff;
+    border-radius: 22px;
+    position: relative;
+    height: 50px;
+}
+
+.tilesContainer .location {
+    background-color: var(--darkColor-blue);
+}
+
+.tilesContainer .location .location_spn {
+    color: #fff;
+}
+
+.tilesContainer .tiles .icon {
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tilesContainer .tiles span {
+    position: absolute;
+    top: 0;
+    left: 46px;
+    bottom: 0;
+    margin: auto;
+    color: var(--textColorDark-blue);
+    height: fit-content;
+}
+
+
+.humidityBar {
+    border-radius: 20px;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.humidityBar::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 40px;
+    background: url("./svgs/humidity.svg") center center no-repeat;
+    background-size: 66%;
+    background-color: var(--darkColor-blue);
+    right: 0;
+    border-radius: 100%;
+}
+
+.humidityBar .thinLine {
+    position: absolute;
+    width: calc(100% - 60px);
+    background-color: white;
+    height: 6px;
+    border-radius: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.humidityBar .slider {
+    height: 100%;
+    width: calc(10% - 60px);
+    /*100-60px because humdityIconContainer is 40px Width and 20px is margin which is = to 60*/
+    min-width: 42%;
+    background-color: var(--darkColor-blue);
+    border-radius: 100px;
+    position: absolute;
+    transition: width 1s;
+}
+
+#humidityLevel {
+    color: #fff;
+    /* background-color: yellow; */
+    width: fit-content;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    left: 20px;
+    height: fit-content;
+}
+
+/* End of _____________________- */
+
+/* ------------Weather Pill------------- */
+.rightDiv .topDiv .rAndakar {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin-left: var(--gap);
+    animation: rAndAnm 1s;
+    /* transition: rotate 1s; */
+}
+
+@keyframes rAndAnm {
+    from {
+        transform: rotate(-45deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.rightDiv .topDiv .rAndakar .wInfo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateX(14px);
+    width: 100px;
+    height: 80%;
+    /* background-color: #17a638; */
+}
+
+#temp {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--darkerColor-blue);
+    /* background-color: yellow; */
+    margin: auto;
+    width: fit-content;
+}
+
+#wIcon {
+    width: 80px;
+    height: 80px;
+    margin-top: -20px;
+    margin-left: -40px;
+    /* background-color: olive; */
+}
+
+/* ------------End of Weather Pill------------- */
+
+/* ________________________________________________________ */
+
+/* _____________Searchbar___________________ */
+.searchbar {
+    margin-top: var(--gap);
+    width: 100%;
+    height: 60px;
+    border-radius: var(--round);
+    /* background-color: var(--accentLightTint-blue); */
+    position: relative;
+    outline: 2px solid #00000000;
+    transition: outline 0.3s;
+}
+
+.searchbar.active {
+    outline: 2px solid var(--darkColor-blue);
+}
+
+.searchbar .searchIcon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+#searchQ {
+    display: block;
+    position: absolute;
+    height: 80%;
+    width: calc(100% - 120px);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-left: 20px;
+    outline: none;
+    border: none;
+    background-color: #00000000;
+    border-radius: 100px;
+    padding: 0px 40px;
+    font-size: 1rem;
+}
+
+#enterBtn {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 40px;
+    border-radius: 100px;
+    padding: 0px 26px;
+    border: none;
+    font-size: 1.1rem;
+    background-color: var(--darkColor-blue);
+    color: white;
+    transition: all 0.3s;
+}
+
+#enterBtn:hover {
+    background-color: var(--darkColor-blue);
+    color: #fff;
+    cursor: pointer;
+}
+
+#enterBtn:active {
+    transform: scale(0.9);
+}
+
+/* ________________End of Searchbar______________________ */
+
+.searchWithCont {
+    margin-top: var(--gap);
+    border-radius: var(--round);
+    position: relative;
+    display: flex;
+}
+
+.searchWithCont .hint {
+    /* background-color: var(--accentLightTint-blue); */
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    margin-right: 16px;
+    border-radius: var(--round);
+}
+
+.searchWithCont .hint::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 3px;
+    right: -20px;
+}
+
+.searchEnginesContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.searchEnginesContainer .search-engine {
+    /* background-color: var(--accentLightTint-blue); */
+    border-radius: 20px;
+    height: fit-content;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.searchEnginesContainer .search-engine svg {
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    margin-left: 4px;
+
+}
+
+.searchEnginesContainer .search-engine label {
+    margin: 0px 10px;
+    margin-right: 16px;
+}
+
+/* -----------Radio Button Customizing------------ */
+.search-engine input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: rgb(255, 255, 255);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    outline: none;
+    margin-right: 8px;
+}
+
+.search-engine input[type="radio"]:checked {
+    background-color: var(--darkColor-blue);
+}
+
+/* -----------Radio Button Customizing------------ */
+
+/* -----------Theming Stuff------------------ */
+/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
+.themingStuff {
+    position: absolute;
+    width: fit-content;
+    height: 50px;
+    right: var(--gap);
+    bottom: var(--gap);
+    /* border: 3px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+.colorsContainer {
+    background-color: var(--accentLightTint-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    margin-right: 20px;
+    border-radius: 100px;
+    height: 50px;
+
+    transition: all 0.6s;
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    transform: translateX(50px);
+    z-index: 1;
+}
+
+.showColorPlate {
+    opacity: 1;
+    width: fit-content;
+    height: 50px;
+    transform: translateX(0px);
+}
+
+
+.colorsContainer input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    /* width: ; */
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    /* border: 2px solid #ffffff; */
+    outline: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.colorsContainer input[value="blue"] {
+    background-color: #4382EC;
+}
+
+.colorsContainer input[value="red"] {
+    background-color: #f91d1d;
+}
+
+.colorsContainer input[value="green"] {
+    background-color: #17a638;
+}
+
+.colorsContainer input[value="orange"] {
+    background-color: orange;
+}
+
+.colorsContainer input[value="purple"] {
+    background-color: #b830de;
+}
+
+.colorsContainer input[value="pink"] {
+    background-color: #e41b9e;
+}
+
+.colorsContainer input[type="radio"]:checked::after {
+    position: absolute;
+    content: "";
+    width: 30px;
+    height: 30px;
+    background: url("./svgs/tick.svg") center center no-repeat;
+    background-size: 74%;
+}
+
+.themingStuff .btn {
+    height: 100%;
+    aspect-ratio: 1/1;
+    /* position: absolute; */
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* -----------End of Theming Stuff------------------ */
+
+/* -------media query ------------------- */
+
+@media screen and (max-width: 1400px) {
+    .leftDiv {
+        transform: translateX(-50px);
+    }
+
+    .rightDiv {
+        transform: translateX(50px);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        display: block;
+    }
+
+    .centerDiv {
+        /* display: grid; */
+        grid-template-columns: auto;
+        /* width: fit-content; */
+        /* height: 500px; */
+        /* background-color: orange; */
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        margin-top: var(--gap);
+        
+
+    }
+
+    .leftDiv {
+        transform: translateX(0px);
+        /* background-color: green; */
+        margin-bottom: var(--gap);
+    }
+
+    .rightDiv {
+        /* position: relative;
+        width: 640px; */
+        transform: translateX(0px);
+        /* background-color: rgba(0, 0, 255, 0.159); */
+    }
+
+    .ttteexxtt {
+        /* background-color: yellow; */
+        height: fit-content;
+        width: fit-content;
+        bottom: 0; top: 0; 
+        margin: auto;
+        left: 300px; /*Because Clock widfth is 300px*/
+        margin-left: var(--gap);
+    
+    }
+
+    /* #userText {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    #date {
+        font-size: 1.4rem;
+    } */
+
+}
