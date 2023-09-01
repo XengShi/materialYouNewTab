@@ -1,42 +1,46 @@
-// Use a weather API to fetch the weather data
-// Display the data in the 'weatherInfo' div
 window.addEventListener('DOMContentLoaded', async () => {
-    const updateWeather = async () => {
+    try {
         // Getting current user location
-        let geoLocation = 'https://geolocation-db.com/json/';
-        let locationData = await fetch(geoLocation);
-        let parsedLocation = await locationData.json();
-        let currentUserLocation = parsedLocation.IPv4;
-        let weatherApi = `https://api.weatherapi.com/v1/current.json?key=c8ec5c78e09448f6bce75309220907&q=${currentUserLocation}&aqi=no`;
-        // let weatherApi = `https://api.weatherapi.com/v1/current.json?key=c8ec5c78e09448f6bce75309220907&q=chennai&aqi=no`;
-        let data = await fetch(weatherApi);
-        let parsedData = await data.json();
+        const geoLocation = 'https://geolocation-db.com/json/';
+        const locationData = await fetch(geoLocation);
+        const parsedLocation = await locationData.json();
+        const currentUserLocation = parsedLocation.IPv4;
 
-        document.getElementById("conditionText").textContent = parsedData.current.condition.text;
+        const weatherApiKey = 'c8ec5c78e09448f6bce75309220907&q'; // Replace with your Weather API key
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${currentUserLocation}&aqi=no`;
+        const data = await fetch(weatherApi);
+        const parsedData = await data.json();
 
-        // Convert decimal temperature to whole number temperature
-        let wholeNumberWeather = Math.round(parsedData.current.temp_c);
+        // Weather data
+        const conditionText = parsedData.current.condition.text;
+        const tempCelsius = Math.round(parsedData.current.temp_c);
+        const humidity = parsedData.current.humidity;
+        const feelsLikeCelsius = parsedData.current.feelslike_c;
 
-        document.getElementById("temp").textContent = `${wholeNumberWeather}°`;
-        // document.getElementById("temp").textContent = `${parsedData.current.temp_f}°`;
+        // Update DOM elements
+        document.getElementById("conditionText").textContent = conditionText;
+        document.getElementById("temp").textContent = `${tempCelsius}°`;
+        document.getElementById("humidityLevel").textContent = `Humidity ${humidity}%`;
+        document.getElementById("feelsLike").textContent = `Feels ${feelsLikeCelsius}°C`;
 
         // Setting weather Icon
-        let newWIcon = parsedData.current.condition.icon;
-        let weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+        const newWIcon = parsedData.current.condition.icon;
+        const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
 
-        const humidity = parsedData.current.humidity
-
+        // Set slider width based on humidity
         if (humidity > 40) {
             document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
         }
-        document.getElementById("humidityLevel").textContent = `Humidity ${humidity} %`
-        document.getElementById("feelsLike").textContent = `Feels ${parsedData.current.feelslike_c}°C`;
-        // document.getElementById("location").textContent = `${parsedLocation.city}, ${parsedData.location.country}`;
-        document.getElementById("location").textContent = `${parsedLocation.city}`;
-    };
-    updateWeather();
+
+        // Update location
+        document.getElementById("location").textContent = parsedLocation.city;
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        // Handle errors here, e.g., display an error message to the user.
+    }
 });
+
 
 // ---------------------------end of weather stuff--------------------
 
@@ -45,15 +49,12 @@ setInterval(() => {
     let hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
     var seconds = currentTime.getSeconds();
-    // let hour_rotate_angle = (twelveH(hours) * 30) 
     let hour_rotate_angle = 30 * hours + minutes / 2
     document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`
     document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`
     document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`
     // done : 5:08* 14 August 2023pHar
 
-    // Create a new Date object
-    var currentTime = new Date();
     // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
     var dayOfWeek = currentTime.getDay();
     // Get the day of the month (1 - 31)
@@ -72,11 +73,8 @@ setInterval(() => {
     // Get the name of the day using the array
     var dayName = dayNames[dayOfWeek];
     document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
-    console.log(`${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`)
-
-
+    // substring(0, 3) => We are taking only three Char from the name of the month and day like Sunday > Sun
 }, 1000);
-
 
 
 // Showing border or outline in when you click on searchbar
@@ -131,8 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-
 // Function to apply the selected theme
 let themeButton = document.getElementById("themeButton")
 themeButton.onclick = () => {
@@ -167,7 +163,6 @@ radioButtons.forEach(radioButton => {
         }
     });
 });
-
 // end of Function to apply the selected theme
 
 
@@ -181,3 +176,4 @@ userTextDiv.addEventListener("input", function () {
     localStorage.setItem("userText", userTextDiv.textContent);
 });
 // end of user entered text stufff
+

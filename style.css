@@ -241,6 +241,7 @@ body {
     bottom: 20px;
     height: fit-content;
     position: absolute;
+    font-size: 1rem;
 }
 
 .tilesContainer {
@@ -469,6 +470,7 @@ body {
     border-radius: var(--round);
     position: relative;
     display: flex;
+    font-size: 1rem;
 }
 
 .searchWithCont .hint {
@@ -700,14 +702,4 @@ body {
         margin-left: var(--gap);
     
     }
-
-    /* #userText {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-    }
-
-    #date {
-        font-size: 1.4rem;
-    } */
-
 }

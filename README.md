@@ -1,9 +1,9 @@
-initialized : Sun 20 Aug 2023 03∶41∶08 PM IST
-# youSearch - Simplifying Your Browsing Experience
+Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST
+# Material You NewTab
 
 ![Screenshot 1](https://i.ibb.co/zSyjg47/screenshot-from-2023-08-24-21-19-16.webp)
 
-Welcome to youSearch, where simplicity meets functionality. Our browser homepage is thoughtfully designed, taking inspiration from Google's Material Design principles. With youSearch, we bring you a seamless browsing experience that empowers you to explore the web effortlessly.
+Welcome to 'Material You NewTab', where simplicity meets functionality. A browser homepage is thoughtfully designed, taking inspiration from Google's Material You Design principles. With Material You NewTab, we bring you a seamless browsing experience that empowers you to explore the web effortlessly.
 
 ## Getting Started
 
