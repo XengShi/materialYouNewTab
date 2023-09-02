@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const weatherApiKey = 'c8ec5c78e09448f6bce75309220907&q'; // Replace with your Weather API key
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${currentUserLocation}&aqi=no`;
+
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
 
@@ -34,7 +35,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Update location
-        document.getElementById("location").textContent = parsedLocation.city;
+        // document.getElementById("location").textContent = parsedLocation.city;
+        document.getElementById("location").textContent = parsedData.location.name;
+
     } catch (error) {
         console.error("Error fetching weather data:", error);
         // Handle errors here, e.g., display an error message to the user.
