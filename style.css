@@ -647,6 +647,157 @@ body {
 
 /* -----------End of Theming Stuff------------------ */
 
+
+/* ----------Shorcuts----------------- */
+.shortcutsContainer {
+    display: flex;
+    height: 50px;
+    width: fit-content;
+    /* background-color: yellow; */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--gap);
+    margin: auto;
+    gap: 10px;
+}
+
+.shortcutsContainer .shortcuts {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.shortcutsContainer .shortcuts:hover {
+    transform: translateY(-10px) scale(1.06);
+    box-shadow: 0 5px 10px #ffffffc5;
+    border-radius: 100px;
+}
+
+.shortcuts .shortcut-name {
+    visibility: hidden;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    left: 50%;
+    /* Set left to 50% */
+    transform: translateX(-50%);
+    /* Center horizontally */
+    margin: auto;
+    /* background-color: #000000d7; */
+    width: fit-content;
+    text-align: center;
+    color: var(--textColorDark-blue);
+    opacity: 0;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.shortcuts:hover .shortcut-name {
+    visibility: visible;
+    opacity: 1;
+}
+
+.shortcutsContainer .shortcuts a {
+    background-color: var(--accentLightTint-blue);
+    border-radius: 100px;
+    display: block;
+    height: 50px;
+    width: 50px;
+    width: fit-content;
+}
+
+.shortcutsContainer .shortcuts a svg {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* ----------end of Shorcuts----------------- */
+
+/* -----------Ai-Tools----------------- */
+.aiToolsCont {
+    height: 50px;
+    width: fit-content;
+    /* background-color: yellow; */
+    overflow-x: hidden;
+    border-radius: 100px;
+    position: absolute;
+    left: var(--gap);
+    bottom: var(--gap);
+    margin: auto;
+    display: flex;
+}
+
+.aiToolsCont .hangno {
+    background-color: var(--accentLightTint-blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 16px;
+    border-radius: 100px;
+    z-index: 2;
+}
+
+.aiToolsCont .hangno .icon {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+}
+.aiToolsCont .hangno .label {
+    font-size: 1rem;
+    color: var(--textColorDark-blue);
+    cursor: default;
+}
+.aiToolsCont .toolsCont{
+    /* display: flex; */
+    display: none;
+    /* background-color: orange; */
+    position: relative;
+    margin-left: 30px;
+    transition: all 500ms;
+    gap: 0px;
+    transform-origin: left;
+    transform: scale(0.5) translateX(-70px);
+    opacity: 0.2;
+}
+
+.aiToolsCont .toolsCont::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 6px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 6px;
+    left: -18px;
+}
+.aiToolsCont .toolsCont a{
+    background-color: var(--accentLightTint-blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--textColorDark-blue);
+    font-size: 1rem;
+}
+.aiToolsCont .toolsCont .tIcon{
+    width: 26px;
+    height: 26px;
+    /* background-color: turquoise; */
+    margin-right: 12px;
+}
+
+
+/* -----------End of Ai-Tools---------- */
+
+
+
+
+
+
 /* -------media query ------------------- */
 
 @media screen and (max-width: 1400px) {
@@ -675,7 +826,7 @@ body {
         right: 0;
         margin: auto;
         margin-top: var(--gap);
-        
+
 
     }
 
@@ -696,10 +847,12 @@ body {
         /* background-color: yellow; */
         height: fit-content;
         width: fit-content;
-        bottom: 0; top: 0; 
+        bottom: 0;
+        top: 0;
         margin: auto;
-        left: 300px; /*Because Clock widfth is 300px*/
+        left: 300px;
+        /*Because Clock widfth is 300px*/
         margin-left: var(--gap);
-    
+
     }
 }

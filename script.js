@@ -180,3 +180,31 @@ userTextDiv.addEventListener("input", function () {
 });
 // end of user entered text stufff
 
+// when User click on "AI-Tools"
+document.getElementById("0NIHK").onclick = () => {
+    const element = document.getElementById("toolsCont");
+    const shortcuts = document.getElementById("shortcutsContainer");
+
+    if (element.style.display === "flex") {
+        shortcuts.style.display = 'flex';
+        element.style.opacity = "0";
+        element.style.gap = "0";
+        element.style.transform = "translateX(-100%)";
+        setTimeout(() => {
+            element.style.display = "none";
+        }, 500);
+    } else {
+        shortcuts.style.display = 'none';
+        element.style.display = "flex";
+        setTimeout(() => {
+            element.style.opacity = "1";
+            element.style.transform = "translateX(0)";
+        }, 1);
+        setTimeout(() => {
+            element.style.gap = "12px";
+        }, 300);
+    }
+}
+
+
+
