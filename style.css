@@ -29,12 +29,26 @@
     --darkColor-red: #EC4343;
     --textColorDark-red: #411B1B;
 
+    /*Peela*/
+    --bg-color-yellow: #edea8c;
+    --accentLightTint-yellow: #fff2c2;
+    --darkerColor-yellow: #CCA243;
+    --darkColor-yellow: #f4d837;
+    --textColorDark-yellow: #5B5428;
+
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
     --accentLightTint-green: #E1F1E1;
     --darkerColor-green: #458245;
     --darkColor-green: #5CBA5C;
     --textColorDark-green: #1B411B;
+
+    /* Cyan */
+    --bg-color-cyan: #9bffff;
+    --accentLightTint-cyan: #d5ffff;
+    --darkerColor-cyan: #5E9CA0;
+    --darkColor-cyan: #00CED1;
+    --textColorDark-cyan: #08354B;
 
     /* 🩷💗🩷 */
     --bg-color-pink: #F9C8D6;
@@ -57,6 +71,13 @@
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
 
+    /* Dark Kaala */
+    --bg-color-dark: #000000;
+    --accentLightTint-dark: #323232;
+    --darkerColor-dark: #ffffff;
+    --darkColor-dark: #505050;
+    --textColorDark-dark: #FFFFFF;
+
     --gap: 30px;
     --round: 30px;
 }
@@ -71,6 +92,11 @@
 .bgLightTint {
     fill: var(--accentLightTint-blue);
     background-color: var(--accentLightTint-blue);
+}
+
+.lessDark {
+    background-color: var(--bg-color-blue);
+    fill: var(--bg-color-blue);
 }
 
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
@@ -550,17 +576,15 @@ body {
 
 /* -----------Theming Stuff------------------ */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
-.themingStuff {
+/* .themingStuff {
     position: absolute;
     width: fit-content;
     height: 50px;
     right: var(--gap);
     bottom: var(--gap);
-    /* border: 3px solid red; */
     display: flex;
     align-items: center;
 }
-
 .colorsContainer {
     background-color: var(--accentLightTint-blue);
     display: flex;
@@ -570,7 +594,6 @@ body {
     margin-right: 20px;
     border-radius: 100px;
     height: 50px;
-
     transition: all 0.6s;
     opacity: 0;
     width: 30px;
@@ -578,54 +601,42 @@ body {
     transform: translateX(50px);
     z-index: 1;
 }
-
 .showColorPlate {
     opacity: 1;
     width: fit-content;
     height: 50px;
     transform: translateX(0px);
 }
-
-
 .colorsContainer input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: #fff;
-    /* width: ; */
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    /* border: 2px solid #ffffff; */
     outline: none;
     margin-right: 10px;
     cursor: pointer;
 }
-
 .colorsContainer input[value="blue"] {
     background-color: #4382EC;
 }
-
 .colorsContainer input[value="red"] {
     background-color: #f91d1d;
 }
-
 .colorsContainer input[value="green"] {
     background-color: #17a638;
 }
-
 .colorsContainer input[value="orange"] {
     background-color: orange;
 }
-
 .colorsContainer input[value="purple"] {
     background-color: #b830de;
 }
-
 .colorsContainer input[value="pink"] {
     background-color: #e41b9e;
 }
-
 .colorsContainer input[type="radio"]:checked::after {
     position: absolute;
     content: "";
@@ -634,16 +645,14 @@ body {
     background: url("./svgs/tick.svg") center center no-repeat;
     background-size: 74%;
 }
-
 .themingStuff .btn {
     height: 100%;
     aspect-ratio: 1/1;
-    /* position: absolute; */
     right: 0;
     border-radius: 100%;
     z-index: 2;
     cursor: pointer;
-}
+} */
 
 /* -----------End of Theming Stuff------------------ */
 
@@ -744,12 +753,14 @@ body {
     height: 26px;
     margin-right: 12px;
 }
+
 .aiToolsCont .hangno .label {
     font-size: 1rem;
     color: var(--textColorDark-blue);
     cursor: default;
 }
-.aiToolsCont .toolsCont{
+
+.aiToolsCont .toolsCont {
     /* display: flex; */
     display: none;
     /* background-color: orange; */
@@ -762,7 +773,7 @@ body {
     opacity: 0.2;
 }
 
-.aiToolsCont .toolsCont::before{
+.aiToolsCont .toolsCont::before {
     content: "";
     position: absolute;
     height: 100%;
@@ -771,7 +782,8 @@ body {
     border-radius: 6px;
     left: -18px;
 }
-.aiToolsCont .toolsCont a{
+
+.aiToolsCont .toolsCont a {
     background-color: var(--accentLightTint-blue);
     height: 100%;
     display: flex;
@@ -783,7 +795,8 @@ body {
     color: var(--textColorDark-blue);
     font-size: 1rem;
 }
-.aiToolsCont .toolsCont .tIcon{
+
+.aiToolsCont .toolsCont .tIcon {
     width: 26px;
     height: 26px;
     /* background-color: turquoise; */
@@ -855,4 +868,401 @@ body {
         margin-left: var(--gap);
 
     }
+}
+
+/* ---------------Menu-bar-css---------------- */
+.menuBar {
+    background-color: #0000004f;
+    backdrop-filter: blur(15px) saturate(170%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0; /*we are increasing opacity in js file*/
+    transition: all 0.5s;
+    overflow: hidden;
+}
+
+.menuBar .menuCont {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    transition: all 0.5s;
+    transform: translateX(100%);
+    background-color: var(--accentLightTint-blue);
+    border-bottom-left-radius: var(--round);
+}
+
+.menuBar .menuCont .topRounder {
+    width: var(--round);
+    /*30px*/
+    height: var(--round);
+    /* background-color: #17a638; */
+    position: absolute;
+    left: -30px;
+    /* transform: translateX(-100%); */
+}
+
+.menuCont .topDiv {
+    width: 100%;
+    height: 140px;
+    /*🚦🛺 🚜*/
+    background-color: var(--bg-color-blue);
+    position: relative;
+}
+
+.menuCont .topDiv::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: var(--gap);
+    background-color: var(--accentLightTint-blue);
+    border-top-left-radius: var(--round);
+    border-top-right-radius: var(--round);
+    bottom: 0;
+}
+
+.menuCont .topDiv h1 {
+    font-size: 1.6rem;
+    /* background-color: yellow; */
+    width: fit-content;
+    height: fit-content;
+    color: var(--textColorDark-blue);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: translateY(-50%);
+}
+
+.menuCont .optCont {
+    width: 100%;
+    height: calc(100% - 140px);
+    /*for this 👁️ look above at🚦🛺 🚜*/
+    /* background-color: oldlace; */
+    padding: var(--gap);
+    padding-top: 0px;
+    transition: all 0.6s;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.menuBar .optCont .tilesCont {
+    width: 100%;
+    height: 50px;
+    /* background-color: #17a638; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+
+.tilesCont .tiles {
+    background-color: var(--darkColor-blue);
+    border-radius: 20px;
+    font-size: 1rem;
+    color: var(--accentLightTint-blue);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.tilesCont .tiles .icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.divider {
+    height: 6px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 20px auto;
+}
+
+/* --- 🔴⚪🟡style for toggle buttons---- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the default checkbox input */
+.switch input {
+    display: none;
+}
+
+/* Styling for the slider */
+.toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-color-blue);
+    /* Background color when off */
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+/* Styling for the slider when it's in the "on" position */
+.toggle:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--accentLightTint-blue);
+    /* Slider color when on */
+    transition: 0.4s;
+    border-radius: 50%;
+
+}
+
+/* Apply styles when the input is checked (on) */
+input:checked+.toggle {
+    background-color: var(--darkColor-blue);
+    /* Background color when on */
+}
+
+input:checked+.toggle:before {
+    transform: translateX(26px);
+}
+
+/* --- END OF 🔴⚪🟡style for toggle buttons---- */
+
+.toggleTextsCont {
+    /* background-color: yellow; */
+}
+
+.toggleTextsCont .ttcont {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.unflex {
+    display: block !important;
+}
+
+.ttcont input {
+    width: 100%;
+    margin-top: 6px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 0px 11px;
+}
+.ttcont .texts .bigText {
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+}
+.ttcont .texts .infoText {
+    font-size: 0.9rem;
+    color: var(--textColorDark-blue);
+    opacity: 0.86;
+    margin-top: -3px;
+}
+.bottomer{
+    /* background-color: #17a638; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.bottomer a{
+    text-decoration: none;
+    color: var(--darkColor-blue);
+    font-size: 1rem;
+}
+.bottomer button{
+    border: none;
+    color: #fff;
+    background-color: var(--darkColor-blue);
+    padding: 6px 20px;
+    font-size: 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+
+
+
+/* ---------------Menu-bar-css---------------- */
+
+/* --------------Theming stuff------------------ */
+.themingStuff {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    gap: var(--gap);
+    /* background-color: yellow; */
+}
+.colorsContainer {
+    background-color: var(--accentLightTint-blue);
+    background-color: #ffffffe8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    height: fit-content;
+    width: fit-content;
+    
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 divs in the first row */
+    grid-auto-rows: auto;
+    grid-gap: 10px; 
+    width: fit-content;
+    padding: 10px;
+    /* padding-right: 0px; */
+    border-radius: 26px;
+
+    
+}
+.colorsContainer input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    outline: none;
+    /* margin-right: 10px; */
+    cursor: pointer;
+}
+.colorsContainer input[value="blue"] {
+    background-color: #4382EC;
+}
+.colorsContainer input[value="yellow"] {
+    background-color: #f3f05a;
+}
+.colorsContainer input[value="red"] {
+    background-color: #f91d1d;
+}
+.colorsContainer input[value="green"] {
+    background-color: #17a638;
+}
+.colorsContainer input[value="cyan"] {
+    background-color: #2acdf5;
+}
+.colorsContainer input[value="orange"] {
+    background-color: orange;
+}
+.colorsContainer input[value="purple"] {
+    background-color: #b830de;
+}
+.colorsContainer input[value="pink"] {
+    background-color: #e41b9e;
+}
+.colorsContainer input[value="dark"] {
+    background-color: #282828;
+}
+.colorsContainer input[type="radio"]:checked::after {
+    position: absolute;
+    content: "";
+    width: 36px;
+    height: 36px;
+    background: url("./svgs/tick.svg") center center no-repeat;
+    background-size: 74%;
+}
+.themingStuff .btn {
+    background-color: #ffffffe8;;
+    height: 100%;
+    aspect-ratio: 1/1;
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
+    cursor: pointer;
+}
+#darkTheme{
+    grid-column: span 2;
+    width: 82px;
+}
+/* -----------end of theming stuff---------------- */
+
+#menuButton{
+    position: absolute;
+    right: var(--gap);
+    bottom: var(--gap);
+    width: 50px;
+    height: 50px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 100%;
+    cursor: pointer;
+}
+#menuButton::after{
+    position: absolute;
+    content: "";
+    width: 62%;
+    height: 62%;
+    border-radius: 100%;
+    border: 4px solid var(--darkColor-blue);
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+#menuButton::before{
+    position: absolute;
+    content: "";
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    background-color: var(--darkColor-blue);
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+
+/* ---------------------- */
+#menuCloseButton {
+    position: absolute;
+    bottom: var(--gap);
+    width: 42px;
+    max-width: 100%; /* Set max-width to fit-content initially */
+    background-color: var(--bg-color-blue);
+    color: var(--textColorDark-blue);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 100px;
+    overflow: hidden; /* Hide the overflow when content expands */
+    transition: all 0.4s; /* Transition the max-width property */
+    cursor: pointer;
+}
+
+#menuCloseButton:hover{
+    width: 105px;
+    background-color: #fff;
+}
+#menuCloseButton:hover::after {
+    content: "Close";
+    padding-right: 12px;
+    /* width: 32px; */
+ /* Expand the max-width on hover */
+}
+
+
+
+#menuCloseButton .icon{
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+}
+#menuCloseButton .icon:hover{
+    transition: all 0.2s;
+    transform: rotate(90deg);
 }

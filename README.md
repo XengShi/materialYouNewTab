@@ -1,7 +1,7 @@
 Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST
 # Material You NewTab
-
 ![Screenshot 1](https://live.staticflickr.com/65535/53156864266_1fd519ab86_k.jpg)
+# Quick test : https://code-by-imtiyaz.github.io/materialYouNewTab/
 
 Welcome to 'Material You NewTab', where simplicity meets functionality. A browser homepage is thoughtfully designed, taking inspiration from Google's Material You Design principles. With Material You NewTab, we bring you a seamless browsing experience that empowers you to explore the web effortlessly.
 
@@ -30,10 +30,3 @@ Browse your extension folder 📁
 ## Feedback
 
 We value your feedback! If you have any suggestions, ideas, or questions, please don't hesitate to reach out to us via ✉️ [Email](mailto:xengshi@duck.com) or ✈️ [Telegram](https://t.me/xengshi).
-
-
-
-
-
-
-
