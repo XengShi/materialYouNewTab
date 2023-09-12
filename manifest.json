@@ -2,13 +2,16 @@
     "manifest_version": 3,
     "name": "Material You NewTab",
     "version": "1.0",
-    "description": "A Simple New Tab ( browsers's home page ) inspired with Google's 'Material You' design.",
+    "description": "A Simple New Tab (browser's home page) inspired with Google's 'Material You' design.",
     "permissions": [
         "activeTab",
         "storage"
     ],
     "background": {
         "service_worker": "background.js"
+    },
+    "icons": {
+        "48": "icon.png"
     },
     "chrome_url_overrides": {
         "newtab": "index.html"
@@ -24,3 +27,4 @@
         }
     ]
 }
+
