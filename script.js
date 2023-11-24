@@ -124,7 +124,9 @@ document.addEventListener('click', function (event) {
 document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
+    const searchEngineRadio = document.getElementsByName("search-engine");
 
+    // Function to perform search
     function performSearch() {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
@@ -141,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Event listeners
     enterBTN.addEventListener("click", performSearch);
 
     searchInput.addEventListener("keypress", (event) => {
@@ -149,16 +152,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----The stay changed even if user reload the page---
-    const storedTheme = localStorage.getItem(themeStorageKey);
-    if (storedTheme) {
-        applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
+    // Set selected search engine from local storage
+    const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+    if (storedSearchEngine) {
+        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
+
+    // Event listener for search engine radio buttons
+    searchEngineRadio.forEach((radio) => {
+        radio.addEventListener("change", () => {
+            const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+            localStorage.setItem("selectedSearchEngine", selectedOption);
+        });
+    });
 });
+
 
 // Function to apply the selected theme
 // let themeButton = document.getElementById("themeButton")
