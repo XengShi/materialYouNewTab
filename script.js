@@ -63,7 +63,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Update location
         // document.getElementById("location").textContent = parsedLocation.city;
-        document.getElementById("location").textContent = parsedData.location.name;
+        var city = parsedData.location.name;
+        // var city = "Thiruvananthapuram";
+        var maxLength = 10;
+        var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+        // Update the span's text content with the limited text
+        document.getElementById("location").textContent = limitedText;
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
