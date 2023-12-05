@@ -173,15 +173,22 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
+     // -----The stay changed even if user reload the page---
+    //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
+     const storedTheme = localStorage.getItem(themeStorageKey);
+     if (storedTheme) {
+         applySelectedTheme(storedTheme);
+         const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
+         if (selectedRadioButton) {
+             selectedRadioButton.checked = true;
+         }
+     }
+
 });
 
 
 // Function to apply the selected theme
-// let themeButton = document.getElementById("themeButton")
-// themeButton.onclick = () => {
-//     document.getElementById("colorsContainer").classList.toggle("showColorPlate")
-// }
-
+// 🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 
