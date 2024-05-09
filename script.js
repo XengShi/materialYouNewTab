@@ -29,10 +29,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
 
         // Getting current user location
-        const geoLocation = 'https://geolocation-db.com/json/';
+        const geoLocation = 'https://ipapi.co/json/';
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
-        const currentUserLocation = parsedLocation.IPv4;
+        const currentUserLocation = parsedLocation.ip;
 
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no`;
 
