@@ -30,6 +30,11 @@ Clone this repository to your local machine or download the latest release from 
 **Firefox** :
 [Download & Install as normal extension](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
+### Installation Video
+
+For a step-by-step installation guide, watch the video below:
+
+[![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://www.youtube.com/watch?v=P4ryQPixfw8)
 
 
 ![Screenshot 1](https://i.postimg.cc/w6JYypvc/chrome.png)
