@@ -10,7 +10,9 @@ Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST
 
 ### Download
 
-Clone this repository to your local machine or download the latest release from [here](https://github.com/Code-by-imtiyaz/materialYouNewTab.git).
+You can download the latest version of the software by clicking the button below:
+
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/releases/tag/v1.1)
 
 ### Installation
 
@@ -30,11 +32,14 @@ Clone this repository to your local machine or download the latest release from 
 **Firefox** :
 [Download & Install as normal extension](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
+---
 ### Installation Video
 
 For a step-by-step installation guide, watch the video below:
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://www.youtube.com/watch?v=P4ryQPixfw8)
+
+---
 
 
 ![Screenshot 1](https://i.postimg.cc/w6JYypvc/chrome.png)
