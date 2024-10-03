@@ -81,7 +81,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         var maxLength = 10;
         var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
         // Update the span's text content with the limited text
-        document.getElementById("location").textContent = limitedText;
+        localStorage.setItem("location", limitedText);
+        
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -328,6 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+    const locationHandle=document.getElementById("locationhandle")
 
     // Function to save checkbox state to localStorage
     function saveCheckboxState(key, checkbox) {
@@ -365,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("locationHandleState", locationHandle);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
@@ -391,6 +394,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    });
+
+    locationHandle.addEventListener("change", function () {
+        saveCheckboxState("locationHandleState", locationHandle);
+        if(locationHandle.checked){
+            document.getElementById("location").textContent = "Earth";
+        }else{
+            const location=localStorage.getItem('location')
+            document.getElementById("location").textContent = location?location:"Earth" ;
+        }
     });
 
 });
