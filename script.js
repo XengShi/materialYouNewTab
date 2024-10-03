@@ -42,14 +42,27 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Weather data
         const conditionText = parsedData.current.condition.text;
         const tempCelsius = Math.round(parsedData.current.temp_c);
+        const tempFahrenheit = Math.round(tempCelsius * 9 / 5 + 32);
         const humidity = parsedData.current.humidity;
         const feelsLikeCelsius = parsedData.current.feelslike_c;
+        const feelsLikeFahrenheit = Math.round(feelsLikeCelsius * 9 / 5 + 32);
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("temp").textContent = `${tempCelsius}°`;
         document.getElementById("humidityLevel").textContent = `Humidity ${humidity}%`;
-        document.getElementById("feelsLike").textContent = `Feels ${feelsLikeCelsius}°C`;
+
+        // Event Listener for the Fahrenheit toggle
+        const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+        const updateTemperatureDisplay = () => {
+            if (fahrenheitCheckbox.checked) {
+                document.getElementById("temp").textContent = `${tempFahrenheit}°`;
+                document.getElementById("feelsLike").textContent = `Feels ${feelsLikeFahrenheit}°F`;
+            } else {
+                document.getElementById("temp").textContent = `${tempCelsius}°`;
+                document.getElementById("feelsLike").textContent = `Feels ${feelsLikeCelsius}°C`;
+            }
+        };
+        updateTemperatureDisplay();
 
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
@@ -173,16 +186,16 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
-     // -----The stay changed even if user reload the page---
+    // -----The stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
-     const storedTheme = localStorage.getItem(themeStorageKey);
-     if (storedTheme) {
-         applySelectedTheme(storedTheme);
-         const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
-         if (selectedRadioButton) {
-             selectedRadioButton.checked = true;
-         }
-     }
+    const storedTheme = localStorage.getItem(themeStorageKey);
+    if (storedTheme) {
+        applySelectedTheme(storedTheme);
+        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
+        if (selectedRadioButton) {
+            selectedRadioButton.checked = true;
+        }
+    }
 
 });
 
@@ -314,6 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
     // Function to save checkbox state to localStorage
     function saveCheckboxState(key, checkbox) {
@@ -350,6 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
+    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
@@ -373,5 +388,9 @@ document.addEventListener("DOMContentLoaded", function () {
             saveDisplayStatus("aiToolsDisplayStatus", "none");
         }
     });
-});
 
+    fahrenheitCheckbox.addEventListener("change", function () {
+        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    });
+
+});
