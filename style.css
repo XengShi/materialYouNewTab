@@ -952,12 +952,12 @@ body {
     overflow-x: hidden; /* Hide horizontal overflow */
 }
 
-.menuCont .overviewPage {
+.menuCont #overviewPage {
     position: absolute;
     transition: all 0.6s;
 }
 
-.menuCont .shortcutEditPage {
+.menuCont #shortcutEditPage {
     position: absolute;
     transition: all 0.6s;
     width: 90%;
@@ -1061,17 +1061,22 @@ body {
 
 }
 
-/* Styling for shortcut edit button */
-.shortcutEditField button {
-    margin: 0 auto;
-    display: block;
-    background: none;
+#shortcutEditButton {
+    fill: var(--textColorDark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
+    border-radius: 34px;
     cursor: pointer;
-    color: var(--textColorDark-blue);
+    transition: 0.3s all;
+    margin: 0 auto;
+    background: none;
+    height: 100%;
+    width: 100%;
 }
 
-.shortcutEditField.inactive {
+#shortcutEditField.inactive {
     opacity: 0.5;
     pointer-events: none;
 }
@@ -1144,22 +1149,107 @@ input:checked+.toggle:before {
     cursor: pointer;
 }
 
-.pageTitle {
-    width: 100%;
-    font-size: 1.2rem;
-    color: var(--textColorDark-blue);
-    text-align: center;
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--accentLightTint-blue);
 }
 
-.backButton {
-    color: var(--textColorDark-blue);
-    position: absolute;
-    width: 4%;
+.topBarPlaceholder {
+    height: 60px;
+}
+
+#backButton {
+    fill: var(--textColorDark-blue);
     border: none;
     background: none;
     cursor: pointer;
 }
 
+.rightButtons {
+    display: flex;
+    gap: 24px;
+}
+
+#resetButton,
+#newShortcutButton {
+    fill: var(--textColorDark-blue);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.pageTitle {
+    margin: 30px 0;
+    width: 100%;
+    font-size: 1.8rem;
+    color: var(--textColorDark-blue);
+}
+
+.shortcutSettingsEntry {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shortcutSettingsEntry input {
+    background: none;
+    border: none;
+}
+
+.shortcutSettingsEntry .bigText {
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+}
+.shortcutSettingsEntry .URL {
+    font-size: 0.9rem;
+    color: var(--textColorDark-blue);
+    opacity: 0.86;
+    margin-top: -3px;
+}
+
+.delete button {
+    fill: var(--textColorDark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 34px;
+    background: var(--bg-color-blue);
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.delete button:hover {
+    fill: white;
+    background: var(--darkColor-blue);
+}
+
+.addShortcutContainer button {
+    fill: white;
+    background: var(--darkColor-blue);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 34px;
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
 
 /* ---------------Menu-bar-css---------------- */
 

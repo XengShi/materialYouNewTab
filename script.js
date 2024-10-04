@@ -286,8 +286,10 @@ const shortcutEditPage = document.getElementById("shortcutEditPage");
 function pageReset() {
     overviewPage.style.transform = "translateX(0)";
     overviewPage.style.opacity = "1";
+    overviewPage.style.display = "block";
     shortcutEditPage.style.transform = "translateX(120%)";
     shortcutEditPage.style.opacity = "0";
+    shortcutEditPage.style.display = "none";
 }
 
 const closeMenuBar = () => {
@@ -428,6 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     shortcutEditButton.onclick = () => {
+        shortcutEditPage.style.display = "block"
         setTimeout(() => {
             overviewPage.style.transform = "translateX(-120%)"
             overviewPage.style.opacity = "0"
@@ -436,9 +439,13 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutEditPage.style.transform = "translateX(0)"
             shortcutEditPage.style.opacity = "1"
         }, 50);
+        setTimeout(() => {
+            overviewPage.style.display = "none";
+        }, 650);
     }
 
     backButton.onclick = () => {
+        overviewPage.style.display = "block"
         setTimeout(() => {
             overviewPage.style.transform = "translateX(0)";
             overviewPage.style.opacity = "1";
@@ -447,5 +454,8 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutEditPage.style.transform = "translateX(120%)";
             shortcutEditPage.style.opacity = "0";
         });
+        setTimeout(() => {
+            shortcutEditPage.style.display = "none";
+        }, 650);
     }
 });
