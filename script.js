@@ -280,6 +280,15 @@ const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
 const menuCont = document.getElementById("menuCont");
 const optCont = document.getElementById("optCont");
+const overviewPage = document.getElementById("overviewPage");
+const shortcutEditPage = document.getElementById("shortcutEditPage");
+
+function pageReset() {
+    overviewPage.style.transform = "translateX(0)";
+    overviewPage.style.opacity = "1";
+    shortcutEditPage.style.transform = "translateX(120%)";
+    shortcutEditPage.style.opacity = "0";
+}
 
 const closeMenuBar = () => {
     setTimeout(() => {
@@ -297,6 +306,7 @@ const closeMenuBar = () => {
 menuButton.addEventListener("click", () => {
     if (menuBar.style.display === 'none' || menuBar.style.display === '') {
         menuBar.style.display = "block";
+        pageReset()
         setTimeout(() => {
             menuBar.style.opacity = 1
             menuCont.style.transform = "translateX(0px)"
@@ -326,8 +336,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcuts = document.getElementById("shortcutsContainer");
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
+    const shortcutEditField = document.getElementById("shortcutEditField");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+    const shortcutEditButton = document.getElementById("shortcutEditButton");
+    const backButton = document.getElementById("backButton");
+    const shortcutList = document.getElementById("shortcutList");
 
     // Function to save checkbox state to localStorage
     function saveCheckboxState(key, checkbox) {
@@ -349,6 +363,11 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem(key, displayStatus);
     }
 
+    // Function to save activeness status to localStorage
+    function saveActiveStatus(key, activeStatus) {
+        localStorage.setItem(key, activeStatus)
+    }
+
     // Function to load and apply display status from localStorage
     function loadDisplayStatus(key, element) {
         const savedStatus = localStorage.getItem(key);
@@ -359,8 +378,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Function to load and apply activeness status from localStorage
+    function loadActiveStatus(key, element) {
+        const savedStatus = localStorage.getItem(key);
+        if (savedStatus === "active") {
+            element.classList.remove("inactive");
+        } else {
+            element.classList.add("inactive");
+        }
+    }
+
     // Load and apply the saved checkbox states and display statuses
     loadCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
+    loadActiveStatus("shortcutEditField", shortcutEditField);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
@@ -372,9 +402,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (shortcutsCheckbox.checked) {
             shortcuts.style.display = "flex";
             saveDisplayStatus("shortcutsDisplayStatus", "flex");
+            shortcutEditField.classList.remove("inactive");
+            saveActiveStatus("shortcutEditField", "active");
         } else {
             shortcuts.style.display = "none";
             saveDisplayStatus("shortcutsDisplayStatus", "none");
+            shortcutEditField.classList.add("inactive")
+            saveActiveStatus("shortcutEditField", "inactive");
         }
     });
 
@@ -393,4 +427,25 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
 
+    shortcutEditButton.onclick = () => {
+        setTimeout(() => {
+            overviewPage.style.transform = "translateX(-120%)"
+            overviewPage.style.opacity = "0"
+        });
+        setTimeout(() => {
+            shortcutEditPage.style.transform = "translateX(0)"
+            shortcutEditPage.style.opacity = "1"
+        }, 50);
+    }
+
+    backButton.onclick = () => {
+        setTimeout(() => {
+            overviewPage.style.transform = "translateX(0)";
+            overviewPage.style.opacity = "1";
+        }, 50);
+        setTimeout(() => {
+            shortcutEditPage.style.transform = "translateX(120%)";
+            shortcutEditPage.style.opacity = "0";
+        });
+    }
 });

@@ -948,8 +948,19 @@ body {
     transition: all 0.6s;
     transform: translateX(100%);
     opacity: 0;
-    overflow-y: auto; /* Allow vertical scrolling only */
+    overflow-y: scroll; /* Allow vertical scrolling only */
     overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+.menuCont .overviewPage {
+    position: absolute;
+    transition: all 0.6s;
+}
+
+.menuCont .shortcutEditPage {
+    position: absolute;
+    transition: all 0.6s;
+    width: 90%;
 }
 
 /* -----------Scrollbar for menu---------------- */
@@ -1050,6 +1061,21 @@ body {
 
 }
 
+/* Styling for shortcut edit button */
+.shortcutEditField button {
+    margin: 0 auto;
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--textColorDark-blue);
+}
+
+.shortcutEditField.inactive {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 /* Apply styles when the input is checked (on) */
 input:checked+.toggle {
     background-color: var(--darkColor-blue);
@@ -1118,7 +1144,21 @@ input:checked+.toggle:before {
     cursor: pointer;
 }
 
+.pageTitle {
+    width: 100%;
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+    text-align: center;
+}
 
+.backButton {
+    color: var(--textColorDark-blue);
+    position: absolute;
+    width: 4%;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 
 
 /* ---------------Menu-bar-css---------------- */
