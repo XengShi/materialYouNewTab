@@ -343,7 +343,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
     const backButton = document.getElementById("backButton");
-    const shortcutList = document.getElementById("shortcutList");
+    const shortcutList = document.getElementById("shortcutList"); // shortcuts in settings
+    const shortcutsContainer = document.getElementById("shortcutsContainer") // shortcuts in page
+    const addButton = document.getElementById("newShortcutButton")
 
     // Function to save checkbox state to localStorage
     function saveCheckboxState(key, checkbox) {
@@ -358,6 +360,208 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             checkbox.checked = false;
         }
+    }
+
+    // Function to load and apply all shortcut names and URLs from localStorage
+    function loadShortcuts() {
+        let amount = localStorage.getItem("shortcutAmount");
+
+        const presetAmount = shortcutList.children.length;
+        console.log("preset amount = " + presetAmount.toString());
+
+        if (amount === null) { // first time opening
+            amount = presetAmount;
+            localStorage.setItem("shortcutAmount", amount.toString());
+        } else {
+            amount = parseInt(amount);
+        }
+
+        for (let i = 0; i < amount; i++) {
+            console.log("in loop: " + shortcutList.children.length);
+
+            const name = localStorage.getItem("shortcutName" + i.toString());
+            const url = localStorage.getItem("shortcutURL" + i.toString());
+
+            if (!name || !url) { // this is not a custom shortcut, just needs event listeners
+                shortcutList.children[i].children[1].children[0].addEventListener("click", () => {
+                    deleteShortcut(i);
+                })
+                const inputs = shortcutList.children[i].children[0].children;
+                inputs[0].addEventListener("blur", () => {
+                    saveShortcut(i, false);
+                    applyShortcut(i);
+                })
+                inputs[1].addEventListener("blur", () => {
+                    saveShortcut(i, true);
+                    applyShortcut(i);
+                })
+                continue;
+            }
+
+            let deleteButton = document.createElement("div");
+            deleteButton.className = "delete";
+            deleteButton.innerHTML = `
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
+                    <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-12q-15.3 0-25.65-10.29Q192-716.58 192-731.79t10.35-25.71Q212.7-768 228-768h156v-12q0-15.3 10.35-25.65Q404.7-816 420-816h120q15.3 0 25.65 10.35Q576-795.3 576-780v12h156q15.3 0 25.65 10.29Q768-747.42 768-732.21t-10.35 25.71Q747.3-696 732-696h-12v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM419.79-288q15.21 0 25.71-10.35T456-324v-264q0-15.3-10.29-25.65Q435.42-624 420.21-624t-25.71 10.35Q384-603.3 384-588v264q0 15.3 10.29 25.65Q404.58-288 419.79-288Zm120 0q15.21 0 25.71-10.35T576-324v-264q0-15.3-10.29-25.65Q555.42-624 540.21-624t-25.71 10.35Q504-603.3 504-588v264q0 15.3 10.29 25.65Q524.58-288 539.79-288ZM312-696v480-480Z"/>
+                </svg>
+            </button>
+            `
+            deleteButton.children[0].addEventListener("click", () => {
+                deleteShortcut(i);
+            })
+
+            let title = document.createElement("input");
+            title.className = "bigText";
+            title.value = name;
+            title.addEventListener("blur", () => {
+                saveShortcut(i, false);
+                applyShortcut(i);
+            });
+            let subtitle = document.createElement("input");
+            subtitle.className = "URL";
+            subtitle.value = url;
+            subtitle.addEventListener("blur", () => {
+                saveShortcut(i, true);
+                applyShortcut(i);
+            });
+
+            let textDiv = document.createElement("div");
+            textDiv.append(title, subtitle);
+
+            if (i < presetAmount) {
+                shortcutList.children[i].innerHTML = '';
+                shortcutList.children[i].append(textDiv, deleteButton);
+            } else {
+
+                let entryDiv = document.createElement("div");
+                entryDiv.className = "shortcutSettingsEntry";
+                entryDiv.append(textDiv, deleteButton);
+
+                shortcutList.appendChild(entryDiv);
+            }
+            applyShortcut(i)
+        }
+
+        console.log("after loop: " + shortcutList.children.length);
+        console.log(shortcutList.children[presetAmount - 1])
+
+        for (let i = amount; i < presetAmount; i++) {
+            shortcutList.removeChild(shortcutList.children[amount]);
+            shortcutsContainer.removeChild(shortcutsContainer.children[amount]);
+        }
+    }
+
+    function getFavicon(url) {
+        const normalizedUrl = url.startsWith('https://') ? url : 'https://' + url.replace("http://", "");
+        return `https://s2.googleusercontent.com/s2/favicons?domain_url=${normalizedUrl}&sz=256`;
+    }
+
+    function saveShortcut(i, isUrl) {
+        if (isUrl === undefined) {
+            saveShortcut(i, false);
+            saveShortcut(i, true);
+            return;
+        }
+
+        const value = shortcutList.children[i].children[0].children[isUrl ? 1 : 0].value;
+
+        localStorage.setItem("shortcut" + (isUrl ? "URL" : "Name") + i.toString(), value);
+    }
+
+    function applyShortcut(i) {
+        let settingsEntryText = shortcutList.children[i].children[0];
+
+        if (i >= shortcutsContainer.children.length) {
+            shortcutsContainer.insertAdjacentHTML('beforeend', '<div class="shortcuts"><a href=""></a></div>');
+        }
+
+        let shortcut = shortcutsContainer.children[i].children[0];
+        let url = settingsEntryText.children[1].value;
+
+        shortcut.href = url.startsWith('https://') ? url : 'https://' + url.replace("http://", "");
+        shortcut.innerHTML = '';
+
+        let logo = document.createElement("img");
+        logo.className = "shortcutLogo";
+        logo.src = getFavicon(url);
+
+        let name = document.createElement("span");
+        name.className = "shortcut-name"
+        name.textContent = settingsEntryText.children[0].value;
+
+        shortcut.append(logo, name);
+    }
+
+    function newShortcut() {
+        const currentAmount = parseInt(localStorage.getItem("shortcutAmount"));
+        const newAmount = currentAmount + 1;
+
+        if (newAmount > 10) return;
+
+        localStorage.setItem("shortcutAmount", newAmount.toString())
+
+        // create placeholder divs
+        shortcutsContainer.insertAdjacentHTML('beforeend', `
+        <div class="shortcuts">
+            <a href="https://github.com/XengShi/materialYouNewTab">
+                <img class="shortcutLogo" src="https://s2.googleusercontent.com/s2/favicons?domain_url=https://github.com/XengShi/materialYouNewTab&amp;sz=256">
+                <span class="shortcut-name">Placeholder</span>
+            </a>
+        </div>
+        `)
+        shortcutList.insertAdjacentHTML('beforeend', `
+        <div class="shortcutSettingsEntry">
+            <div>
+                <input class="bigText" value="Placeholder">
+                <input class="URL" value="https://github.com/XengShi/materialYouNewTab">
+            </div>
+            <div class="delete">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
+                         width="20px">
+                        <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-12q-15.3 0-25.65-10.29Q192-716.58 192-731.79t10.35-25.71Q212.7-768 228-768h156v-12q0-15.3 10.35-25.65Q404.7-816 420-816h120q15.3 0 25.65 10.35Q576-795.3 576-780v12h156q15.3 0 25.65 10.29Q768-747.42 768-732.21t-10.35 25.71Q747.3-696 732-696h-12v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM419.79-288q15.21 0 25.71-10.35T456-324v-264q0-15.3-10.29-25.65Q435.42-624 420.21-624t-25.71 10.35Q384-603.3 384-588v264q0 15.3 10.29 25.65Q404.58-288 419.79-288Zm120 0q15.21 0 25.71-10.35T576-324v-264q0-15.3-10.29-25.65Q555.42-624 540.21-624t-25.71 10.35Q504-603.3 504-588v264q0 15.3 10.29 25.65Q524.58-288 539.79-288ZM312-696v480-480Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        `)
+        const settingsEntry = shortcutList.children[newAmount - 1];
+        settingsEntry.children[1].children[0].addEventListener("click", () => {
+            deleteShortcut(newAmount - 1);
+        })
+        const entryInputs = settingsEntry.children[0].children;
+        entryInputs[0].addEventListener("blur", () => {
+            saveShortcut(newAmount - 1, false);
+            applyShortcut(newAmount - 1);
+        });
+        entryInputs[1].addEventListener("blur", () => {
+            saveShortcut(newAmount - 1, true);
+            applyShortcut(newAmount - 1);
+        });
+
+        saveShortcut(newAmount - 1);
+    }
+
+    function deleteShortcut(i) {
+        const currentAmount = parseInt(localStorage.getItem("shortcutAmount") || "-1");
+        if (currentAmount < 2) return;
+
+        // Remove the shortcut from the DOM
+        shortcutList.removeChild(shortcutList.children[i]);
+        shortcutsContainer.removeChild(shortcutsContainer.children[i]);
+
+        // Update localStorage by shifting all the shortcuts after the deleted one
+        for (let j = i; j < currentAmount - 1; j++) {
+            saveShortcut(j);
+        }
+
+        // Remove the last shortcut, as it has now moved up
+        localStorage.removeItem("shortcutName" + (currentAmount - 1));
+        localStorage.removeItem("shortcutURL" + (currentAmount - 1));
+
+        // Update the shortcutAmount in localStorage
+        localStorage.setItem("shortcutAmount", (currentAmount - 1).toString());
     }
 
     // Function to save display status to localStorage
@@ -397,6 +601,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadShortcuts();
+
+    addButton.addEventListener("click", () => {
+        newShortcut();
+    })
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
