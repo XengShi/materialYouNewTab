@@ -161,6 +161,7 @@ body {
     top: -90px;
     transform-origin: bottom;
     border-radius: 10px;
+    transition: transform 1.50s;
 }
 
 #hour {
@@ -213,7 +214,7 @@ body {
     position: absolute;
     /* background-color: yellow; */
     bottom: 18px;
-    /*Because search engnies has margin-bottom 20px*/
+    /*Because search engines has margin-bottom 20px*/
     left: 5px;
 }
 
@@ -566,6 +567,8 @@ body {
     border: 2px solid #ffffff;
     outline: none;
     margin-right: 8px;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .search-engine input[type="radio"]:checked {
@@ -1249,6 +1252,7 @@ input:checked+.toggle:before {
 
 /* ---------------------- */
 #menuCloseButton {
+    position: relative;
      /* position: absolute; */
     bottom: var(--gap);
     width: 42px;
@@ -1272,22 +1276,66 @@ input:checked+.toggle:before {
     width: 105px;
     background-color: #fff;
 }
+
+#menuCloseButton::after {
+    content: "Close";
+    padding-right: 12px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: .6s menuCloseButtonHoverReverse forwards;
+    z-index: 1;
+}
+
 #menuCloseButton:hover::after {
     content: "Close";
     padding-right: 12px;
+    padding-left: 36px;
     /* width: 32px; */
- /* Expand the max-width on hover */
+    /* Expand the max-width on hover */
+    animation: .6s menuCloseButtonHover forwards;
+    animation-delay: .1s;
+}
+
+@keyframes menuCloseButtonHover {
+    0%{
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes menuCloseButtonHoverReverse {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
 }
 
 
-
 #menuCloseButton .icon{
+    position: absolute;
+    left: 6px;
     background-color: #fff;
     width: 30px;
     height: 30px;
     border-radius: 100px;
+    /* transform: translateX(30px); */
+    transition: .4s;
+    z-index: 2;
 }
-#menuCloseButton .icon:hover{
+
+/* #menuCloseButton .icon:hover{
     transition: all 0.2s;
     transform: rotate(90deg);
+} */
+
+#menuCloseButton:hover .icon{
+    transform: translateX(0) rotate(90deg);
 }
