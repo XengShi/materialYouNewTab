@@ -253,26 +253,48 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 document.getElementById("0NIHK").onclick = () => {
 
-    if (element.style.display === "flex") {
-        shortcuts.style.display = 'flex';
-        element.style.opacity = "0";
-        element.style.gap = "0";
-        element.style.transform = "translateX(-100%)";
-        setTimeout(() => {
-            element.style.display = "none";
-        }, 500);
+    if (shortcutsCheckbox.checked) {
+        if (element.style.display === "flex") {
+            shortcuts.style.display = 'flex';
+            element.style.opacity = "0";
+            element.style.gap = "0";
+            element.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                element.style.display = "none";
+            }, 500);
+        } else {
+            shortcuts.style.display = 'flex';
+            element.style.display = "flex";
+            setTimeout(() => {
+                element.style.opacity = "1";
+                element.style.transform = "translateX(0)";
+            }, 1);
+            setTimeout(() => {
+                element.style.gap = "12px";
+            }, 300);
+        }
     } else {
-        shortcuts.style.display = 'none';
-        element.style.display = "flex";
-        setTimeout(() => {
-            element.style.opacity = "1";
-            element.style.transform = "translateX(0)";
-        }, 1);
-        setTimeout(() => {
-            element.style.gap = "12px";
-        }, 300);
+        if (element.style.display === "flex") {
+            shortcuts.style.display = 'none';
+            element.style.opacity = "0";
+            element.style.gap = "0";
+            element.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                element.style.display = "none";
+            }, 500);
+        } else {
+            shortcuts.style.display = 'none';
+            element.style.display = "flex";
+            setTimeout(() => {
+                element.style.opacity = "1";
+                element.style.transform = "translateX(0)";
+            }, 1);
+            setTimeout(() => {
+                element.style.gap = "12px";
+            }, 300);
+        }
     }
-}
+} 
 
 
 // ------------Showing & Hiding Menu-bar ---------------
