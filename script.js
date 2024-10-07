@@ -237,7 +237,7 @@ radioButtons.forEach(radioButton => {
 // end of Function to apply the selected theme
 
 
-// User entered Text stay changed even after reloadig the page
+// User entered Text stay changed even after reloading the page
 const userTextDiv = document.getElementById("userText");
 const storedValue = localStorage.getItem("userText");
 if (storedValue) {
