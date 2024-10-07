@@ -263,7 +263,7 @@ document.getElementById("0NIHK").onclick = () => {
                 element.style.display = "none";
             }, 500);
         } else {
-            shortcuts.style.display = 'flex';
+            shortcuts.style.display = 'none';
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
