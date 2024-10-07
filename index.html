@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="./favicon/favicon.ico">
 
     <script defer src="script.js"></script>
+    <script defer src="languages.js"></script>
 </head>
 
 <body>
@@ -119,7 +120,7 @@
             <!-- ----------search with------------------- -->
             <div class="searchWithCont">
 
-                <div class="hint bgLightTint">Search With</div>
+                <div class="hint bgLightTint" id="searchWithHint">Search With</div>
 
                 <div class="searchEnginesContainer">
 
@@ -303,7 +304,7 @@
                         fill="white" />
                 </svg>
             </div>
-            <div class="label">AI-Tools</div>
+            <div class="label" id="ai_tools">AI-Tools</div>
         </div>
         <!-- --------tools-------- -->
 
@@ -424,8 +425,8 @@
                 <div class="toggleTextsCont">
                     <div class="ttcont">
                         <div class="texts">
-                            <div class="bigText">Shortcuts</div>
-                            <div class="infoText">Enable/disable shortcuts</div>
+                            <div class="bigText" id="shortcutsText">Shortcuts</div>
+                            <div class="infoText" id="enableShortcutsText">Enable/disable shortcuts</div>
                         </div>
                         <label class="switch">
                             <input type="checkbox" id="shortcutsCheckbox">
@@ -435,8 +436,8 @@
                     <!-- ---🟡--- -->
                     <div class="ttcont">
                         <div class="texts">
-                            <div class="bigText">AI-Tools</div>
-                            <div class="infoText">Enable/disable AI Tools shortcuts</div>
+                            <div class="bigText" id="ai_tools_button">AI-Tools</div>
+                            <div class="infoText" id="enable_ai_tools">Enable/disable AI Tools shortcuts</div>
                         </div>
                         <label class="switch">
                             <input type="checkbox" id="aiToolsCheckbox">
@@ -446,8 +447,8 @@
 
                     <div class="ttcont">
                         <div class="texts">
-                            <div class="bigText">Switch to Fahrenheit</div>
-                            <div class="infoText">Refresh the page to see the updates </div>
+                            <div class="bigText" id="fahrenheitCelciusCheckbox">Switch to Fahrenheit</div>
+                            <div class="infoText" id="fahrenheitCelciusText">Refresh the page to see the updates </div>
                         </div>
                         <label class="switch">
                             <input type="checkbox" id="fahrenheitCheckbox">
@@ -457,22 +458,42 @@
                     <!-- ---🟡--- -->
                     <div class="ttcont unflex">
                         <div class="texts">
-                            <div class="bigText">Enter your own WeatherAPI key</div>
-                            <div class="infoText">If the weather functionality isn't working</div>
+                            <div class="bigText" id="WeatherApiText">Enter your own WeatherAPI key</div>
+                            <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
+                            </div>
                         </div>
                         <input id="userAPI" type="text" name="" id="" placeholder="Your weatherAPI key">
                         <div class="bottomer">
-                            <a href="https://www.weatherapi.com">Learn more</a>
+                            <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</a>
                             <button id="saveAPI">Enter</button>
                         </div>
                     </div>
                     <!-- ---🟡--- -->
 
                 </div>
-                <!-- end of toggleTextsCont -->
+                <!-- start of languageSelector -->
+                <br>
                 <div class="divider" style="margin-top: 90px;"></div>
 
                 <!-- ------------theming stufff--------------- -->
+                <div class="themingStuff">
+                    <div id="themeButton" class="languageIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="24px" fill="none">
+                            fill="#e8eaed">
+                            <path class="accentColor"
+                                d="m476-80 182-480h84L924-80h-84l-43-122H603L560-80h-84ZM160-200l-56-56 202-202q-35-35-63.5-80T190-640h84q20 39 40 68t48 58q33-33 68.5-92.5T484-720H40v-80h280v-80h80v80h280v80H564q-21 72-63 148t-83 116l96 98-30 82-122-125-202 201Zm468-72h144l-72-204-72 204Z"
+                                fill="#f00" />
+                        </svg>
+                    </div>
+
+                    <!-- Botão de mudança de idioma -->
+                    <select class="languageSelector" id="languageSelector">
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                    </select>
+                    <!-- end of languageSelector -->
+                </div>
+                <br>
                 <div class="themingStuff">
                     <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                     <div id="themeButton" class="btn">
@@ -524,6 +545,7 @@
     <!-- ------end of Menu-bar----------- -->
     <div id="menuButton"></div>
     <!-- ending-of-body -->
+
 </body>
 
 </html>

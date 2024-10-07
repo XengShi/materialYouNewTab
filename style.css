@@ -878,7 +878,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    opacity: 0; /*we are increasing opacity in js file*/
+    opacity: 0;
+    /*we are increasing opacity in js file*/
     transition: all 0.5s;
     overflow: hidden;
 }
@@ -948,29 +949,41 @@ body {
     transition: all 0.6s;
     transform: translateX(100%);
     opacity: 0;
-    overflow-y: auto; /* Allow vertical scrolling only */
-    overflow-x: hidden; /* Hide horizontal overflow */
+    overflow-y: auto;
+    /* Allow vertical scrolling only */
+    overflow-x: hidden;
+    /* Hide horizontal overflow */
 }
 
 /* -----------Scrollbar for menu---------------- */
 /* For WebKit browsers (Chrome, Safari) */
 .menuCont .optCont::-webkit-scrollbar {
-    width: 2px; /* Width of the scrollbar */
+    width: 2px;
+    /* Width of the scrollbar */
 }
+
 /* Track */
 .menuCont .optCont::-webkit-scrollbar-track {
-    background: transparent; /* Background of the track */
+    background: transparent;
+    /* Background of the track */
 }
+
 /* Handle */
 .menuCont .optCont::-webkit-scrollbar-thumb {
-    background: var(--darkColor-blue); /* Color of the scrollbar handle */
-    border-radius: 2px; /* Rounded corners for the scrollbar handle */
+    background: var(--darkColor-blue);
+    /* Color of the scrollbar handle */
+    border-radius: 2px;
+    /* Rounded corners for the scrollbar handle */
 }
+
 /* For Firefox */
 .menuCont .optCont {
-    scrollbar-width: thin; /* Makes the scrollbar thin */
-    scrollbar-color: var(--darkColor-blue) transparent; /* Handle color and track color */
+    scrollbar-width: thin;
+    /* Makes the scrollbar thin */
+    scrollbar-color: var(--darkColor-blue) transparent;
+    /* Handle color and track color */
 }
+
 /* -------------End of Scrollbar for menu-------------- */
 
 
@@ -1087,28 +1100,33 @@ input:checked+.toggle:before {
     outline: none;
     padding: 0px 11px;
 }
+
 .ttcont .texts .bigText {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
 }
+
 .ttcont .texts .infoText {
     font-size: 0.9rem;
     color: var(--textColorDark-blue);
     opacity: 0.86;
     margin-top: -3px;
 }
-.bottomer{
+
+.bottomer {
     /* background-color: #17a638; */
     display: flex;
     justify-content: space-between;
     margin-top: 12px;
 }
-.bottomer a{
+
+.bottomer a {
     text-decoration: none;
     color: var(--darkColor-blue);
     font-size: 1rem;
 }
-.bottomer button{
+
+.bottomer button {
     border: none;
     color: #fff;
     background-color: var(--darkColor-blue);
@@ -1133,6 +1151,30 @@ input:checked+.toggle:before {
     gap: var(--gap);
     /* background-color: yellow; */
 }
+
+.languageSelector {
+    background-color: var(--accentLightTint-blue);
+    background-color: #ffffffe8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    height: fit-content;
+    width: 80%;
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 divs in the first row */
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    width: 80%;
+    padding: 10px;
+    /* padding-right: 0px; */
+    border-radius: 26px;
+
+
+}
+
 .colorsContainer {
     background-color: var(--accentLightTint-blue);
     background-color: #ffffffe8;
@@ -1142,18 +1184,20 @@ input:checked+.toggle:before {
     height: 50px;
     height: fit-content;
     width: fit-content;
-    
+
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 divs in the first row */
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 divs in the first row */
     grid-auto-rows: auto;
-    grid-gap: 10px; 
+    grid-gap: 10px;
     width: fit-content;
     padding: 10px;
     /* padding-right: 0px; */
     border-radius: 26px;
 
-    
+
 }
+
 .colorsContainer input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
@@ -1166,33 +1210,43 @@ input:checked+.toggle:before {
     /* margin-right: 10px; */
     cursor: pointer;
 }
+
 .colorsContainer input[value="blue"] {
     background-color: #4382EC;
 }
+
 .colorsContainer input[value="yellow"] {
     background-color: #f3f05a;
 }
+
 .colorsContainer input[value="red"] {
     background-color: #f91d1d;
 }
+
 .colorsContainer input[value="green"] {
     background-color: #17a638;
 }
+
 .colorsContainer input[value="cyan"] {
     background-color: #2acdf5;
 }
+
 .colorsContainer input[value="orange"] {
     background-color: orange;
 }
+
 .colorsContainer input[value="purple"] {
     background-color: #b830de;
 }
+
 .colorsContainer input[value="pink"] {
     background-color: #e41b9e;
 }
+
 .colorsContainer input[value="dark"] {
     background-color: #282828;
 }
+
 .colorsContainer input[type="radio"]:checked::after {
     position: absolute;
     content: "";
@@ -1201,8 +1255,9 @@ input:checked+.toggle:before {
     background: url("./svgs/tick.svg") center center no-repeat;
     background-size: 74%;
 }
+
 .themingStuff .btn {
-    background-color: #ffffffe8;;
+    background-color: #ffffffe8;
     height: 100%;
     aspect-ratio: 1/1;
     right: 0;
@@ -1210,13 +1265,28 @@ input:checked+.toggle:before {
     z-index: 2;
     cursor: pointer;
 }
-#darkTheme{
+
+.languageIcon {
+    background-color: #ffffffe8;
+    height: 100%;
+    aspect-ratio: 1/1;
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#darkTheme {
     grid-column: span 2;
     width: 82px;
 }
+
 /* -----------end of theming stuff---------------- */
 
-#menuButton{
+#menuButton {
     position: absolute;
     right: var(--gap);
     bottom: var(--gap);
@@ -1226,33 +1296,42 @@ input:checked+.toggle:before {
     border-radius: 100%;
     cursor: pointer;
 }
-#menuButton::after{
+
+#menuButton::after {
     position: absolute;
     content: "";
     width: 62%;
     height: 62%;
     border-radius: 100%;
     border: 4px solid var(--darkColor-blue);
-    left: 0; right: 0; top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto;
 }
-#menuButton::before{
+
+#menuButton::before {
     position: absolute;
     content: "";
     width: 40%;
     height: 40%;
     border-radius: 100%;
     background-color: var(--darkColor-blue);
-    left: 0; right: 0; top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     margin: auto;
 }
 
 /* ---------------------- */
 #menuCloseButton {
-     /* position: absolute; */
+    /* position: absolute; */
     bottom: var(--gap);
     width: 42px;
-    max-width: 100%; /* Set max-width to fit-content initially */
+    max-width: 100%;
+    /* Set max-width to fit-content initially */
     background-color: var(--bg-color-blue);
     color: var(--textColorDark-blue);
     font-size: 1rem;
@@ -1262,32 +1341,36 @@ input:checked+.toggle:before {
     gap: 6px;
     padding: 6px;
     border-radius: 100px;
-    overflow: hidden; /* Hide the overflow when content expands */
-    transition: all 0.4s; /* Transition the max-width property */
+    overflow: hidden;
+    /* Hide the overflow when content expands */
+    transition: all 0.4s;
+    /* Transition the max-width property */
     cursor: pointer;
     margin-top: 69px;
 }
 
-#menuCloseButton:hover{
+#menuCloseButton:hover {
     width: 105px;
     background-color: #fff;
 }
+
 #menuCloseButton:hover::after {
     content: "Close";
     padding-right: 12px;
     /* width: 32px; */
- /* Expand the max-width on hover */
+    /* Expand the max-width on hover */
 }
 
 
 
-#menuCloseButton .icon{
+#menuCloseButton .icon {
     background-color: #fff;
     width: 30px;
     height: 30px;
     border-radius: 100px;
 }
-#menuCloseButton .icon:hover{
+
+#menuCloseButton .icon:hover {
     transition: all 0.2s;
     transform: rotate(90deg);
 }
