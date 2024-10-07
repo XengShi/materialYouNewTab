@@ -712,7 +712,6 @@ body {
     display: block;
     height: 50px;
     width: 50px;
-    width: fit-content;
 }
 
 .shortcutsContainer .shortcuts a svg {
@@ -720,9 +719,18 @@ body {
     width: 100%;
 }
 
-.shortcutsContainer .shortcuts .shortcutLogo {
-    width: 100%;
+.shortcutsContainer .shortcuts .shortcutLogoContainer {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    width: 100%;
+}
+
+.shortcutsContainer .shortcuts .shortcutLogoContainer img {
+    height: calc(100% / sqrt(2));
+    width: calc(100% / sqrt(2));
 }
 
 

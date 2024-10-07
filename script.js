@@ -336,6 +336,9 @@ document.getElementById("menuCloseButton").onclick = () => {
 // ---------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
 
+
+    /* ------ Constants ------ */
+
     // maximum number of shortcuts allowed
     const MAX_SHORTCUTS_ALLOWED = 20;
 
@@ -392,6 +395,20 @@ document.addEventListener("DOMContentLoaded", function () {
         </button>
         `;
 
+    const FAVICON_CANDIDATES = (hostname) => [
+        `https://${hostname}/apple-touch-icon-180x180.png`,
+        `https://${hostname}/apple-touch-icon-120x120.png`,
+        `https://${hostname}/apple-touch-icon.png`
+    ];
+
+    const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
+        `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
+
+    const FAVICON_REQUEST_TIMEOUT = 5000;
+
+
+    /* ------ Element selectors ------ */
+
     const shortcuts = document.getElementById("shortcutsContainer");
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
@@ -405,6 +422,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
 
+
+    /* ------ Helper functions for saving and loading states ------ */
+
     // Function to save checkbox state to localStorage
     function saveCheckboxState(key, checkbox) {
         localStorage.setItem(key, checkbox.checked ? "checked" : "unchecked");
@@ -416,81 +436,38 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.checked = savedState === "checked";
     }
 
-    /**
-     * Function to attach all required event listeners to the shortcut edit inputs in the settings.
-     *
-     * It adds three event listeners to each of the two inputs:
-     * 1. Blur, to save changes to the shortcut automatically.
-     * 2. Focus, to select all text in the input field when it is selected.
-     * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
-     * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
-     *
-     * @param inputs a list of the two inputs these listeners should be applied to.
-     */
-    function attachEventListenersToInputs(inputs) {
-        inputs.forEach(input => {
-            // save and apply when done
-            input.addEventListener("blur", (e) => {
-                const shortcut = e.target.closest(".shortcutSettingsEntry");
-                saveShortcut(shortcut);
-                applyShortcut(shortcut);
-            });
-            // select all content on click:
-            input.addEventListener("focus", (e) => e.target.select());
-        });
-        inputs[0].addEventListener("keydown", (e) => {
-            if (e.key === 'Enter') {
-                inputs[1].focus();  // Move focus to the URL
-            }
-        });
-        inputs[1].addEventListener("keydown", (e) => {
-            if (e.key === 'Enter') {
-                e.target.blur();  // Unfocus the input field
-            }
-        });
+    // Function to save display status to localStorage
+    function saveDisplayStatus(key, displayStatus) {
+        localStorage.setItem(key, displayStatus);
     }
 
-    /**
-     * Function that creates a div to be used in the shortcut edit panel of the settings.
-     *
-     * @param name The name of the shortcut
-     * @param url The URL of the shortcut
-     * @param deleteInactive Whether the delete button should be active
-     * @param i The index of the shortcut
-     * @returns {HTMLDivElement} The div to be used in the settings
-     */
-    function createShortcutSettingsEntry(name, url, deleteInactive, i) {
-        const deleteButtonContainer = document.createElement("div");
-        deleteButtonContainer.className = "delete";
-        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
-
-        const deleteButton = deleteButtonContainer.children[0];
-        if (deleteInactive) deleteButton.className = "inactive";
-        deleteButton.addEventListener(
-            "click",
-            (e) => deleteShortcut(e.target.closest(".shortcutSettingsEntry"))
-        );
-
-        const shortcutName = document.createElement("input");
-        shortcutName.className = "shortcutName";
-        shortcutName.value = name;
-        const shortcutUrl = document.createElement("input");
-        shortcutUrl.className = "URL";
-        shortcutUrl.value = url;
-
-        attachEventListenersToInputs([shortcutName, shortcutUrl]);
-
-        const textDiv = document.createElement("div");
-        textDiv.append(shortcutName, shortcutUrl);
-
-        const entryDiv = document.createElement("div");
-        entryDiv.className = "shortcutSettingsEntry";
-        entryDiv.append(textDiv, deleteButtonContainer);
-
-        entryDiv._index = i;
-
-        return entryDiv;
+    // Function to load and apply display status from localStorage
+    function loadDisplayStatus(key, element) {
+        const savedStatus = localStorage.getItem(key);
+        if (savedStatus === "flex") {
+            element.style.display = "flex";
+        } else {
+            element.style.display = "none";
+        }
     }
+
+    // Function to save activeness status to localStorage
+    function saveActiveStatus(key, activeStatus) {
+        localStorage.setItem(key, activeStatus)
+    }
+
+    // Function to load and apply activeness status from localStorage
+    function loadActiveStatus(key, element) {
+        const savedStatus = localStorage.getItem(key);
+        if (savedStatus === "active") {
+            element.classList.remove("inactive");
+        } else {
+            element.classList.add("inactive");
+        }
+    }
+
+
+    /* ------ Loading shortcuts ------ */
 
     /**
      * Function to load and apply all shortcut names and URLs from localStorage
@@ -535,61 +512,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    /**
-     * This function returns an img element tied to the favicon of a website, given a URL.
-     * For this, it uses Google's API.
-     *
-     * @param urlString The url of the website for which the favicon is requested
-     * @returns {HTMLImageElement} The favicon over the Google API.
-     */
-    function getFavicon(urlString) {
-        const hostname = new URL(urlString).hostname;
-        const touch_icon_url = `https://${hostname}/apple-touch-icon.png`;
-        const google_url = `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
-        const logo = document.createElement("img");
-        logo.className = "shortcutLogo";
-        logo.src = filterFavicon(touch_icon_url) || google_url;
-        return logo;
-    }
+
+    /* ------ Creating shortcut elements ------ */
 
     /**
-     * This function verifies whether a URL for a favicon is valid.
+     * Function that creates a div to be used in the shortcut edit panel of the settings.
      *
-     * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
-     *
-     * @param url the potential URL of a favicon
-     * @returns {string|null} The url that was given, if it is valid, or null if it is not.
+     * @param name The name of the shortcut
+     * @param url The URL of the shortcut
+     * @param deleteInactive Whether the delete button should be active
+     * @param i The index of the shortcut
+     * @returns {HTMLDivElement} The div to be used in the settings
      */
-    function filterFavicon(url) {
-        const img = new Image();
-        img.src = url;
-        let worked = false
-        img.onload = () => {return url}
-        img.onerror = () => {return null}
-    }
+    function createShortcutSettingsEntry(name, url, deleteInactive, i) {
+        const deleteButtonContainer = document.createElement("div");
+        deleteButtonContainer.className = "delete";
+        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
 
-    /**
-     * This function returns the custom logo for the url associated with a preset shortcut.
-     *
-     * @param url The url of the shortcut.
-     * @returns {Element|null} The logo if it was found, otherwise null.
-     */
-    function getCustomLogo(url) {
-        const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
-        return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
-    }
+        const deleteButton = deleteButtonContainer.children[0];
+        if (deleteInactive) deleteButton.className = "inactive";
+        deleteButton.addEventListener(
+            "click",
+            (e) => deleteShortcut(e.target.closest(".shortcutSettingsEntry"))
+        );
 
-    /**
-     * This function stores a shortcut by saving its values in the settings panel to the local storage.
-     *
-     * @param shortcut The shortcut to be saved
-     */
-    function saveShortcut(shortcut) {
-        const name = shortcut.querySelector("input.shortcutName").value;
-        const url = shortcut.querySelector("input.URL").value;
+        const shortcutName = document.createElement("input");
+        shortcutName.className = "shortcutName";
+        shortcutName.value = name;
+        const shortcutUrl = document.createElement("input");
+        shortcutUrl.className = "URL";
+        shortcutUrl.value = url;
 
-        localStorage.setItem("shortcutName" + shortcut._index, name);
-        localStorage.setItem("shortcutURL" + shortcut._index, url);
+        attachEventListenersToInputs([shortcutName, shortcutUrl]);
+
+        const textDiv = document.createElement("div");
+        textDiv.append(shortcutName, shortcutUrl);
+
+        const entryDiv = document.createElement("div");
+        entryDiv.className = "shortcutSettingsEntry";
+        entryDiv.append(textDiv, deleteButtonContainer);
+
+        entryDiv._index = i;
+
+        return entryDiv;
     }
 
     /**
@@ -607,13 +572,78 @@ document.addEventListener("DOMContentLoaded", function () {
         name.className = "shortcut-name"
         name.textContent = shortcutName;
 
-        shortcut.append(getCustomLogo(shortcutUrl) || getFavicon(shortcutUrl), name);
+        let icon = getCustomLogo(shortcutUrl);
+
+        if (!icon) { // if we had to pick the fallback, attempt to get a better image in the background.
+            icon = getFallbackFavicon(shortcutUrl);
+            getBestIconUrl(shortcutUrl).then((iconUrl) => icon.src = iconUrl).catch();
+        }
+
+        const iconContainer = document.createElement("div");
+        iconContainer.className = "shortcutLogoContainer";
+        iconContainer.appendChild(icon);
+
+        shortcut.append(iconContainer, name);
 
         const shortcutContainer = document.createElement("div");
         shortcutContainer.className = "shortcuts";
         shortcutContainer.appendChild(shortcut);
         shortcutContainer._index = i;
+
         return shortcutContainer;
+    }
+
+
+    /* ------ Attaching event listeners to shortcut settings ------ */
+
+    /**
+     * Function to attach all required event listeners to the shortcut edit inputs in the settings.
+     *
+     * It adds three event listeners to each of the two inputs:
+     * 1. Blur, to save changes to the shortcut automatically.
+     * 2. Focus, to select all text in the input field when it is selected.
+     * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
+     * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
+     *
+     * @param inputs a list of the two inputs these listeners should be applied to.
+     */
+    function attachEventListenersToInputs(inputs) {
+        inputs.forEach(input => {
+            // save and apply when done
+            input.addEventListener("blur", (e) => {
+                const shortcut = e.target.closest(".shortcutSettingsEntry");
+                saveShortcut(shortcut);
+                applyShortcut(shortcut);
+            });
+            // select all content on click:
+            input.addEventListener("focus", (e) => e.target.select());
+        });
+        inputs[0].addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+                inputs[1].focus();  // Move focus to the URL
+            }
+        });
+        inputs[1].addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+                e.target.blur();  // Unfocus the input field
+            }
+        });
+    }
+
+
+    /* ------ Saving and applying changes to shortcuts ------ */
+
+    /**
+     * This function stores a shortcut by saving its values in the settings panel to the local storage.
+     *
+     * @param shortcut The shortcut to be saved
+     */
+    function saveShortcut(shortcut) {
+        const name = shortcut.querySelector("input.shortcutName").value;
+        const url = shortcut.querySelector("input.URL").value;
+
+        localStorage.setItem("shortcutName" + shortcut._index, name);
+        localStorage.setItem("shortcutURL" + shortcut._index, url);
     }
 
     /**
@@ -636,6 +666,9 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutsContainer.appendChild(shortcutElement);
         }
     }
+
+
+    /* ------ Adding, deleting, and resetting shortcuts ------ */
 
     /**
      * This function creates a new shortcut in the settings panel, then saves and applies it.
@@ -719,52 +752,92 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("shortcutURL" + i);
         }
         shortcutSettingsContainer.innerHTML = "";
+        shortcutsContainer.innerHTML = "";
         localStorage.removeItem("shortcutAmount");
         loadShortcuts();
     }
 
-    // Function to save display status to localStorage
-    function saveDisplayStatus(key, displayStatus) {
-        localStorage.setItem(key, displayStatus);
+
+    /* ------ Shortcut favicon handling ------ */
+
+    /**
+     * This function verifies whether a URL for a favicon is valid.
+     *
+     * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
+     *
+     * @param urls the array of potential URLs of favicons
+     * @returns {Promise<unknown>}
+     */
+    function filterFavicon(urls) {
+        return new Promise((resolve, reject) => {
+            let found = false;
+
+            for (const url of urls) {
+                const img = new Image();
+                img.src = url;
+
+                img.onload = () => {
+                    if (!found) { // Make sure to resolve only once
+                        found = true;
+                        resolve(url);
+                    }
+                };
+            }
+
+            // If none of the URLs worked after all have been tried
+            setTimeout(() => {
+                if (!found) {
+                    reject();
+                }
+            }, FAVICON_REQUEST_TIMEOUT);
+        });
     }
 
-    // Function to save activeness status to localStorage
-    function saveActiveStatus(key, activeStatus) {
-        localStorage.setItem(key, activeStatus)
-    }
-
-    // Function to load and apply display status from localStorage
-    function loadDisplayStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "flex") {
-            element.style.display = "flex";
-        } else {
-            element.style.display = "none";
+    /**
+     * This function returns the url to the favicon of a website, given a URL.
+     *
+     * @param urlString The url of the website for which the favicon is requested
+     * @return {Promise<String>} Potentially the favicon url
+     */
+    async function getBestIconUrl(urlString) {
+        const hostname = new URL(urlString).hostname;
+        try {
+            // Wait for filterFavicon to resolve with a valid URL
+            return await filterFavicon(FAVICON_CANDIDATES(hostname));
+        } catch (error) {
+            return Promise.reject();
         }
     }
 
-    // Function to load and apply activeness status from localStorage
-    function loadActiveStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "active") {
-            element.classList.remove("inactive");
-        } else {
-            element.classList.add("inactive");
-        }
+    /**
+     * This function uses Google's API to immediately get a favicon,
+     * to be used while loading the real one and as a fallback.
+     *
+     * @param urlString the url of the website for which the favicon is requested
+     * @returns {HTMLImageElement} The img element representing the favicon
+     */
+    function getFallbackFavicon(urlString) {
+        const logo = document.createElement("img");
+
+        const hostname = new URL(urlString).hostname;
+        logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+
+        return logo;
     }
 
-    // Load and apply the saved checkbox states and display statuses
-    loadCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
-    loadActiveStatus("shortcutEditField", shortcutEditField);
-    loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
-    loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    loadShortcuts();
+    /**
+     * This function returns the custom logo for the url associated with a preset shortcut.
+     *
+     * @param url The url of the shortcut.
+     * @returns {Element|null} The logo if it was found, otherwise null.
+     */
+    function getCustomLogo(url) {
+        const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
+        return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
+    }
 
-    newShortcutButton.addEventListener("click", () => newShortcut());
 
-    resetShortcutsButton.addEventListener("click", () => resetShortcuts());
+    /* ------ Event Listeners ------ */
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
@@ -797,6 +870,13 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
 
+    newShortcutButton.addEventListener("click", () => newShortcut());
+
+    resetShortcutsButton.addEventListener("click", () => resetShortcuts());
+
+
+    /* ------ Page Transitions ------ */
+
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
         shortcutEditPage.style.display = "block"
@@ -828,4 +908,16 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutEditPage.style.display = "none";
         }, 650);
     }
+
+
+    /* ------ Loading ------ */
+
+    // Load and apply the saved checkbox states and display statuses
+    loadCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
+    loadActiveStatus("shortcutEditField", shortcutEditField);
+    loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+    loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
+    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadShortcuts();
 });
