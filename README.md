@@ -20,7 +20,7 @@ You can download the latest version of the software by clicking the button below
 
 	**Chrome** : ```chrome://extensions```
 	
-	**Egde** : ```edge://extensions```
+	**Edge** : ```edge://extensions```
 	
 	**Brave** : ```brave://extensions```
 	
