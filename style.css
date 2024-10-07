@@ -729,8 +729,8 @@ body {
 }
 
 .shortcutsContainer .shortcuts .shortcutLogoContainer img {
-    height: calc(100% / sqrt(2));
-    width: calc(100% / sqrt(2));
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -1083,7 +1083,7 @@ body {
     width: 100%;
 }
 
-#shortcutEditField.inactive {
+.toggleTextsCont .ttcont.inactive {
     opacity: 0.5;
     pointer-events: none;
 }

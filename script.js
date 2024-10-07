@@ -406,6 +406,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const FAVICON_REQUEST_TIMEOUT = 5000;
 
+    const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
+            height: calc(100% / sqrt(2)) !important;
+            width: calc(100% / sqrt(2)) !important;
+            }`;
+
+
 
     /* ------ Element selectors ------ */
 
@@ -413,6 +419,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const shortcutEditField = document.getElementById("shortcutEditField");
+    const adaptiveIconField = document.getElementById("adaptiveIconField");
+    const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
@@ -421,6 +429,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutsContainer = document.getElementById("shortcutsContainer"); // shortcuts in page
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
+    const iconStyle = document.getElementById("iconStyle");
 
 
     /* ------ Helper functions for saving and loading states ------ */
@@ -464,6 +473,16 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             element.classList.add("inactive");
         }
+    }
+
+    // Function to save style data
+    function saveIconStyle(key, CSS) {
+        localStorage.setItem(key, CSS);
+    }
+
+    // Function to load style data
+    function loadIconStyle(key, element) {
+        element.innerHTML = localStorage.getItem(key);
     }
 
 
@@ -847,13 +866,29 @@ document.addEventListener("DOMContentLoaded", function () {
             saveDisplayStatus("shortcutsDisplayStatus", "flex");
             shortcutEditField.classList.remove("inactive");
             saveActiveStatus("shortcutEditField", "active");
+            adaptiveIconField.classList.remove("inactive");
+            saveActiveStatus("adaptiveIconField", "active");
         } else {
             shortcuts.style.display = "none";
             saveDisplayStatus("shortcutsDisplayStatus", "none");
-            shortcutEditField.classList.add("inactive")
+            shortcutEditField.classList.add("inactive");
             saveActiveStatus("shortcutEditField", "inactive");
+            adaptiveIconField.classList.add("inactive");
+            saveActiveStatus("adaptiveIconField", "inactive");
         }
     });
+
+    adaptiveIconToggle.addEventListener("change", function () {
+        saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+        if (adaptiveIconToggle.checked) {
+            alert("This setting is still experimental");
+            saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
+            iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
+        } else {
+            saveIconStyle("iconStyle", "");
+            iconStyle.innerHTML = "";
+        }
+    })
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -915,6 +950,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load and apply the saved checkbox states and display statuses
     loadCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
     loadActiveStatus("shortcutEditField", shortcutEditField);
+    loadActiveStatus("adaptiveIconField", adaptiveIconField);
+    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+    loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
