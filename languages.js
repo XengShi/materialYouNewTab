@@ -14,7 +14,10 @@ const translations = {
         "saveAPI": "Enter",
         // End of Menu Itens
 
+        "conditionText": "Hello! How are you today?",
+        "enterBtn": "Enter",
         "searchWithHint": "Search With",
+        "ai_tools": "AI Tools",
 
     },
     "pt": {
@@ -32,7 +35,10 @@ const translations = {
         "saveAPI": "Salvar API",
         // End of Menu Itens
 
+        "conditionText": "Olá! Como está hoje?",
+        "enterBtn": "Entrar",
         "searchWithHint": "Pesquisar Com",
+        "ai_tools": "Ferramentas de IA",
 
     }
 };
@@ -53,8 +59,11 @@ function applyLanguage(lang) {
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
 
         // End of Menu Itens
-
+        document.getElementById('conditionText').innerText = translations[lang].conditionText;
+        document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
+        document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
+        
     } else {
         console.error('Language not found');
     }
@@ -67,5 +76,5 @@ document.getElementById('languageSelector').addEventListener('change', (event) =
 
 // Sets default language to English on page load
 window.onload = function () {
-    applyLanguage('pt');
+    applyLanguage('en');
 };
