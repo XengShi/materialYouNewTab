@@ -81,6 +81,52 @@
     --gap: 30px;
     --round: 30px;
 }
+.resultBox {
+    max-height: 250px;
+    overflow-y: auto;
+   
+    position: absolute;
+    top: 1;
+    left: 0;
+    width: 100%;
+    border-radius: var(--round);
+
+    padding: 10px;
+    scrollbar-width: none; /* For Firefox */
+
+    /* Initially hidden */
+    opacity: 0;
+    z-index: -1000;
+    transform: translateY(-70px);
+    transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
+    pointer-events: none; 
+}
+
+.resultBox::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+/* Visible state: when you want the result box to appear */
+.resultBox.show {
+    opacity: 1;
+    visibility: visible; 
+    transform: translateY(0); 
+    z-index: 1000;
+    pointer-events: all;
+}
+
+.resultItem {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+}
+
+.resultItem:hover {
+   background-color: var(--darkColor-blue);
+   border-radius: 15px;
+}
+
 
 /* Theme */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
@@ -490,7 +536,57 @@ body {
 }
 
 /* ________________End of Searchbar______________________ */
+.results-box {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: var(--round);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    max-height: 300px;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(10px);
+    z-index: 10;
+}
 
+.results-box.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.results-box .result-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 0.95rem;
+    color: var(--textColor);
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.results-box .result-item:hover {
+    background-color: var(--accentLightTint-blue);
+}
+
+.results-box .result-item:last-child {
+    border-bottom: none;
+}
+
+/* Add a fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .searchWithCont {
     margin-top: var(--gap);
     border-radius: var(--round);

@@ -125,16 +125,19 @@ setInterval(() => {
     // substring(0, 3) => We are taking only three Char from the name of the month and day like Sunday > Sun
 }, 1000);
 
-
+const searchInput2 = document.getElementById("searchQ");
 // Showing border or outline in when you click on searchbar
 const searchbar = document.getElementById('searchbar');
 searchbar.addEventListener('click', function () {
-    searchbar.classList.toggle('active'); // Toggle the 'active' class
+    searchbar.classList.toggle('active'); 
+    if (searchInput2.value !== "") {
+    showResultBox() 
+    }
 });
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
     if (!searchbar.contains(event.target)) {
-        searchbar.classList.remove('active'); // Remove the 'active' class
+        searchbar.classList.remove('active'); 
     }
 });
 
@@ -221,7 +224,7 @@ const applySelectedTheme = (colorValue) => {
     }
     if (colorValue === "dark") {
         // Please note: The dark theme is currently under development and may have issues.
-        alert("Please note: The dark theme is currently under development and may have issues.")
+        //alert("Please note: The dark theme is currently under development and may have issues.")
     }
 };
 
@@ -273,7 +276,112 @@ document.getElementById("0NIHK").onclick = () => {
         }, 300);
     }
 }
+// ------------search suggestions ---------------
+const resultBox = document.querySelector('.resultBox');
 
+// Show the result box
+function showResultBox() {
+    resultBox.classList.add('show');
+    resultBox.style.display = "block";
+}
+
+// Hide the result box
+function hideResultBox() {
+    resultBox.classList.remove('show');
+    //resultBox.style.display = "none";
+}
+showResultBox() 
+hideResultBox()
+document.getElementById("searchQ").addEventListener("input", async function () {
+    var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+    var searchEngines = {
+        engine1: 'https://duckduckgo.com/?q=',
+        engine2: 'https://www.google.com/search?q=',
+        engine3: 'https://bing.com/?q=',
+        engine4: 'https://www.youtube.com/results?search_query='
+    };
+    const query = this.value;
+    const resultBox = document.getElementById("resultBox");
+
+    if (query.length > 0) {
+        // Fetch autocomplete suggestions
+        const suggestions = await getAutocompleteSuggestions(query);
+      
+        if (suggestions == ""){
+            hideResultBox()
+        }else{
+              // Clear the result box
+        resultBox.innerHTML = '';
+
+        // Add suggestions to the result box
+        suggestions.forEach((suggestion) => {
+            const resultItem = document.createElement("div");
+            resultItem.classList.add("resultItem");
+            resultItem.textContent = suggestion;
+            resultItem.onclick = () => {
+                var resultlink=searchEngines[selectedOption]+ encodeURIComponent(suggestion);
+                window.location.href = resultlink;
+            };
+            resultBox.appendChild(resultItem);
+        });
+            showResultBox()
+        }
+        
+    } else {
+        hideResultBox()
+    }
+});
+
+function getClientParam() {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    // Check for different browsers and return the corresponding client parameter
+    if (userAgent.includes("firefox")) {
+        return "firefox";
+    } else if (userAgent.includes("chrome") || userAgent.includes("crios")) {
+        return "chrome";
+    } else if (userAgent.includes("safari")) {
+        return "safari";
+    } else if (userAgent.includes("edge") || userAgent.includes("edg")) {
+        return "firefox";
+    } else if (userAgent.includes("opera") || userAgent.includes("opr")) {
+        return "opera";
+    } else {
+        return "firefox";  // Default to Firefox client if the browser is not recognized
+    }
+}
+
+async function getAutocompleteSuggestions(query) {
+    const clientParam = getClientParam(); // Get the browser client parameter dynamically
+    var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+    var searchEnginesapi = {
+        engine1: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
+        engine2: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine3: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine4: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+    };
+    const apiUrl=searchEnginesapi[selectedOption];
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // The second element in the array contains the autocomplete suggestions
+        return data[1];
+    } catch (error) {
+        console.error('Error fetching autocomplete suggestions:', error);
+        return [];
+    }
+}
+
+// Hide results when clicking outside
+document.addEventListener("click", function (event) {
+    const searchbar = document.getElementById("searchbar");
+    const resultBox = document.getElementById("resultBox");
+
+    if (!searchbar.contains(event.target)) {
+        hideResultBox()
+    }
+});
 
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");

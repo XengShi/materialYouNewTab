@@ -34,7 +34,7 @@
             </div>
             <!-- ____________end of clock______________ -->
             <div class="ttteexxtt">
-                <div id="userText" contenteditable="true" spellcheck="false">Double tap to edit</div>
+                <div id="userText" contenteditable="true" spellcheck="false">Hello! How are you today?</div>
                 <div id="date"></div>
             </div>
         </div>
@@ -111,10 +111,14 @@
                     </svg>
                 </div>
 
-                <input id="searchQ" type="text" placeholder="Your query...">
+                <input id="searchQ" type="text" placeholder="Your query..." autocomplete="off">
+                
                 <button id="enterBtn">Enter</button>
-            </div>
+                
+            </div><br>
+            <div id="resultBox" class="resultBox bgLightTint" style="display: none;"></div>
             <!-- ----------end of searchbar-------------- -->
+           
 
             <!-- ----------search with------------------- -->
             <div class="searchWithCont">
@@ -122,6 +126,19 @@
                 <div class="hint bgLightTint">Search With</div>
 
                 <div class="searchEnginesContainer">
+                    
+                    <div class="search-engine bgLightTint">
+                        <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" width="28" height="28" rx="14" fill="#FF000F" />
+                            <path
+                                d="M24.805 12.0177C24.9359 12.756 25.0011 13.504 25 14.2534C25 17.6 23.7796 20.4297 21.6559 22.345H21.6587C19.8016 24.0265 17.2487 25 14.2216 25C11.2455 25 8.3912 23.8411 6.28674 21.7783C4.18227 19.7154 3 16.9176 3 14.0004C3 11.0831 4.18227 8.28528 6.28674 6.22244C8.3912 4.15961 11.2455 3.00073 14.2216 3.00073C17.0073 2.96875 19.6976 3.99459 21.7289 5.86338L18.5251 9.00378C17.367 7.92165 15.8214 7.32907 14.2216 7.35383C11.2942 7.35383 8.80719 9.28977 7.92068 11.8967C7.45064 13.2627 7.45064 14.7421 7.92068 16.1082H7.92489C8.8156 18.711 11.2984 20.6469 14.2258 20.6469C15.7379 20.6469 17.0368 20.2674 18.044 19.5964H18.0398C18.6246 19.2167 19.1248 18.7247 19.5103 18.1502C19.8958 17.5758 20.1585 16.9307 20.2827 16.2539H14.2216V12.0191L24.805 12.0177Z"
+                                fill="white" />
+                        </svg>
+
+                        <label class="engine-name">Google</label>
+                        <input type="radio" name="search-engine" class="radio-button" value="engine2" checked>
+                    </div>
 
                     <div class="search-engine bgLightTint">
                         <!-- <img src="./svgs/duck.svg" alt="D" class="logo"> -->
@@ -133,20 +150,7 @@
                         </svg>
 
                         <label class="engine-name">Duck</label>
-                        <input type="radio" name="search-engine" class="radio-button" value="engine1" checked>
-                    </div>
-
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect class="accentColor" width="28" height="28" rx="14" fill="#FF000F" />
-                            <path
-                                d="M24.805 12.0177C24.9359 12.756 25.0011 13.504 25 14.2534C25 17.6 23.7796 20.4297 21.6559 22.345H21.6587C19.8016 24.0265 17.2487 25 14.2216 25C11.2455 25 8.3912 23.8411 6.28674 21.7783C4.18227 19.7154 3 16.9176 3 14.0004C3 11.0831 4.18227 8.28528 6.28674 6.22244C8.3912 4.15961 11.2455 3.00073 14.2216 3.00073C17.0073 2.96875 19.6976 3.99459 21.7289 5.86338L18.5251 9.00378C17.367 7.92165 15.8214 7.32907 14.2216 7.35383C11.2942 7.35383 8.80719 9.28977 7.92068 11.8967C7.45064 13.2627 7.45064 14.7421 7.92068 16.1082H7.92489C8.8156 18.711 11.2984 20.6469 14.2258 20.6469C15.7379 20.6469 17.0368 20.2674 18.044 19.5964H18.0398C18.6246 19.2167 19.1248 18.7247 19.5103 18.1502C19.8958 17.5758 20.1585 16.9307 20.2827 16.2539H14.2216V12.0191L24.805 12.0177Z"
-                                fill="white" />
-                        </svg>
-
-                        <label class="engine-name">Google</label>
-                        <input type="radio" name="search-engine" class="radio-button" value="engine2">
+                        <input type="radio" name="search-engine" class="radio-button" value="engine1">
                     </div>
 
                     <div class="search-engine bgLightTint">
@@ -234,20 +238,6 @@
         <!-- ---------------- -->
         <div class="shortcuts">
             <!-- YouTube -->
-            <a href="https://web.telegram.org/k/">
-                <!-- <img src="./shortcuts_icons/telegram.svg" alt=""> -->
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="accentColor"
-                        d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM14.64 6.8C14.49 8.38 13.84 12.22 13.51 13.99C13.37 14.74 13.09 14.99 12.83 15.02C12.25 15.07 11.81 14.64 11.25 14.27C10.37 13.69 9.87 13.33 9.02 12.77C8.03 12.12 8.67 11.76 9.24 11.18C9.39 11.03 11.95 8.7 12 8.49C12.0069 8.45819 12.006 8.42517 11.9973 8.3938C11.9886 8.36244 11.9724 8.33367 11.95 8.31C11.89 8.26 11.81 8.28 11.74 8.29C11.65 8.31 10.25 9.24 7.52 11.08C7.12 11.35 6.76 11.49 6.44 11.48C6.08 11.47 5.4 11.28 4.89 11.11C4.26 10.91 3.77 10.8 3.81 10.45C3.83 10.27 4.08 10.09 4.55 9.9C7.47 8.63 9.41 7.79 10.38 7.39C13.16 6.23 13.73 6.03 14.11 6.03C14.19 6.03 14.38 6.05 14.5 6.15C14.6 6.23 14.63 6.34 14.64 6.42C14.63 6.48 14.65 6.66 14.64 6.8Z"
-                        fill="#617859" />
-                </svg>
-                <span class="shortcut-name">Telegram</span>
-            </a>
-        </div>
-        <!-- ---------------- -->
-        <!-- ---------------- -->
-        <div class="shortcuts">
-            <!-- YouTube -->
             <a href="https://web.whatsapp.com/">
                 <!-- <img src="./shortcuts_icons/whatsApp.svg" alt=""> -->
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -260,33 +250,7 @@
         </div>
         <!-- ---------------- -->
         <!-- ---------------- -->
-        <div class="shortcuts">
-            <!-- YouTube -->
-            <a href="https://www.instagram.com/">
-                <!-- <img src="./shortcuts_icons/instagram.svg" alt=""> -->
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="accentColor"
-                        d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z"
-                        fill="#617859" />
-                </svg>
-                <span class="shortcut-name">Instagram</span>
-            </a>
-        </div>
-        <!-- ---------------- -->
-        <!-- ---------------- -->
-        <div class="shortcuts">
-            <!-- YouTube -->
-            <a href="https://twitter.com/">
-                <!-- <img src="./shortcuts_icons/twitter.svg" alt=""> -->
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="accentColor"
-                        d="M10 0C15.5286 0 20 4.47143 20 10C20 15.5286 15.5286 20 10 20C4.47143 20 0 15.5286 0 10C0 4.47143 4.47143 0 10 0ZM8.17143 15.2714C12.6 15.2714 15.0286 11.6 15.0286 8.41429V8.1C15.5 7.75714 15.9143 7.32857 16.2286 6.84286C15.8 7.02857 15.3286 7.15714 14.8429 7.22857C15.3429 6.92857 15.7286 6.45714 15.9 5.9C15.4286 6.17143 14.9143 6.37143 14.3714 6.48571C13.9286 6.01429 13.3 5.72857 12.6143 5.72857C11.2857 5.72857 10.2 6.81429 10.2 8.14286C10.2 8.32857 10.2143 8.51429 10.2714 8.68571C8.27143 8.58571 6.48571 7.62857 5.3 6.17143C5.1 6.52857 4.97143 6.94286 4.97143 7.38571C4.97143 8.21429 5.4 8.95714 6.04286 9.38571C5.64286 9.38571 5.27143 9.27143 4.95714 9.08571V9.11429C4.95714 10.2857 5.78571 11.2571 6.88571 11.4857C6.68571 11.5429 6.47143 11.5714 6.25714 11.5714C6.1 11.5714 5.95714 11.5571 5.8 11.5286C6.1 12.4857 7 13.1857 8.04286 13.2C7.21429 13.8429 6.17143 14.2286 5.04286 14.2286C4.84286 14.2286 4.65714 14.2286 4.47143 14.2C5.52857 14.8857 6.8 15.2857 8.15714 15.2857"
-                        fill="#617859" />
-                </svg>
-                <span class="shortcut-name">Twitter</span>
-            </a>
-        </div>
-        <!-- ---------------- -->
+    
 
     </div>
 
@@ -383,13 +347,13 @@
             </div>
             <!-- ---end of rounder--- -->
             <div class="topDiv">
-                <h1>Material You NewTab</h1>
+                <h1>Better Material You NewTab</h1>
             </div>
             <div class="optCont" id="optCont">
                 <div class="tilesCont">
 
                     <!-- ----tiles----------- -->
-                    <a class="tiles" href="https://github.com/Code-by-imtiyaz/materialYouNewTab">
+                    <a class="tiles" href="https://github.com/Minuga-RC/BetterMaterialYouNewTab">
                         <div class="icon">
                             <!-- <img src="./shortcuts_icons/github.svg" alt=""> -->
                             <svg width="100%" height="100%" viewBox="0 0 20 20" fill="none"
@@ -404,7 +368,7 @@
                     </a>
                     <!-- -----end of tiles-------- -->
                     <!-- ----tiles----------- -->
-                    <a class="tiles" href="https://github.com/Code-by-imtiyaz/materialYouNewTab#feedback">
+                    <a class="tiles" href="https://github.com/Minuga-RC/BetterMaterialYouNewTab#feedback">
                         <div class="icon">
                             <!-- <img src="./shortcuts_icons/feedback.svg" alt=""> -->
                             <svg width="100%" height="100%" viewBox="0 0 18 17" fill="none"
