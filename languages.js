@@ -14,11 +14,12 @@ const translations = {
         "saveAPI": "Enter",
         // End of Menu Itens
 
+        // Body Itens
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Enter",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
-
+        // End of Body Itens
     },
     "pt": {
 
@@ -35,11 +36,12 @@ const translations = {
         "saveAPI": "Salvar API",
         // End of Menu Itens
 
+        // Body Itens
         "conditionText": "Olá! Como está hoje?",
-        "enterBtn": "Entrar",
+        "enterBtn": "Pesquisar",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
-
+        // End of Body Itens
     }
 };
 
@@ -57,13 +59,14 @@ function applyLanguage(lang) {
         document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
-
         // End of Menu Itens
+        
+        // Body Itens
         document.getElementById('conditionText').innerText = translations[lang].conditionText;
         document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
         document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
-        
+        // End of Body Itens
     } else {
         console.error('Language not found');
     }
