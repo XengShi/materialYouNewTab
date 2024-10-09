@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Set the default API key
-        const defaultApiKey = 'c8ec5c78e09448f6bce75309220907&q'; // Default Weather API key
+        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
 
         // Check if the user has entered their own API key
         const userApiKey = userAPIInput.value.trim();
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
 
         // Getting current user location
-        const geoLocation = 'https://ipapi.co/json/';
+        const geoLocation = 'https://ipinfo.io/json/';
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
@@ -294,7 +294,7 @@ document.getElementById("0NIHK").onclick = () => {
             }, 300);
         }
     }
-} 
+}
 
 
 // ------------Showing & Hiding Menu-bar ---------------
