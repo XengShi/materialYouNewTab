@@ -87,22 +87,22 @@ const translations = {
     "cs": {
         // Menu Itens
         "shortcutsText": "Zkratky",
-        "enableShortcutsText": "Povolit/zakázat zkratky",
-        "ai_tools_button": "Nástroje AI",
-        "enable_ai_tools": "Povolit/zakázat zkratky nástrojů AI",
-        "fahrenheitCelciusCheckbox": "Přepnout na Fahrenheit",
-        "fahrenheitCelciusText": "Obnovte stránku, abyste viděli aktualizace",
-        "WeatherApiText": "Zadejte svůj vlastní klíč WeatherAPI",
-        "WeatherApiSubtext": "Pokud funkce počasí nefunguje",
+        "enableShortcutsText": "Povolí/zakáže zkratky",
+        "ai_tools_button": "AI nástroje",
+        "enable_ai_tools": "Povolí/zakáže zkratky nástrojů AI",
+        "fahrenheitCelciusCheckbox": "Přepnout na stupně Fahrenheita",
+        "fahrenheitCelciusText": "Změny se projeví po obnovení stránky",
+        "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
+        "WeatherApiSubtext": "Pokud nefunguje funkce počasí",
         "LearnMoreButton": "Zjistit více",
-        "saveAPI": "Zadat",
+        "saveAPI": "Uložit",
         // End of Menu Itens
 
         // Body Itens
-        "conditionText": "Ahoj! Jak se máš dnes?",
-        "enterBtn": "Zadat",
-        "searchWithHint": "Hledat s",
-        "ai_tools": "Nástroje AI",
+        "conditionText": "Dobrý den! Jak se máte?",
+        "enterBtn": "Vyhledat",
+        "searchWithHint": "Vyhledávat prostřednictvím",
+        "ai_tools": "AI nástroje",
         // End of Body Itens
     }
 };
