@@ -815,6 +815,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             for (const url of urls) {
                 const img = new Image();
+                img.referrerPolicy = "no-referrer"; // Don't send referrer data
+                img.crossOrigin = "anonymous"; // Don't send credentials
                 img.src = url;
 
                 img.onload = () => {

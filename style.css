@@ -218,7 +218,7 @@ body {
 }
 
 #userText {
-    font-family: 'poppins';
+    font-family: 'poppins', serif;
     font-size: 1.4rem;
     margin-bottom: 10px;
 }
@@ -242,7 +242,6 @@ body {
 }
 
 .rightDiv .topDiv {
-    height: 180px;
     height: 196px;
     display: flex;
     justify-content: flex-end;
@@ -453,13 +452,12 @@ body {
     width: calc(100% - 120px);
     top: 0;
     bottom: 0;
-    margin: auto;
-    margin-left: 20px;
+    margin: auto auto auto 20px;
     outline: none;
     border: none;
     background-color: #00000000;
     border-radius: 100px;
-    padding: 0px 40px;
+    padding: 0 40px;
     font-size: 1rem;
 }
 
@@ -471,7 +469,7 @@ body {
     margin: auto;
     height: 40px;
     border-radius: 100px;
-    padding: 0px 26px;
+    padding: 0 26px;
     border: none;
     font-size: 1.1rem;
     background-color: var(--darkColor-blue);
@@ -530,7 +528,6 @@ body {
 .searchEnginesContainer .search-engine {
     /* background-color: var(--accentLightTint-blue); */
     border-radius: 20px;
-    height: fit-content;
     height: 40px;
     display: flex;
     align-items: center;
@@ -550,8 +547,7 @@ body {
 }
 
 .searchEnginesContainer .search-engine label {
-    margin: 0px 10px;
-    margin-right: 16px;
+    margin: 0 16px 0 10px;
 }
 
 /* -----------Radio Button Customizing------------ */
@@ -756,7 +752,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px 16px;
+    padding: 0 16px;
     border-radius: 100px;
     z-index: 2;
 }
@@ -780,7 +776,7 @@ body {
     position: relative;
     margin-left: 30px;
     transition: all 500ms;
-    gap: 0px;
+    gap: 0;
     transform-origin: left;
     transform: scale(0.5) translateX(-70px);
     opacity: 0.2;
@@ -802,7 +798,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0px 16px;
+    padding: 0 16px;
     border-radius: 100px;
     text-decoration: none;
     color: var(--textColorDark-blue);
@@ -818,10 +814,6 @@ body {
 
 
 /* -----------End of Ai-Tools---------- */
-
-
-
-
 
 
 /* -------media query ------------------- */
@@ -1100,12 +1092,12 @@ body {
 }
 
 /* Apply styles when the input is checked (on) */
-input:checked+.toggle {
+input:checked + .toggle {
     background-color: var(--darkColor-blue);
     /* Background color when on */
 }
 
-input:checked+.toggle:before {
+input:checked + .toggle:before {
     transform: translateX(26px);
 }
 
@@ -1134,7 +1126,7 @@ input:checked+.toggle:before {
     border-radius: 10px;
     border: none;
     outline: none;
-    padding: 0px 11px;
+    padding: 0 11px;
 }
 
 .ttcont .texts .bigText {
@@ -1234,6 +1226,7 @@ input:checked+.toggle:before {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
 }
+
 .shortcutSettingsEntry .URL {
     font-size: 0.9rem;
     color: var(--textColorDark-blue);
@@ -1283,7 +1276,7 @@ input:checked+.toggle:before {
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
-.themingStuff {
+.themingStuff, .languageSection {
     width: 100%;
     height: 50px;
     display: flex;
@@ -1294,12 +1287,9 @@ input:checked+.toggle:before {
 }
 
 .languageSelector {
-    background-color: var(--accentLightTint-blue);
     background-color: #ffffffe8;
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
     height: fit-content;
     width: 80%;
     border: none;
@@ -1308,7 +1298,6 @@ input:checked+.toggle:before {
     /* 5 divs in the first row */
     grid-auto-rows: auto;
     grid-gap: 10px;
-    width: 80%;
     padding: 10px;
     /* padding-right: 0px; */
     border-radius: 26px;
@@ -1317,12 +1306,9 @@ input:checked+.toggle:before {
 }
 
 .colorsContainer {
-    background-color: var(--accentLightTint-blue);
     background-color: #ffffffe8;
-    display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
     height: fit-content;
     width: fit-content;
 
@@ -1331,7 +1317,6 @@ input:checked+.toggle:before {
     /* 5 divs in the first row */
     grid-auto-rows: auto;
     grid-gap: 10px;
-    width: fit-content;
     padding: 10px;
     /* padding-right: 0px; */
     border-radius: 26px;
@@ -1501,7 +1486,6 @@ input:checked+.toggle:before {
     /* width: 32px; */
     /* Expand the max-width on hover */
 }
-
 
 
 #menuCloseButton .icon {
