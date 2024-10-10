@@ -161,7 +161,6 @@ body {
     top: -90px;
     transform-origin: bottom;
     border-radius: 10px;
-    transition: transform 1.50s;
 }
 
 #hour {
@@ -169,6 +168,7 @@ body {
     top: -70px;
     background-color: var(--darkerColor-blue);
     transform: rotate(90deg);
+    transition: transform 1.50s;
 }
 
 #hour::after {
@@ -183,6 +183,7 @@ body {
 
 #minute {
     z-index: 9 !important;
+    transition: transform 1.50s;
 }
 
 #minute::after {
@@ -197,6 +198,7 @@ body {
 
 #second {
     background-color: #00000000;
+    transition: transform 1s;
 }
 
 #second::after {
@@ -1460,8 +1462,8 @@ input:checked + .toggle:before {
      /* position: absolute; */
     bottom: var(--gap);
     width: 42px;
-    max-width: 100%;
-    /* Set max-width to fit-content initially */
+    height: 42px; 
+    max-width: 100%; /* Set max-width to fit-content initially */
     background-color: var(--bg-color-blue);
     color: var(--textColorDark-blue);
     font-size: 1rem;
@@ -1476,7 +1478,7 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: 69px;
+    margin-top: calc(69px + 20px);
 }
 
 #menuCloseButton:hover {
