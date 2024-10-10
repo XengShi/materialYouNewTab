@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Set the default API key
-        const defaultApiKey = 'c8ec5c78e09448f6bce75309220907&q'; // Default Weather API key
+        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
 
         // Check if the user has entered their own API key
         const userApiKey = userAPIInput.value.trim();
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
 
         // Getting current user location
-        const geoLocation = 'https://ipapi.co/json/';
+        const geoLocation = 'https://ipinfo.io/json/';
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
@@ -253,24 +253,46 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 document.getElementById("0NIHK").onclick = () => {
 
-    if (element.style.display === "flex") {
-        shortcuts.style.display = 'flex';
-        element.style.opacity = "0";
-        element.style.gap = "0";
-        element.style.transform = "translateX(-100%)";
-        setTimeout(() => {
-            element.style.display = "none";
-        }, 500);
+    if (shortcutsCheckbox.checked) {
+        if (element.style.display === "flex") {
+            shortcuts.style.display = 'flex';
+            element.style.opacity = "0";
+            element.style.gap = "0";
+            element.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                element.style.display = "none";
+            }, 500);
+        } else {
+            shortcuts.style.display = 'none';
+            element.style.display = "flex";
+            setTimeout(() => {
+                element.style.opacity = "1";
+                element.style.transform = "translateX(0)";
+            }, 1);
+            setTimeout(() => {
+                element.style.gap = "12px";
+            }, 300);
+        }
     } else {
-        shortcuts.style.display = 'none';
-        element.style.display = "flex";
-        setTimeout(() => {
-            element.style.opacity = "1";
-            element.style.transform = "translateX(0)";
-        }, 1);
-        setTimeout(() => {
-            element.style.gap = "12px";
-        }, 300);
+        if (element.style.display === "flex") {
+            shortcuts.style.display = 'none';
+            element.style.opacity = "0";
+            element.style.gap = "0";
+            element.style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                element.style.display = "none";
+            }, 500);
+        } else {
+            shortcuts.style.display = 'none';
+            element.style.display = "flex";
+            setTimeout(() => {
+                element.style.opacity = "1";
+                element.style.transform = "translateX(0)";
+            }, 1);
+            setTimeout(() => {
+                element.style.gap = "12px";
+            }, 300);
+        }
     }
 }
 
