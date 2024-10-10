@@ -367,9 +367,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // minimum number of shortcuts allowed
     const MIN_SHORTCUTS_ALLOWED = 1;
 
-    // The placeholder shortcut info
-    const PLACEHOLDER_SHORTCUT_NAME = "Placeholder";
+    // The new shortcut placeholder info
+    const PLACEHOLDER_SHORTCUT_NAME = "New shortcut";
     const PLACEHOLDER_SHORTCUT_URL = "https://github.com/XengShi/materialYouNewTab";
+
+    // The placeholder for an empty shortcut
+    const SHORTCUT_NAME_PLACEHOLDER = "Shortcut Name";
+    const SHORTCUT_URL_PLACEHOLDER = "Shortcut URL";
 
     const SHORTCUT_PRESET_NAMES = ["Youtube", "Gmail", "Telegram", "WhatsApp", "Instagram", "Twitter"];
     const SHORTCUT_PRESET_URLS_AND_LOGOS = new Map([["youtube.com", `
@@ -579,9 +583,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const shortcutName = document.createElement("input");
         shortcutName.className = "shortcutName";
+        shortcutName.placeholder = SHORTCUT_NAME_PLACEHOLDER;
         shortcutName.value = name;
         const shortcutUrl = document.createElement("input");
         shortcutUrl.className = "URL";
+        shortcutUrl.placeholder = SHORTCUT_URL_PLACEHOLDER;
         shortcutUrl.value = url;
 
         attachEventListenersToInputs([shortcutName, shortcutUrl]);
