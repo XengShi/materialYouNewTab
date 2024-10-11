@@ -2,15 +2,20 @@ Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST
 # Material You NewTab
 🚀 Experience a sleek NewTab or homepage theme for your browser, inspired by Google's 'Material You' design. This extension offers a wealth of functionality, including the ability to search using your preferred search engine (Google, DuckDuckGo, Bing, YouTube) without needing to change the search engine from the settings. It also provides convenient shortcuts to your favorite websites, theming functionality, and much more. 🛡️ This extension doesn't require any permissions, ensuring your privacy and security while browsing.
 
-![Screenshot 1](https://i.postimg.cc/q4vppz8n/preview1.webp)
-![Screenshot 2](https://i.postimg.cc/yVcHL9Hq/preview2.webp)
-![Screenshot 3](https://i.postimg.cc/Ch0VX1hR/preview3.webp)
+
+![Screenshot 1](https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png)
+![Screenshot 3](https://i.postimg.cc/yVcHL9Hq/preview2.webp)
+![Screenshot 4](https://i.postimg.cc/Ch0VX1hR/preview3.webp)
+![Screenshot 4](https://i.postimg.cc/FFCGNWt0/material-you-new-Tab-nhsoft.webp)
+
 
 ##  Installation Guide
 
 ### Download
-
-You can download the latest version of the software by clicking the button below:
+Clone the repo 
+`git clone https://github.com/XengShi/materialYouNewTab.git`
+or
+You can download the latest version of the extension by clicking the button below:
 
 [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/releases/tag/v1.1)
 
