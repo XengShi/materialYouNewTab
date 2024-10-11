@@ -798,11 +798,18 @@ body {
 }
 
 .shortcutsContainer .shortcuts a {
-    background-color: var(--accentLightTint-blue);
     border-radius: 100px;
     display: block;
     height: var(--shortcut-size);
     width: var(--shortcut-size);
+}
+
+.shortcutsContainer .shortcuts a:has(svg) {
+    background-color: var(--accentLightTint-blue);
+}
+
+.shortcutsContainer .shortcuts a:has(img) {
+    background-color: var(--darkColor-blue);
 }
 
 .shortcutsContainer .shortcuts a svg {
