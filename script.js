@@ -206,7 +206,7 @@ const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 
 const applySelectedTheme = (colorValue) => {
-    if (colorValue != "blue") {
+    if (colorValue !== "blue") {
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
         document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
@@ -306,6 +306,7 @@ const overviewPage = document.getElementById("overviewPage");
 const shortcutEditPage = document.getElementById("shortcutEditPage");
 
 function pageReset() {
+    optCont.scrollTop = 0;
     overviewPage.style.transform = "translateX(0)";
     overviewPage.style.opacity = "1";
     overviewPage.style.display = "block";
@@ -315,39 +316,53 @@ function pageReset() {
 }
 
 const closeMenuBar = () => {
-    setTimeout(() => {
-        menuBar.style.opacity = 0
-        menuCont.style.transform = "translateX(100%)"
-    }, 14);
-    setTimeout(() => {
-        optCont.style.opacity = 1
+    requestAnimationFrame(() => {
+        optCont.style.opacity = "0"
         optCont.style.transform = "translateX(100%)"
-    }, 7);
+    });
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            menuBar.style.opacity = "0"
+            menuCont.style.transform = "translateX(100%)"
+        });
+    }, 14);
     setTimeout(() => {
         menuBar.style.display = "none";
     }, 555);
 }
+
+const openMenuBar = () => {
+    setTimeout(() => {
+        menuBar.style.display = "block";
+        pageReset();
+    });
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            menuBar.style.opacity = "1"
+            menuCont.style.transform = "translateX(0px)"
+        });
+    }, 7);
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            optCont.style.opacity = "1"
+            optCont.style.transform = "translateX(0px)"
+        });
+    }, 11);
+}
+
 menuButton.addEventListener("click", () => {
     if (menuBar.style.display === 'none' || menuBar.style.display === '') {
-        menuBar.style.display = "block";
-        pageReset()
-        setTimeout(() => {
-            menuBar.style.opacity = 1
-            menuCont.style.transform = "translateX(0px)"
-        }, 7);
-        setTimeout(() => {
-            optCont.style.opacity = 1
-            optCont.style.transform = "translateX(0px)"
-        }, 11);
+        openMenuBar();
     } else {
-        menuBar.style.display = "none";
+        closeMenuBar();
     }
-    //   ----------Hiding Menu Bar--------
-    menuBar.addEventListener("click", (event) => {
-        if (event.target === menuBar) {
-            closeMenuBar()
-        }
-    });
+});
+
+//   ----------Hiding Menu Bar--------
+menuBar.addEventListener("click", (event) => {
+    if (event.target === menuBar) {
+        closeMenuBar()
+    }
 });
 
 // Hiding Menu Bar when user click on close button --------
@@ -436,7 +451,6 @@ document.addEventListener("DOMContentLoaded", function () {
             height: calc(100% / sqrt(2)) !important;
             width: calc(100% / sqrt(2)) !important;
             }`;
-
 
 
     /* ------ Element selectors ------ */
@@ -947,13 +961,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         const height = e[0].contentRect.height;
         if (height === defaultHeight) {
-            unfoldShortcutsButton.style.display = "none";
+            setTimeout(() => {
+                unfoldShortcutsButton.style.display = "none";
+            });
         } else {
-            unfoldShortcutsButton.style.display = "block";
+            setTimeout(() => {
+                unfoldShortcutsButton.style.display = "block";
+            });
         }
-
     }).observe(flexMonitor);
-
 
 
     /* ------ Page Transitions & Animations ------ */
@@ -964,30 +980,38 @@ document.addEventListener("DOMContentLoaded", function () {
      * This means it can be used both to open and to update the shortcut drawer.
      */
     function openShortcutDrawer() {
-        shortcutsContainer.style.transform = `translateY(-${flexMonitor.clientHeight}px`;
-        shortcutsContainer.style.backgroundColor = "var(--accentLightTint-blue)";
-        unfoldShortcutsButton.style.transform = "rotate(180deg)";
+        requestAnimationFrame(() => {
+            shortcutsContainer.style.transform = `translateY(-${flexMonitor.clientHeight}px`;
+            shortcutsContainer.style.backgroundColor = "var(--accentLightTint-blue)";
+            unfoldShortcutsButton.style.transform = "rotate(180deg)";
+        });
     }
 
     /**
      * This function closes the shortcut drawer
      */
     function resetShortcutDrawer() {
-        shortcutsContainer.style.transform = "translateY(0)";
-        unfoldShortcutsButton.style.transform = "rotate(0)";
-        shortcutsContainer.style.backgroundColor = "";
+        requestAnimationFrame(() => {
+            shortcutsContainer.style.transform = "translateY(0)";
+            unfoldShortcutsButton.style.transform = "rotate(0)";
+            shortcutsContainer.style.backgroundColor = "";
+        });
     }
 
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
-        shortcutEditPage.style.display = "block"
         setTimeout(() => {
+            shortcutEditPage.style.display = "block"
+        });
+        requestAnimationFrame(() => {
             overviewPage.style.transform = "translateX(-120%)"
             overviewPage.style.opacity = "0"
         });
         setTimeout(() => {
-            shortcutEditPage.style.transform = "translateX(0)"
-            shortcutEditPage.style.opacity = "1"
+            requestAnimationFrame(() => {
+                shortcutEditPage.style.transform = "translateX(0)"
+                shortcutEditPage.style.opacity = "1"
+            });
         }, 50);
         setTimeout(() => {
             overviewPage.style.display = "none";
@@ -996,15 +1020,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close page by sliding it away to the right.
     backButton.onclick = () => {
-        overviewPage.style.display = "block"
         setTimeout(() => {
-            overviewPage.style.transform = "translateX(0)";
-            overviewPage.style.opacity = "1";
-        }, 50);
-        setTimeout(() => {
+            overviewPage.style.display = "block"
+        });
+        requestAnimationFrame(() => {
             shortcutEditPage.style.transform = "translateX(120%)";
             shortcutEditPage.style.opacity = "0";
         });
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                overviewPage.style.transform = "translateX(0)";
+                overviewPage.style.opacity = "1";
+            });
+        }, 50);
         setTimeout(() => {
             shortcutEditPage.style.display = "none";
         }, 650);
