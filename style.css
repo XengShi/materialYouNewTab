@@ -726,8 +726,7 @@ body {
 
 .shortcutsContainer {
     pointer-events: auto;
-    transition: transform 0.5s, background-color 0.5s;
-    border-radius: 34px;
+    transition: transform 0.5s;
     margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
     max-width: calc(
             var(--max-shortcut-bar-width) -
@@ -744,9 +743,28 @@ body {
     gap: var(--gap) var(--shortcut-bar-gap-and-padding);
 }
 
+.shortcutsContainer::before {
+    border-radius: 34px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--accentLightTint-blue);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.shortcutsContainer.showBackground::before {
+    opacity: 1;
+}
+
 .shortcutsContainer .shortcuts {
     position: relative;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s;
 }
 
 .shortcutsContainer .shortcuts:hover {

@@ -982,7 +982,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function openShortcutDrawer() {
         requestAnimationFrame(() => {
             shortcutsContainer.style.transform = `translateY(-${flexMonitor.clientHeight}px`;
-            shortcutsContainer.style.backgroundColor = "var(--accentLightTint-blue)";
+            shortcutsContainer.classList.add("showBackground");
             unfoldShortcutsButton.style.transform = "rotate(180deg)";
         });
     }
@@ -993,8 +993,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function resetShortcutDrawer() {
         requestAnimationFrame(() => {
             shortcutsContainer.style.transform = "translateY(0)";
+            shortcutsContainer.classList.remove("showBackground");
             unfoldShortcutsButton.style.transform = "rotate(0)";
-            shortcutsContainer.style.backgroundColor = "";
         });
     }
 
