@@ -78,8 +78,14 @@
     --darkColor-dark: #505050;
     --textColorDark-dark: #FFFFFF;
 
+    /* Global variables */
     --gap: 30px;
     --round: 30px;
+
+    /* Shortcut bar */
+    --max-shortcut-bar-width: 60vw;
+    --shortcut-bar-gap-and-padding: 10px;
+    --shortcut-size: 50px;
 }
 
 /* Theme */
@@ -101,14 +107,20 @@
 
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
 
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
 body {
     background-color: var(--bg-color-blue);
     color: var(--textColorDark-blue);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100%;
 }
 
 .centerDiv {
@@ -117,6 +129,8 @@ body {
     width: fit-content;
     height: fit-content;
     /* background-color: #17a638; */
+    /* always leave enough space for the shortcuts bar at the bottom */
+    padding-bottom: calc(var(--shortcut-size) + var(--gap) * 2);
 }
 
 /* ____________Clock_____________________---- */
@@ -324,9 +338,8 @@ body {
     content: "";
     height: 100%;
     width: 40px;
-    background: url("./svgs/humidity.svg") center center no-repeat;
     background-size: 66%;
-    background-color: var(--darkColor-blue);
+    background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center center;
     right: 0;
     border-radius: 100%;
 }
@@ -523,6 +536,8 @@ body {
 .searchEnginesContainer {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 20px;
 }
 
 .searchEnginesContainer .search-engine {
@@ -532,8 +547,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 20px;
-    margin-bottom: 20px;
     position: relative;
 }
 
@@ -654,17 +667,81 @@ body {
 
 
 /* ----------Shorcuts----------------- */
-.shortcutsContainer {
+
+#shortcuts-section {
+    pointer-events: none;
     display: flex;
-    height: 50px;
-    width: fit-content;
-    /* background-color: yellow; */
-    position: absolute;
+    justify-content: center;
+    width: 100%;
+    height: calc(var(--shortcut-size) + var(--gap) * 2);
+    position: fixed;
     left: 0;
     right: 0;
-    bottom: var(--gap);
+    bottom: 0;
     margin: auto;
-    gap: 10px;
+}
+
+#shortcuts-section .unfoldContainer {
+    position: absolute;
+    width: 100%;
+    top: calc(var(--gap) / 2 - 5px); /* height of the element is 10px, so 10/2 */
+    display: flex;
+    justify-content: center;
+}
+
+#shortcuts-section #unfoldShortcutsBtn {
+    display: none;
+    pointer-events: auto;
+    fill: var(--textColorDark-blue);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.2s all;
+    transform-origin: 50% 25%;
+}
+
+#shortcuts-section .wrapper {
+    position: relative;
+    height: fit-content;
+    display: inline-flex; /* make sure elements are next to each other */
+    align-items: stretch; /* make sure both elements grow to the same height */
+    width: fit-content;
+}
+
+/* Invisible element tracking height changes */
+#shortcuts-section #flexMonitor {
+    position: absolute;
+    height: 100%; /* This will match the height of .shortcutsContainer, which it is supposed to monitor */
+    visibility: hidden;
+ }
+
+/* Invisible element to get standard height */
+#shortcuts-section #defaultMonitor {
+    position: absolute;
+    /* This is the standard height of one row */
+    height: calc(var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding));
+    visibility: hidden;
+ }
+
+.shortcutsContainer {
+    pointer-events: auto;
+    transition: transform 0.5s, background-color 0.5s;
+    border-radius: 34px;
+    margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
+    max-width: calc(
+            var(--max-shortcut-bar-width) -
+            mod(
+                var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
+                var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
+            )
+    );
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--shortcut-bar-gap-and-padding);
+    justify-content: left;
+    width: fit-content;
+    gap: var(--gap) var(--shortcut-bar-gap-and-padding);
 }
 
 .shortcutsContainer .shortcuts {
@@ -674,7 +751,7 @@ body {
 
 .shortcutsContainer .shortcuts:hover {
     transform: translateY(-10px) scale(1.06);
-    box-shadow: 0 5px 10px #ffffffc5;
+    box-shadow: 0 5px 10px var(--accentLightTint-blue);
     border-radius: 100px;
 }
 
@@ -684,7 +761,6 @@ body {
     bottom: -30px;
     right: 0;
     left: 50%;
-    /* Set left to 50% */
     transform: translateX(-50%);
     /* Center horizontally */
     margin: auto;
@@ -695,6 +771,7 @@ body {
     opacity: 0;
     transition: all 0.3s;
     font-size: 1rem;
+    white-space: nowrap;
 }
 
 .shortcuts:hover .shortcut-name {
@@ -706,8 +783,8 @@ body {
     background-color: var(--accentLightTint-blue);
     border-radius: 100px;
     display: block;
-    height: 50px;
-    width: 50px;
+    height: var(--shortcut-size);
+    width: var(--shortcut-size);
 }
 
 .shortcutsContainer .shortcuts a svg {
@@ -842,10 +919,7 @@ body {
         position: absolute;
         left: 0;
         right: 0;
-        margin: auto;
-        margin-top: var(--gap);
-
-
+        margin: var(--gap) auto auto;
     }
 
     .leftDiv {
@@ -867,10 +941,9 @@ body {
         width: fit-content;
         bottom: 0;
         top: 0;
-        margin: auto;
         left: 300px;
         /*Because Clock widfth is 300px*/
-        margin-left: var(--gap);
+        margin: auto auto auto var(--gap);
 
     }
 }
@@ -879,7 +952,7 @@ body {
 .menuBar {
     background-color: #0000004f;
     backdrop-filter: blur(15px) saturate(170%);
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: 9999;
@@ -1225,6 +1298,7 @@ input:checked + .toggle:before {
 .shortcutSettingsEntry .shortcutName {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
+    text-overflow: ellipsis;
 }
 
 .shortcutSettingsEntry .URL {
@@ -1232,6 +1306,7 @@ input:checked + .toggle:before {
     color: var(--textColorDark-blue);
     opacity: 0.86;
     margin-top: -3px;
+    text-overflow: ellipsis;
 }
 
 .delete button {
@@ -1413,7 +1488,7 @@ input:checked + .toggle:before {
 /* -----------end of theming stuff---------------- */
 
 #menuButton {
-    position: absolute;
+    position: fixed;
     right: var(--gap);
     bottom: var(--gap);
     width: 50px;

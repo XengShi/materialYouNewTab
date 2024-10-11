@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Constants ------ */
 
     // maximum number of shortcuts allowed
-    const MAX_SHORTCUTS_ALLOWED = 20;
+    const MAX_SHORTCUTS_ALLOWED = 50;
 
     // minimum number of shortcuts allowed
     const MIN_SHORTCUTS_ALLOWED = 1;
@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ------ Element selectors ------ */
 
-    const shortcuts = document.getElementById("shortcutsContainer");
+    const shortcuts = document.getElementById("shortcuts-section");
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const shortcutEditField = document.getElementById("shortcutEditField");
@@ -456,7 +456,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
-
+    const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
+    const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
+    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
 
     /* ------ Helper functions for saving and loading states ------ */
 
@@ -939,8 +941,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetShortcutsButton.addEventListener("click", () => resetShortcuts());
 
+    // Create a ResizeObserver to watch the height changes of the shortcut container and see if it is wrapped
+    new ResizeObserver(e => {
+        if (unfoldShortcutsButton.style.transform === "rotate(180deg)") {
+            openShortcutDrawer()
+        }
+        const height = e[0].contentRect.height;
+        if (height === defaultHeight) {
+            unfoldShortcutsButton.style.display = "none";
+        } else {
+            unfoldShortcutsButton.style.display = "block";
+        }
 
-    /* ------ Page Transitions ------ */
+    }).observe(flexMonitor);
+
+
+
+    /* ------ Page Transitions & Animations ------ */
+
+    /**
+     * This function sets the state of the shortcut drawer to open.
+     *
+     * This means it can be used both to open and to update the shortcut drawer.
+     */
+    function openShortcutDrawer() {
+        shortcutsContainer.style.transform = `translateY(-${flexMonitor.clientHeight}px`;
+        shortcutsContainer.style.backgroundColor = "var(--accentLightTint-blue)";
+        unfoldShortcutsButton.style.transform = "rotate(180deg)";
+    }
+
+    /**
+     * This function closes the shortcut drawer
+     */
+    function resetShortcutDrawer() {
+        shortcutsContainer.style.transform = "translateY(0)";
+        unfoldShortcutsButton.style.transform = "rotate(0)";
+        shortcutsContainer.style.backgroundColor = "";
+    }
 
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
@@ -973,6 +1010,21 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutEditPage.style.display = "none";
         }, 650);
     }
+
+    // Shift up shortcuts
+    unfoldShortcutsButton.onclick = (e) => {
+        if (unfoldShortcutsButton.style.transform !== "rotate(180deg)") {
+            e.stopPropagation();
+            openShortcutDrawer();
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        // Check if the clicked element is not the shortcut container, yet the container is unfolded
+        if (unfoldShortcutsButton.style.transform === "rotate(180deg)" && !shortcutsContainer.contains(event.target)) {
+            resetShortcutDrawer();
+        }
+    });
 
 
     /* ------ Loading ------ */
