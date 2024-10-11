@@ -956,7 +956,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create a ResizeObserver to watch the height changes of the shortcut container and see if it is wrapped
     new ResizeObserver(e => {
-        if (unfoldShortcutsButton.style.transform === "rotate(180deg)") {
+        if (shortcutsContainer.classList.contains("showBackground")) {
             openShortcutDrawer()
         }
         const height = e[0].contentRect.height;
@@ -980,10 +980,12 @@ document.addEventListener("DOMContentLoaded", function () {
      * This means it can be used both to open and to update the shortcut drawer.
      */
     function openShortcutDrawer() {
+        const translationDistance = flexMonitor.clientHeight - defaultHeight;
         requestAnimationFrame(() => {
-            shortcutsContainer.style.transform = `translateY(-${flexMonitor.clientHeight}px`;
+            shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
             shortcutsContainer.classList.add("showBackground");
             unfoldShortcutsButton.style.transform = "rotate(180deg)";
+            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = `translateY(-${translationDistance}px)`;
         });
     }
 
@@ -995,6 +997,7 @@ document.addEventListener("DOMContentLoaded", function () {
             shortcutsContainer.style.transform = "translateY(0)";
             shortcutsContainer.classList.remove("showBackground");
             unfoldShortcutsButton.style.transform = "rotate(0)";
+            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = "translateY(0)";
         });
     }
 
@@ -1040,7 +1043,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Shift up shortcuts
     unfoldShortcutsButton.onclick = (e) => {
-        if (unfoldShortcutsButton.style.transform !== "rotate(180deg)") {
+        if (!shortcutsContainer.classList.contains("showBackground")) {
             e.stopPropagation();
             openShortcutDrawer();
         }
@@ -1048,7 +1051,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener('click', function (event) {
         // Check if the clicked element is not the shortcut container, yet the container is unfolded
-        if (unfoldShortcutsButton.style.transform === "rotate(180deg)" && !shortcutsContainer.contains(event.target)) {
+        if (shortcutsContainer.classList.contains("showBackground") && !shortcutsContainer.contains(event.target)) {
             resetShortcutDrawer();
         }
     });
