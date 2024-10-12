@@ -233,7 +233,7 @@ const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 
 const applySelectedTheme = (colorValue) => {
-    if (colorValue != "blue") {
+    if (colorValue !== "blue") {
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
         document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
@@ -333,6 +333,7 @@ const overviewPage = document.getElementById("overviewPage");
 const shortcutEditPage = document.getElementById("shortcutEditPage");
 
 function pageReset() {
+    optCont.scrollTop = 0;
     overviewPage.style.transform = "translateX(0)";
     overviewPage.style.opacity = "1";
     overviewPage.style.display = "block";
@@ -342,39 +343,53 @@ function pageReset() {
 }
 
 const closeMenuBar = () => {
-    setTimeout(() => {
-        menuBar.style.opacity = 0
-        menuCont.style.transform = "translateX(100%)"
-    }, 14);
-    setTimeout(() => {
-        optCont.style.opacity = 1
+    requestAnimationFrame(() => {
+        optCont.style.opacity = "0"
         optCont.style.transform = "translateX(100%)"
-    }, 7);
+    });
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            menuBar.style.opacity = "0"
+            menuCont.style.transform = "translateX(100%)"
+        });
+    }, 14);
     setTimeout(() => {
         menuBar.style.display = "none";
     }, 555);
 }
+
+const openMenuBar = () => {
+    setTimeout(() => {
+        menuBar.style.display = "block";
+        pageReset();
+    });
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            menuBar.style.opacity = "1"
+            menuCont.style.transform = "translateX(0px)"
+        });
+    }, 7);
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            optCont.style.opacity = "1"
+            optCont.style.transform = "translateX(0px)"
+        });
+    }, 11);
+}
+
 menuButton.addEventListener("click", () => {
     if (menuBar.style.display === 'none' || menuBar.style.display === '') {
-        menuBar.style.display = "block";
-        pageReset()
-        setTimeout(() => {
-            menuBar.style.opacity = 1
-            menuCont.style.transform = "translateX(0px)"
-        }, 7);
-        setTimeout(() => {
-            optCont.style.opacity = 1
-            optCont.style.transform = "translateX(0px)"
-        }, 11);
+        openMenuBar();
     } else {
-        menuBar.style.display = "none";
+        closeMenuBar();
     }
-    //   ----------Hiding Menu Bar--------
-    menuBar.addEventListener("click", (event) => {
-        if (event.target === menuBar) {
-            closeMenuBar()
-        }
-    });
+});
+
+//   ----------Hiding Menu Bar--------
+menuBar.addEventListener("click", (event) => {
+    if (event.target === menuBar) {
+        closeMenuBar()
+    }
 });
 
 // Hiding Menu Bar when user click on close button --------
@@ -389,14 +404,18 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Constants ------ */
 
     // maximum number of shortcuts allowed
-    const MAX_SHORTCUTS_ALLOWED = 20;
+    const MAX_SHORTCUTS_ALLOWED = 50;
 
     // minimum number of shortcuts allowed
     const MIN_SHORTCUTS_ALLOWED = 1;
 
-    // The placeholder shortcut info
-    const PLACEHOLDER_SHORTCUT_NAME = "Placeholder";
+    // The new shortcut placeholder info
+    const PLACEHOLDER_SHORTCUT_NAME = "New shortcut";
     const PLACEHOLDER_SHORTCUT_URL = "https://github.com/XengShi/materialYouNewTab";
+
+    // The placeholder for an empty shortcut
+    const SHORTCUT_NAME_PLACEHOLDER = "Shortcut Name";
+    const SHORTCUT_URL_PLACEHOLDER = "Shortcut URL";
 
     const SHORTCUT_PRESET_NAMES = ["Youtube", "Gmail", "Telegram", "WhatsApp", "Instagram", "Twitter"];
     const SHORTCUT_PRESET_URLS_AND_LOGOS = new Map([["youtube.com", `
@@ -461,10 +480,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }`;
 
 
-
     /* ------ Element selectors ------ */
 
-    const shortcuts = document.getElementById("shortcutsContainer");
+    const shortcuts = document.getElementById("shortcuts-section");
     const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const shortcutEditField = document.getElementById("shortcutEditField");
@@ -479,7 +497,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
-
+    const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
+    const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
+    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
 
     /* ------ Helper functions for saving and loading states ------ */
 
@@ -606,9 +626,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const shortcutName = document.createElement("input");
         shortcutName.className = "shortcutName";
+        shortcutName.placeholder = SHORTCUT_NAME_PLACEHOLDER;
         shortcutName.value = name;
         const shortcutUrl = document.createElement("input");
         shortcutUrl.className = "URL";
+        shortcutUrl.placeholder = SHORTCUT_URL_PLACEHOLDER;
         shortcutUrl.value = url;
 
         attachEventListenersToInputs([shortcutName, shortcutUrl]);
@@ -843,7 +865,6 @@ document.addEventListener("DOMContentLoaded", function () {
             for (const url of urls) {
                 const img = new Image();
                 img.referrerPolicy = "no-referrer"; // Don't send referrer data
-                img.crossOrigin = "anonymous"; // Don't send credentials
                 img.src = url;
 
                 img.onload = () => {
@@ -960,19 +981,67 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetShortcutsButton.addEventListener("click", () => resetShortcuts());
 
+    // Create a ResizeObserver to watch the height changes of the shortcut container and see if it is wrapped
+    new ResizeObserver(e => {
+        if (shortcutsContainer.classList.contains("showBackground")) {
+            openShortcutDrawer()
+        }
+        const height = e[0].contentRect.height;
+        if (height === defaultHeight) {
+            setTimeout(() => {
+                unfoldShortcutsButton.style.display = "none";
+            });
+        } else {
+            setTimeout(() => {
+                unfoldShortcutsButton.style.display = "block";
+            });
+        }
+    }).observe(flexMonitor);
 
-    /* ------ Page Transitions ------ */
+
+    /* ------ Page Transitions & Animations ------ */
+
+    /**
+     * This function sets the state of the shortcut drawer to open.
+     *
+     * This means it can be used both to open and to update the shortcut drawer.
+     */
+    function openShortcutDrawer() {
+        const translationDistance = flexMonitor.clientHeight - defaultHeight;
+        requestAnimationFrame(() => {
+            shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
+            shortcutsContainer.classList.add("showBackground");
+            unfoldShortcutsButton.style.transform = "rotate(180deg)";
+            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = `translateY(-${translationDistance}px)`;
+        });
+    }
+
+    /**
+     * This function closes the shortcut drawer
+     */
+    function resetShortcutDrawer() {
+        requestAnimationFrame(() => {
+            shortcutsContainer.style.transform = "translateY(0)";
+            shortcutsContainer.classList.remove("showBackground");
+            unfoldShortcutsButton.style.transform = "rotate(0)";
+            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = "translateY(0)";
+        });
+    }
 
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
-        shortcutEditPage.style.display = "block"
         setTimeout(() => {
+            shortcutEditPage.style.display = "block"
+        });
+        requestAnimationFrame(() => {
             overviewPage.style.transform = "translateX(-120%)"
             overviewPage.style.opacity = "0"
         });
         setTimeout(() => {
-            shortcutEditPage.style.transform = "translateX(0)"
-            shortcutEditPage.style.opacity = "1"
+            requestAnimationFrame(() => {
+                shortcutEditPage.style.transform = "translateX(0)"
+                shortcutEditPage.style.opacity = "1"
+            });
         }, 50);
         setTimeout(() => {
             overviewPage.style.display = "none";
@@ -981,19 +1050,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close page by sliding it away to the right.
     backButton.onclick = () => {
-        overviewPage.style.display = "block"
         setTimeout(() => {
-            overviewPage.style.transform = "translateX(0)";
-            overviewPage.style.opacity = "1";
-        }, 50);
-        setTimeout(() => {
+            overviewPage.style.display = "block"
+        });
+        requestAnimationFrame(() => {
             shortcutEditPage.style.transform = "translateX(120%)";
             shortcutEditPage.style.opacity = "0";
         });
         setTimeout(() => {
+            requestAnimationFrame(() => {
+                overviewPage.style.transform = "translateX(0)";
+                overviewPage.style.opacity = "1";
+            });
+        }, 50);
+        setTimeout(() => {
             shortcutEditPage.style.display = "none";
         }, 650);
     }
+
+    // Shift up shortcuts
+    unfoldShortcutsButton.onclick = (e) => {
+        if (!shortcutsContainer.classList.contains("showBackground")) {
+            e.stopPropagation();
+            openShortcutDrawer();
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        // Check if the clicked element is not the shortcut container, yet the container is unfolded
+        if (shortcutsContainer.classList.contains("showBackground") && !shortcutsContainer.contains(event.target)) {
+            resetShortcutDrawer();
+        }
+    });
 
 
     /* ------ Loading ------ */
