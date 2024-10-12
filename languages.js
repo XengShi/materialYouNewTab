@@ -15,11 +15,26 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        "months": ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Humidity",
+        "feelsLike": "seems",
+        // End of Weather
+
+        // End of Weather
+
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Enter",
+        "searchPlaceholder": "Your query...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
+        "userText": "Double tap to edit",
         // End of Body Itens
+
     },
     "pt": {
 
@@ -37,15 +52,27 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+        "months": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Umidade",
+        "feelsLike": "Temperatura",
+        // End of Weather
+
         "conditionText": "Olá! Como está hoje?",
         "enterBtn": "Pesquisar",
+        "searchPlaceholder": "Digite sua pesquisa...",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
+        "userText": "Toque para editar",
         // End of Body Itens
     }
 };
 
-// Function to apply the selected language
+// Function to apply the language to the page
 function applyLanguage(lang) {
     if (translations[lang]) {
         // Menu Itens
@@ -60,24 +87,50 @@ function applyLanguage(lang) {
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
         // End of Menu Itens
-        
+
         // Body Itens
         document.getElementById('conditionText').innerText = translations[lang].conditionText;
         document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
+        document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
         document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
+        document.getElementById('userText').innerText = translations[lang].userText;
+
+        // Weather
+        // document.getElementById("humidityText").textContent = translations[lang].humidityText;
+        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
+        // End of Weather
+
         // End of Body Itens
+
+        // Save the selected language in localStorage
+        saveLanguageStatus('selectedLanguage', lang);
     } else {
         console.error('Language not found');
     }
 }
 
-// Detects language change
+// Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
+    location.reload();
 });
 
-// Sets default language to English on page load
+// Function to apply the language when the page loads
 window.onload = function () {
-    applyLanguage('en');
+    const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
+    if (savedLanguage) {
+        document.getElementById("languageSelector").value = savedLanguage;
+    }
+    applyLanguage(savedLanguage);
 };
+
+// Function to save the language status in localStorage
+function saveLanguageStatus(key, languageStatus) {
+    localStorage.setItem(key, languageStatus);
+}
+
+// Function to get the language status from localStorage
+function getLanguageStatus(key) {
+    return localStorage.getItem(key);
+}
