@@ -39,17 +39,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
-
-
-        fetch(weatherApi)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // A resposta será em português
-  })
-  .catch(error => {
-    console.error('Erro ao buscar dados do tempo:', error);
-  });
-
   
         // Weather data
         const conditionText = parsedData.current.condition.text;
