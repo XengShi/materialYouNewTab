@@ -37,7 +37,6 @@ const translations = {
 
     },
     "pt": {
-
         // Menu Itens
         "shortcutsText": "Atalhos",
         "enableShortcutsText": "Ativar/desativar atalhos",
@@ -68,6 +67,69 @@ const translations = {
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Toque para editar",
+        // End of Body Itens
+    },
+    "zh": {
+        // Menu Itens
+        "shortcutsText": "快捷方式",
+        "enableShortcutsText": "启用/禁用快捷方式",
+        "ai_tools_button": "AI工具",
+        "enable_ai_tools": "启用/禁用AI工具快捷方式",
+        "fahrenheitCelciusCheckbox": "切换到华氏温度",
+        "fahrenheitCelciusText": "刷新页面以查看更新",
+        "WeatherApiText": "输入您自己的天气API密钥",
+        "WeatherApiSubtext": "如果天气功能无法正常工作",
+        "LearnMoreButton": "了解更多",
+        "saveAPI": "输入",
+        // End of Menu Itens
+
+        // Body Itens
+        "conditionText": "你好！今天怎么样？",
+        "enterBtn": "输入",
+        "searchWithHint": "搜索",
+        "ai_tools": "AI工具",
+        // End of Body Itens
+    },
+    "hi": {
+        // Menu Itens
+        "shortcutsText": "शॉर्टकट्स",
+        "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
+        "ai_tools_button": "AI-उपकरण",
+        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
+        "fahrenheitCelciusCheckbox": "फारेनहाइट में स्विच करें",
+        "fahrenheitCelciusText": "अपडेट देखने के लिए पृष्ठ को Refresh करें",
+        "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
+        "WeatherApiSubtext": "यदि मौसम कार्यक्षमता काम नहीं कर रही है",
+        "LearnMoreButton": "और जानें",
+        "saveAPI": "दर्ज करें",
+        // End of Menu Itens
+
+        // Body Itens
+        "conditionText": "नमस्ते! आप आज कैसे हैं?",
+        "enterBtn": "दर्ज करें",
+        "searchWithHint": "सर्च करें",
+        "ai_tools": "AI उपकरण",
+        // End of Body Itens
+    },
+    "cs": {
+        // Menu Itens
+        "shortcutsText": "Zkratky",
+        "enableShortcutsText": "Povolí/zakáže zkratky",
+        "ai_tools_button": "AI nástroje",
+        "enable_ai_tools": "Povolí/zakáže zkratky nástrojů AI",
+        "fahrenheitCelciusCheckbox": "Přepnout na stupně Fahrenheita",
+        "fahrenheitCelciusText": "Změny se projeví po obnovení stránky",
+        "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
+        "WeatherApiSubtext": "Pokud nefunguje funkce počasí",
+        "LearnMoreButton": "Zjistit více",
+        "saveAPI": "Uložit",
+        // End of Menu Itens
+
+        // Body Itens
+        "conditionText": "Dobrý den! Jak se máte?",
+        "enterBtn": "Vyhledat",
+        "searchWithHint": "Vyhledávat prostřednictvím",
+        "ai_tools": "AI nástroje",
         // End of Body Itens
     }
 };
