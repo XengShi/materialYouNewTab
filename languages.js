@@ -84,10 +84,22 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+        "months": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "濕度",
+        "feelsLike": "感觉",
+        // End of Weather
+
         "conditionText": "你好！今天怎么样？",
         "enterBtn": "输入",
+        "searchPlaceholder": "输入搜索内容...",
         "searchWithHint": "搜索",
         "ai_tools": "AI工具",
+        "userText": "双击可编辑",
         // End of Body Itens
     },
     "hi": {
@@ -105,10 +117,22 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['सोमवार', 'मंगलवार', 'बुधवार', 'बिहिवार', 'शुक्रवार', 'शनिवार', 'रविवार'],
+        "months": ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "मौसम",
+        "feelsLike": "समानता",
+        // End of Weather
+
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "दर्ज करें",
+        "searchPlaceholder": "आपकी खोज की तरह...",
         "searchWithHint": "सर्च करें",
         "ai_tools": "AI उपकरण",
+        "userText": "बदलने के लिए डिफ़ॉल्ट करें",
         // End of Body Itens
     },
     "cs": {
@@ -126,10 +150,20 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+        "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+        // End of Calendar
+        // Weather
+        "humidityText": "Vlhkost",
+        "feelsLike": "Teplota",
+        // End of Weather
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
+        "searchPlaceholder": "Zadejte hledaný výraz...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
+        "userText": "Upravit dvojklikem",
         // End of Body Itens
     }
 };
