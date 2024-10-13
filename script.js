@@ -93,7 +93,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // ---------------------------end of weather stuff--------------------
 
-setInterval(() => {
+function display(){
     var currentTime = new Date();
     let hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
@@ -123,8 +123,11 @@ setInterval(() => {
     var dayName = dayNames[dayOfWeek];
     document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
     // substring(0, 3) => We are taking only three Char from the name of the month and day like Sunday > Sun
-}, 1000);
+}
 
+
+display(); //  To display the time when the page loads
+setInterval(display, 1000); // To update the time every second
 
 // Showing border or outline in when you click on searchbar
 const searchbar = document.getElementById('searchbar');
