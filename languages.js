@@ -108,8 +108,8 @@ const translations = {
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
-        "fahrenheitCelciusCheckbox": "फारेनहाइट में स्विच करें",
-        "fahrenheitCelciusText": "अपडेट देखने के लिए पृष्ठ को Refresh करें",
+        "fahrenheitCelciusCheckbox": "तापमान फारेनहाइट में बदलें",
+        "fahrenheitCelciusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
         "WeatherApiSubtext": "यदि मौसम कार्यक्षमता काम नहीं कर रही है",
         "LearnMoreButton": "और जानें",
@@ -123,16 +123,16 @@ const translations = {
         // End of Calendar
 
         // Weather
-        "humidityText": "तापीय अनुभूति",
-        "feelsLike": "समानता",
+        "humidityText": "हवा में नमी",
+        "feelsLike": "महसूस",
         // End of Weather
 
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "दर्ज करें",
-        "searchPlaceholder": "आपकी खोज की तरह...",
+        "searchPlaceholder": "यहाँ लिखे...",
         "searchWithHint": "सर्च करें",
         "ai_tools": "AI उपकरण",
-        "userText": "बदलने के लिए डिफ़ॉल्ट करें",
+        "userText": "यहाँ अपना टेक्स्ट लिखें",
         // End of Body Itens
     },
     "cs": {
