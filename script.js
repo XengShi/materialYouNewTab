@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
-  
+
         // Weather data
         const conditionText = parsedData.current.condition.text;
         const tempCelsius = Math.round(parsedData.current.temp_c);
@@ -56,10 +56,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                document.getElementById("temp").textContent = `${ tempFahrenheit }°`;
+                document.getElementById("temp").textContent = `${tempFahrenheit}°`;
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
             } else {
-                document.getElementById("temp").textContent = `${ tempCelsius }°`;
+                document.getElementById("temp").textContent = `${tempCelsius}°`;
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
             }
         };
@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${ humidity } % - 60px)`;
+            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
         }
 
         // Update location
@@ -90,8 +90,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-
-
 // ---------------------------end of weather stuff--------------------
 
 setInterval(() => {
@@ -101,9 +99,9 @@ setInterval(() => {
     var seconds = currentTime.getSeconds();
     let hour_rotate_angle = 30 * hours + minutes / 2;
 
-    document.getElementById("second").style.transform = `rotate(${ seconds * 6}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${ minutes * 6}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${ hour_rotate_angle }deg)`;
+    document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`;
+    document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`;
+    document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`;
 
     // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
     var dayOfWeek = currentTime.getDay();
@@ -122,10 +120,10 @@ setInterval(() => {
     // Language formatting
     if (currentLanguage === 'pt') {
         // portuguese formatting: "day of the week, day of the month"
-        document.getElementById("date").innerText = `${ dayName.substring(0, 3) }, ${ dayOfMonth } ${ monthName.substring(0, 3) } `;
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
     } else {
         // english formatting: "day of the month month name"
-        document.getElementById("date").innerText = `${ dayName.substring(0, 3) }, ${ monthName.substring(0, 3) } ${ dayOfMonth } `;
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
 }, 1000);
 
@@ -212,12 +210,6 @@ const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 
 const applySelectedTheme = (colorValue) => {
-    if (colorValue != "blue") {
-        document.documentElement.style.setProperty('--bg-color-blue', `var(--bg - color - ${ colorValue })`);
-        document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint - ${ colorValue })`);
-        document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor - ${ colorValue })`);
-        document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor - ${ colorValue })`);
-        document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark - ${ colorValue })`);
     if (colorValue !== "blue") {
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -231,11 +223,13 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
         document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
     }
+
     if (colorValue === "dark") {
         // Please note: The dark theme is currently under development and may have issues.
-        alert("Please note: The dark theme is currently under development and may have issues.")
+        alert("Please note: The dark theme is currently under development and may have issues.");
     }
 };
+
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
@@ -263,8 +257,9 @@ userTextDiv.addEventListener("input", function () {
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
-document.getElementById("0NIHK").onclick = () => {
 
+document.getElementById("0NIHK").onclick = () => {
+    
     if (shortcutsCheckbox.checked) {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'flex';
@@ -306,7 +301,6 @@ document.getElementById("0NIHK").onclick = () => {
             }, 300);
         }
     }
-}
 }
 
 
