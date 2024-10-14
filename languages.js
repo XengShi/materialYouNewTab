@@ -22,7 +22,7 @@ const translations = {
 
         // Weather
         "humidityText": "Humidity",
-        "feelsLike": "seems",
+        "feelsLike": "Feels",
         // End of Weather
 
         // End of Weather
@@ -58,7 +58,7 @@ const translations = {
 
         // Weather
         "humidityText": "Umidade",
-        "feelsLike": "Temperatura",
+        "feelsLike": "Sensação de",
         // End of Weather
 
         "conditionText": "Olá! Como está hoje?",
@@ -123,7 +123,7 @@ const translations = {
         // End of Calendar
 
         // Weather
-        "humidityText": "मौसम",
+        "humidityText": "तापीय अनुभूति",
         "feelsLike": "समानता",
         // End of Weather
 

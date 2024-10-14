@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 document.getElementById("temp").textContent = `${ tempFahrenheit }°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°F`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
             } else {
                 document.getElementById("temp").textContent = `${ tempCelsius }°`;
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
