@@ -33,8 +33,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no`;
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -49,17 +50,17 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("humidityLevel").textContent = `Humidity ${humidity}%`;
+        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityText} ${humidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `Feels ${feelsLikeFahrenheit}°F`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
             } else {
                 document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `Feels ${feelsLikeCelsius}°C`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
@@ -89,8 +90,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-
-
 // ---------------------------end of weather stuff--------------------
 
 setInterval(() => {
@@ -98,11 +97,11 @@ setInterval(() => {
     let hours = currentTime.getHours();
     var minutes = currentTime.getMinutes();
     var seconds = currentTime.getSeconds();
-    let hour_rotate_angle = 30 * hours + minutes / 2
-    document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`
-    document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`
-    document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`
-    // done : 5:08* 14 August 2023pHar
+    let hour_rotate_angle = 30 * hours + minutes / 2;
+
+    document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`;
+    document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`;
+    document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`;
 
     // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
     var dayOfWeek = currentTime.getDay();
@@ -110,20 +109,25 @@ setInterval(() => {
     var dayOfMonth = currentTime.getDate();
     // Get the month (0 = January, 1 = February, ..., 11 = December)
     var month = currentTime.getMonth();
-    // Define an array of month names
-    var monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    // Get the name of the month using the array
-    var monthName = monthNames[month];
-    // Define an array of day names
-    var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    // Get the name of the day using the array
-    var dayName = dayNames[dayOfWeek];
-    document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
-    // substring(0, 3) => We are taking only three Char from the name of the month and day like Sunday > Sun
+
+    // Define the current language, for example:
+    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    // Get the translated name of the day and month using the translations object
+    var dayName = translations[currentLanguage].days[dayOfWeek];
+    var monthName = translations[currentLanguage].months[month];
+
+    // Language formatting
+    if (currentLanguage === 'pt') {
+        // portuguese formatting: "day of the week, day of the month"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+    } else {
+        // english formatting: "day of the month month name"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+    }
 }, 1000);
+
+
 
 
 // Showing border or outline in when you click on searchbar
@@ -173,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
     if (storedSearchEngine) {
-        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
+        const selectedRadioButton = document.querySelector(`input[name = "search-engine"][value = "${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
@@ -191,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
+        const selectedRadioButton = document.querySelector(`.colorPlate[value = "${storedTheme}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
@@ -219,11 +223,13 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
         document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
     }
+
     if (colorValue === "dark") {
         // Please note: The dark theme is currently under development and may have issues.
-        alert("Please note: The dark theme is currently under development and may have issues.")
+        alert("Please note: The dark theme is currently under development and may have issues.");
     }
 };
+
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
@@ -251,8 +257,9 @@ userTextDiv.addEventListener("input", function () {
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
-document.getElementById("0NIHK").onclick = () => {
 
+document.getElementById("0NIHK").onclick = () => {
+    
     if (shortcutsCheckbox.checked) {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'flex';

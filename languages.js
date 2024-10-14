@@ -15,11 +15,26 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        "months": ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Humidity",
+        "feelsLike": "Feels",
+        // End of Weather
+
+        // End of Weather
+
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Enter",
+        "searchPlaceholder": "Your query...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
+        "userText": "Double tap to edit",
         // End of Body Itens
+
     },
     "pt": {
         // Menu Itens
@@ -36,10 +51,22 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+        "months": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Umidade",
+        "feelsLike": "Sensação de",
+        // End of Weather
+
         "conditionText": "Olá! Como está hoje?",
         "enterBtn": "Pesquisar",
+        "searchPlaceholder": "Digite sua pesquisa...",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
+        "userText": "Toque para editar",
         // End of Body Itens
     },
     "zh": {
@@ -57,10 +84,22 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+        "months": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "濕度",
+        "feelsLike": "感觉",
+        // End of Weather
+
         "conditionText": "你好！今天怎么样？",
         "enterBtn": "输入",
+        "searchPlaceholder": "输入搜索内容...",
         "searchWithHint": "搜索",
         "ai_tools": "AI工具",
+        "userText": "双击可编辑",
         // End of Body Itens
     },
     "hi": {
@@ -78,10 +117,22 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['सोमवार', 'मंगलवार', 'बुधवार', 'बिहिवार', 'शुक्रवार', 'शनिवार', 'रविवार'],
+        "months": ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "तापीय अनुभूति",
+        "feelsLike": "समानता",
+        // End of Weather
+
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "दर्ज करें",
+        "searchPlaceholder": "आपकी खोज की तरह...",
         "searchWithHint": "सर्च करें",
         "ai_tools": "AI उपकरण",
+        "userText": "बदलने के लिए डिफ़ॉल्ट करें",
         // End of Body Itens
     },
     "cs": {
@@ -99,15 +150,25 @@ const translations = {
         // End of Menu Itens
 
         // Body Itens
+        // Calendar
+        "days": ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+        "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+        // End of Calendar
+        // Weather
+        "humidityText": "Vlhkost",
+        "feelsLike": "Teplota",
+        // End of Weather
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
+        "searchPlaceholder": "Zadejte hledaný výraz...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
+        "userText": "Upravit dvojklikem",
         // End of Body Itens
     }
 };
 
-// Function to apply the selected language
+// Function to apply the language to the page
 function applyLanguage(lang) {
     if (translations[lang]) {
         // Menu Itens
@@ -122,24 +183,50 @@ function applyLanguage(lang) {
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
         // End of Menu Itens
-        
+
         // Body Itens
         document.getElementById('conditionText').innerText = translations[lang].conditionText;
         document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
+        document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
         document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
+        document.getElementById('userText').innerText = translations[lang].userText;
+
+        // Weather
+        // document.getElementById("humidityText").textContent = translations[lang].humidityText;
+        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
+        // End of Weather
+
         // End of Body Itens
+
+        // Save the selected language in localStorage
+        saveLanguageStatus('selectedLanguage', lang);
     } else {
         console.error('Language not found');
     }
 }
 
-// Detects language change
+// Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
+    location.reload();
 });
 
-// Sets default language to English on page load
+// Function to apply the language when the page loads
 window.onload = function () {
-    applyLanguage('en');
+    const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
+    if (savedLanguage) {
+        document.getElementById("languageSelector").value = savedLanguage;
+    }
+    applyLanguage(savedLanguage);
 };
+
+// Function to save the language status in localStorage
+function saveLanguageStatus(key, languageStatus) {
+    localStorage.setItem(key, languageStatus);
+}
+
+// Function to get the language status from localStorage
+function getLanguageStatus(key) {
+    return localStorage.getItem(key);
+}
