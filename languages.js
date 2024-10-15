@@ -80,7 +80,7 @@ const translations = {
         "WeatherApiText": "输入您自己的天气API密钥",
         "WeatherApiSubtext": "如果天气功能无法正常工作",
         "LearnMoreButton": "了解更多",
-        "saveAPI": "输入",
+        "saveAPI": "保存",
         // End of Menu Itens
 
         // Body Itens
@@ -90,14 +90,14 @@ const translations = {
         // End of Calendar
 
         // Weather
-        "humidityText": "濕度",
-        "feelsLike": "感觉",
+        "humidityText": "湿度",
+        "feelsLike": "体感",
         // End of Weather
 
         "conditionText": "你好！今天怎么样？",
-        "enterBtn": "输入",
+        "enterBtn": "搜索",
         "searchPlaceholder": "输入搜索内容...",
-        "searchWithHint": "搜索",
+        "searchWithHint": "引擎",
         "ai_tools": "AI工具",
         "userText": "双击可编辑",
         // End of Body Itens
