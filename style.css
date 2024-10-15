@@ -228,7 +228,7 @@ body {
     position: absolute;
     /* background-color: yellow; */
     bottom: 18px;
-    /*Because search engnies has margin-bottom 20px*/
+    /*Because search engines has margin-bottom 20px*/
     left: 5px;
 }
 
@@ -359,7 +359,7 @@ body {
 .humidityBar .slider {
     height: 100%;
     width: calc(10% - 60px);
-    /*100-60px because humdityIconContainer is 40px Width and 20px is margin which is = to 60*/
+    /*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
     min-width: 42%;
     background-color: var(--darkColor-blue);
     border-radius: 100px;
@@ -667,7 +667,7 @@ body {
 /* -----------End of Theming Stuff------------------ */
 
 
-/* ----------Shorcuts----------------- */
+/* ----------Shortcuts----------------- */
 
 #shortcuts-section {
     pointer-events: none;
@@ -835,7 +835,7 @@ body {
 }
 
 
-/* ----------end of Shorcuts----------------- */
+/* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */
 .aiToolsCont {
@@ -970,7 +970,7 @@ body {
         bottom: 0;
         top: 0;
         left: 300px;
-        /*Because Clock widfth is 300px*/
+        /*Because Clock width is 300px*/
         margin: auto auto auto var(--gap);
 
     }
@@ -1242,20 +1242,20 @@ input:checked + .toggle:before {
     margin-top: -3px;
 }
 
-.bottomer {
+.bottom {
     /* background-color: #17a638; */
     display: flex;
     justify-content: space-between;
     margin-top: 12px;
 }
 
-.bottomer a {
+.bottom a {
     text-decoration: none;
     color: var(--darkColor-blue);
     font-size: 1rem;
 }
 
-.bottomer button {
+.bottom button {
     border: none;
     color: #fff;
     background-color: var(--darkColor-blue);

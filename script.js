@@ -122,7 +122,7 @@ setInterval(() => {
         // portuguese formatting: "day of the week, day of the month"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
     } else {
-        // english formatting: "day of the month month name"
+        // english formatting: "day of the month name"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
 }, 1000);
@@ -252,7 +252,7 @@ if (storedValue) {
 userTextDiv.addEventListener("input", function () {
     localStorage.setItem("userText", userTextDiv.textContent);
 });
-// end of user entered text stufff
+// end of user entered text stuff
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         inputs[1].addEventListener("keydown", (e) => {
             if (e.key === 'Enter') {
-                e.target.blur();  // Unfocus the input field
+                e.target.blur();  // Blur the input field
             }
         });
     }
