@@ -199,6 +199,40 @@ const translations = {
         "userText": "Clicca per modificare",
         // End of Body Items
     },
+    "tr": {
+        // Menu Items
+        "shortcutsText": "Kısayollar",
+        "enableShortcutsText": "Kısayolları etkinleştir/devre dışı bırak",
+        "ai_tools_button": "AI Araçları",
+        "enable_ai_tools": "AI Araçları kısayollarını etkinleştir/devre dışı bırak",
+        "fahrenheitCelsiusCheckbox": "Fahrenheit'a geç",
+        "fahrenheitCelsiusText": "Sayfayı yenilemek güncellemeleri görmek için",
+        "WeatherApiText": "Hava durumu API anahtarınızı girin",
+        "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
+        "LearnMoreButton": "Daha fazla bilgi edinin",
+        "saveAPI": "Gönder",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+        "months": ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Nem",
+        "feelsLike": "Hissedilen",
+        // End of Weather
+
+        "conditionText": "Merhaba! Nasılsın?",
+        "enterBtn": "Gönder",
+        "searchPlaceholder": "Aranacak şey...",
+        "searchWithHint": "Arama yap",
+        "ai_tools": "AI Araçları",
+        "userText": "Düzenlemek için çift tıklayın",
+        // End of Body Items
+
+    },
 };
 
 // Function to apply the language to the page
