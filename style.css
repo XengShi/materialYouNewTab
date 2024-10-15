@@ -72,11 +72,11 @@
     --textColorDark-purple: #2D1B3E;
 
     /* Dark Kaala */
-    --bg-color-dark: #000000;
-    --accentLightTint-dark: #323232;
-    --darkerColor-dark: #ffffff;
-    --darkColor-dark: #505050;
-    --textColorDark-dark: #FFFFFF;
+    --bg-color-dark: #505050;
+    --accentLightTint-dark: #818181;
+    --darkerColor-dark: #010208;
+    --darkColor-dark: #434343;
+    --textColorDark-dark: #010208;
 
     /* Global variables */
     --gap: 30px;
