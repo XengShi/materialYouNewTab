@@ -165,7 +165,40 @@ const translations = {
         "ai_tools": "AI nástroje",
         "userText": "Upravit dvojklikem",
         // End of Body Itens
-    }
+    },
+    "it": {
+        // Menu Items
+        "shortcutsText": "Scorciatoie",
+        "enableShortcutsText": "Abilita/disabilita scorciatoie",
+        "ai_tools_button": "Strumenti AI",
+        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+        "fahrenheitCelciusCheckbox": "Passa a Fahrenheit",
+        "fahrenheitCelciusText": "Ricarica la pagina per vedere gli aggiornamenti",
+        "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
+        "WeatherApiSubtext": "Se la funzionalità meteo non funziona",
+        "LearnMoreButton": "Scopri di più",
+        "saveAPI": "Invia",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+        "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Umidità",
+        "feelsLike": "Percepito",
+        // End of Weather
+
+        "conditionText": "Ciao! Come stai oggi?",
+        "enterBtn": "Invia",
+        "searchPlaceholder": "Cerca...",
+        "searchWithHint": "Cerca con",
+        "ai_tools": "Strumenti AI",
+        "userText": "Clicca per modificare",
+        // End of Body Items
+    },
 };
 
 // Function to apply the language to the page
