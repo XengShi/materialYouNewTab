@@ -1396,18 +1396,28 @@ input:checked + .toggle:before {
     align-items: center;
     justify-content: center;
     height: fit-content;
-    width: 80%;
-    border: none;
+    /* width: 80%; */
+    width: 240px;
+    border: 2px solid transparent; /* adding transparent border on focus it will be turned to theme color*/
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     /* 5 divs in the first row */
     grid-auto-rows: auto;
     grid-gap: 10px;
-    padding: 10px;
+    padding: 12px;
+    color: var(--textColorDark-blue);
     /* padding-right: 0px; */
     border-radius: 26px;
+    appearance: none; /* Remove default browser styles */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+    cursor: pointer;
+    padding-left: 13px;
+}
 
-
+.languageSelector:focus {
+    border: 2px solid var(--darkColor-blue); /* color matching border on focus */
+    outline: none; /* Removes the default outline */
 }
 
 .colorsContainer {
