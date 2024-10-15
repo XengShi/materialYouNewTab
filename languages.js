@@ -80,7 +80,7 @@ const translations = {
         "WeatherApiText": "输入您自己的天气API密钥",
         "WeatherApiSubtext": "如果天气功能无法正常工作",
         "LearnMoreButton": "了解更多",
-        "saveAPI": "输入",
+        "saveAPI": "保存",
         // End of Menu Items
 
         // Body Items
@@ -90,14 +90,14 @@ const translations = {
         // End of Calendar
 
         // Weather
-        "humidityText": "濕度",
-        "feelsLike": "感觉",
+        "humidityText": "湿度",
+        "feelsLike": "体感",
         // End of Weather
 
         "conditionText": "你好！今天怎么样？",
-        "enterBtn": "输入",
+        "enterBtn": "搜索",
         "searchPlaceholder": "输入搜索内容...",
-        "searchWithHint": "搜索",
+        "searchWithHint": "引擎",
         "ai_tools": "AI工具",
         "userText": "双击可编辑",
         // End of Body Items
@@ -165,7 +165,40 @@ const translations = {
         "ai_tools": "AI nástroje",
         "userText": "Upravit dvojklikem",
         // End of Body Items
-    }
+    },
+    "it": {
+        // Menu Items
+        "shortcutsText": "Scorciatoie",
+        "enableShortcutsText": "Abilita/disabilita scorciatoie",
+        "ai_tools_button": "Strumenti AI",
+        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+        "fahrenheitCelciusCheckbox": "Passa a Fahrenheit",
+        "fahrenheitCelciusText": "Ricarica la pagina per vedere gli aggiornamenti",
+        "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
+        "WeatherApiSubtext": "Se la funzionalità meteo non funziona",
+        "LearnMoreButton": "Scopri di più",
+        "saveAPI": "Invia",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+        "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Umidità",
+        "feelsLike": "Percepito",
+        // End of Weather
+
+        "conditionText": "Ciao! Come stai oggi?",
+        "enterBtn": "Invia",
+        "searchPlaceholder": "Cerca...",
+        "searchWithHint": "Cerca con",
+        "ai_tools": "Strumenti AI",
+        "userText": "Clicca per modificare",
+        // End of Body Items
+    },
 };
 
 // Function to apply the language to the page

@@ -223,11 +223,6 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
         document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
     }
-
-    if (colorValue === "dark") {
-        // Please note: The dark theme is currently under development and may have issues.
-        alert("Please note: The dark theme is currently under development and may have issues.");
-    }
 };
 
 
