@@ -153,8 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
         var searchEngines = {
-            engine1: 'https://duckduckgo.com/?q=',
-            engine2: 'https://www.google.com/search?q=',
+            engine1: 'https://www.google.com/search?q=',
+            engine2: 'https://duckduckgo.com/?q=',
             engine3: 'https://bing.com/?q=',
             engine4: 'https://www.youtube.com/results?search_query='
         };
