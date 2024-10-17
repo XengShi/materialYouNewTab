@@ -1252,10 +1252,6 @@ input:checked + .toggle:before {
 
 /* --- END OF 🔴⚪🟡style for toggle buttons---- */
 
-.toggleTextsCont {
-    /* background-color: yellow; */
-}
-
 .toggleTextsCont .ttcont {
     display: flex;
     height: 50px;
