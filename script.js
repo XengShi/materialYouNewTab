@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             showProxyDisclaimer();
         }
         function showProxyDisclaimer() {
-            const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy. By default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+            const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
         
             if (confirm(message)) {
                 localStorage.setItem("didfirstload", "yea");
@@ -306,18 +306,22 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 document.getElementById("0NIHK").onclick = () => {
-
+    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
     if (shortcutsCheckbox.checked) {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'flex';
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
+            unfoldShortcutsButton.style.display = "none";
+
             setTimeout(() => {
                 element.style.display = "none";
+                shortcuts.style.display = 'flex';
             }, 500);
         } else {
             shortcuts.style.display = 'none';
+            unfoldShortcutsButton.style.display = "block";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -330,6 +334,7 @@ document.getElementById("0NIHK").onclick = () => {
     } else {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'none';
+            unfoldShortcutsButton.style.display = "none";
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
@@ -338,6 +343,7 @@ document.getElementById("0NIHK").onclick = () => {
             }, 500);
         } else {
             shortcuts.style.display = 'none';
+            unfoldShortcutsButton.style.display = "none";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -1124,6 +1130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.checked) {
+        const message = "Please enable this only if Search Suggestions aren't working. \n\n" +
+        "It is strongly recommended to host your own proxy due to privacy reasons. \n\n" +
+                    "The default proxy will be set to https://mynt-proxy.rhythmcorehq.com";
+
+    alert(message);
             proxyinputField.classList.remove("inactive");
             saveActiveStatus("proxyinputField", "active");
         } else {
@@ -1163,23 +1174,23 @@ document.addEventListener("DOMContentLoaded", function () {
     resetShortcutsButton.addEventListener("click", () => resetShortcuts());
 
     // Create a ResizeObserver to watch the height changes of the shortcut container and see if it is wrapped
-    new ResizeObserver(e => {
+    /*new ResizeObserver(e => {
         if (shortcutsContainer.classList.contains("showBackground")) {
             openShortcutDrawer()
         }
         const height = e[0].contentRect.height;
         if (height === defaultHeight) {
             setTimeout(() => {
-                unfoldShortcutsButton.style.display = "none";
+                unfoldShortcutsButton.style.display = "block";
             });
         } else {
             setTimeout(() => {
                 unfoldShortcutsButton.style.display = "block";
             });
         }
-    }).observe(flexMonitor);
+    }).observe(flexMonitor);*/
 
-
+    
     /* ------ Page Transitions & Animations ------ */
 
     /**
@@ -1188,7 +1199,10 @@ document.addEventListener("DOMContentLoaded", function () {
     * This means it can be used both to open and to update the shortcut drawer.
     */
     function openShortcutDrawer() {
-        const translationDistance = flexMonitor.clientHeight - defaultHeight;
+        //const translationDistance = flexMonitor.clientHeight - defaultHeight;
+        const translationDistance="90";
+        shortcutsContainer.style.display = "flex";
+        console.log(translationDistance)
         requestAnimationFrame(() => {
             shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
             shortcutsContainer.classList.add("showBackground");
@@ -1202,6 +1216,7 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function resetShortcutDrawer() {
         requestAnimationFrame(() => {
+            shortcutsContainer.style.display = "none";
             shortcutsContainer.style.transform = "translateY(0)";
             shortcutsContainer.classList.remove("showBackground");
             unfoldShortcutsButton.style.transform = "rotate(0)";
@@ -1251,6 +1266,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Shift up shortcuts
     unfoldShortcutsButton.onclick = (e) => {
+    
         if (!shortcutsContainer.classList.contains("showBackground")) {
             e.stopPropagation();
             openShortcutDrawer();
