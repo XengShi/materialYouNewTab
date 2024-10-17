@@ -1310,7 +1310,17 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
-
+.resetbtn {
+    margin-top: 50px;
+    width: -webkit-fill-available;
+    border: none;
+    color: #fff;
+    background-color: var(--darkColor-blue);
+    padding: 6px 20px;
+    font-size: 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+}
 .topBar {
     display: flex;
     justify-content: space-between;

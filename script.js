@@ -1,6 +1,20 @@
 let proxyurl;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
+        //first load proxy disclaimer
+        const isfirstload = localStorage.getItem("didfirstload");
+        if (!isfirstload){
+            showProxyDisclaimer();
+        }
+        function showProxyDisclaimer() {
+            const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy. By default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+        
+            if (confirm(message)) {
+                localStorage.setItem("didfirstload", "yea");
+            }
+        }
+        
+
         // Load the API key from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const userAPIInput = document.getElementById("userAPI");
@@ -13,16 +27,24 @@ window.addEventListener('DOMContentLoaded', async () => {
             userProxyInput.value = savedProxy;
         }
         const saveAPIButton = document.getElementById("saveAPI");
+        const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
             // Save the API key to localStorage
             localStorage.setItem("weatherApiKey", apiKey);
-
             document.getElementById("userAPI").value = "";
+            location.reload();
         });
-
+        resetbtn.addEventListener("click", () => {
+            if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
+                localStorage.clear();
+            location.reload();
+            } else {
+               return;
+            }
+        });
         saveProxyButton.addEventListener("click", () => {
             const proxyurl = userProxyInput.value;
 
@@ -32,6 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
                     document.getElementById("userproxy").value = "";
+                    location.reload();
                 }
                 else {
                     alert("There shouldn't be / at the end of the link");
