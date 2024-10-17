@@ -133,7 +133,9 @@
    background-color: var(--darkColor-blue);
    border-radius: 15px;
 }
-
+.spacer {
+    height: 50px; /* Adjust this value to create space */
+}
 
 /* Theme */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
@@ -1311,7 +1313,6 @@ input:checked + .toggle:before {
     cursor: pointer;
 }
 .resetbtn {
-    margin-top: 50px;
     width: -webkit-fill-available;
     border: none;
     color: #fff;
