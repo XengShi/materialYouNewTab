@@ -11,6 +11,8 @@ With a variety of themes to choose from, you can personalize your browser accord
 ![Screenshot 4](https://i.postimg.cc/FFCGNWt0/material-you-new-Tab-nhsoft.webp)
 
 
+#### 🔴🟡🟢 Test live : https://xengshi.github.io/materialYouNewTab/
+
 ##  Installation Guide
 
 ### Download
@@ -49,12 +51,13 @@ https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/
 
 0. Make sure you have cloned this repo `git clone https://github.com/XengShi/materialYouNewTab.git` or downloaded it from [here](https://github.com/XengShi/materialYouNewTab/releases).  
    - If downloaded as a `.zip` or `tar.gz` file, extract it first.
-1. Copy & Paste this URL into your browser's search bar:  
+1. **Delete the existing `manifest.json` file** from your extension folder.
+2. **Rename `manifest(firefox).json` to `manifest.json`.**
+3. Copy & Paste the following URL into your browser's search bar:  
    `about:debugging#/runtime/this-firefox`
-   
-2. Click on **"This Firefox"** in the left sidebar.
-3. Click on **"Load Temporary Add-on"** button.
-4. Browse & Select the manifest.json file from your extension folder.
+4. Click on **"This Firefox"** in the left sidebar.
+5. Click on the **"Load Temporary Add-on"** button.
+6. Browse and select the updated `manifest.json` file from your extension folder.
 
 ---
 
