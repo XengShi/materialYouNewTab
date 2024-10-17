@@ -564,7 +564,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     margin-right: 16px;
     border-radius: var(--round);
@@ -600,7 +600,7 @@ body {
 .searchEnginesContainer .search-engine svg {
     width: 30px;
     height: 30px;
-    background-color: #ffffff;
+    background-color: var(--darkColor-blue);
     border-radius: 100%;
     margin-left: 4px;
 

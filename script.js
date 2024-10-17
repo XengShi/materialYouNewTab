@@ -192,10 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
         var searchEngines = {
-            engine1: 'https://duckduckgo.com/?q=',
-            engine2: 'https://www.google.com/search?q=',
+            engine1: 'https://www.google.com/search?q=',
+            engine2: 'https://duckduckgo.com/?q=',
             engine3: 'https://bing.com/?q=',
-            engine4: 'https://www.youtube.com/results?search_query='
+            engine4: 'https://search.brave.com/search?q=',
+            engine5: 'https://www.youtube.com/results?search_query='
         };
 
         if (searchTerm !== "") {
@@ -347,10 +348,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
     if (searchsuggestionscheckbox.checked) {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchEngines = {
-            engine1: 'https://duckduckgo.com/?q=',
-            engine2: 'https://www.google.com/search?q=',
+            engine1: 'https://www.google.com/search?q=',
+            engine2: 'https://duckduckgo.com/?q=',
             engine3: 'https://bing.com/?q=',
-            engine4: 'https://www.youtube.com/results?search_query='
+            engine4: 'https://search.brave.com/search?q=',
+            engine5: 'https://www.youtube.com/results?search_query='
         };
         const query = this.value;
         const resultBox = document.getElementById("resultBox");
@@ -408,28 +410,41 @@ async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
     var searchEnginesapi = {
-        engine1: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine2: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine1: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine3: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
-        engine4: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+        engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
+        engine5: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
     };
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
+    let apiUrl = searchEnginesapi[selectedOption];
     if (useproxyCheckbox.checked) {
-        var apiUrl = `${proxyurl}/proxy?url=${encodeURIComponent(searchEnginesapi[selectedOption])}`;
+        apiUrl = `${proxyurl}/proxy?url=${encodeURIComponent(apiUrl)}`;
     }
-    else {
-        var apiUrl = searchEnginesapi[selectedOption];
-    }
+
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-        // The second element in the array contains the autocomplete suggestions
-        return data[1];
+
+        if (selectedOption === 'engine4') {
+            const suggestions = data[1].map(item => {
+                if (item.is_entity) {
+                    return `${item.q} - ${item.name} (${item.category ? item.category : "No category"})`;
+                } else {
+                    return item.q;
+                }
+            });
+            return suggestions;
+        } else {
+
+            return data[1];
+        }
     } catch (error) {
         console.error('Error fetching autocomplete suggestions:', error);
         return [];
     }
 }
+
 
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
