@@ -139,16 +139,41 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // ---------------------------end of weather stuff--------------------
 
+
+// Retrieve current time and calculate initial angles
+var currentTime = new Date();
+var initialSeconds = currentTime.getSeconds();
+var initialMinutes = currentTime.getMinutes();
+var initialHours = currentTime.getHours();
+
+// Initialize cumulative rotations
+let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
+let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
+let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
+
+// Apply initial rotations (no need to wait 1s now)
+document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+
 setInterval(() => {
     var currentTime = new Date();
-    let hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    let hour_rotate_angle = 30 * hours + minutes / 2;
 
-    document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`;
+    // Adjust cumulative rotations (to prevent the needle from going the opposite way when it returns to 0)  
+    cumulativeSecondRotation += 6; // Increment the rotation by 6° for each second. This is because a clock completes a full 360° rotation in 60 seconds. Therefore, each second corresponds to a 6° movement (360° / 60 seconds = 6° per second).
+    cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 60) * 6;
+    cumulativeHourRotation += (1 / 120); // Add 1/120° for each second (30° / 3600s)
+    // Apply new rotations
+    document.getElementById("second").style.transition = "transform 1s ease"; // Transition fluide
+    document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+
+    document.getElementById("minute").style.transition = "transform 1s ease"; // Transition fluide
+    document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+
+    document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+    document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+
+    // done : 5:08* 14 August 2023pHar
 
     // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
     var dayOfWeek = currentTime.getDay();
@@ -173,7 +198,10 @@ setInterval(() => {
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
    
+    document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`;
 }, 1000);
+
+
 
 setInterval((updated)=>{
  const userTextDiv = document.getElementById("userText");
