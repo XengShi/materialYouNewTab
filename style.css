@@ -132,6 +132,7 @@
 .resultItem:hover {
    background-color: var(--darkColor-blue);
    border-radius: 15px;
+   color: #fff;
 }
 .spacer {
     height: 50px; /* Adjust this value to create space */
