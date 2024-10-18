@@ -129,9 +129,9 @@ const translations = {
 
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "दर्ज करें",
+        "enterBtn": "सर्च करें",
         "searchPlaceholder": "यहाँ लिखे...",
-        "searchWithHint": "सर्च करें",
+        "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
         // End of Body and New Tab Items
