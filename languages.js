@@ -25,16 +25,14 @@ const translations = {
         "feelsLike": "Feels",
         // End of Weather
 
-        // End of Weather
-
+        // New Tab Item
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Enter",
         "searchPlaceholder": "Your query...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Double tap to edit",
-        // End of Body Items
-
+        // End of Body and New Tab Items
     },
     "pt": {
         // Menu Items
@@ -61,13 +59,14 @@ const translations = {
         "feelsLike": "Sensação de",
         // End of Weather
 
+        // New Tab Item
         "conditionText": "Olá! Como está hoje?",
         "enterBtn": "Pesquisar",
         "searchPlaceholder": "Digite sua pesquisa...",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Toque para editar",
-        // End of Body Items
+        // End of Body and New Tab Items
     },
     "zh": {
         // Menu Items
@@ -94,13 +93,14 @@ const translations = {
         "feelsLike": "体感",
         // End of Weather
 
+        // New Tab Item
         "conditionText": "你好！今天怎么样？",
         "enterBtn": "搜索",
         "searchPlaceholder": "输入搜索内容...",
         "searchWithHint": "引擎",
         "ai_tools": "AI工具",
         "userText": "双击可编辑",
-        // End of Body Items
+        // End of Body and New Tab Items
     },
     "hi": {
         // Menu Items
@@ -127,13 +127,14 @@ const translations = {
         "feelsLike": "महसूस",
         // End of Weather
 
+        // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "दर्ज करें",
         "searchPlaceholder": "यहाँ लिखे...",
         "searchWithHint": "सर्च करें",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
-        // End of Body Items
+        // End of Body and New Tab Items
     },
     "cs": {
         // Menu Items
@@ -158,13 +159,15 @@ const translations = {
         "humidityText": "Vlhkost",
         "feelsLike": "Teplota",
         // End of Weather
+
+        // New Tab Item
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravit dvojklikem",
-        // End of Body Items
+        // End of Body and New Tab Items
     },
     "it": {
         // Menu Items
@@ -191,13 +194,14 @@ const translations = {
         "feelsLike": "Percepito",
         // End of Weather
 
+        // New Tab Item
         "conditionText": "Ciao! Come stai oggi?",
         "enterBtn": "Invia",
         "searchPlaceholder": "Cerca...",
         "searchWithHint": "Cerca con",
         "ai_tools": "Strumenti AI",
         "userText": "Clicca per modificare",
-        // End of Body Items
+        // End of Body and New Tab Items
     },
     "tr": {
         // Menu Items
@@ -224,14 +228,48 @@ const translations = {
         "feelsLike": "Hissedilen",
         // End of Weather
 
+        // New Tab Item
         "conditionText": "Merhaba! Nasılsın?",
         "enterBtn": "Gönder",
         "searchPlaceholder": "Aranacak şey...",
         "searchWithHint": "Arama yap",
         "ai_tools": "AI Araçları",
         "userText": "Düzenlemek için çift tıklayın",
-        // End of Body Items
+        // End of Body and New Tab Items
+    },
+    "bn": {
+        // Menu Items
+        "shortcutsText": "শর্টকাট",
+        "enableShortcutsText": "শর্টকাট সক্রিয়/অক্ষম করুন",
+        "ai_tools_button": "এআই-সরঞ্জাম",
+        "enable_ai_tools": "এআই সরঞ্জাম শর্টকাট সক্রিয়/অক্ষম করুন",
+        "fahrenheitCelsiusCheckbox": "ফারেনহাইটে সুইচ করুন",
+        "fahrenheitCelsiusText": "আপডেট দেখতে পেজ রিফ্রেশ করুন",
+        "WeatherApiText": "আপনার নিজস্ব আবহাওয়াএপিআই পিন লিখুন",
+        "WeatherApiSubtext": "যদি আবহাওয়া কার্যকারিতা কাজ না করে",
+        "LearnMoreButton": "আরও জানুন",
+        "saveAPI": "প্রবেশ করুন",
+        // End of Menu Items
 
+        // Body Items
+        // Calendar
+        "days": ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],
+        "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "আর্দ্রতা",
+        "feelsLike": "অনুভব হয়",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "হ্যালো! কেমন আছেন আজ?",
+        "enterBtn": "প্রবেশ করুন",
+        "searchPlaceholder": "আপনার প্রশ্ন...",
+        "searchWithHint": "সঙ্গে অনুসন্ধান করুন",
+        "ai_tools": "এআই টুলস",
+        "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
+        // End of Body and New Tab Items
     },
 };
 
