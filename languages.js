@@ -329,6 +329,9 @@ const translations = {
 function applyLanguage(lang) {
     if (translations[lang]) {
         // Menu Items
+        document.getElementById('feedback').innerText = translations[lang].feedback;
+        document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
+        document.getElementById('closeMenu').innerText = translations[lang].closeMenu;
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
         document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
