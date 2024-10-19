@@ -4,10 +4,26 @@ const translations = {
         // Menu Items
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
+        "editShortcutsText": "Edit Shortcuts",
+        "enableEditShortcutsText": "Choose which shortcuts get shown",
+        "adaptiveIconText": "Adaptive Icon Shapes",
+        "enableAdaptiveIconText": "Shortcut Icons will always be round",
+        "digitalclocktittle": "Digital Clock",
+        "digitalclockinfo": "Enable/disable the Digital Clock",
+        "timeformattittle": "Use 12h Format",
+        "timeformatinfo": "Use 12 hour time format",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Enable/disable AI Tools shortcuts",
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to see the updates",
+        "search_suggestions_button": "Search Suggestions",
+        "search_suggestions_text": "Enable/disable Search Suggestions",
+        "useproxytitletext": "Proxy Bypass",
+        "useproxyText": "If search suggestions isn't working",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "Add your own CORS Bypass Proxy ",
+        "HostproxyButton": "Host Your Own Proxy",
+        "saveproxy": "Enter",
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "LearnMoreButton": "Learn More",
@@ -271,44 +287,109 @@ const translations = {
         "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
         // End of Body and New Tab Items
     },
+    "ru": {
+        // Menu Items
+        "shortcutsText": "Ярлыки",
+        "enableShortcutsText": "Включить/Отключить ярлыки",
+        "editShortcutsText": "Редактировать ярлыки",
+        "enableEditShortcutsText": "Выберите, какие ярлыки будут отображаться",
+        "adaptiveIconText": "Адаптивные формы значков",
+        "enableAdaptiveIconText": "Ярлыки всегда будут круглыми",
+        "digitalclocktittle": "Цифровые часы",
+        "digitalclockinfo": "Включить/Отключить цифровые часы",
+        "timeformattittle": "12-часовой формат",
+        "timeformatinfo": "Использовать 12-часовой формат времени",
+        "ai_tools_button": "ИИ Инструменты",
+        "enable_ai_tools": "Включение/Отключение ярлыков ИИ",
+        "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
+        "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
+        "search_suggestions_button": "Поисковые подсказки",
+        "search_suggestions_text": "Включить/Отключить поисковые подсказки",
+        "useproxytitletext": "Использовать прокси",
+        "useproxyText": "Если поисковые подсказки не работают",
+        "ProxyText": "CORS обход прокси",
+        "ProxySubtext": "Добавьте свой CORS-прокси",
+        "HostproxyButton": "Разместить прокси",
+        "saveproxy": "Применить",
+        "WeatherApiText": "Введите свой WeatherAPI ключ",
+        "WeatherApiSubtext": "Если погода не отображается",
+        "LearnMoreButton": "Узнать Больше",
+        "saveAPI": "Применить",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+        "months": ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Влажность",
+        "feelsLike": "Ощущается",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Привет! Как дела?",
+        "enterBtn": "Поиск",
+        "searchPlaceholder": "Ваш запрос...",
+        "searchWithHint": "Искать с помощью",
+        "ai_tools": "Искусственный интеллект",
+        "userText": "Дважды нажмите для редактирования",
+        // End of Body and New Tab Items
+    },
 };
 
 // Function to apply the language to the page
 function applyLanguage(lang) {
-    if (translations[lang]) {
-        // Menu Items
-        document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
-        document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
-        document.getElementById('ai_tools_button').innerText = translations[lang].ai_tools_button;
-        document.getElementById('enable_ai_tools').innerText = translations[lang].enable_ai_tools;
-        document.getElementById('fahrenheitCelsiusCheckbox').innerText = translations[lang].fahrenheitCelsiusCheckbox;
-        document.getElementById('fahrenheitCelsiusText').innerText = translations[lang].fahrenheitCelsiusText;
-        document.getElementById('WeatherApiText').innerText = translations[lang].WeatherApiText;
-        document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
-        document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
-        document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
-        // End of Menu Items
+    const elements = {
+        shortcutsText: 'shortcutsText',
+        enableShortcutsText: 'enableShortcutsText',
+        editShortcutsText: 'editShortcutsText',
+        enableEditShortcutsText: 'enableEditShortcutsText',
+        adaptiveIconText: 'adaptiveIconText',
+        enableAdaptiveIconText: 'enableAdaptiveIconText',
+        digitalclocktittle: 'digitalclocktittle',
+        digitalclockinfo: 'digitalclockinfo',
+        timeformattittle: 'timeformattittle',
+        timeformatinfo: 'timeformatinfo',
+        ai_tools_button: 'ai_tools_button',
+        enable_ai_tools: 'enable_ai_tools',
+        fahrenheitCelsiusCheckbox: 'fahrenheitCelsiusCheckbox',
+        fahrenheitCelsiusText: 'fahrenheitCelsiusText',
+        search_suggestions_button: 'search_suggestions_button',
+        search_suggestions_text: 'search_suggestions_text',
+        useproxytitletext: 'useproxytitletext',
+        useproxyText: 'useproxyText',
+        ProxyText: 'ProxyText',
+        ProxySubtext: 'ProxySubtext',
+        HostproxyButton: 'HostproxyButton',
+        saveproxy: 'saveproxy',
+        WeatherApiText: 'WeatherApiText',
+        WeatherApiSubtext: 'WeatherApiSubtext',
+        LearnMoreButton: 'LearnMoreButton',
+        saveAPI: 'saveAPI',
+        conditionText: 'conditionText',
+        enterBtn: 'enterBtn',
+        searchWithHint: 'searchWithHint',
+        ai_tools: 'ai_tools',
+        userText: 'userText',
+        humidityText: 'humidityText',
+        feelsLike: 'feelsLike'
+    };
 
-        // Body Items
-        document.getElementById('conditionText').innerText = translations[lang].conditionText;
-        document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
-        document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
-        document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
-        document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
-        document.getElementById('userText').innerText = translations[lang].userText;
-
-        // Weather
-        // document.getElementById("humidityText").textContent = translations[lang].humidityText;
-        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
-        // End of Weather
-
-        // End of Body Items
-
-        // Save the selected language in localStorage
-        saveLanguageStatus('selectedLanguage', lang);
-    } else {
-        console.error('Language not found');
+    for (const [id, key] of Object.entries(elements)) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.innerText = translations[lang]?.[key] || translations['en'][key];
+        }
     }
+
+    const searchInput = document.getElementById('searchQ');
+    if (searchInput) {
+        searchInput.placeholder = translations[lang]?.searchPlaceholder || translations['en'].searchPlaceholder;
+    }
+
+    saveLanguageStatus('selectedLanguage', lang);
 }
 
 // Detect language from navigator.language
