@@ -2,14 +2,40 @@
 const translations = {
     "en": {
         // Menu Items
+        "feedback": "Feedback",
+        "resetsettings": "Reset Settings",
+        "closeMenu": "Close",
+        // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
+        "editShortcutstext": "Edit Shortcuts",
+        "editshortcutslist": "Edit Shortcuts",
+        "shortcutsInfoText": "Choose which shortcuts get shown",
+        "adaptiveIconShapes": "Adaptive Icon Shapes",
+        "adaptiveIconInfoText": "Shortcut Icons will always be round",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Enable/disable AI Tools shortcuts",
+        // Misc
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to see the updates",
+        "search_suggestions_button": "Search Suggestions",
+        "search_suggestions_text": "Enable/disable Search Suggestions",
+        // Proxy
+        "useproxytitletext": "Proxy Bypass",
+        "useproxyText": "If search suggestions isn't working",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "Add your own CORS Bypass Proxy",
+        "HostproxyButton": "Host Your Own Proxy",
+        "saveproxy": "Enter",
+        // Weather
+        "UserLocText": "Enter your location",
+        "UserLocSubtext": "If the weather location isn't correct",
+        "userLoc": "Your location (City/Latitude,Longitude)", //tocheck
+        "NeedHelpButton": "Need help",
+        "saveLoc": "Enter",
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
+        "userAPI": "Your weatherAPI key", //tocheck
         "LearnMoreButton": "Learn More",
         "saveAPI": "Enter",
         // End of Menu Items
@@ -23,6 +49,7 @@ const translations = {
         // Weather
         "humidityText": "Humidity",
         "feelsLike": "Feels",
+        "location": "Earth",
         // End of Weather
 
         // New Tab Item
