@@ -131,38 +131,63 @@ const translations = {
     },
     "hi": {
         // Menu Items
+        "feedback": "प्रतिक्रिया",
+        "resetsettings": "सेटिंग्स रीसेट करें",
+        "closeMenu": "बंद करें",
+        // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
+        "editShortcutstext": "शॉर्टकट्स संपादित करें",
+        "editshortcutslist": "शॉर्टकट्स संपादित करें",
+        "shortcutsInfoText": "कौन से शॉर्टकट्स दिखाए जाएँ, चुनें",
+        "adaptiveIconShapes": "अनुकूल आइकन आकृतियाँ",
+        "adaptiveIconInfoText": "शॉर्टकट आइकन हमेशा गोल होंगे",
         "ai_tools_button": "AI-उपकरण",
-        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
+        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें", 
+        // Misc
         "fahrenheitCelsiusCheckbox": "तापमान फारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
+        "search_suggestions_button": "खोज सुझाव",
+        "search_suggestions_text": "खोज सुझाव सक्षम/अक्षम करें",
+        // Proxy
+        "useproxytitletext": "प्रॉक्सी बायपास",
+        "useproxyText": "यदि खोज सुझाव काम नहीं कर रहे हैं",
+        "ProxyText": "CORS बायपास प्रॉक्सी",
+        "ProxySubtext": "अपना CORS बायपास प्रॉक्सी जोड़ें",
+        "HostproxyButton": "अपना प्रॉक्सी संचालित करें",
+        "saveproxy": "दर्ज करें",
+        // Weather
+        "UserLocText": "अपना स्थान दर्ज करें",
+        "UserLocSubtext": "यदि मौसम स्थान सटीक नहीं है",
+        "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)", //tocheck
+        "NeedHelpButton": "अधिक जानें",
+        "saveLoc": "दर्ज करें",
         "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
-        "WeatherApiSubtext": "यदि मौसम कार्यक्षमता काम नहीं कर रही है",
+        "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
+        "userAPI": "आपकी मौसम API कुंजी", //tocheck
         "LearnMoreButton": "और जानें",
         "saveAPI": "दर्ज करें",
         // End of Menu Items
-
+            
         // Body Items
         // Calendar
-        "days": ['सोमवार', 'मंगलवार', 'बुधवार', 'बिहिवार', 'शुक्रवार', 'शनिवार', 'रविवार'],
+        "days": ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],
         "months": ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
-        // End of Calendar
-
+        
         // Weather
         "humidityText": "हवा में नमी",
         "feelsLike": "महसूस",
-        // End of Weather
-
+        "location": "पृथ्वी",
+        
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "सर्च करें",
-        "searchPlaceholder": "यहाँ लिखे...",
+        "enterBtn": "दर्ज करें",
+        "searchPlaceholder": "यहाँ लिखें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
-        "userText": "यहाँ अपना टेक्स्ट लिखें",
+        "userText": "संपादित करने के लिए दो बार टैप करें",
         // End of Body and New Tab Items
-    },
+},
     "cs": {
         // Menu Items
         "shortcutsText": "Zkratky",
