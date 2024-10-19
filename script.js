@@ -1,19 +1,21 @@
 let proxyurl;
+let clocktype;
+let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         //first load proxy disclaimer
         const isfirstload = localStorage.getItem("didfirstload");
-        if (!isfirstload){
+        if (!isfirstload) {
             showProxyDisclaimer();
         }
         function showProxyDisclaimer() {
             const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
-        
+
             if (confirm(message)) {
                 localStorage.setItem("didfirstload", "yea");
             }
         }
-        
+
 
         // Load the API key from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -40,9 +42,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         resetbtn.addEventListener("click", () => {
             if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
                 localStorage.clear();
-            location.reload();
+                location.reload();
             } else {
-               return;
+                return;
             }
         });
         saveProxyButton.addEventListener("click", () => {
@@ -139,88 +141,200 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // ---------------------------end of weather stuff--------------------
 
+// Retrieve current time and calculate initial angles
+var currentTime = new Date();
+var initialSeconds = currentTime.getSeconds();
+var initialMinutes = currentTime.getMinutes();
+var initialHours = currentTime.getHours();
 
+// Initialize cumulative rotations
+let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
+let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
+let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
 
-    // Retrieve current time and calculate initial angles
+// Apply initial rotations (no need to wait 1s now)
+document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+
+let intervalId; 
+let secondreset=false;
+let hourreset=false;
+let minreset=false;
+function updateanalogclock() {
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
-    var initialMinutes = currentTime.getMinutes();
-    var initialHours = currentTime.getHours();
+var initialMinutes = currentTime.getMinutes();
+var initialHours = currentTime.getHours();
 
-    // Initialize cumulative rotations
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
-
-    // Apply initial rotations (no need to wait 1s now)
+// Initialize cumulative rotations
+let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
+let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
+let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); 
+if(secondreset){
+    document.getElementById("second").style.transition = "none";
+    document.getElementById("second").style.transform = `rotate(0deg)`;
+    secondreset=false;
+    return;
+}   
+if(minreset){
+    document.getElementById("minute").style.transition = "none";
+    document.getElementById("minute").style.transform = `rotate(0deg)`;
+    minreset=false;
+    return;
+}
+if(hourreset){
+    document.getElementById("hour").style.transition = "none";
+    document.getElementById("hour").style.transform = `rotate(0deg)`;
+    hourreset=false;
+    return;
+} 
+if(cumulativeSecondRotation==0){
+    document.getElementById("second").style.transition = "transform 1s ease";
+    document.getElementById("second").style.transform = `rotate(361deg)`;
+    secondreset=true;
+}else if (secondreset!=true){
+    document.getElementById("second").style.transition = "transform 1s ease";  
     document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+}
+if(cumulativeMinuteRotation==0){
+    document.getElementById("minute").style.transition = "transform 1s ease"; 
+    document.getElementById("minute").style.transform = `rotate(361deg)`;
+    minreset=true;
+}else if(minreset!=true){
+    document.getElementById("minute").style.transition = "transform 1s ease"; 
     document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+}if(cumulativeHourRotation==0){
+    document.getElementById("hour").style.transition = "transform 1s ease"; 
+    document.getElementById("hour").style.transform = `rotate(361deg)`;
+    hourreset=true;
+}else if(hourreset!=true){
+    document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
     document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-    document.addEventListener('visibilitychange', function() {
-        if (document.visibilityState === 'visible') {
-            document.getElementById("second").style.transition = "none";
-            document.getElementById("minute").style.transition = "none";
-            document.getElementById("hour").style.transition = "none";
-            
-            document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-            document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-            document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-            
-        } 
-    });
-    setInterval(() => {
-        var currentTime = new Date();
+}  
+    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    var dayOfWeek = currentTime.getDay();
+    // Get the day of the month (1 - 31)
+    var dayOfMonth = currentTime.getDate();
+    // Get the month (0 = January, 1 = February, ..., 11 = December)
+    var month = currentTime.getMonth();
 
-        // Adjust cumulative rotations (to prevent the needle from going the opposite way when it returns to 0)  
-        cumulativeSecondRotation += 6; // Increment the rotation by 6° for each second. This is because a clock completes a full 360° rotation in 60 seconds. Therefore, each second corresponds to a 6° movement (360° / 60 seconds = 6° per second).
-        cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 60) * 6;
-        cumulativeHourRotation += (1 / 120); // Add 1/120° for each second (30° / 3600s)
-        // Apply new rotations
-        document.getElementById("second").style.transition = "transform 1s ease"; // Transition fluide
-        document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+    // Define the current language
+    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-        document.getElementById("minute").style.transition = "transform 1s ease"; // Transition fluide
-        document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+    // Get the translated name of the day and month
+    var dayName = translations[currentLanguage].days[dayOfWeek];
+    var monthName = translations[currentLanguage].months[month];
+    const clocktype1=localStorage.getItem("clocktype");
+if(clocktype1=="analog"){
+    // Language formatting
+    if (currentLanguage === 'pt') {
+        // Portuguese formatting: "day of the week, day of the month"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+    } else {
+        // English formatting: "day of the month name"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+    }
+}
+}
 
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
-        document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
 
-        // done : 5:08* 14 August 2023pHar
-
-        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-        var dayOfWeek = currentTime.getDay();
-        // Get the day of the month (1 - 31)
-        var dayOfMonth = currentTime.getDate();
-        // Get the month (0 = January, 1 = February, ..., 11 = December)
-        var month = currentTime.getMonth();
-
-        // Define the current language, for example:
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-        // Get the translated name of the day and month using the translations object
-        var dayName = translations[currentLanguage].days[dayOfWeek];
-        var monthName = translations[currentLanguage].months[month];
-
-        // Language formatting
-        if (currentLanguage === 'pt') {
-            // portuguese formatting: "day of the week, day of the month"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-        } else {
-            // english formatting: "day of the month name"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
-        }
+function updatedigiClock() {
+    const hourformatstored=localStorage.getItem("hourformat");
+    if(hourformatstored){
+        if(hourformatstored=="true"){
+        hourformat=true;
+    }else if(hourformatstored=="false"){
+        hourformat=false;
+    }
+    }else{
+        hourformat=false;
+    }
+    const now = new Date();
+    const options = { weekday: 'short', day: 'numeric' };
+    const dateString = now.toLocaleDateString('en-US', options);
     
-        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`;
-    }, 1000);
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+    const timeString = now.toLocaleTimeString('en-US', timeOptions);
+    const formattedTimeString = timeString.replace(/ (AM|PM)/, '');
 
+    document.getElementById('digidate').textContent = dateString;
+    document.getElementById('digiclock').textContent = formattedTimeString;
+    
+    let greeting;
+    const currentHour = now.getHours();
+    
+    if (currentHour < 12) {
+        greeting = "Good Morning!";
+    } else if (currentHour < 18) {
+        greeting = "Good Afternoon!";
+    } else {
+        greeting = "Good Evening!";
+    }
+    
+    const clocktype1=localStorage.getItem("clocktype");
+    if(clocktype1=="digital"){
+    document.getElementById("date").innerText = greeting;
+    }
+}
+function startClock() {
+    if (!intervalId) { // Only set interval if not already set
+        intervalId = setInterval(updateanalogclock, 500);
+    }
+}
 
+// Function to stop the clock
+function stopClock() {
+    clearInterval(intervalId);
+    intervalId = null; // Reset intervalId
+}
 
-setInterval((updated)=>{
- const userTextDiv = document.getElementById("userText");
- const storedValue = localStorage.getItem("userText");
- if (storedValue) {
-     userTextDiv.textContent = storedValue;
- }
+clocktype=localStorage.getItem("clocktype");
+if(!clocktype){
+    localStorage.setItem("clocktype", "analog");
+   clocktype=localStorage.getItem("clocktype");
+}
+displayClock();
+setInterval(updatedigiClock, 1000);
+if (clocktype) {
+    if (clocktype == "digital") {
+        updatedigiClock();
+    } else if (clocktype == "analog") {
+        if (document.visibilityState === 'visible') {
+            startClock();
+        }
+    }
+} else {
+    if (document.visibilityState === 'visible') {
+        startClock();
+    }
+}
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'visible') {
+        startClock(); // Start the clock if the tab is focused
+    } else {
+        stopClock(); // Stop the clock if the tab is not focused
+    }
+});
+
+function displayClock() {
+    const analogClock = document.getElementById('analogClock');
+const digitalClock = document.getElementById('digitalClock');
+
+    if (clocktype === 'analog') {
+        analogClock.style.display = 'block'; // Show the analog clock
+        digitalClock.style.display = 'none';  // Hide the digital clock
+    } else if (clocktype === 'digital') {
+        digitalClock.style.display = 'block';  // Show the digital clock
+        analogClock.style.display = 'none';     // Hide the analog clock
+    }
+}
+setInterval((updated) => {
+    const userTextDiv = document.getElementById("userText");
+    const storedValue = localStorage.getItem("userText");
+    if (storedValue) {
+        userTextDiv.textContent = storedValue;
+    }
 
 }, 1000)
 const userTextDiv = document.getElementById("userText");
@@ -693,6 +807,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+    const timeformatField = document.getElementById("timeformatField");
+    const hourcheckbox = document.getElementById("12hourcheckbox");
+    const digitalCheckbox = document.getElementById("digitalCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
     const backButton = document.getElementById("backButton");
@@ -1167,14 +1284,36 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+    digitalCheckbox.addEventListener("change", function () {
+        saveCheckboxState("digitalCheckboxState", digitalCheckbox);
+        if (digitalCheckbox.checked) {
+            timeformatField.classList.remove("inactive");
+            localStorage.setItem("clocktype", "digital");
+            clocktype=localStorage.getItem("clocktype");
+            displayClock();
+            stopClock();
+            saveActiveStatus("timeformatField", "active");
+        } else {
+            timeformatField.classList.add("inactive");
+            localStorage.setItem("clocktype", "analog");
+            clocktype=localStorage.getItem("clocktype");
+            stopClock();
+            startClock();
+            displayClock();
+            saveActiveStatus("timeformatField", "inactive");
+        }
+    });
+    hourcheckbox.addEventListener("change", function () {
+        saveCheckboxState("hourcheckboxState", hourcheckbox);
+        if (hourcheckbox.checked) {
+            localStorage.setItem("hourformat", "true");
+        } else {
+            localStorage.setItem("hourformat", "false");
+        }
+    });
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.checked) {
-        const message = "Please enable this only if Search Suggestions aren't working. \n\n" +
-        "It is strongly recommended to host your own proxy due to privacy reasons. \n\n" +
-                    "The default proxy will be set to https://mynt-proxy.rhythmcorehq.com";
-
-    alert(message);
             proxyinputField.classList.remove("inactive");
             saveActiveStatus("proxyinputField", "active");
         } else {
@@ -1230,7 +1369,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }).observe(flexMonitor);*/
 
-    
+
     /* ------ Page Transitions & Animations ------ */
 
     /**
@@ -1240,7 +1379,7 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function openShortcutDrawer() {
         //const translationDistance = flexMonitor.clientHeight - defaultHeight;
-        const translationDistance="90";
+        const translationDistance = "90";
         shortcutsContainer.style.display = "flex";
         console.log(translationDistance)
         requestAnimationFrame(() => {
@@ -1306,7 +1445,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Shift up shortcuts
     unfoldShortcutsButton.onclick = (e) => {
-    
+
         if (!shortcutsContainer.classList.contains("showBackground")) {
             e.stopPropagation();
             openShortcutDrawer();
@@ -1330,7 +1469,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("adaptiveIconField", adaptiveIconField);
     loadCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
+    loadCheckboxState("digitalCheckboxState", digitalCheckbox);
+    loadCheckboxState("hourcheckboxState", hourcheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
+    loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("proxybypassField", proxybypassField);
     loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
     loadIconStyle("iconStyle", iconStyle);
