@@ -213,8 +213,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`;
     }, 1000);
 
-
-
 setInterval((updated)=>{
  const userTextDiv = document.getElementById("userText");
  const storedValue = localStorage.getItem("userText");
