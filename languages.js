@@ -377,7 +377,7 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        document.getElementById("humidityText").innerText = translations[lang].humidityText;
+        // document.getElementById("humidityText").innerText = translations[lang].humidityText;
         document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
         document.getElementById("location").innerText = translations[lang].location; 
 
