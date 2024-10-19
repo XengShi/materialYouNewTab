@@ -377,9 +377,9 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        document.getElementById("humidityText").innerText = translations[lang].humidityText;
-        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
-        document.getElementById("location").innerText = translations[lang].location; 
+        document.getElementById("humidityText").textContent = translations[lang].humidityText;
+        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
+        document.getElementById("location").textContent = translations[lang].location; 
 
         // End of Body Items
 
