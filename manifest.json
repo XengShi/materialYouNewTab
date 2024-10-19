@@ -15,18 +15,5 @@
     },
     "chrome_url_overrides": {
         "newtab": "index.html"
-    },
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "favicon/*",
-                "fonts/*",
-                "svgs/*",
-                "shortcuts_icons/*"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ]
+    }
 }
