@@ -364,7 +364,7 @@
                                         fill="#0038FF" fill-rule="evenodd" />
                                 </svg>
                             </div>
-                            <span>Feedback</span>
+                            <span id="feedback">Feedback</span>
                         </a>
                         <!-- -----end of tiles-------- -->
 
@@ -385,8 +385,8 @@
 
                         <div class="ttcont" id="shortcutEditField">
                             <div class="texts">
-                                <div class="bigText">Edit Shortcuts</div>
-                                <div class="infoText">Choose which shortcuts get shown</div>
+                                <div class="bigText" id="editshortcutstext">Edit Shortcuts</div>
+                                <div class="infoText" id="shortcutsInfoText">Choose which shortcuts get shown</div>
                             </div>
                             <label class="switch">
                                 <button id="shortcutEditButton">
@@ -401,8 +401,8 @@
 
                         <div class="ttcont" id="adaptiveIconField">
                             <div class="texts">
-                                <div class="bigText">Adaptive Icon Shapes</div>
-                                <div class="infoText">Shortcut Icons will always be round</div>
+                                <div class="bigText" id="adaptiveIconShapes">Adaptive Icon Shapes</div>
+                                <div class="infoText" id="adaptiveIconInfoText">Shortcut Icons will always be round</div>
                             </div>
                             <label class="switch">
                                 <input id="adaptiveIconToggle" type="checkbox">
@@ -480,7 +480,7 @@
                             </div>
                             <input id="userLoc" placeholder="Your location (City/Latitude,Longitude)" type="text">
                             <div class="bottom">
-                                <a href="https://www.weatherapi.com/docs/#intro-request-param" id=NeedHelpButton">Need help</a>
+                                <a href="https://www.weatherapi.com/docs/#intro-request-param" id="NeedHelpButton">Need help</a>
                                 <button id="saveLoc">Enter</button>
                             </div>
                         </div>
@@ -578,7 +578,7 @@
                                     fill="#23F22C" />
                             </svg>
                         </div>
-                        <!-- <span>Close</span> -->
+                        <!-- <span id="closeMenu">Close</span> -->
                     </div>
                     <!-- ------------------ -->
 
@@ -611,7 +611,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="pageTitle">Edit Shortcuts</div>
+                    <div class="pageTitle" id="editshortcutslist">Edit Shortcuts</div>
                     <div id="shortcutList"></div>
                 </div>
             </div>
