@@ -8,8 +8,8 @@ const translations = {
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
-        "editShortcutstext": "Edit Shortcuts",
-        "editshortcutslist": "Edit Shortcuts",
+        "editShortcutsText": "Edit Shortcuts",
+        "editShortcutsList": "Edit Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
         "adaptiveIconShapes": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut Icons will always be round",
@@ -137,8 +137,8 @@ const translations = {
         // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
-        "editShortcutstext": "शॉर्टकट्स संपादित करें",
-        "editshortcutslist": "शॉर्टकट्स संपादित करें",
+        "editShortcutsText": "शॉर्टकट्स संपादित करें",
+        "editShortcutsList": "शॉर्टकट्स संपादित करें",
         "shortcutsInfoText": "कौन से शॉर्टकट्स दिखाए जाएँ, चुनें",
         "adaptiveIconShapes": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन हमेशा गोल होंगे",
@@ -331,8 +331,8 @@ function applyLanguage(lang) {
         // Menu Items
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
-        document.getElementById('editShortcutstext').innerText = translations[lang].editShortcutstext;
-        document.getElementById('editshortcutslist').innerText = translations[lang].editshortcutslist;
+        document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
+        document.getElementById('editShortcutsList').innerText = translations[lang].editShortcutsList;
         document.getElementById('shortcutsInfoText').innerText = translations[lang].shortcutsInfoText;
         document.getElementById('adaptiveIconShapes').innerText = translations[lang].adaptiveIconShapes;
         document.getElementById('adaptiveIconInfoText').innerText = translations[lang].adaptiveIconInfoText;
