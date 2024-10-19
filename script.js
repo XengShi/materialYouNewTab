@@ -209,14 +209,14 @@ setInterval(() => {
         // portuguese formatting: "day of the week, day of the month"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
     } else if (currentLanguage === 'hi') {
-        // Hindi formatting: "day of the week, day of the month"
-        document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`; // Show full names
+        // Hindi formatting: Show full name for month
+        document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
     } else {
         // english formatting: "day of the month name"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
    
-    document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`;
+    document.getElementById("date").innerText = formattedDate;;
 }, 1000);
 
 
