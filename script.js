@@ -245,6 +245,9 @@ if(clocktype1=="analog"){
     if (currentLanguage === 'pt') {
         // Portuguese formatting: "day of the week, day of the month"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+    } else if (currentLanguage === 'hi') {
+        // Hindi formatting: Show full name for month
+        document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
     } else {
         // English formatting: "day of the month name"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
