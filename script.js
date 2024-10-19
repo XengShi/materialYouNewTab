@@ -15,18 +15,24 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
         
 
-        // Load the API key from localStorage
+        // Load the API key, location and proxy from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const userAPIInput = document.getElementById("userAPI");
+        const savedLocation = localStorage.getItem("weatherLocation");
+        const userLocInput = document.getElementById("userLoc");
         const savedProxy = localStorage.getItem("proxy");
         const userProxyInput = document.getElementById("userproxy");
         if (savedApiKey) {
             userAPIInput.value = savedApiKey;
         }
+        if (savedLocation) {
+            userLocInput.value = savedLocation;
+        }
         if (savedProxy) {
             userProxyInput.value = savedProxy;
         }
         const saveAPIButton = document.getElementById("saveAPI");
+        const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
         // Add an event listener to save the API key when the "Save" button is clicked
@@ -35,6 +41,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             // Save the API key to localStorage
             localStorage.setItem("weatherApiKey", apiKey);
             document.getElementById("userAPI").value = "";
+            location.reload();
+        });
+        saveLocButton.addEventListener("click", () => {
+            const userLocation = userLocInput.value;
+            // Save the location to localStorage
+            localStorage.setItem("weatherLocation", userLocation);
+            document.getElementById("userLoc").value = "";
             location.reload();
         });
         resetbtn.addEventListener("click", () => {
@@ -80,9 +93,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
+        const locationQuery = savedLocation || currentUserLocation;
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+        
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -133,6 +147,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
+        // alert("Unable to fetch weather data. Please check your location or API key.");
         // Handle errors here, e.g., display an error message to the user.
     }
 });
