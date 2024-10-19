@@ -212,10 +212,8 @@ setInterval(() => {
         // English formatting: "day of the month name"
         document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
-
 }
-
-
+}
 
 setInterval((updated)=>{
  const userTextDiv = document.getElementById("userText");
