@@ -4,7 +4,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reset Settings",
-        "closeMenu": "Close",
+    //not working ----> "menuClose": "Close",
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
@@ -30,12 +30,12 @@ const translations = {
         // Weather
         "UserLocText": "Enter your location",
         "UserLocSubtext": "If the weather location isn't correct",
-        "userLoc": "Your location (City/Latitude,Longitude)", //tocheck
+        "userLoc": "Your location (City/Latitude,Longitude)",
         "NeedHelpButton": "Need help",
         "saveLoc": "Enter",
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
-        "userAPI": "Your weatherAPI key", //tocheck
+        "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn More",
         "saveAPI": "Enter",
         // End of Menu Items
@@ -133,7 +133,7 @@ const translations = {
         // Menu Items
         "feedback": "प्रतिक्रिया",
         "resetsettings": "सेटिंग्स रीसेट करें",
-        "closeMenu": "बंद करें",
+        //"menuClose": "बंद करें",
         // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
@@ -159,12 +159,12 @@ const translations = {
         // Weather
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सटीक नहीं है",
-        "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)", //tocheck
+        "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)",
         "NeedHelpButton": "अधिक जानें",
         "saveLoc": "दर्ज करें",
         "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
         "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
-        "userAPI": "आपकी मौसम API कुंजी", //tocheck
+        "userAPI": "आपकी मौसम API कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "दर्ज करें",
         // End of Menu Items
@@ -331,7 +331,7 @@ function applyLanguage(lang) {
         // Menu Items
         document.getElementById('feedback').innerText = translations[lang].feedback;
         document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
-        document.getElementById('closeMenu').innerText = translations[lang].closeMenu;
+        //document.getElementById('menuClose').innerText = translations[lang].menuClose;
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
         document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
@@ -357,12 +357,12 @@ function applyLanguage(lang) {
         // Weather
         document.getElementById('UserLocText').innerText = translations[lang].UserLocText;
         document.getElementById('UserLocSubtext').innerText = translations[lang].UserLocSubtext;
-        document.getElementById('userLoc').innerText = translations[lang].userLoc; // Check this one as well
+        document.getElementById('userLoc').placeholder = translations[lang].userLoc;
         document.getElementById('NeedHelpButton').innerText = translations[lang].NeedHelpButton;
         document.getElementById('saveLoc').innerText = translations[lang].saveLoc;
         document.getElementById('WeatherApiText').innerText = translations[lang].WeatherApiText;
         document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
-        document.getElementById('userAPI').innerText = translations[lang].userAPI; // Check this one as well
+        document.getElementById('userAPI').placeholder = translations[lang].userAPI;
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
 
@@ -377,9 +377,9 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        document.getElementById("humidityText").innerText = translations[lang].humidityText; // Uncomment this line to use
+        document.getElementById("humidityText").innerText = translations[lang].humidityText;
         document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
-        document.getElementById("location").innerText = translations[lang].location; // Added for location text
+        document.getElementById("location").innerText = translations[lang].location; 
 
         // End of Body Items
 
