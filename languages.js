@@ -331,14 +331,38 @@ function applyLanguage(lang) {
         // Menu Items
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
+        document.getElementById('editShortcutstext').innerText = translations[lang].editShortcutstext;
+        document.getElementById('editshortcutslist').innerText = translations[lang].editshortcutslist;
+        document.getElementById('shortcutsInfoText').innerText = translations[lang].shortcutsInfoText;
+        document.getElementById('adaptiveIconShapes').innerText = translations[lang].adaptiveIconShapes;
+        document.getElementById('adaptiveIconInfoText').innerText = translations[lang].adaptiveIconInfoText;
         document.getElementById('ai_tools_button').innerText = translations[lang].ai_tools_button;
         document.getElementById('enable_ai_tools').innerText = translations[lang].enable_ai_tools;
         document.getElementById('fahrenheitCelsiusCheckbox').innerText = translations[lang].fahrenheitCelsiusCheckbox;
         document.getElementById('fahrenheitCelsiusText').innerText = translations[lang].fahrenheitCelsiusText;
+        document.getElementById('search_suggestions_button').innerText = translations[lang].search_suggestions_button;
+        document.getElementById('search_suggestions_text').innerText = translations[lang].search_suggestions_text;
+
+        // Proxy
+        document.getElementById('useproxytitletext').innerText = translations[lang].useproxytitletext;
+        document.getElementById('useproxyText').innerText = translations[lang].useproxyText;
+        document.getElementById('ProxyText').innerText = translations[lang].ProxyText;
+        document.getElementById('ProxySubtext').innerText = translations[lang].ProxySubtext;
+        document.getElementById('HostproxyButton').innerText = translations[lang].HostproxyButton;
+        document.getElementById('saveproxy').innerText = translations[lang].saveproxy;
+
+        // Weather
+        document.getElementById('UserLocText').innerText = translations[lang].UserLocText;
+        document.getElementById('UserLocSubtext').innerText = translations[lang].UserLocSubtext;
+        document.getElementById('userLoc').innerText = translations[lang].userLoc; // Check this one as well
+        document.getElementById('NeedHelpButton').innerText = translations[lang].NeedHelpButton;
+        document.getElementById('saveLoc').innerText = translations[lang].saveLoc;
         document.getElementById('WeatherApiText').innerText = translations[lang].WeatherApiText;
         document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
+        document.getElementById('userAPI').innerText = translations[lang].userAPI; // Check this one as well
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
+
         // End of Menu Items
 
         // Body Items
@@ -350,9 +374,9 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        // document.getElementById("humidityText").textContent = translations[lang].humidityText;
-        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
-        // End of Weather
+        document.getElementById("humidityText").innerText = translations[lang].humidityText; // Uncomment this line to use
+        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
+        document.getElementById("location").innerText = translations[lang].location; // Added for location text
 
         // End of Body Items
 
