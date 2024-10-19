@@ -139,41 +139,81 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // ---------------------------end of weather stuff--------------------
 
-setInterval(() => {
+
+
+    // Retrieve current time and calculate initial angles
     var currentTime = new Date();
-    let hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    let hour_rotate_angle = 30 * hours + minutes / 2;
+    var initialSeconds = currentTime.getSeconds();
+    var initialMinutes = currentTime.getMinutes();
+    var initialHours = currentTime.getHours();
 
-    document.getElementById("second").style.transform = `rotate(${seconds * 6}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${minutes * 6}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${hour_rotate_angle}deg)`;
+    // Initialize cumulative rotations
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
 
-    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    var dayOfWeek = currentTime.getDay();
-    // Get the day of the month (1 - 31)
-    var dayOfMonth = currentTime.getDate();
-    // Get the month (0 = January, 1 = February, ..., 11 = December)
-    var month = currentTime.getMonth();
+    // Apply initial rotations (no need to wait 1s now)
+    document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+    document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+    document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+            document.getElementById("second").style.transition = "none";
+            document.getElementById("minute").style.transition = "none";
+            document.getElementById("hour").style.transition = "none";
+            
+            document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+            document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+            document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+            
+        } 
+    });
+    setInterval(() => {
+        var currentTime = new Date();
 
-    // Define the current language, for example:
-    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        // Adjust cumulative rotations (to prevent the needle from going the opposite way when it returns to 0)  
+        cumulativeSecondRotation += 6; // Increment the rotation by 6° for each second. This is because a clock completes a full 360° rotation in 60 seconds. Therefore, each second corresponds to a 6° movement (360° / 60 seconds = 6° per second).
+        cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 60) * 6;
+        cumulativeHourRotation += (1 / 120); // Add 1/120° for each second (30° / 3600s)
+        // Apply new rotations
+        document.getElementById("second").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
 
-    // Get the translated name of the day and month using the translations object
-    var dayName = translations[currentLanguage].days[dayOfWeek];
-    var monthName = translations[currentLanguage].months[month];
+        document.getElementById("minute").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
 
-    // Language formatting
-    if (currentLanguage === 'pt') {
-        // portuguese formatting: "day of the week, day of the month"
-        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-    } else {
-        // english formatting: "day of the month name"
-        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
-    }
-   
-}, 1000);
+        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
+
+        // done : 5:08* 14 August 2023pHar
+
+        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+        var dayOfWeek = currentTime.getDay();
+        // Get the day of the month (1 - 31)
+        var dayOfMonth = currentTime.getDate();
+        // Get the month (0 = January, 1 = February, ..., 11 = December)
+        var month = currentTime.getMonth();
+
+        // Define the current language, for example:
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+        // Get the translated name of the day and month using the translations object
+        var dayName = translations[currentLanguage].days[dayOfWeek];
+        var monthName = translations[currentLanguage].months[month];
+
+        // Language formatting
+        if (currentLanguage === 'pt') {
+            // portuguese formatting: "day of the week, day of the month"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+        } else {
+            // english formatting: "day of the month name"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+        }
+    
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`;
+    }, 1000);
+
+
 
 setInterval((updated)=>{
  const userTextDiv = document.getElementById("userText");

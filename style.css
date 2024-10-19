@@ -132,6 +132,7 @@
 .resultItem:hover {
    background-color: var(--darkColor-blue);
    border-radius: 15px;
+   color: #fff;
 }
 .spacer {
     height: 50px; /* Adjust this value to create space */
@@ -231,6 +232,7 @@ body {
     top: -70px;
     background-color: var(--darkerColor-blue);
     transform: rotate(90deg);
+    transition: transform 1.50s;
 }
 
 #hour::after {
@@ -245,6 +247,7 @@ body {
 
 #minute {
     z-index: 9 !important;
+    transition: transform 1.50s;
 }
 
 #minute::after {
@@ -259,6 +262,7 @@ body {
 
 #second {
     background-color: #00000000;
+    transition: transform 1s;
 }
 
 #second::after {
@@ -624,6 +628,8 @@ body {
     border: 2px solid #ffffff;
     outline: none;
     margin-right: 8px;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .search-engine input[type="radio"]:checked {
@@ -1621,11 +1627,12 @@ input:checked + .toggle:before {
 
 /* ---------------------- */
 #menuCloseButton {
-    /* position: absolute; */
+    position: relative;
+     /* position: absolute; */
     bottom: var(--gap);
     width: 42px;
-    max-width: 100%;
-    /* Set max-width to fit-content initially */
+    height: 42px; 
+    max-width: 100%; /* Set max-width to fit-content initially */
     background-color: var(--bg-color-blue);
     color: var(--textColorDark-blue);
     font-size: 1rem;
@@ -1640,7 +1647,7 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: 69px;
+    margin-top: calc(69px + 20px);
 }
 
 #menuCloseButton:hover {
@@ -1648,22 +1655,64 @@ input:checked + .toggle:before {
     background-color: #fff;
 }
 
+#menuCloseButton::after {
+    content: "Close";
+    padding-right: 12px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: .6s menuCloseButtonHoverReverse forwards;
+    z-index: 1;
+}
+
 #menuCloseButton:hover::after {
     content: "Close";
     padding-right: 12px;
+    padding-left: 36px;
     /* width: 32px; */
     /* Expand the max-width on hover */
+    animation: .6s menuCloseButtonHover forwards;
+    animation-delay: .1s;
 }
 
+@keyframes menuCloseButtonHover {
+    0%{
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
 
-#menuCloseButton .icon {
+@keyframes menuCloseButtonHoverReverse {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}
+
+#menuCloseButton .icon{
+    position: absolute;
+    left: 6px;
     background-color: #fff;
     width: 30px;
     height: 30px;
     border-radius: 100px;
+    /* transform: translateX(30px); */
+    transition: .4s;
+    z-index: 2;
 }
 
-#menuCloseButton .icon:hover {
+/* #menuCloseButton .icon:hover{
     transition: all 0.2s;
     transform: rotate(90deg);
+} */
+
+#menuCloseButton:hover .icon{
+    transform: translateX(0) rotate(90deg);
 }
