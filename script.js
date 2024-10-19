@@ -205,19 +205,15 @@ setInterval(() => {
     var monthName = translations[currentLanguage].months[month];
 
     // Language formatting
-    let formattedDate;
     if (currentLanguage === 'pt') {
-        // portuguese formatting: "day of the week, day of the month"
-        formattedDate = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-    } else if (currentLanguage === 'hi') {
-        // Hindi formatting: Show full name for month
-        formattedDate = `${dayName}, ${dayOfMonth} ${monthName}`;
+        // Portuguese formatting: "day of the week, day of the month"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
     } else {
-        // english formatting: "day of the month name"
-        formattedDate = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+        // English formatting: "day of the month name"
+        document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
     }
-    document.getElementById("date").innerText = formattedDate;;
-}, 1000);
+
+}
 
 
 
