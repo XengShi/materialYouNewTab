@@ -17,5 +17,16 @@
   },
   "action": {
     "default_icon": "icon.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.weatherapi.com/*",
+        "https://mynt-proxy.rhythmcorehq.com/"
+      ],
+      "js": [
+        "script.js"
+      ]
+    }
+  ]
 }
