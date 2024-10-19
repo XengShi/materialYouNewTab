@@ -184,13 +184,18 @@ body {
 }
 
 /* ____________Clock_____________________---- */
-#clock {
+#digitalClock {
     width: 300px;
     height: 300px;
     border-radius: 100%;
     position: relative;
 }
-
+#analogClock {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    position: relative;
+}
 #clock svg {
     position: absolute;
     animation: clockAnm 1s;
@@ -293,7 +298,18 @@ body {
 #date {
     font-size: 1.4rem;
 }
-
+.digidate{
+    fill:var(--darkerColor-blue)
+}
+.digiclock {
+    text-anchor:middle;
+    fill: var(--darkColor-blue);
+    font-size: 8rem;
+    font-weight: lighter;
+    /* background-color: yellow; */
+    margin: auto;
+    width: fit-content;
+}
 /* __________end of clock___________________ */
 .leftDiv {
     /* padding-right: 100px; */
