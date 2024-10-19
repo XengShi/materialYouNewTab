@@ -4,7 +4,6 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reset Settings",
-    //not working ----> "menuClose": "Close",
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
@@ -60,6 +59,8 @@ const translations = {
         "ai_tools": "AI Tools",
         "userText": "Double tap to edit",
         // End of Body and New Tab Items
+        
+        // need func for "menuCloseButton:hover::after": "Close",
     },
     "pt": {
         // Menu Items
@@ -133,7 +134,6 @@ const translations = {
         // Menu Items
         "feedback": "प्रतिक्रिया",
         "resetsettings": "सेटिंग्स रीसेट करें",
-        //"menuClose": "बंद करें",
         // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
@@ -187,6 +187,7 @@ const translations = {
         "ai_tools": "AI उपकरण",
         "userText": "संपादित करने के लिए दो बार टैप करें",
         // End of Body and New Tab Items
+        // later ----> "menuCloseButton:hover::after": "बंद करें",
 },
     "cs": {
         // Menu Items
@@ -331,7 +332,6 @@ function applyLanguage(lang) {
         // Menu Items
         document.getElementById('feedback').innerText = translations[lang].feedback;
         document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
-        //document.getElementById('menuClose').innerText = translations[lang].menuClose;
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
         document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
@@ -377,9 +377,9 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        document.getElementById("humidityText").textContent = translations[lang].humidityText;
-        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
-        document.getElementById("location").textContent = translations[lang].location; 
+        document.getElementById("humidityText").innerText = translations[lang].humidityText;
+        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
+        document.getElementById("location").innerText = translations[lang].location; 
 
         // End of Body Items
 
