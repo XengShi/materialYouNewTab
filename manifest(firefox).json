@@ -1,35 +1,20 @@
 {
-  "manifest_version": 2,
-  "name": "Material You NewTab",
-  "version": "1.3",
-  "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
-  },
-  "icons": {
-    "48": "icon.png"
-  },
-  "browser_action": {
-    "default_icon": "icon.png"
-  },
-  "chrome_url_overrides": {
-    "newtab": "index.html"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "script.js"
-      ]
+    "manifest_version": 2,
+    "name": "Material You NewTab",
+    "version": "2.1",
+    "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
+    "permissions": [],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+    "icons": {
+        "48": "icon.png"
+    },
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
     }
-  ]
 }
