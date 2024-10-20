@@ -635,7 +635,7 @@ function applyLanguage(lang) {
         document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
         document.getElementById('editShortcutsList').innerText = translations[lang].editShortcutsList;
         document.getElementById('shortcutsInfoText').innerText = translations[lang].shortcutsInfoText;
-        document.getElementById('adaptiveIconShapes').innerText = translations[lang].adaptiveIconShapes;
+        document.getElementById('adaptiveIconText').innerText = translations[lang].adaptiveIconText;
         document.getElementById('adaptiveIconInfoText').innerText = translations[lang].adaptiveIconInfoText;
         document.getElementById('ai_tools_button').innerText = translations[lang].ai_tools_button;
         document.getElementById('enable_ai_tools').innerText = translations[lang].enable_ai_tools;
