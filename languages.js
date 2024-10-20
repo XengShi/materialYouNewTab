@@ -10,7 +10,7 @@ const translations = {
         "editShortcutsText": "Edit Shortcuts",
         "editShortcutsList": "Edit Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
-        "adaptiveIconShapes": "Adaptive Icon Shapes",
+        "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut Icons will always be round",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Enable/disable AI Tools shortcuts",
@@ -147,7 +147,7 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "editShortcutsList": "शॉर्टकट्स संपादित करें",
         "shortcutsInfoText": "कौन से शॉर्टकट्स दिखाए जाएँ, चुनें",
-        "adaptiveIconShapes": "अनुकूल आइकन आकृतियाँ",
+        "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन हमेशा गोल होंगे",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
@@ -316,7 +316,7 @@ const translations = {
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
         "editShortcutsList": "শর্টকাট সম্পাদনা তালিকা",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
-        "adaptiveIconShapes": "অ্যাডাপ্টিভ আইকন আকার",
+        "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
         "adaptiveIconInfoText": "শর্টকাট আইকন সর্বদা গোলাকার থাকবে",
         "ai_tools_button": "AI সরঞ্জাম",
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট সক্রিয়/নিষ্ক্রিয় করুন",
@@ -372,6 +372,56 @@ const translations = {
         "searchWithHint": "অনুসন্ধান করুন এর মাধ্যমে",
         "ai_tools": "AI সরঞ্জাম",
         "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
+        // End of Body and New Tab Items
+    },
+  "ru": {
+        // Menu Items
+        "shortcutsText": "Ярлыки",
+        "enableShortcutsText": "Включить/Отключить ярлыки",
+        "editShortcutsText": "Редактировать ярлыки",
+        "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+        "adaptiveIconText": "Адаптивные формы значков",
+        "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
+        "digitalclocktittle": "Цифровые часы",
+        "digitalclockinfo": "Включить/Отключить цифровые часы",
+        "timeformattittle": "12-часовой формат",
+        "timeformatinfo": "Использовать 12-часовой формат времени",
+        "ai_tools_button": "ИИ Инструменты",
+        "enable_ai_tools": "Включение/Отключение ярлыков ИИ",
+        "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
+        "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
+        "search_suggestions_button": "Поисковые подсказки",
+        "search_suggestions_text": "Включить/Отключить поисковые подсказки",
+        "useproxytitletext": "Использовать прокси",
+        "useproxyText": "Если поисковые подсказки не работают",
+        "ProxyText": "CORS обход прокси",
+        "ProxySubtext": "Добавьте свой CORS-прокси",
+        "HostproxyButton": "Разместить прокси",
+        "saveproxy": "Применить",
+        "WeatherApiText": "Введите свой WeatherAPI ключ",
+        "WeatherApiSubtext": "Если погода не отображается",
+        "LearnMoreButton": "Узнать Больше",
+        "saveAPI": "Применить",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+        "months": ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        // End of Calendar
+
+        // Weather
+        "humidityText": "Влажность",
+        "feelsLike": "Ощущается",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Привет! Как дела?",
+        "enterBtn": "Поиск",
+        "searchPlaceholder": "Ваш запрос...",
+        "searchWithHint": "Искать с помощью",
+        "ai_tools": "Искусственный интеллект",
+        "userText": "Дважды нажмите для редактирования",
         // End of Body and New Tab Items
     }
 };

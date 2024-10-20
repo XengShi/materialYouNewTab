@@ -3,20 +3,6 @@ let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        //first load proxy disclaimer
-        const isfirstload = localStorage.getItem("didfirstload");
-        if (!isfirstload) {
-            showProxyDisclaimer();
-        }
-        function showProxyDisclaimer() {
-            const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
-
-            if (confirm(message)) {
-                localStorage.setItem("didfirstload", "yea");
-            }
-        }
-
-
         // Load the API key, location and proxy from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const userAPIInput = document.getElementById("userAPI");
@@ -182,7 +168,9 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
+
     // Initialize cumulative rotations
+
     let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
     let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
     let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
@@ -220,6 +208,7 @@ function updateanalogclock() {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     } if (cumulativeHourRotation == 0) {
+
         document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(361deg)`;
         hourreset = true;
@@ -292,6 +281,7 @@ function updatedigiClock() {
 
     const clocktype1 = localStorage.getItem("clocktype");
     if (clocktype1 == "digital") {
+
         document.getElementById("date").innerText = greeting;
     }
 }
@@ -1267,6 +1257,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    /* ------ Proxy ------ */
+
+    /**
+    * This function shows the proxy disclaimer.
+    */
+    function showProxyDisclaimer() {
+        const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+
+        confirm(message);
+    }
+
+
     /* ------ Event Listeners ------ */
 
     // Add change event listeners for the checkboxes
@@ -1332,6 +1334,7 @@ document.addEventListener("DOMContentLoaded", function () {
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.checked) {
+            showProxyDisclaimer();
             proxyinputField.classList.remove("inactive");
             saveActiveStatus("proxyinputField", "active");
         } else {
