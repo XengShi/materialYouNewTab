@@ -278,11 +278,10 @@ const translations = {
     },
 
     // Czech
-    // Machine translated some elements, please verify and delete this comment
     "cs": {
     // Menu Items
     "feedback": "Zpětná vazba",
-    "resetsettings": "Obnovit nastavení",
+    "resetsettings": "Resetovat nastavení",
     // Shortcuts
     "shortcutsText": "Zkratky",
     "enableShortcutsText": "Povolí/zakáže zkratky",
@@ -292,12 +291,12 @@ const translations = {
     "adaptiveIconText": "Adaptivní tvary ikon",
     "adaptiveIconInfoText": "Ikony zkratek budou vždy kulaté",
     "ai_tools_button": "AI nástroje",
-    "enable_ai_tools": "Povolí/zakáže zkratky nástrojů AI",
+    "enable_ai_tools": "Povolí/zakáže zkratky AI nástrojů",
     // Digital Clock
     "digitalclocktittle": "Digitální hodiny",
     "digitalclockinfo": "Povolí/zakáže digitální hodiny",
     "timeformattittle": "Použít 12hodinový formát",
-    "timeformatinfo": "Použít 12hodinový formát času",
+    "timeformatinfo": "Použije 12hodinový formát času",
     // Misc
     "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
     "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
@@ -305,23 +304,23 @@ const translations = {
     "search_suggestions_text": "Povolí/zakáže návrhy vyhledávání",
     // Proxy
     "useproxytitletext": "Obcházení proxy",
-    "useproxyText": "Pokud návrhy vyhledávání nefungují",
+    "useproxyText": "Pokud nefungují návrhy vyhledávání",
     "ProxyText": "Proxy pro obcházení CORS",
     "ProxySubtext": "Přidejte vlastní proxy pro obcházení CORS",
-    "HostproxyButton": "Hostit vlastní proxy",
+    "HostproxyButton": "Provozování vlastní proxy",
     "saveproxy": "Uložit",
     // Location
     "UserLocText": "Zadejte svou polohu",
-    "UserLocSubtext": "Pokud není správná poloha počasí",
-    "userLoc": "Vaše poloha (Město/Šířka,Délka)",
-    "InputOptionsButton": "Možnosti vstupu",
+    "UserLocSubtext": "Pokud není poloha počasí správná",
+    "userLoc": "Vaše poloha (město / zeměpisná šířka, zeměpisná délka)",
+    "InputOptionsButton": "Co lze zadat",
     "saveLoc": "Uložit",
     // Weather
     "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
     "WeatherApiSubtext": "Pokud nefunguje funkce počasí",
     "userAPI": "Váš klíč k WeatherAPI",
     "LearnMoreButton": "Zjistit více",
-    "saveAPI": "Uložit API",
+    "saveAPI": "Uložit",
     // End of Menu Items
 
     // Body Items
@@ -342,7 +341,7 @@ const translations = {
     "searchPlaceholder": "Zadejte hledaný výraz...",
     "searchWithHint": "Vyhledávat prostřednictvím",
     "ai_tools": "AI nástroje",
-    "userText": "Dvojklikem upravit",
+    "userText": "Upravíte dvojklikem",
     // End of Body and New Tab Items
 },
         
