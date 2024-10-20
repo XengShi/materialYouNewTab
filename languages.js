@@ -2,14 +2,45 @@
 const translations = {
     "en": {
         // Menu Items
+        "feedback": "Feedback",
+        "resetsettings": "Reset Settings",
+        // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Enable/disable shortcuts",
+        "editShortcutsText": "Edit Shortcuts",
+        "editShortcutsList": "Edit Shortcuts",
+        "shortcutsInfoText": "Choose which shortcuts get shown",
+        "adaptiveIconShapes": "Adaptive Icon Shapes",
+        "adaptiveIconInfoText": "Shortcut Icons will always be round",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Enable/disable AI Tools shortcuts",
+        // Digital Clock
+        "digitalclocktittle": "Digital Clock",
+        "digitalclockinfo": "Enable/disable the Digital Clock",
+        "timeformattittle": "Use 12h Format",
+        "timeformatinfo": "Use 12 hour time format",
+        // Misc
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to see the updates",
+        "search_suggestions_button": "Search Suggestions",
+        "search_suggestions_text": "Enable/disable Search Suggestions",
+        // Proxy
+        "useproxytitletext": "Proxy Bypass",
+        "useproxyText": "If search suggestions isn't working",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "Add your own CORS Bypass Proxy",
+        "HostproxyButton": "Host Your Own Proxy",
+        "saveproxy": "Enter",
+        // Location
+        "UserLocText": "Enter your location",
+        "UserLocSubtext": "If the weather location isn't correct",
+        "userLoc": "Your location (City/Latitude,Longitude)",
+        "InputOptionsButton": "Input Options",
+        "saveLoc": "Enter",
+        // Weather
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
+        "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn More",
         "saveAPI": "Enter",
         // End of Menu Items
@@ -23,6 +54,7 @@ const translations = {
         // Weather
         "humidityText": "Humidity",
         "feelsLike": "Feels",
+        "location": "Earth",
         // End of Weather
 
         // New Tab Item
@@ -33,6 +65,8 @@ const translations = {
         "ai_tools": "AI Tools",
         "userText": "Double tap to edit",
         // End of Body and New Tab Items
+
+        // toDo for "menuCloseButton:hover::after": "Close",
     },
     "pt": {
         // Menu Items
@@ -104,36 +138,69 @@ const translations = {
     },
     "hi": {
         // Menu Items
+        "feedback": "प्रतिक्रिया",
+        "resetsettings": "सेटिंग्स रीसेट करें",
+        // later ----> "menuCloseButton:hover::after": "बंद करें",
+        // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
+        "editShortcutsText": "शॉर्टकट्स संपादित करें",
+        "editShortcutsList": "शॉर्टकट्स संपादित करें",
+        "shortcutsInfoText": "कौन से शॉर्टकट्स दिखाए जाएँ, चुनें",
+        "adaptiveIconShapes": "अनुकूल आइकन आकृतियाँ",
+        "adaptiveIconInfoText": "शॉर्टकट आइकन हमेशा गोल होंगे",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
+        // Digital Clock
+        "digitalclocktittle": "डिजिटल घड़ी",
+        "digitalclockinfo": "डिजिटल घड़ी को सक्षम/अक्षम करें",
+        "timeformattittle": "12 घंटे का प्रारूप उपयोग करें",
+        "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
+        // Misc
         "fahrenheitCelsiusCheckbox": "तापमान फारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
+        "search_suggestions_button": "खोज सुझाव",
+        "search_suggestions_text": "खोज सुझाव सक्षम/अक्षम करें",
+        // Proxy
+        "useproxytitletext": "प्रॉक्सी बायपास",
+        "useproxyText": "यदि खोज सुझाव काम नहीं कर रहे हैं",
+        "ProxyText": "CORS बायपास प्रॉक्सी",
+        "ProxySubtext": "अपना CORS बायपास प्रॉक्सी जोड़ें",
+        "HostproxyButton": "अपना प्रॉक्सी संचालित करें",
+        "saveproxy": "दर्ज करें",
+        // Location
+        "UserLocText": "अपना स्थान दर्ज करें",
+        "UserLocSubtext": "यदि मौसम स्थान सटीक नहीं है",
+        "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)",
+        "InputOptionsButton": "इनपुट विकल्प",
+        "saveLoc": "दर्ज करें",
+        // Weather
         "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
-        "WeatherApiSubtext": "यदि मौसम कार्यक्षमता काम नहीं कर रही है",
+        "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
+        "userAPI": "आपकी मौसम API कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "दर्ज करें",
         // End of Menu Items
 
         // Body Items
         // Calendar
-        "days": ['सोमवार', 'मंगलवार', 'बुधवार', 'बिहिवार', 'शुक्रवार', 'शनिवार', 'रविवार'],
+        "days": ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'], // Truncated for display
+        // "days": ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'], // Full
         "months": ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
-        // End of Calendar
 
         // Weather
-        "humidityText": "हवा में नमी",
+        "humidityText": "नमी",
         "feelsLike": "महसूस",
+        "location": "पृथ्वी",
         // End of Weather
 
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "सर्च करें",
-        "searchPlaceholder": "यहाँ लिखे...",
+        "enterBtn": "दर्ज करें",
+        "searchPlaceholder": "यहाँ लिखें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
-        "userText": "यहाँ अपना टेक्स्ट लिखें",
+        "userText": "संपादित करने के लिए दो बार टैप करें",
         // End of Body and New Tab Items
     },
     "cs": {
@@ -277,16 +344,48 @@ const translations = {
 function applyLanguage(lang) {
     if (translations[lang]) {
         // Menu Items
+        document.getElementById('feedback').innerText = translations[lang].feedback;
+        document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
+        document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
+        document.getElementById('editShortcutsList').innerText = translations[lang].editShortcutsList;
+        document.getElementById('shortcutsInfoText').innerText = translations[lang].shortcutsInfoText;
+        document.getElementById('adaptiveIconShapes').innerText = translations[lang].adaptiveIconShapes;
+        document.getElementById('adaptiveIconInfoText').innerText = translations[lang].adaptiveIconInfoText;
         document.getElementById('ai_tools_button').innerText = translations[lang].ai_tools_button;
         document.getElementById('enable_ai_tools').innerText = translations[lang].enable_ai_tools;
         document.getElementById('fahrenheitCelsiusCheckbox').innerText = translations[lang].fahrenheitCelsiusCheckbox;
         document.getElementById('fahrenheitCelsiusText').innerText = translations[lang].fahrenheitCelsiusText;
+        document.getElementById('search_suggestions_button').innerText = translations[lang].search_suggestions_button;
+        document.getElementById('search_suggestions_text').innerText = translations[lang].search_suggestions_text;
+
+        // Clock
+        document.getElementById('digitalclocktittle').innerText = translations[lang].digitalclocktittle;
+        document.getElementById('digitalclockinfo').innerText = translations[lang].digitalclockinfo;
+        document.getElementById('timeformattittle').innerText = translations[lang].timeformattittle;
+        document.getElementById('timeformatinfo').innerText = translations[lang].timeformatinfo;
+
+        // Proxy
+        document.getElementById('useproxytitletext').innerText = translations[lang].useproxytitletext;
+        document.getElementById('useproxyText').innerText = translations[lang].useproxyText;
+        document.getElementById('ProxyText').innerText = translations[lang].ProxyText;
+        document.getElementById('ProxySubtext').innerText = translations[lang].ProxySubtext;
+        document.getElementById('HostproxyButton').innerText = translations[lang].HostproxyButton;
+        document.getElementById('saveproxy').innerText = translations[lang].saveproxy;
+
+        // Weather
+        document.getElementById('UserLocText').innerText = translations[lang].UserLocText;
+        document.getElementById('UserLocSubtext').innerText = translations[lang].UserLocSubtext;
+        document.getElementById('userLoc').placeholder = translations[lang].userLoc;
+        document.getElementById('InputOptionsButton').innerText = translations[lang].InputOptionsButton;
+        document.getElementById('saveLoc').innerText = translations[lang].saveLoc;
         document.getElementById('WeatherApiText').innerText = translations[lang].WeatherApiText;
         document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
+        document.getElementById('userAPI').placeholder = translations[lang].userAPI;
         document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
         document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
+
         // End of Menu Items
 
         // Body Items
@@ -298,9 +397,9 @@ function applyLanguage(lang) {
         document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
-        // document.getElementById("humidityText").textContent = translations[lang].humidityText;
-        document.getElementById("feelsLike").textContent = translations[lang].feelsLike;
-        // End of Weather
+        // document.getElementById("humidityText").innerText = translations[lang].humidityText;
+        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
+        document.getElementById("location").innerText = translations[lang].location;
 
         // End of Body Items
 
