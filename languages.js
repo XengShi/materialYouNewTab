@@ -247,9 +247,9 @@ const translations = {
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "दर्ज करें",
         // Weather
-        "WeatherApiText": "अपनी खुद की मौसम API कुंजी दर्ज करें",
+        "WeatherApiText": "अपनी खुद की WeatherAPI कुंजी दर्ज करें",
         "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
-        "userAPI": "आपकी मौसम API कुंजी",
+        "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "दर्ज करें",
         // End of Menu Items
