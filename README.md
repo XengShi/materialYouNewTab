@@ -23,6 +23,8 @@ You can download the latest version of the extension by clicking the button belo
 
 [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/releases)
 
+Additionally, you can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
+
 ### Installation 
 
 #### Chromium Based Browsers
