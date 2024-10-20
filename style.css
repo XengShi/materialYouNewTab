@@ -299,7 +299,7 @@ body {
     font-size: 1.4rem;
 }
 .digidate{
-    fill:var(--darkerColor-blue)
+    fill:var(--textColorDark-blue)
 }
 .digiclock {
     text-anchor:middle;
