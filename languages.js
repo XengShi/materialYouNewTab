@@ -68,74 +68,146 @@ const translations = {
 
         // toDo for "menuCloseButton:hover::after": "Close",
     },
+
+    // Portuguese
+    // Machine translated some elements, please verify and delete this comment
     "pt": {
-        // Menu Items
-        "shortcutsText": "Atalhos",
-        "enableShortcutsText": "Ativar/desativar atalhos",
-        "ai_tools_button": "Ferramentas de IA",
-        "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
-        "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
-        "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
-        "WeatherApiText": "Insira sua propria API de Clima",
-        "WeatherApiSubtext": "Se a funcionalidade de clima não estiver funcionando",
-        "LearnMoreButton": "Saiba Mais",
-        "saveAPI": "Salvar API",
-        // End of Menu Items
+    // Menu Items
+    "feedback": "Feedback",
+    "resetsettings": "Redefinir Configurações",
+    // Shortcuts
+    "shortcutsText": "Atalhos",
+    "enableShortcutsText": "Ativar/desativar atalhos",
+    "editShortcutsText": "Editar Atalhos",
+    "editShortcutsList": "Editar Atalhos",
+    "shortcutsInfoText": "Escolha quais atalhos serão exibidos",
+    "adaptiveIconText": "Formas de Ícone Adaptativo",
+    "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
+    "ai_tools_button": "Ferramentas de IA",
+    "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
+    // Digital Clock
+    "digitalclocktittle": "Relógio Digital",
+    "digitalclockinfo": "Ativar/desativar o Relógio Digital",
+    "timeformattittle": "Usar Formato de 12h",
+    "timeformatinfo": "Usar formato de hora de 12 horas",
+    // Misc
+    "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
+    "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
+    "search_suggestions_button": "Sugestões de Pesquisa",
+    "search_suggestions_text": "Ativar/desativar Sugestões de Pesquisa",
+    // Proxy
+    "useproxytitletext": "Bypass de Proxy",
+    "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
+    "ProxyText": "Proxy de Bypass CORS",
+    "ProxySubtext": "Adicione seu próprio Proxy de Bypass CORS",
+    "HostproxyButton": "Hospede Seu Próprio Proxy",
+    "saveproxy": "Salvar",
+    // Location
+    "UserLocText": "Insira sua localização",
+    "UserLocSubtext": "Se a localização do clima não estiver correta",
+    "userLoc": "Sua localização (Cidade/Aletitude,Longitude)",
+    "InputOptionsButton": "Opções de Entrada",
+    "saveLoc": "Salvar",
+    // Weather
+    "WeatherApiText": "Insira sua própria chave da API de Clima",
+    "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
+    "userAPI": "Sua chave da WeatherAPI",
+    "LearnMoreButton": "Saiba Mais",
+    "saveAPI": "Salvar API",
+    // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
-        "months": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        // End of Calendar
+    // Body Items
+    // Calendar
+    "days": ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+    "months": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    // End of Calendar
 
-        // Weather
-        "humidityText": "Umidade",
-        "feelsLike": "Sensação de",
-        // End of Weather
+    // Weather
+    "humidityText": "Umidade",
+    "feelsLike": "Sensação de",
+    "location": "Terra",
+    // End of Weather
 
-        // New Tab Item
-        "conditionText": "Olá! Como está hoje?",
-        "enterBtn": "Pesquisar",
-        "searchPlaceholder": "Digite sua pesquisa...",
-        "searchWithHint": "Pesquisar Com",
-        "ai_tools": "Ferramentas de IA",
-        "userText": "Toque para editar",
-        // End of Body and New Tab Items
-    },
+    // New Tab Item
+    "conditionText": "Olá! Como você está hoje?",
+    "enterBtn": "Entrar",
+    "searchPlaceholder": "Digite sua consulta...",
+    "searchWithHint": "Pesquisar Com",
+    "ai_tools": "Ferramentas de IA",
+    "userText": "Toque duas vezes para editar",
+    // End of Body and New Tab Items
+},
+
+    // Chinese
+    // Machine translated some elements, please verify and delete this comment
     "zh": {
-        // Menu Items
-        "shortcutsText": "快捷方式",
-        "enableShortcutsText": "启用/禁用快捷方式",
-        "ai_tools_button": "AI工具",
-        "enable_ai_tools": "启用/禁用AI工具快捷方式",
-        "fahrenheitCelsiusCheckbox": "切换到华氏温度",
-        "fahrenheitCelsiusText": "刷新页面以查看更新",
-        "WeatherApiText": "输入您自己的天气API密钥",
-        "WeatherApiSubtext": "如果天气功能无法正常工作",
-        "LearnMoreButton": "了解更多",
-        "saveAPI": "保存",
-        // End of Menu Items
+    // Menu Items
+    "feedback": "反馈",
+    "resetsettings": "重置设置",
+    // Shortcuts
+    "shortcutsText": "快捷方式",
+    "enableShortcutsText": "启用/禁用快捷方式",
+    "editShortcutsText": "编辑快捷方式",
+    "editShortcutsList": "编辑快捷方式",
+    "shortcutsInfoText": "选择要显示的快捷方式",
+    "adaptiveIconText": "自适应图标形状",
+    "adaptiveIconInfoText": "快捷方式图标将始终为圆形",
+    "ai_tools_button": "AI工具",
+    "enable_ai_tools": "启用/禁用AI工具快捷方式",
+    // Digital Clock
+    "digitalclocktittle": "数字时钟",
+    "digitalclockinfo": "启用/禁用数字时钟",
+    "timeformattittle": "使用12小时格式",
+    "timeformatinfo": "使用12小时制时间格式",
+    // Misc
+    "fahrenheitCelsiusCheckbox": "切换到华氏温度",
+    "fahrenheitCelsiusText": "刷新页面以查看更新",
+    "search_suggestions_button": "搜索建议",
+    "search_suggestions_text": "启用/禁用搜索建议",
+    // Proxy
+    "useproxytitletext": "代理绕过",
+    "useproxyText": "如果搜索建议无法正常工作",
+    "ProxyText": "CORS绕过代理",
+    "ProxySubtext": "添加您自己的CORS绕过代理",
+    "HostproxyButton": "托管您自己的代理",
+    "saveproxy": "保存",
+    // Location
+    "UserLocText": "输入您的位置",
+    "UserLocSubtext": "如果天气位置不正确",
+    "userLoc": "您的位置（城市/纬度，经度）",
+    "InputOptionsButton": "输入选项",
+    "saveLoc": "保存",
+    // Weather
+    "WeatherApiText": "输入您自己的天气API密钥",
+    "WeatherApiSubtext": "如果天气功能无法正常工作",
+    "userAPI": "您的天气API密钥",
+    "LearnMoreButton": "了解更多",
+    "saveAPI": "保存API",
+    // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-        "months": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        // End of Calendar
+    // Body Items
+    // Calendar
+    "days": ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+    "months": ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    // End of Calendar
 
-        // Weather
-        "humidityText": "湿度",
-        "feelsLike": "体感",
-        // End of Weather
+    // Weather
+    "humidityText": "湿度",
+    "feelsLike": "体感温度",
+    "location": "地球",
+    // End of Weather
 
-        // New Tab Item
-        "conditionText": "你好！今天怎么样？",
-        "enterBtn": "搜索",
-        "searchPlaceholder": "输入搜索内容...",
-        "searchWithHint": "引擎",
-        "ai_tools": "AI工具",
-        "userText": "双击可编辑",
-        // End of Body and New Tab Items
-    },
+    // New Tab Item
+    "conditionText": "你好！今天怎么样？",
+    "enterBtn": "输入",
+    "searchPlaceholder": "输入搜索内容...",
+    "searchWithHint": "搜索引擎",
+    "ai_tools": "AI工具",
+    "userText": "双击可编辑",
+    // End of Body and New Tab Items
+},
+
+    // Hindi
     "hi": {
         // Menu Items
         "feedback": "प्रतिक्रिया",
@@ -197,114 +269,222 @@ const translations = {
 
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "दर्ज करें",
+        "enterBtn": "सर्च करें",
         "searchPlaceholder": "यहाँ लिखें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
-        "userText": "संपादित करने के लिए दो बार टैप करें",
+        "userText": "यहाँ अपना टेक्स्ट लिखें",
         // End of Body and New Tab Items
     },
+
+    // Czech
+    // Machine translated some elements, please verify and delete this comment
     "cs": {
-        // Menu Items
-        "shortcutsText": "Zkratky",
-        "enableShortcutsText": "Povolí/zakáže zkratky",
-        "ai_tools_button": "AI nástroje",
-        "enable_ai_tools": "Povolí/zakáže zkratky nástrojů AI",
-        "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
-        "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
-        "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
-        "WeatherApiSubtext": "Pokud nefunguje funkce počasí",
-        "LearnMoreButton": "Zjistit více",
-        "saveAPI": "Uložit",
-        // End of Menu Items
+    // Menu Items
+    "feedback": "Zpětná vazba",
+    "resetsettings": "Obnovit nastavení",
+    // Shortcuts
+    "shortcutsText": "Zkratky",
+    "enableShortcutsText": "Povolí/zakáže zkratky",
+    "editShortcutsText": "Upravit zkratky",
+    "editShortcutsList": "Upravit zkratky",
+    "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
+    "adaptiveIconText": "Adaptivní tvary ikon",
+    "adaptiveIconInfoText": "Ikony zkratek budou vždy kulaté",
+    "ai_tools_button": "AI nástroje",
+    "enable_ai_tools": "Povolí/zakáže zkratky nástrojů AI",
+    // Digital Clock
+    "digitalclocktittle": "Digitální hodiny",
+    "digitalclockinfo": "Povolí/zakáže digitální hodiny",
+    "timeformattittle": "Použít 12hodinový formát",
+    "timeformatinfo": "Použít 12hodinový formát času",
+    // Misc
+    "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
+    "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
+    "search_suggestions_button": "Návrhy vyhledávání",
+    "search_suggestions_text": "Povolí/zakáže návrhy vyhledávání",
+    // Proxy
+    "useproxytitletext": "Obcházení proxy",
+    "useproxyText": "Pokud návrhy vyhledávání nefungují",
+    "ProxyText": "Proxy pro obcházení CORS",
+    "ProxySubtext": "Přidejte vlastní proxy pro obcházení CORS",
+    "HostproxyButton": "Hostit vlastní proxy",
+    "saveproxy": "Uložit",
+    // Location
+    "UserLocText": "Zadejte svou polohu",
+    "UserLocSubtext": "Pokud není správná poloha počasí",
+    "userLoc": "Vaše poloha (Město/Šířka,Délka)",
+    "InputOptionsButton": "Možnosti vstupu",
+    "saveLoc": "Uložit",
+    // Weather
+    "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
+    "WeatherApiSubtext": "Pokud nefunguje funkce počasí",
+    "userAPI": "Váš klíč k WeatherAPI",
+    "LearnMoreButton": "Zjistit více",
+    "saveAPI": "Uložit API",
+    // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
-        "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
-        // End of Calendar
-        // Weather
-        "humidityText": "Vlhkost",
-        "feelsLike": "Teplota",
-        // End of Weather
+    // Body Items
+    // Calendar
+    "days": ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'],
+    "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+    // End of Calendar
 
-        // New Tab Item
-        "conditionText": "Dobrý den! Jak se máte?",
-        "enterBtn": "Vyhledat",
-        "searchPlaceholder": "Zadejte hledaný výraz...",
-        "searchWithHint": "Vyhledávat prostřednictvím",
-        "ai_tools": "AI nástroje",
-        "userText": "Upravit dvojklikem",
-        // End of Body and New Tab Items
-    },
+    // Weather
+    "humidityText": "Vlhkost",
+    "feelsLike": "Pocitová teplota",
+    "location": "Země",
+    // End of Weather
+
+    // New Tab Item
+    "conditionText": "Dobrý den! Jak se máte?",
+    "enterBtn": "Vyhledat",
+    "searchPlaceholder": "Zadejte hledaný výraz...",
+    "searchWithHint": "Vyhledávat prostřednictvím",
+    "ai_tools": "AI nástroje",
+    "userText": "Dvojklikem upravit",
+    // End of Body and New Tab Items
+},
+        
+    // Italian
+    // Machine translated some elements, please verify and delete this comment
     "it": {
-        // Menu Items
-        "shortcutsText": "Scorciatoie",
-        "enableShortcutsText": "Abilita/disabilita scorciatoie",
-        "ai_tools_button": "Strumenti AI",
-        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
-        "fahrenheitCelciusCheckbox": "Passa a Fahrenheit",
-        "fahrenheitCelciusText": "Ricarica la pagina per vedere gli aggiornamenti",
-        "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
-        "WeatherApiSubtext": "Se la funzionalità meteo non funziona",
-        "LearnMoreButton": "Scopri di più",
-        "saveAPI": "Invia",
-        // End of Menu Items
+    // Menu Items
+    "feedback": "Feedback",
+    "resetsettings": "Reimposta Impostazioni",
+    // Shortcuts
+    "shortcutsText": "Scorciatoie",
+    "enableShortcutsText": "Abilita/disabilita scorciatoie",
+    "editShortcutsText": "Modifica Scorciatoie",
+    "editShortcutsList": "Modifica Scorciatoie",
+    "shortcutsInfoText": "Scegli quali scorciatoie mostrare",
+    "adaptiveIconText": "Forme di Icona Adattiva",
+    "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
+    "ai_tools_button": "Strumenti AI",
+    "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+    // Digital Clock
+    "digitalclocktittle": "Orologio Digitale",
+    "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
+    "timeformattittle": "Usa formato 12h",
+    "timeformatinfo": "Usa formato orario a 12 ore",
+    // Misc
+    "fahrenheitCelciusCheckbox": "Passa a Fahrenheit",
+    "fahrenheitCelciusText": "Ricarica la pagina per vedere gli aggiornamenti",
+    "search_suggestions_button": "Suggerimenti di Ricerca",
+    "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
+    // Proxy
+    "useproxytitletext": "Bypass Proxy",
+    "useproxyText": "Se i suggerimenti di ricerca non funzionano",
+    "ProxyText": "Proxy di Bypass CORS",
+    "ProxySubtext": "Aggiungi il tuo Proxy di Bypass CORS",
+    "HostproxyButton": "Hosta il Tuo Proxy",
+    "saveproxy": "Invia",
+    // Location
+    "UserLocText": "Inserisci la tua posizione",
+    "UserLocSubtext": "Se la posizione meteo non è corretta",
+    "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
+    "InputOptionsButton": "Opzioni di Inserimento",
+    "saveLoc": "Invia",
+    // Weather
+    "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
+    "WeatherApiSubtext": "Se la funzionalità meteo non funziona",
+    "userAPI": "La tua chiave WeatherAPI",
+    "LearnMoreButton": "Scopri di più",
+    "saveAPI": "Invia",
+    // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
-        "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
-        // End of Calendar
+    // Body Items
+    // Calendar
+    "days": ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+    "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+    // End of Calendar
 
-        // Weather
-        "humidityText": "Umidità",
-        "feelsLike": "Percepito",
-        // End of Weather
+    // Weather
+    "humidityText": "Umidità",
+    "feelsLike": "Percepito",
+    "location": "Terra",
+    // End of Weather
 
-        // New Tab Item
-        "conditionText": "Ciao! Come stai oggi?",
-        "enterBtn": "Invia",
-        "searchPlaceholder": "Cerca...",
-        "searchWithHint": "Cerca con",
-        "ai_tools": "Strumenti AI",
-        "userText": "Clicca per modificare",
-        // End of Body and New Tab Items
-    },
+    // New Tab Item
+    "conditionText": "Ciao! Come stai oggi?",
+    "enterBtn": "Invia",
+    "searchPlaceholder": "Cerca...",
+    "searchWithHint": "Cerca con",
+    "ai_tools": "Strumenti AI",
+    "userText": "Clicca per modificare",
+    // End of Body and New Tab Items
+},
+
+    // Turkish
+    // Machine translated some elements, please verify and delete this commenty
     "tr": {
-        // Menu Items
-        "shortcutsText": "Kısayollar",
-        "enableShortcutsText": "Kısayolları etkinleştir/devre dışı bırak",
-        "ai_tools_button": "AI Araçları",
-        "enable_ai_tools": "AI Araçları kısayollarını etkinleştir/devre dışı bırak",
-        "fahrenheitCelsiusCheckbox": "Fahrenheit'a geç",
-        "fahrenheitCelsiusText": "Sayfayı yenilemek güncellemeleri görmek için",
-        "WeatherApiText": "Hava durumu API anahtarınızı girin",
-        "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
-        "LearnMoreButton": "Daha fazla bilgi edinin",
-        "saveAPI": "Gönder",
-        // End of Menu Items
+    // Menu Items
+    "feedback": "Geri Bildirim",
+    "resetsettings": "Ayarları Sıfırla",
+    // Shortcuts
+    "shortcutsText": "Kısayollar",
+    "enableShortcutsText": "Kısayolları etkinleştir/devre dışı bırak",
+    "editShortcutsText": "Kısayolları Düzenle",
+    "editShortcutsList": "Kısayolları Düzenle",
+    "shortcutsInfoText": "Hangi kısayolların gösterileceğini seçin",
+    "adaptiveIconText": "Uyarlanabilir İkon Şekilleri",
+    "adaptiveIconInfoText": "Kısayol İkonları her zaman yuvarlak olacak",
+    "ai_tools_button": "AI Araçları",
+    "enable_ai_tools": "AI Araçları kısayollarını etkinleştir/devre dışı bırak",
+    // Digital Clock
+    "digitalclocktittle": "Dijital Saat",
+    "digitalclockinfo": "Dijital Saati etkinleştir/devre dışı bırak",
+    "timeformattittle": "12 saat Formatını Kullanın",
+    "timeformatinfo": "12 saat zaman formatını kullanın",
+    // Misc
+    "fahrenheitCelsiusCheckbox": "Fahrenheit'a geç",
+    "fahrenheitCelsiusText": "Güncellemeleri görmek için sayfayı yenileyin",
+    "search_suggestions_button": "Arama Önerileri",
+    "search_suggestions_text": "Arama Önerilerini etkinleştir/devre dışı bırak",
+    // Proxy
+    "useproxytitletext": "Proxy Atlatma",
+    "useproxyText": "Eğer arama önerileri çalışmıyorsa",
+    "ProxyText": "CORS Atlatma Proxy",
+    "ProxySubtext": "Kendi CORS Atlatma Proxy'nizi ekleyin",
+    "HostproxyButton": "Kendi Proxy'nizi Barındırın",
+    "saveproxy": "Gönder",
+    // Location
+    "UserLocText": "Konumunuzu girin",
+    "UserLocSubtext": "Hava durumu konumu doğru değilse",
+    "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
+    "InputOptionsButton": "Girdi Seçenekleri",
+    "saveLoc": "Gönder",
+    // Weather
+    "WeatherApiText": "Kendi Hava Durumu API anahtarınızı girin",
+    "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
+    "userAPI": "Hava Durumu API anahtarınız",
+    "LearnMoreButton": "Daha Fazla Bilgi Edinin",
+    "saveAPI": "API'yi Kaydet",
+    // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
-        "months": ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
-        // End of Calendar
+    // Body Items
+    // Calendar
+    "days": ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+    "months": ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+    // End of Calendar
 
-        // Weather
-        "humidityText": "Nem",
-        "feelsLike": "Hissedilen",
-        // End of Weather
+    // Weather
+    "humidityText": "Nem",
+    "feelsLike": "Hissedilen",
+    "location": "Dünya",
+    // End of Weather
 
-        // New Tab Item
-        "conditionText": "Merhaba! Nasılsın?",
-        "enterBtn": "Gönder",
-        "searchPlaceholder": "Aranacak şey...",
-        "searchWithHint": "Arama yap",
-        "ai_tools": "AI Araçları",
-        "userText": "Düzenlemek için çift tıklayın",
-        // End of Body and New Tab Items
-    },
+    // New Tab Item
+    "conditionText": "Merhaba! Bugün nasılsın?",
+    "enterBtn": "Gönder",
+    "searchPlaceholder": "Aramanız...",
+    "searchWithHint": "ile Ara",
+    "ai_tools": "AI Araçları",
+    "userText": "Düzenlemek için çift dokunun",
+    // End of Body and New Tab Items
+},
+
+    // Bengali
     "bn": {
         // Menu Items
         "feedback": "প্রতিক্রিয়া",
@@ -369,61 +549,79 @@ const translations = {
         "conditionText": "হ্যালো! আপনি আজ কেমন আছেন?",
         "enterBtn": "প্রবেশ করুন",
         "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
-        "searchWithHint": "অনুসন্ধান করুন এর মাধ্যমে",
+        "searchWithHint": "অনুসন্ধান করুন",
         "ai_tools": "AI সরঞ্জাম",
         "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
         // End of Body and New Tab Items
     },
-  "ru": {
-        // Menu Items
-        "shortcutsText": "Ярлыки",
-        "enableShortcutsText": "Включить/Отключить ярлыки",
-        "editShortcutsText": "Редактировать ярлыки",
-        "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
-        "adaptiveIconText": "Адаптивные формы значков",
-        "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
-        "digitalclocktittle": "Цифровые часы",
-        "digitalclockinfo": "Включить/Отключить цифровые часы",
-        "timeformattittle": "12-часовой формат",
-        "timeformatinfo": "Использовать 12-часовой формат времени",
-        "ai_tools_button": "ИИ Инструменты",
-        "enable_ai_tools": "Включение/Отключение ярлыков ИИ",
-        "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
-        "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
-        "search_suggestions_button": "Поисковые подсказки",
-        "search_suggestions_text": "Включить/Отключить поисковые подсказки",
-        "useproxytitletext": "Использовать прокси",
-        "useproxyText": "Если поисковые подсказки не работают",
-        "ProxyText": "CORS обход прокси",
-        "ProxySubtext": "Добавьте свой CORS-прокси",
-        "HostproxyButton": "Разместить прокси",
-        "saveproxy": "Применить",
-        "WeatherApiText": "Введите свой WeatherAPI ключ",
-        "WeatherApiSubtext": "Если погода не отображается",
-        "LearnMoreButton": "Узнать Больше",
-        "saveAPI": "Применить",
-        // End of Menu Items
 
-        // Body Items
-        // Calendar
-        "days": ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-        "months": ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        // End of Calendar
+    // Russian
+"ru": {
+    // Menu Items
+    "feedback": "Обратная связь",
+    "resetsettings": "Сброс настроек",
+    // Shortcuts
+    "shortcutsText": "Ярлыки",
+    "enableShortcutsText": "Включить/Отключить ярлыки",
+    "editShortcutsText": "Редактировать ярлыки",
+    "editShortcutsList": "Редактировать ярлыки",
+    "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+    "adaptiveIconText": "Адаптивные формы значков",
+    "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
+    "ai_tools_button": "Инструменты ИИ",
+    "enable_ai_tools": "Включить/Отключить ярлыки инструментов ИИ",
+    // Digital Clock
+    "digitalclocktittle": "Цифровые часы",
+    "digitalclockinfo": "Включить/Отключить цифровые часы",
+    "timeformattittle": "12-часовой формат",
+    "timeformatinfo": "Использовать 12-часовой формат времени",
+    // Misc
+    "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
+    "fahrenheitCelsiusText": "Обновите страницу, чтобы увидеть изменения",
+    "search_suggestions_button": "Поисковые подсказки",
+    "search_suggestions_text": "Включить/Отключить поисковые подсказки",
+    // Proxy
+    "useproxytitletext": "Использовать прокси",
+    "useproxyText": "Если поисковые подсказки не работают",
+    "ProxyText": "CORS обход прокси",
+    "ProxySubtext": "Добавьте свой CORS-прокси",
+    "HostproxyButton": "Разместить свой прокси",
+    "saveproxy": "Применить",
+    // Location
+    "UserLocText": "Введите ваше местоположение",
+    "UserLocSubtext": "Если местоположение для погоды неверно",
+    "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
+    "InputOptionsButton": "Опции ввода",
+    "saveLoc": "Применить",
+    // Weather
+    "WeatherApiText": "Введите свой ключ WeatherAPI",
+    "WeatherApiSubtext": "Если функция погоды не работает",
+    "userAPI": "Ваш ключ WeatherAPI",
+    "LearnMoreButton": "Узнать больше",
+    "saveAPI": "Применить",
+    // End of Menu Items
 
-        // Weather
-        "humidityText": "Влажность",
-        "feelsLike": "Ощущается",
-        // End of Weather
+    // Body Items
+    // Calendar
+    "days": ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+    "months": ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    // End of Calendar
 
-        // New Tab Item
-        "conditionText": "Привет! Как дела?",
-        "enterBtn": "Поиск",
-        "searchPlaceholder": "Ваш запрос...",
-        "searchWithHint": "Искать с помощью",
-        "ai_tools": "Искусственный интеллект",
-        "userText": "Дважды нажмите для редактирования",
-        // End of Body and New Tab Items
-    }
+    // Weather
+    "humidityText": "Влажность",
+    "feelsLike": "Ощущается как",
+    "location": "Земля",
+    // End of Weather
+
+    // New Tab Item
+    "conditionText": "Привет! Как ты сегодня?",
+    "enterBtn": "Ввод",
+    "searchPlaceholder": "Ваш запрос...",
+    "searchWithHint": "Искать с помощью",
+    "ai_tools": "Инструменты ИИ",
+    "userText": "Дважды нажмите для редактирования",
+    // End of Body and New Tab Items
+}
 };
 
 // Function to apply the language to the page
