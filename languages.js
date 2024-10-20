@@ -681,8 +681,8 @@ function applyLanguage(lang) {
 
         // Weather
         // document.getElementById("humidityText").innerText = translations[lang].humidityText;
-        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
-        document.getElementById("location").innerText = translations[lang].location;
+        // document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
+        // document.getElementById("location").innerText = translations[lang].location;
 
         // End of Body Items
 
