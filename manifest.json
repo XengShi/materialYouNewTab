@@ -1,32 +1,19 @@
 {
-  "manifest_version": 3,
-  "name": "Material You NewTab",
-  "version": "2.0",
-  "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-  "chrome_url_overrides": {
-    "newtab": "index.html"
-  },
-  "permissions": [
-    "storage"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "icons": {
-    "48": "icon.png"
-  },
-  "action": {
-    "default_icon": "icon.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*.weatherapi.com/*",
-        "https://mynt-proxy.rhythmcorehq.com/"
-      ],
-      "js": [
-        "script.js"
-      ]
+    "manifest_version": 3,
+    "name": "Material You NewTab",
+    "version": "2.1",
+    "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
+    "permissions": [],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "48": "icon.png"
+    },
+    "action": {
+        "default_icon": "icon.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
     }
-  ]
 }
