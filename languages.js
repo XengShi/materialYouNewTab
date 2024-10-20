@@ -184,9 +184,10 @@ const translations = {
 
         // Body Items
         // Calendar
-        "days": ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'], // Truncated for display
-        // "days": ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'], // Full
+        "days": ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'],   // Truncated for display
+        // "days": ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'],  // Full
         "months": ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
+        // "months": ['जन', 'फर', 'मार्च', 'अप्र', 'मई', 'जून', 'जुला', 'अग', 'सित', 'अक्टू', 'नव', 'दिस'],   // Truncated
 
         // Weather
         "humidityText": "नमी",
@@ -306,38 +307,73 @@ const translations = {
     },
     "bn": {
         // Menu Items
+        "feedback": "প্রতিক্রিয়া",
+        "resetsettings": "সেটিংস রিসেট করুন",
+        // later ----> "menuCloseButton:hover::after": "বন্ধ করুন",
+        // Shortcuts
         "shortcutsText": "শর্টকাট",
-        "enableShortcutsText": "শর্টকাট সক্রিয়/অক্ষম করুন",
-        "ai_tools_button": "এআই-সরঞ্জাম",
-        "enable_ai_tools": "এআই সরঞ্জাম শর্টকাট সক্রিয়/অক্ষম করুন",
-        "fahrenheitCelsiusCheckbox": "ফারেনহাইটে সুইচ করুন",
-        "fahrenheitCelsiusText": "আপডেট দেখতে পেজ রিফ্রেশ করুন",
-        "WeatherApiText": "আপনার নিজস্ব আবহাওয়াএপিআই পিন লিখুন",
-        "WeatherApiSubtext": "যদি আবহাওয়া কার্যকারিতা কাজ না করে",
+        "enableShortcutsText": "শর্টকাট সক্রিয়/নিষ্ক্রিয় করুন",
+        "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
+        "editShortcutsList": "শর্টকাট সম্পাদনা তালিকা",
+        "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
+        "adaptiveIconShapes": "অ্যাডাপ্টিভ আইকন আকার",
+        "adaptiveIconInfoText": "শর্টকাট আইকন সর্বদা গোলাকার থাকবে",
+        "ai_tools_button": "AI সরঞ্জাম",
+        "enable_ai_tools": "AI সরঞ্জাম শর্টকাট সক্রিয়/নিষ্ক্রিয় করুন",
+        // Digital Clock
+        "digitalclocktittle": "ডিজিটাল ঘড়ি",
+        "digitalclockinfo": "ডিজিটাল ঘড়ি সক্রিয়/নিষ্ক্রিয় করুন",
+        "timeformattittle": "১২ ঘণ্টার ফরম্যাট ব্যবহার করুন",
+        "timeformatinfo": "১২ ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
+        // Misc
+        "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
+        "fahrenheitCelsiusText": "আপডেট দেখতে পৃষ্ঠা রিফ্রেশ করুন",
+        "search_suggestions_button": "অনুসন্ধানের পরামর্শ",
+        "search_suggestions_text": "অনুসন্ধানের পরামর্শ সক্রিয়/নিষ্ক্রিয় করুন",
+        // Proxy
+        "useproxytitletext": "প্রক্সি বাইপাস",
+        "useproxyText": "যদি অনুসন্ধানের পরামর্শ কাজ না করে",
+        "ProxyText": "CORS বাইপাস প্রক্সি",
+        "ProxySubtext": "আপনার নিজের CORS বাইপাস প্রক্সি যোগ করুন",
+        "HostproxyButton": "আপনার নিজের প্রক্সি হোস্ট করুন",
+        "saveproxy": "প্রবেশ করুন",
+        // Location
+        "UserLocText": "আপনার অবস্থান লিখুন",
+        "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
+        "userLoc": "আপনার অবস্থান (শহর/অক্ষাংশ,দ্রাঘিমাংশ)",
+        "InputOptionsButton": "ইনপুট অপশন",
+        "saveLoc": "প্রবেশ করুন",
+        // Weather
+        "WeatherApiText": "আপনার নিজস্ব WeatherAPI কী লিখুন",
+        "WeatherApiSubtext": "যদি আবহাওয়া ফিচার কাজ না করে",
+        "userAPI": "আপনার WeatherAPI কী",
         "LearnMoreButton": "আরও জানুন",
         "saveAPI": "প্রবেশ করুন",
         // End of Menu Items
 
         // Body Items
         // Calendar
-        "days": ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],
+        "days": ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পতি', 'শুক্র', 'শনি'],   // Truncated for display
+        //"days": ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],   // Full
         "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
+        // "months": ['জানু', 'ফেব', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
         // End of Calendar
 
         // Weather
         "humidityText": "আর্দ্রতা",
-        "feelsLike": "অনুভব হয়",
+        "feelsLike": "অনুভূত হয়",
+        "location": "পৃথিবী",
         // End of Weather
 
         // New Tab Item
-        "conditionText": "হ্যালো! কেমন আছেন আজ?",
+        "conditionText": "হ্যালো! আপনি আজ কেমন আছেন?",
         "enterBtn": "প্রবেশ করুন",
-        "searchPlaceholder": "আপনার প্রশ্ন...",
-        "searchWithHint": "সঙ্গে অনুসন্ধান করুন",
-        "ai_tools": "এআই টুলস",
+        "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
+        "searchWithHint": "অনুসন্ধান করুন এর মাধ্যমে",
+        "ai_tools": "AI সরঞ্জাম",
         "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
         // End of Body and New Tab Items
-    },
+    }
 };
 
 // Function to apply the language to the page
