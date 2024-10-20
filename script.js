@@ -3,18 +3,24 @@ let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load the API key from localStorage
+        // Load the API key, location and proxy from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const userAPIInput = document.getElementById("userAPI");
+        const savedLocation = localStorage.getItem("weatherLocation");
+        const userLocInput = document.getElementById("userLoc");
         const savedProxy = localStorage.getItem("proxy");
         const userProxyInput = document.getElementById("userproxy");
         if (savedApiKey) {
             userAPIInput.value = savedApiKey;
         }
+        if (savedLocation) {
+            userLocInput.value = savedLocation;
+        }
         if (savedProxy) {
             userProxyInput.value = savedProxy;
         }
         const saveAPIButton = document.getElementById("saveAPI");
+        const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
         // Add an event listener to save the API key when the "Save" button is clicked
@@ -23,6 +29,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             // Save the API key to localStorage
             localStorage.setItem("weatherApiKey", apiKey);
             document.getElementById("userAPI").value = "";
+            location.reload();
+        });
+        saveLocButton.addEventListener("click", () => {
+            const userLocation = userLocInput.value;
+            // Save the location to localStorage
+            localStorage.setItem("weatherLocation", userLocation);
+            document.getElementById("userLoc").value = "";
             location.reload();
         });
         resetbtn.addEventListener("click", () => {
@@ -68,9 +81,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
+        const locationQuery = savedLocation || currentUserLocation;
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -121,6 +135,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
+        // alert("Unable to fetch weather data. Please check your location or API key.");
         // Handle errors here, e.g., display an error message to the user.
     }
 });
@@ -147,14 +162,15 @@ let intervalId;
 let secondreset = false;
 let hourreset = false;
 let minreset = false;
-
 function updateanalogclock() {
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-// Initialize cumulative rotations
+
+    // Initialize cumulative rotations
+
     let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
     let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
     let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
@@ -191,8 +207,8 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    }
-    if (cumulativeHourRotation == 0) {
+    } if (cumulativeHourRotation == 0) {
+
         document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(361deg)`;
         hourreset = true;
@@ -219,6 +235,9 @@ function updateanalogclock() {
         if (currentLanguage === 'pt') {
             // Portuguese formatting: "day of the week, day of the month"
             document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
+            // Hindi and Bangla formatting: Show full name for month
+            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
         } else {
             // English formatting: "day of the month name"
             document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
@@ -241,17 +260,17 @@ function updatedigiClock() {
     const now = new Date();
     const options = { weekday: 'short', day: 'numeric' };
     const dateString = now.toLocaleDateString('en-US', options);
-    
+
     const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
     const timeString = now.toLocaleTimeString('en-US', timeOptions);
     const formattedTimeString = timeString.replace(/ (AM|PM)/, '');
 
     document.getElementById('digidate').textContent = dateString;
     document.getElementById('digiclock').textContent = formattedTimeString;
-    
+
     let greeting;
     const currentHour = now.getHours();
-    
+
     if (currentHour < 12) {
         greeting = "Good Morning!";
     } else if (currentHour < 18) {
@@ -259,9 +278,10 @@ function updatedigiClock() {
     } else {
         greeting = "Good Evening!";
     }
-    
-    const clocktype1=localStorage.getItem("clocktype");
-    if(clocktype1=="digital"){
+
+    const clocktype1 = localStorage.getItem("clocktype");
+    if (clocktype1 == "digital") {
+
         document.getElementById("date").innerText = greeting;
     }
 }
@@ -277,8 +297,8 @@ function stopClock() {
     intervalId = null; // Reset intervalId
 }
 
-clocktype=localStorage.getItem("clocktype");
-if(!clocktype){
+clocktype = localStorage.getItem("clocktype");
+if (!clocktype) {
     localStorage.setItem("clocktype", "analog");
     clocktype = localStorage.getItem("clocktype");
 }
@@ -297,7 +317,7 @@ if (clocktype) {
         startClock();
     }
 }
-document.addEventListener("visibilitychange", function() {
+document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === 'visible') {
         startClock(); // Start the clock if the tab is focused
     } else {
@@ -1289,14 +1309,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (digitalCheckbox.checked) {
             timeformatField.classList.remove("inactive");
             localStorage.setItem("clocktype", "digital");
-            clocktype=localStorage.getItem("clocktype");
+            clocktype = localStorage.getItem("clocktype");
             displayClock();
             stopClock();
             saveActiveStatus("timeformatField", "active");
         } else {
             timeformatField.classList.add("inactive");
             localStorage.setItem("clocktype", "analog");
-            clocktype=localStorage.getItem("clocktype");
+            clocktype = localStorage.getItem("clocktype");
             stopClock();
             startClock();
             displayClock();
