@@ -238,6 +238,9 @@ function updateanalogclock() {
         } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
             // Hindi and Bangla formatting: Show full name for month
             document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
+        } else if (currentLanguage === 'cs') {
+            // Czech formatting: day, date. months
+            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
         } else {
             // English formatting: "day of the month name"
             document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
