@@ -121,7 +121,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         };
         updateTemperatureDisplay();
- usertextupdate();
+ updateUserText();
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
@@ -346,7 +346,7 @@ function displayClock() {
     }
    
 }
-function usertextupdate(){
+function updateUserText(){
     const userTextDiv = document.getElementById("userText");
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
