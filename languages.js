@@ -540,7 +540,7 @@ const translations = {
 
         // Weather
         "humidityText": "আর্দ্রতা",
-        "feelsLike": "অনুভূত হয়",
+        "feelsLike": "অনুভূতি হয়",
         "location": "পৃথিবী",
         // End of Weather
 
