@@ -81,10 +81,18 @@ window.addEventListener('DOMContentLoaded', async () => {
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
         const currentUserLocation = parsedLocation.ip;
+        if(currentUserLocation){
         const locationQuery = savedLocation || currentUserLocation;
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        localStorage.setItem("locationQ", currentUserLocation);
+        var weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        }else{
+            const savedlocQ = localStorage.getItem("locationQ");
+            const locationQuery = savedLocation || savedlocQ;
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        var weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        }
+        
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -113,7 +121,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         };
         updateTemperatureDisplay();
-
+ usertextupdate();
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
@@ -336,15 +344,16 @@ function displayClock() {
         digitalClock.style.display = 'block';  // Show the digital clock
         analogClock.style.display = 'none';     // Hide the analog clock
     }
+   
 }
-setInterval((updated) => {
+function usertextupdate(){
     const userTextDiv = document.getElementById("userText");
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.textContent = storedValue;
     }
+}
 
-}, 1000)
 const userTextDiv = document.getElementById("userText");
 userTextDiv.addEventListener("input", function () {
     localStorage.setItem("userText", userTextDiv.textContent);
