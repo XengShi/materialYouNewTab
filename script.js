@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
         
         // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
-        const weatherApi = https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage};
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
