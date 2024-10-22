@@ -76,15 +76,19 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Use the user's API key if available, otherwise use the default API key
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
-        // Getting current user location
-        const geoLocation = 'https://ipinfo.io/json/';
-        const locationData = await fetch(geoLocation);
-        const parsedLocation = await locationData.json();
-        const currentUserLocation = parsedLocation.ip;
-        const locationQuery = savedLocation || currentUserLocation;
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        var currentUserLocation = savedLocation; // Get saved location
+        if (!currentUserLocation) {
+            // Only fetch if there is no saved location
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
+        }
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        
+        // Weather API call using currentUserLocation, which is either user input or IP address
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
