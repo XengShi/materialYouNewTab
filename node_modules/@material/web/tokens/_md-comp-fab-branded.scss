@@ -1,0 +1,155 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-elevation';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './md-sys-typescale';
+@use './v0_192/md-comp-extended-fab-branded';
+@use './v0_192/md-comp-fab-branded';
+@use './v0_192/md-comp-fab-branded-large';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'container-color',
+  'container-elevation',
+  'container-height',
+  'container-shadow-color',
+  'container-shape',
+  'container-shape-end-end',
+  'container-shape-end-start',
+  'container-shape-start-end',
+  'container-shape-start-start',
+  'container-width',
+  'focus-container-elevation',
+  'focus-label-text-color',
+  'hover-container-elevation',
+  'hover-label-text-color',
+  'hover-state-layer-color',
+  'hover-state-layer-opacity',
+  'icon-size',
+  'label-text-color',
+  'label-text-font',
+  'label-text-line-height',
+  'label-text-size',
+  'label-text-weight',
+  'large-container-height',
+  'large-container-shape',
+  'large-container-shape-end-end',
+  'large-container-shape-end-start',
+  'large-container-shape-start-end',
+  'large-container-shape-start-start',
+  'large-container-width',
+  'large-icon-size',
+  'lowered-container-color',
+  'lowered-container-elevation',
+  'lowered-focus-container-elevation',
+  'lowered-hover-container-elevation',
+  'lowered-pressed-container-elevation',
+  'pressed-container-elevation',
+  'pressed-label-text-color',
+  'pressed-state-layer-color',
+  'pressed-state-layer-opacity',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'focus-state-layer-color',
+  'focus-state-layer-opacity',
+  // go/keep-sorted end
+);
+
+@function _get-new-tokens($deps, $exclude-hardcoded-values) {
+  $large-tokens: md-comp-fab-branded-large.values(
+    $deps,
+    $exclude-hardcoded-values
+  );
+  $extended-branded-tokens: md-comp-extended-fab-branded.values(
+    $deps,
+    $exclude-hardcoded-values
+  );
+
+  @return (
+    'focus-label-text-color':
+      map.get($extended-branded-tokens, 'focus-label-text-color'),
+    'hover-label-text-color':
+      map.get($extended-branded-tokens, 'hover-label-text-color'),
+    'label-text-color': map.get($extended-branded-tokens, 'label-text-color'),
+    'label-text-font': map.get($extended-branded-tokens, 'label-text-font'),
+    'label-text-size': map.get($extended-branded-tokens, 'label-text-size'),
+    'label-text-line-height':
+      map.get($extended-branded-tokens, 'label-text-line-height'),
+    'label-text-weight': map.get($extended-branded-tokens, 'label-text-weight'),
+    'large-container-height': map.get($large-tokens, 'container-height'),
+    'large-container-shape': map.get($large-tokens, 'container-shape'),
+    'large-container-width': map.get($large-tokens, 'container-width'),
+    'large-icon-size': map.get($large-tokens, 'icon-size'),
+    'pressed-label-text-color':
+      map.get($extended-branded-tokens, 'pressed-label-text-color')
+  );
+}
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-elevation': md-sys-elevation.values(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+  'md-sys-typescale': md-sys-typescale.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-comp-fab-branded.values($deps, $exclude-hardcoded-values);
+  $new-tokens: _get-new-tokens($deps, $exclude-hardcoded-values);
+  $new-tokens: map.merge(
+    $new-tokens,
+    shape.get-new-logical-shape-tokens($tokens, 'container-shape')
+  );
+
+  $new-tokens: map.merge(
+    $new-tokens,
+    shape.get-new-logical-shape-tokens($new-tokens, 'large-container-shape')
+  );
+
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $new-tokens: $new-tokens
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $shape-tokens: ('container-shape', 'large-container-shape');
+      @each $shape-token in $shape-tokens {
+        @if string.index($token, '#{$shape-token}-') == 1 {
+          // Add fallback to shorthand for logical shape properties.
+          $value: var(--md-fab-branded-#{$shape-token}, #{$value});
+        }
+      }
+
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--md-fab-branded-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

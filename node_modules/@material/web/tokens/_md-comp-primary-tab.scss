@@ -1,0 +1,160 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-elevation';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './md-sys-typescale';
+@use './v0_192/md-comp-primary-navigation-tab';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'active-focus-icon-color',
+  'active-focus-label-text-color',
+  'active-hover-icon-color',
+  'active-hover-label-text-color',
+  'active-hover-state-layer-color',
+  'active-hover-state-layer-opacity',
+  'active-icon-color',
+  'active-indicator-color',
+  'active-indicator-height',
+  'active-indicator-shape',
+  'active-label-text-color',
+  'active-pressed-icon-color',
+  'active-pressed-label-text-color',
+  'active-pressed-state-layer-color',
+  'active-pressed-state-layer-opacity',
+  'container-color',
+  'container-elevation',
+  'container-height',
+  'container-shape',
+  'container-shape-end-end',
+  'container-shape-end-start',
+  'container-shape-start-end',
+  'container-shape-start-start',
+  'focus-icon-color',
+  'focus-label-text-color',
+  'hover-icon-color',
+  'hover-label-text-color',
+  'hover-state-layer-color',
+  'hover-state-layer-opacity',
+  'icon-color',
+  'icon-size',
+  'label-text-color',
+  'label-text-font',
+  'label-text-line-height',
+  'label-text-size',
+  'label-text-weight',
+  'pressed-icon-color',
+  'pressed-label-text-color',
+  'pressed-state-layer-color',
+  'pressed-state-layer-opacity',
+  'with-icon-and-label-text-container-height',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'active-focus-state-layer-color',
+  'active-focus-state-layer-opacity',
+  'focus-state-layer-color',
+  'focus-state-layer-opacity',
+  'label-text-tracking',
+  'label-text-type',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-elevation': md-sys-elevation.values(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+  'md-sys-typescale': md-sys-typescale.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-comp-primary-navigation-tab.values(
+    $deps,
+    $exclude-hardcoded-values: $exclude-hardcoded-values
+  );
+
+  $new-tokens: shape.get-new-logical-shape-tokens($tokens, 'container-shape');
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $new-tokens: $new-tokens,
+    $renamed-tokens: (
+      // rename inactive-
+      'inactive-focus-state-layer-color': 'focus-state-layer-color',
+      'inactive-focus-state-layer-opacity': 'focus-state-layer-opacity',
+      'inactive-hover-state-layer-color': 'hover-state-layer-color',
+      'inactive-hover-state-layer-opacity': 'hover-state-layer-opacity',
+      'inactive-pressed-state-layer-color': 'pressed-state-layer-color',
+      'inactive-pressed-state-layer-opacity': 'pressed-state-layer-opacity',
+      // rename with-icon- and inactive-
+      'with-icon-active-focus-icon-color': 'active-focus-icon-color',
+      'with-icon-active-hover-icon-color': 'active-hover-icon-color',
+      'with-icon-active-icon-color': 'active-icon-color',
+      'with-icon-active-pressed-icon-color': 'active-pressed-icon-color',
+      'with-icon-icon-size': 'icon-size',
+      'with-icon-inactive-focus-icon-color': 'focus-icon-color',
+      'with-icon-inactive-hover-icon-color': 'hover-icon-color',
+      'with-icon-inactive-icon-color': 'icon-color',
+      'with-icon-inactive-pressed-icon-color': 'pressed-icon-color',
+      // rename with-label-text- and inactive-
+      'with-label-text-label-text-font': 'label-text-font',
+      'with-label-text-label-text-line-height': 'label-text-line-height',
+      'with-label-text-label-text-size': 'label-text-size',
+      'with-label-text-label-text-tracking': 'label-text-tracking',
+      'with-label-text-label-text-weight': 'label-text-weight',
+      'with-label-text-active-focus-label-text-color':
+        'active-focus-label-text-color',
+      'with-label-text-active-hover-label-text-color':
+        'active-hover-label-text-color',
+      'with-label-text-active-label-text-color': 'active-label-text-color',
+      'with-label-text-active-pressed-label-text-color':
+        'active-pressed-label-text-color',
+      'with-label-text-inactive-focus-label-text-color':
+        'focus-label-text-color',
+      'with-label-text-inactive-hover-label-text-color':
+        'hover-label-text-color',
+      'with-label-text-inactive-label-text-color': 'label-text-color',
+      'with-label-text-inactive-pressed-label-text-color':
+        'pressed-label-text-color',
+      'with-label-text-label-text-type': 'label-text-type'
+    )
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      @if string.index($token, 'container-shape-') == 1 {
+        // Add fallback to shorthand for logical shape properties.
+        $value: var(--md-primary-tab-container-shape, #{$value});
+      }
+
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--md-primary-tab-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

@@ -1,0 +1,143 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../elevation/elevation';
+@use '../../focus/focus-ring';
+@use '../../list/list' as md-list;
+@use '../../list/list-item';
+@use '../../tokens';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-menu-supported-tokens;
+
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-menu-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-menu-values();
+
+  :host {
+    @include elevation.theme(
+      (
+        'level': map.get($tokens, 'container-elevation'),
+        'shadow-color': map.get($tokens, 'container-shadow-color'),
+      )
+    );
+
+    min-width: 112px;
+    color: unset;
+    display: contents;
+  }
+
+  md-focus-ring {
+    @include focus-ring.theme(
+      (
+        'shape': map.get($tokens, 'container-shape'),
+      )
+    );
+  }
+
+  .menu {
+    border-radius: map.get($tokens, 'container-shape');
+    display: none;
+    inset: auto;
+    border: none;
+    padding: 0px;
+    overflow: visible;
+    // [popover] adds a canvas background
+    background-color: transparent;
+    color: inherit;
+    opacity: 0;
+    z-index: 20;
+    position: absolute;
+    user-select: none;
+    max-height: inherit;
+    height: inherit;
+    min-width: inherit;
+    max-width: inherit;
+    scrollbar-width: inherit;
+  }
+
+  .menu::backdrop {
+    display: none;
+  }
+
+  .fixed {
+    position: fixed;
+  }
+
+  .items {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+    background-color: map.get($tokens, 'container-color');
+    height: inherit;
+    max-height: inherit;
+    overflow: auto;
+    min-width: inherit;
+    max-width: inherit;
+    border-radius: inherit;
+    scrollbar-width: inherit;
+  }
+
+  .item-padding {
+    padding-block: 8px;
+  }
+
+  .has-overflow:not([popover]) .items {
+    overflow: visible;
+  }
+
+  .has-overflow.animating .items,
+  .animating .items {
+    overflow: hidden;
+  }
+
+  .has-overflow.animating .items {
+    // Often has-overlow is set because there are submenus. Since we need
+    // overflow to be hidden to make the animation work, we need to disable
+    // submenus opening mid-animation or else it looks completely wrong.
+    pointer-events: none;
+  }
+
+  .animating ::slotted(.md-menu-hidden) {
+    opacity: 0;
+  }
+
+  slot {
+    display: block;
+    height: inherit;
+    max-height: inherit;
+  }
+
+  ::slotted(:is(md-divider, [role='separator'])) {
+    margin: 8px 0;
+  }
+
+  @media (forced-colors: active) {
+    .menu {
+      border-style: solid;
+      border-color: CanvasText;
+      border-width: 1px;
+    }
+  }
+}

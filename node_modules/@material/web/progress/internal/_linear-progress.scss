@@ -1,0 +1,335 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../tokens';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-linear-progress-supported-tokens;
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-linear-progress-#{$token}: #{$value};
+    }
+  }
+}
+
+// note, transition settings match MDC
+// see https://github.com/material-components/material-components-web/blob/main/packages/mdc-linear-progress/_linear-progress.scss#L79
+$_determinate-duration: 250ms;
+$_determinate-easing: cubic-bezier(0.4, 0, 0.6, 1);
+// see https://github.com/material-components/material-components-web/blob/main/packages/mdc-linear-progress/_linear-progress.scss#L218
+$_indeterminate-duration: 2s;
+
+@mixin styles() {
+  $tokens: tokens.md-comp-linear-progress-values();
+
+  :host {
+    @each $token, $value in $tokens {
+      --_#{$token}: #{$value};
+    }
+
+    border-radius: var(--_track-shape);
+    display: flex;
+    position: relative;
+    // note, this matches the `meter` element and is just done so
+    // there's a default width.
+    min-width: 80px;
+    height: var(--_track-height);
+    content-visibility: auto;
+    contain: strict;
+  }
+
+  .progress,
+  .dots,
+  .inactive-track,
+  .bar,
+  .bar-inner {
+    position: absolute;
+  }
+
+  .progress {
+    // Animations need to be in LTR. We support RTL by flipping the indicator
+    // with scale(-1).
+    direction: ltr;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .bar {
+    animation: none;
+    // position is offset for indeterminate animation, so we lock the inline size here.
+    width: 100%;
+    height: var(--_active-indicator-height);
+    transform-origin: left center;
+    transition: transform $_determinate-duration $_determinate-easing;
+  }
+
+  .secondary-bar {
+    display: none;
+  }
+
+  .bar-inner {
+    inset: 0;
+    animation: none;
+    background: var(--_active-indicator-color);
+  }
+
+  .inactive-track {
+    background: var(--_track-color);
+    inset: 0;
+    transition: transform $_determinate-duration $_determinate-easing;
+    transform-origin: left center;
+  }
+
+  .dots {
+    inset: 0;
+    animation: linear infinite $_determinate-duration;
+    animation-name: buffering;
+    // The color of the buffer dots, which are masked out of this background
+    // color.
+    background-color: var(--_track-color);
+    background-repeat: repeat-x;
+    // SVG is optimized for data URI (https://codepen.io/tigt/post/optimizing-svgs-in-data-uris)
+    // This svg creates a black circle on a transparent background which is used
+    // to mask out the animated buffering dots. This technique allows for dot
+    // color customization via the background-color property, and mask-image
+    // displays when forced-colors are active.
+    $svg: "data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 2' preserveAspectRatio='xMinYMin slice'%3E%3Ccircle cx='1' cy='1' r='1'/%3E%3C/svg%3E";
+    // required for full support with Chrome, Edge, and Opera.
+    -webkit-mask-image: url($svg);
+    mask-image: url($svg);
+    z-index: -1; // Place behind tracks for Safari
+  }
+
+  // dots are hidden when indeterminate or when there is no visible buffer to
+  // prevent infinite invisible animation.
+  .dots[hidden] {
+    display: none;
+  }
+
+  // indeterminate
+  .indeterminate .bar {
+    transition: none;
+  }
+
+  // note, the numbers here come directly from the mdc implementation.
+  // see https://github.com/material-components/material-components-web/blob/main/packages/mdc-linear-progress/_linear-progress.scss#L208.
+  .indeterminate .primary-bar {
+    inset-inline-start: -145.167%;
+  }
+
+  .indeterminate .secondary-bar {
+    inset-inline-start: -54.8889%;
+    // this is display none by default.
+    display: block;
+  }
+
+  .indeterminate .primary-bar {
+    animation: linear infinite $_indeterminate-duration;
+    animation-name: primary-indeterminate-translate;
+  }
+
+  .indeterminate .primary-bar > .bar-inner {
+    animation: linear infinite $_indeterminate-duration
+      primary-indeterminate-scale;
+  }
+
+  .indeterminate.four-color .primary-bar > .bar-inner {
+    animation-name: primary-indeterminate-scale, four-color;
+    animation-duration: $_indeterminate-duration,
+      calc($_indeterminate-duration * 2);
+  }
+
+  .indeterminate .secondary-bar {
+    animation: linear infinite $_indeterminate-duration;
+    animation-name: secondary-indeterminate-translate;
+  }
+
+  .indeterminate .secondary-bar > .bar-inner {
+    animation: linear infinite $_indeterminate-duration
+      secondary-indeterminate-scale;
+  }
+
+  .indeterminate.four-color .secondary-bar > .bar-inner {
+    animation-name: secondary-indeterminate-scale, four-color;
+    animation-duration: $_indeterminate-duration,
+      calc($_indeterminate-duration * 2);
+  }
+
+  :host(:dir(rtl)) {
+    transform: scale(-1);
+  }
+
+  @keyframes primary-indeterminate-scale {
+    0% {
+      transform: scaleX(0.08);
+    }
+
+    36.65% {
+      animation-timing-function: cubic-bezier(0.334731, 0.12482, 0.785844, 1);
+      transform: scaleX(0.08);
+    }
+
+    69.15% {
+      animation-timing-function: cubic-bezier(0.06, 0.11, 0.6, 1);
+      transform: scaleX(0.661479);
+    }
+
+    100% {
+      transform: scaleX(0.08);
+    }
+  }
+
+  @keyframes secondary-indeterminate-scale {
+    0% {
+      animation-timing-function: cubic-bezier(
+        0.205028,
+        0.057051,
+        0.57661,
+        0.453971
+      );
+      transform: scaleX(0.08);
+    }
+
+    19.15% {
+      animation-timing-function: cubic-bezier(
+        0.152313,
+        0.196432,
+        0.648374,
+        1.00432
+      );
+      transform: scaleX(0.457104);
+    }
+
+    44.15% {
+      animation-timing-function: cubic-bezier(
+        0.257759,
+        -0.003163,
+        0.211762,
+        1.38179
+      );
+      transform: scaleX(0.72796);
+    }
+
+    100% {
+      transform: scaleX(0.08);
+    }
+  }
+
+  @keyframes buffering {
+    0% {
+      $_dot-size: calc(var(--_track-height) / 2);
+      // the amount to animate is aligned with the default track background
+      $_dot-background-width: calc($_dot-size * 5);
+      transform: translateX(#{$_dot-background-width});
+    }
+  }
+
+  // note, the numbers here come directly from the mdc implementation.
+  // see https://github.com/material-components/material-components-web/blob/main/packages/mdc-linear-progress/_linear-progress.scss#L208.
+  // keyframes
+  @keyframes primary-indeterminate-translate {
+    0% {
+      transform: translateX(0px);
+    }
+
+    20% {
+      animation-timing-function: cubic-bezier(0.5, 0, 0.701732, 0.495819);
+      transform: translateX(0px);
+    }
+
+    59.15% {
+      animation-timing-function: cubic-bezier(
+        0.302435,
+        0.381352,
+        0.55,
+        0.956352
+      );
+      transform: translateX(83.6714%);
+    }
+
+    100% {
+      transform: translateX(200.611%);
+    }
+  }
+
+  @keyframes secondary-indeterminate-translate {
+    0% {
+      animation-timing-function: cubic-bezier(0.15, 0, 0.515058, 0.409685);
+      transform: translateX(0px);
+    }
+
+    25% {
+      animation-timing-function: cubic-bezier(0.31033, 0.284058, 0.8, 0.733712);
+      transform: translateX(37.6519%);
+    }
+
+    48.35% {
+      animation-timing-function: cubic-bezier(0.4, 0.627035, 0.6, 0.902026);
+      transform: translateX(84.3862%);
+    }
+
+    100% {
+      transform: translateX(160.278%);
+    }
+  }
+
+  @keyframes four-color {
+    0% {
+      background: var(--_four-color-active-indicator-one-color);
+    }
+
+    15% {
+      background: var(--_four-color-active-indicator-one-color);
+    }
+    25% {
+      background: var(--_four-color-active-indicator-two-color);
+    }
+    40% {
+      background: var(--_four-color-active-indicator-two-color);
+    }
+
+    50% {
+      background: var(--_four-color-active-indicator-three-color);
+    }
+    65% {
+      background: var(--_four-color-active-indicator-three-color);
+    }
+    75% {
+      background: var(--_four-color-active-indicator-four-color);
+    }
+    90% {
+      background: var(--_four-color-active-indicator-four-color);
+    }
+    100% {
+      background: var(--_four-color-active-indicator-one-color);
+    }
+  }
+
+  @media (forced-colors: active) {
+    :host {
+      outline: 1px solid CanvasText;
+    }
+
+    .bar-inner,
+    .dots {
+      background-color: CanvasText;
+    }
+
+    // TODO(b/296262544): fix dots not being CanvasText. This need a refactor,
+    // since background gradiants are not displayed in HCM.
+  }
+}

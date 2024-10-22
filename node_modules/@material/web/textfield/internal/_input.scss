@@ -1,0 +1,91 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+@mixin styles() {
+  .input-wrapper {
+    display: flex;
+  }
+
+  .input-wrapper > * {
+    // Inherit field CSS set on the input wrapper, like font, but not margin or
+    // padding. This wrapper is needed since text fields may have prefix and
+    // suffix text next to an <input>
+    all: inherit;
+    padding: 0;
+  }
+
+  .input {
+    caret-color: var(--_caret-color);
+    // remove extra height added by horizontal scrollbars
+    overflow-x: hidden;
+    text-align: inherit;
+
+    &::placeholder {
+      color: currentColor;
+      opacity: 1;
+    }
+
+    // Remove built-in datepicker icon on Chrome
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+
+    // Remove built-in search icons on Chrome when type='search'
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    @media (forced-colors: active) {
+      background: none; // Remove background in Firefox HCM
+    }
+  }
+
+  // Optionally remove number input's spinner
+  .no-spinner .input {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      display: none;
+    }
+
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  :focus-within .input {
+    caret-color: var(--_focus-caret-color);
+  }
+
+  .error:focus-within .input {
+    caret-color: var(--_error-focus-caret-color);
+  }
+
+  .text-field:not(.disabled) .prefix {
+    color: var(--_input-text-prefix-color);
+  }
+
+  .text-field:not(.disabled) .suffix {
+    color: var(--_input-text-suffix-color);
+  }
+
+  .text-field:not(.disabled) .input::placeholder {
+    color: var(--_input-text-placeholder-color);
+  }
+
+  .prefix,
+  .suffix {
+    text-wrap: nowrap;
+    width: min-content;
+  }
+
+  .prefix {
+    padding-inline-end: var(--_input-text-prefix-trailing-space);
+  }
+
+  .suffix {
+    padding-inline-start: var(--_input-text-suffix-leading-space);
+  }
+}

@@ -1,0 +1,48 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-shape';
+@use './md-sys-state';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'hover-color',
+  'hover-opacity',
+  'pressed-color',
+  'pressed-opacity',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-state': md-sys-state.values(),
+);
+
+@function values($deps: $_default, $exclude-custom-properties: false) {
+  $tokens: (
+    'hover-color': map.get($deps, 'md-sys-color', 'on-surface'),
+    'hover-opacity': map.get($deps, 'md-sys-state', 'hover-state-layer-opacity'),
+    'pressed-color': map.get($deps, 'md-sys-color', 'on-surface'),
+    'pressed-opacity':
+      map.get($deps, 'md-sys-state', 'pressed-state-layer-opacity'),
+  );
+
+  $tokens: validate.values($tokens, $supported-tokens: $supported-tokens);
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set($tokens, $token, var(--md-ripple-#{$token}, #{$value}));
+    }
+  }
+
+  @return $tokens;
+}

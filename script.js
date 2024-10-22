@@ -76,19 +76,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Use the user's API key if available, otherwise use the default API key
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
-
-        var currentUserLocation = savedLocation; // Get saved location
-        if (!currentUserLocation) {
-            // Only fetch if there is no saved location
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
+        // Getting current user location
+        const geoLocation = 'https://ipinfo.io/json/';
+        const locationData = await fetch(geoLocation);
+        const parsedLocation = await locationData.json();
+        const currentUserLocation = parsedLocation.ip;
+        if(currentUserLocation){
+        const locationQuery = savedLocation || currentUserLocation;
+        //var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        var currentLanguage ='en';
+        localStorage.setItem("locationQ", currentUserLocation);
+        var weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        }else{
+            const savedlocQ = localStorage.getItem("locationQ");
+            const locationQuery = savedLocation || savedlocQ;
+        //var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        var currentLanguage ='en';
+        var weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
         }
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
         
-        // Weather API call using currentUserLocation, which is either user input or IP address
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -117,7 +123,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         };
         updateTemperatureDisplay();
-
+ usertextupdate();
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
@@ -340,15 +346,16 @@ function displayClock() {
         digitalClock.style.display = 'block';  // Show the digital clock
         analogClock.style.display = 'none';     // Hide the analog clock
     }
+   
 }
-setInterval((updated) => {
+function usertextupdate(){
     const userTextDiv = document.getElementById("userText");
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.textContent = storedValue;
     }
+}
 
-}, 1000)
 const userTextDiv = document.getElementById("userText");
 userTextDiv.addEventListener("input", function () {
     localStorage.setItem("userText", userTextDiv.textContent);
@@ -833,7 +840,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
     const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
-
+    
+    const tabs = document.getElementById("tabs");
+    shortcutEditField.classList.add("inactive");
     /* ------ Helper functions for saving and loading states ------ */
 
     // Function to save checkbox state to localStorage
@@ -1267,7 +1276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     * This function shows the proxy disclaimer.
     */
     function showProxyDisclaimer() {
-        const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+        const message = "It is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
 
         confirm(message);
     }

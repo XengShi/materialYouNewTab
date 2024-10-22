@@ -1,0 +1,157 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../ripple/ripple';
+@use '../../tokens';
+@use './shared';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-outlined-icon-button-supported-tokens;
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-outlined-icon-button-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-outlined-icon-button-values();
+
+  :host {
+    // Only use the logical properties.
+    $tokens: map.remove($tokens, 'container-shape');
+    @each $token, $value in $tokens {
+      --_#{$token}: #{$value};
+    }
+  }
+
+  .outlined {
+    background-color: transparent;
+    color: var(--_icon-color);
+
+    @include ripple.theme(
+      (
+        hover-color: var(--_hover-state-layer-color),
+        hover-opacity: var(--_hover-state-layer-opacity),
+        pressed-color: var(--_pressed-state-layer-color),
+        pressed-opacity: var(--_pressed-state-layer-opacity),
+      )
+    );
+
+    &::before {
+      border-color: var(--_outline-color);
+      border-width: var(--_outline-width);
+    }
+
+    &:hover {
+      color: var(--_hover-icon-color);
+    }
+
+    &:focus {
+      color: var(--_focus-icon-color);
+    }
+
+    &:active {
+      color: var(--_pressed-icon-color);
+    }
+
+    &:is(:disabled, [aria-disabled='true']) {
+      color: var(--_disabled-icon-color);
+
+      &::before {
+        border-color: var(--_disabled-outline-color);
+        opacity: var(--_disabled-outline-opacity);
+      }
+    }
+  }
+
+  .outlined:is(:disabled, [aria-disabled='true']) .icon {
+    opacity: var(--_disabled-icon-opacity);
+  }
+
+  .outlined::before {
+    block-size: 100%;
+    border-style: solid;
+    border-radius: inherit;
+    box-sizing: border-box;
+    content: '';
+    inline-size: 100%;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1; // place behind content
+  }
+
+  // Selected toggle buttons have no outline.
+  .outlined.selected::before {
+    border-width: 0;
+  }
+
+  // Selected icon button toggle.
+  .selected {
+    &:not(:disabled, [aria-disabled='true']) {
+      color: var(--_selected-icon-color);
+
+      &:hover {
+        color: var(--_selected-hover-icon-color);
+      }
+
+      &:focus {
+        color: var(--_selected-focus-icon-color);
+      }
+
+      &:active {
+        color: var(--_selected-pressed-icon-color);
+      }
+    }
+
+    @include ripple.theme(
+      (
+        hover-color: var(--_selected-hover-state-layer-color),
+        hover-opacity: var(--_hover-state-layer-opacity),
+        pressed-color: var(--_selected-pressed-state-layer-color),
+        pressed-opacity: var(--_pressed-state-layer-opacity),
+      )
+    );
+  }
+
+  .selected:not(:disabled, [aria-disabled='true'])::before {
+    background-color: var(--_selected-container-color);
+  }
+
+  .selected:is(:disabled, [aria-disabled='true'])::before {
+    background-color: var(--_disabled-selected-container-color);
+    opacity: var(--_disabled-selected-container-opacity);
+  }
+
+  @media (forced-colors: active) {
+    :host(:is([disabled], [soft-disabled])) {
+      --_disabled-outline-opacity: 1;
+    }
+
+    // Selected button in HCM has an outline.
+    .selected {
+      &::before {
+        border-color: CanvasText;
+        border-width: var(--_outline-width);
+      }
+
+      &:is(:disabled, [aria-disabled='true'])::before {
+        border-color: GrayText;
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-elevation';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './md-sys-typescale';
+@use './v0_192/md-comp-dialog';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'container-color',
+  'container-shape',
+  'container-shape-end-end',
+  'container-shape-end-start',
+  'container-shape-start-end',
+  'container-shape-start-start',
+  'headline-color',
+  'headline-font',
+  'headline-line-height',
+  'headline-size',
+  'headline-weight',
+  'icon-color',
+  'icon-size',
+  'supporting-text-color',
+  'supporting-text-font',
+  'supporting-text-line-height',
+  'supporting-text-size',
+  'supporting-text-weight',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-elevation': md-sys-elevation.values(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+  'md-sys-typescale': md-sys-typescale.values(),
+);
+
+// Note: currently ignoring tokens for `action-*-label-text` and
+// `action-*-state-layer` since actions are spec'd as standard text buttons.
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'action-focus-label-text-color',
+  'action-focus-state-layer-color',
+  'action-focus-state-layer-opacity',
+  'action-hover-label-text-color',
+  'action-hover-state-layer-color',
+  'action-hover-state-layer-opacity',
+  'action-label-text-color',
+  'action-label-text-font',
+  'action-label-text-line-height',
+  'action-label-text-size',
+  'action-label-text-tracking',
+  'action-label-text-type',
+  'action-label-text-weight',
+  'action-pressed-label-text-color',
+  'action-pressed-state-layer-color',
+  'action-pressed-state-layer-opacity',
+  'container-elevation',
+  // Unused without a shadow color
+  'headline-tracking',
+  'headline-type',
+  'supporting-text-tracking',
+  'supporting-text-type',
+  // go/keep-sorted end
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-comp-dialog.values($deps, $exclude-hardcoded-values);
+  $new-tokens: shape.get-new-logical-shape-tokens($tokens, 'container-shape');
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $new-tokens: $new-tokens,
+    $renamed-tokens: (
+      // Remove "with-*" prefixes (b/273534858)
+      'with-icon-icon-color': 'icon-color',
+      'with-icon-icon-size': 'icon-size'
+    )
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      @if string.index($token, 'container-shape-') == 1 {
+        // Add fallback to shorthand for logical shape properties.
+        $value: var(--md-dialog-container-shape, #{$value});
+      }
+
+      $tokens: map.set($tokens, $token, var(--md-dialog-#{$token}, #{$value}));
+    }
+  }
+
+  @return $tokens;
+}

@@ -1,0 +1,110 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// stylelint-disable selector-class-pattern --
+// Selector '.md3-*' should only be used in this project.
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../../elevation/elevation';
+@use '../../../internal/motion/animation';
+// go/keep-sorted end
+
+$_curve: animation.$standard-easing;
+$_delay: 0s;
+$_transition-duration: 0.25s;
+
+$_reference: (
+  'container-color': #fff,
+  'container-height': 100%,
+  'container-shape': 0 16px 16px 0,
+  'container-width': 360px,
+  // b/216384393 - Temporary existing token to use for shadow color
+  'divider-color': #000,
+  'modal-container-elevation': 1,
+  'scrim-color': null,
+  'scrim-opacity': 0.04,
+  'standard-container-elevation': 0,
+);
+
+@mixin theme($tokens) {
+  // $supported-tokens: tokens.$md-comp-navigation-drawer-modal-supported-tokens;
+
+  @each $token, $value in $tokens {
+    // @if list.index($supported-tokens, $token) == null {
+    //   @error 'Token `#{$token}` is not a supported token.';
+    // }
+
+    @if $value {
+      --md-navigation-drawer-modal-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: $_reference;
+
+  :host {
+    @each $token, $value in $tokens {
+      --_#{$token}: var(--md-navigation-drawer-modal-#{$token}, #{$value});
+    }
+
+    @include elevation.theme(
+      (
+        'level': var(--_modal-container-elevation),
+      )
+    );
+  }
+
+  .md3-navigation-drawer-modal {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    inline-size: 0;
+
+    transition: inline-size $_transition-duration $_curve $_delay,
+      visibility $_delay $_curve $_transition-duration;
+  }
+
+  .md3-navigation-drawer-modal--opened {
+    transition: inline-size $_transition-duration $_curve $_delay,
+      visibility $_delay $_curve $_delay;
+  }
+
+  .md3-navigation-drawer-modal--pivot-at-start {
+    justify-content: flex-start;
+  }
+
+  .md3-navigation-drawer-modal__slot-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .md3-navigation-drawer-modal__scrim {
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    background-color: var(--_scrim-color);
+
+    transition: opacity $_transition-duration $_curve $_delay,
+      visibility $_delay $_curve $_transition-duration;
+  }
+
+  .md3-navigation-drawer-modal--scrim-visible {
+    visibility: visible;
+    opacity: var(--_scrim-opacity);
+
+    transition: opacity $_transition-duration $_curve $_delay,
+      visibility $_delay $_curve $_delay;
+  }
+}

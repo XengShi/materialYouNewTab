@@ -1,0 +1,163 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../../focus/focus-ring';
+@use '../../../icon/icon';
+@use '../../../ripple/ripple';
+@use '../../../tokens';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-list-item-supported-tokens;
+
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-list-item-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-list-item-values();
+
+  :host {
+    border-radius: map.get($tokens, 'container-shape');
+    display: flex;
+    -webkit-tap-highlight-color: transparent;
+
+    @include ripple.theme(
+      (
+        hover-color: map.get($tokens, 'hover-state-layer-color'),
+        hover-opacity: map.get($tokens, 'hover-state-layer-opacity'),
+        pressed-color: map.get($tokens, 'pressed-state-layer-color'),
+        pressed-opacity: map.get($tokens, 'pressed-state-layer-opacity'),
+      )
+    );
+  }
+
+  :host(:is([type='button']:not([disabled]), [type='link'])) {
+    cursor: pointer;
+  }
+
+  md-focus-ring {
+    z-index: 1;
+
+    @include focus-ring.theme(
+      (
+        'shape': 8px,
+      )
+    );
+  }
+
+  a,
+  button,
+  li {
+    // Resets. These can be removed once we're no longer use these tags
+    background: none;
+    border: none;
+    cursor: inherit;
+    padding: 0;
+    margin: 0;
+    text-align: unset;
+    text-decoration: none;
+  }
+
+  .list-item {
+    border-radius: inherit;
+    display: flex;
+    flex: 1;
+    max-width: inherit;
+    min-width: inherit;
+    outline: none;
+    // hide android tap color since we have ripple
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+  }
+
+  .list-item.interactive {
+    cursor: pointer;
+  }
+
+  .list-item.disabled {
+    opacity: map.get($tokens, 'disabled-opacity');
+    pointer-events: none;
+  }
+
+  [slot='container'] {
+    pointer-events: none;
+  }
+
+  md-ripple {
+    border-radius: inherit;
+  }
+
+  md-item {
+    border-radius: inherit;
+    flex: 1;
+    height: 100%;
+    color: map.get($tokens, 'label-text-color');
+    font-family: map.get($tokens, 'label-text-font');
+    font-size: map.get($tokens, 'label-text-size');
+    line-height: map.get($tokens, 'label-text-line-height');
+    font-weight: map.get($tokens, 'label-text-weight');
+    min-height: map.get($tokens, 'one-line-container-height');
+    padding-top: map.get($tokens, 'top-space');
+    padding-bottom: map.get($tokens, 'bottom-space');
+    padding-inline-start: map.get($tokens, 'leading-space');
+    padding-inline-end: map.get($tokens, 'trailing-space');
+  }
+
+  md-item[multiline] {
+    min-height: map.get($tokens, 'two-line-container-height');
+  }
+
+  [slot='supporting-text'] {
+    color: map.get($tokens, 'supporting-text-color');
+    font-family: map.get($tokens, 'supporting-text-font');
+    font-size: map.get($tokens, 'supporting-text-size');
+    line-height: map.get($tokens, 'supporting-text-line-height');
+    font-weight: map.get($tokens, 'supporting-text-weight');
+  }
+
+  [slot='trailing-supporting-text'] {
+    color: map.get($tokens, 'trailing-supporting-text-color');
+    font-family: map.get($tokens, 'trailing-supporting-text-font');
+    font-size: map.get($tokens, 'trailing-supporting-text-size');
+    line-height: map.get($tokens, 'trailing-supporting-text-line-height');
+    font-weight: map.get($tokens, 'trailing-supporting-text-weight');
+  }
+
+  :is([slot='start'], [slot='end'])::slotted(*) {
+    fill: currentColor;
+  }
+
+  [slot='start'] {
+    color: map.get($tokens, 'leading-icon-color');
+  }
+
+  [slot='end'] {
+    color: map.get($tokens, 'trailing-icon-color');
+  }
+
+  @media (forced-colors: active) {
+    .disabled slot {
+      color: GrayText;
+    }
+
+    .list-item.disabled {
+      color: GrayText;
+      opacity: 1;
+    }
+  }
+}

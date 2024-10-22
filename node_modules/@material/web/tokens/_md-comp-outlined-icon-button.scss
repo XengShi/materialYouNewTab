@@ -1,0 +1,117 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './v0_192/md-comp-outlined-icon-button';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'container-height',
+  'container-shape',
+  'container-shape-end-end',
+  'container-shape-end-start',
+  'container-shape-start-end',
+  'container-shape-start-start',
+  'container-width',
+  'disabled-icon-color',
+  'disabled-icon-opacity',
+  'disabled-outline-color',
+  'disabled-outline-opacity',
+  'disabled-selected-container-color',
+  'disabled-selected-container-opacity',
+  'focus-icon-color',
+  'hover-icon-color',
+  'hover-state-layer-color',
+  'hover-state-layer-opacity',
+  'icon-color',
+  'icon-size',
+  'outline-color',
+  'outline-width',
+  'pressed-icon-color',
+  'pressed-state-layer-color',
+  'pressed-state-layer-opacity',
+  'selected-container-color',
+  'selected-focus-icon-color',
+  'selected-hover-icon-color',
+  'selected-hover-state-layer-color',
+  'selected-icon-color',
+  'selected-pressed-icon-color',
+  'selected-pressed-state-layer-color',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'focus-state-layer-color',
+  'focus-state-layer-opacity',
+  'selected-focus-state-layer-color',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-comp-outlined-icon-button.values(
+    $deps,
+    $exclude-hardcoded-values
+  );
+
+  $new-tokens: shape.get-new-logical-shape-tokens($tokens, 'container-shape');
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $new-tokens: $new-tokens,
+    $renamed-tokens: (
+      // Remove default "unselected" prefix (b/292244480)
+      'disabled-unselected-outline-color': 'disabled-outline-color',
+      'disabled-unselected-outline-opacity': 'disabled-outline-opacity',
+      'unselected-focus-icon-color': 'focus-icon-color',
+      'unselected-hover-icon-color': 'hover-icon-color',
+      'unselected-hover-state-layer-color': 'hover-state-layer-color',
+      'unselected-icon-color': 'icon-color',
+      'unselected-outline-color': 'outline-color',
+      'unselected-outline-width': 'outline-width',
+      'unselected-pressed-icon-color': 'pressed-icon-color',
+      'unselected-pressed-state-layer-color': 'pressed-state-layer-color',
+      'unselected-focus-state-layer-color': 'focus-state-layer-color'
+    )
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      @if string.index($token, 'container-shape-') == 1 {
+        // Add fallback to shorthand for logical shape properties.
+        $value: var(--md-outlined-icon-button-container-shape, #{$value});
+      }
+
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--md-outlined-icon-button-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

@@ -1,0 +1,83 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../tokens';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-input-chip-supported-tokens;
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-input-chip-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-input-chip-values();
+
+  :host {
+    // Only use the logical properties.
+    $tokens: map.remove($tokens, 'container-shape');
+    @each $token, $value in $tokens {
+      --_#{$token}: #{$value};
+    }
+  }
+
+  :host([avatar]) {
+    // Use a rounded border by default for avatar chips. Recreating the
+    // fallbacks allows `--md-input-chip-container-shape` to cascade and
+    // override this without needing to add more specificity for avatar chips.
+    --_container-shape-start-start: var(
+      --md-input-chip-container-shape-start-start,
+      var(--md-input-chip-container-shape, calc(var(--_container-height) / 2))
+    );
+    --_container-shape-start-end: var(
+      --md-input-chip-container-shape-start-end,
+      var(--md-input-chip-container-shape, calc(var(--_container-height) / 2))
+    );
+    --_container-shape-end-end: var(
+      --md-input-chip-container-shape-end-end,
+      var(--md-input-chip-container-shape, calc(var(--_container-height) / 2))
+    );
+    --_container-shape-end-start: var(
+      --md-input-chip-container-shape-end-start,
+      var(--md-input-chip-container-shape, calc(var(--_container-height) / 2))
+    );
+  }
+
+  .avatar .primary.action {
+    padding-inline-start: 4px;
+  }
+
+  .avatar .leading.icon ::slotted(:first-child) {
+    border-radius: var(--_avatar-shape);
+    height: var(--_avatar-size);
+    width: var(--_avatar-size);
+  }
+
+  .disabled.avatar .leading.icon {
+    opacity: var(--_disabled-avatar-opacity);
+  }
+
+  @media (forced-colors: active) {
+    .link .outline {
+      border-color: ActiveText;
+    }
+
+    .disabled.avatar .leading.icon {
+      opacity: 1;
+    }
+  }
+}

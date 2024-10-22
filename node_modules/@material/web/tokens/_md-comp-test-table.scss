@@ -1,0 +1,43 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './md-sys-color';
+@use './md-sys-typescale';
+// go/keep-sorted end
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-typescale': md-sys-typescale.values(),
+);
+
+@function values($deps: $_default) {
+  @return (
+    'cell-color': map.get($deps, 'md-sys-color', 'surface-container-lowest'),
+    'cell-position': 'relative',
+    'cell-text-color': map.get($deps, 'md-sys-color', 'on-surface'),
+    'cell-text-font': map.get($deps, 'md-sys-typescale', 'body-medium-font'),
+    'cell-text-size': map.get($deps, 'md-sys-typescale', 'body-medium-size'),
+    'cell-text-line-height':
+      map.get($deps, 'md-sys-typescale', 'body-medium-line-height'),
+    'cell-text-weight': map.get($deps, 'md-sys-typescale', 'body-medium-weight'),
+    'cell-grid-color': map.get($deps, 'md-sys-color', 'surface-variant'),
+    'header-cell-color': map.get($deps, 'md-sys-color', 'surface-variant'),
+    'header-cell-text-color':
+      map.get($deps, 'md-sys-color', 'on-surface-variant'),
+    'header-cell-text-font':
+      map.get($deps, 'md-sys-typescale', 'title-medium-font'),
+    'header-cell-text-size':
+      map.get($deps, 'md-sys-typescale', 'title-medium-size'),
+    'header-cell-text-line-height':
+      map.get($deps, 'md-sys-typescale', 'title-medium-line-height'),
+    'header-cell-text-weight':
+      map.get($deps, 'md-sys-typescale', 'title-medium-weight'),
+    'outline-color': map.get($deps, 'md-sys-color', 'outline')
+  );
+}

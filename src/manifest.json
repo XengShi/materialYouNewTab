@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Material You NewTab",
+  "version": "3.0",
+  "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
+"permissions": [
+  "webRequest",
+  "webRequestBlocking",
+  "https://www.google.com/"
+],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "MYNT@mynt.com",
+      "strict_min_version": "91.0"
+    }
+  }
+}

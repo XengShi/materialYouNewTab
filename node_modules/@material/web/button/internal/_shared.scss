@@ -1,0 +1,178 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../focus/focus-ring';
+@use '../../ripple/ripple';
+// go/keep-sorted end
+
+@mixin styles() {
+  :host {
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    border-end-end-radius: var(--_container-shape-end-end);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 8px;
+    // min-height instead of height so that label can wrap and expand height
+    min-height: var(--_container-height);
+    outline: none;
+    // Add extra space between label and the edge for if the label text wraps.
+    // The padding added should be relative to the height of the container and
+    // the height of its content on a single line (label or icon, whichever is
+    // bigger).
+    $single-line-height: max(var(--_label-text-line-height), var(--_icon-size));
+    padding-block: calc((var(--_container-height) - $single-line-height) / 2);
+    padding-inline-start: var(--_leading-space);
+    padding-inline-end: var(--_trailing-space);
+    place-content: center;
+    place-items: center;
+    position: relative;
+    font-family: var(--_label-text-font);
+    font-size: var(--_label-text-size);
+    line-height: var(--_label-text-line-height);
+    font-weight: var(--_label-text-weight);
+    // Long labels are cut off with ellipsis by default. `text-overflow` and
+    // `text-wrap` can customize this.
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    // Override vertical-align with shortest value "top". Vertical-align's
+    // default "baseline" value causes buttons to be misaligned next to each
+    // other if one button has an icon and the other does not.
+    vertical-align: top;
+
+    @include ripple.theme(
+      (
+        hover-color: var(--_hover-state-layer-color),
+        pressed-color: var(--_pressed-state-layer-color),
+        hover-opacity: var(--_hover-state-layer-opacity),
+        pressed-opacity: var(--_pressed-state-layer-opacity),
+      )
+    );
+  }
+
+  md-focus-ring {
+    @include focus-ring.theme(
+      (
+        'shape-start-start': var(--_container-shape-start-start),
+        'shape-start-end': var(--_container-shape-start-end),
+        'shape-end-end': var(--_container-shape-end-end),
+        'shape-end-start': var(--_container-shape-end-start),
+      )
+    );
+  }
+
+  :host(:is([disabled], [soft-disabled])) {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .button {
+    border-radius: inherit;
+    cursor: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    vertical-align: middle;
+    background: transparent;
+    text-decoration: none;
+    // Buttons have a default min-width of 64px. This can be overridden by
+    // setting a smaller min-width on the host. The 64px button will be centered
+    // within the bounds of the smaller host element.
+    min-width: calc(64px - var(--_leading-space) - var(--_trailing-space));
+    width: 100%;
+    z-index: 0; // Place content on top of elevation and ripple
+    height: 100%;
+    font: inherit;
+    color: var(--_label-text-color);
+    padding: 0;
+    gap: inherit;
+    // Override the user-agent text-transform: none of <button> and <a>
+    text-transform: inherit;
+
+    &::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+  }
+
+  :host(:hover) .button {
+    color: var(--_hover-label-text-color);
+  }
+
+  :host(:focus-within) .button {
+    color: var(--_focus-label-text-color);
+  }
+
+  :host(:active) .button {
+    color: var(--_pressed-label-text-color);
+  }
+
+  .background {
+    // Background color. Separate node for disabled opacity styles.
+    background-color: var(--_container-color);
+    border-radius: inherit;
+    inset: 0;
+    position: absolute;
+  }
+
+  .label {
+    overflow: hidden;
+  }
+
+  // Inherit text-overflow down through label and slotted content so that it
+  // can be customized on the host.
+  :is(.button, .label, .label slot),
+  .label ::slotted(*) {
+    text-overflow: inherit;
+  }
+
+  :host(:is([disabled], [soft-disabled])) .label {
+    color: var(--_disabled-label-text-color);
+    opacity: var(--_disabled-label-text-opacity);
+  }
+
+  :host(:is([disabled], [soft-disabled])) .background {
+    background-color: var(--_disabled-container-color);
+    opacity: var(--_disabled-container-opacity);
+  }
+
+  @media (forced-colors: active) {
+    .background {
+      // Use CanvasText to increase visibility of buttons when the background
+      // is not rendered. Buttons that use outlines by default should change The
+      // outline color to GrayText when disabled.
+      border: 1px solid CanvasText;
+    }
+
+    :host(:is([disabled], [soft-disabled])) {
+      --_disabled-icon-color: GrayText;
+      --_disabled-icon-opacity: 1;
+      --_disabled-container-opacity: 1;
+      --_disabled-label-text-color: GrayText;
+      --_disabled-label-text-opacity: 1;
+    }
+  }
+
+  :host([has-icon]:not([trailing-icon])) {
+    padding-inline-start: var(--_with-leading-icon-leading-space);
+    padding-inline-end: var(--_with-leading-icon-trailing-space);
+  }
+
+  :host([has-icon][trailing-icon]) {
+    padding-inline-start: var(--_with-trailing-icon-leading-space);
+    padding-inline-end: var(--_with-trailing-icon-trailing-space);
+  }
+}

@@ -1,0 +1,156 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './v0_192/md-comp-checkbox';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'container-shape',
+  'container-shape-end-end',
+  'container-shape-end-start',
+  'container-shape-start-end',
+  'container-shape-start-start',
+  'container-size',
+  'disabled-container-opacity',
+  'disabled-outline-color',
+  'disabled-outline-width',
+  'focus-outline-color',
+  'focus-outline-width',
+  'hover-outline-color',
+  'hover-outline-width',
+  'hover-state-layer-color',
+  'hover-state-layer-opacity',
+  'icon-size',
+  'outline-color',
+  'outline-width',
+  'pressed-outline-color',
+  'pressed-outline-width',
+  'pressed-state-layer-color',
+  'pressed-state-layer-opacity',
+  'selected-container-color',
+  'selected-disabled-container-color',
+  'selected-disabled-container-opacity',
+  'selected-disabled-icon-color',
+  'selected-focus-container-color',
+  'selected-focus-icon-color',
+  'selected-hover-container-color',
+  'selected-hover-icon-color',
+  'selected-hover-state-layer-color',
+  'selected-hover-state-layer-opacity',
+  'selected-icon-color',
+  'selected-pressed-container-color',
+  'selected-pressed-icon-color',
+  'selected-pressed-state-layer-color',
+  'selected-pressed-state-layer-opacity',
+  'state-layer-shape',
+  'state-layer-size',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'error-focus-outline-color',
+  'error-focus-state-layer-color',
+  'error-focus-state-layer-opacity',
+  'error-hover-outline-color',
+  'error-hover-state-layer-color',
+  'error-hover-state-layer-opacity',
+  'error-outline-color',
+  'error-pressed-outline-color',
+  'error-pressed-state-layer-color',
+  'error-pressed-state-layer-opacity',
+  'focus-state-layer-color',
+  'focus-state-layer-opacity',
+  'selected-disabled-container-outline-width',
+  'selected-error-container-color',
+  'selected-error-focus-container-color',
+  'selected-error-focus-icon-color',
+  'selected-error-hover-container-color',
+  'selected-error-hover-icon-color',
+  'selected-error-icon-color',
+  'selected-error-pressed-container-color',
+  'selected-error-pressed-icon-color',
+  'selected-focus-outline-width',
+  'selected-focus-state-layer-color',
+  'selected-focus-state-layer-opacity',
+  'selected-hover-outline-width',
+  'selected-outline-width',
+  'selected-pressed-outline-width',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-comp-checkbox.values($deps, $exclude-hardcoded-values);
+  $new-tokens: shape.get-new-logical-shape-tokens($tokens, 'container-shape');
+
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $new-tokens: $new-tokens,
+    $renamed-tokens: (
+      // Remove default "unselected" prefix (b/292244480)
+      'unselected-disabled-container-opacity': 'disabled-container-opacity',
+      'unselected-disabled-outline-color': 'disabled-outline-color',
+      'unselected-disabled-outline-width': 'disabled-outline-width',
+      'unselected-error-focus-outline-color': 'error-focus-outline-color',
+      'unselected-error-hover-outline-color': 'error-hover-outline-color',
+      'unselected-error-outline-color': 'error-outline-color',
+      'unselected-error-pressed-outline-color': 'error-pressed-outline-color',
+      'unselected-focus-outline-color': 'focus-outline-color',
+      'unselected-focus-outline-width': 'focus-outline-width',
+      'unselected-hover-outline-color': 'hover-outline-color',
+      'unselected-hover-outline-width': 'hover-outline-width',
+      'unselected-hover-state-layer-color': 'hover-state-layer-color',
+      'unselected-hover-state-layer-opacity': 'hover-state-layer-opacity',
+      'unselected-outline-color': 'outline-color',
+      'unselected-outline-width': 'outline-width',
+      'unselected-pressed-outline-color': 'pressed-outline-color',
+      'unselected-pressed-outline-width': 'pressed-outline-width',
+      'unselected-pressed-state-layer-color': 'pressed-state-layer-color',
+      'unselected-pressed-state-layer-opacity': 'pressed-state-layer-opacity',
+      'unselected-focus-state-layer-color': 'focus-state-layer-color',
+      'unselected-focus-state-layer-opacity': 'focus-state-layer-opacity'
+    )
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      @if string.index($token, 'container-shape-') == 1 {
+        // Add fallback to shorthand for logical shape properties.
+        $value: var(--md-checkbox-container-shape, #{$value});
+      }
+
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--md-checkbox-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

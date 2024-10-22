@@ -1,0 +1,101 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../focus/focus-ring';
+@use '../../tokens';
+@use './handle';
+@use './icon';
+@use './track';
+// go/keep-sorted end
+
+@mixin theme($tokens) {
+  $supported-tokens: tokens.$md-comp-switch-supported-tokens;
+  @each $token, $value in $tokens {
+    @if list.index($supported-tokens, $token) == null {
+      @error 'Token `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --md-switch-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-switch-values();
+
+  @layer styles, hcm;
+  @layer styles {
+    :host {
+      display: inline-flex;
+      outline: none;
+      vertical-align: top;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+
+    :host([disabled]) {
+      cursor: default;
+    }
+
+    :host([touch-target='wrapper']) {
+      margin: max(0px, (48px - map.get($tokens, 'track-height')) / 2) 0px;
+    }
+
+    md-focus-ring {
+      @include focus-ring.theme(
+        (
+          'shape-start-start': map.get($tokens, 'track-shape-start-start'),
+          'shape-start-end': map.get($tokens, 'track-shape-start-end'),
+          'shape-end-end': map.get($tokens, 'track-shape-end-end'),
+          'shape-end-start': map.get($tokens, 'track-shape-end-start'),
+        )
+      );
+    }
+
+    .switch {
+      align-items: center;
+      display: inline-flex;
+      flex-shrink: 0; // Stop from collapsing in flex containers
+      position: relative;
+      width: map.get($tokens, 'track-width');
+      height: map.get($tokens, 'track-height');
+
+      // Track shape
+      border-start-start-radius: map.get($tokens, 'track-shape-start-start');
+      border-start-end-radius: map.get($tokens, 'track-shape-start-end');
+      border-end-end-radius: map.get($tokens, 'track-shape-end-end');
+      border-end-start-radius: map.get($tokens, 'track-shape-end-start');
+    }
+
+    // Input is also touch target
+    input {
+      appearance: none;
+      height: max(100%, map.get($tokens, 'touch-target-size'));
+      outline: none;
+      margin: 0;
+      position: absolute;
+      width: max(100%, map.get($tokens, 'touch-target-size'));
+      z-index: 1;
+      cursor: inherit;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    :host([touch-target='none']) input {
+      display: none;
+    }
+  }
+
+  @include track.styles($tokens);
+  @include handle.styles($tokens);
+  @include icon.styles($tokens);
+}

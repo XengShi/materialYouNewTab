@@ -1,0 +1,53 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './icon';
+@use './input';
+// go/keep-sorted end
+
+@mixin styles() {
+  :host {
+    display: inline-flex;
+    outline: none;
+    resize: both;
+    // Match default text-align of `<input>` instead of `inherit`.
+    text-align: start;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .text-field,
+  .field {
+    width: 100%;
+  }
+
+  .text-field {
+    display: inline-flex;
+  }
+
+  .field {
+    cursor: text;
+  }
+
+  .disabled .field {
+    cursor: default;
+  }
+
+  .text-field,
+  .textarea .field {
+    // Note: only inherit default `resize: both` to the field when textarea.
+    resize: inherit;
+  }
+
+  slot[name='container'] {
+    border-radius: inherit;
+  }
+
+  @include icon.styles;
+  @include input.styles;
+}

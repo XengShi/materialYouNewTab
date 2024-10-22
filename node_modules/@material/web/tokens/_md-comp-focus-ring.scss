@@ -1,0 +1,78 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:string';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/shape';
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-motion';
+@use './md-sys-shape';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'active-width',
+  'color',
+  'duration',
+  'inward-offset',
+  'outward-offset',
+  'shape',
+  'shape-end-end',
+  'shape-end-start',
+  'shape-start-end',
+  'shape-start-start',
+  'width',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-motion': md-sys-motion.values(),
+  'md-sys-shape': md-sys-shape.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: (
+    'active-width': if($exclude-hardcoded-values, null, 8px),
+    'color': map.get($deps, 'md-sys-color', 'secondary'),
+    'duration': map.get($deps, 'md-sys-motion', 'duration-long4'),
+    'inward-offset': if($exclude-hardcoded-values, null, 0px),
+    'outward-offset': if($exclude-hardcoded-values, null, 2px),
+    'shape': map.get($deps, 'md-sys-shape', 'corner-full'),
+    'width': if($exclude-hardcoded-values, null, 3px),
+  );
+
+  $new-tokens: shape.get-new-logical-shape-tokens($tokens, 'shape');
+  $tokens: validate.values(
+    $tokens,
+    $supported-tokens: $supported-tokens,
+    $new-tokens: $new-tokens
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      @if string.index($token, 'shape-') == 1 {
+        // Add fallback to shorthand for logical shape properties.
+        $value: var(--md-focus-ring-shape, #{$value});
+      }
+
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--md-focus-ring-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

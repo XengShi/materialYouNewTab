@@ -1,0 +1,89 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './content';
+@use './label';
+@use './supporting-text';
+// go/keep-sorted end
+
+@mixin styles() {
+  :host {
+    display: inline-flex;
+    resize: both;
+  }
+
+  .field {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    // Allow the use of block/inline reflexive RTL properties without impacting
+    // structure when languages change.
+    writing-mode: horizontal-tb;
+    max-width: 100%; // Do not allow field to grow beyond explicitly set width
+  }
+
+  // A separate wrapper is needed around the container for the outline, whose
+  // floating label needs overflow: visible. The container itself needs
+  // overflow: hidden when resizable.
+  .container-overflow {
+    border-start-start-radius: var(--_container-shape-start-start);
+    border-start-end-radius: var(--_container-shape-start-end);
+    border-end-end-radius: var(--_container-shape-end-end);
+    border-end-start-radius: var(--_container-shape-end-start);
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+
+  .container {
+    align-items: center;
+    border-radius: inherit;
+    display: flex;
+    flex: 1;
+    max-height: 100%;
+    min-height: 100%;
+    min-width: min-content;
+    position: relative;
+  }
+
+  .field,
+  .container-overflow {
+    resize: inherit;
+  }
+
+  .resizable:not(.disabled) .container {
+    // `resize` is inherited from the host, but only applies to the container
+    // when resizable.
+    resize: inherit;
+    // Overflow is visible when not resizable to allow overflowing content such
+    // as popups or icon focus rings.
+    // Resizable fields cannot display overflowing content due to `resize` not
+    // allowing it.
+    overflow: hidden;
+  }
+
+  .disabled {
+    pointer-events: none;
+  }
+
+  slot[name='container'] {
+    border-radius: inherit;
+  }
+
+  slot[name='container']::slotted(*) {
+    border-radius: inherit;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  @include content.styles;
+  @include label.styles;
+  @include supporting-text.styles;
+}

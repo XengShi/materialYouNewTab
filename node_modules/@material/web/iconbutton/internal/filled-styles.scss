@@ -1,0 +1,10 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use './filled-icon-button';
+// go/keep-sorted end
+
+@include filled-icon-button.styles;

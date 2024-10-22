@@ -1,0 +1,117 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-elevation';
+@use './md-sys-shape';
+@use './md-sys-state';
+@use './md-sys-typescale';
+@use './v0_192/md-comp-slider';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'active-track-color',
+  'active-track-height',
+  'active-track-shape',
+  'disabled-active-track-color',
+  'disabled-active-track-opacity',
+  'disabled-handle-color',
+  'disabled-handle-elevation',
+  'disabled-inactive-track-color',
+  'disabled-inactive-track-opacity',
+  'focus-handle-color',
+  'handle-color',
+  'handle-elevation',
+  'handle-height',
+  'handle-shadow-color',
+  'handle-shape',
+  'handle-width',
+  'hover-handle-color',
+  'hover-state-layer-color',
+  'hover-state-layer-opacity',
+  'inactive-track-color',
+  'inactive-track-height',
+  'inactive-track-shape',
+  'label-container-color',
+  'label-container-height',
+  'label-text-color',
+  'label-text-font',
+  'label-text-line-height',
+  'label-text-size',
+  'label-text-weight',
+  'pressed-handle-color',
+  'pressed-state-layer-color',
+  'pressed-state-layer-opacity',
+  'state-layer-size',
+  'with-overlap-handle-outline-color',
+  'with-overlap-handle-outline-width',
+  'with-tick-marks-active-container-color',
+  'with-tick-marks-container-size',
+  'with-tick-marks-disabled-container-color',
+  'with-tick-marks-inactive-container-color',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  'disabled-handle-opacity',
+  'label-container-elevation',
+  'label-text-type',
+  'label-text-tracking',
+  'track-elevation',
+  // for efficiency, tick marks are rendered as radial-gradients and
+  // have more limited customization
+  'with-tick-marks-container-shape',
+  // Due to how opacity is multiplied together in the browser, using
+  // these tokens results in low contrast tick marks.
+  'with-tick-marks-active-container-opacity',
+  'with-tick-marks-disabled-container-opacity',
+  'with-tick-marks-inactive-container-opacity',
+  // focus tokens no longer used.
+  'focus-state-layer-color',
+  'focus-state-layer-opacity'
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-elevation': md-sys-elevation.values(),
+  'md-sys-shape': md-sys-shape.values(),
+  'md-sys-state': md-sys-state.values(),
+  'md-sys-typescale': md-sys-typescale.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: validate.values(
+    md-comp-slider.values($deps, $exclude-hardcoded-values),
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens,
+    $renamed-tokens: (
+      'label-label-text-color': 'label-text-color',
+      'label-label-text-type': 'label-text-type',
+      'label-label-text-font': 'label-text-font',
+      'label-label-text-line-height': 'label-text-line-height',
+      'label-label-text-size': 'label-text-size',
+      'label-label-text-tracking': 'label-text-tracking',
+      'label-label-text-weight': 'label-text-weight',
+    )
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set($tokens, $token, var(--md-slider-#{$token}, #{$value}));
+    }
+  }
+
+  @return $tokens;
+}

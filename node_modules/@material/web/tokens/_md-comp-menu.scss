@@ -1,0 +1,59 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/validate';
+@use './md-sys-color';
+@use './md-sys-elevation';
+@use './md-sys-shape';
+@use './v0_192/md-comp-menu';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'container-color',
+  'container-elevation',
+  'container-shadow-color',
+  'container-shape',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  'list-item-selected-container-color',
+  'list-item-selected-label-text-color',
+  'list-item-selected-with-leading-icon-trailing-icon-color',
+  'menu-list-item-with-leading-icon-icon-color',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'md-sys-color': md-sys-color.values-light(),
+  'md-sys-elevation': md-sys-elevation.values(),
+  'md-sys-shape': md-sys-shape.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: validate.values(
+    md-comp-menu.values($deps),
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set($tokens, $token, var(--md-menu-#{$token}, #{$value}));
+    }
+  }
+
+  @return $tokens;
+}

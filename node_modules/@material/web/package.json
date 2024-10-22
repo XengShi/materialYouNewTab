@@ -1,0 +1,192 @@
+{
+  "name": "@material/web",
+  "version": "2.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Material web components",
+  "keywords": [
+    "material",
+    "material design",
+    "design system",
+    "components",
+    "web components",
+    "lit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/material-components/material-web.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/material-components/material-web/issues"
+  },
+  "homepage": "https://github.com/material-components/material-web#readme",
+  "scripts": {
+    "build": "wireit",
+    "build:ts": "wireit",
+    "build:css-to-ts": "wireit",
+    "build:sass": "wireit",
+    "test": "wireit",
+    "build:catalog": "wireit",
+    "build:scripts": "wireit",
+    "update-docs": "wireit",
+    "update-size": "wireit"
+  },
+  "type": "module",
+  "files": [
+    "**/*.js",
+    "**/*.js.map",
+    "**/*.d.ts",
+    "**/*.scss",
+    "**/*.css",
+    "**/*.css.map",
+    "!web-test-runner.config.js",
+    "!commitlint.config.js",
+    "!**/test/**",
+    "!**/*_test.*",
+    "!.wireit/**",
+    "!catalog/",
+    "!scripts/",
+    "!**/testing/**",
+    "testing/harness.{js,js.map,d.ts}",
+    "testing/transform-pseudo-classes.{js,js.map,d.ts}"
+  ],
+  "workspaces": [
+    "catalog"
+  ],
+  "dependencies": {
+    "lit": "^2.7.4 || ^3.0.0",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@lit-labs/analyzer": "^0.12.1",
+    "@rollup/plugin-multi-entry": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/jasmine": "^4.0.3",
+    "@web/test-runner": "^0.18.2",
+    "@web/test-runner-playwright": "^0.9.0",
+    "jasmine": "^4.5.0",
+    "rollup": "^2.79.1",
+    "sass": "^1.52.3",
+    "sass-true": "^6.1.0",
+    "typescript": "5.1.6",
+    "web-test-runner-jasmine": "^0.0.6",
+    "wireit": "^0.13.0"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --pretty",
+      "files": [
+        "tsconfig.json",
+        "**/*.ts",
+        "!**/*.d.ts",
+        "!**/*-styles.ts",
+        "!catalog/",
+        "!scripts/"
+      ],
+      "output": [
+        ".tsbuildinfo",
+        "**/*.js",
+        "**/*.js.map",
+        "**/*.d.ts",
+        "!web-test-runner.config.js",
+        "!commitlint.config.js",
+        "!types/",
+        "!catalog/",
+        "!scripts/"
+      ],
+      "clean": "if-file-deleted",
+      "dependencies": [
+        "build:css-to-ts"
+      ]
+    },
+    "build:css-to-ts": {
+      "command": "find . \\( -path ./.wireit -o -path ./node_modules -o -path ./catalog \\) -prune -o -name '*-styles.css' -print | xargs -L1 node scripts/css-to-ts.js",
+      "files": [
+        "**/*-styles.css",
+        "!catalog/"
+      ],
+      "output": [
+        "**/*-styles.ts",
+        "!catalog/"
+      ],
+      "dependencies": [
+        "build:scripts",
+        "build:sass"
+      ]
+    },
+    "build:sass": {
+      "command": "sass --style=compressed --load-path=node_modules --load-path=node_modules/sass-true/sass $(ls -d */ | grep -vE 'node_modules|catalog')",
+      "files": [
+        "**/*.scss",
+        "!catalog/"
+      ],
+      "output": [
+        "**/*.css",
+        "**/*.css.map",
+        "!catalog/"
+      ]
+    },
+    "test": {
+      "command": "wtr",
+      "dependencies": [
+        "build:ts"
+      ],
+      "files": [
+        "web-test-runner.config.js"
+      ],
+      "output": []
+    },
+    "build:catalog": {
+      "dependencies": [
+        "./catalog:build:prod"
+      ]
+    },
+    "build:scripts": {
+      "command": "tsc -b scripts/tsconfig.json --pretty",
+      "files": [
+        "scripts/tsconfig.json",
+        "scripts/**/*.ts",
+        "!**/*.d.ts",
+        "!**/*-styles.ts"
+      ],
+      "output": [
+        "scripts/.tsbuildinfo",
+        "scripts/**/*.js",
+        "scripts/**/*.js.map",
+        "scripts/**/*.d.ts"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "update-docs": {
+      "command": "node scripts/analyzer/update-docs.js",
+      "files": [
+        "docs/components/*.md",
+        "**/*.ts",
+        "!**/*.d.ts",
+        "!**/*-styles.ts",
+        "!catalog/",
+        "!scripts/",
+        "scripts/analyzer/update-docs.js"
+      ],
+      "output": [],
+      "dependencies": [
+        "build:scripts"
+      ]
+    },
+    "update-size": {
+      "command": "node scripts/size/update-size.js",
+      "dependencies": [
+        "build:scripts",
+        "build"
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/validate';
+@use './v0_192/md-ref-typeface';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'brand',
+  'plain',
+  'weight-bold',
+  'weight-medium',
+  'weight-regular',
+  // go/keep-sorted end
+);
+
+@function values(
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-ref-typeface.values(
+    $exclude-hardcoded-values: $exclude-hardcoded-values,
+  );
+
+  @if not $exclude-custom-properties {
+    // Create --md-ref-typeface-* custom properties
+    @each $token, $value in $tokens {
+      @if $value != null {
+        $tokens: map.set(
+          $tokens,
+          $token,
+          var(--md-ref-typeface-#{$token}, #{$value})
+        );
+      }
+    }
+  }
+
+  @return validate.values($tokens, $supported-tokens: $supported-tokens);
+}

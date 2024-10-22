@@ -1,0 +1,119 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../tokens';
+// go/keep-sorted end
+
+$_md-sys-motion: tokens.md-sys-motion-values();
+$_easing-standard: map.get($_md-sys-motion, 'easing-standard');
+
+@mixin styles($tokens) {
+  @layer styles {
+    .icons {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    .icon {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      fill: currentColor;
+
+      transition: fill 67ms linear, opacity 33ms linear,
+        transform 167ms $_easing-standard;
+      opacity: 0;
+    }
+
+    .disabled .icon {
+      transition: none;
+    }
+
+    .selected .icon--on,
+    .unselected .icon--off {
+      opacity: 1;
+    }
+
+    // rotate selected icon into view when there is no unselected icon
+    .unselected .handle:not(.with-icon) .icon--on {
+      transform: rotate(-45deg);
+    }
+
+    .icon--off {
+      width: map.get($tokens, 'icon-size');
+      height: map.get($tokens, 'icon-size');
+      color: map.get($tokens, 'icon-color');
+    }
+
+    .unselected:hover .icon--off {
+      color: map.get($tokens, 'hover-icon-color');
+    }
+
+    .unselected:focus-within .icon--off {
+      color: map.get($tokens, 'focus-icon-color');
+    }
+
+    .unselected:active .icon--off {
+      color: map.get($tokens, 'pressed-icon-color');
+    }
+
+    .unselected.disabled .icon--off {
+      color: map.get($tokens, 'disabled-icon-color');
+      opacity: map.get($tokens, 'disabled-icon-opacity');
+    }
+
+    .icon--on {
+      width: map.get($tokens, 'selected-icon-size');
+      height: map.get($tokens, 'selected-icon-size');
+      color: map.get($tokens, 'selected-icon-color');
+    }
+
+    .selected:hover .icon--on {
+      color: map.get($tokens, 'selected-hover-icon-color');
+    }
+
+    .selected:focus-within .icon--on {
+      color: map.get($tokens, 'selected-focus-icon-color');
+    }
+
+    .selected:active .icon--on {
+      color: map.get($tokens, 'selected-pressed-icon-color');
+    }
+
+    .selected.disabled .icon--on {
+      color: map.get($tokens, 'disabled-selected-icon-color');
+      opacity: map.get($tokens, 'disabled-selected-icon-opacity');
+    }
+  }
+
+  @layer hcm {
+    @media (forced-colors: active) {
+      .icon--off {
+        fill: Canvas;
+      }
+
+      .icon--on {
+        fill: ButtonText;
+      }
+
+      .disabled.unselected .icon--off,
+      .disabled.selected .icon--on {
+        opacity: 1;
+      }
+
+      .disabled .icon--on {
+        fill: GrayText;
+      }
+    }
+  }
+}

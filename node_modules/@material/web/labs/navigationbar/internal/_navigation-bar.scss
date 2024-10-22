@@ -1,0 +1,70 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// stylelint-disable selector-class-pattern --
+// Selector '.md3-*' should only be used in this project.
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../../elevation/elevation';
+@use '../../../tokens';
+// go/keep-sorted end
+
+$_md-sys-motion: tokens.md-sys-motion-values();
+
+@mixin theme($tokens) {
+  // $supported-tokens: tokens.$md-comp-navigation-bar-supported-tokens;
+
+  @each $token, $value in $tokens {
+    // @if list.index($supported-tokens, $token) == null {
+    //   @error 'Token `#{$token}` is not a supported token.';
+    // }
+
+    @if $value {
+      --md-navigation-bar-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-navigation-bar-values();
+
+  :host {
+    @each $token, $value in $tokens {
+      --_#{$token}: #{$value};
+    }
+
+    @include elevation.theme(
+      (
+        'level': var(--_container-elevation),
+        'shadow-color': var(--_container-shadow-color),
+      )
+    );
+
+    width: 100%;
+  }
+
+  .md3-navigation-bar {
+    display: flex;
+    position: relative;
+    width: 100%;
+    background-color: var(--_container-color);
+    border-radius: var(--_container-shape);
+    height: var(--_container-height);
+
+    .md3-navigation-bar__tabs-slot-container {
+      display: inherit;
+      width: inherit;
+    }
+  }
+
+  md-elevation {
+    transition-duration: 280ms;
+    transition-timing-function: map.get($_md-sys-motion, 'emphasized-easing');
+    z-index: 0;
+  }
+}

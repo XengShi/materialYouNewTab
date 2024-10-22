@@ -1,0 +1,119 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './internal/validate';
+@use './md-ref-palette';
+@use './v0_192/md-sys-color';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'background',
+  'error',
+  'error-container',
+  'inverse-on-surface',
+  'inverse-primary',
+  'inverse-surface',
+  'on-background',
+  'on-error',
+  'on-error-container',
+  'on-primary',
+  'on-primary-container',
+  'on-primary-fixed',
+  'on-primary-fixed-variant',
+  'on-secondary',
+  'on-secondary-container',
+  'on-secondary-fixed',
+  'on-secondary-fixed-variant',
+  'on-surface',
+  'on-surface-variant',
+  'on-tertiary',
+  'on-tertiary-container',
+  'on-tertiary-fixed',
+  'on-tertiary-fixed-variant',
+  'outline',
+  'outline-variant',
+  'primary',
+  'primary-container',
+  'primary-fixed',
+  'primary-fixed-dim',
+  'scrim',
+  'secondary',
+  'secondary-container',
+  'secondary-fixed',
+  'secondary-fixed-dim',
+  'shadow',
+  'surface',
+  'surface-bright',
+  'surface-container',
+  'surface-container-high',
+  'surface-container-highest',
+  'surface-container-low',
+  'surface-container-lowest',
+  'surface-dim',
+  'surface-tint',
+  'surface-variant',
+  'tertiary',
+  'tertiary-container',
+  'tertiary-fixed',
+  'tertiary-fixed-dim',
+  // go/keep-sorted end
+);
+
+$_default-dark: (
+  'md-ref-palette': md-ref-palette.values(),
+);
+
+@function values-dark(
+  $deps: $_default-dark,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-sys-color.values-dark($deps);
+
+  @if not $exclude-custom-properties {
+    // Create --md-sys-color-* custom properties
+    @each $token, $value in $tokens {
+      @if $value != null {
+        $tokens: map.set(
+          $tokens,
+          $token,
+          var(--md-sys-color-#{$token}, #{$value})
+        );
+      }
+    }
+  }
+
+  @return validate.values($tokens, $supported-tokens: $supported-tokens);
+}
+
+$_default-light: (
+  'md-ref-palette': md-ref-palette.values(),
+);
+
+@function values-light(
+  $deps: $_default-light,
+  $exclude-custom-properties: false
+) {
+  $tokens: md-sys-color.values-light($deps);
+
+  @if not $exclude-custom-properties {
+    // Create --md-sys-color-* custom properties
+    @each $token, $value in $tokens {
+      @if $value != null {
+        $tokens: map.set(
+          $tokens,
+          $token,
+          var(--md-sys-color-#{$token}, #{$value})
+        );
+      }
+    }
+  }
+
+  @return validate.values($tokens, $supported-tokens: $supported-tokens);
+}

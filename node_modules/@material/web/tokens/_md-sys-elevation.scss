@@ -1,0 +1,31 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use './v0_192/md-sys-elevation';
+// go/keep-sorted end
+
+@function values($exclude-hardcoded-values: false) {
+  $tokens: md-sys-elevation.values($exclude-hardcoded-values);
+  $tokens: map.merge(
+    $tokens,
+    (
+      // Elevation levels on web should use the level number, not the dp value.
+      // We can remove this if the generated tokens swap from dp to level. See
+      // b/261602454.
+      'level0': if($exclude-hardcoded-values, null, 0),
+      'level1': if($exclude-hardcoded-values, null, 1),
+      'level2': if($exclude-hardcoded-values, null, 2),
+      'level3': if($exclude-hardcoded-values, null, 3),
+      'level4': if($exclude-hardcoded-values, null, 4),
+      'level5': if($exclude-hardcoded-values, null, 5)
+    )
+  );
+
+  @return $tokens;
+}
