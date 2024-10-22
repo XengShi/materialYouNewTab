@@ -77,18 +77,22 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
 
-        var currentUserLocation = savedLocation; // Get saved location
+        // Try to get the savedLocation or a previously stored location from localStorage
+        var currentUserLocation = savedLocation || localStorage.getItem("locationQ");
+        
         if (!currentUserLocation) {
-            // Only fetch if there is no saved location
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
+        // If neither savedLocation nor localStorage has a location, fetch the IP-based location
+        const geoLocation = 'https://ipinfo.io/json/';
+        const locationData = await fetch(geoLocation);
+        const parsedLocation = await locationData.json();
+        currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
+        localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
         }
+        
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
         
-        // Weather API call using currentUserLocation, which is either user input or IP address
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+        // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
+        const weatherApi = https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage};
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -347,7 +351,19 @@ setInterval((updated) => {
     if (storedValue) {
         userTextDiv.textContent = storedValue;
     }
+    // Remove placeholder text when the user starts editing
+    userTextDiv.addEventListener("focus", function () {
+        if (userTextDiv.textContent === "Click here to edit") {
+            userTextDiv.textContent = "";  // Clear the placeholder when focused
+        }
+    });
 
+    // Restore placeholder if the user leaves the div empty after editing
+    userTextDiv.addEventListener("blur", function () {
+        if (userTextDiv.textContent.trim() === "") {
+            userTextDiv.textContent = "Click here to edit";  // Show placeholder again if empty
+        }
+    });
 }, 1000)
 const userTextDiv = document.getElementById("userText");
 userTextDiv.addEventListener("input", function () {
