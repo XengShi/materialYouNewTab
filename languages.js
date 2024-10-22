@@ -53,8 +53,8 @@ const translations = {
 
         // Weather
         "humidityText": "Humidity",
-        "feelsLike": "Feels",
-        "location": "Earth",
+        "feelsLikeText": "Feels",
+        "locationText": "Earth",
         // End of Weather
 
         // New Tab Item
@@ -124,8 +124,8 @@ const translations = {
 
     // Weather
     "humidityText": "Umidade",
-    "feelsLike": "Sensação de",
-    "location": "Terra",
+    "feelsLikeText": "Sensação de",
+    "locationText": "Terra",
     // End of Weather
 
     // New Tab Item
@@ -193,8 +193,8 @@ const translations = {
 
     // Weather
     "humidityText": "湿度",
-    "feelsLike": "体感温度",
-    "location": "地球",
+    "feelsLikeText": "体感温度",
+    "locationText": "地球",
     // End of Weather
 
     // New Tab Item
@@ -263,8 +263,8 @@ const translations = {
 
         // Weather
         "humidityText": "नमी",
-        "feelsLike": "महसूस",
-        "location": "पृथ्वी",
+        "feelsLikeText": "महसूस",
+        "locationText": "पृथ्वी",
         // End of Weather
 
         // New Tab Item
@@ -331,8 +331,8 @@ const translations = {
 
     // Weather
     "humidityText": "Vlhkost",
-    "feelsLike": "Pocitová teplota",
-    "location": "Země",
+    "feelsLikeText": "Pocitová teplota",
+    "locationText": "Země",
     // End of Weather
 
     // New Tab Item
@@ -400,8 +400,8 @@ const translations = {
 
     // Weather
     "humidityText": "Umidità",
-    "feelsLike": "Percepito",
-    "location": "Terra",
+    "feelsLikeText": "Percepito",
+    "locationText": "Terra",
     // End of Weather
 
     // New Tab Item
@@ -469,8 +469,8 @@ const translations = {
 
     // Weather
     "humidityText": "Nem",
-    "feelsLike": "Hissedilen",
-    "location": "Dünya",
+    "feelsLikeText": "Hissedilen",
+    "locationText": "Dünya",
     // End of Weather
 
     // New Tab Item
@@ -540,8 +540,8 @@ const translations = {
 
         // Weather
         "humidityText": "আর্দ্রতা",
-        "feelsLike": "অনুভূত হয়",
-        "location": "পৃথিবী",
+        "feelsLikeText": "অনুভূত হয়",
+        "locationText": "পৃথিবী",
         // End of Weather
 
         // New Tab Item
@@ -608,8 +608,8 @@ const translations = {
 
     // Weather
     "humidityText": "Влажность",
-    "feelsLike": "Ощущается как",
-    "location": "Земля",
+    "feelsLikeText": "Ощущается как",
+    "locationText": "Земля",
     // End of Weather
 
     // New Tab Item
