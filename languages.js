@@ -63,7 +63,7 @@ const translations = {
         "searchPlaceholder": "Your query...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
-        "userText": "Double tap to edit",
+        "userText": "Click here to edit",
         // End of Body and New Tab Items
 
         // toDo for "menuCloseButton:hover::after": "Close",
@@ -134,7 +134,7 @@ const translations = {
     "searchPlaceholder": "Digite sua consulta...",
     "searchWithHint": "Pesquisar Com",
     "ai_tools": "Ferramentas de IA",
-    "userText": "Toque duas vezes para editar",
+    "userText": "Clique aqui para editar",
     // End of Body and New Tab Items
 },
 
@@ -203,7 +203,7 @@ const translations = {
     "searchPlaceholder": "输入搜索内容...",
     "searchWithHint": "搜索引擎",
     "ai_tools": "AI工具",
-    "userText": "双击可编辑",
+    "userText": "点击这里编辑",
     // End of Body and New Tab Items
 },
 
@@ -341,7 +341,7 @@ const translations = {
     "searchPlaceholder": "Zadejte hledaný výraz...",
     "searchWithHint": "Vyhledávat prostřednictvím",
     "ai_tools": "AI nástroje",
-    "userText": "Upravíte dvojklikem",
+    "userText": "Klikněte sem pro úpravu",
     // End of Body and New Tab Items
 },
         
@@ -410,7 +410,7 @@ const translations = {
     "searchPlaceholder": "Cerca...",
     "searchWithHint": "Cerca con",
     "ai_tools": "Strumenti AI",
-    "userText": "Clicca per modificare",
+    "userText": "Clicca qui per modificare",
     // End of Body and New Tab Items
 },
 
@@ -479,7 +479,7 @@ const translations = {
     "searchPlaceholder": "Aramanız...",
     "searchWithHint": "ile Ara",
     "ai_tools": "AI Araçları",
-    "userText": "Düzenlemek için çift dokunun",
+    "userText": "Buraya tıklayarak düzenleyin",
     // End of Body and New Tab Items
 },
 
@@ -550,7 +550,7 @@ const translations = {
         "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
         "searchWithHint": "অনুসন্ধান করুন",
         "ai_tools": "AI সরঞ্জাম",
-        "userText": "সম্পাদনা করতে ডবল ট্যাপ করুন",
+        "userText": "এখানে আপনার টেক্সট লিখুন",
         // End of Body and New Tab Items
     },
 
@@ -618,7 +618,7 @@ const translations = {
     "searchPlaceholder": "Ваш запрос...",
     "searchWithHint": "Искать с помощью",
     "ai_tools": "Инструменты ИИ",
-    "userText": "Дважды нажмите для редактирования",
+    "userText": "Нажмите здесь, чтобы редактировать",
     // End of Body and New Tab Items
 }
 };
