@@ -550,7 +550,7 @@ const translations = {
         "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
         "searchWithHint": "অনুসন্ধান করুন",
         "ai_tools": "AI সরঞ্জাম",
-        "userText": "এখানে টেক্সট লিখুন",
+        "userText": "এখানে আপনার টেক্সট লিখুন",
         // End of Body and New Tab Items
     },
 
