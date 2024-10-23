@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'localStorageBackup.json';
+            a.download = 'Material-You-NewTab-Settings.json';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -72,6 +72,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                     document.getElementById('alertheadline').innerText = "Settings Imported Successfully!";
                     document.getElementById('alertform').innerText = "Settings has been Imported Successfully!, Page Refresh Recommended";
                     alert.show();
+                    alert.addEventListener('close', () => {
+                            location.reload();
+                      });
+                    
                 } catch (error) {
                     const alert =document.getElementById("alert");
                     document.getElementById('alertheadline').innerText = "Error While Importing Settings";

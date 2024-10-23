@@ -12,10 +12,9 @@
 </head>
 <body>
     <md-dialog type="alert" id="alertbody">
-        <div slot="headline" id="alertbodyheadline">Alert dialog</div>
+        <div slot="headline" id="alertbodyheadline"></div>
         <form id="alertbodyform" slot="content" method="dialog">
-          This is a standard alert dialog. Alert dialogs interrupt users with
-          urgent information, details, or actions.
+          
         </form>
         <div slot="actions">
           <md-text-button form="alertbodyform" value="ok">OK</md-text-button>
@@ -540,44 +539,25 @@
                   </div>
                   <div id="advanced-panel" role="tabpanel" aria-labelledby="advanced-tab"  style="margin-top: 10px;" hidden>
                     <div class="toggleTextsCont">
-                        <md-filled-button id="exportbtn"><md-icon slot="icon">upload</md-icon>Export Settings</md-filled-button>
-                        <md-filled-button id="fileInputbtn"><md-icon slot="icon">download</md-icon>Import Settings</md-filled-button>
-                        <md-filled-button id="restorechipsbtn"><md-icon slot="icon">restore</md-icon>Restore All Search Engine Chips</md-filled-button>
-                        <md-outlined-button id="resetsettings">Reset Settings</md-outlined-button>
+                        <div class="button-container">
+                            <md-filled-button id="exportbtn">
+                                <md-icon slot="icon">upload</md-icon>Export Settings
+                            </md-filled-button>
+                            <md-filled-button id="fileInputbtn">
+                                <md-icon slot="icon">download</md-icon>Import Settings
+                            </md-filled-button>
+                            <md-filled-button id="restorechipsbtn">
+                                <md-icon slot="icon">restore</md-icon>Restore All Search Engine Chips
+                            </md-filled-button>
+                            <md-outlined-button id="resetsettings">Reset Settings</md-outlined-button>
+                        </div>
+                        
                         
                     <input type="file" id="fileInput" accept=".json" style="display: none;" />
-                    
-                    <div class="tilesCont" style="margin-top: 100px;">
-
-                        <!-- ----tiles----------- -->
-                        <a class="tiles" href="https://github.com/XengShi/materialYouNewTab">
-                            <div class="icon">
-                                
-                                <svg fill="none" height="100%" viewBox="0 0 20 20" width="100%"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="bgLightTint"
-                                        d="M10 0C4.475 0 0 4.58819 0 10.2529C0 14.7899 2.8625 18.6219 6.8375 19.9804C7.3375 20.0701 7.525 19.7625 7.525 19.4934C7.525 19.2499 7.5125 18.4425 7.5125 17.5838C5 18.058 4.35 16.9558 4.15 16.3791C4.0375 16.0843 3.55 15.1743 3.125 14.9308C2.775 14.7386 2.275 14.2644 3.1125 14.2516C3.9 14.2388 4.4625 14.9949 4.65 15.3025C5.55 16.8533 6.9875 16.4175 7.5625 16.1484C7.65 15.4819 7.9125 15.0334 8.2 14.777C5.975 14.5207 3.65 13.6364 3.65 9.71466C3.65 8.59965 4.0375 7.67689 4.675 6.95918C4.575 6.70286 4.225 5.65193 4.775 4.24215C4.775 4.24215 5.6125 3.97301 7.525 5.29308C8.325 5.06239 9.175 4.94704 10.025 4.94704C10.875 4.94704 11.725 5.06239 12.525 5.29308C14.4375 3.9602 15.275 4.24215 15.275 4.24215C15.825 5.65193 15.475 6.70286 15.375 6.95918C16.0125 7.67689 16.4 8.58684 16.4 9.71466C16.4 13.6492 14.0625 14.5207 11.8375 14.777C12.2 15.0975 12.5125 15.7126 12.5125 16.6738C12.5125 18.0452 12.5 19.1474 12.5 19.4934C12.5 19.7625 12.6875 20.0829 13.1875 19.9804C15.1728 19.2935 16.8979 17.9854 18.12 16.2403C19.3421 14.4953 19.9997 12.4012 20 10.2529C20 4.58819 15.525 0 10 0Z"
-                                        fill="#617859" />
-                                </svg>
-    
-                            </div>
-                            <span>Github</span>
-                        </a>
-                        <!-- -----end of tiles-------- -->
-                        <!-- ----tiles----------- -->
-                        <a class="tiles" href="https://github.com/XengShi/materialYouNewTab#feedback">
-                            <div class="icon">
-                               
-                                <svg fill="none" height="100%" viewBox="0 0 18 17" width="100%"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path class="bgLightTint" clip-rule="evenodd"
-                                        d="M10.35 0C12.3789 0 14.3247 0.801267 15.7594 2.22753C17.194 3.65379 18 5.58822 18 7.60526C18 9.6223 17.194 11.5567 15.7594 12.983C14.3247 14.4093 12.3789 15.2105 10.35 15.2105H9.9V16.0963C9.9 16.2151 9.87646 16.3326 9.83072 16.4423C9.78498 16.552 9.71795 16.6517 9.63344 16.7356C9.54894 16.8196 9.44862 16.8861 9.33824 16.9315C9.22785 16.9768 9.10955 17.0001 8.9901 17C6.7761 16.9982 4.5333 16.2636 2.8314 14.7596C1.1142 13.2403 0.0018 10.9829 0 8.06068V7.60526C0 5.58822 0.80598 3.65379 2.24063 2.22753C3.67529 0.801267 5.62109 0 7.65 0H10.35ZM5.85 6.26316C5.49196 6.26316 5.14858 6.40456 4.89541 6.65625C4.64223 6.90794 4.5 7.24931 4.5 7.60526C4.5 7.96121 4.64223 8.30258 4.89541 8.55427C5.14858 8.80597 5.49196 8.94737 5.85 8.94737C6.20804 8.94737 6.55142 8.80597 6.80459 8.55427C7.05777 8.30258 7.2 7.96121 7.2 7.60526C7.2 7.24931 7.05777 6.90794 6.80459 6.65625C6.55142 6.40456 6.20804 6.26316 5.85 6.26316ZM12.15 6.26316C11.792 6.26316 11.4486 6.40456 11.1954 6.65625C10.9422 6.90794 10.8 7.24931 10.8 7.60526C10.8 7.96121 10.9422 8.30258 11.1954 8.55427C11.4486 8.80597 11.792 8.94737 12.15 8.94737C12.508 8.94737 12.8514 8.80597 13.1046 8.55427C13.3578 8.30258 13.5 7.96121 13.5 7.60526C13.5 7.24931 13.3578 6.90794 13.1046 6.65625C12.8514 6.40456 12.508 6.26316 12.15 6.26316Z"
-                                        fill="#0038FF" fill-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <span id="feedback">Feedback</span>
-                        </a>
-                        <!-- -----end of tiles-------- -->
+                    <div class="divider"></div>
+                    <div class="tilesCont">
+                        <md-elevated-button href="https://github.com/XengShi/materialYouNewTab"><md-icon slot="icon">code</md-icon>Github</md-elevated-button>
+                        <md-elevated-button href="https://github.com/XengShi/materialYouNewTab#feedback"><md-icon slot="icon">feedback</md-icon>feedback</md-elevated-button>
     
                     </div>
                     </div>
