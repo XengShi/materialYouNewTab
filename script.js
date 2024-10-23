@@ -374,9 +374,9 @@ userTextDiv.addEventListener("input", function () {
 const searchbar = document.getElementById('searchbar');
 searchbar.addEventListener('click', function () {
     searchbar.classList.toggle('active');
-    if (searchInput2.value !== "") {
-        showResultBox()
-    }
+    // if (searchInput2.value !== "") {
+    //     showResultBox()
+    // }
 });
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
