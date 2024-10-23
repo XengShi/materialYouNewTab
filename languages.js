@@ -30,19 +30,19 @@ const translations = {
         "ProxyText": "CORS Bypass Proxy",
         "ProxySubtext": "Add your own CORS Bypass Proxy",
         "HostproxyButton": "Host Your Own Proxy",
-        "saveproxy": "Enter",
+        "saveproxy": "Save",
         // Location
         "UserLocText": "Enter your location",
         "UserLocSubtext": "If the weather location isn't correct",
         "userLoc": "Your location (City/Latitude,Longitude)",
         "InputOptionsButton": "Input Options",
-        "saveLoc": "Enter",
+        "saveLoc": "Save",
         // Weather
         "WeatherApiText": "Enter your own WeatherAPI key",
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn More",
-        "saveAPI": "Enter",
+        "saveAPI": "Save",
         // End of Menu Items
 
         // Body Items
@@ -59,7 +59,7 @@ const translations = {
 
         // New Tab Item
         "conditionText": "Hello! How are you today?",
-        "enterBtn": "Enter",
+        "enterBtn": "Search",
         "searchPlaceholder": "Your query...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
@@ -113,7 +113,7 @@ const translations = {
     "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
     "userAPI": "Sua chave da WeatherAPI",
     "LearnMoreButton": "Saiba Mais",
-    "saveAPI": "Salvar API",
+    "saveAPI": "Salvar",
     // End of Menu Items
 
     // Body Items
@@ -130,7 +130,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "Olá! Como você está hoje?",
-    "enterBtn": "Entrar",
+    "enterBtn": "Pesquisar",
     "searchPlaceholder": "Digite sua consulta...",
     "searchWithHint": "Pesquisar Com",
     "ai_tools": "Ferramentas de IA",
@@ -182,7 +182,7 @@ const translations = {
     "WeatherApiSubtext": "如果天气功能无法正常工作",
     "userAPI": "您的天气API密钥",
     "LearnMoreButton": "了解更多",
-    "saveAPI": "保存API",
+    "saveAPI": "保存",
     // End of Menu Items
 
     // Body Items
@@ -199,7 +199,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "你好！今天怎么样？",
-    "enterBtn": "输入",
+    "enterBtn": "搜索",
     "searchPlaceholder": "输入搜索内容...",
     "searchWithHint": "搜索引擎",
     "ai_tools": "AI工具",
@@ -239,19 +239,19 @@ const translations = {
         "ProxyText": "CORS बायपास प्रॉक्सी",
         "ProxySubtext": "अपना CORS बायपास प्रॉक्सी जोड़ें",
         "HostproxyButton": "अपना प्रॉक्सी संचालित करें",
-        "saveproxy": "दर्ज करें",
+        "saveproxy": "सहेजें",
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सटीक नहीं है",
         "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
-        "saveLoc": "दर्ज करें",
+        "saveLoc": "सहेजें",
         // Weather
         "WeatherApiText": "अपनी खुद की WeatherAPI कुंजी दर्ज करें",
         "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
         "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
-        "saveAPI": "दर्ज करें",
+        "saveAPI": "सहेजें",
         // End of Menu Items
 
         // Body Items
@@ -269,7 +269,7 @@ const translations = {
 
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "सर्च करें",
+        "enterBtn": "खोजें",
         "searchPlaceholder": "यहाँ लिखें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
@@ -337,7 +337,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "Dobrý den! Jak se máte?",
-    "enterBtn": "Vyhledat",
+    "enterBtn": "Hledat",
     "searchPlaceholder": "Zadejte hledaný výraz...",
     "searchWithHint": "Vyhledávat prostřednictvím",
     "ai_tools": "AI nástroje",
@@ -377,19 +377,19 @@ const translations = {
     "ProxyText": "Proxy di Bypass CORS",
     "ProxySubtext": "Aggiungi il tuo Proxy di Bypass CORS",
     "HostproxyButton": "Hosta il Tuo Proxy",
-    "saveproxy": "Invia",
+    "saveproxy": "Salva",
     // Location
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
     "InputOptionsButton": "Opzioni di Inserimento",
-    "saveLoc": "Invia",
+    "saveLoc": "Salva",
     // Weather
     "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
     "WeatherApiSubtext": "Se la funzionalità meteo non funziona",
     "userAPI": "La tua chiave WeatherAPI",
     "LearnMoreButton": "Scopri di più",
-    "saveAPI": "Invia",
+    "saveAPI": "Salva",
     // End of Menu Items
 
     // Body Items
@@ -406,7 +406,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "Ciao! Come stai oggi?",
-    "enterBtn": "Invia",
+    "enterBtn": "Cerca",
     "searchPlaceholder": "Cerca...",
     "searchWithHint": "Cerca con",
     "ai_tools": "Strumenti AI",
@@ -446,19 +446,19 @@ const translations = {
     "ProxyText": "CORS Atlatma Proxy",
     "ProxySubtext": "Kendi CORS Atlatma Proxy'nizi ekleyin",
     "HostproxyButton": "Kendi Proxy'nizi Barındırın",
-    "saveproxy": "Gönder",
+    "saveproxy": "Kaydet",
     // Location
     "UserLocText": "Konumunuzu girin",
     "UserLocSubtext": "Hava durumu konumu doğru değilse",
     "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
     "InputOptionsButton": "Girdi Seçenekleri",
-    "saveLoc": "Gönder",
+    "saveLoc": "Kaydet",
     // Weather
     "WeatherApiText": "Kendi Hava Durumu API anahtarınızı girin",
     "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
     "userAPI": "Hava Durumu API anahtarınız",
     "LearnMoreButton": "Daha Fazla Bilgi Edinin",
-    "saveAPI": "API'yi Kaydet",
+    "saveAPI": "Kaydet",
     // End of Menu Items
 
     // Body Items
@@ -475,7 +475,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "Merhaba! Bugün nasılsın?",
-    "enterBtn": "Gönder",
+    "enterBtn": "Ara",
     "searchPlaceholder": "Aramanız...",
     "searchWithHint": "ile Ara",
     "ai_tools": "AI Araçları",
@@ -514,20 +514,20 @@ const translations = {
         "useproxyText": "যদি অনুসন্ধানের পরামর্শ কাজ না করে",
         "ProxyText": "CORS বাইপাস প্রক্সি",
         "ProxySubtext": "আপনার নিজের CORS বাইপাস প্রক্সি যোগ করুন",
-        "HostproxyButton": "আপনার নিজের প্রক্সি হোস্ট করুন",
-        "saveproxy": "প্রবেশ করুন",
+        "HostproxyButton": "নিজের প্রক্সি হোস্ট করুন",
+        "saveproxy": "সংরক্ষণ করুন",
         // Location
         "UserLocText": "আপনার অবস্থান লিখুন",
         "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
         "userLoc": "আপনার অবস্থান (শহর/অক্ষাংশ,দ্রাঘিমাংশ)",
         "InputOptionsButton": "ইনপুট অপশন",
-        "saveLoc": "প্রবেশ করুন",
+        "saveLoc": "সংরক্ষণ করুন",
         // Weather
         "WeatherApiText": "আপনার নিজস্ব WeatherAPI কী লিখুন",
         "WeatherApiSubtext": "যদি আবহাওয়া ফিচার কাজ না করে",
         "userAPI": "আপনার WeatherAPI কী",
         "LearnMoreButton": "আরও জানুন",
-        "saveAPI": "প্রবেশ করুন",
+        "saveAPI": "সংরক্ষণ করুন",
         // End of Menu Items
 
         // Body Items
@@ -540,13 +540,13 @@ const translations = {
 
         // Weather
         "humidityText": "আর্দ্রতা",
-        "feelsLikeText": "অনুভূত হয়",
+        "feelsLikeText": "অনুভূতি হয়",
         "locationText": "পৃথিবী",
         // End of Weather
 
         // New Tab Item
         "conditionText": "হ্যালো! আপনি আজ কেমন আছেন?",
-        "enterBtn": "প্রবেশ করুন",
+        "enterBtn": "অনুসন্ধান করুন",
         "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
         "searchWithHint": "অনুসন্ধান করুন",
         "ai_tools": "AI সরঞ্জাম",
@@ -585,19 +585,19 @@ const translations = {
     "ProxyText": "CORS обход прокси",
     "ProxySubtext": "Добавьте свой CORS-прокси",
     "HostproxyButton": "Разместить свой прокси",
-    "saveproxy": "Применить",
+    "saveproxy": "Сохраните",
     // Location
     "UserLocText": "Введите ваше местоположение",
     "UserLocSubtext": "Если местоположение для погоды неверно",
     "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
     "InputOptionsButton": "Опции ввода",
-    "saveLoc": "Применить",
+    "saveLoc": "Сохраните",
     // Weather
     "WeatherApiText": "Введите свой ключ WeatherAPI",
     "WeatherApiSubtext": "Если функция погоды не работает",
     "userAPI": "Ваш ключ WeatherAPI",
     "LearnMoreButton": "Узнать больше",
-    "saveAPI": "Применить",
+    "saveAPI": "Сохраните",
     // End of Menu Items
 
     // Body Items
@@ -614,7 +614,7 @@ const translations = {
 
     // New Tab Item
     "conditionText": "Привет! Как ты сегодня?",
-    "enterBtn": "Ввод",
+    "enterBtn": "Поиск",
     "searchPlaceholder": "Ваш запрос...",
     "searchWithHint": "Искать с помощью",
     "ai_tools": "Инструменты ИИ",
