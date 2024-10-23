@@ -66,6 +66,12 @@ const translations = {
         "userText": "Click here to edit",
         // End of Body and New Tab Items
 
+        // Greeting
+        greeting: {
+            morning: "Good Morning!",
+            afternoon: "Good Afternoon!",
+            evening: "Good Evening!"
+        }
         // toDo for "menuCloseButton:hover::after": "Close",
     },
 
@@ -136,6 +142,13 @@ const translations = {
     "ai_tools": "Ferramentas de IA",
     "userText": "Clique aqui para editar",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "Bom dia!",
+            afternoon: "Boa tarde!",
+            evening: "Boa noite!"
+        }
 },
 
     // Chinese
@@ -205,6 +218,13 @@ const translations = {
     "ai_tools": "AI工具",
     "userText": "点击这里编辑",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "早上好!",
+            afternoon: "下午好!",
+            evening: "晚上好!"
+        }
 },
 
     // Hindi
@@ -275,6 +295,13 @@ const translations = {
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
         // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            morning: "सुप्रभात!",
+            afternoon: "शुभ अपराह्न!",
+            evening: "शुभ संध्या!"
+        }
     },
 
     // Czech
@@ -343,6 +370,13 @@ const translations = {
     "ai_tools": "AI nástroje",
     "userText": "Klikněte sem pro úpravu",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "Dobré ráno!",
+            afternoon: "Dobré odpoledne!",
+            evening: "Dobrý večer!"
+        }
 },
         
     // Italian
@@ -412,6 +446,13 @@ const translations = {
     "ai_tools": "Strumenti AI",
     "userText": "Clicca qui per modificare",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "Buongiorno!",
+            afternoon: "Buon pomeriggio!",
+            evening: "Buona sera!"
+        }
 },
 
     // Turkish
@@ -481,6 +522,13 @@ const translations = {
     "ai_tools": "AI Araçları",
     "userText": "Buraya tıklayarak düzenleyin",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "Günaydın!",
+            afternoon: "İyi öğleden sonra!",
+            evening: "İyi akşamlar!"
+        }
 },
 
     // Bengali
@@ -552,6 +600,13 @@ const translations = {
         "ai_tools": "AI সরঞ্জাম",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            morning: "শুভ সকাল!",
+            afternoon: "শুভ অপরাহ্ন!",
+            evening: "শুভ সন্ধ্যা!"
+        }
     },
 
     // Russian
@@ -620,6 +675,13 @@ const translations = {
     "ai_tools": "Инструменты ИИ",
     "userText": "Нажмите здесь, чтобы редактировать",
     // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+            morning: "Доброе утро!",
+            afternoon: "Добрый день!",
+            evening: "Добрый вечер!"
+        }
 }
 };
 
