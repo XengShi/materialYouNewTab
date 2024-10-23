@@ -275,18 +275,39 @@ function updateanalogclock() {
     }
 }
 
+function getGreeting() {
+    const currentHour = new Date().getHours();
+    let greetingKey;
+
+    // Determine the greeting key based on the current hour
+    if (currentHour < 12) {
+        greetingKey = 'morning';
+    } else if (currentHour < 18) {
+        greetingKey = 'afternoon';
+    } else {
+        greetingKey = 'evening';
+    }
+
+    // Get the user's language setting
+    const userLang = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
+
+    // Check if the greeting is available for the selected language
+    if (
+        translations[userLang] &&
+        translations[userLang].greeting &&
+        translations[userLang].greeting[greetingKey]
+    ) {
+        return translations[userLang].greeting[greetingKey];
+    } else {
+        // Fallback to English greeting if the userLang or greeting key is missing
+        return translations['en'].greeting[greetingKey];
+    }
+}
 
 function updatedigiClock() {
     const hourformatstored = localStorage.getItem("hourformat");
-    if (hourformatstored) {
-        if (hourformatstored == "true") {
-            hourformat = true;
-        } else if (hourformatstored == "false") {
-            hourformat = false;
-        }
-    } else {
-        hourformat = false;
-    }
+    let hourformat = hourformatstored === "true"; // Default to false if null
+
     const now = new Date();
     const options = { weekday: 'short', day: 'numeric' };
     const dateString = now.toLocaleDateString('en-US', options);
@@ -298,23 +319,12 @@ function updatedigiClock() {
     document.getElementById('digidate').textContent = dateString;
     document.getElementById('digiclock').textContent = formattedTimeString;
 
-    let greeting;
-    const currentHour = now.getHours();
-
-    if (currentHour < 12) {
-        greeting = "Good Morning!";
-    } else if (currentHour < 18) {
-        greeting = "Good Afternoon!";
-    } else {
-        greeting = "Good Evening!";
-    }
-
     const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 == "digital") {
-
-        document.getElementById("date").innerText = greeting;
+    if (clocktype1 === "digital") {
+        document.getElementById("date").innerText = getGreeting();
     }
 }
+
 function startClock() {
     if (!intervalId) { // Only set interval if not already set
         intervalId = setInterval(updateanalogclock, 500);
@@ -327,26 +337,24 @@ function stopClock() {
     intervalId = null; // Reset intervalId
 }
 
-clocktype = localStorage.getItem("clocktype");
-if (!clocktype) {
-    localStorage.setItem("clocktype", "analog");
-    clocktype = localStorage.getItem("clocktype");
-}
+// Retrieve clock type from local storage or set default
+clocktype = localStorage.getItem("clocktype") || "analog";
+localStorage.setItem("clocktype", clocktype);
+
+// Initial clock display
 displayClock();
-setInterval(updatedigiClock, 1000);
-if (clocktype) {
-    if (clocktype == "digital") {
-        updatedigiClock();
-    } else if (clocktype == "analog") {
-        if (document.visibilityState === 'visible') {
-            startClock();
-        }
-    }
-} else {
+setInterval(updatedigiClock, 1000); // Update digital clock every second
+
+// Start or stop clocks based on clock type and visibility state
+if (clocktype === "digital") {
+    updatedigiClock();
+} else if (clocktype === "analog") {
     if (document.visibilityState === 'visible') {
         startClock();
     }
 }
+
+// Event listener for visibility change
 document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === 'visible') {
         startClock(); // Start the clock if the tab is focused
