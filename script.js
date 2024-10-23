@@ -23,6 +23,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
+        
+        // Function to simulate button click when Enter key is pressed
+        function handleEnterPress(event, buttonId) {
+            if (event.key === 'Enter') {
+                document.getElementById(buttonId).click();
+            }
+        }
+
+        // Add event listeners for each input field to handle Enter key
+        userAPIInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveAPI');
+        });
+        userLocInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveLoc');
+        });
+        userProxyInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveproxy');
+        });
+        
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
