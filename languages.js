@@ -550,7 +550,7 @@ const translations = {
         "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
         "searchWithHint": "অনুসন্ধান করুন",
         "ai_tools": "AI সরঞ্জাম",
-        "userText": "এখানে আপনার টেক্সট লিখুন",
+        "userText": "এখানে টেক্সট লিখুন",
         // End of Body and New Tab Items
     },
 
@@ -677,13 +677,22 @@ function applyLanguage(lang) {
         document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
         document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
-        document.getElementById('userText').innerText = translations[lang].userText;
 
         // Weather
         document.getElementById("humidityLevel").textContent = translations[lang].humidityText;
         document.getElementById("feelsLike").textContent = translations[lang].feelsLikeText;
         document.getElementById("location").innerText = translations[lang].locationText;
 
+        // userText
+        const userTextDiv = document.getElementById('userText');
+        if (translations[lang]) {
+            const placeholder = translations[lang].userText;
+            userTextDiv.dataset.placeholder = placeholder; // Update the placeholder in data attribute
+            // Only set the text content if there's nothing in localStorage
+            if (!localStorage.getItem("userText")) {
+                userTextDiv.innerText = placeholder;
+            }
+        }
         // End of Body Items
 
         // Save the selected language in localStorage
