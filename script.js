@@ -367,15 +367,32 @@ function displayClock() {
         analogClock.style.display = 'none';     // Hide the analog clock
     }
 }
-setInterval((updated) => {
+
+document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
+
+    // Set the default language to English if no language is saved
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    applyLanguage(savedLang);
+
+    // Load the stored text if it exists
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.textContent = storedValue;
+    } else {
+        // Fallback to the placeholder based on the selected language
+        const placeholder = userTextDiv.dataset.placeholder || translations['en'].userText; // Fallback to English
+        userTextDiv.textContent = placeholder;
     }
+
+    // Handle input event
+    userTextDiv.addEventListener("input", function () {
+        localStorage.setItem("userText", userTextDiv.textContent);
+    });
+
     // Remove placeholder text when the user starts editing
     userTextDiv.addEventListener("focus", function () {
-        if (userTextDiv.textContent === "Click here to edit") {
+        if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
             userTextDiv.textContent = "";  // Clear the placeholder when focused
         }
     });
@@ -383,13 +400,9 @@ setInterval((updated) => {
     // Restore placeholder if the user leaves the div empty after editing
     userTextDiv.addEventListener("blur", function () {
         if (userTextDiv.textContent.trim() === "") {
-            userTextDiv.textContent = "Click here to edit";  // Show placeholder again if empty
+            userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
         }
     });
-}, 1000)
-const userTextDiv = document.getElementById("userText");
-userTextDiv.addEventListener("input", function () {
-    localStorage.setItem("userText", userTextDiv.textContent);
 });
 
 // Showing border or outline in when you click on searchbar
