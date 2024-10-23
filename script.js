@@ -76,15 +76,23 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Use the user's API key if available, otherwise use the default API key
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
-        // Getting current user location
+
+        // Try to get the savedLocation or a previously stored location from localStorage
+        var currentUserLocation = savedLocation || localStorage.getItem("locationQ");
+        
+        if (!currentUserLocation) {
+        // If neither savedLocation nor localStorage has a location, fetch the IP-based location
         const geoLocation = 'https://ipinfo.io/json/';
         const locationData = await fetch(geoLocation);
         const parsedLocation = await locationData.json();
-        const currentUserLocation = parsedLocation.ip;
-        const locationQuery = savedLocation || currentUserLocation;
+        currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
+        localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
+        }
+        
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${locationQuery}&aqi=no&lang=${currentLanguage}`;
+        
+        // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
@@ -106,10 +114,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeFahrenheit}°F`;
             } else {
                 document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
@@ -343,7 +351,19 @@ setInterval((updated) => {
     if (storedValue) {
         userTextDiv.textContent = storedValue;
     }
+    // Remove placeholder text when the user starts editing
+    userTextDiv.addEventListener("focus", function () {
+        if (userTextDiv.textContent === "Click here to edit") {
+            userTextDiv.textContent = "";  // Clear the placeholder when focused
+        }
+    });
 
+    // Restore placeholder if the user leaves the div empty after editing
+    userTextDiv.addEventListener("blur", function () {
+        if (userTextDiv.textContent.trim() === "") {
+            userTextDiv.textContent = "Click here to edit";  // Show placeholder again if empty
+        }
+    });
 }, 1000)
 const userTextDiv = document.getElementById("userText");
 userTextDiv.addEventListener("input", function () {
