@@ -10,8 +10,8 @@
 
     <style id="iconStyle"></style>
 
-    <script defer src="script.js"></script>
     <script defer src="languages.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -42,9 +42,13 @@
                         font-family="Arial" class="digidate">Thu 9</text>
 
                     <!-- Time Text -->
-                    <text x="290" y="260" id="digiclock" class="digiclock">6:59</text>
-                </svg>
+                    <text x="290" y="260" id="digiclock" class="digiclock" text-anchor="middle" fill="#E2EEFF"
+                        font-size="56" font-family="Arial">6:59</text>
 
+                    <!-- AM/PM Text -->
+                    <text id="amPm" x="290" y="330" text-anchor="middle" fill="#E2EEFF" font-size="28"
+                        font-family="Arial" class="digidate">AM</text>
+                </svg>
             </div>
 
             <!-- ____________end of clock______________ -->
@@ -81,7 +85,7 @@
                                     </svg>
 
                                 </div>
-                                <span id="feelsLike">Seems</span>
+                                <span id="feelsLike" style="padding-inline-end: 12px;">Seems</span>
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
@@ -128,7 +132,7 @@
                 </div>
 
                 <input id="searchQ" placeholder="Your query..." type="text" autocomplete="off">
-                <button id="enterBtn">Enter</button>
+                <button id="enterBtn">Search</button>
             </div><br>
             <div id="resultBox" class="resultBox bgLightTint" style="display: none;"></div>
             <!-- ----------end of searchbar-------------- -->
@@ -502,7 +506,7 @@
                             <div class="bottom">
                                 <a href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton">Host
                                     Your Own Proxy</a>
-                                <button id="saveproxy">Enter</button>
+                                <button id="saveproxy">Save</button>
                             </div>
                         </div>
 
@@ -516,7 +520,7 @@
                             <div class="bottom">
                                 <a href="https://www.weatherapi.com/docs/#intro-request-param"
                                     id="InputOptionsButton">Input Options</a>
-                                <button id="saveLoc">Enter</button>
+                                <button id="saveLoc">Save</button>
                             </div>
                         </div>
 
@@ -529,7 +533,7 @@
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
                                 <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</a>
-                                <button id="saveAPI">Enter</button>
+                                <button id="saveAPI">Save</button>
                             </div>
                         </div>
                         <!-- ---🟡--- -->

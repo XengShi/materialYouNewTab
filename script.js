@@ -23,6 +23,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
+        
+        // Function to simulate button click when Enter key is pressed
+        function handleEnterPress(event, buttonId) {
+            if (event.key === 'Enter') {
+                document.getElementById(buttonId).click();
+            }
+        }
+
+        // Add event listeners for each input field to handle Enter key
+        userAPIInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveAPI');
+        });
+        userLocInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveLoc');
+        });
+        userProxyInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveproxy');
+        });
+        
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
@@ -107,17 +126,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityText} ${humidity}%`;
+
+        // Localize and display temperature and humidity
+        const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+        const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+        const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+        const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+        const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+        // Set humidity level
+        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityLevel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeFahrenheit}°F`;
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeFahrenheit}°F`;
             } else {
-                document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeCelsius}°C`;
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
@@ -129,7 +157,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
+            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
         }
 
         // Update location
@@ -170,6 +198,52 @@ let intervalId;
 let secondreset = false;
 let hourreset = false;
 let minreset = false;
+
+function initializeClockType() {
+    const savedClockType = localStorage.getItem("clocktype");
+    clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
+    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
+}
+// Call this function to initialize the clock type
+initializeClockType();
+
+function updateDate() {
+    var currentTime = new Date();
+
+    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    var dayOfWeek = currentTime.getDay();
+    // Get the day of the month (1 - 31)
+    var dayOfMonth = currentTime.getDate();
+    // Get the month (0 = January, 1 = February, ..., 11 = December)
+    var month = currentTime.getMonth();
+
+    // Define the current language
+    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    // Get the translated name of the day and month
+    var dayName = translations[currentLanguage].days[dayOfWeek];
+    var monthName = translations[currentLanguage].months[month];
+    // Localize the day of the month
+    var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+    if (clocktype === "analog") {
+        // Language formatting
+        if (currentLanguage === 'pt') {
+            // Portuguese formatting: "day of the week, day of the month"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
+            // Hindi and Bangla formatting: Show full name for month
+            document.getElementById("date").innerText = `${dayName}, ${localizedDayOfMonth} ${monthName}`;
+        } else if (currentLanguage === 'cs') {
+            // Czech formatting: day, date. months
+            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
+        } else {
+            // English formatting: "day of the month name"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+        }
+    }
+}
+
 function updateanalogclock() {
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
@@ -224,75 +298,112 @@ function updateanalogclock() {
         document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
-    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    var dayOfWeek = currentTime.getDay();
-    // Get the day of the month (1 - 31)
-    var dayOfMonth = currentTime.getDate();
-    // Get the month (0 = January, 1 = February, ..., 11 = December)
-    var month = currentTime.getMonth();
-
-    // Define the current language
-    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-    // Get the translated name of the day and month
-    var dayName = translations[currentLanguage].days[dayOfWeek];
-    var monthName = translations[currentLanguage].months[month];
-    const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 == "analog") {
-        // Language formatting
-        if (currentLanguage === 'pt') {
-            // Portuguese formatting: "day of the week, day of the month"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-            // Hindi and Bangla formatting: Show full name for month
-            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
-        } else {
-            // English formatting: "day of the month name"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
-        }
-    }
+    // Update date immediately
+    updateDate();
 }
 
+function getGreeting() {
+    const currentHour = new Date().getHours();
+    let greetingKey;
+
+    // Determine the greeting key based on the current hour
+    if (currentHour < 12) {
+        greetingKey = 'morning';
+    } else if (currentHour < 18) {
+        greetingKey = 'afternoon';
+    } else {
+        greetingKey = 'evening';
+    }
+
+    // Get the user's language setting
+    const userLang = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
+
+    // Check if the greeting is available for the selected language
+    if (
+        translations[userLang] &&
+        translations[userLang].greeting &&
+        translations[userLang].greeting[greetingKey]
+    ) {
+        return translations[userLang].greeting[greetingKey];
+    } else {
+        // Fallback to English greeting if the userLang or greeting key is missing
+        return translations['en'].greeting[greetingKey];
+    }
+}
 
 function updatedigiClock() {
     const hourformatstored = localStorage.getItem("hourformat");
-    if (hourformatstored) {
-        if (hourformatstored == "true") {
-            hourformat = true;
-        } else if (hourformatstored == "false") {
-            hourformat = false;
-        }
-    } else {
-        hourformat = false;
-    }
-    const now = new Date();
-    const options = { weekday: 'short', day: 'numeric' };
-    const dateString = now.toLocaleDateString('en-US', options);
+    let hourformat = hourformatstored === "true"; // Default to false if null
 
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // Get day of the week (0-6)
+    const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
+    const month = now.getMonth(); // Get month (0-11)
+
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    // Get translated day names from the translation object
+    const dayName = translations[currentLanguage].days[dayOfWeek];
+
+    // Localize the day of the month
+    const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+    // Create the translated short date string based on language
+    let dateString;
+
+    switch (currentLanguage) {
+        case 'hi': // Hindi
+        case 'bn': // Bangla
+            // Format: "दिन, दिनांक" (Day, Date)
+            dateString = `${dayName}, ${localizedDayOfMonth}`;
+            break;
+        case 'cs': // Czech
+            // Format: "den, den." (Day, Date.)
+            dateString = `${dayName}, ${localizedDayOfMonth}.`;
+            break;
+        case 'pt': // Portuguese
+            // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
+            dateString = `${dayName}, ${localizedDayOfMonth}`;
+            break;
+        default: // For English and other languages
+            // Default format: "day of the month" (e.g., "24 Thu")
+            dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
+            break;
+    }
+
+    // Get the time in the specified format (12-hour or 24-hour based on user setting)
     const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
     const timeString = now.toLocaleTimeString('en-US', timeOptions);
-    const formattedTimeString = timeString.replace(/ (AM|PM)/, '');
 
-    document.getElementById('digidate').textContent = dateString;
+    // Split the time and period (AM/PM) if in 12-hour format
+    let [localizedTime, period] = timeString.split(' '); // Split AM/PM if present
+    let [hours, minutes] = localizedTime.split(':');
+
+    // Localize hours and minutes for the selected language
+    const localizedHours = localizeNumbers(hours, currentLanguage);
+    const localizedMinutes = localizeNumbers(minutes, currentLanguage);
+
+    const formattedTimeString = `${localizedHours}:${localizedMinutes}`; // Localized time without AM/PM
+
+    // Update the time in the main clock display
     document.getElementById('digiclock').textContent = formattedTimeString;
 
-    let greeting;
-    const currentHour = now.getHours();
-
-    if (currentHour < 12) {
-        greeting = "Good Morning!";
-    } else if (currentHour < 18) {
-        greeting = "Good Afternoon!";
+    // If 12-hour format, display AM/PM in a separate line
+    if (hourformat) {
+        document.getElementById('amPm').textContent = period; // Set AM/PM in new text element
     } else {
-        greeting = "Good Evening!";
+        document.getElementById('amPm').textContent = ''; // Clear AM/PM for 24-hour format
     }
+
+    // Update the translated date
+    document.getElementById('digidate').textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 == "digital") {
-
-        document.getElementById("date").innerText = greeting;
+    if (clocktype1 === "digital") {
+        document.getElementById("date").innerText = getGreeting();
     }
 }
+
 function startClock() {
     if (!intervalId) { // Only set interval if not already set
         intervalId = setInterval(updateanalogclock, 500);
@@ -305,29 +416,25 @@ function stopClock() {
     intervalId = null; // Reset intervalId
 }
 
-clocktype = localStorage.getItem("clocktype");
-if (!clocktype) {
-    localStorage.setItem("clocktype", "analog");
-    clocktype = localStorage.getItem("clocktype");
-}
+// Initial clock display
 displayClock();
-setInterval(updatedigiClock, 1000);
-if (clocktype) {
-    if (clocktype == "digital") {
-        updatedigiClock();
-    } else if (clocktype == "analog") {
-        if (document.visibilityState === 'visible') {
-            startClock();
-        }
-    }
-} else {
+setInterval(updatedigiClock, 1000); // Update digital clock every second
+
+// Start or stop clocks based on clock type and visibility state
+if (clocktype === "digital") {
+    updatedigiClock();
+} else if (clocktype === "analog") {
     if (document.visibilityState === 'visible') {
         startClock();
+        updateDate(); // Immediately update date when clock is analog
     }
 }
+
+// Event listener for visibility change
 document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === 'visible') {
         startClock(); // Start the clock if the tab is focused
+        updateDate(); // Update date when the tab becomes visible
     } else {
         stopClock(); // Stop the clock if the tab is not focused
     }
@@ -345,15 +452,37 @@ function displayClock() {
         analogClock.style.display = 'none';     // Hide the analog clock
     }
 }
-setInterval((updated) => {
+
+// Call updateanalogclock when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+    updateanalogclock();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
+
+    // Set the default language to English if no language is saved
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    applyLanguage(savedLang);
+
+    // Load the stored text if it exists
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.textContent = storedValue;
+    } else {
+        // Fallback to the placeholder based on the selected language
+        const placeholder = userTextDiv.dataset.placeholder || translations['en'].userText; // Fallback to English
+        userTextDiv.textContent = placeholder;
     }
+
+    // Handle input event
+    userTextDiv.addEventListener("input", function () {
+        localStorage.setItem("userText", userTextDiv.textContent);
+    });
+
     // Remove placeholder text when the user starts editing
     userTextDiv.addEventListener("focus", function () {
-        if (userTextDiv.textContent === "Click here to edit") {
+        if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
             userTextDiv.textContent = "";  // Clear the placeholder when focused
         }
     });
@@ -361,13 +490,9 @@ setInterval((updated) => {
     // Restore placeholder if the user leaves the div empty after editing
     userTextDiv.addEventListener("blur", function () {
         if (userTextDiv.textContent.trim() === "") {
-            userTextDiv.textContent = "Click here to edit";  // Show placeholder again if empty
+            userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
         }
     });
-}, 1000)
-const userTextDiv = document.getElementById("userText");
-userTextDiv.addEventListener("input", function () {
-    localStorage.setItem("userText", userTextDiv.textContent);
 });
 
 // Showing border or outline in when you click on searchbar
