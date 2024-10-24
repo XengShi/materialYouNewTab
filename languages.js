@@ -691,6 +691,20 @@ const translations = {
     }
 };
 
+const numberMappings = {
+    "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
+    //"hi": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' }, // Ensure it is supported in the fonts
+    // Add more languages as needed
+};
+
+function localizeNumbers(text, language) {
+    const map = numberMappings[language]; // Get the numeral map for the current language
+    if (map) {
+        return text.replace(/\d/g, (digit) => map[digit] || digit);  // Replace digits only if the map exists
+    }
+    return text;  // Return the original text if no mapping is needed
+}
+
 // Function to apply the language to the page
 function applyLanguage(lang) {
     if (translations[lang]) {
