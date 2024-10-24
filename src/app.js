@@ -227,6 +227,34 @@ resetdialog.addEventListener('close', () => {
 });
 
 // ---------------------------end of weather stuff--------------------
+//button updates
+const proxybox=document.getElementById("userproxy");
+const locationfield=document.getElementById("userLoc");
+const apifield=document.getElementById("userAPI");
+proxybox.addEventListener("input", () => {
+    const proxybtn=document.getElementById("saveproxybtn");
+    if(proxybox.value){
+        proxybtn.disabled=false;
+    }else{
+        proxybtn.disabled=true;
+    }
+});
+locationfield.addEventListener("input", () => {
+    const locsave=document.getElementById("saveLocbtn");
+    if(locationfield.value){
+        locsave.disabled=false;
+    }else{
+        locsave.disabled=true;
+    }
+});
+apifield.addEventListener("input", () => {
+    const apisave=document.getElementById("saveAPIbtn");
+    if(apifield.value){
+        apisave.disabled=false;
+    }else{
+        apisave.disabled=true;
+    }
+});
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
 var initialSeconds = currentTime.getSeconds();
