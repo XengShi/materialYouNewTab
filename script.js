@@ -126,17 +126,26 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityLevel} ${humidity}%`;
+
+        // Localize and display temperature and humidity
+        const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+        const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+        const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+        const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+        const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+        // Set humidity level
+        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityLevel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeFahrenheit}°F`;
             } else {
-                document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
@@ -148,7 +157,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
+            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
         }
 
         // Update location
@@ -256,6 +265,9 @@ function updateanalogclock() {
     // Get the translated name of the day and month
     var dayName = translations[currentLanguage].days[dayOfWeek];
     var monthName = translations[currentLanguage].months[month];
+    // Localize the day of the month
+    var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+    
     const clocktype1 = localStorage.getItem("clocktype");
     if (clocktype1 == "analog") {
         // Language formatting
@@ -264,7 +276,7 @@ function updateanalogclock() {
             document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
         } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
             // Hindi and Bangla formatting: Show full name for month
-            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
+            document.getElementById("date").innerText = `${dayName}, ${localizedDayOfMonth} ${monthName}`;
         } else if (currentLanguage === 'cs') {
             // Czech formatting: day, date. months
             document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
