@@ -341,7 +341,7 @@ const translations = {
         "saveproxy": "Uložit",
         // Location
         "UserLocText": "Zadejte svou polohu",
-        "UserLocSubtext": "Pokud není poloha počasí správná",
+        "UserLocSubtext": "Pokud není správná poloha počasí",
         "userLoc": "Vaše poloha (město / zeměpisná šířka, zeměpisná délka)",
         "InputOptionsButton": "Co lze zadat",
         "saveLoc": "Uložit",
