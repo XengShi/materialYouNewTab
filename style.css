@@ -301,6 +301,9 @@ body {
 .digidate{
     fill:var(--textColorDark-blue)
 }
+.amPm{
+    fill:var(--textColorDark-blue);
+}
 .digiclock {
     text-anchor:middle;
     fill: var(--darkColor-blue);
@@ -1453,7 +1456,16 @@ input:checked + .toggle:before {
     cursor: pointer;
     transition: 0.3s all;
 }
-
+/* Placeholder InputText color*/
+#userproxy{
+    color:var(--textColorDark-blue);
+}
+#userLoc{
+    color:var(--textColorDark-blue);
+}
+#userAPI{
+    color:var(--textColorDark-blue);
+}
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
