@@ -367,7 +367,7 @@ const translations = {
 
         // New Tab Item
         "conditionText": "Dobrý den! Jak se máte?",
-        "enterBtn": "Hledat",
+        "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
