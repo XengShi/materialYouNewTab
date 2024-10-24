@@ -625,6 +625,7 @@ body {
     background-color: var(--darkColor-blue);
     border-radius: 100%;
     margin-left: 4px;
+    padding: 3px;
 
 }
 
