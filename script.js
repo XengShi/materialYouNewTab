@@ -321,15 +321,67 @@ function updatedigiClock() {
     let hourformat = hourformatstored === "true"; // Default to false if null
 
     const now = new Date();
-    const options = { weekday: 'short', day: 'numeric' };
-    const dateString = now.toLocaleDateString('en-US', options);
+    const dayOfWeek = now.getDay(); // Get day of the week (0-6)
+    const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
+    const month = now.getMonth(); // Get month (0-11)
 
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    // Get translated day names from the translation object
+    const dayName = translations[currentLanguage].days[dayOfWeek];
+
+    // Localize the day of the month
+    const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+    // Create the translated short date string based on language
+    let dateString;
+
+    switch (currentLanguage) {
+        case 'hi': // Hindi
+        case 'bn': // Bangla
+            // Format: "दिन, दिनांक" (Day, Date)
+            dateString = `${dayName}, ${localizedDayOfMonth}`;
+            break;
+        case 'cs': // Czech
+            // Format: "den, den." (Day, Date.)
+            dateString = `${dayName}, ${localizedDayOfMonth}.`;
+            break;
+        case 'pt': // Portuguese
+            // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
+            dateString = `${dayName}, ${localizedDayOfMonth}`;
+            break;
+        default: // For English and other languages
+            // Default format: "day of the month" (e.g., "24 Thu")
+            dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
+            break;
+    }
+
+    // Get the time in the specified format (12-hour or 24-hour based on user setting)
     const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
     const timeString = now.toLocaleTimeString('en-US', timeOptions);
-    const formattedTimeString = timeString.replace(/ (AM|PM)/, '');
 
-    document.getElementById('digidate').textContent = dateString;
+    // Split the time and period (AM/PM) if in 12-hour format
+    let [localizedTime, period] = timeString.split(' '); // Split AM/PM if present
+    let [hours, minutes] = localizedTime.split(':');
+
+    // Localize hours and minutes for the selected language
+    const localizedHours = localizeNumbers(hours, currentLanguage);
+    const localizedMinutes = localizeNumbers(minutes, currentLanguage);
+
+    const formattedTimeString = `${localizedHours}:${localizedMinutes}`; // Localized time without AM/PM
+
+    // Update the time in the main clock display
     document.getElementById('digiclock').textContent = formattedTimeString;
+
+    // If 12-hour format, display AM/PM in a separate line
+    if (hourformat) {
+        document.getElementById('amPm').textContent = period; // Set AM/PM in new text element
+    } else {
+        document.getElementById('amPm').textContent = ''; // Clear AM/PM for 24-hour format
+    }
+
+    // Update the translated date
+    document.getElementById('digidate').textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
     if (clocktype1 === "digital") {
