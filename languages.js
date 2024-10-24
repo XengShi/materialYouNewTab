@@ -336,7 +336,7 @@ const translations = {
         "useproxytitletext": "Obcházení proxy",
         "useproxyText": "Pokud nefungují návrhy ve vyhledávání",
         "ProxyText": "Proxy pro obcházení CORS",
-        "ProxySubtext": "Přidejte vlastní proxy pro obcházení CORS",
+        "ProxySubtext": "Nastavte si vlastní proxy pro obcházení CORS",
         "HostproxyButton": "Provozování vlastní proxy",
         "saveproxy": "Uložit",
         // Location
