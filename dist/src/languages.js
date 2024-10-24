@@ -627,8 +627,8 @@ const translations = {
 function applyLanguage(lang) {
     if (translations[lang]) {
         // Menu Items
-        document.getElementById('feedback').innerText = translations[lang].feedback;
-        document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
+        document.getElementById('feedbackbtntext').innerText = translations[lang].feedback;
+       document.getElementById('resetsettingstext').innerText = translations[lang].resetsettings;
         document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
         document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
         document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
@@ -674,14 +674,14 @@ function applyLanguage(lang) {
         document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
         document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
         document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
-        //document.getElementById('userText').value = translations[lang].userText;
+        document.getElementById('userTextt').placeholder = translations[lang].userText;
 
         // Weather
-        // document.getElementById("humidityText").innerText = translations[lang].humidityText;
+        document.getElementById("humidityLevel").innerText = translations[lang].humidityText;
         document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
         document.getElementById("location").innerText = translations[lang].location;
 
-        // End of Body Items
+        // End of Body Items*/
 
         // Save the selected language in localStorage
         saveLanguageStatus('selectedLanguage', lang);
@@ -689,13 +689,11 @@ function applyLanguage(lang) {
         console.error('Language not found');
     }
 }
-
 // Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
-    location.reload();
+   location.reload();
 });
-
 // Function to apply the language when the page loads
 window.onload = function () {
     const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
@@ -709,7 +707,6 @@ window.onload = function () {
 function saveLanguageStatus(key, languageStatus) {
     localStorage.setItem(key, languageStatus);
 }
-
 // Function to get the language status from localStorage
 function getLanguageStatus(key) {
     return localStorage.getItem(key);
