@@ -195,10 +195,17 @@ document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRo
 document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
 
 let intervalId;
-clocktype = localStorage.getItem("clocktype") || "analog"; // Retrieve clock type from local storage
 let secondreset = false;
 let hourreset = false;
 let minreset = false;
+
+function initializeClockType() {
+    const savedClockType = localStorage.getItem("clocktype");
+    clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
+    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
+}
+// Call this function to initialize the clock type
+initializeClockType();
 
 function updateDate() {
     var currentTime = new Date();
