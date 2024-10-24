@@ -326,7 +326,7 @@ const translations = {
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Povolí/zakáže digitální hodiny",
         "timeformattittle": "Použít 12hodinový formát",
-        "timeformatinfo": "Použije 12hodinový formát času",
+        "timeformatinfo": "Použije se 12hodinový formát času",
         // Misc
         "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
