@@ -311,7 +311,7 @@ const translations = {
         // Menu Items
         "feedback": "Zpětná vazba",
         "resetsettings": "Resetovat nastavení",
-        menuCloseText: 'Zavřiť',
+        menuCloseText: 'Zavřít',
         // Shortcuts
         "shortcutsText": "Zkratky",
         "enableShortcutsText": "Povolí/zakáže zkratky",
