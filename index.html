@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>New Tab</title>
+    <link href="/src/icon.ico" rel="icon" type="image/x-icon">
+    <style id="iconStyle"></style>
+    <link rel="stylesheet" href="/src/styles.scss">
+    <script defer type="module" src="/src/languages.js"></script>
+    <!--<link href="style.css" rel="stylesheet">-->
+</head>
+
+<body>
+    <md-dialog type="alert" id="alertbody">
+        <div slot="headline" id="alertbodyheadline"></div>
+        <form id="alertbodyform" slot="content" method="dialog">
+
+        </form>
+        <div slot="actions">
+            <md-text-button form="alertbodyform" value="ok">OK</md-text-button>
+        </div>
+    </md-dialog>
+    <div class="centerDiv">
+        <div class="leftDiv">
+
+            <!-- ____________clock___________ -->
+            <div class="clock" id="analogClock">
+
+                <svg fill="none" height="100%" viewBox="0 0 461 461" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <path class="bgLightTint" clip-rule="evenodd"
+                        d="M93.6379 63.9405C89.7543 78.4344 78.4333 89.7554 63.9394 93.639L56.4989 95.6327C34.0934 101.636 20.7969 124.666 26.8005 147.072L28.7201 154.236C32.6038 168.73 28.46 184.195 17.8497 194.805L12.3015 200.353C-4.1005 216.755 -4.10051 243.348 12.3015 259.75L17.9236 265.372C28.5338 275.983 32.6776 291.447 28.794 305.941L26.8004 313.382C20.7968 335.787 34.0933 358.817 56.4989 364.821L63.9395 366.815C78.4334 370.698 89.7544 382.019 93.638 396.513L95.6322 403.956C101.636 426.361 124.666 439.658 147.071 433.654L154.513 431.66C169.007 427.777 184.472 431.92 195.082 442.531L200.353 447.802C216.755 464.204 243.348 464.204 259.75 447.802L265.097 442.455C275.707 431.845 291.172 427.701 305.666 431.585L313.383 433.653C335.788 439.656 358.818 426.36 364.822 403.954L366.815 396.515C370.699 382.021 382.02 370.7 396.514 366.816L403.955 364.822C426.361 358.819 439.657 335.789 433.654 313.383L431.586 305.665C427.702 291.172 431.846 275.707 442.456 265.096L447.802 259.75C464.204 243.348 464.204 216.755 447.802 200.353L442.53 195.081C431.92 184.471 427.776 169.006 431.66 154.512L433.654 147.071C439.657 124.665 426.361 101.635 403.955 95.6312L396.514 93.6373C382.02 89.7537 370.699 78.4327 366.815 63.9389L364.822 56.4994C358.818 34.0938 335.788 20.7974 313.383 26.8009L305.942 28.7946C291.448 32.6782 275.983 28.5345 265.373 17.9242L259.75 12.3015C243.348 -4.10051 216.755 -4.1005 200.353 12.3015L194.806 17.8491C184.196 28.4593 168.731 32.6031 154.237 28.7195L147.071 26.7995C124.666 20.7959 101.636 34.0924 95.6322 56.498L93.6379 63.9405Z"
+                        fill="#FFF" fill-rule="evenodd" />
+                </svg>
+                <div class="centerPoint">
+                    <div class="sui" id="hour"></div>
+                    <div class="sui" id="second"></div>
+                    <div class="sui" id="minute"></div>
+                </div>
+            </div>
+            <div class="clock" id="digitalClock" display="none">
+                <svg fill="none" height="100%" viewBox="60 0 460 450" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background oval shape -->
+                    <rect class="bgLightTint" height="350" rx="180" width="460" x="60" y="40"></rect>
+
+                    <!-- Date Text -->
+                    <text id="digidate" x="290" y="120" text-anchor="middle" fill="#E2EEFF" font-size="28"
+                        font-family="Arial" class="digidate">Thu 9</text>
+
+                    <!-- Time Text -->
+                    <text x="290" y="260" id="digiclock" class="digiclock">6:59</text>
+                </svg>
+
+            </div>
+
+            <!-- ____________end of clock______________ -->
+
+            <div class="ttteexxtt">
+                <md-filled-text-field id="userTextt" spellcheck="false" placeholder="Tap to edit">
+                </md-filled-text-field>
+                <div id="date"></div>
+            </div>
+        </div>
+        <!-- ---------end of leftDiv--------------- -->
+        <div class="rightDiv">
+            <!-- ---weather stuff--------- -->
+            <div class="topDiv">
+                <div class="lrectangle bgLightTint">
+                    <md-ripple></md-ripple>
+                    <div id="conditionText">Hello! How are you today?</div>
+                    <div class="cconnt">
+                        <div class="humidityBar">
+                            <div class="thinLine"></div>
+                            <div class="slider" id="slider">
+                                <div id="humidityLevel">Humidity</div>
+                            </div>
+                        </div>
+                        <div class="tilesContainer">
+                            <div class="tiles">
+                                <div class="icon">
+                                    <!-- <img src="./svgs/feels.svg" alt=""> -->
+                                    <md-icon>device_thermostat</md-icon>
+
+                                </div>
+                                <span id="feelsLike">Seems</span>
+                            </div>
+                            <div class="tiles location">
+                                <div class="icon">
+                                    <md-icon>my_location</md-icon>
+
+                                </div>
+                                <span class="location_spn" id="location">Earth</span>
+                            </div>
+                        </div>
+                        <!-- end of tilesContainer -->
+                    </div>
+                </div>
+
+                <!-- -----rAndakar-------- -->
+                <div class="rAndakar">
+                    <!-- <img src="./svgs/andakar.svg" alt=""> this is below svg -->
+                    <svg fill="none" height="100%" viewBox="0 0 288 288" width="100%"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect class="bgLightTint" fill="#E2EEFF" height="304.742" rx="123.401"
+                            transform="rotate(45 164.485 -51)" width="246.801" x="164.485" y="-51" />
+                    </svg>
+                    <div class="wInfo">
+                        <div id="temp">?°</div>
+                        <img alt="wq" id="wIcon" src="./src/defaultWeather.svg">
+                    </div>
+                </div>
+            </div>
+            <!-- ------end of weather stuff------------ -->
+
+            <!-- ----------searchbar-------------- -->
+            <div class="searchbar bgLightTint" id="searchbar">
+                <div class="searchIcon">
+                    <md-icon>search</md-icon>
+                </div>
+                <input id="searchQ" placeholder="Your query..." type="text" autocomplete="off">
+                <md-filled-tonal-button id="entrbtn" class="enterBtn"><md-icon slot="icon">search</md-icon>
+                    <dev id="enterBtn">Search</dev>
+                </md-filled-tonal-button>
+                <md-ripple></md-ripple>
+            </div>
+            <br>
+            <div id="resultBox" class="resultBox bgLightTint" style="display: none;"></div>
+            <!-- ----------end of searchbar-------------- -->
+
+            <!-- ----------search with------------------- -->
+            <div class="searchWithCont">
+
+                <div class="hint bgLightTint"><md-ripple></md-ripple>
+                    <dev id="searchWithHint">Search With</dev>
+                </div>
+                <div class="searchEnginesContainer">
+                    <div class="search-engine">
+                        <md-filter-chip id="chip1" removable>
+                            Google
+                        </md-filter-chip>
+                    </div>
+                    <div class="search-engine">
+                        <md-filter-chip id="chip2" removable>
+                            Duck
+                        </md-filter-chip>
+                    </div>
+                    <div class="search-engine">
+                        <md-filter-chip id="chip3" removable>
+                            Bing
+                        </md-filter-chip>
+                    </div>
+                    <div class="search-engine">
+                        <md-filter-chip id="chip4" removable>
+                            Brave
+                        </md-filter-chip>
+                    </div>
+                    <div class="search-engine">
+                        <md-filter-chip id="chip5" removable>
+                            YouTube
+                        </md-filter-chip>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ----------end of search with------------- -->
+        </div>
+        <!-- --------end of rightDiv---------------------- -->
+    </div>
+    <!---End of centerDiv--->
+    <!-- ------shortcuts------------------ -->
+    <div id="shortcuts-section">
+        <div class="unfoldContainer">
+            <button id="unfoldShortcutsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="220 -710 520 710" width="20px">
+                    <path
+                        d="M480-525 316-361q-11 11-25.5 11T265-361q-11-11-11-25.5t11-25.5l190-190q11-11 25-11t25 11l190 190q11 11 11 25t-11 25q-11 11-25.5 11T644-362L480-525Z" />
+                </svg>
+            </button>
+        </div>
+        <div class="wrapper">
+            <div id="flexMonitor"></div>
+            <div id="defaultMonitor"></div>
+            <div class="shortcutsContainer" id="shortcutsContainer"></div>
+        </div>
+    </div>
+
+
+    <!-- --------end of shortcuts------------------ -->
+
+    <!-- -----------AI-Tools------------------ -->
+    <div class="aiToolsCont" id="aiToolsCont">
+
+        <div class="hangno" id="0NIHK">
+            <div class="icon">
+                <svg fill="none" height="100%" viewBox="0 0 280 280" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <path class="accentColor" clip-rule="evenodd"
+                        d="M152 178C152 163.641 163.641 152 178 152H254C268.359 152 280.275 163.76 277.393 177.827C267.155 227.797 227.797 267.155 177.827 277.393C163.76 280.275 152 268.359 152 254V178ZM128 183.26C128 206.423 99.9943 218.024 83.6152 201.645L8.78205 126.811C3.43206 121.461 0.529946 114.017 1.78833 106.556C10.5659 54.5162 50.7487 13.1442 102.17 2.60743C116.237 -0.275091 128 11.6406 128 26V183.26ZM0 214.74C0 191.577 28.0057 179.976 44.3847 196.355L127.994 279.964C127.998 279.968 128 279.974 128 279.979V279.979C128 279.991 127.991 280 127.979 280H26C11.6406 280 0 268.359 0 254V214.74ZM152 26C152 11.6406 163.641 0 178 0H254C268.359 0 280 11.6406 280 26V102C280 116.359 268.359 128 254 128H178C163.641 128 152 116.359 152 102V26Z"
+                        fill="white" fill-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="label" id="ai_tools">AI-Tools</div>
+        </div>
+        <!-- --------tools-------- -->
+
+        <div class="toolsCont" id="toolsCont">
+            <!-- ---------------- -->
+            <a href="https://chat.openai.com/">
+                <div class="tIcon">
+                    <!-- <img src="./shortcuts_icons/chatgpt.svg" alt=""> -->
+                    <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="accentColor" fill="#FF4545" height="32" rx="16" width="32" />
+                        <path class="bgLightTint"
+                            d="M14.7787 6.39973C15.5709 6.39973 16.3046 6.64694 16.9039 7.06695C15.3268 7.87457 13.8766 8.891 12.3373 9.76462L13.558 11.8431C15.4806 10.7511 17.2836 9.38301 19.3685 8.59579C19.9508 8.37739 20.5802 8.30867 21.1971 8.39613C21.814 8.4836 22.398 8.72435 22.8939 9.09561C23.3897 9.46687 23.781 9.95637 24.0307 10.5178C24.2804 11.0792 24.3803 11.694 24.3209 12.3039C22.8206 11.3643 21.1995 10.637 19.6615 9.76462L18.4408 11.8431C20.3634 12.9351 22.4715 13.7847 24.2061 15.1672C24.6895 15.5538 25.0646 16.0553 25.2959 16.6242C25.5272 17.1931 25.607 17.8106 25.5278 18.4183C25.4486 19.026 25.213 19.6038 24.8433 20.097C24.4736 20.5902 23.9821 20.9826 23.4151 21.2369C23.4944 19.4897 23.3235 17.746 23.3235 16H20.8822C20.8822 18.1817 21.1873 20.4017 20.837 22.5714C20.738 23.1763 20.4837 23.7464 20.098 24.2278C19.7124 24.7091 19.2082 25.0858 18.6332 25.3221C18.0581 25.5584 17.4313 25.6466 16.8119 25.5783C16.1925 25.51 15.6011 25.2875 15.0936 24.9319C16.672 24.1242 18.1234 23.1078 19.6615 22.2354L18.4408 20.1569C16.5182 21.2489 14.7152 22.617 12.6303 23.4042C12.0479 23.6226 11.4185 23.6913 10.8016 23.6039C10.1847 23.5164 9.60073 23.2757 9.10489 22.9044C8.60905 22.5331 8.21777 22.0436 7.96807 21.4822C7.71837 20.9208 7.6185 20.306 7.67792 19.6961C9.17938 20.6345 10.7992 21.3617 12.3373 22.2354L13.558 20.1569C11.6354 19.0649 9.52727 18.2153 7.79145 16.8328C7.30807 16.4461 6.93305 15.9445 6.70187 15.3755C6.47069 14.8066 6.39098 14.189 6.4703 13.5813C6.54962 12.9736 6.78533 12.3959 7.15515 11.9027C7.52496 11.4095 8.01664 11.0173 8.58368 10.7631C8.50433 12.5103 8.67523 14.254 8.67523 16H11.1166C11.1166 13.8183 10.8114 11.5971 11.1618 9.42862C11.3002 8.58356 11.7402 7.81459 12.403 7.25955C13.0658 6.70451 13.908 6.39969 14.7787 6.39973ZM19.4088 6.09012C18.7029 5.28249 17.791 4.67405 16.7669 4.32723C15.7428 3.98042 14.6433 3.90772 13.5812 4.1166C12.519 4.32548 11.5326 4.80841 10.723 5.51584C9.9134 6.22327 9.30986 7.12973 8.9743 8.14218C7.90982 8.33936 6.91788 8.81143 6.10028 9.50994C5.28267 10.2085 4.66885 11.1083 4.3218 12.117C3.97475 13.1257 3.90698 14.2071 4.12544 15.2501C4.34389 16.2931 4.84071 17.2602 5.5649 18.0521C5.20623 19.057 5.12606 20.1377 5.33261 21.1832C5.53917 22.2287 6.02502 23.2013 6.74028 24.0012C7.45554 24.8011 8.37444 25.3995 9.40267 25.7349C10.4309 26.0703 11.5314 26.1307 12.5912 25.9099C13.2971 26.7175 14.209 27.326 15.2331 27.6728C16.2572 28.0196 17.3567 28.0923 18.4188 27.8834C19.481 27.6745 20.4674 27.1916 21.277 26.4842C22.0866 25.7767 22.6901 24.8703 23.0257 23.8578C24.0902 23.6606 25.0821 23.1886 25.8997 22.4901C26.7173 21.7915 27.3311 20.8917 27.6782 19.883C28.0252 18.8743 28.093 17.7929 27.8746 16.7499C27.6561 15.7069 27.1593 14.7398 26.4351 13.9479C26.7938 12.943 26.8739 11.8623 26.6674 10.8168C26.4608 9.77131 25.975 8.7987 25.2597 7.99879C24.5445 7.19889 23.6256 6.60051 22.5973 6.26508C21.5691 5.92966 20.4686 5.86927 19.4088 6.09012Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="tLabel">ChatGPT</div>
+            </a>
+            <!-- ---------------- -->
+            <!-- ---------------- -->
+            <a href="https://gemini.google.com/">
+                <div class="tIcon">
+                    <!-- <img src="./shortcuts_icons/bard.svg" alt=""> -->
+                    <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_208_3)">
+                            <rect class="accentColor" fill="#FF4545" height="32" rx="16" width="32" />
+                            <path class="bgLightTint"
+                                d="M14.6069 21.7907L15.4899 19.7789C16.2624 18.0009 17.676 16.5754 19.4521 15.7832L21.8818 14.7102C22.6541 14.3689 22.6541 13.2509 21.8818 12.9086L19.5286 11.8696C17.7067 11.0568 16.2678 9.57889 15.509 7.74084L14.614 5.59687C14.5436 5.42075 14.4217 5.26971 14.2641 5.1633C14.1065 5.05689 13.9204 5 13.73 5C13.5396 5 13.3535 5.05689 13.1959 5.1633C13.0383 5.26971 12.9164 5.42075 12.846 5.59687L11.952 7.74084C11.1932 9.57889 9.75436 11.0568 7.93246 11.8696L5.57925 12.9096C4.80692 13.2499 4.80692 14.3689 5.57925 14.7102L8.00788 15.7832C9.7838 16.5751 11.1974 18.0003 11.9701 19.7779L12.8531 21.7897C12.9257 21.9615 13.0476 22.1082 13.2036 22.2113C13.3596 22.3145 13.5427 22.3695 13.73 22.3695C13.9173 22.3695 14.1004 22.3145 14.2564 22.2113C14.4124 22.1082 14.5343 21.9625 14.6069 21.7907ZM23.4435 26.6892L23.6919 26.1227C24.1275 25.1206 24.9244 24.3172 25.9255 23.8706L26.6897 23.5313C26.7823 23.4889 26.8608 23.421 26.9158 23.3356C26.9708 23.2501 27 23.1508 27 23.0494C27 22.9479 26.9708 22.8486 26.9158 22.7632C26.8608 22.6778 26.7823 22.6098 26.6897 22.5674L25.9687 22.2481C24.9417 21.7897 24.1306 20.9563 23.703 19.92L23.4476 19.3084C23.4098 19.2141 23.3445 19.1332 23.26 19.0762C23.1756 19.0193 23.0759 18.9888 22.9739 18.9888C22.8719 18.9888 22.7722 19.0193 22.6878 19.0762C22.6033 19.1332 22.538 19.2141 22.5002 19.3084L22.2448 19.919C21.8174 20.9557 21.0063 21.7894 19.9791 22.2481L19.257 22.5684C19.1647 22.611 19.0865 22.6789 19.0318 22.7642C18.977 22.8495 18.9479 22.9486 18.9479 23.0499C18.9479 23.1511 18.977 23.2503 19.0318 23.3356C19.0865 23.4209 19.1647 23.4888 19.257 23.5313L20.0213 23.8696C21.023 24.3162 21.8202 25.12 22.2559 26.1227L22.5043 26.6892C22.6853 27.1036 23.2625 27.1036 23.4435 26.6892Z"
+                                fill="yellow" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_208_3">
+                                <rect fill="green" height="32" rx="16" width="32" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="tLabel">Gemini</div>
+            </a>
+            <!-- ---------------- -->
+            <!-- ---------------- -->
+            <a href="https://firefly.adobe.com/">
+                <div class="tIcon">
+                    <!-- <img src="./shortcuts_icons/adobe-firefly.svg" alt=""> -->
+                    <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="accentColor" fill="#FF4545" height="32" rx="16" width="32" />
+                        <path class="bgLightTint"
+                            d="M18.3372 8L25 24V8H18.3372ZM7 8V24L13.6628 8H7ZM16.0113 13.8908L20.258 24H17.4743L16.2064 20.7759H13.0926L16.0113 13.8908H16.0113Z"
+                            fill="white" />
+                    </svg>
+
+                </div>
+                <div class="tLabel">Adobe Firefly</div>
+            </a>
+            <!-- ---------------- -->
+
+        </div>
+
+    </div>
+    <!-- -----------end of AI-Tools------------------ -->
+
+    <!-- ------Menu-bar----------- -->
+    <div class="menuBar" id="menuBar" style="display: none;">
+        <md-dialog id="resetdialog">
+            <div slot="headline">Reset All Settings?</div>
+            <md-icon slot="icon">delete_outline</md-icon>
+            <form id="form" slot="content" method="dialog">
+                Are you sure you want to reset your settings? This action cannot be undone.
+            </form>
+            <div slot="actions">
+                <md-text-button form="form" value="delete">Reset</md-text-button>
+                <md-filled-tonal-button form="form" value="cancel" autofocus>Cancel</md-filled-tonal-button>
+            </div>
+        </md-dialog>
+        <md-dialog type="alert" id="alert">
+            <div slot="headline" id="alertheadline">Alert dialog</div>
+            <form id="alertform" slot="content" method="dialog">
+                This is a standard alert dialog. Alert dialogs interrupt users with
+                urgent information, details, or actions.
+            </form>
+            <div slot="actions">
+                <md-text-button form="alertform" value="ok">OK</md-text-button>
+            </div>
+        </md-dialog>
+        <div class="menuCont" id="menuCont">
+            <div class="topRounder">
+                <!-- <img src="./svgs/rounder.svg" alt=""> -->
+                <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_208_15)">
+                        <path class="lessDark" clip-rule="evenodd" d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z"
+                            fill="#FF429D" fill-rule="evenodd" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_208_15">
+                            <rect fill="white" height="30" width="30" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <!-- ---end of rounder--- -->
+            <div class="topDiv">
+                <h1>Material You NewTab</h1>
+
+            </div>
+            <div class="optCont" id="optCont">
+                <div id="tabs" class="tabs"><md-tabs>
+                        <md-primary-tab id="shortcuts-tab" active>
+                            <md-icon slot="icon" active>shortcut</md-icon>
+                            Shortcuts
+                        </md-primary-tab>
+                        <md-primary-tab id="appearance-tab">
+                            <md-icon slot="icon">brush</md-icon>
+                            Style
+                        </md-primary-tab>
+                        <md-primary-tab id="weather-tab">
+                            <md-icon slot="icon">cloud</md-icon>
+                            Weather
+                        </md-primary-tab>
+                        <md-primary-tab id="advanced-tab">
+                            <md-icon slot="icon">tune</md-icon>
+                            Advanced
+                        </md-primary-tab>
+                    </md-tabs>
+                </div>
+
+                <div class="page" id="overviewPage">
+
+
+                    <!-- end of tilesCont -->
+
+                    <div id="shortcuts-panel" role="tabpanel" aria-labelledby="shortcuts-tab" style="margin-top: 10px;">
+                        <div class="toggleTextsCont">
+                            <div class="ttcont">
+                                <div class="texts">
+                                    <div class="bigText" id="shortcutsText">Shortcuts</div>
+                                    <div class="infoText" id="enableShortcutsText">Enable/disable shortcuts</div>
+                                </div>
+                                <md-switch id="shortcutsCheckbox"></md-switch>
+                            </div>
+
+                            <div class="ttcont" id="shortcutEditField">
+                                <div class="texts">
+                                    <div class="bigText" id="editShortcutsText">Edit Shortcuts</div>
+                                    <div class="infoText" id="shortcutsInfoText">Choose which shortcuts get shown</div>
+                                </div>
+                                <label><md-icon-button id="shortcutEditButton">
+                                        <md-icon>Discover_Tune</md-icon>
+                                    </md-icon-button>
+                                </label>
+                            </div>
+                            <div class="ttcont">
+                                <div class="texts">
+                                    <div class="bigText" id="ai_tools_button">AI-Tools</div>
+                                    <div class="infoText" id="enable_ai_tools">Enable/disable AI Tools shortcuts</div>
+                                </div>
+                                <md-switch id="aiToolsCheckbox"></md-switch>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="appearance-panel" role="tabpanel" aria-labelledby="appearance-tab" hidden>
+                    <md-tabs id="tab2">
+                        <md-secondary-tab id="home-tab" active>
+                            <md-icon slot="icon">Home</md-icon>
+                            Home
+                        </md-secondary-tab>
+                        <md-secondary-tab id="search-tab">
+                            <md-icon slot="icon">manage_search</md-icon>
+                            Search
+                        </md-secondary-tab>
+                    </md-tabs>
+                    <div id="home-panel" role="tabpanel2" class="page" aria-labelledby="home-tab"
+                        style="margin-top: 10px;">
+                        <div class="toggleTextsCont">
+                            <div class="ttcont" id="adaptiveIconField">
+                                <div class="texts">
+                                    <div class="bigText" id="adaptiveIconText">Adaptive Icon Shapes</div>
+                                    <div class="infoText" id="adaptiveIconInfoText">Shortcut Icons will always be round
+                                    </div>
+                                </div>
+                                <md-switch id="adaptiveIconToggle"></md-switch>
+                            </div>
+                            <div class="ttcont">
+                                <div class="texts">
+                                    <div class="bigText" id="digitalclocktittle">Digital Clock</div>
+                                    <div class="infoText" id="digitalclockinfo">Enable/disable the Digital Clock</div>
+                                </div>
+                                <md-switch id="digitalCheckbox"></md-switch>
+                            </div>
+                            <div class="ttcont" id="timeformatField">
+                                <div class="texts">
+                                    <div class="bigText" id="timeformattittle">Use 12h Format</div>
+                                    <div class="infoText" id="timeformatinfo">Use 12 hour time format</div>
+                                </div>
+                                <md-switch id="12hourcheckbox"></md-switch>
+                            </div>
+                            <div class="ttcont" id="timeformatField">
+                                <div class="texts">
+                                    <div class="bigText" id="usertexttittle">UserText Box</div>
+                                    <div class="infoText" id="usertextinfo">Customizable Text Below The Clock</div>
+                                </div>
+                                <md-switch id="usertextcheckbox"></md-switch>
+                            </div>
+                            <!-- start of languageSelector -->
+                            <div class="languageSection">
+                                <div class="languageIcon">
+                                    <!--                         <svg fill="none" height="100%" viewBox="0 -960 960 960" width="24px"
+                             xmlns="http://www.w3.org/2000/svg">
+                            fill="#e8eaed">
+                            <path class="accentColor"
+                                  d="m476-80 182-480h84L924-80h-84l-43-122H603L560-80h-84ZM160-200l-56-56 202-202q-35-35-63.5-80T190-640h84q20 39 40 68t48 58q33-33 68.5-92.5T484-720H40v-80h280v-80h80v80h280v80H564q-21 72-63 148t-83 116l96 98-30 82-122-125-202 201Zm468-72h144l-72-204-72 204Z"
+                                  fill="#f00"/>
+                        </svg> -->
+                                    <md-icon>Language</md-icon>
+                                </div>
+                                <md-outlined-select id="languageSelector">
+                                    <md-select-option selected value="en">
+                                        <div slot="headline">English</div>
+                                    </md-select-option>
+                                    <md-select-option value="bn">
+                                        <div slot="headline">বাংলা (Bangla)</div>
+                                    </md-select-option>
+                                    <md-select-option value="zh">
+                                        <div slot="headline">中文 (Chinese)</div>
+                                    </md-select-option>
+                                    <md-select-option value="cs">
+                                        <div slot="headline">Čeština (Czech)</div>
+                                    </md-select-option>
+                                    <md-select-option value="hi">
+                                        <div slot="headline">हिन्दी (Hindi)</div>
+                                    </md-select-option>
+                                    <md-select-option value="it">
+                                        <div slot="headline">Italiano (Italian)</div>
+                                    </md-select-option>
+                                    <md-select-option value="pt">
+                                        <div slot="headline">Português (Portuguese)</div>
+                                    </md-select-option>
+                                    <md-select-option value="ru">
+                                        <div slot="headline">Русский (Russian)</div>
+                                    </md-select-option>
+                                    <md-select-option value="tr">
+                                        <div slot="headline">Türkçe (Turkish)</div>
+                                    </md-select-option>
+                                </md-outlined-select>
+
+                            </div>
+                            <div class="themingStuff" style="margin-top: 15px;">
+                                <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
+                                <div class="btn" id="themeButton">
+                                    <!-- <img src="./svgs/theme.svg" alt=""> -->
+                                    <md-icon>Palette</md-icon>
+                                </div>
+                                <!-- -------- -->
+                                <div class="colorsContainer" id="colorsContainer">
+                                    <input class="colorPlate" name="color" type="radio" value="red">
+                                    <input class="colorPlate" name="color" type="radio" value="yellow">
+                                    <input class="colorPlate" name="color" type="radio" value="green">
+                                    <input class="colorPlate" name="color" type="radio" value="cyan">
+                                    <input checked class="colorPlate" name="color" type="radio" value="blue">
+
+                                    <!-- -------- -->
+                                    <input class="colorPlate" name="color" type="radio" value="pink">
+                                    <input class="colorPlate" name="color" type="radio" value="purple">
+                                    <input class="colorPlate" name="color" type="radio" value="orange">
+                                    <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
+                                    <!-- grid-column: span 2; -->
+
+                                </div>
+
+                            </div><br>
+                            <!-- end of themingStuff -->
+                        </div>
+                    </div>
+                    <div id="search-panel" role="tabpanel2" class="page" aria-labelledby="search-tab"
+                        style="margin-top: 10px;" hidden>
+                        <div class="toggleTextsCont">
+                            <div class="ttcont">
+                                <div class="texts">
+                                    <div class="bigText" id="search_suggestions_button">Search Suggestions</div>
+                                    <div class="infoText" id="search_suggestions_text">Enable/disable Search Suggestions
+                                    </div>
+                                </div>
+                                <md-switch id="searchsuggestionscheckbox"></md-switch>
+                            </div>
+                            <div class="ttcont" id="proxybypassField">
+                                <div class="texts">
+                                    <div class="bigText" id="useproxytitletext">Proxy Bypass</div>
+                                    <div class="infoText" id="useproxyText">If search suggestions isn't working</div>
+                                </div>
+                                <md-switch id="useproxyCheckbox"></md-switch>
+                            </div>
+                            <div class="ttcont unflex" id="proxyField">
+                                <md-outlined-text-field id="userproxy" spellcheck="false" label="CORS Bypass Proxy"
+                                    placeholder="https://mynt-proxy.rhythmcorehq.com">
+                                </md-outlined-text-field>
+                                <div class="texts" style="margin-top: 4px;">
+                                    <div class="infoText" id="ProxySubtext">Add your own CORS Bypass Proxy
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <md-text-button href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy"
+                                        id="HstproxyButton"><md-icon slot="icon">info</md-icon><div id="HostproxyButton">Host Your Own Proxy</div></md-text-button>
+                                    <md-filled-button id="saveproxybtn" disabled><md-icon slot="icon">save</md-icon>
+                                        <div id="saveproxy">Save</div>
+                                    </md-filled-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="page" id="overviewPage">
+                    <div id="weather-panel" role="tabpanel" aria-labelledby="weather-tab" style="margin-top: 10px;"
+                        hidden>
+                        <div class="toggleTextsCont">
+                            <div class="ttcont">
+                                <div class="texts">
+                                    <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
+                                    <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to see the updates
+                                    </div>
+                                </div>
+                                <md-switch id="fahrenheitCheckbox"></md-switch>
+                            </div>
+
+                            <div class="ttcont unflex">
+                                <md-outlined-text-field id="userLoc" label="Enter your Location" spellcheck="false"
+                                    placeholder="Your location (City/Latitude,Longitude)">
+                                </md-outlined-text-field>
+                                <div class="texts" style="margin-top: 4px;">
+                                    <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
+                                    </div>
+                                </div>
+
+                                <div class="bottom">
+                                    <md-text-button href="https://www.weatherapi.com/docs/#intro-request-param"
+                                        id="InputOptnsButton"><md-icon slot="icon">info</md-icon><div id="InputOptionsButton">Input Options</div></md-text-button>
+                                    <md-filled-button id="saveLocbtn" disabled><md-icon slot="icon">save</md-icon>
+                                        <div id="saveLoc">Save</div>
+                                    </md-filled-button>
+                                </div>
+                            </div>
+
+                            <div class="ttcont unflex" style="margin-top: 100px;">
+                                <md-outlined-text-field id="userAPI" label="Enter your own WeatherAPI key"
+                                    spellcheck="false" placeholder="Your weatherAPI key">
+                                </md-outlined-text-field>
+                                <div class="texts" style="margin-top: 4px;">
+                                    <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't
+                                        working
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <md-text-button href="https://www.weatherapi.com" id="LrnMoreButton"><md-icon slot="icon">info</md-icon><div id="LearnMoreButton">Learn
+                                        more</div></md-text-button>
+                                    <md-filled-button id="saveAPIbtn" disabled><md-icon slot="icon">save</md-icon>
+                                        <div id="saveAPI">Save</div>
+                                    </md-filled-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="advanced-panel" role="tabpanel" aria-labelledby="advanced-tab" style="margin-top: 10px;"
+                        hidden>
+                        <div class="toggleTextsCont">
+                            <div class="button-container">
+                                <md-filled-button id="exportbtn">
+                                    <md-icon slot="icon">upload</md-icon>Export Settings
+                                </md-filled-button>
+                                <md-filled-button id="fileInputbtn">
+                                    <md-icon slot="icon">download</md-icon>Import Settings
+                                </md-filled-button>
+                                <md-filled-button id="restorechipsbtn">
+                                    <md-icon slot="icon">restore</md-icon>Restore All Search Engine Chips
+                                </md-filled-button>
+                                <md-outlined-button id="resetsettings"><md-icon
+                                        slot="icon">settings_backup_restore</md-icon><div id="resetsettingstext">Reset Settings</div></md-outlined-button>
+                            </div>
+
+
+                            <input type="file" id="fileInput" accept=".json" style="display: none;" />
+                            <div class="divider"></div>
+                            <div class="tilesCont">
+                                <md-elevated-button href="https://github.com/XengShi/materialYouNewTab"><md-icon
+                                        slot="icon">code</md-icon>Github</md-elevated-button>
+                                <md-elevated-button
+                                    href="https://github.com/XengShi/materialYouNewTab#feedback"><md-icon
+                                        slot="icon">feedback</md-icon><div id="feedbackbtntext">feedback</div></md-elevated-button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- ------------------ -->
+
+                <div id="menuCloseButton">
+                    <!-- <img src="./svgs/x.svg" alt=""> -->
+                    <div class="icon">
+                        <svg fill="none" height="30px" viewBox="0 0 34 34" width="30px"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path class="accentColor"
+                                d="M19.4038 17L24.2131 12.1924C24.5321 11.8734 24.7113 11.4408 24.7113 10.9896C24.7113 10.5385 24.5321 10.1059 24.2131 9.7869C23.8941 9.46791 23.4615 9.2887 23.0103 9.2887C22.5592 9.2887 22.1266 9.46791 21.8076 9.7869L17 14.5962L12.1924 9.7869C11.8734 9.46791 11.4408 9.2887 10.9896 9.2887C10.5385 9.2887 10.1059 9.46791 9.7869 9.7869C9.46791 10.1059 9.2887 10.5385 9.2887 10.9896C9.2887 11.4408 9.46791 11.8734 9.7869 12.1924L14.5962 17L9.7869 21.8076C9.46791 22.1266 9.2887 22.5592 9.2887 23.0103C9.2887 23.4615 9.46791 23.8941 9.7869 24.2131C10.1059 24.5321 10.5385 24.7113 10.9896 24.7113C11.4408 24.7113 11.8734 24.5321 12.1924 24.2131L17 19.4038L21.8076 24.2131C22.1266 24.5321 22.5592 24.7113 23.0103 24.7113C23.4615 24.7113 23.8941 24.5321 24.2131 24.2131C24.5321 23.8941 24.7113 23.4615 24.7113 23.0103C24.7113 22.5592 24.5321 22.1266 24.2131 21.8076L19.4038 17ZM17 34C7.6109 34 0 26.3891 0 17C0 7.6109 7.6109 0 17 0C26.3891 0 34 7.6109 34 17C34 26.3891 26.3891 34 17 34Z"
+                                fill="#23F22C" />
+                        </svg>
+                    </div>
+                    <!-- <span>Close</span> -->
+                </div>
+                <!-- end of page 1 -->
+                <div class="page" id="shortcutEditPage">
+                    <div class="topBar">
+                        <button id="backButton">
+                            <svg height="20px" viewBox="200 -755 600 755" width="20px"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="m330-444 176.21 176.21Q517-257 517-242.5t-11 25.98Q495-206 480.5-206t-25.31-10.82L217.4-454.91q-5.4-5.41-7.9-11.72-2.5-6.31-2.5-13.53 0-7.21 2.5-13.53Q212-500 217-505l238-238q11-11 25.67-11 14.66 0 25.33 11 11 10.67 11 25.33 0 14.67-10.84 25.51L330-516h402.02q15.29 0 25.64 10.29Q768-495.42 768-480.21t-10.34 25.71Q747.31-444 732.02-444H330Z" />
+                            </svg>
+                        </button>
+                        <div class="rightButtons">
+                            <button id="newShortcutButton">
+                                <svg height="20px" viewBox="180 -740 600 740" width="20px"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M444-444H276q-15.3 0-25.65-10.29Q240-464.58 240-479.79t10.35-25.71Q260.7-516 276-516h168v-168q0-15.3 10.29-25.65Q464.58-720 479.79-720t25.71 10.35Q516-699.3 516-684v168h168q15.3 0 25.65 10.29Q720-495.42 720-480.21t-10.35 25.71Q699.3-444 684-444H516v168q0 15.3-10.29 25.65Q495.42-240 480.21-240t-25.71-10.35Q444-260.7 444-276v-168Z" />
+                                </svg>
+
+                            </button>
+                            <button id="resetButton">
+                                <svg height="20px" viewBox="140 -816 680 816" width="20px"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M552-384h96q10.4 0 17.2 6.8 6.8 6.8 6.8 17.2 0 10.4-6.8 17.2-6.8 6.8-17.2 6.8h-96q-10.4 0-17.2-6.8-6.8-6.8-6.8-17.2 0-10.4 6.8-17.2 6.8-6.8 17.2-6.8Zm24 216v-24h-23.72Q542-192 535-198.8q-7-6.8-7-17.2 0-10.4 6.8-17.2 6.8-6.8 17.2-6.8h24v-24q0-10.4 6.8-17.2 6.8-6.8 17.2-6.8 10.4 0 17.2 6.8 6.8 6.8 6.8 17.2v96q0 10.4-6.8 17.2-6.8 6.8-17.2 6.8-10.4 0-17.2-6.8-6.8-6.8-6.8-17.2Zm120-72h96q10.4 0 17.2 6.8 6.8 6.8 6.8 17.2 0 10.4-6.8 17.2-6.8 6.8-17.2 6.8h-96q-10.4 0-17.2-6.8-6.8-6.8-6.8-17.2 0-10.4 6.8-17.2 6.8-6.8 17.2-6.8Zm24-72v-96q0-10.4 6.8-17.2 6.8-6.8 17.2-6.8 10.4 0 17.2 6.8 6.8 6.8 6.8 17.2v24h23.72q10.28 0 17.28 6.8 7 6.8 7 17.2 0 10.4-6.8 17.2-6.8 6.8-17.2 6.8h-24v24q0 10.4-6.8 17.2-6.8 6.8-17.2 6.8-10.4 0-17.2-6.8-6.8-6.8-6.8-17.2ZM479-744q-109 0-186 77t-77 186q0 62 25.5 115t70.5 89v-23q0-15.3 10.29-25.65Q332.58-336 347.79-336t25.71 10.35Q384-315.3 384-300v120q0 15.3-10.35 25.65Q363.3-144 348-144H228q-15.3 0-25.65-10.29Q192-164.58 192-179.79t10.35-25.71Q212.7-216 228-216h44q-59-46-93.5-114.72Q144-399.43 144-480q0-69 26.7-130.36 26.7-61.37 72.14-106.8 45.43-45.44 106.8-72.14Q411-816 480-816q106 0 189.95 58.24Q753.9-699.52 791-608q6 14.26 0 27.63T771.03-561q-13.97 6-27.5 0T724-581q-29-72-94.84-117.5T479-744Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pageTitle" id="editShortcutsList">Edit Shortcuts</div>
+                    <div id="shortcutList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------end of Menu-bar----------- -->
+
+    <md-fab id="menuButton" aria-label="Edit">
+        <md-icon slot="icon">edit</md-icon>
+    </md-fab>
+    <!-- ending-of-body -->
+    <script type="module" src="/src/app.js"></script>
+</body>
+
+</html>

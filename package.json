@@ -1,0 +1,18 @@
+{
+  "name": "MYNT",
+  "version": "3.1.5",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@material/web": "^2.2.0",
+    "lit": "^3.2.1",
+    "sass": "^1.80.3"
+  },
+  "devDependencies": {
+    "vite": "^5.4.9",
+    "vite-plugin-static-copy": "^2.0.0"
+  },
+  "type": "module"
+}
