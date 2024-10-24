@@ -334,7 +334,7 @@ const translations = {
         "search_suggestions_text": "Zapne/vypne návrhy vyhledávání",
         // Proxy
         "useproxytitletext": "Obcházení proxy",
-        "useproxyText": "Pokud nefungují návrhy vyhledávání",
+        "useproxyText": "Pokud nefungují návrhy ve vyhledávání",
         "ProxyText": "Proxy pro obcházení CORS",
         "ProxySubtext": "Přidejte vlastní proxy pro obcházení CORS",
         "HostproxyButton": "Provozování vlastní proxy",
