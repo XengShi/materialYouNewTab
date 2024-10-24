@@ -331,7 +331,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
         "search_suggestions_button": "Návrhy vyhledávání",
-        "search_suggestions_text": "Povolí/zakáže návrhy vyhledávání",
+        "search_suggestions_text": "Zapne/vypne návrhy vyhledávání",
         // Proxy
         "useproxytitletext": "Obcházení proxy",
         "useproxyText": "Pokud nefungují návrhy vyhledávání",
