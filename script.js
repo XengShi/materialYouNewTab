@@ -126,17 +126,17 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityText} ${humidity}%`;
+        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityLevel} ${humidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeFahrenheit}°F`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeFahrenheit}°F`;
             } else {
                 document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeCelsius}°C`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${feelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
