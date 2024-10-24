@@ -314,7 +314,7 @@ const translations = {
         menuCloseText: 'Zavřít',
         // Shortcuts
         "shortcutsText": "Zkratky",
-        "enableShortcutsText": "Povolí/zakáže zkratky",
+        "enableShortcutsText": "Zapne/vypne zkratky",
         "editShortcutsText": "Upravit zkratky",
         "editShortcutsList": "Upravit zkratky",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
