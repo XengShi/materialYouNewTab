@@ -321,7 +321,7 @@ const translations = {
         "adaptiveIconText": "Adaptivní tvary ikon",
         "adaptiveIconInfoText": "Ikony zkratek budou vždy kulaté",
         "ai_tools_button": "AI nástroje",
-        "enable_ai_tools": "Povolí/zakáže zkratky AI nástrojů",
+        "enable_ai_tools": "Zapne/vypne zkratky AI nástrojů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Povolí/zakáže digitální hodiny",
