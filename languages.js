@@ -324,7 +324,7 @@ const translations = {
         "enable_ai_tools": "Zapne/vypne zkratky AI nástrojů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
-        "digitalclockinfo": "Povolí/zakáže digitální hodiny",
+        "digitalclockinfo": "Zapne/vypne digitální hodiny",
         "timeformattittle": "Použít 12hodinový formát",
         "timeformatinfo": "Použije se 12hodinový formát času",
         // Misc
