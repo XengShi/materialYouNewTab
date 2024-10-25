@@ -699,10 +699,19 @@ const numberMappings = {
 
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
+    // For Czech language, handle both digit localization and special formatting
+    if (language === 'cs') {
+        let localizedText = text.replace('.', ',');  // Replace decimal point with a comma for Czech
+        if (map) {
+            localizedText = localizedText.replace(/\d/g, (digit) => map[digit] || digit);  // Replace digits
+        }
+        return localizedText;
+    }
+    // For other languages, apply digit localization only
     if (map) {
         return text.replace(/\d/g, (digit) => map[digit] || digit);  // Replace digits only if the map exists
     }
-    return text;  // Return the original text if no mapping is needed
+    return text;  // Return the original text if no mapping or special formatting is needed
 }
 
 // Function to apply the language to the page
