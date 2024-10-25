@@ -716,87 +716,85 @@ function localizeNumbers(text, language) {
 
 // Function to apply the language to the page
 function applyLanguage(lang) {
-    if (translations[lang]) {
-        // Menu Items
-        document.getElementById('feedback').innerText = translations[lang].feedback;
-        document.getElementById('resetsettings').innerText = translations[lang].resetsettings;
-        document.getElementById('shortcutsText').innerText = translations[lang].shortcutsText;
-        document.getElementById('enableShortcutsText').innerText = translations[lang].enableShortcutsText;
-        document.getElementById('editShortcutsText').innerText = translations[lang].editShortcutsText;
-        document.getElementById('editShortcutsList').innerText = translations[lang].editShortcutsList;
-        document.getElementById('shortcutsInfoText').innerText = translations[lang].shortcutsInfoText;
-        document.getElementById('adaptiveIconText').innerText = translations[lang].adaptiveIconText;
-        document.getElementById('adaptiveIconInfoText').innerText = translations[lang].adaptiveIconInfoText;
-        document.getElementById('ai_tools_button').innerText = translations[lang].ai_tools_button;
-        document.getElementById('enable_ai_tools').innerText = translations[lang].enable_ai_tools;
-        document.getElementById('fahrenheitCelsiusCheckbox').innerText = translations[lang].fahrenheitCelsiusCheckbox;
-        document.getElementById('fahrenheitCelsiusText').innerText = translations[lang].fahrenheitCelsiusText;
-        document.getElementById('search_suggestions_button').innerText = translations[lang].search_suggestions_button;
-        document.getElementById('search_suggestions_text').innerText = translations[lang].search_suggestions_text;
+    // Define an array of elements and their corresponding translation keys
+    const translationMap = [
+        { id: 'feedback', key: 'feedback' },
+        { id: 'resetsettings', key: 'resetsettings' },
+        { id: 'shortcutsText', key: 'shortcutsText' },
+        { id: 'enableShortcutsText', key: 'enableShortcutsText' },
+        { id: 'editShortcutsText', key: 'editShortcutsText' },
+        { id: 'editShortcutsList', key: 'editShortcutsList' },
+        { id: 'shortcutsInfoText', key: 'shortcutsInfoText' },
+        { id: 'adaptiveIconText', key: 'adaptiveIconText' },
+        { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
+        { id: 'ai_tools_button', key: 'ai_tools_button' },
+        { id: 'enable_ai_tools', key: 'enable_ai_tools' },
+        { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
+        { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
+        { id: 'search_suggestions_button', key: 'search_suggestions_button' },
+        { id: 'search_suggestions_text', key: 'search_suggestions_text' },
+        { id: 'digitalclocktittle', key: 'digitalclocktittle' },
+        { id: 'digitalclockinfo', key: 'digitalclockinfo' },
+        { id: 'timeformattittle', key: 'timeformattittle' },
+        { id: 'timeformatinfo', key: 'timeformatinfo' },
+        { id: 'useproxytitletext', key: 'useproxytitletext' },
+        { id: 'useproxyText', key: 'useproxyText' },
+        { id: 'ProxyText', key: 'ProxyText' },
+        { id: 'ProxySubtext', key: 'ProxySubtext' },
+        { id: 'HostproxyButton', key: 'HostproxyButton' },
+        { id: 'saveproxy', key: 'saveproxy' },
+        { id: 'UserLocText', key: 'UserLocText' },
+        { id: 'UserLocSubtext', key: 'UserLocSubtext' },
+        { id: 'userLoc', key: 'userLoc', isPlaceholder: true },
+        { id: 'InputOptionsButton', key: 'InputOptionsButton' },
+        { id: 'saveLoc', key: 'saveLoc' },
+        { id: 'WeatherApiText', key: 'WeatherApiText' },
+        { id: 'WeatherApiSubtext', key: 'WeatherApiSubtext' },
+        { id: 'userAPI', key: 'userAPI', isPlaceholder: true },
+        { id: 'LearnMoreButton', key: 'LearnMoreButton' },
+        { id: 'saveAPI', key: 'saveAPI' },
+        { id: 'conditionText', key: 'conditionText' },
+        { id: 'enterBtn', key: 'enterBtn' },
+        { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
+        { id: 'searchWithHint', key: 'searchWithHint' },
+        { id: 'ai_tools', key: 'ai_tools' },
+        { id: 'humidityLevel', key: 'humidityLevel' },
+        { id: 'feelsLike', key: 'feelsLike' },
+        { id: 'location', key: 'location' }
+    ];
 
-        // Clock
-        document.getElementById('digitalclocktittle').innerText = translations[lang].digitalclocktittle;
-        document.getElementById('digitalclockinfo').innerText = translations[lang].digitalclockinfo;
-        document.getElementById('timeformattittle').innerText = translations[lang].timeformattittle;
-        document.getElementById('timeformatinfo').innerText = translations[lang].timeformatinfo;
-
-        // Proxy
-        document.getElementById('useproxytitletext').innerText = translations[lang].useproxytitletext;
-        document.getElementById('useproxyText').innerText = translations[lang].useproxyText;
-        document.getElementById('ProxyText').innerText = translations[lang].ProxyText;
-        document.getElementById('ProxySubtext').innerText = translations[lang].ProxySubtext;
-        document.getElementById('HostproxyButton').innerText = translations[lang].HostproxyButton;
-        document.getElementById('saveproxy').innerText = translations[lang].saveproxy;
-
-        // Weather
-        document.getElementById('UserLocText').innerText = translations[lang].UserLocText;
-        document.getElementById('UserLocSubtext').innerText = translations[lang].UserLocSubtext;
-        document.getElementById('userLoc').placeholder = translations[lang].userLoc;
-        document.getElementById('InputOptionsButton').innerText = translations[lang].InputOptionsButton;
-        document.getElementById('saveLoc').innerText = translations[lang].saveLoc;
-        document.getElementById('WeatherApiText').innerText = translations[lang].WeatherApiText;
-        document.getElementById('WeatherApiSubtext').innerText = translations[lang].WeatherApiSubtext;
-        document.getElementById('userAPI').placeholder = translations[lang].userAPI;
-        document.getElementById('LearnMoreButton').innerText = translations[lang].LearnMoreButton;
-        document.getElementById('saveAPI').innerText = translations[lang].saveAPI;
-
-        // Update hover text for #menuCloseButton
-        const menuCloseButton = document.getElementById('menuCloseButton');
-        if (menuCloseButton) {
-            const hoverText = translations[lang].menuCloseText || 'Close'; // Default to "Close" if not found
-            menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
-        }
-        // End of Menu Items
-
-        // Body Items
-        document.getElementById('conditionText').innerText = translations[lang].conditionText;
-        document.getElementById('enterBtn').innerText = translations[lang].enterBtn;
-        document.getElementById('searchQ').placeholder = translations[lang].searchPlaceholder;
-        document.getElementById('searchWithHint').innerText = translations[lang].searchWithHint;
-        document.getElementById('ai_tools').innerText = translations[lang].ai_tools;
-
-        // Weather
-        document.getElementById("humidityLevel").innerText = translations[lang].humidityLevel;
-        document.getElementById("feelsLike").innerText = translations[lang].feelsLike;
-        document.getElementById("location").innerText = translations[lang].location;
-
-        // userText
-        const userTextDiv = document.getElementById('userText');
-        if (translations[lang]) {
-            const placeholder = translations[lang].userText;
-            userTextDiv.dataset.placeholder = placeholder; // Update the placeholder in data attribute
-            // Only set the text content if there's nothing in localStorage
-            if (!localStorage.getItem("userText")) {
-                userTextDiv.innerText = placeholder;
+    // Loop through the translation map to apply translations
+    for (const { id, key, isPlaceholder } of translationMap) {
+        const element = document.getElementById(id);
+        if (element) {
+            if (isPlaceholder) {
+                element.placeholder = translations[lang]?.[key] || translations['en'][key];
+            } else {
+                element.innerText = translations[lang]?.[key] || translations['en'][key];
             }
         }
-        // End of Body Items
-
-        // Save the selected language in localStorage
-        saveLanguageStatus('selectedLanguage', lang);
-    } else {
-        console.error('Language not found');
     }
+
+    // userText
+    const userTextDiv = document.getElementById('userText');
+    if (translations[lang]) {
+        const placeholder = translations[lang]?.userText || translations['en']?.userText;
+        userTextDiv.dataset.placeholder = placeholder; // Update the placeholder in data attribute
+        // Only set the text content if there's nothing in localStorage
+        if (!localStorage.getItem("userText")) {
+            userTextDiv.innerText = placeholder;
+        }
+    }
+
+    // Update hover text for #menuCloseButton
+    const menuCloseButton = document.getElementById('menuCloseButton');
+    if (menuCloseButton) {
+        const hoverText = translations[lang]?.menuCloseText || translations['en']?.menuCloseText;
+        menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
+    }
+
+    // Save the selected language in localStorage
+    saveLanguageStatus('selectedLanguage', lang);
 }
 
 // Detect language from navigator.language
