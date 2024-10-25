@@ -345,6 +345,10 @@ body {
 #conditionText {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 372px; 
 }
 
 .cconnt {
