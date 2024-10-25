@@ -778,7 +778,7 @@ function applyLanguage(lang) {
     // userText
     const userTextDiv = document.getElementById('userText');
     if (translations[lang]) {
-        const placeholder = translations[lang]?.userText || translations['en']?.userText;
+        const placeholder = translations[lang]?.userText || translations['en'].userText;
         userTextDiv.dataset.placeholder = placeholder; // Update the placeholder in data attribute
         // Only set the text content if there's nothing in localStorage
         if (!localStorage.getItem("userText")) {
@@ -789,7 +789,7 @@ function applyLanguage(lang) {
     // Update hover text for #menuCloseButton
     const menuCloseButton = document.getElementById('menuCloseButton');
     if (menuCloseButton) {
-        const hoverText = translations[lang]?.menuCloseText || translations['en']?.menuCloseText;
+        const hoverText = translations[lang]?.menuCloseText || translations['en'].menuCloseText;
         menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
     }
 
