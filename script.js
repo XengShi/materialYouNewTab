@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
-        
+
         // Function to simulate button click when Enter key is pressed
         function handleEnterPress(event, buttonId) {
             if (event.key === 'Enter') {
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         userProxyInput.addEventListener('keydown', function (event) {
             handleEnterPress(event, 'saveproxy');
         });
-        
+
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
@@ -98,18 +98,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Try to get the savedLocation or a previously stored location from localStorage
         var currentUserLocation = savedLocation || localStorage.getItem("locationQ");
-        
+
         if (!currentUserLocation) {
-        // If neither savedLocation nor localStorage has a location, fetch the IP-based location
-        const geoLocation = 'https://ipinfo.io/json/';
-        const locationData = await fetch(geoLocation);
-        const parsedLocation = await locationData.json();
-        currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
-        localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
+            // If neither savedLocation nor localStorage has a location, fetch the IP-based location
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+            currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
+            localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
         }
-        
+
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-        
+
         // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
@@ -134,24 +134,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        // Set humidity level
-        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityLevel} ${localizedHumidity}%`;
+        /// Set humidity level
+        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
 
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 // Celsius: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
 
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -226,9 +227,30 @@ function updateDate() {
     // Define the current language
     var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-    // Get the translated name of the day and month
-    var dayName = translations[currentLanguage].days[dayOfWeek];
-    var monthName = translations[currentLanguage].months[month];
+    // Get the translated name of the day
+    var dayName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].days &&
+        translations[currentLanguage].days[dayOfWeek]
+    ) {
+        dayName = translations[currentLanguage].days[dayOfWeek];
+    } else {
+        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
+    }
+
+    // Get the translated name of the month
+    var monthName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].months &&
+        translations[currentLanguage].months[month]
+    ) {
+        monthName = translations[currentLanguage].months[month];
+    } else {
+        monthName = translations['en'].months[month]; // Fallback to English month name
+    }
+
     // Localize the day of the month
     var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
@@ -344,61 +366,79 @@ function updatedigiClock() {
     const now = new Date();
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
     const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
-    const month = now.getMonth(); // Get month (0-11)
 
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-    // Get translated day names from the translation object
-    const dayName = translations[currentLanguage].days[dayOfWeek];
+    // Get translated day name
+    let dayName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].days &&
+        translations[currentLanguage].days[dayOfWeek]
+    ) {
+        dayName = translations[currentLanguage].days[dayOfWeek];
+    } else {
+        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
+    }
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
-    // Create the translated short date string based on language
+    // Determine the translated short date string based on language using if-else statements
     let dateString;
-
-    switch (currentLanguage) {
-        case 'hi': // Hindi
-        case 'bn': // Bangla
-            // Format: "दिन, दिनांक" (Day, Date)
-            dateString = `${dayName}, ${localizedDayOfMonth}`;
-            break;
-        case 'cs': // Czech
-            // Format: "den, den." (Day, Date.)
-            dateString = `${dayName}, ${localizedDayOfMonth}.`;
-            break;
-        case 'pt': // Portuguese
-            // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
-            dateString = `${dayName}, ${localizedDayOfMonth}`;
-            break;
-        default: // For English and other languages
-            // Default format: "day of the month" (e.g., "24 Thu")
-            dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
-            break;
+    if (currentLanguage === 'hi' || currentLanguage === 'bn') {
+        // Format: "दिन, दिनांक" (Day, Date)
+        dateString = `${dayName}, ${localizedDayOfMonth}`;
+    } else if (currentLanguage === 'cs') {
+        // Format: "den, den." (Day, Date.)
+        dateString = `${dayName}, ${localizedDayOfMonth}.`;
+    } else if (currentLanguage === 'pt') {
+        // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
+        dateString = `${dayName}, ${localizedDayOfMonth}`;
+    } else {
+        // Default format: "day of the month" (e.g., "24 Thu")
+        dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
     }
 
-    // Get the time in the specified format (12-hour or 24-hour based on user setting)
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
-    const timeString = now.toLocaleTimeString('en-US', timeOptions);
+    // Handle time formatting based on the selected language
+    let timeString;
+    let period = ''; // For storing AM/PM equivalent
 
-    // Split the time and period (AM/PM) if in 12-hour format
-    let [localizedTime, period] = timeString.split(' '); // Split AM/PM if present
-    let [hours, minutes] = localizedTime.split(':');
+    if (currentLanguage === 'tr' || currentLanguage === 'zh') {
+        // Force 'en-US' format for both Turkish and Chinese, but split to remove AM/PM if present
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+        timeString = now.toLocaleTimeString('en-US', timeOptions); // Force US format
+
+        // Split the time to discard AM/PM if present
+        [timeString] = timeString.split(' '); // Only take the part before space (hours and minutes)
+    } else {
+        // Default time format for other languages
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+        timeString = now.toLocaleTimeString(currentLanguage, timeOptions); // Use the current language
+
+        // Split the time and period (AM/PM) if in 12-hour format
+        if (hourformat) {
+            [timeString, period] = timeString.split(' '); // Split AM/PM if present
+        }
+    }
+
+    // Split the hours and minutes from the localized time string
+    let [hours, minutes] = timeString.split(':');
 
     // Localize hours and minutes for the selected language
     const localizedHours = localizeNumbers(hours, currentLanguage);
     const localizedMinutes = localizeNumbers(minutes, currentLanguage);
 
-    const formattedTimeString = `${localizedHours}:${localizedMinutes}`; // Localized time without AM/PM
+    const formattedTimeString = `${localizedHours}:${localizedMinutes}`; // Localized time
 
     // Update the time in the main clock display
     document.getElementById('digiclock').textContent = formattedTimeString;
 
-    // If 12-hour format, display AM/PM in a separate line
-    if (hourformat) {
-        document.getElementById('amPm').textContent = period; // Set AM/PM in new text element
+    // For Turkish and Chinese, no AM/PM; for others, show AM/PM
+    if (currentLanguage === 'tr' || currentLanguage === 'zh') {
+        document.getElementById('amPm').textContent = ''; // No AM/PM for Turkish and Chinese
     } else {
-        document.getElementById('amPm').textContent = ''; // Clear AM/PM for 24-hour format
+        document.getElementById('amPm').textContent = period; // Show AM/PM for other languages
     }
 
     // Update the translated date
@@ -410,6 +450,7 @@ function updatedigiClock() {
     }
 }
 
+// Function to start the clock
 function startClock() {
     if (!intervalId) { // Only set interval if not already set
         intervalId = setInterval(updateanalogclock, 500);
@@ -463,6 +504,8 @@ function displayClock() {
 document.addEventListener("DOMContentLoaded", function () {
     updateanalogclock();
 });
+
+// End of clock display
 
 document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
