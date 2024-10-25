@@ -371,7 +371,7 @@ const translations = {
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
-        "userText": "Upravíte kliknutím",
+        "userText": "Upravíte po kliknutí",
         // End of Body and New Tab Items
 
         // Greeting
