@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
-
 @font-face {
     font-family: 'poppins';
     src: url('./fonts/Poppins-Regular.ttf') format('truetype');
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
 
 * {
     margin: 0;
