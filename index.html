@@ -41,9 +41,12 @@
                     <text id="digidate" x="290" y="120" text-anchor="middle" fill="#E2EEFF" font-size="28"
                         font-family="Arial" class="digidate">Thu 9</text>
 
-                    <!-- Time Text -->
-                    <text x="290" y="260" id="digiclock" class="digiclock" text-anchor="middle" fill="#E2EEFF"
-                        font-size="56" font-family="Arial">6:59</text>
+                    <!-- Full Time Text (Hour:Minute) -->
+                    <text x="290" y="260" id="digiclock" class="digiclock" font-family="Arial">
+                        <tspan id="digihours">6</tspan>
+                        <tspan id="digicolon" dx="-34">:</tspan>
+                        <tspan id="digiminutes" dx="-34">28</tspan>
+                    </text>
 
                     <!-- AM/PM Text -->
                     <text id="amPm" x="290" y="330" text-anchor="middle" fill="#E2EEFF" font-size="28"
