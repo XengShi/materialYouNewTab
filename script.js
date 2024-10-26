@@ -96,21 +96,17 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
 
-        // Try to get the savedLocation or a previously stored location from localStorage
-        var currentUserLocation = savedLocation || localStorage.getItem("locationQ");
-
+        var currentUserLocation = savedLocation; // Get saved location
         if (!currentUserLocation) {
-            // If neither savedLocation nor localStorage has a location, fetch the IP-based location
+            // Only fetch if there is no saved location
             const geoLocation = 'https://ipinfo.io/json/';
             const locationData = await fetch(geoLocation);
             const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
-            localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
+            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
         }
-
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-        // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
+        
+        // Weather API call using currentUserLocation, which is either user input or IP address
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
