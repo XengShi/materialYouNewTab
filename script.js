@@ -404,26 +404,28 @@ function updatedigiClock() {
     let timeString;
     let period = ''; // For storing AM/PM equivalent
 
-    if (currentLanguage === 'tr' || currentLanguage === 'zh') {
-        // Force 'en-US' format for both Turkish and Chinese, but split to remove AM/PM if present
-        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
-        timeString = now.toLocaleTimeString('en-US', timeOptions); // Force US format
+    // Array of languages to use 'en-US' format
+    const specialLanguages = ['tr', 'zh'];
+    const localizedLanguages = ['bn'];
+    // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
-        // Split the time to discard AM/PM if present
-        [timeString] = timeString.split(' '); // Only take the part before space (hours and minutes)
-    } else {
-        // Default time format for other languages
-        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
-        timeString = now.toLocaleTimeString(currentLanguage, timeOptions); // Use the current language
+    // Set time options and determine locale based on the current language
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? 'en-US' : currentLanguage;
+    timeString = now.toLocaleTimeString(locale, timeOptions);
 
-        // Split the time and period (AM/PM) if in 12-hour format
-        if (hourformat) {
-            [timeString, period] = timeString.split(' '); // Split AM/PM if present
-        }
+    // Split the time and period (AM/PM) if in 12-hour format
+    if (hourformat) {
+        [timeString, period] = timeString.split(' '); // Split AM/PM if present
     }
 
     // Split the hours and minutes from the localized time string
     let [hours, minutes] = timeString.split(':');
+
+    // Remove leading zero from hours for specific languages in 12-hour format only
+    if (hourformat && currentLanguage !== 'en' && currentLanguage !== 'it') {
+        hours = parseInt(hours, 10).toString(); // Remove leading zero
+    }
 
     // Localize hours and minutes for the selected language
     const localizedHours = localizeNumbers(hours, currentLanguage);
@@ -435,7 +437,7 @@ function updatedigiClock() {
     document.getElementById('digiclock').textContent = formattedTimeString;
 
     // For Turkish and Chinese, no AM/PM; for others, show AM/PM
-    if (currentLanguage === 'tr' || currentLanguage === 'zh') {
+    if (specialLanguages.includes(currentLanguage)) {
         document.getElementById('amPm').textContent = ''; // No AM/PM for Turkish and Chinese
     } else {
         document.getElementById('amPm').textContent = period; // Show AM/PM for other languages
