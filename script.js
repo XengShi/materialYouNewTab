@@ -115,10 +115,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Weather data
         const conditionText = parsedData.current.condition.text;
         const tempCelsius = Math.round(parsedData.current.temp_c);
-        const tempFahrenheit = Math.round(tempCelsius * 9 / 5 + 32);
+        const tempFahrenheit = Math.round(parsedData.current.temp_f);
         const humidity = parsedData.current.humidity;
         const feelsLikeCelsius = parsedData.current.feelslike_c;
-        const feelsLikeFahrenheit = Math.round(feelsLikeCelsius * 9 / 5 + 32);
+        const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
