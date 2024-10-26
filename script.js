@@ -431,10 +431,10 @@ function updatedigiClock() {
     const localizedHours = localizeNumbers(hours, currentLanguage);
     const localizedMinutes = localizeNumbers(minutes, currentLanguage);
 
-    const formattedTimeString = `${localizedHours}:${localizedMinutes}`; // Localized time
-
-    // Update the time in the main clock display
-    document.getElementById('digiclock').textContent = formattedTimeString;
+    // Update the hour, colon, and minute text elements
+    document.getElementById('digihours').textContent = localizedHours;
+    document.getElementById('digicolon').textContent = ':'; // Static colon
+    document.getElementById('digiminutes').textContent = localizedMinutes;
 
     // For Turkish and Chinese, no AM/PM; for others, show AM/PM
     if (specialLanguages.includes(currentLanguage)) {
