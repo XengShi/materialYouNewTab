@@ -298,12 +298,15 @@ body {
 #date {
     font-size: 1.4rem;
 }
+
 .digidate{
-    fill:var(--textColorDark-blue)
+    fill:var(--textColorDark-blue);
 }
+
 .amPm{
     fill:var(--textColorDark-blue);
 }
+
 .digiclock {
     text-anchor:middle;
     fill: var(--darkColor-blue);
@@ -313,6 +316,20 @@ body {
     margin: auto;
     width: fit-content;
 }
+
+#digihours {
+    fill: var(--darkerColor-blue);
+}
+
+#digicolon {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
 /* __________end of clock___________________ */
 .leftDiv {
     /* padding-right: 100px; */
