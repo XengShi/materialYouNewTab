@@ -96,10 +96,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // If no saved location, fetch the IP-based location
         if (!currentUserLocation) {
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.city; // Update to user's city from IP
+            try {
+                const locationData = await fetch(geoLocation);
+                const parsedLocation = await locationData.json();
+                currentUserLocation = parsedLocation.city || "auto:ip"; // Update to user's city from IP or fallback
+            } catch (error) {
+                currentUserLocation = "auto:ip"; // Fallback if fetching location fails
+            }
             localStorage.setItem("locationQ", currentUserLocation); // Save the fetched location
         }
 
@@ -110,45 +113,28 @@ window.addEventListener('DOMContentLoaded', async () => {
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
 
-        // Weather data
         const conditionText = parsedData.current.condition.text;
-        const tempCelsius = Math.round(parsedData.current.temp_c);
-        const tempFahrenheit = Math.round(parsedData.current.temp_f);
-        const humidity = parsedData.current.humidity;
-        const feelsLikeCelsius = parsedData.current.feelslike_c;
-        const feelsLikeFahrenheit = parsedData.current.feelslike_f;
+const tempCelsius = Math.round(parsedData.current.temp_c);
+const tempFahrenheit = Math.round(parsedData.current.temp_f);
+const humidity = parsedData.current.humidity;
+const feelsLikeCelsius = parsedData.current.feelslike_c;
+const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-        // Update DOM elements with the weather data
-        document.getElementById("conditionText").textContent = conditionText;
+document.getElementById("conditionText").textContent = conditionText;
+document.getElementById("humidityLevel").textContent = `Humidity: ${humidity}%`;
 
-        // Localize and display temperature and humidity
-        const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-        const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-        const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-        const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-        const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+const updateTemperatureDisplay = () => {
+    if (fahrenheitCheckbox.checked) {
+        document.getElementById("temp").textContent = `${tempFahrenheit}°`;
+        document.getElementById("feelsLike").textContent = `Feels like: ${feelsLikeFahrenheit}°F`;
+    } else {
+        document.getElementById("temp").textContent = `${tempCelsius}°`;
+        document.getElementById("feelsLike").textContent = `Feels like: ${feelsLikeCelsius}°C`;
+    }
+};
 
-        /// Set humidity level
-        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-        // Event Listener for the Fahrenheit toggle
-        const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-        const updateTemperatureDisplay = () => {
-            if (fahrenheitCheckbox.checked) {
-                // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
-
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-            } else {
-                // Celsius: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
-
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
-            }
-        };
+        
         updateTemperatureDisplay();
 
         // Setting weather Icon
