@@ -23,6 +23,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
+
+        // Function to simulate button click when Enter key is pressed
+        function handleEnterPress(event, buttonId) {
+            if (event.key === 'Enter') {
+                document.getElementById(buttonId).click();
+            }
+        }
+
+        // Add event listeners for each input field to handle Enter key
+        userAPIInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveAPI');
+        });
+        userLocInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveLoc');
+        });
+        userProxyInput.addEventListener('keydown', function (event) {
+            handleEnterPress(event, 'saveproxy');
+        });
+
         // Add an event listener to save the API key when the "Save" button is clicked
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
@@ -77,21 +96,17 @@ window.addEventListener('DOMContentLoaded', async () => {
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
 
-        // Try to get the savedLocation or a previously stored location from localStorage
-        var currentUserLocation = savedLocation || localStorage.getItem("locationQ");
-        
+        var currentUserLocation = savedLocation; // Get saved location
         if (!currentUserLocation) {
-        // If neither savedLocation nor localStorage has a location, fetch the IP-based location
-        const geoLocation = 'https://ipinfo.io/json/';
-        const locationData = await fetch(geoLocation);
-        const parsedLocation = await locationData.json();
-        currentUserLocation = parsedLocation.ip; // Update to the fetched IP-based location
-        localStorage.setItem("locationQ", currentUserLocation); // Store the IP-based location in localStorage
+            // Only fetch if there is no saved location
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
         }
-        
         var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
         
-        // Weather API call using currentUserLocation, which is either user input, localStorage, or IP address
+        // Weather API call using currentUserLocation, which is either user input or IP address
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
         const data = await fetch(weatherApi);
@@ -100,24 +115,40 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Weather data
         const conditionText = parsedData.current.condition.text;
         const tempCelsius = Math.round(parsedData.current.temp_c);
-        const tempFahrenheit = Math.round(tempCelsius * 9 / 5 + 32);
+        const tempFahrenheit = Math.round(parsedData.current.temp_f);
         const humidity = parsedData.current.humidity;
         const feelsLikeCelsius = parsedData.current.feelslike_c;
-        const feelsLikeFahrenheit = Math.round(feelsLikeCelsius * 9 / 5 + 32);
+        const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
         // Update DOM elements
         document.getElementById("conditionText").textContent = conditionText;
-        document.getElementById("humidityLevel").textContent = `${translations[currentLanguage].humidityText} ${humidity}%`;
+
+        // Localize and display temperature and humidity
+        const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+        const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+        const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+        const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+        const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+        /// Set humidity level
+        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                document.getElementById("temp").textContent = `${tempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeFahrenheit}°F`;
+                // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
+
+                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
-                document.getElementById("temp").textContent = `${tempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage].feelsLikeText} ${feelsLikeCelsius}°C`;
+                // Celsius: temp with degree symbol only, feels like with degree symbol and unit
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
+
+                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -129,7 +160,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
+            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
         }
 
         // Update location
@@ -170,6 +201,73 @@ let intervalId;
 let secondreset = false;
 let hourreset = false;
 let minreset = false;
+
+function initializeClockType() {
+    const savedClockType = localStorage.getItem("clocktype");
+    clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
+    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
+}
+// Call this function to initialize the clock type
+initializeClockType();
+
+function updateDate() {
+    var currentTime = new Date();
+
+    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    var dayOfWeek = currentTime.getDay();
+    // Get the day of the month (1 - 31)
+    var dayOfMonth = currentTime.getDate();
+    // Get the month (0 = January, 1 = February, ..., 11 = December)
+    var month = currentTime.getMonth();
+
+    // Define the current language
+    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    // Get the translated name of the day
+    var dayName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].days &&
+        translations[currentLanguage].days[dayOfWeek]
+    ) {
+        dayName = translations[currentLanguage].days[dayOfWeek];
+    } else {
+        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
+    }
+
+    // Get the translated name of the month
+    var monthName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].months &&
+        translations[currentLanguage].months[month]
+    ) {
+        monthName = translations[currentLanguage].months[month];
+    } else {
+        monthName = translations['en'].months[month]; // Fallback to English month name
+    }
+
+    // Localize the day of the month
+    var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+    if (clocktype === "analog") {
+        // Language formatting
+        if (currentLanguage === 'pt') {
+            // Portuguese formatting: "day of the week, day of the month"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
+        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
+            // Hindi and Bangla formatting: Show full name for month
+            document.getElementById("date").innerText = `${dayName}, ${localizedDayOfMonth} ${monthName}`;
+        } else if (currentLanguage === 'cs') {
+            // Czech formatting: day, date. months
+            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
+        } else {
+            // English formatting: "day of the month name"
+            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+        }
+    }
+}
+
 function updateanalogclock() {
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
@@ -224,75 +322,133 @@ function updateanalogclock() {
         document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
-    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    var dayOfWeek = currentTime.getDay();
-    // Get the day of the month (1 - 31)
-    var dayOfMonth = currentTime.getDate();
-    // Get the month (0 = January, 1 = February, ..., 11 = December)
-    var month = currentTime.getMonth();
-
-    // Define the current language
-    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-    // Get the translated name of the day and month
-    var dayName = translations[currentLanguage].days[dayOfWeek];
-    var monthName = translations[currentLanguage].months[month];
-    const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 == "analog") {
-        // Language formatting
-        if (currentLanguage === 'pt') {
-            // Portuguese formatting: "day of the week, day of the month"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-            // Hindi and Bangla formatting: Show full name for month
-            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth} ${monthName}`;
-        } else {
-            // English formatting: "day of the month name"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
-        }
-    }
+    // Update date immediately
+    updateDate();
 }
 
+function getGreeting() {
+    const currentHour = new Date().getHours();
+    let greetingKey;
+
+    // Determine the greeting key based on the current hour
+    if (currentHour < 12) {
+        greetingKey = 'morning';
+    } else if (currentHour < 18) {
+        greetingKey = 'afternoon';
+    } else {
+        greetingKey = 'evening';
+    }
+
+    // Get the user's language setting
+    const userLang = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
+
+    // Check if the greeting is available for the selected language
+    if (
+        translations[userLang] &&
+        translations[userLang].greeting &&
+        translations[userLang].greeting[greetingKey]
+    ) {
+        return translations[userLang].greeting[greetingKey];
+    } else {
+        // Fallback to English greeting if the userLang or greeting key is missing
+        return translations['en'].greeting[greetingKey];
+    }
+}
 
 function updatedigiClock() {
     const hourformatstored = localStorage.getItem("hourformat");
-    if (hourformatstored) {
-        if (hourformatstored == "true") {
-            hourformat = true;
-        } else if (hourformatstored == "false") {
-            hourformat = false;
-        }
-    } else {
-        hourformat = false;
-    }
+    let hourformat = hourformatstored === "true"; // Default to false if null
+
     const now = new Date();
-    const options = { weekday: 'short', day: 'numeric' };
-    const dateString = now.toLocaleDateString('en-US', options);
+    const dayOfWeek = now.getDay(); // Get day of the week (0-6)
+    const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
 
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
-    const timeString = now.toLocaleTimeString('en-US', timeOptions);
-    const formattedTimeString = timeString.replace(/ (AM|PM)/, '');
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-    document.getElementById('digidate').textContent = dateString;
-    document.getElementById('digiclock').textContent = formattedTimeString;
-
-    let greeting;
-    const currentHour = now.getHours();
-
-    if (currentHour < 12) {
-        greeting = "Good Morning!";
-    } else if (currentHour < 18) {
-        greeting = "Good Afternoon!";
+    // Get translated day name
+    let dayName;
+    if (
+        translations[currentLanguage] &&
+        translations[currentLanguage].days &&
+        translations[currentLanguage].days[dayOfWeek]
+    ) {
+        dayName = translations[currentLanguage].days[dayOfWeek];
     } else {
-        greeting = "Good Evening!";
+        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
     }
+
+    // Localize the day of the month
+    const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+    // Determine the translated short date string based on language using if-else statements
+    let dateString;
+    if (currentLanguage === 'hi' || currentLanguage === 'bn') {
+        // Format: "दिन, दिनांक" (Day, Date)
+        dateString = `${dayName}, ${localizedDayOfMonth}`;
+    } else if (currentLanguage === 'cs') {
+        // Format: "den, den." (Day, Date.)
+        dateString = `${dayName}, ${localizedDayOfMonth}.`;
+    } else if (currentLanguage === 'pt') {
+        // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
+        dateString = `${dayName}, ${localizedDayOfMonth}`;
+    } else {
+        // Default format: "day of the month" (e.g., "24 Thu")
+        dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
+    }
+
+    // Handle time formatting based on the selected language
+    let timeString;
+    let period = ''; // For storing AM/PM equivalent
+
+    // Array of languages to use 'en-US' format
+    const specialLanguages = ['tr', 'zh'];
+    const localizedLanguages = ['bn'];
+    // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
+
+    // Set time options and determine locale based on the current language
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? 'en-US' : currentLanguage;
+    timeString = now.toLocaleTimeString(locale, timeOptions);
+
+    // Split the time and period (AM/PM) if in 12-hour format
+    if (hourformat) {
+        [timeString, period] = timeString.split(' '); // Split AM/PM if present
+    }
+
+    // Split the hours and minutes from the localized time string
+    let [hours, minutes] = timeString.split(':');
+
+    // Remove leading zero from hours for specific languages in 12-hour format only
+    if (hourformat && currentLanguage !== 'en' && currentLanguage !== 'it') {
+        hours = parseInt(hours, 10).toString(); // Remove leading zero
+    }
+
+    // Localize hours and minutes for the selected language
+    const localizedHours = localizeNumbers(hours, currentLanguage);
+    const localizedMinutes = localizeNumbers(minutes, currentLanguage);
+
+    // Update the hour, colon, and minute text elements
+    document.getElementById('digihours').textContent = localizedHours;
+    document.getElementById('digicolon').textContent = ':'; // Static colon
+    document.getElementById('digiminutes').textContent = localizedMinutes;
+
+    // For Turkish and Chinese, no AM/PM; for others, show AM/PM
+    if (specialLanguages.includes(currentLanguage)) {
+        document.getElementById('amPm').textContent = ''; // No AM/PM for Turkish and Chinese
+    } else {
+        document.getElementById('amPm').textContent = period; // Show AM/PM for other languages
+    }
+
+    // Update the translated date
+    document.getElementById('digidate').textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 == "digital") {
-
-        document.getElementById("date").innerText = greeting;
+    if (clocktype1 === "digital") {
+        document.getElementById("date").innerText = getGreeting();
     }
 }
+
+// Function to start the clock
 function startClock() {
     if (!intervalId) { // Only set interval if not already set
         intervalId = setInterval(updateanalogclock, 500);
@@ -305,29 +461,25 @@ function stopClock() {
     intervalId = null; // Reset intervalId
 }
 
-clocktype = localStorage.getItem("clocktype");
-if (!clocktype) {
-    localStorage.setItem("clocktype", "analog");
-    clocktype = localStorage.getItem("clocktype");
-}
+// Initial clock display
 displayClock();
-setInterval(updatedigiClock, 1000);
-if (clocktype) {
-    if (clocktype == "digital") {
-        updatedigiClock();
-    } else if (clocktype == "analog") {
-        if (document.visibilityState === 'visible') {
-            startClock();
-        }
-    }
-} else {
+setInterval(updatedigiClock, 1000); // Update digital clock every second
+
+// Start or stop clocks based on clock type and visibility state
+if (clocktype === "digital") {
+    updatedigiClock();
+} else if (clocktype === "analog") {
     if (document.visibilityState === 'visible') {
         startClock();
+        updateDate(); // Immediately update date when clock is analog
     }
 }
+
+// Event listener for visibility change
 document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === 'visible') {
         startClock(); // Start the clock if the tab is focused
+        updateDate(); // Update date when the tab becomes visible
     } else {
         stopClock(); // Stop the clock if the tab is not focused
     }
@@ -345,15 +497,39 @@ function displayClock() {
         analogClock.style.display = 'none';     // Hide the analog clock
     }
 }
-setInterval((updated) => {
+
+// Call updateanalogclock when the document is fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+    updateanalogclock();
+});
+
+// End of clock display
+
+document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
+
+    // Set the default language to English if no language is saved
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    applyLanguage(savedLang);
+
+    // Load the stored text if it exists
     const storedValue = localStorage.getItem("userText");
     if (storedValue) {
         userTextDiv.textContent = storedValue;
+    } else {
+        // Fallback to the placeholder based on the selected language
+        const placeholder = userTextDiv.dataset.placeholder || translations['en'].userText; // Fallback to English
+        userTextDiv.textContent = placeholder;
     }
+
+    // Handle input event
+    userTextDiv.addEventListener("input", function () {
+        localStorage.setItem("userText", userTextDiv.textContent);
+    });
+
     // Remove placeholder text when the user starts editing
     userTextDiv.addEventListener("focus", function () {
-        if (userTextDiv.textContent === "Click here to edit") {
+        if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
             userTextDiv.textContent = "";  // Clear the placeholder when focused
         }
     });
@@ -361,13 +537,9 @@ setInterval((updated) => {
     // Restore placeholder if the user leaves the div empty after editing
     userTextDiv.addEventListener("blur", function () {
         if (userTextDiv.textContent.trim() === "") {
-            userTextDiv.textContent = "Click here to edit";  // Show placeholder again if empty
+            userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
         }
     });
-}, 1000)
-const userTextDiv = document.getElementById("userText");
-userTextDiv.addEventListener("input", function () {
-    localStorage.setItem("userText", userTextDiv.textContent);
 });
 
 // Showing border or outline in when you click on searchbar
@@ -789,7 +961,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z"
                     fill="#617859"/>
             </svg>
-            `], ["twitter.com", `
+            `], ["x.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                 <path class="accentColor"
                     d="M10 0C15.5286 0 20 4.47143 20 10C20 15.5286 15.5286 20 10 20C4.47143 20 0 15.5286 0 10C0 4.47143 4.47143 0 10 0ZM8.17143 15.2714C12.6 15.2714 15.0286 11.6 15.0286 8.41429V8.1C15.5 7.75714 15.9143 7.32857 16.2286 6.84286C15.8 7.02857 15.3286 7.15714 14.8429 7.22857C15.3429 6.92857 15.7286 6.45714 15.9 5.9C15.4286 6.17143 14.9143 6.37143 14.3714 6.48571C13.9286 6.01429 13.3 5.72857 12.6143 5.72857C11.2857 5.72857 10.2 6.81429 10.2 8.14286C10.2 8.32857 10.2143 8.51429 10.2714 8.68571C8.27143 8.58571 6.48571 7.62857 5.3 6.17143C5.1 6.52857 4.97143 6.94286 4.97143 7.38571C4.97143 8.21429 5.4 8.95714 6.04286 9.38571C5.64286 9.38571 5.27143 9.27143 4.95714 9.08571V9.11429C4.95714 10.2857 5.78571 11.2571 6.88571 11.4857C6.68571 11.5429 6.47143 11.5714 6.25714 11.5714C6.1 11.5714 5.95714 11.5571 5.8 11.5286C6.1 12.4857 7 13.1857 8.04286 13.2C7.21429 13.8429 6.17143 14.2286 5.04286 14.2286C4.84286 14.2286 4.65714 14.2286 4.47143 14.2C5.52857 14.8857 6.8 15.2857 8.15714 15.2857"

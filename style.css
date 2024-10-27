@@ -298,9 +298,15 @@ body {
 #date {
     font-size: 1.4rem;
 }
+
 .digidate{
-    fill:var(--textColorDark-blue)
+    fill:var(--textColorDark-blue);
 }
+
+.amPm{
+    fill:var(--textColorDark-blue);
+}
+
 .digiclock {
     text-anchor:middle;
     fill: var(--darkColor-blue);
@@ -310,6 +316,20 @@ body {
     margin: auto;
     width: fit-content;
 }
+
+#digihours {
+    fill: var(--darkerColor-blue);
+}
+
+#digicolon {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
 /* __________end of clock___________________ */
 .leftDiv {
     /* padding-right: 100px; */
@@ -342,6 +362,10 @@ body {
 #conditionText {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 372px; 
 }
 
 .cconnt {
@@ -494,8 +518,8 @@ body {
 #wIcon {
     width: 80px;
     height: 80px;
-    margin-top: -20px;
-    margin-left: -40px;
+    margin-top: -13px;
+    margin-left: -23px;
     /* background-color: olive; */
 }
 
@@ -1453,7 +1477,16 @@ input:checked + .toggle:before {
     cursor: pointer;
     transition: 0.3s all;
 }
-
+/* Placeholder InputText color*/
+#userproxy{
+    color:var(--textColorDark-blue);
+}
+#userLoc{
+    color:var(--textColorDark-blue);
+}
+#userAPI{
+    color:var(--textColorDark-blue);
+}
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
@@ -1668,12 +1701,12 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton:hover {
-    width: 105px;
+    width: 110px;
     background-color: #fff;
 }
 
 #menuCloseButton::after {
-    content: "Close";
+    content: var(--hover-close-text, "Close");
     padding-right: 12px;
     opacity: 0;
     transform: translateX(-20px);
@@ -1682,7 +1715,7 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton:hover::after {
-    content: "Close";
+    content: var(--hover-close-text, "Close");
     padding-right: 12px;
     padding-left: 36px;
     /* width: 32px; */

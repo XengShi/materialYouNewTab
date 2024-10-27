@@ -10,8 +10,8 @@
 
     <style id="iconStyle"></style>
 
-    <script defer src="script.js"></script>
     <script defer src="languages.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -41,10 +41,17 @@
                     <text id="digidate" x="290" y="120" text-anchor="middle" fill="#E2EEFF" font-size="28"
                         font-family="Arial" class="digidate">Thu 9</text>
 
-                    <!-- Time Text -->
-                    <text x="290" y="260" id="digiclock" class="digiclock">6:59</text>
-                </svg>
+                    <!-- Full Time Text (Hour:Minute) -->
+                    <text x="290" y="260" id="digiclock" class="digiclock" font-family="Arial">
+                        <tspan id="digihours">6</tspan>
+                        <tspan id="digicolon" dx="-34">:</tspan>
+                        <tspan id="digiminutes" dx="-34">28</tspan>
+                    </text>
 
+                    <!-- AM/PM Text -->
+                    <text id="amPm" x="290" y="330" text-anchor="middle" fill="#E2EEFF" font-size="28"
+                        font-family="Arial" class="amPm">AM</text>
+                </svg>
             </div>
 
             <!-- ____________end of clock______________ -->
@@ -81,7 +88,7 @@
                                     </svg>
 
                                 </div>
-                                <span id="feelsLike">Seems</span>
+                                <span id="feelsLike" style="padding-inline-end: 12px;">Seems</span>
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
@@ -128,7 +135,7 @@
                 </div>
 
                 <input id="searchQ" placeholder="Your query..." type="text" autocomplete="off">
-                <button id="enterBtn">Enter</button>
+                <button id="enterBtn">Search</button>
             </div><br>
             <div id="resultBox" class="resultBox bgLightTint" style="display: none;"></div>
             <!-- ----------end of searchbar-------------- -->
@@ -390,7 +397,7 @@
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="shortcutsText">Shortcuts</div>
-                                <div class="infoText" id="enableShortcutsText">Enable/disable shortcuts</div>
+                                <div class="infoText" id="enableShortcutsText">Show/hide Shortcuts</div>
                             </div>
                             <label class="switch">
                                 <input id="shortcutsCheckbox" type="checkbox">
@@ -401,7 +408,7 @@
                         <div class="ttcont" id="shortcutEditField">
                             <div class="texts">
                                 <div class="bigText" id="editShortcutsText">Edit Shortcuts</div>
-                                <div class="infoText" id="shortcutsInfoText">Choose which shortcuts get shown</div>
+                                <div class="infoText" id="shortcutsInfoText">Choose which Shortcuts get shown</div>
                             </div>
                             <label class="switch">
                                 <button id="shortcutEditButton">
@@ -448,7 +455,7 @@
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="ai_tools_button">AI-Tools</div>
-                                <div class="infoText" id="enable_ai_tools">Enable/disable AI Tools shortcuts</div>
+                                <div class="infoText" id="enable_ai_tools">Show/hide AI Tools Shortcuts</div>
                             </div>
                             <label class="switch">
                                 <input id="aiToolsCheckbox" type="checkbox">
@@ -484,7 +491,7 @@
                         <div class="ttcont" id="proxybypassField">
                             <div class="texts">
                                 <div class="bigText" id="useproxytitletext">Proxy Bypass</div>
-                                <div class="infoText" id="useproxyText">If search suggestions isn't working</div>
+                                <div class="infoText" id="useproxyText">If Search Suggestions isn't working</div>
                             </div>
                             <label class="switch">
                                 <input id="useproxyCheckbox" type="checkbox">
@@ -502,34 +509,34 @@
                             <div class="bottom">
                                 <a href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton">Host
                                     Your Own Proxy</a>
-                                <button id="saveproxy">Enter</button>
+                                <button id="saveproxy">Save</button>
                             </div>
                         </div>
 
                         <div class="ttcont unflex" style="margin-top: 100px;">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
-                                <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
+                                <div class="infoText" id="UserLocSubtext">If the Weather Location isn't correct
                                 </div>
                             </div>
                             <input id="userLoc" placeholder="Your location (City/Latitude,Longitude)" type="text">
                             <div class="bottom">
                                 <a href="https://www.weatherapi.com/docs/#intro-request-param"
                                     id="InputOptionsButton">Input Options</a>
-                                <button id="saveLoc">Enter</button>
+                                <button id="saveLoc">Save</button>
                             </div>
                         </div>
 
                         <div class="ttcont unflex" style="margin-top: 100px;">
                             <div class="texts">
                                 <div class="bigText" id="WeatherApiText">Enter your own WeatherAPI key</div>
-                                <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
+                                <div class="infoText" id="WeatherApiSubtext">If the Weather functionality isn't working
                                 </div>
                             </div>
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
-                                <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</a>
-                                <button id="saveAPI">Enter</button>
+                                <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn More</a>
+                                <button id="saveAPI">Save</button>
                             </div>
                         </div>
                         <!-- ---🟡--- -->
