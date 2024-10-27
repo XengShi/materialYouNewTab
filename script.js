@@ -3,68 +3,60 @@ let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load the API key, location and proxy from localStorage
+        // Load the API key, location, and proxy from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const userAPIInput = document.getElementById("userAPI");
         const savedLocation = localStorage.getItem("weatherLocation");
         const userLocInput = document.getElementById("userLoc");
         const savedProxy = localStorage.getItem("proxy");
         const userProxyInput = document.getElementById("userproxy");
-        if (savedApiKey) {
-            userAPIInput.value = savedApiKey;
-        }
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-        }
-        if (savedProxy) {
-            userProxyInput.value = savedProxy;
-        }
+
+        // Pre-fill input fields with saved data
+        if (savedApiKey) userAPIInput.value = savedApiKey;
+        if (savedLocation) userLocInput.value = savedLocation;
+        if (savedProxy) userProxyInput.value = savedProxy;
+
         const saveAPIButton = document.getElementById("saveAPI");
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
 
-        // Function to simulate button click when Enter key is pressed
+        // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
             if (event.key === 'Enter') {
                 document.getElementById(buttonId).click();
             }
         }
 
-        // Add event listeners for each input field to handle Enter key
-        userAPIInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveAPI');
-        });
-        userLocInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveLoc');
-        });
-        userProxyInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveproxy');
-        });
+        // Add event listeners for handling Enter key presses
+        userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
+        userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
+        userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
 
-        // Add an event listener to save the API key when the "Save" button is clicked
+        // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
-            // Save the API key to localStorage
             localStorage.setItem("weatherApiKey", apiKey);
-            document.getElementById("userAPI").value = "";
+            userAPIInput.value = "";
             location.reload();
         });
+
+        // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
             const userLocation = userLocInput.value;
-            // Save the location to localStorage
             localStorage.setItem("weatherLocation", userLocation);
-            document.getElementById("userLoc").value = "";
+            userLocInput.value = "";
             location.reload();
         });
+
+        // Reset settings (clear localStorage)
         resetbtn.addEventListener("click", () => {
             if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
                 localStorage.clear();
                 location.reload();
-            } else {
-                return;
             }
         });
+
         saveProxyButton.addEventListener("click", () => {
             const proxyurl = userProxyInput.value;
 
@@ -73,7 +65,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (!proxyurl.endsWith("/")) {
                     // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
-                    document.getElementById("userproxy").value = "";
+                    userProxyInput.value = "";
                     location.reload();
                 }
                 else {
@@ -85,30 +77,29 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Set the default API key
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        // Check if the user has entered their own API key
-        const userApiKey = userAPIInput.value.trim();
-        const userproxyurl = userProxyInput.value.trim();
+        // Use the saved or default API key and proxy
+        const defaultApiKey = 'd36ce712613d4f21a6083436240910';
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com';
+        const apiKey = savedApiKey || defaultApiKey;
+        const proxyurl = savedProxy || defaultProxyURL;
 
-        // Use the user's API key if available, otherwise use the default API key
-        const apiKey = userApiKey || defaultApiKey;
-        proxyurl = userproxyurl || defaultProxyURL;
+        // Determine the location to use
+        let currentUserLocation = savedLocation;
 
-        var currentUserLocation = savedLocation; // Get saved location
+        // If no saved location, fetch the IP-based location
         if (!currentUserLocation) {
-            // Only fetch if there is no saved location
             const geoLocation = 'https://ipinfo.io/json/';
             const locationData = await fetch(geoLocation);
             const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
+            currentUserLocation = parsedLocation.city; // Update to user's city from IP
+            localStorage.setItem("locationQ", currentUserLocation); // Save the fetched location
         }
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-        
-        // Weather API call using currentUserLocation, which is either user input or IP address
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
 
+        // Get the current language (fallback to 'en')
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+        // Fetch weather data using Weather API
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
 
@@ -120,7 +111,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const feelsLikeCelsius = parsedData.current.feelslike_c;
         const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-        // Update DOM elements
+        // Update DOM elements with the weather data
         document.getElementById("conditionText").textContent = conditionText;
 
         // Localize and display temperature and humidity
@@ -130,52 +121,36 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        /// Set humidity level
-        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").textContent = `Humidity: ${localizedHumidity}%`;
 
-        // Event Listener for the Fahrenheit toggle
+        // Toggle between Celsius and Fahrenheit display
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
-
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;
+                document.getElementById("feelsLike").textContent = `Feels like ${localizedFeelsLikeFahrenheit}°F`;
             } else {
-                // Celsius: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
-
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;
+                document.getElementById("feelsLike").textContent = `Feels like ${localizedFeelsLikeCelsius}°C`;
             }
         };
         updateTemperatureDisplay();
 
-        // Setting weather Icon
-        const newWIcon = parsedData.current.condition.icon;
-        const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+        // Set weather icon
+        const weatherIcon = parsedData.current.condition.icon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
 
-        // Set slider width based on humidity
-        if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
-        }
+        // Adjust slider width based on humidity
+        document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
 
         // Update location
-        // document.getElementById("location").textContent = parsedLocation.city;
-        var city = parsedData.location.name;
-        // var city = "Thiruvananthapuram";
-        var maxLength = 10;
-        var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-        // Update the span's text content with the limited text
+        const city = parsedData.location.name;
+        const maxLength = 10;
+        const limitedText = city.length > maxLength ? `${city.substring(0, maxLength)}...` : city;
         document.getElementById("location").textContent = limitedText;
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        // alert("Unable to fetch weather data. Please check your location or API key.");
-        // Handle errors here, e.g., display an error message to the user.
     }
 });
 
