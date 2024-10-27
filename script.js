@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         proxyurl = userproxyurl || defaultProxyURL;
 
         // Determine the location to use
-        let currentUserLocation = savedLocation;
+        let currentUserLocation = savedLocation || localStorage.getItem("locationQ");
 
         // If no saved location, fetch the IP-based location
         if (!currentUserLocation) {
