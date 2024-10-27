@@ -13,7 +13,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Pre-fill input fields with saved data
         if (savedApiKey) userAPIInput.value = savedApiKey;
-        if (savedLocation) userLocInput.value = savedLocation;
+        if (savedLocation) {
+            userLocInput.value = savedLocation;
+            document.getElementById("location").textContent = savedLocation;
+        }
         if (savedProxy) userProxyInput.value = savedProxy;
 
         const saveAPIButton = document.getElementById("saveAPI");
