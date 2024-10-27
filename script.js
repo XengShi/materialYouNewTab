@@ -83,8 +83,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Use the saved or default API key and proxy
         const defaultApiKey = 'd36ce712613d4f21a6083436240910';
         const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com';
-        const apiKey = savedApiKey || defaultApiKey;
-        const proxyurl = savedProxy || defaultProxyURL;
+        // Check if the user has entered their own API key
+        const userApiKey = userAPIInput.value.trim();
+        const userproxyurl = userProxyInput.value.trim();
+
+        // Use the user's API key if available, otherwise use the default API key
+        const apiKey = userApiKey || defaultApiKey;
+        proxyurl = userproxyurl || defaultProxyURL;
 
         // Determine the location to use
         let currentUserLocation = savedLocation;
