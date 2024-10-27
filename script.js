@@ -121,39 +121,50 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        document.getElementById("humidityLevel").textContent = `Humidity: ${localizedHumidity}%`;
+        /// Set humidity level
+        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
-        // Toggle between Celsius and Fahrenheit display
+        // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;
-                document.getElementById("feelsLike").textContent = `Feels like ${localizedFeelsLikeFahrenheit}°F`;
+                // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
+                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
+
+                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;
-                document.getElementById("feelsLike").textContent = `Feels like ${localizedFeelsLikeCelsius}°C`;
+                // Celsius: temp with degree symbol only, feels like with degree symbol and unit
+                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
+
+                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
+                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
 
-        // Set weather icon
-        const weatherIcon = parsedData.current.condition.icon.replace("//cdn", "https://cdn");
+        // Setting weather Icon
+        const newWIcon = parsedData.current.condition.icon;
+        const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
 
-        // Adjust slider width based on humidity
-        document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
+        // Set slider width based on humidity
+        if (humidity > 40) {
+            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
+        }
 
         // Update location
-        const city = parsedData.location.name;
-        const maxLength = 10;
-        const limitedText = city.length > maxLength ? `${city.substring(0, maxLength)}...` : city;
+        var city = parsedData.location.name;
+        // var city = "Thiruvananthapuram";
+        var maxLength = 10;
+        var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
         document.getElementById("location").textContent = limitedText;
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
 });
-
 // ---------------------------end of weather stuff--------------------
 
 // Retrieve current time and calculate initial angles
