@@ -98,7 +98,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             localStorage.setItem("locationQ", currentUserLocation); // Save the fetched location
         }
 
-        // Get the current language (fallback to 'en')
         const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
         // Fetch weather data using Weather API
