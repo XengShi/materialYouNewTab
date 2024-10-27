@@ -144,7 +144,7 @@ const updateTemperatureDisplay = () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
+            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
         }
 
         // Update location
