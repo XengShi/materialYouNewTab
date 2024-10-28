@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
             }
-            localStorage.setItem("weatherLocation", currentUserLocation); // Save the fetched location
+            //localStorage.setItem("weatherLocation", currentUserLocation); // Save the fetched location
         }
 
         const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
