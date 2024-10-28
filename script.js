@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (savedApiKey) userAPIInput.value = savedApiKey;
         if (savedLocation) {
             userLocInput.value = savedLocation;
-            document.getElementById("location").textContent = savedLocation;
+            //document.getElementById("location").textContent = savedLocation;
         }
         if (savedProxy) userProxyInput.value = savedProxy;
 
