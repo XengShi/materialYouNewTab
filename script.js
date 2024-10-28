@@ -97,7 +97,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         // If no saved location, fetch the IP-based location
         if (!currentUserLocation) {
             try {
-                // Only fetch if there is no saved location
                 const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
