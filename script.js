@@ -81,8 +81,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Use the saved or default API key and proxy
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910';
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com';
+        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
         // Check if the user has entered their own API key
         const userApiKey = userAPIInput.value.trim();
         const userproxyurl = userProxyInput.value.trim();
@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            document.getElementById("slider").style.width = `calc(${humidity}% - 60px)`;
+            document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
         }
 
         // Update location
