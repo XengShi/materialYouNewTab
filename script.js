@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (savedApiKey) userAPIInput.value = savedApiKey;
         if (savedLocation) {
             userLocInput.value = savedLocation;
-            //document.getElementById("location").textContent = savedLocation;
+            //document.getElementById("location").innerText = savedLocation;
         }
         if (savedProxy) userProxyInput.value = savedProxy;
 
@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
         // Update DOM elements with the weather data
-        document.getElementById("conditionText").textContent = conditionText;
+        document.getElementById("conditionText").innerText = conditionText;
 
         // Localize and display temperature and humidity
         const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
@@ -134,21 +134,21 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         /// Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").innerText = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
+                document.getElementById("temp"). = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").innerText = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 // Celsius: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
+                document.getElementById("temp").innerText = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").innerText = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -168,7 +168,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         // var city = "Thiruvananthapuram";
         var maxLength = 10;
         var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-        document.getElementById("location").textContent = limitedText;
+        document.getElementById("location").innerText = limitedText;
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
