@@ -131,9 +131,11 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+        
         /// Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
         document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
@@ -154,6 +156,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
+        
         // Set slider width based on humidity
         if (humidity > 40) {
             document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
