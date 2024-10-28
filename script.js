@@ -3,13 +3,19 @@ let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load the API key, location, and proxy from localStorage
-        const savedApiKey = localStorage.getItem("weatherApiKey");
+        // Cache DOM elements
         const userAPIInput = document.getElementById("userAPI");
-        const savedLocation = localStorage.getItem("weatherLocation");
         const userLocInput = document.getElementById("userLoc");
-        const savedProxy = localStorage.getItem("proxy");
         const userProxyInput = document.getElementById("userproxy");
+        const saveAPIButton = document.getElementById("saveAPI");
+        const saveLocButton = document.getElementById("saveLoc");
+        const resetbtn = document.getElementById("resetsettings");
+        const saveProxyButton = document.getElementById("saveproxy");
+
+        // Load saved data from localStorage once
+        const savedApiKey = localStorage.getItem("weatherApiKey");
+        const savedLocation = localStorage.getItem("weatherLocation");
+        const savedProxy = localStorage.getItem("proxy");
 
         // Pre-fill input fields with saved data
         if (savedApiKey) userAPIInput.value = savedApiKey;
@@ -18,11 +24,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             document.getElementById("location").textContent = savedLocation;
         }
         if (savedProxy) userProxyInput.value = savedProxy;
-
-        const saveAPIButton = document.getElementById("saveAPI");
-        const saveLocButton = document.getElementById("saveLoc");
-        const resetbtn = document.getElementById("resetsettings");
-        const saveProxyButton = document.getElementById("saveproxy");
 
         // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
@@ -86,24 +87,25 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Check if the user has entered their own API key
         const userApiKey = userAPIInput.value.trim();
         const userproxyurl = userProxyInput.value.trim();
-
         // Use the user's API key if available, otherwise use the default API key
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
 
         // Determine the location to use
-        let currentUserLocation = savedLocation || localStorage.getItem("locationQ");
+        let currentUserLocation = savedLocation;
 
         // If no saved location, fetch the IP-based location
         if (!currentUserLocation) {
             try {
+                // Only fetch if there is no saved location
+                const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.city || "auto:ip"; // Update to user's city from IP or fallback
+                currentUserLocation = parsedLocation.city; // Update to user's city from IP
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
             }
-            localStorage.setItem("locationQ", currentUserLocation); // Save the fetched location
+            localStorage.setItem("weatherLocation", currentUserLocation); // Save the fetched location
         }
 
         const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
@@ -130,35 +132,29 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
         /// Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
         document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
                 document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
-
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 // Celsius: temp with degree symbol only, feels like with degree symbol and unit
                 document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
-
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
-
         // Setting weather Icon
         const newWIcon = parsedData.current.condition.icon;
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
-
         // Set slider width based on humidity
         if (humidity > 40) {
             document.getElementById("slider").style.width = `calc(${localizedHumidity}% - 60px)`;
