@@ -141,7 +141,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const updateTemperatureDisplay = () => {
             if (fahrenheitCheckbox.checked) {
                 // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp"). = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
+                document.getElementById("temp").innerText = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
                 document.getElementById("feelsLike").innerText = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
