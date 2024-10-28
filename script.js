@@ -101,7 +101,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
                 currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                localStorage.setItem("weatherLocation", currentUserLocation); // Save amd show the fetched location
+                localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
             }
