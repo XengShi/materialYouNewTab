@@ -515,6 +515,14 @@ body {
     width: fit-content;
 }
 
+.tempUnit {
+    font-size: 0.4em;
+    vertical-align: super;
+    position: relative;
+    top: -0.2em;
+    color: var(--darkColor-blue);
+}
+
 #wIcon {
     width: 80px;
     height: 80px;
