@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
 
-        // Load saved data from localStorage once
+        // Load saved data from localStorage
         const savedApiKey = localStorage.getItem("weatherApiKey");
         const savedLocation = localStorage.getItem("weatherLocation");
         const savedProxy = localStorage.getItem("proxy");
