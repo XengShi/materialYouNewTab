@@ -205,60 +205,50 @@ function initializeClockType() {
 initializeClockType();
 
 function updateDate() {
-    var currentTime = new Date();
-
-    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    var dayOfWeek = currentTime.getDay();
-    // Get the day of the month (1 - 31)
-    var dayOfMonth = currentTime.getDate();
-    // Get the month (0 = January, 1 = February, ..., 11 = December)
-    var month = currentTime.getMonth();
-
-    // Define the current language
-    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-    // Get the translated name of the day
-    var dayName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].days &&
-        translations[currentLanguage].days[dayOfWeek]
-    ) {
-        dayName = translations[currentLanguage].days[dayOfWeek];
-    } else {
-        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
-    }
-
-    // Get the translated name of the month
-    var monthName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].months &&
-        translations[currentLanguage].months[month]
-    ) {
-        monthName = translations[currentLanguage].months[month];
-    } else {
-        monthName = translations['en'].months[month]; // Fallback to English month name
-    }
-
-    // Localize the day of the month
-    var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
     if (clocktype === "analog") {
-        // Language formatting
-        if (currentLanguage === 'pt') {
-            // Portuguese formatting: "day of the week, day of the month"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-            // Hindi and Bangla formatting: Show full name for month
-            document.getElementById("date").innerText = `${dayName}, ${localizedDayOfMonth} ${monthName}`;
-        } else if (currentLanguage === 'cs') {
-            // Czech formatting: day, date. months
-            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
+        var currentTime = new Date();
+        var dayOfWeek = currentTime.getDay();
+        var dayOfMonth = currentTime.getDate();
+        var month = currentTime.getMonth();
+
+        // Define the current language
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+        // Get the translated name of the day
+        var dayName;
+        if (
+            translations[currentLanguage] &&
+            translations[currentLanguage].days &&
+            translations[currentLanguage].days[dayOfWeek]
+        ) {
+            dayName = translations[currentLanguage].days[dayOfWeek];
         } else {
-            // English formatting: "day of the month name"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+            dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
         }
+
+        // Get the translated name of the month
+        var monthName;
+        if (
+            translations[currentLanguage] &&
+            translations[currentLanguage].months &&
+            translations[currentLanguage].months[month]
+        ) {
+            monthName = translations[currentLanguage].months[month];
+        } else {
+            monthName = translations['en'].months[month]; // Fallback to English month name
+        }
+
+        // Localize the day of the month
+        var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+        const dateDisplay = {
+            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
+            bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
+        };
+        document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
 }
 
