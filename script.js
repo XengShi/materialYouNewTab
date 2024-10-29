@@ -520,7 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Restore placeholder if the user leaves the div empty after editing
     userTextDiv.addEventListener("blur", function () {
-        if (userTextDiv.textContent.trim() === "") {
+        if (userTextDiv.textContent === "") {
             userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
         }
     });
