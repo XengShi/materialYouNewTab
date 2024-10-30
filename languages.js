@@ -277,7 +277,7 @@ const translations = {
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
-        "WeatherApiText": "अपनी खुद की WeatherAPI कुंजी दर्ज करें",
+        "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
         "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
         "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
