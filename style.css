@@ -1709,12 +1709,13 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton:hover {
-    width: 110px;
+    width: fit-content;
     background-color: #fff;
 }
 
 #menuCloseButton::after {
     content: var(--hover-close-text, "Close");
+    white-space: nowrap;
     padding-right: 12px;
     opacity: 0;
     transform: translateX(-20px);
