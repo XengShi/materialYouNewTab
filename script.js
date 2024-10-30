@@ -342,6 +342,9 @@ function getGreeting() {
 function updatedigiClock() {
     const hourformatstored = localStorage.getItem("hourformat");
     let hourformat = hourformatstored === "true"; // Default to false if null
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const isGreetingEnabled = localStorage.getItem("greetingEnabled") === "true";
+    greetingCheckbox.checked = isGreetingEnabled;
 
     const now = new Date();
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
@@ -367,14 +370,11 @@ function updatedigiClock() {
     // Determine the translated short date string based on language using if-else statements
     let dateString;
     if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-        // Format: "दिन, दिनांक" (Day, Date)
         dateString = `${dayName}, ${localizedDayOfMonth}`;
     } else if (currentLanguage === 'cs') {
-        // Format: "den, den." (Day, Date.)
-        dateString = `${dayName}, ${localizedDayOfMonth}.`;
+        dateString = `${dayName}, ${dayOfMonth}.`;
     } else if (currentLanguage === 'pt') {
-        // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
-        dateString = `${dayName}, ${localizedDayOfMonth}`;
+        dateString = `${dayName}, ${dayOfMonth}`;
     } else {
         // Default format: "day of the month" (e.g., "24 Thu")
         dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
@@ -427,8 +427,10 @@ function updatedigiClock() {
     document.getElementById('digidate').textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 === "digital") {
+    if (clocktype1 === "digital" && isGreetingEnabled) {
         document.getElementById("date").innerText = getGreeting();
+    } else if (clocktype1 === "digital") {
+        document.getElementById("date").innerText = ""; // Hide the greeting
     }
 }
 
@@ -491,6 +493,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
+    const userTextCheckbox = document.getElementById("userTextCheckbox");
+
+    // Load and apply the checkbox state
+    const isUserTextVisible = localStorage.getItem("userTextVisible") !== "false";
+    userTextCheckbox.checked = isUserTextVisible;
+    userTextDiv.style.display = isUserTextVisible ? "block" : "none";
+
+    // Toggle userText display based on checkbox state
+    userTextCheckbox.addEventListener("change", () => {
+        const isVisible = userTextCheckbox.checked;
+        userTextDiv.style.display = isVisible ? "block" : "none";
+        localStorage.setItem("userTextVisible", isVisible);
+    });
 
     // Set the default language to English if no language is saved
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
@@ -1480,23 +1495,38 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+
+    if (localStorage.getItem("greetingEnabled") === null) {
+        localStorage.setItem("greetingEnabled", "true");
+    }
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const greetingField = document.getElementById("greetingField");
+    greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
+    greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
+
     digitalCheckbox.addEventListener("change", function () {
         saveCheckboxState("digitalCheckboxState", digitalCheckbox);
         if (digitalCheckbox.checked) {
             timeformatField.classList.remove("inactive");
+            greetingField.classList.remove("inactive");
+            greetingCheckbox.disabled = false; // Enable greeting toggle
             localStorage.setItem("clocktype", "digital");
             clocktype = localStorage.getItem("clocktype");
             displayClock();
             stopClock();
             saveActiveStatus("timeformatField", "active");
+            saveActiveStatus("greetingField", "active");
         } else {
             timeformatField.classList.add("inactive");
+            greetingField.classList.add("inactive");
+            greetingCheckbox.disabled = true; // Disable greeting toggle
             localStorage.setItem("clocktype", "analog");
             clocktype = localStorage.getItem("clocktype");
             stopClock();
             startClock();
             displayClock();
             saveActiveStatus("timeformatField", "inactive");
+            saveActiveStatus("greetingField", "inactive");
         }
     });
     hourcheckbox.addEventListener("change", function () {
@@ -1506,6 +1536,10 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             localStorage.setItem("hourformat", "false");
         }
+    });
+    greetingCheckbox.addEventListener("change", () => {
+        localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
+        updatedigiClock();
     });
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
