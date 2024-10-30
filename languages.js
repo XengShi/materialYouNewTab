@@ -7,42 +7,46 @@ const translations = {
         menuCloseText: 'Close',
         // Shortcuts
         "shortcutsText": "Shortcuts",
-        "enableShortcutsText": "Show/hide Shortcuts",
+        "enableShortcutsText": "Show saved shortcuts",
         "editShortcutsText": "Edit Shortcuts",
-        "editShortcutsList": "Edit Shortcuts",
-        "shortcutsInfoText": "Choose which Shortcuts get shown",
+        "editShortcutsList": "Saved Shortcuts",
+        "shortcutsInfoText": "Choose which shortcuts get shown",
         "adaptiveIconText": "Adaptive Icon Shapes",
-        "adaptiveIconInfoText": "Shortcut Icons will always be round",
+        "adaptiveIconInfoText": "Shortcut icons will appear round",
         "ai_tools_button": "AI-Tools",
-        "enable_ai_tools": "Show/hide AI Tools Shortcuts",
+        "enable_ai_tools": "Show shortcuts for AI tools",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
-        "digitalclockinfo": "Enable/disable the Digital Clock",
-        "timeformattittle": "Use 12h Format",
-        "timeformatinfo": "Use 12 hour time format",
+        "digitalclockinfo": "Enable the digital clock",
+        "timeformattittle": "12-Hour Format",
+        "timeformatinfo": "Use 12-hour time format",
+        "greetingtittle": "Greeting",
+        "greetinginfo": "Show greeting below custom text",
         // Misc
+        "userTextTitle": "Customizable Text",
+        "userTextInfo": "Show custom text below the clock",
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
-        "fahrenheitCelsiusText": "Refresh the page to see the updates",
+        "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "search_suggestions_button": "Search Suggestions",
-        "search_suggestions_text": "Enable/disable Search Suggestions",
+        "search_suggestions_text": "Enable search suggestions",
         // Proxy
         "useproxytitletext": "Proxy Bypass",
-        "useproxyText": "If Search Suggestions isn't working",
+        "useproxyText": "If search suggestions aren't working",
         "ProxyText": "CORS Bypass Proxy",
-        "ProxySubtext": "Add your own CORS Bypass Proxy",
-        "HostproxyButton": "Host Your Own Proxy",
+        "ProxySubtext": "Add your own CORS bypass proxy",
+        "HostproxyButton": "Host your own proxy",
         "saveproxy": "Save",
         // Location
         "UserLocText": "Enter your Location",
-        "UserLocSubtext": "If the Weather Location isn't correct",
-        "userLoc": "Your location (City/Latitude,Longitude)",
-        "InputOptionsButton": "Input Options",
+        "UserLocSubtext": "If the weather location isn't correct",
+        "userLoc": "Your location (City or Latitude,Longitude)",
+        "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your own WeatherAPI key",
-        "WeatherApiSubtext": "If the Weather functionality isn't working",
+        "WeatherApiText": "Enter your WeatherAPI key",
+        "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
-        "LearnMoreButton": "Learn More",
+        "LearnMoreButton": "Learn more",
         "saveAPI": "Save",
         // End of Menu Items
 
@@ -237,24 +241,28 @@ const translations = {
         menuCloseText: "बंद करें",
         // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
-        "enableShortcutsText": "शॉर्टकट्स सक्षम/अक्षम करें",
+        "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "editShortcutsList": "शॉर्टकट्स संपादित करें",
-        "shortcutsInfoText": "कौन से शॉर्टकट्स दिखाए जाएँ, चुनें",
+        "editShortcutsList": "सहेजे गए शॉर्टकट",
+        "shortcutsInfoText": "कौन से शॉर्टकट दिखाए जाएँ, निर्धारित करें",
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
-        "adaptiveIconInfoText": "शॉर्टकट आइकन हमेशा गोल होंगे",
+        "adaptiveIconInfoText": "शॉर्टकट आइकन गोल प्रदर्शित होंगे",
         "ai_tools_button": "AI-उपकरण",
-        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स सक्षम/अक्षम करें",
+        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
-        "digitalclockinfo": "डिजिटल घड़ी को सक्षम/अक्षम करें",
-        "timeformattittle": "12 घंटे का प्रारूप उपयोग करें",
+        "digitalclockinfo": "डिजिटल घड़ी को सक्षम करें",
+        "timeformattittle": "12 घंटे का प्रारूप",
         "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
+        "greetingtittle": "अभिवादन",
+        "greetinginfo": "कस्टम टेक्स्ट के नीचे अभिवादन दिखाएँ",
         // Misc
+        "userTextTitle": "कस्टमाइज़ेबल टेक्स्ट",
+        "userTextInfo": "घड़ी के नीचे कस्टम टेक्स्ट दिखाएँ",
         "fahrenheitCelsiusCheckbox": "तापमान फारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "search_suggestions_button": "खोज सुझाव",
-        "search_suggestions_text": "खोज सुझाव सक्षम/अक्षम करें",
+        "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
         "useproxytitletext": "प्रॉक्सी बायपास",
         "useproxyText": "यदि खोज सुझाव काम नहीं कर रहे हैं",
@@ -264,8 +272,8 @@ const translations = {
         "saveproxy": "सहेजें",
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
-        "UserLocSubtext": "यदि मौसम स्थान सटीक नहीं है",
-        "userLoc": "आपका स्थान (शहर/अक्षांश,देशांतर)",
+        "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
+        "userLoc": "English में आपका स्थान (शहर या अक्षांश,देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
@@ -292,7 +300,7 @@ const translations = {
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "खोजें",
-        "searchPlaceholder": "यहाँ लिखें...",
+        "searchPlaceholder": "आपका प्रश्न...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
@@ -544,27 +552,31 @@ const translations = {
         menuCloseText: "বন্ধ করুন",
         // Shortcuts
         "shortcutsText": "শর্টকাট",
-        "enableShortcutsText": "শর্টকাট সক্রিয়/নিষ্ক্রিয় করুন",
+        "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
-        "editShortcutsList": "শর্টকাট সম্পাদনা তালিকা",
+        "editShortcutsList": "সংরক্ষিত শর্টকাট",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
-        "adaptiveIconInfoText": "শর্টকাট আইকন সর্বদা গোলাকার থাকবে",
+        "adaptiveIconInfoText": "শর্টকাট আইকনগুলি গোলাকৃতি প্রদর্শিত হবে",
         "ai_tools_button": "AI সরঞ্জাম",
-        "enable_ai_tools": "AI সরঞ্জাম শর্টকাট সক্রিয়/নিষ্ক্রিয় করুন",
+        "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
         // Digital Clock
         "digitalclocktittle": "ডিজিটাল ঘড়ি",
-        "digitalclockinfo": "ডিজিটাল ঘড়ি সক্রিয়/নিষ্ক্রিয় করুন",
-        "timeformattittle": "১২ ঘণ্টার ফরম্যাট ব্যবহার করুন",
+        "digitalclockinfo": "ডিজিটাল ঘড়ি সক্ষম করুন",
+        "timeformattittle": "১২ ঘণ্টার ফরম্যাট",
         "timeformatinfo": "১২ ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
+        "greetingtittle": "অভিবাদন",
+        "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
         // Misc
+        "userTextTitle": "কাস্টমাইজেবল টেক্সট",
+        "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
-        "fahrenheitCelsiusText": "আপডেট দেখতে পৃষ্ঠা রিফ্রেশ করুন",
-        "search_suggestions_button": "অনুসন্ধানের পরামর্শ",
-        "search_suggestions_text": "অনুসন্ধানের পরামর্শ সক্রিয়/নিষ্ক্রিয় করুন",
+        "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
+        "search_suggestions_button": "সন্ধান প্রস্তাবনা",
+        "search_suggestions_text": "সন্ধান প্রস্তাবনা সক্ষম করুন",
         // Proxy
         "useproxytitletext": "প্রক্সি বাইপাস",
-        "useproxyText": "যদি অনুসন্ধানের পরামর্শ কাজ না করে",
+        "useproxyText": "যদি সন্ধান প্রস্তাবনা কাজ না করে",
         "ProxyText": "CORS বাইপাস প্রক্সি",
         "ProxySubtext": "আপনার নিজের CORS বাইপাস প্রক্সি যোগ করুন",
         "HostproxyButton": "নিজের প্রক্সি হোস্ট করুন",
@@ -572,12 +584,12 @@ const translations = {
         // Location
         "UserLocText": "আপনার অবস্থান লিখুন",
         "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
-        "userLoc": "আপনার অবস্থান (শহর/অক্ষাংশ,দ্রাঘিমাংশ)",
+        "userLoc": "আপনার অবস্থান (শহর/অক্ষাংশ,দ্রাঘিমাংশ) Englishএ",
         "InputOptionsButton": "ইনপুট অপশন",
         "saveLoc": "সংরক্ষণ করুন",
         // Weather
-        "WeatherApiText": "আপনার নিজস্ব WeatherAPI কী লিখুন",
-        "WeatherApiSubtext": "যদি আবহাওয়া ফিচার কাজ না করে",
+        "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
+        "WeatherApiSubtext": "যদি আবহাওয়া কার্যকারিতা কাজ না করে",
         "userAPI": "আপনার WeatherAPI কী",
         "LearnMoreButton": "আরও জানুন",
         "saveAPI": "সংরক্ষণ করুন",
@@ -599,9 +611,9 @@ const translations = {
 
         // New Tab Item
         "conditionText": "হ্যালো! আপনি আজ কেমন আছেন?",
-        "enterBtn": "অনুসন্ধান করুন",
-        "searchPlaceholder": "আপনার প্রশ্ন লিখুন...",
-        "searchWithHint": "অনুসন্ধান করুন",
+        "enterBtn": "সন্ধান করুন",
+        "searchPlaceholder": "আপনার প্রশ্ন...",
+        "searchWithHint": "অনুসন্ধানের মাধ্যম",
         "ai_tools": "AI সরঞ্জাম",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         // End of Body and New Tab Items
@@ -690,7 +702,7 @@ const translations = {
         }
     },
 
-     // Russian
+    // Russian
     "ru": {
         // Menu Items
         "feedback": "Обратная связь",
@@ -769,7 +781,7 @@ const translations = {
 
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
-    //"hi": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' }, // Ensure it is supported in the fonts
+    //"mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' }, // Ensure it is supported in the fonts
     // Add more languages as needed
 };
 
@@ -811,6 +823,10 @@ function applyLanguage(lang) {
         { id: 'digitalclockinfo', key: 'digitalclockinfo' },
         { id: 'timeformattittle', key: 'timeformattittle' },
         { id: 'timeformatinfo', key: 'timeformatinfo' },
+        { id: 'greetingtittle', key: 'greetingtittle' },
+        { id: 'greetinginfo', key: 'greetinginfo' },
+        { id: 'userTextTitle', key: 'userTextTitle' },
+        { id: 'userTextInfo', key: 'userTextInfo' },
         { id: 'useproxytitletext', key: 'useproxytitletext' },
         { id: 'useproxyText', key: 'useproxyText' },
         { id: 'ProxyText', key: 'ProxyText' },
