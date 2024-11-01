@@ -17,7 +17,7 @@ const translations = {
         "enable_ai_tools": "Show shortcuts for AI tools",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
-        "digitalclockinfo": "Enable the digital clock",
+        "digitalclockinfo": "Switch to the digital clock",
         "timeformattittle": "12-Hour Format",
         "timeformatinfo": "Use 12-hour time format",
         "greetingtittle": "Greeting",
@@ -332,7 +332,7 @@ const translations = {
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
-        "digitalclockinfo": "Zapne digitální hodiny",
+        "digitalclockinfo": "Přepne hodiny na digitální",
         "timeformattittle": "12hodinový formát",
         "timeformatinfo": "Použije se 12hodinový formát času",
         "greetingtittle": "Pozdrav",
