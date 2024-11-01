@@ -39,7 +39,7 @@ const translations = {
         // Location
         "UserLocText": "Enter your Location",
         "UserLocSubtext": "If the weather location isn't correct",
-        "userLoc": "Your location (City or Latitude,Longitude)",
+        "userLoc": "Your City or Coordinates (Latitude,Longitude)",
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
@@ -354,7 +354,7 @@ const translations = {
         // Location
         "UserLocText": "Zadejte svou polohu",
         "UserLocSubtext": "Pokud není správná poloha počasí",
-        "userLoc": "Vaše poloha (město / zeměpisná šířka, zeměpisná délka)",
+        "userLoc": "Město nebo souřadnice (šířka,délka)",
         "InputOptionsButton": "Co lze zadat",
         "saveLoc": "Uložit",
         // Weather
