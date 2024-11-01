@@ -273,7 +273,7 @@ const translations = {
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
-        "userLoc": "English में आपका स्थान (शहर, अक्षांश या देशांतर)",
+        "userLoc": "English में आपका स्थान (शहर या अक्षांश,देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
