@@ -116,7 +116,7 @@
                             transform="rotate(45 164.485 -51)" width="246.801" x="164.485" y="-51" />
                     </svg>
                     <div class="wInfo">
-                        <div id="temp">?°</div>
+                        <div id="temp">?</div>
                         <img alt="wq" id="wIcon" src="./svgs/defaultWeather.svg">
                     </div>
                 </div>
@@ -397,7 +397,7 @@
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="shortcutsText">Shortcuts</div>
-                                <div class="infoText" id="enableShortcutsText">Show/hide Shortcuts</div>
+                                <div class="infoText" id="enableShortcutsText">Show saved shortcuts</div>
                             </div>
                             <label class="switch">
                                 <input id="shortcutsCheckbox" type="checkbox">
@@ -408,7 +408,7 @@
                         <div class="ttcont" id="shortcutEditField">
                             <div class="texts">
                                 <div class="bigText" id="editShortcutsText">Edit Shortcuts</div>
-                                <div class="infoText" id="shortcutsInfoText">Choose which Shortcuts get shown</div>
+                                <div class="infoText" id="shortcutsInfoText">Choose which shortcuts get shown</div>
                             </div>
                             <label class="switch">
                                 <button id="shortcutEditButton">
@@ -424,17 +424,30 @@
                         <div class="ttcont" id="adaptiveIconField">
                             <div class="texts">
                                 <div class="bigText" id="adaptiveIconText">Adaptive Icon Shapes</div>
-                                <div class="infoText" id="adaptiveIconInfoText">Shortcut Icons will always be round</div>
+                                <div class="infoText" id="adaptiveIconInfoText">Shortcut icons will appear round
+                                </div>
                             </div>
                             <label class="switch">
                                 <input id="adaptiveIconToggle" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
+
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="ai_tools_button">AI-Tools</div>
+                                <div class="infoText" id="enable_ai_tools">Show shortcuts for AI tools</div>
+                            </div>
+                            <label class="switch">
+                                <input id="aiToolsCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="digitalclocktittle">Digital Clock</div>
-                                <div class="infoText" id="digitalclockinfo">Enable/disable the Digital Clock</div>
+                                <div class="infoText" id="digitalclockinfo">Enable the digital clock</div>
                             </div>
                             <label class="switch">
                                 <input id="digitalCheckbox" type="checkbox">
@@ -443,30 +456,41 @@
                         </div>
                         <div class="ttcont" id="timeformatField">
                             <div class="texts">
-                                <div class="bigText" id="timeformattittle">Use 12h Format</div>
-                                <div class="infoText" id="timeformatinfo">Use 12 hour time format</div>
+                                <div class="bigText" id="timeformattittle">12-Hour Format</div>
+                                <div class="infoText" id="timeformatinfo">Use 12-hour time format</div>
                             </div>
                             <label class="switch">
                                 <input id="12hourcheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <!-- ---🟡--- -->
-                        <div class="ttcont">
+                        <div class="ttcont" id="greetingField">
                             <div class="texts">
-                                <div class="bigText" id="ai_tools_button">AI-Tools</div>
-                                <div class="infoText" id="enable_ai_tools">Show/hide AI Tools Shortcuts</div>
+                                <div class="bigText" id="greetingtittle">Greeting</div>
+                                <div class="infoText" id="greetinginfo">Show greeting below custom text</div>
                             </div>
                             <label class="switch">
-                                <input id="aiToolsCheckbox" type="checkbox">
+                                <input id="greetingcheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
-
+                        <!-- ---🟡--- -->
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="userTextTitle">Customizable Text</div>
+                                <div class="infoText" id="userTextInfo">Show custom text below the clock
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="userTextCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
-                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to see the updates
+                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
                                 </div>
                             </div>
                             <label class="switch">
@@ -475,11 +499,10 @@
                             </label>
                         </div>
                         <!-- ---🟡--- -->
-                        <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="search_suggestions_button">Search Suggestions</div>
-                                <div class="infoText" id="search_suggestions_text">Enable/disable Search Suggestions
+                                <div class="infoText" id="search_suggestions_text">Enable search suggestions
                                 </div>
                             </div>
                             <label class="switch">
@@ -491,7 +514,7 @@
                         <div class="ttcont" id="proxybypassField">
                             <div class="texts">
                                 <div class="bigText" id="useproxytitletext">Proxy Bypass</div>
-                                <div class="infoText" id="useproxyText">If Search Suggestions isn't working</div>
+                                <div class="infoText" id="useproxyText">If search suggestions aren't working</div>
                             </div>
                             <label class="switch">
                                 <input id="useproxyCheckbox" type="checkbox">
@@ -502,13 +525,13 @@
                         <div class="ttcont unflex" id="proxyField">
                             <div class="texts">
                                 <div class="bigText" id="ProxyText">CORS Bypass Proxy</div>
-                                <div class="infoText" id="ProxySubtext">Add your own CORS Bypass Proxy
+                                <div class="infoText" id="ProxySubtext">Add your own CORS bypass proxy
                                 </div>
                             </div>
                             <input id="userproxy" placeholder="https://mynt-proxy.rhythmcorehq.com" type="text">
                             <div class="bottom">
                                 <a href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton">Host
-                                    Your Own Proxy</a>
+                                    your own proxy</a>
                                 <button id="saveproxy">Save</button>
                             </div>
                         </div>
@@ -516,26 +539,26 @@
                         <div class="ttcont unflex" style="margin-top: 100px;">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
-                                <div class="infoText" id="UserLocSubtext">If the Weather Location isn't correct
+                                <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
                                 </div>
                             </div>
-                            <input id="userLoc" placeholder="Your location (City/Latitude,Longitude)" type="text">
+                            <input id="userLoc" placeholder="Your location (City or Latitude,Longitude)" type="text">
                             <div class="bottom">
                                 <a href="https://www.weatherapi.com/docs/#intro-request-param"
-                                    id="InputOptionsButton">Input Options</a>
+                                    id="InputOptionsButton">Input options</a>
                                 <button id="saveLoc">Save</button>
                             </div>
                         </div>
 
                         <div class="ttcont unflex" style="margin-top: 100px;">
                             <div class="texts">
-                                <div class="bigText" id="WeatherApiText">Enter your own WeatherAPI key</div>
-                                <div class="infoText" id="WeatherApiSubtext">If the Weather functionality isn't working
+                                <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
+                                <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
                                 </div>
                             </div>
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
-                                <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn More</a>
+                                <a href="https://www.weatherapi.com" id="LearnMoreButton">Learn more</a>
                                 <button id="saveAPI">Save</button>
                             </div>
                         </div>
@@ -654,7 +677,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="pageTitle" id="editShortcutsList">Edit Shortcuts</div>
+                    <div class="pageTitle" id="editShortcutsList">Saved Shortcuts</div>
                     <div id="shortcutList"></div>
                 </div>
             </div>

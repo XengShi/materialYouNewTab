@@ -3,68 +3,64 @@ let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load the API key, location and proxy from localStorage
-        const savedApiKey = localStorage.getItem("weatherApiKey");
+        // Cache DOM elements
         const userAPIInput = document.getElementById("userAPI");
-        const savedLocation = localStorage.getItem("weatherLocation");
         const userLocInput = document.getElementById("userLoc");
-        const savedProxy = localStorage.getItem("proxy");
         const userProxyInput = document.getElementById("userproxy");
-        if (savedApiKey) {
-            userAPIInput.value = savedApiKey;
-        }
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-        }
-        if (savedProxy) {
-            userProxyInput.value = savedProxy;
-        }
         const saveAPIButton = document.getElementById("saveAPI");
         const saveLocButton = document.getElementById("saveLoc");
         const resetbtn = document.getElementById("resetsettings");
         const saveProxyButton = document.getElementById("saveproxy");
 
-        // Function to simulate button click when Enter key is pressed
+        // Load saved data from localStorage
+        const savedApiKey = localStorage.getItem("weatherApiKey");
+        const savedLocation = localStorage.getItem("weatherLocation");
+        const savedProxy = localStorage.getItem("proxy");
+
+        // Pre-fill input fields with saved data
+        if (savedApiKey) userAPIInput.value = savedApiKey;
+        if (savedLocation) {
+            userLocInput.value = savedLocation;
+            //document.getElementById("location").textContent = savedLocation;
+        }
+        if (savedProxy) userProxyInput.value = savedProxy;
+
+        // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
             if (event.key === 'Enter') {
                 document.getElementById(buttonId).click();
             }
         }
 
-        // Add event listeners for each input field to handle Enter key
-        userAPIInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveAPI');
-        });
-        userLocInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveLoc');
-        });
-        userProxyInput.addEventListener('keydown', function (event) {
-            handleEnterPress(event, 'saveproxy');
-        });
+        // Add event listeners for handling Enter key presses
+        userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
+        userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
+        userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
 
-        // Add an event listener to save the API key when the "Save" button is clicked
+        // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
             const apiKey = userAPIInput.value;
-            // Save the API key to localStorage
             localStorage.setItem("weatherApiKey", apiKey);
-            document.getElementById("userAPI").value = "";
+            userAPIInput.value = "";
             location.reload();
         });
+
+        // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
             const userLocation = userLocInput.value;
-            // Save the location to localStorage
             localStorage.setItem("weatherLocation", userLocation);
-            document.getElementById("userLoc").value = "";
+            userLocInput.value = "";
             location.reload();
         });
+
+        // Reset settings (clear localStorage)
         resetbtn.addEventListener("click", () => {
             if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
                 localStorage.clear();
                 location.reload();
-            } else {
-                return;
             }
         });
+
         saveProxyButton.addEventListener("click", () => {
             const proxyurl = userProxyInput.value;
 
@@ -73,7 +69,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (!proxyurl.endsWith("/")) {
                     // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
-                    document.getElementById("userproxy").value = "";
+                    userProxyInput.value = "";
                     location.reload();
                 }
                 else {
@@ -85,30 +81,36 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Set the default API key
+        // Use the saved or default API key and proxy
         const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
         const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
         // Check if the user has entered their own API key
         const userApiKey = userAPIInput.value.trim();
         const userproxyurl = userProxyInput.value.trim();
-
         // Use the user's API key if available, otherwise use the default API key
         const apiKey = userApiKey || defaultApiKey;
         proxyurl = userproxyurl || defaultProxyURL;
 
-        var currentUserLocation = savedLocation; // Get saved location
-        if (!currentUserLocation) {
-            // Only fetch if there is no saved location
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-            currentUserLocation = parsedLocation.ip; // Update to user's IP-based location
-        }
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-        
-        // Weather API call using currentUserLocation, which is either user input or IP address
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+        // Determine the location to use
+        let currentUserLocation = savedLocation;
 
+        // If no saved location, fetch the IP-based location
+        if (!currentUserLocation) {
+            try {
+                const geoLocation = 'https://ipinfo.io/json/';
+                const locationData = await fetch(geoLocation);
+                const parsedLocation = await locationData.json();
+                currentUserLocation = parsedLocation.city; // Update to user's city from IP
+                localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
+            } catch (error) {
+                currentUserLocation = "auto:ip"; // Fallback if fetching location fails
+            }
+        }
+
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+        // Fetch weather data using Weather API
+        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         const data = await fetch(weatherApi);
         const parsedData = await data.json();
 
@@ -120,7 +122,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const feelsLikeCelsius = parsedData.current.feelslike_c;
         const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-        // Update DOM elements
+        // Update DOM elements with the weather data
         document.getElementById("conditionText").textContent = conditionText;
 
         // Localize and display temperature and humidity
@@ -137,16 +139,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
+            const tempElement = document.getElementById("temp");
             if (fahrenheitCheckbox.checked) {
-                // Fahrenheit: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempFahrenheit}°`;  // Temp with degree symbol only (no unit)
-
+                tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
-                // Celsius: temp with degree symbol only, feels like with degree symbol and unit
-                document.getElementById("temp").textContent = `${localizedTempCelsius}°`;  // Temp with degree symbol only (no unit)
-
+                tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
                 document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
@@ -164,21 +163,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Update location
-        // document.getElementById("location").textContent = parsedLocation.city;
         var city = parsedData.location.name;
         // var city = "Thiruvananthapuram";
         var maxLength = 10;
         var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-        // Update the span's text content with the limited text
         document.getElementById("location").textContent = limitedText;
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
-        // alert("Unable to fetch weather data. Please check your location or API key.");
-        // Handle errors here, e.g., display an error message to the user.
     }
 });
-
 // ---------------------------end of weather stuff--------------------
 
 // Retrieve current time and calculate initial angles
@@ -211,60 +205,50 @@ function initializeClockType() {
 initializeClockType();
 
 function updateDate() {
-    var currentTime = new Date();
-
-    // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-    var dayOfWeek = currentTime.getDay();
-    // Get the day of the month (1 - 31)
-    var dayOfMonth = currentTime.getDate();
-    // Get the month (0 = January, 1 = February, ..., 11 = December)
-    var month = currentTime.getMonth();
-
-    // Define the current language
-    var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
-    // Get the translated name of the day
-    var dayName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].days &&
-        translations[currentLanguage].days[dayOfWeek]
-    ) {
-        dayName = translations[currentLanguage].days[dayOfWeek];
-    } else {
-        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
-    }
-
-    // Get the translated name of the month
-    var monthName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].months &&
-        translations[currentLanguage].months[month]
-    ) {
-        monthName = translations[currentLanguage].months[month];
-    } else {
-        monthName = translations['en'].months[month]; // Fallback to English month name
-    }
-
-    // Localize the day of the month
-    var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
     if (clocktype === "analog") {
-        // Language formatting
-        if (currentLanguage === 'pt') {
-            // Portuguese formatting: "day of the week, day of the month"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)} `;
-        } else if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-            // Hindi and Bangla formatting: Show full name for month
-            document.getElementById("date").innerText = `${dayName}, ${localizedDayOfMonth} ${monthName}`;
-        } else if (currentLanguage === 'cs') {
-            // Czech formatting: day, date. months
-            document.getElementById("date").innerText = `${dayName}, ${dayOfMonth}. ${monthName}`;
+        var currentTime = new Date();
+        var dayOfWeek = currentTime.getDay();
+        var dayOfMonth = currentTime.getDate();
+        var month = currentTime.getMonth();
+
+        // Define the current language
+        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+        // Get the translated name of the day
+        var dayName;
+        if (
+            translations[currentLanguage] &&
+            translations[currentLanguage].days &&
+            translations[currentLanguage].days[dayOfWeek]
+        ) {
+            dayName = translations[currentLanguage].days[dayOfWeek];
         } else {
-            // English formatting: "day of the month name"
-            document.getElementById("date").innerText = `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth} `;
+            dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
         }
+
+        // Get the translated name of the month
+        var monthName;
+        if (
+            translations[currentLanguage] &&
+            translations[currentLanguage].months &&
+            translations[currentLanguage].months[month]
+        ) {
+            monthName = translations[currentLanguage].months[month];
+        } else {
+            monthName = translations['en'].months[month]; // Fallback to English month name
+        }
+
+        // Localize the day of the month
+        var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
+
+        const dateDisplay = {
+            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
+            bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
+        };
+        document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
 }
 
@@ -358,6 +342,9 @@ function getGreeting() {
 function updatedigiClock() {
     const hourformatstored = localStorage.getItem("hourformat");
     let hourformat = hourformatstored === "true"; // Default to false if null
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const isGreetingEnabled = localStorage.getItem("greetingEnabled") === "true";
+    greetingCheckbox.checked = isGreetingEnabled;
 
     const now = new Date();
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
@@ -383,14 +370,11 @@ function updatedigiClock() {
     // Determine the translated short date string based on language using if-else statements
     let dateString;
     if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-        // Format: "दिन, दिनांक" (Day, Date)
         dateString = `${dayName}, ${localizedDayOfMonth}`;
     } else if (currentLanguage === 'cs') {
-        // Format: "den, den." (Day, Date.)
-        dateString = `${dayName}, ${localizedDayOfMonth}.`;
+        dateString = `${dayName}, ${dayOfMonth}.`;
     } else if (currentLanguage === 'pt') {
-        // Format: "dia da semana, dia do mês" (Day of the week, Day of the month)
-        dateString = `${dayName}, ${localizedDayOfMonth}`;
+        dateString = `${dayName}, ${dayOfMonth}`;
     } else {
         // Default format: "day of the month" (e.g., "24 Thu")
         dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
@@ -443,8 +427,10 @@ function updatedigiClock() {
     document.getElementById('digidate').textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 === "digital") {
+    if (clocktype1 === "digital" && isGreetingEnabled) {
         document.getElementById("date").innerText = getGreeting();
+    } else if (clocktype1 === "digital") {
+        document.getElementById("date").innerText = ""; // Hide the greeting
     }
 }
 
@@ -507,6 +493,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
+    const userTextCheckbox = document.getElementById("userTextCheckbox");
+
+    // Load and apply the checkbox state
+    const isUserTextVisible = localStorage.getItem("userTextVisible") !== "false";
+    userTextCheckbox.checked = isUserTextVisible;
+    userTextDiv.style.display = isUserTextVisible ? "block" : "none";
+
+    // Toggle userText display based on checkbox state
+    userTextCheckbox.addEventListener("change", () => {
+        const isVisible = userTextCheckbox.checked;
+        userTextDiv.style.display = isVisible ? "block" : "none";
+        localStorage.setItem("userTextVisible", isVisible);
+    });
 
     // Set the default language to English if no language is saved
     const savedLang = localStorage.getItem('selectedLanguage') || 'en';
@@ -536,7 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Restore placeholder if the user leaves the div empty after editing
     userTextDiv.addEventListener("blur", function () {
-        if (userTextDiv.textContent.trim() === "") {
+        if (userTextDiv.textContent === "") {
             userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
         }
     });
@@ -1496,23 +1495,38 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+
+    if (localStorage.getItem("greetingEnabled") === null) {
+        localStorage.setItem("greetingEnabled", "true");
+    }
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const greetingField = document.getElementById("greetingField");
+    greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
+    greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
+
     digitalCheckbox.addEventListener("change", function () {
         saveCheckboxState("digitalCheckboxState", digitalCheckbox);
         if (digitalCheckbox.checked) {
             timeformatField.classList.remove("inactive");
+            greetingField.classList.remove("inactive");
+            greetingCheckbox.disabled = false; // Enable greeting toggle
             localStorage.setItem("clocktype", "digital");
             clocktype = localStorage.getItem("clocktype");
             displayClock();
             stopClock();
             saveActiveStatus("timeformatField", "active");
+            saveActiveStatus("greetingField", "active");
         } else {
             timeformatField.classList.add("inactive");
+            greetingField.classList.add("inactive");
+            greetingCheckbox.disabled = true; // Disable greeting toggle
             localStorage.setItem("clocktype", "analog");
             clocktype = localStorage.getItem("clocktype");
             stopClock();
             startClock();
             displayClock();
             saveActiveStatus("timeformatField", "inactive");
+            saveActiveStatus("greetingField", "inactive");
         }
     });
     hourcheckbox.addEventListener("change", function () {
@@ -1522,6 +1536,10 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             localStorage.setItem("hourformat", "false");
         }
+    });
+    greetingCheckbox.addEventListener("change", () => {
+        localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
+        updatedigiClock();
     });
     useproxyCheckbox.addEventListener("change", function () {
         saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
