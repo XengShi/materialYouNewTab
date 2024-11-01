@@ -259,7 +259,7 @@ const translations = {
         // Misc
         "userTextTitle": "कस्टमाइज़ेबल टेक्स्ट",
         "userTextInfo": "घड़ी के नीचे कस्टम टेक्स्ट दिखाएँ",
-        "fahrenheitCelsiusCheckbox": "तापमान फारेनहाइट में बदलें",
+        "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
@@ -273,7 +273,7 @@ const translations = {
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
-        "userLoc": "English में आपका स्थान (शहर या अक्षांश,देशांतर)",
+        "userLoc": "English में आपका स्थान (शहर, अक्षांश या देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
@@ -300,7 +300,7 @@ const translations = {
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
         "enterBtn": "खोजें",
-        "searchPlaceholder": "आपका प्रश्न...",
+        "searchPlaceholder": "यहाँ लिखें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
