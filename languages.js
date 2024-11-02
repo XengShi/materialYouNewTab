@@ -721,15 +721,19 @@ const translations = {
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
-        "enable_ai_tools": "Включить/Отключить ярлыки инструментов ИИ",
+        "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
         // Digital Clock
         "digitalclocktittle": "Цифровые часы",
         "digitalclockinfo": "Включить/Отключить цифровые часы",
         "timeformattittle": "12-часовой формат",
         "timeformatinfo": "Использовать 12-часовой формат времени",
+        "greetingtittle": "Приветствие",
+        "greetinginfo": "Показать приветствие под вашим текстом",
         // Misc
-        "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
-        "fahrenheitCelsiusText": "Обновите страницу, чтобы увидеть изменения",
+        "userTextTitle": "Настраиваемый текст",
+        "userTextInfo": "Отображение текста под часами",
+        "fahrenheitCelsiusCheckbox": "Использовать Фаренгейт",
+        "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
