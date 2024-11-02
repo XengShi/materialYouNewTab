@@ -251,7 +251,7 @@ const translations = {
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
-        "digitalclockinfo": "डिजिटल घड़ी को सक्षम करें",
+        "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
         "timeformattittle": "12 घंटे का प्रारूप",
         "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
         "greetingtittle": "अभिवादन",
@@ -273,7 +273,7 @@ const translations = {
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
-        "userLoc": "English में आपका स्थान (शहर या अक्षांश,देशांतर)",
+        "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर), English में",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
@@ -566,7 +566,7 @@ const translations = {
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
         // Digital Clock
         "digitalclocktittle": "ডিজিটাল ঘড়ি",
-        "digitalclockinfo": "ডিজিটাল ঘড়ি সক্ষম করুন",
+        "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
         "timeformattittle": "১২ ঘণ্টার ফরম্যাট",
         "timeformatinfo": "১২ ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
         "greetingtittle": "অভিবাদন",
