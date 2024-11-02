@@ -1704,6 +1704,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("hourcheckboxState", hourcheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
     loadActiveStatus("timeformatField", timeformatField);
+    loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
     loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
     loadIconStyle("iconStyle", iconStyle);
