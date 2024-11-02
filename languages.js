@@ -39,7 +39,7 @@ const translations = {
         // Location
         "UserLocText": "Enter your Location",
         "UserLocSubtext": "If the weather location isn't correct",
-        "userLoc": "Your City or Coordinates (Latitude,Longitude)",
+        "userLoc": "Your City or Coordinates (Latitude, Longitude)",
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
