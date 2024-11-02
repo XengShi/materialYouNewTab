@@ -39,7 +39,7 @@ const translations = {
         // Location
         "UserLocText": "Enter your Location",
         "UserLocSubtext": "If the weather location isn't correct",
-        "userLoc": "Your City or Coordinates (Latitude,Longitude)",
+        "userLoc": "Your City or Coordinates (Latitude, Longitude)",
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
@@ -273,7 +273,7 @@ const translations = {
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
-        "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर), English में",
+        "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
@@ -551,7 +551,7 @@ const translations = {
     // Bengali
     "bn": {
         // Menu Items
-        "feedback": "প্রতিক্রিয়া",
+        "feedback": "মতামত",
         "resetsettings": "সেটিংস রিসেট করুন",
         menuCloseText: "বন্ধ করুন",
         // Shortcuts
@@ -576,11 +576,11 @@ const translations = {
         "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
-        "search_suggestions_button": "সন্ধান প্রস্তাবনা",
-        "search_suggestions_text": "সন্ধান প্রস্তাবনা সক্ষম করুন",
+        "search_suggestions_button": "অনুসন্ধান পরামর্শ",
+        "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
         "useproxytitletext": "প্রক্সি বাইপাস",
-        "useproxyText": "যদি সন্ধান প্রস্তাবনা কাজ না করে",
+        "useproxyText": "যদি অনুসন্ধান পরামর্শ কাজ না করে",
         "ProxyText": "CORS বাইপাস প্রক্সি",
         "ProxySubtext": "আপনার নিজের CORS বাইপাস প্রক্সি যোগ করুন",
         "HostproxyButton": "নিজের প্রক্সি হোস্ট করুন",
@@ -588,13 +588,13 @@ const translations = {
         // Location
         "UserLocText": "আপনার অবস্থান লিখুন",
         "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
-        "userLoc": "আপনার শহর বা স্থানাঙ্ক, English-এ",
+        "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
         "InputOptionsButton": "ইনপুট অপশন",
         "saveLoc": "সংরক্ষণ করুন",
         // Weather
-        "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
+        "WeatherApiText": "আপনার WeatherAPI টীকা লিখুন",
         "WeatherApiSubtext": "যদি আবহাওয়া কার্যকারিতা কাজ না করে",
-        "userAPI": "আপনার WeatherAPI কী",
+        "userAPI": "আপনার WeatherAPI টীকা",
         "LearnMoreButton": "আরও জানুন",
         "saveAPI": "সংরক্ষণ করুন",
         // End of Menu Items
@@ -604,18 +604,18 @@ const translations = {
         "days": ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহস্পতি', 'শুক্র', 'শনি'],   // Truncated for display
         //"days": ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],   // Full
         "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
-        // "months": ['জানু', 'ফেব', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
+        // "months": ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
         // End of Calendar
 
         // Weather
         "humidityLevel": "আর্দ্রতা",
-        "feelsLike": "অনুভূতি হয়",
+        "feelsLike": "অনুভব হয়",
         "location": "পৃথিবী",
         // End of Weather
 
         // New Tab Item
-        "conditionText": "হ্যালো! আপনি আজ কেমন আছেন?",
-        "enterBtn": "সন্ধান করুন",
+        "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
+        "enterBtn": "অনুসন্ধান করুন",
         "searchPlaceholder": "আপনার প্রশ্ন...",
         "searchWithHint": "অনুসন্ধানের মাধ্যম",
         "ai_tools": "AI সরঞ্জাম",
@@ -625,7 +625,7 @@ const translations = {
         // Greeting
         greeting: {
             morning: "শুভ সকাল!",
-            afternoon: "শুভ অপরাহ্ন!",
+            afternoon: "শুভ বিকেল!",
             evening: "শুভ সন্ধ্যা!"
         }
     },

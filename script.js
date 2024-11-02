@@ -317,7 +317,7 @@ function getGreeting() {
     // Determine the greeting key based on the current hour
     if (currentHour < 12) {
         greetingKey = 'morning';
-    } else if (currentHour < 18) {
+    } else if (currentHour < 17) {
         greetingKey = 'afternoon';
     } else {
         greetingKey = 'evening';
