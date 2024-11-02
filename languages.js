@@ -273,7 +273,7 @@ const translations = {
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
-        "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर), English में",
+        "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
@@ -588,7 +588,7 @@ const translations = {
         // Location
         "UserLocText": "আপনার অবস্থান লিখুন",
         "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
-        "userLoc": "ইংরেজিতে আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
+        "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
         "InputOptionsButton": "ইনপুট অপশন",
         "saveLoc": "সংরক্ষণ করুন",
         // Weather
