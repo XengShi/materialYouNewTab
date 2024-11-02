@@ -78,6 +78,13 @@
     --darkColor-dark: #434343;
     --textColorDark-dark: #010208;
 
+    /* Amoled Dark */
+    --bg-color-amoled: #050505;
+    --accentLightTint-amoled: #e1e1e1;
+    --darkerColor-amoled: #010208;
+    --darkColor-amoled: #434343;
+    --textColorDark-amoled: #474747;
+
     /* Global variables */
     --gap: 30px;
     --round: 30px;
@@ -1605,6 +1612,10 @@ input:checked + .toggle:before {
     background-color: #282828;
 }
 
+.colorsContainer input[value="amoled"] {
+    background-color: #000000;
+}
+
 .colorsContainer input[type="radio"]:checked::after {
     position: absolute;
     content: "";
@@ -1635,11 +1646,6 @@ input:checked + .toggle:before {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#darkTheme {
-    grid-column: span 2;
-    width: 82px;
 }
 
 /* -----------end of theming stuff---------------- */
