@@ -79,11 +79,12 @@
     --textColorDark-dark: #010208;
 
     /* Amoled Dark */
-    --bg-color-amoled: #050505;
-    --accentLightTint-amoled: #e1e1e1;
+    --bg-color-amoled: #000;
+    /* --accentLightTint-amoled: #e1e1e1; */
+    --accentLightTint-amoled: #1D1D1D;
     --darkerColor-amoled: #010208;
-    --darkColor-amoled: #434343;
-    --textColorDark-amoled: #474747;
+    --darkColor-amoled: #686868;
+    --textColorDark-amoled: #858585;
 
     /* Global variables */
     --gap: 30px;
@@ -567,6 +568,7 @@ body {
 }
 
 #searchQ {
+    color: var(--textColorDark-blue);
     display: block;
     position: absolute;
     height: 80%;
@@ -1716,7 +1718,7 @@ input:checked + .toggle:before {
 
 #menuCloseButton:hover {
     width: fit-content;
-    background-color: #fff;
+    background-color: var(--bg-color-blue);
 }
 
 #menuCloseButton::after {
