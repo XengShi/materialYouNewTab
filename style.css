@@ -1610,7 +1610,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="dark"] {
-    background-color: #818181;
+    background-color: #434343;
 }
 
 .colorsContainer input[value="amoled"] {
