@@ -80,10 +80,9 @@
 
     /* Amoled Dark */
     --bg-color-amoled: #000;
-    /* --accentLightTint-amoled: #e1e1e1; */
     --accentLightTint-amoled: #1D1D1D;
-    --darkerColor-amoled: #010208;
-    --darkColor-amoled: #686868;
+    --darkerColor-amoled: #3a3a3a;
+    --darkColor-amoled: #000;
     --textColorDark-amoled: #858585;
 
     /* Global variables */
@@ -1611,7 +1610,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="dark"] {
-    background-color: #282828;
+    background-color: #818181;
 }
 
 .colorsContainer input[value="amoled"] {
