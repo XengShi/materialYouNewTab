@@ -28,6 +28,9 @@ Additionally, you can also download the ZIP file by clicking on the Code button.
 ### Installation 
 
 #### Chromium Based Browsers
+
+Download it from [Chrome Web Store](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn) or follow the steps below:
+
 0. Make sure you have cloned this repo `git clone https://github.com/XengShi/materialYouNewTab.git` or downloaded it from [here](https://github.com/XengShi/materialYouNewTab/releases).  
    - If downloaded as a `.zip` or `tar.gz` file, extract it first.
 1. Copy & Paste the URL into your browser's search bar:
