@@ -787,6 +787,13 @@ const translations = {
     }
 };
 
+// Define the width of the menu container for each language
+// const menuWidths = {
+//     en: '400px',
+//     pt: '400px', 
+//     // Add more languages and widths as needed
+// };
+
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
     //"mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' }, // Ensure it is supported in the fonts
@@ -883,6 +890,12 @@ function applyLanguage(lang) {
             userTextDiv.innerText = placeholder;
         }
     }
+
+    // Update the width of the menu container based on the language
+    // const menuCont = document.querySelector('.menuBar .menuCont');
+    // if (menuCont) {
+    //     menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    // }
 
     // Update hover text for #menuCloseButton
     const menuCloseButton = document.getElementById('menuCloseButton');

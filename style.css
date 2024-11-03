@@ -1097,7 +1097,7 @@ body {
     position: absolute;
     right: 0;
     height: 100%;
-    width: 400px;
+    width: 400px; /* change on some languages for fix the buttons */
     transition: all 0.5s;
     transform: translateX(100%);
     background-color: var(--accentLightTint-blue);
@@ -1237,8 +1237,9 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
+    min-width: 60px;
     height: 34px;
+    margin-left: 8px;
 }
 
 /* Hide the default checkbox input */
