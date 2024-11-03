@@ -85,7 +85,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Redefinir Configurações",
-        menuCloseText: 'Fechar',
+        "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
         "enableShortcutsText": "Ativar/desativar atalhos",
@@ -101,7 +101,11 @@ const translations = {
         "digitalclockinfo": "Ativar/desativar o Relógio Digital",
         "timeformattittle": "Usar Formato de 12h",
         "timeformatinfo": "Usar formato de hora de 12 horas",
+        "greetingtittle": "Saudação",
+        "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
         // Misc
+        "userTextTitle": "Texto Personalizável",
+        "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
         "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
         "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
         "search_suggestions_button": "Sugestões de Pesquisa",
