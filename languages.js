@@ -742,19 +742,19 @@ const translations = {
         "ProxyText": "CORS обход прокси",
         "ProxySubtext": "Добавьте свой CORS-прокси",
         "HostproxyButton": "Разместить свой прокси",
-        "saveproxy": "Сохраните",
+        "saveproxy": "Сохранить",
         // Location
         "UserLocText": "Введите ваше местоположение",
         "UserLocSubtext": "Если местоположение для погоды неверно",
         "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
         "InputOptionsButton": "Опции ввода",
-        "saveLoc": "Сохраните",
+        "saveLoc": "Сохранить",
         // Weather
         "WeatherApiText": "Введите свой ключ WeatherAPI",
         "WeatherApiSubtext": "Если функция погоды не работает",
         "userAPI": "Ваш ключ WeatherAPI",
         "LearnMoreButton": "Узнать больше",
-        "saveAPI": "Сохраните",
+        "saveAPI": "Сохранить",
         // End of Menu Items
 
         // Body Items
@@ -773,7 +773,7 @@ const translations = {
         "conditionText": "Привет! Как ты сегодня?",
         "enterBtn": "Поиск",
         "searchPlaceholder": "Ваш запрос...",
-        "searchWithHint": "Искать с помощью",
+        "searchWithHint": "Искать с",
         "ai_tools": "Инструменты ИИ",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
