@@ -88,6 +88,55 @@
     --shortcut-size: 50px;
     --always-show-dock-background: 0;
 }
+.resultBox {
+    max-height: 250px;
+    overflow-y: auto;
+   
+    position: absolute;
+    top: 1;
+    left: 0;
+    width: 100%;
+    border-radius: var(--round);
+
+    padding: 10px;
+    scrollbar-width: none; /* For Firefox */
+
+    /* Initially hidden */
+    opacity: 0;
+    z-index: -1000;
+    transform: translateY(-70px);
+    transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
+    pointer-events: none; 
+}
+
+.resultBox::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+/* Visible state: when you want the result box to appear */
+.resultBox.show {
+    opacity: 1;
+    visibility: visible; 
+    transform: translateY(0); 
+    z-index: 1000;
+    pointer-events: all;
+}
+
+.resultItem {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+}
+
+.resultItem:hover {
+   background-color: var(--darkColor-blue);
+   border-radius: 15px;
+   color: #fff;
+}
+.spacer {
+    height: 65px; /* Adjust this value to create space */
+}
 
 /* Theme */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
@@ -135,13 +184,18 @@ body {
 }
 
 /* ____________Clock_____________________---- */
-#clock {
+#digitalClock {
     width: 300px;
     height: 300px;
     border-radius: 100%;
     position: relative;
 }
-
+#analogClock {
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    position: relative;
+}
 #clock svg {
     position: absolute;
     animation: clockAnm 1s;
@@ -183,6 +237,7 @@ body {
     top: -70px;
     background-color: var(--darkerColor-blue);
     transform: rotate(90deg);
+    transition: transform 1.50s;
 }
 
 #hour::after {
@@ -197,6 +252,7 @@ body {
 
 #minute {
     z-index: 9 !important;
+    transition: transform 1.50s;
 }
 
 #minute::after {
@@ -211,6 +267,7 @@ body {
 
 #second {
     background-color: #00000000;
+    transition: transform 1s;
 }
 
 #second::after {
@@ -240,6 +297,37 @@ body {
 
 #date {
     font-size: 1.4rem;
+}
+
+.digidate{
+    fill:var(--textColorDark-blue);
+}
+
+.amPm{
+    fill:var(--textColorDark-blue);
+}
+
+.digiclock {
+    text-anchor:middle;
+    fill: var(--darkColor-blue);
+    font-size: 8rem;
+    font-weight: lighter;
+    /* background-color: yellow; */
+    margin: auto;
+    width: fit-content;
+}
+
+#digihours {
+    fill: var(--darkerColor-blue);
+}
+
+#digicolon {
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
 
 /* __________end of clock___________________ */
@@ -274,6 +362,10 @@ body {
 #conditionText {
     font-size: 1.2rem;
     color: var(--textColorDark-blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 372px; 
 }
 
 .cconnt {
@@ -423,11 +515,19 @@ body {
     width: fit-content;
 }
 
+.tempUnit {
+    font-size: 0.4em;
+    vertical-align: super;
+    position: relative;
+    top: -0.25em;
+    color: var(--darkColor-blue);
+}
+
 #wIcon {
     width: 80px;
     height: 80px;
-    margin-top: -20px;
-    margin-left: -40px;
+    margin-top: -11px;
+    margin-left: -30px;
     /* background-color: olive; */
 }
 
@@ -518,7 +618,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     margin-right: 16px;
     border-radius: var(--round);
@@ -554,9 +654,10 @@ body {
 .searchEnginesContainer .search-engine svg {
     width: 30px;
     height: 30px;
-    background-color: #ffffff;
+    background-color: var(--darkColor-blue);
     border-radius: 100%;
     margin-left: 4px;
+    padding: 3px;
 
 }
 
@@ -570,12 +671,14 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: rgb(255, 255, 255);
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: 2px solid #ffffff;
     outline: none;
     margin-right: 8px;
+    cursor: pointer;
+    transition: .2s;
 }
 
 .search-engine input[type="radio"]:checked {
@@ -1204,10 +1307,6 @@ input:checked + .toggle:before {
 
 /* --- END OF 🔴⚪🟡style for toggle buttons---- */
 
-.toggleTextsCont {
-    /* background-color: yellow; */
-}
-
 .toggleTextsCont .ttcont {
     display: flex;
     height: 50px;
@@ -1264,7 +1363,16 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
-
+.resetbtn {
+    width: -webkit-fill-available;
+    border: none;
+    color: #fff;
+    background-color: var(--darkColor-blue);
+    padding: 6px 20px;
+    font-size: 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+}
 .topBar {
     display: flex;
     justify-content: space-between;
@@ -1377,7 +1485,16 @@ input:checked + .toggle:before {
     cursor: pointer;
     transition: 0.3s all;
 }
-
+/* Placeholder InputText color*/
+#userproxy{
+    color:var(--textColorDark-blue);
+}
+#userLoc{
+    color:var(--textColorDark-blue);
+}
+#userAPI{
+    color:var(--textColorDark-blue);
+}
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
@@ -1568,11 +1685,12 @@ input:checked + .toggle:before {
 
 /* ---------------------- */
 #menuCloseButton {
-    /* position: absolute; */
+    position: relative;
+     /* position: absolute; */
     bottom: var(--gap);
     width: 42px;
-    max-width: 100%;
-    /* Set max-width to fit-content initially */
+    height: 42px; 
+    max-width: 100%; /* Set max-width to fit-content initially */
     background-color: var(--bg-color-blue);
     color: var(--textColorDark-blue);
     font-size: 1rem;
@@ -1587,30 +1705,73 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: 69px;
+    margin-top: calc(69px + 20px);
 }
 
 #menuCloseButton:hover {
-    width: 105px;
+    width: fit-content;
     background-color: #fff;
 }
 
-#menuCloseButton:hover::after {
-    content: "Close";
+#menuCloseButton::after {
+    content: var(--hover-close-text, "Close");
+    white-space: nowrap;
     padding-right: 12px;
-    /* width: 32px; */
-    /* Expand the max-width on hover */
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: .6s menuCloseButtonHoverReverse forwards;
+    z-index: 1;
 }
 
+#menuCloseButton:hover::after {
+    content: var(--hover-close-text, "Close");
+    padding-right: 12px;
+    padding-left: 36px;
+    /* width: 32px; */
+    /* Expand the max-width on hover */
+    animation: .6s menuCloseButtonHover forwards;
+    animation-delay: .1s;
+}
 
-#menuCloseButton .icon {
+@keyframes menuCloseButtonHover {
+    0%{
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes menuCloseButtonHoverReverse {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}
+
+#menuCloseButton .icon{
+    position: absolute;
+    left: 6px;
     background-color: #fff;
     width: 30px;
     height: 30px;
     border-radius: 100px;
+    /* transform: translateX(30px); */
+    transition: .4s;
+    z-index: 2;
 }
 
-#menuCloseButton .icon:hover {
+/* #menuCloseButton .icon:hover{
     transition: all 0.2s;
     transform: rotate(90deg);
+} */
+
+#menuCloseButton:hover .icon{
+    transform: translateX(0) rotate(90deg);
 }

@@ -23,9 +23,14 @@ You can download the latest version of the extension by clicking the button belo
 
 [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/releases)
 
+Additionally, you can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
+
 ### Installation 
 
 #### Chromium Based Browsers
+
+Download it from [Chrome Web Store](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn) or follow the steps below:
+
 0. Make sure you have cloned this repo `git clone https://github.com/XengShi/materialYouNewTab.git` or downloaded it from [here](https://github.com/XengShi/materialYouNewTab/releases).  
    - If downloaded as a `.zip` or `tar.gz` file, extract it first.
 1. Copy & Paste the URL into your browser's search bar:
@@ -44,19 +49,17 @@ You can download the latest version of the extension by clicking the button belo
 
 ![Firefox](https://img.icons8.com/color/20/000000/firefox--v1.png) **Firefox**:
 
-In Firefox, you can download it from the Mozilla Extensions Store at:  
-https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/
-
-&nbsp;or&nbsp;
+Download it from the [Mozilla Extensions Store](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/) or follow the instructions below:
 
 0. Make sure you have cloned this repo `git clone https://github.com/XengShi/materialYouNewTab.git` or downloaded it from [here](https://github.com/XengShi/materialYouNewTab/releases).  
    - If downloaded as a `.zip` or `tar.gz` file, extract it first.
-1. Copy & Paste this URL into your browser's search bar:  
+1. **Delete the existing `manifest.json` file** from your extension folder.
+2. **Rename `manifest(firefox).json` to `manifest.json`.**
+3. Copy & Paste the following URL into your browser's search bar:  
    `about:debugging#/runtime/this-firefox`
-   
-2. Click on **"This Firefox"** in the left sidebar.
-3. Click on **"Load Temporary Add-on"** button.
-4. Browse & Select the manifest.json file from your extension folder.
+4. Click on **"This Firefox"** in the left sidebar.
+5. Click on the **"Load Temporary Add-on"** button.
+6. Browse and select the updated `manifest.json` file from your extension folder.
 
 ---
 
