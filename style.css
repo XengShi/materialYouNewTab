@@ -81,8 +81,8 @@
     /* Amoled Dark */
     --bg-color-amoled: #000;
     --accentLightTint-amoled: #1D1D1D;
-    --darkerColor-amoled: #3a3a3a;
-    --darkColor-amoled: #000;
+    --darkerColor-amoled: #000000;
+    --darkColor-amoled: #555555;
     --textColorDark-amoled: #858585;
 
     /* Global variables */
@@ -420,7 +420,7 @@ body {
     left: 46px;
     bottom: 0;
     margin: auto;
-    color: var(--textColorDark-blue);
+    color: #2e2e2e;
     height: fit-content;
 }
 
