@@ -472,7 +472,6 @@ const translations = {
     },
 
     // Turkish
-    // Machine translated some elements, please verify and delete this commenty
     "tr": {
         // Menu Items
         "feedback": "Geri Bildirim",
@@ -480,24 +479,28 @@ const translations = {
         menuCloseText: 'Kapat',
         // Shortcuts
         "shortcutsText": "Kısayollar",
-        "enableShortcutsText": "Kısayolları etkinleştir/devre dışı bırak",
+        "enableShortcutsText": "Kaydedilen kısayolları göster",
         "editShortcutsText": "Kısayolları Düzenle",
-        "editShortcutsList": "Kısayolları Düzenle",
+        "editShortcutsList": "Kaydedilen Kısayollar",
         "shortcutsInfoText": "Hangi kısayolların gösterileceğini seçin",
         "adaptiveIconText": "Uyarlanabilir İkon Şekilleri",
-        "adaptiveIconInfoText": "Kısayol İkonları her zaman yuvarlak olacak",
+        "adaptiveIconInfoText": "Kısayol ikonları yuvarlak görünecek",
         "ai_tools_button": "AI Araçları",
-        "enable_ai_tools": "AI Araçları kısayollarını etkinleştir/devre dışı bırak",
+        "enable_ai_tools": "AI Araçları kısayollarını göster",
         // Digital Clock
         "digitalclocktittle": "Dijital Saat",
-        "digitalclockinfo": "Dijital Saati etkinleştir/devre dışı bırak",
-        "timeformattittle": "12 saat Formatını Kullanın",
+        "digitalclockinfo": "Dijital saate geçiş yap",
+        "timeformattittle": "12 Saat Formatı",
         "timeformatinfo": "12 saat zaman formatını kullanın",
+        "greetingtittle": "Hoşgeldiniz",
+        "greetinginfo": "Özel metinin altında hoşgeldiniz mesajını göster", 
         // Misc
+        "userTextTitle": "Özelleştirilebilir Metin",
+        "userTextInfo": "Saatin altında özel metin göster",
         "fahrenheitCelsiusCheckbox": "Fahrenheit'a geç",
         "fahrenheitCelsiusText": "Güncellemeleri görmek için sayfayı yenileyin",
         "search_suggestions_button": "Arama Önerileri",
-        "search_suggestions_text": "Arama Önerilerini etkinleştir/devre dışı bırak",
+        "search_suggestions_text": "Arama Önerilerini etkinleştir",
         // Proxy
         "useproxytitletext": "Proxy Atlatma",
         "useproxyText": "Eğer arama önerileri çalışmıyorsa",
@@ -527,13 +530,13 @@ const translations = {
 
         // Weather
         "humidityLevel": "Nem",
-        "feelsLike": "Hissedilen",
+        "feelsLike": "Hissediyor",
         "location": "Dünya",
         // End of Weather
 
         // New Tab Item
         "conditionText": "Merhaba! Bugün nasılsın?",
-        "enterBtn": "Ara",
+        "enterBtn": "Arama Yap",
         "searchPlaceholder": "Aramanız...",
         "searchWithHint": "ile Ara",
         "ai_tools": "AI Araçları",
