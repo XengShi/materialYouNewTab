@@ -21,6 +21,8 @@
     --darkerColor-blue: #3569b2;
     --darkColor-blue: #4382EC;
     --textColorDark-blue: #1b3041;
+    --shortcutColor-blue: #4382EC;
+    --shortcutIconColor-blue:#E2EEFF;
 
     /* 🔴🔴🔴 */
     --bg-color-red: #FDBDBD;
@@ -28,6 +30,8 @@
     --darkerColor-red: #B23535;
     --darkColor-red: #EC4343;
     --textColorDark-red: #411B1B;
+    --shortcutColor-red: #EC4343;
+    --shortcutIconColor-red:#ffe7e7;
 
     /*Peela*/
     --bg-color-yellow: #edea8c;
@@ -35,6 +39,8 @@
     --darkerColor-yellow: #CCA243;
     --darkColor-yellow: #f4d837;
     --textColorDark-yellow: #5B5428;
+    --shortcutColor-yellow: #f4d837;
+    --shortcutIconColor-yellow:#fff2c2;
 
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
@@ -42,6 +48,8 @@
     --darkerColor-green: #458245;
     --darkColor-green: #5CBA5C;
     --textColorDark-green: #1B411B;
+    --shortcutColor-green: #5CBA5C;
+    --shortcutIconColor-green:#E1F1E1;
 
     /* Cyan */
     --bg-color-cyan: #9bffff;
@@ -49,6 +57,8 @@
     --darkerColor-cyan: #5E9CA0;
     --darkColor-cyan: #00CED1;
     --textColorDark-cyan: #08354B;
+    --shortcutColor-cyan: #00CED1;
+    --shortcutIconColor-cyan:#d5ffff;
 
     /* 🩷💗🩷 */
     --bg-color-pink: #F9C8D6;
@@ -56,6 +66,8 @@
     --darkerColor-pink: #B24B64;
     --darkColor-pink: #EC5E78;
     --textColorDark-pink: #411B28;
+    --shortcutColor-pink: #EC5E78;
+    --shortcutIconColor-pink:#FFEBF2;
 
     /* 🟠🟠🟠 */
     --bg-color-orange: #FFD8B2;
@@ -63,6 +75,8 @@
     --darkerColor-orange: #B26D3E;
     --darkColor-orange: #EC844D;
     --textColorDark-orange: #412B1E;
+    --shortcutColor-orange: #EC844D;
+    --shortcutIconColor-orange:#FFEDD5;
 
     /* 🟣🟣🟣 */
     --bg-color-purple: #DAC2E8;
@@ -70,6 +84,8 @@
     --darkerColor-purple: #724B8F;
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
+    --shortcutColor-purple: #9563B5;
+    --shortcutIconColor-purple:#E9E2F3;
 
     /* Dark Kaala */
     --bg-color-dark: #505050;
@@ -77,13 +93,17 @@
     --darkerColor-dark: #010208;
     --darkColor-dark: #434343;
     --textColorDark-dark: #010208;
+    --shortcutColor-dark: #434343;
+    --shortcutIconColor-dark:#818181;
 
     /* Amoled Dark */
     --bg-color-amoled: #000;
     --accentLightTint-amoled: #1D1D1D;
-    --darkerColor-amoled: #000000;
+    --darkerColor-amoled: #999999;
     --darkColor-amoled: #555555;
     --textColorDark-amoled: #858585;
+    --shortcutColor-amoled: #1d1d1d;
+    --shortcutIconColor-amoled:#4e4e4e;
 
     /* Global variables */
     --gap: 30px;
@@ -160,6 +180,10 @@
 .lessDark {
     background-color: var(--bg-color-blue);
     fill: var(--bg-color-blue);
+}
+
+.shortcutsColor {
+    fill: var(--shortcutColor-blue);
 }
 
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
@@ -918,11 +942,11 @@ body {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-    background-color: var(--accentLightTint-blue);
+    background-color: var(--shortcutIconColor-blue);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
-    background-color: var(--darkColor-blue);
+    background-color: var(--shortcutColor-blue);
 }
 
 .shortcutsContainer .shortcuts a svg {
