@@ -29,7 +29,7 @@
     --darkColor-red: #EC4343;
     --textColorDark-red: #411B1B;
 
-    /*Peela*/
+    /* 🟡🟡🟡 */
     --bg-color-yellow: #edea8c;
     --accentLightTint-yellow: #fff2c2;
     --darkerColor-yellow: #CCA243;
@@ -71,12 +71,12 @@
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
 
-    /* Dark Kaala */
+    /* ⚫⚫⚫ */
     --bg-color-dark: #505050;
     --accentLightTint-dark: #818181;
-    --darkerColor-dark: #010208;
+    --darkerColor-dark: #1D1D1D;
     --darkColor-dark: #434343;
-    --textColorDark-dark: #010208;
+    --textColorDark-dark: #111111;
 
     /* Global variables */
     --gap: 30px;
