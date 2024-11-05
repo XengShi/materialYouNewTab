@@ -1575,7 +1575,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f4d837;
+    background-color: #f4c837;
 }
 
 .colorsContainer input[value="red"] {
