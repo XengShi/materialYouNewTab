@@ -645,8 +645,15 @@ the "copyright" line and a pointer to where the full notice is found.
 
     You should have received a copy of the GNU General Public License
     along with this extension. If not, see <https://www.gnu.org/licenses/>.
+	
+  **Non-Commercial Use Only**:
+  You may use, modify, and distribute this software for non-commercial 
+purposes only. Commercial use is strictly prohibited without prior 
+written permission from the author. This includes, but is not limited to, 
+using the software in a commercial product or service, or for any activity 
+that generates revenue directly or indirectly.
 
-For support or to report issues, contact us at: xengshi@duck.com
+ For any questions regarding this license, please contact xengshi@duck.com.
 
   If the extension has terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
