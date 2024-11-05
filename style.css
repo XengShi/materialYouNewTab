@@ -1573,35 +1573,35 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f4d837;
+    background-color: #f3f05a;
 }
 
 .colorsContainer input[value="red"] {
-    background-color: #EC4343;
+    background-color: #f91d1d;
 }
 
 .colorsContainer input[value="green"] {
-    background-color: #5CBA5C;
+    background-color: #17a638;
 }
 
 .colorsContainer input[value="cyan"] {
-    background-color: #00CED1;
+    background-color: #2acdf5;
 }
 
 .colorsContainer input[value="orange"] {
-    background-color: #EC844D
+    background-color: orange;
 }
 
 .colorsContainer input[value="purple"] {
-    background-color: #9563B5;
+    background-color: #b830de;
 }
 
 .colorsContainer input[value="pink"] {
-    background-color: #EC5E78;
+    background-color: #e41b9e;
 }
 
 .colorsContainer input[value="dark"] {
-    background-color: #434343;
+    background-color: #282828;
 }
 
 .colorsContainer input[type="radio"]:checked::after {
