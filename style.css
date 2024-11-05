@@ -30,11 +30,13 @@
     --textColorDark-red: #411B1B;
 
     /* 🟡🟡🟡 */
-    --bg-color-yellow: #edea8c;
-    --accentLightTint-yellow: #fff2c2;
-    --darkerColor-yellow: #CCA243;
-    --darkColor-yellow: #f4d837;
-    --textColorDark-yellow: #5B5428;
+    --bg-color-yellow: #f6f485;
+    --accentLightTint-yellow: #fff8dd;
+    --darkerColor-yellow: #c89318;
+    --darkColor-yellow: #f4c837;
+    --textColorDark-yellow: #494420;
+    --shortcutColor-yellow: #f4c837;
+    --shortcutIconColor-yellow:#fff8dd;
 
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
