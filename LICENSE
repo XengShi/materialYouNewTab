@@ -1,13 +1,10 @@
-MIT License
+# License
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-Copyright (c) 2023-2024 XengShi
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. If you encounter bugs or issues, please report them in our GitHub repository, and we will do our best to address them. However, we are not responsible for fixing issues in modified versions of the software that were not derived from the original code.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software with the following restrictions:
 
-1. **Non-Commercial Use Only**: This software may not be sold or used for commercial purposes. Distribution, modification, and use are permitted solely for non-commercial purposes.
+You cannot sell this software or use it for commercial purposes.
 
-2. **Attribution**: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-3. **No Warranty**: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Author: XengShi
+Year: 2023-2024
