@@ -620,41 +620,41 @@ copy of the extention in return for a fee.
 
                      END OF TERMS AND CONDITIONS
 
-            How to Apply These Terms to Your New Extentions
+            How to Apply These Terms to Your New Extension
 
-  If you develop a new extention, and you want it to be of the greatest
+  If you develop a new extension and want it to be of the greatest
 possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.
+free software that everyone can redistribute and change under these terms.
 
-  To do so, attach the following notices to the extention.  It is safest
+  To do so, attach the following notices to the extension. It is safest
 to attach them to the start of each source file to most effectively
-state the exclusion of warranty; and each file should have at least
+state the exclusion of warranty; each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
     Material You NewTab: A browser extension that transforms the default 
-	new tab into a sleek, Pixel-inspired interface with a clock, weather 
-	info, and multi-search options.
-    Copyright (C) 2023-2024  XengShi
+    new tab into a sleek, Pixel-inspired interface with a clock, weather 
+    info, and multi-search options.
+    Copyright (C) 2023-2024 XengShi
 
     This extension is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    This extention is distributed in the hope that it will be useful,
+    This extension is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this extention.  If not, see <https://www.gnu.org/licenses/>.
+    along with this extension. If not, see <https://www.gnu.org/licenses/>.
 
 For support or to report issues, contact us at: xengshi@duck.com
 
-  If the extention does terminal interaction, make it output a short
+  If the extension has terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    Material You NewTab  Copyright (C) 2023-2024  XengShi
+    Material You NewTab Copyright (C) 2023-2024 XengShi
     This extension is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, version 3.
