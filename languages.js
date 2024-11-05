@@ -4,7 +4,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reset Settings",
-        menuCloseText: 'Close',
+        "menuCloseText": 'Close',
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Show saved shortcuts",
@@ -73,9 +73,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Good Morning!",
-            afternoon: "Good Afternoon!",
-            evening: "Good Evening!"
+            "morning": "Good Morning!",
+            "afternoon": "Good Afternoon!",
+            "evening": "Good Evening!"
         },
     },
 
@@ -85,7 +85,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Redefinir Configurações",
-        menuCloseText: 'Fechar',
+        "menuCloseText": 'Fechar',
         // Shortcuts
         "shortcutsText": "Atalhos",
         "enableShortcutsText": "Ativar/desativar atalhos",
@@ -150,9 +150,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Bom dia!",
-            afternoon: "Boa tarde!",
-            evening: "Boa noite!"
+            "morning": "Bom dia!",
+            "afternoon": "Boa tarde!",
+            "evening": "Boa noite!"
         }
     },
 
@@ -162,7 +162,7 @@ const translations = {
         // Menu Items
         "feedback": "反馈",
         "resetsettings": "重置设置",
-        menuCloseText: '关闭',
+        "menuCloseText": '关闭',
         // Shortcuts
         "shortcutsText": "快捷方式",
         "enableShortcutsText": "启用/禁用快捷方式",
@@ -227,9 +227,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "早上好!",
-            afternoon: "下午好!",
-            evening: "晚上好!"
+            "morning": "早上好!",
+            "afternoon": "下午好!",
+            "evening": "晚上好!"
         }
     },
 
@@ -238,7 +238,7 @@ const translations = {
         // Menu Items
         "feedback": "प्रतिक्रिया",
         "resetsettings": "सेटिंग्स रीसेट करें",
-        menuCloseText: "बंद करें",
+        "menuCloseText": "बंद करें",
         // Shortcuts
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
@@ -308,9 +308,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "सुप्रभात!",
-            afternoon: "शुभ अपराह्न!",
-            evening: "शुभ संध्या!"
+            "morning": "सुप्रभात!",
+            "afternoon": "शुभ अपराह्न!",
+            "evening": "शुभ संध्या!"
         }
     },
 
@@ -319,7 +319,7 @@ const translations = {
         // Menu Items
         "feedback": "Zpětná vazba",
         "resetsettings": "Resetovat nastavení",
-        menuCloseText: 'Zavřít',
+        "menuCloseText": 'Zavřít',
         // Shortcuts
         "shortcutsText": "Zkratky",
         "enableShortcutsText": "Zobrazí zkratky",
@@ -388,9 +388,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Dobré ráno!",
-            afternoon: "Dobré odpoledne!",
-            evening: "Dobrý večer!"
+            "morning": "Dobré ráno!",
+            "afternoon": "Dobré odpoledne!",
+            "evening": "Dobrý večer!"
         }
     },
 
@@ -400,7 +400,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reimposta Impostazioni",
-        menuCloseText: 'Chiudi',
+        "menuCloseText": 'Chiudi',
         // Shortcuts
         "shortcutsText": "Scorciatoie",
         "enableShortcutsText": "Abilita/disabilita scorciatoie",
@@ -465,9 +465,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Buongiorno!",
-            afternoon: "Buon pomeriggio!",
-            evening: "Buona sera!"
+            "morning": "Buongiorno!",
+            "afternoon": "Buon pomeriggio!",
+            "evening": "Buona sera!"
         }
     },
 
@@ -476,7 +476,7 @@ const translations = {
         // Menu Items
         "feedback": "Geri Bildirim",
         "resetsettings": "Ayarları Sıfırla",
-        menuCloseText: 'Kapat',
+        "menuCloseText": 'Kapat',
         // Shortcuts
         "shortcutsText": "Kısayollar",
         "enableShortcutsText": "Kaydedilen kısayolları göster",
@@ -545,9 +545,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Günaydın!",
-            afternoon: "İyi öğleden sonra!",
-            evening: "İyi akşamlar!"
+            "morning": "Günaydın!",
+            "afternoon": "İyi öğleden sonra!",
+            "evening": "İyi akşamlar!"
         }
     },
 
@@ -556,7 +556,7 @@ const translations = {
         // Menu Items
         "feedback": "মতামত",
         "resetsettings": "সেটিংস রিসেট করুন",
-        menuCloseText: "বন্ধ করুন",
+        "menuCloseText": "বন্ধ করুন",
         // Shortcuts
         "shortcutsText": "শর্টকাট",
         "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",
@@ -627,9 +627,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "শুভ সকাল!",
-            afternoon: "শুভ বিকেল!",
-            evening: "শুভ সন্ধ্যা!"
+            "morning": "শুভ সকাল!",
+            "afternoon": "শুভ বিকেল!",
+            "evening": "শুভ সন্ধ্যা!"
         }
     },
 
@@ -638,7 +638,7 @@ const translations = {
         // Menu Items
         "feedback": "Phản hồi",
         "resetsettings": "Đặt lại Cài đặt",
-        menuCloseText: 'Đóng',
+        "menuCloseText": 'Đóng',
         // Shortcuts
         "shortcutsText": "Phím tắt",
         "enableShortcutsText": "Bật/tắt phím tắt",
@@ -703,9 +703,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Chào buổi sáng!",
-            afternoon: "Chào buổi chiều!",
-            evening: "Chào buổi tối!"
+            "morning": "Chào buổi sáng!",
+            "afternoon": "Chào buổi chiều!",
+            "evening": "Chào buổi tối!"
         }
     },
 
@@ -714,7 +714,7 @@ const translations = {
         // Menu Items
         "feedback": "Обратная связь",
         "resetsettings": "Сброс настроек",
-        menuCloseText: 'Закрыть',
+        "menuCloseText": 'Закрыть',
         // Shortcuts
         "shortcutsText": "Ярлыки",
         "enableShortcutsText": "Включить/Отключить ярлыки",
@@ -779,9 +779,9 @@ const translations = {
 
         // Greeting
         greeting: {
-            morning: "Доброе утро!",
-            afternoon: "Добрый день!",
-            evening: "Добрый вечер!"
+            "morning": "Доброе утро!",
+            "afternoon": "Добрый день!",
+            "evening": "Добрый вечер!"
         }
     }
 };
