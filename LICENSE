@@ -1,9 +1,13 @@
 # License
+
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. If you encounter bugs or issues, please report them in our GitHub repository, and we will do our best to address them. However, we are not responsible for fixing issues in modified versions of the software that were not derived from the original code.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You cannot sell this software or use it for commercial purposes.
-
-Author: XengShi
+Author: XengShi  
 Year: 2023-2024
+
+# Additional Information
+
+- You cannot sell this software or use it for commercial purposes.
+- If you encounter bugs or issues, please report them in our GitHub repository, and we will do our best to address them. However, we are not responsible for fixing issues in modified versions of the software that were not derived from the original code.
