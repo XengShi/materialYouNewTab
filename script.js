@@ -563,6 +563,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
 
+    // Make entire search-engine div clickable
+    document.querySelectorAll(".search-engine").forEach((engineDiv) => {
+        engineDiv.addEventListener("click", () => {
+            const radioButton = engineDiv.querySelector('input[type="radio"]');
+            radioButton.checked = true;
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
+    
     // Function to perform search
     function performSearch() {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
