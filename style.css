@@ -517,9 +517,8 @@ body {
 
 .tempUnit {
     font-size: 0.4em;
-    vertical-align: super;
     position: relative;
-    top: -0.25em;
+    top: -1.15em;
     color: var(--darkColor-blue);
 }
 
