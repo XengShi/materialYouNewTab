@@ -955,6 +955,7 @@ body {
     bottom: var(--gap);
     margin: auto;
     display: flex;
+    cursor: pointer;
 }
 
 .aiToolsCont .hangno {
@@ -977,7 +978,7 @@ body {
 .aiToolsCont .hangno .label {
     font-size: 1rem;
     color: var(--textColorDark-blue);
-    cursor: default;
+    cursor: pointer;
 }
 
 .aiToolsCont .toolsCont {
@@ -1624,7 +1625,6 @@ input:checked + .toggle:before {
     right: 0;
     border-radius: 100%;
     z-index: 2;
-    cursor: pointer;
 }
 
 .languageIcon {
@@ -1634,7 +1634,6 @@ input:checked + .toggle:before {
     right: 0;
     border-radius: 100%;
     z-index: 2;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
