@@ -319,7 +319,7 @@ const translations = {
         // Menu Items
         "feedback": "Zpětná vazba",
         "resetsettings": "Resetovat nastavení",
-        "menuCloseText": 'Zavřít',
+        "menuCloseText": "Zavřít",
         // Shortcuts
         "shortcutsText": "Zkratky",
         "enableShortcutsText": "Zobrazí zkratky",
@@ -367,8 +367,8 @@ const translations = {
 
         // Body Items
         // Calendar
-        "days": ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
-        "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+        "days": ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"],
+        "months": ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
         // End of Calendar
 
         // Weather
