@@ -30,12 +30,12 @@
     --textColorDark-red: #411B1B;
 
     /* 🟡🟡🟡 */
-    --bg-color-yellow: #f6f485;
+    --bg-color-yellow: #FFEB80;
     --accentLightTint-yellow: #fff8dd;
-    --darkerColor-yellow: #c89318;
-    --darkColor-yellow: #f4c837;
+    --darkerColor-yellow: #947f04;
+    --darkColor-yellow: #ffcc00;
     --textColorDark-yellow: #494420;
-    --shortcutColor-yellow: #f4c837;
+    --shortcutColor-yellow: #ffcc00;
     --shortcutIconColor-yellow:#fff8dd;
 
     /* 🟢🟢🟢 */
@@ -1575,7 +1575,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f4c837;
+    background-color: #ffcc00;
 }
 
 .colorsContainer input[value="red"] {
