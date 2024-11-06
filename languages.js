@@ -327,7 +327,7 @@ const translations = {
         // Menu Items
         "feedback": "Zpětná vazba",
         "resetsettings": "Resetovat nastavení",
-        "menuCloseText": 'Zavřít',
+        "menuCloseText": "Zavřít",
         // Shortcuts
         "shortcutsText": "Zkratky",
         "enableShortcutsText": "Zobrazí zkratky",
@@ -362,7 +362,7 @@ const translations = {
         // Location
         "UserLocText": "Zadejte svou polohu",
         "UserLocSubtext": "Pokud není správná poloha počasí",
-        "userLoc": "Město nebo souřadnice (šířka,délka)",
+        "userLoc": "Město nebo souřadnice (šířka, délka)",
         "InputOptionsButton": "Co lze zadat",
         "saveLoc": "Uložit",
         // Weather
@@ -375,8 +375,8 @@ const translations = {
 
         // Body Items
         // Calendar
-        "days": ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
-        "months": ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+        "days": ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"],
+        "months": ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"],
         // End of Calendar
 
         // Weather
