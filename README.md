@@ -190,7 +190,7 @@ If you encounter any bugs or issues, please [submit an issue](https://github.com
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0) License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
 > GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
 > Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
