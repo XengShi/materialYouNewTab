@@ -650,6 +650,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor: pointer;
 }
 
 .searchEnginesContainer .search-engine svg {
@@ -664,6 +665,7 @@ body {
 
 .searchEnginesContainer .search-engine label {
     margin: 0 16px 0 10px;
+    cursor: pointer;
 }
 
 /* -----------Radio Button Customizing------------ */
