@@ -6,9 +6,12 @@ With a variety of themes to choose from, you can personalize your browser accord
 
 
 ![Screenshot 1](https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png)
-![Screenshot 3](https://i.postimg.cc/yVcHL9Hq/preview2.webp)
-![Screenshot 4](https://i.postimg.cc/Ch0VX1hR/preview3.webp)
-![Screenshot 4](https://i.postimg.cc/FFCGNWt0/material-you-new-Tab-nhsoft.webp)
+![Screenshot 2](https://i.postimg.cc/XVm4D6dy/Material-You-New-Tab-windows-chrome.png)
+![Screenshot 3](https://i.postimg.cc/Fhb0Xcvh/Material-You-New-Tab-hindi-lang.png)
+![Screenshot 4](https://i.postimg.cc/PX0JZ829/material-you-newtab.webp)
+![Screenshot 5](https://i.postimg.cc/XNpdFDt8/chinese-lang.png)
+![Screenshot 6](https://i.postimg.cc/JMv714m0/setting-page.png)
+![Screenshot 7](https://i.postimg.cc/NG0G0K59/setting-page-end.png)
 
 
 #### 🔴🟡🟢 Test live : https://xengshi.github.io/materialYouNewTab/
