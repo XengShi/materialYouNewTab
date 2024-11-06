@@ -368,7 +368,7 @@ const translations = {
         // Body Items
         // Calendar
         "days": ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"],
-        "months": ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
+        "months": ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"],
         // End of Calendar
 
         // Weather
