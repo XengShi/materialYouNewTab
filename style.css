@@ -29,12 +29,14 @@
     --darkColor-red: #EC4343;
     --textColorDark-red: #411B1B;
 
-    /*Peela*/
-    --bg-color-yellow: #edea8c;
-    --accentLightTint-yellow: #fff2c2;
-    --darkerColor-yellow: #CCA243;
-    --darkColor-yellow: #f4d837;
-    --textColorDark-yellow: #5B5428;
+    /* 🟡🟡🟡 */
+    --bg-color-yellow: #FFEB80;
+    --accentLightTint-yellow: #fff8dd;
+    --darkerColor-yellow: #947f04;
+    --darkColor-yellow: #ffcc00;
+    --textColorDark-yellow: #494420;
+    --shortcutColor-yellow: #ffcc00;
+    --shortcutIconColor-yellow:#fff8dd;
 
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
@@ -71,12 +73,12 @@
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
 
-    /* Dark Kaala */
+    /* ⚫⚫⚫ */
     --bg-color-dark: #505050;
     --accentLightTint-dark: #818181;
-    --darkerColor-dark: #010208;
+    --darkerColor-dark: #1D1D1D;
     --darkColor-dark: #434343;
-    --textColorDark-dark: #010208;
+    --textColorDark-dark: #111111;
 
     /* Global variables */
     --gap: 30px;
@@ -1573,7 +1575,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f4d837;
+    background-color: #ffcc00;
 }
 
 .colorsContainer input[value="red"] {
