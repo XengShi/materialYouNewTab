@@ -93,6 +93,13 @@ For a step-by-step installation guide, watch the video below:
 
 ![Screenshot 2](https://i.postimg.cc/MqPSg5NR/brave.png)
 
+## License
+
+Copyright (c) 2023-2024 XengShi
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+
 ## Feedback
 
 We value your feedback! If you have any suggestions, ideas, or questions, please don't hesitate to reach out to us via  
