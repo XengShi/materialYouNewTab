@@ -33,14 +33,14 @@
     --shortcutColor-red: #EC4343;
     --shortcutIconColor-red:#ffe7e7;
 
-    /*Peela*/
-    --bg-color-yellow: #edea8c;
-    --accentLightTint-yellow: #fff2c2;
-    --darkerColor-yellow: #CCA243;
-    --darkColor-yellow: #f4d837;
-    --textColorDark-yellow: #5B5428;
-    --shortcutColor-yellow: #f4d837;
-    --shortcutIconColor-yellow:#fff2c2;
+    /* 🟡🟡🟡 */
+    --bg-color-yellow: #FFEB80;
+    --accentLightTint-yellow: #fff8dd;
+    --darkerColor-yellow: #947f04;
+    --darkColor-yellow: #ffcc00;
+    --textColorDark-yellow: #494420;
+    --shortcutColor-yellow: #ffcc00;
+    --shortcutIconColor-yellow:#fff8dd;
 
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
@@ -87,12 +87,12 @@
     --shortcutColor-purple: #9563B5;
     --shortcutIconColor-purple:#E9E2F3;
 
-    /* Dark Kaala */
+    /* ⚫⚫⚫ */
     --bg-color-dark: #505050;
     --accentLightTint-dark: #818181;
-    --darkerColor-dark: #010208;
+    --darkerColor-dark: #1D1D1D;
     --darkColor-dark: #434343;
-    --textColorDark-dark: #010208;
+    --textColorDark-dark: #111111;
     --shortcutColor-dark: #434343;
     --shortcutIconColor-dark:#818181;
 
@@ -680,6 +680,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor: pointer;
 }
 
 .searchEnginesContainer .search-engine svg {
@@ -694,6 +695,7 @@ body {
 
 .searchEnginesContainer .search-engine label {
     margin: 0 16px 0 10px;
+    cursor: pointer;
 }
 
 /* -----------Radio Button Customizing------------ */
@@ -1605,7 +1607,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f4d837;
+    background-color: #ffcc00;
 }
 
 .colorsContainer input[value="red"] {
