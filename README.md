@@ -24,9 +24,9 @@
   <a href="#features">Features</a> •
   <a href="#additional-features">Additional Features</a> •
   <a href="#additional-features">Currently Supported Languages</a> •
-  <a href="#installation-guide">Installation Guide</a> •
-  <a href="#credits">Usage</a>
+  <a href="#installation-guide">Installation Guide</a>
 <br>
+  <a href="#credits">Usage</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#issues-and-support">Issues and Support</a> •
   <a href="#license">License</a>
