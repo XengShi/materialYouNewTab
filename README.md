@@ -1,3 +1,4 @@
+<!-- Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST  -->
 <h1 align="center">
 
   <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="50"></a>
@@ -33,7 +34,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#license">License</a>
 </p>
 
-### Screenshots
 <img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
 <table>
   <tr>
@@ -78,11 +78,11 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 | Language                                                                           | Code | Translator(s)                                                                          |
 |------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
-| <img src='https://flagcdn.com/gb.svg' width=20> &nbsp; **English**                 | gb   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
+| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                 | en   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
 | <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla - বাংলা**          | bd   | [It'z RJ](https://github.com/itz-rj-here/), [Prem Kumar](https://github.com/prem-k-r/) |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文**          | cn   | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文**          | zh   | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
 | <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech - Čeština**         | cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी**            | in   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी**            | hi   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian - Italiano**      | it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
 | <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português**  | pt   | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский**       | ru   | [giwi](https://github.com/giwih/)                                                      |
