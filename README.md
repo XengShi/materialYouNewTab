@@ -6,9 +6,11 @@
   <br>
 </h1>
 
-<p style="text-align: center;">
-   Material You NewTab is a versatile browser extension that personalizes your New Tab page with customizable themes and a welcoming message, all while integrating seamlessly with your preferred search engine.
-</p>
+<div align="center">
+
+Material You NewTab is a versatile browser extension that personalizes your New Tab page with customizable themes and a welcoming message, all while integrating seamlessly with your preferred search engine.
+
+</div>
 
 <div align="center">
 
