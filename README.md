@@ -70,8 +70,8 @@
 | <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português** | [Maycon Vitor Correa](https://github.com/MestreWalla/) |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский** | [giwi](https://github.com/giwih/) |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish - Türkçe** | [Nobody9512](https://github.com/Nobody9512/) |
-| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese - Tiếng Việt** | [Diep](https://github.com/diepdo1810/) |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek - O'zbek** | [Firdavs](https://github.com/Firdavs9512/) |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese - Tiếng Việt** | [Diep](https://github.com/diepdo1810/) |
 
 ## 📥 Installation Guide
 
