@@ -335,7 +335,7 @@ const translations = {
         "editShortcutsList": "Uložené zkratky",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
-        "adaptiveIconInfoText": "Ikony zkratek se zakulatí",
+        "adaptiveIconInfoText": "Ikony zkratek se zmenší",
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         // Digital Clock
