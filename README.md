@@ -63,12 +63,12 @@
 |-|-|
 | <img src='https://flagcdn.com/gb.svg' width=20> &nbsp; **English** | [XengShi](https://github.com/XengShi/) |
 | <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla - বাংলা** | [It'z RJ](https://github.com/itz-rj-here/) |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文** | [Unidentified]() |
-| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech - Čeština** | [Unidentified]() |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी** | [Unidentified]() |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文** | [Guy Berryman](https://github.com/Guy-Berryman) |
+| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech - Čeština** | [Michal Šmahel](https://github.com/ceskyDJ/) |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी** | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/) |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian - Italiano** | [Claudio Di Maio](https://github.com/ZiClaud/) |
-| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português** | [Unidentified]() |
-| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский** | [Unidentified]() |
+| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português** | [Maycon Vitor Correa](https://github.com/MestreWalla/) |
+| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский** | [giwi](https://github.com/giwih/) |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish - Türkçe** | [Nobody9512](https://github.com/Nobody9512/) |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese - Tiếng Việt** | [Diep](https://github.com/diepdo1810/) |
 
