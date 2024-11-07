@@ -1,11 +1,10 @@
 <h1 align="center">
-  <br>
-  <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://raw.githubusercontent.com/XengShi/materialYouNewTab/refs/heads/main/favicon/icon.png" width="200"></a>
+
+  <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="40"></a>
   <br>
   Material You NewTab
-  <br>
-</h1>
 
+</h1>
 <div align="center">
 
 Material You NewTab is a versatile browser extension that personalizes your New Tab page with customizable themes and a welcoming message, all while integrating seamlessly with your preferred search engine.
