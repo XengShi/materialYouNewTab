@@ -37,21 +37,26 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 <img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
 <table>
   <tr>
-    <td><img src="https://i.ibb.co/f46wKwW/Material-You-New-Tab-windows-chrome.png" alt="Screenshot 2" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.postimg.cc/Fhb0Xcvh/Material-You-New-Tab-hindi-lang.png" alt="Screenshot 3" width="100%"></td>
+    <td><img src="https://github.com/user-attachments/assets/d42e5373-2306-45fc-9c8b-469cc9dd29fc" alt="Screenshot 2" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://github.com/user-attachments/assets/8bdb3caa-6f6c-409f-875d-8a6a85148870" alt="Screenshot 3" width="100%"></td>
   </tr>
 </table>
 <table>
   <tr>
-    <td><img src="https://i.postimg.cc/PX0JZ829/material-you-newtab.webp" alt="Screenshot 4" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.postimg.cc/XNpdFDt8/chinese-lang.png" alt="Screenshot 5" width="100%"></td>
+    <td><img src="https://github.com/user-attachments/assets/9252841f-610e-47c6-86b7-5be81791c641" alt="Screenshot 4" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://github.com/user-attachments/assets/c1e30dcd-a933-47cf-9f1d-a07080bdd5ed" alt="Screenshot 5" width="100%" border="0"></td>
   </tr>
 </table>
-
 <table>
   <tr>
-    <td><img src="https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png" alt="Screenshot 6" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 7" width="100%"></td>
+    <td><img src="https://i.postimg.cc/Fhb0Xcvh/Material-You-New-Tab-hindi-lang.png" alt="Screenshot 6" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://i.postimg.cc/PX0JZ829/material-you-newtab.webp" alt="Screenshot 7" width="100%"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png" alt="Screenshot 8" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 9" width="100%"></td>
   </tr>
 </table>
 
@@ -78,11 +83,11 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 | Language                                                                           | Code | Translator(s)                                                                          |
 |------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
-| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                 | en   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
-| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla - বাংলা**          | bd   | [It'z RJ](https://github.com/itz-rj-here/), [Prem Kumar](https://github.com/prem-k-r/) |
+| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                 | en   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)     |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla - বাংলা**          | bd   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/) |
 | <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文**          | zh   | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
 | <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech - Čeština**         | cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी**            | hi   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी**            | hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)     |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian - Italiano**      | it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
 | <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português**  | pt   | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский**       | ru   | [giwi](https://github.com/giwih/)                                                      |
