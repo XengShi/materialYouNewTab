@@ -24,9 +24,9 @@
   <a href="#features">Features</a> •
   <a href="#additional-features">Additional Features</a> •
   <a href="#additional-features">Currently Supported Languages</a> •
-  <a href="#installation-guide">Installation Guide</a> •
-  <a href="#credits">Usage</a>
+  <a href="#installation-guide">Installation Guide</a>
 <br>
+  <a href="#credits">Usage</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#issues-and-support">Issues and Support</a> •
   <a href="#license">License</a>
@@ -70,7 +70,7 @@
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian - Italiano** | [Claudio Di Maio](https://github.com/ZiClaud/) |
 | <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português** | [Maycon Vitor Correa](https://github.com/MestreWalla/) |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский** | [giwi](https://github.com/giwih/) |
-| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish - Türkçe** | [Nobody9512](https://github.com/Nobody9512/) |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish - Türkçe** | [Nobody](https://github.com/Nobody9512/) |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek - O'zbek** | [Firdavs](https://github.com/Firdavs9512/) |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese - Tiếng Việt** | [Diep](https://github.com/diepdo1810/) |
 
@@ -203,6 +203,7 @@ Contributions are welcome! If you’d like to contribute:
 If you encounter any bugs or issues, please [submit an issue](https://github.com/XengShi/materialYouNewTab/issues) on the GitHub repository. 
 
 ## 📜 License
+Copyright (C) 2023-2024 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0) License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
