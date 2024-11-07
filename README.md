@@ -1,6 +1,6 @@
 <h1 align="center">
 
-  <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="40"></a>
+  <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="50"></a>
   <br>
   Material You NewTab
 
@@ -33,13 +33,28 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#license">License</a>
 </p>
 
-![Screenshot 1](https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png)
-![Screenshot 2](https://i.ibb.co/f46wKwW/Material-You-New-Tab-windows-chrome.png)
-![Screenshot 3](https://i.postimg.cc/Fhb0Xcvh/Material-You-New-Tab-hindi-lang.png)
-![Screenshot 4](https://i.postimg.cc/PX0JZ829/material-you-newtab.webp)
-![Screenshot 5](https://i.postimg.cc/XNpdFDt8/chinese-lang.png)
-![Screenshot 6](https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png)
-![Screenshot 7](https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png)
+### Screenshots
+<img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
+<table>
+  <tr>
+    <td><img src="https://i.ibb.co/f46wKwW/Material-You-New-Tab-windows-chrome.png" alt="Screenshot 2" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://i.postimg.cc/Fhb0Xcvh/Material-You-New-Tab-hindi-lang.png" alt="Screenshot 3" width="100%"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://i.postimg.cc/PX0JZ829/material-you-newtab.webp" alt="Screenshot 4" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://i.postimg.cc/XNpdFDt8/chinese-lang.png" alt="Screenshot 5" width="100%"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png" alt="Screenshot 6" width="100%" style="margin-right: 1%;"></td>
+    <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 7" width="100%"></td>
+  </tr>
+</table>
+
 
 #### 🔴🟡🟢 Test live : https://xengshi.github.io/materialYouNewTab/
 
@@ -111,6 +126,8 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
      -  ![Brave](https://img.icons8.com/color/20/000000/brave-web-browser.png) Brave: `brave://extensions`
 
+     - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera: `opera://extensions`
+
    - **Enable Developer Mode**:
      - Turn on **Developer Mode** in the extensions page.
 
@@ -119,11 +136,9 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 Below are screenshots of the process to guide you through each step visually.
 
-![Screenshot 1](https://i.postimg.cc/w6JYypvc/chrome.png)
-
-![Screenshot 2](https://i.postimg.cc/0ksR7BKg/edge.png)
-
-![Screenshot 3](https://i.postimg.cc/MqPSg5NR/brave.png)
+<img src="https://i.postimg.cc/w6JYypvc/chrome.png" alt="Screenshot 1" width="569">
+<img src="https://i.postimg.cc/0ksR7BKg/edge.png" alt="Screenshot 2" width="569">
+<img src="https://i.postimg.cc/MqPSg5NR/brave.png" alt="Screenshot 3" width="569">
 
 ---
 
@@ -132,6 +147,9 @@ Below are screenshots of the process to guide you through each step visually.
 1. **Install from Mozilla Extensions Store**:
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
+  <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
+
+  
    **Or** follow the manual steps below:
 
 2. **Manual Installation**:
@@ -142,10 +160,6 @@ Below are screenshots of the process to guide you through each step visually.
    - **Load Temporary Add-on**:
      - Go to `about:debugging#/runtime/this-firefox`, select **"This Firefox"**, then click **Load Temporary Add-on**.
      - Browse and select the updated `manifest.json`.
-
-Below are screenshots of the process to guide you through each step visually.
-
-![Screenshot](https://i.postimg.cc/bPW2fHX7/FireFox.png)
 
 ---
 
