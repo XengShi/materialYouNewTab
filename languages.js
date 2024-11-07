@@ -12,7 +12,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reset Settings",
-        "menuCloseText": 'Close',
+        "menuCloseText": "Close",
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Show saved shortcuts",
@@ -93,7 +93,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Redefinir Configurações",
-        "menuCloseText": 'Fechar',
+        "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
         "enableShortcutsText": "Ativar/desativar atalhos",
@@ -170,7 +170,7 @@ const translations = {
         // Menu Items
         "feedback": "反馈",
         "resetsettings": "重置设置",
-        "menuCloseText": '关闭',
+        "menuCloseText": "关闭",
         // Shortcuts
         "shortcutsText": "快捷方式",
         "enableShortcutsText": "启用/禁用快捷方式",
@@ -408,7 +408,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reimposta Impostazioni",
-        "menuCloseText": 'Chiudi',
+        "menuCloseText": "Chiudi",
         // Shortcuts
         "shortcutsText": "Scorciatoie",
         "enableShortcutsText": "Abilita/disabilita scorciatoie",
@@ -484,7 +484,7 @@ const translations = {
         // Menu Items
         "feedback": "Geri Bildirim",
         "resetsettings": "Ayarları Sıfırla",
-        "menuCloseText": 'Kapat',
+        "menuCloseText": "Kapat",
         // Shortcuts
         "shortcutsText": "Kısayollar",
         "enableShortcutsText": "Kaydedilen kısayolları göster",
@@ -646,7 +646,7 @@ const translations = {
         // Menu Items
         "feedback": "Phản hồi",
         "resetsettings": "Đặt lại Cài đặt",
-        "menuCloseText": 'Đóng',
+        "menuCloseText": "Đóng",
         // Shortcuts
         "shortcutsText": "Phím tắt",
         "enableShortcutsText": "Bật/tắt phím tắt",
@@ -722,7 +722,7 @@ const translations = {
         // Menu Items
         "feedback": "Обратная связь",
         "resetsettings": "Сброс настроек",
-        "menuCloseText": 'Закрыть',
+        "menuCloseText": "Закрыть",
         // Shortcuts
         "shortcutsText": "Ярлыки",
         "enableShortcutsText": "Включить/Отключить ярлыки",
@@ -791,7 +791,88 @@ const translations = {
             "afternoon": "Добрый день!",
             "evening": "Добрый вечер!"
         }
-    }
+    },
+
+    // Uzbek
+    "uz": {
+        // Menu Items
+        "feedback": "Fikr-mulohaza",
+        "resetsettings": "Sozlamalarni tiklash",
+        "menuCloseText": 'Yopish',
+        // Shortcuts
+        "shortcutsText": "Tezkor tugmalar",
+        "enableShortcutsText": "Tezkor tugmalarni ko'rsatish",
+        "editShortcutsText": "Tezkor tugmalarni tahrirlash",
+        "editShortcutsList": "Saqlangan Tezkor tugmalar",
+        "shortcutsInfoText": "Qaysi tezkor tugmalarni ko'rsatishni tanlang",
+        "adaptiveIconText": "Adaptiv ikonlar shakllari",
+        "adaptiveIconInfoText": "Tezkor tugmalar doimiy ravishda doiraviy bo'ladi",
+        "ai_tools_button": "AI-instrumentlar",
+        "enable_ai_tools": "Tezkor tugmalarni ko'rsatish AI-instrumentlar",
+        // Digital Clock
+        "digitalclocktittle": "Digital Clock",
+        "digitalclockinfo": "Digital Clockga o'tish",
+        "timeformattittle": "12-soat format",
+        "timeformatinfo": "12-soat formatni qo'llang",
+        "greetingtittle": "Salomlashish",
+        "greetinginfo": "Savatchadagi text pastdagi salomlashishni ko'rsatish",
+        // Misc
+        "userTextTitle": "Tahrirlash mumkin bo'lgan matn",
+        "userTextInfo": "Savatchadagi text pastdagi salomlashishni ko'rsatish",
+        "fahrenheitCelsiusCheckbox": "Fahrenheitga o'tish",
+        "fahrenheitCelsiusText": "Sahifani yangilash, o'zgarishlarni qo'llash",
+        "search_suggestions_button": "Izlash tavsiyalari",
+        "search_suggestions_text": "Izlash tavsiyalarini yoqish",
+        // Proxy
+        "useproxytitletext": "Proxy Bypass",
+        "useproxyText": "Izlash tavsiyalari ishlamaydi",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "O'zingizning CORS bypass proxyni qo'shing",
+        "HostproxyButton": "O'zingizning proxyni joylash",
+        "saveproxy": "Saqlash",
+        // Location
+        "UserLocText": "O'zingizning joylashganligingizni kiriting",
+        "UserLocSubtext": "Agar havo joylashuvi noto'g'ri bo'lsa",
+        "userLoc": "O'zingizning shahringiz yoki koordinatalaringiz (Kenglik, Uzunlik)",
+        "InputOptionsButton": "Kirish imkoniyatlari",
+        "saveLoc": "Saqlash",
+        // Weather
+        "WeatherApiText": "O'zingizning WeatherAPI kalitini kiriting",
+        "WeatherApiSubtext": "Agar havo funktsiyasi ishlamaydi",
+        "userAPI": "O'zingizning WeatherAPI kaliti",
+        "LearnMoreButton": "Bilish",
+        "saveAPI": "Saqlash",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'],
+        "months": ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Namlik",
+        "feelsLike": "Uxshaydi",
+        "location": "Yer",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Salom! Siz bugun qanday holatdasiz?",
+        "enterBtn": "Izlash",
+        "searchPlaceholder": "Sizning savolingiz...",
+        "searchWithHint": "Bular bilan izlash",
+        "ai_tools": "AI Texnikalar",
+        "userText": "Buni tahrirlash",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "Xayrli tong!",
+            "afternoon": "Xayrli tushlik!",
+            "evening": "Xayrli kech!"
+        },
+    },
+
 };
 
 const numberMappings = {
@@ -803,7 +884,7 @@ const numberMappings = {
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
     // Define languages that require special decimal formatting
-    const specialDecimalLanguages = ['cs']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz']; // Add more languages here as needed
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
