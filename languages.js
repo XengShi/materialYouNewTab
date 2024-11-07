@@ -12,7 +12,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reset Settings",
-        "menuCloseText": 'Close',
+        "menuCloseText": "Close",
         // Shortcuts
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Show saved shortcuts",
@@ -93,7 +93,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Redefinir Configurações",
-        "menuCloseText": 'Fechar',
+        "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
         "enableShortcutsText": "Ativar/desativar atalhos",
@@ -170,7 +170,7 @@ const translations = {
         // Menu Items
         "feedback": "反馈",
         "resetsettings": "重置设置",
-        "menuCloseText": '关闭',
+        "menuCloseText": "关闭",
         // Shortcuts
         "shortcutsText": "快捷方式",
         "enableShortcutsText": "启用/禁用快捷方式",
@@ -408,7 +408,7 @@ const translations = {
         // Menu Items
         "feedback": "Feedback",
         "resetsettings": "Reimposta Impostazioni",
-        "menuCloseText": 'Chiudi',
+        "menuCloseText": "Chiudi",
         // Shortcuts
         "shortcutsText": "Scorciatoie",
         "enableShortcutsText": "Abilita/disabilita scorciatoie",
@@ -484,7 +484,7 @@ const translations = {
         // Menu Items
         "feedback": "Geri Bildirim",
         "resetsettings": "Ayarları Sıfırla",
-        "menuCloseText": 'Kapat',
+        "menuCloseText": "Kapat",
         // Shortcuts
         "shortcutsText": "Kısayollar",
         "enableShortcutsText": "Kaydedilen kısayolları göster",
@@ -646,7 +646,7 @@ const translations = {
         // Menu Items
         "feedback": "Phản hồi",
         "resetsettings": "Đặt lại Cài đặt",
-        "menuCloseText": 'Đóng',
+        "menuCloseText": "Đóng",
         // Shortcuts
         "shortcutsText": "Phím tắt",
         "enableShortcutsText": "Bật/tắt phím tắt",
@@ -722,7 +722,7 @@ const translations = {
         // Menu Items
         "feedback": "Обратная связь",
         "resetsettings": "Сброс настроек",
-        "menuCloseText": 'Закрыть',
+        "menuCloseText": "Закрыть",
         // Shortcuts
         "shortcutsText": "Ярлыки",
         "enableShortcutsText": "Включить/Отключить ярлыки",
@@ -884,7 +884,7 @@ const numberMappings = {
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
     // Define languages that require special decimal formatting
-    const specialDecimalLanguages = ['cs']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz']; // Add more languages here as needed
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
