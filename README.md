@@ -203,6 +203,7 @@ Contributions are welcome! If you’d like to contribute:
 If you encounter any bugs or issues, please [submit an issue](https://github.com/XengShi/materialYouNewTab/issues) on the GitHub repository. 
 
 ## 📜 License
+Copyright (C) 2023-2024 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0) License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
