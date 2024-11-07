@@ -158,13 +158,6 @@ Below are screenshots of the process to guide you through each step visually.
 
 ---
 
-### Installation Guide (Additional Notes)
-
-- **Browser Permissions**:
-  - Some browsers might ask for permissions related to location or custom settings to provide accurate weather data and personalized features. Make sure to allow these permissions if prompted during installation.
-
----
-
 ### Installation Video
 
 For a step-by-step walkthrough, watch this [installation guide video](https://youtu.be/P4ryQPixfw8).
