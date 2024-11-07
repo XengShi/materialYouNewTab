@@ -572,7 +572,7 @@ const translations = {
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
-        "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন করুন",
+        "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
         // Digital Clock
