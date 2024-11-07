@@ -40,7 +40,7 @@
 ![Screenshot 6](https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png)
 ![Screenshot 7](https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png)
 
-#### 🔴🟡🟢 Test live : <a href="https://xengshi.github.io/materialYouNewTab/" target="_blank">https://xengshi.github.io/materialYouNewTab/</a>
+#### 🔴🟡🟢 Test live : https://xengshi.github.io/materialYouNewTab/
 
 ## ✨ Features
 
