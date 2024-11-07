@@ -252,7 +252,7 @@ const translations = {
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
-        "shortcutsInfoText": "कौन से शॉर्टकट दिखाए जाएँ, निर्धारित करें",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
