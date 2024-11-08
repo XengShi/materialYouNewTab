@@ -636,11 +636,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
 // Function to apply the selected theme
 // 🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
+const storedTheme = localStorage.getItem(themeStorageKey);
 
 const applySelectedTheme = (colorValue) => {
     if (colorValue !== "blue") {
@@ -649,15 +649,56 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
         document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
         document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
+        document.documentElement.style.setProperty('--shortcutColor-blue', `var(--shortcutColor-${colorValue})`);
+        document.documentElement.style.setProperty('--shortcutIconColor-blue', `var(--shortcutIconColor-${colorValue})`);
     } else {
         document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
         document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
         document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
         document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
         document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+        document.documentElement.style.setProperty('--shortcutColor-blue', '#4382EC');
+        document.documentElement.style.setProperty('--shortcutIconColor-blue', '#E2EEFF');
+    }
+
+    // Change the extension icon based on the selected theme
+    const iconPaths = {
+        "blue": "favicon/blue.png",
+        "yellow": "favicon/yellow.png",
+        "red": "favicon/red.png",
+        "green": "favicon/green.png",
+        "cyan": "favicon/cyan.png",
+        "orange": "favicon/orange.png",
+        "purple": "favicon/purple.png",
+        "pink": "favicon/pink.png",
+        "dark": "favicon/dark.png",
+        "amoled": "favicon/amoled.png"
+    };
+
+    // Update the extension icon using chrome.action API
+    chrome.action.setIcon({ path: iconPaths[colorValue] });
+
+    // If you want to update the page favicon as well
+    const faviconLink = document.querySelector("link[rel='icon']");
+    if (faviconLink) {
+        faviconLink.href = iconPaths[colorValue];
+    } else {
+        // If no favicon exists, create a new link element
+        const newFavicon = document.createElement("link");
+        newFavicon.rel = "icon";
+        newFavicon.href = iconPaths[colorValue];
+        document.head.appendChild(newFavicon);
     }
 };
 
+// Apply the stored theme on page load
+if (storedTheme) {
+    applySelectedTheme(storedTheme);
+    const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
+    if (selectedRadioButton) {
+        selectedRadioButton.checked = true;
+    }
+}
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
@@ -669,7 +710,6 @@ radioButtons.forEach(radioButton => {
     });
 });
 // end of Function to apply the selected theme
-
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
