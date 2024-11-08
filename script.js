@@ -675,19 +675,25 @@ const applySelectedTheme = (colorValue) => {
         "amoled": "./favicon/amoled.png"
     };
 
-    // Update the extension icon using chrome.action API
-    chrome.action.setIcon({ path: iconPaths[colorValue] });
+    // Function to update the extension icon based on browser
+    const updateExtensionIcon = (colorValue) => {
+        if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof browser !== "undefined" && browser.browserAction) {
+            // Firefox
+            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof safari !== "undefined") {
+            // Safari
+            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
+        }
+    };
+    updateExtensionIcon(colorValue);
 
-    // If you want to update the page favicon as well
+    // Change the favicon dynamically
     const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink) {
+    if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
-    } else {
-        // If no favicon exists, create a new link element
-        const newFavicon = document.createElement("link");
-        newFavicon.rel = "icon";
-        newFavicon.href = iconPaths[colorValue];
-        document.head.appendChild(newFavicon);
     }
 };
 
@@ -710,6 +716,7 @@ radioButtons.forEach(radioButton => {
     });
 });
 // end of Function to apply the selected theme
+
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
