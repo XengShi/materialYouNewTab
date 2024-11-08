@@ -663,16 +663,16 @@ const applySelectedTheme = (colorValue) => {
 
     // Change the extension icon based on the selected theme
     const iconPaths = {
-        "blue": "favicon/blue.png",
-        "yellow": "favicon/yellow.png",
-        "red": "favicon/red.png",
-        "green": "favicon/green.png",
-        "cyan": "favicon/cyan.png",
-        "orange": "favicon/orange.png",
-        "purple": "favicon/purple.png",
-        "pink": "favicon/pink.png",
-        "dark": "favicon/dark.png",
-        "amoled": "favicon/amoled.png"
+        "blue": "./favicon/blue.png",
+        "yellow": "./favicon/yellow.png",
+        "red": "./favicon/red.png",
+        "green": "./favicon/green.png",
+        "cyan": "./favicon/cyan.png",
+        "orange": "./favicon/orange.png",
+        "purple": "./favicon/purple.png",
+        "pink": "./favicon/pink.png",
+        "dark": "./favicon/dark.png",
+        "amoled": "./favicon/amoled.png"
     };
 
     // Update the extension icon using chrome.action API
