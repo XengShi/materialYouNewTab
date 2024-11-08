@@ -993,11 +993,11 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
             `;
 
-    const FAVICON_CANDIDATES = (hostname) => [
-        `https://${hostname}/apple-touch-icon-180x180.png`,
-        `https://${hostname}/apple-touch-icon-120x120.png`,
-        `https://${hostname}/apple-touch-icon.png`
-    ];
+    // const FAVICON_CANDIDATES = (hostname) => [
+    //     `https://${hostname}/apple-touch-icon-180x180.png`,
+    //     `https://${hostname}/apple-touch-icon-120x120.png`,
+    //     `https://${hostname}/apple-touch-icon.png`
+    // ];
 
     const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
         `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
@@ -1203,7 +1203,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!icon) { // if we had to pick the fallback, attempt to get a better image in the background.
             icon = getFallbackFavicon(shortcutUrl);
-            getBestIconUrl(shortcutUrl).then((iconUrl) => icon.src = iconUrl).catch();
+            // getBestIconUrl(shortcutUrl).then((iconUrl) => icon.src = iconUrl).catch();
         }
 
         const iconContainer = document.createElement("div");
@@ -1427,15 +1427,15 @@ document.addEventListener("DOMContentLoaded", function () {
     * @param urlString The url of the website for which the favicon is requested
     * @return {Promise<String>} Potentially the favicon url
     */
-    async function getBestIconUrl(urlString) {
-        const hostname = new URL(urlString).hostname;
-        try {
-            // Wait for filterFavicon to resolve with a valid URL
-            return await filterFavicon(FAVICON_CANDIDATES(hostname));
-        } catch (error) {
-            return Promise.reject();
-        }
-    }
+    // async function getBestIconUrl(urlString) {
+    //     const hostname = new URL(urlString).hostname;
+    //     try {
+    //         // Wait for filterFavicon to resolve with a valid URL
+    //         return await filterFavicon(FAVICON_CANDIDATES(hostname));
+    //     } catch (error) {
+    //         return Promise.reject();
+    //     }
+    // }
 
     /**
     * This function uses Google's API to immediately get a favicon,
