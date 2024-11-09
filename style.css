@@ -24,7 +24,7 @@
 
 :root {
     /* 🔵🔵🔵 */
-    /* ⚠️ Please don't change the color value for this one (if ? then you have to change all colorCode in JavaScript file too */
+    /* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
     --bg-color-blue: #BBD6FD;
     --accentLightTint-blue: #E2EEFF;
     --darkerColor-blue: #3569b2;
@@ -39,11 +39,11 @@
     --textColorDark-red: #411B1B;
 
     /* 🟡🟡🟡 */
-    --bg-color-yellow: #FFEB80;
-    --accentLightTint-yellow: #fff8dd;
-    --darkerColor-yellow: #947f04;
-    --darkColor-yellow: #ffcc00;
-    --textColorDark-yellow: #494420;
+    --bg-color-yellow: #ffed80;
+    --accentLightTint-yellow: #fff6c3;
+    --darkerColor-yellow: #ae9502;
+    --darkColor-yellow: #d1a93d;
+    --textColorDark-yellow: #2f2707;
     --shortcutColor-yellow: #ffcc00;
     --shortcutIconColor-yellow:#fff8dd;
 
@@ -55,11 +55,18 @@
     --textColorDark-green: #1B411B;
 
     /* Cyan */
-    --bg-color-cyan: #9bffff;
+    /* --bg-color-cyan: #9bffff;
     --accentLightTint-cyan: #d5ffff;
     --darkerColor-cyan: #5E9CA0;
     --darkColor-cyan: #00CED1;
+    --textColorDark-cyan: #08354B; */
+
+    --bg-color-cyan:    #9cefef;
+    --accentLightTint-cyan: #d5ffff;
+    --darkerColor-cyan: #07787f;
+    --darkColor-cyan: #09b2b4;
     --textColorDark-cyan: #08354B;
+
 
     /* 🩷💗🩷 */
     --bg-color-pink: #F9C8D6;
@@ -83,11 +90,14 @@
     --textColorDark-purple: #2D1B3E;
 
     /* ⚫⚫⚫ */
-    --bg-color-dark: #505050;
-    --accentLightTint-dark: #818181;
-    --darkerColor-dark: #1D1D1D;
-    --darkColor-dark: #434343;
-    --textColorDark-dark: #111111;
+
+    --bg-color-dark: #000;
+    --accentLightTint-dark: #3c3c3c;
+    --darkerColor-dark: #eeeeee;
+    --darkColor-dark: #212121;
+    --textColorDark-dark: #d6d6d6;
+
+/* ----------------- */
 
     /* Global variables */
     --gap: 30px;
@@ -857,7 +867,8 @@ body {
     padding: var(--shortcut-bar-gap-and-padding);
     justify-content: left;
     width: fit-content;
-    gap: var(--gap) var(--shortcut-bar-gap-and-padding);
+    /* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
+    gap: 20px;
 }
 
 .shortcutsContainer::before {
@@ -885,8 +896,8 @@ body {
 }
 
 .shortcutsContainer .shortcuts:hover {
-    transform: translateY(-10px) scale(1.06);
-    box-shadow: 0 5px 10px var(--accentLightTint-blue);
+    transform: translateY(-10px) scale(1.06) rotate(10deg);
+    /* box-shadow: 0 5px 10px var(--accentLightTint-blue); */
     border-radius: 100px;
 }
 
