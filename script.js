@@ -636,6 +636,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
 // Function to apply the selected theme
 // 🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
 const radioButtons = document.querySelectorAll('.colorPlate');
@@ -649,16 +650,12 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
         document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
         document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
-        document.documentElement.style.setProperty('--shortcutColor-blue', `var(--shortcutColor-${colorValue})`);
-        document.documentElement.style.setProperty('--shortcutIconColor-blue', `var(--shortcutIconColor-${colorValue})`);
     } else {
         document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
         document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
         document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
         document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
         document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
-        document.documentElement.style.setProperty('--shortcutColor-blue', '#4382EC');
-        document.documentElement.style.setProperty('--shortcutIconColor-blue', '#E2EEFF');
     }
 
     // Change the extension icon based on the selected theme
@@ -672,7 +669,6 @@ const applySelectedTheme = (colorValue) => {
         "purple": "./favicon/purple.png",
         "pink": "./favicon/pink.png",
         "dark": "./favicon/dark.png",
-        "amoled": "./favicon/amoled.png"
     };
 
     // Function to update the extension icon based on browser
