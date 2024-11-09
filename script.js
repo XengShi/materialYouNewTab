@@ -623,7 +623,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
-    // -----The stay changed even if user reload the page---
+    // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
@@ -879,15 +879,6 @@ const applySelectedTheme = (colorValue) => {
         faviconLink.href = iconPaths[colorValue];
     }
 };
-
-// Apply the stored theme on page load
-if (storedTheme) {
-    applySelectedTheme(storedTheme);
-    const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
-    if (selectedRadioButton) {
-        selectedRadioButton.checked = true;
-    }
-}
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
