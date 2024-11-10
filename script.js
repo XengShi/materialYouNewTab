@@ -623,7 +623,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
-    // -----The stay changed even if user reload the page---
+    // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
@@ -641,6 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to apply the selected theme
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
+const storedTheme = localStorage.getItem(themeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
@@ -702,7 +703,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        console.log("Kala"); // Log the message
+        console.log("Kaala"); // Log the message
 
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
@@ -843,9 +844,43 @@ const applySelectedTheme = (colorValue) => {
             element.style.fill = '#212121';
         });
     }
+
+    // Change the extension icon based on the selected theme
+    const iconPaths = {
+        "blue": "./favicon/blue.png",
+        "yellow": "./favicon/yellow.png",
+        "red": "./favicon/red.png",
+        "green": "./favicon/green.png",
+        "cyan": "./favicon/cyan.png",
+        "orange": "./favicon/orange.png",
+        "purple": "./favicon/purple.png",
+        "pink": "./favicon/pink.png",
+        "dark": "./favicon/dark.png",
+    };
+
+    // Function to update the extension icon based on browser
+    const updateExtensionIcon = (colorValue) => {
+        if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof browser !== "undefined" && browser.browserAction) {
+            // Firefox
+            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof safari !== "undefined") {
+            // Safari
+            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
+        }
+    };
+    updateExtensionIcon(colorValue);
+
+    // Change the favicon dynamically
+    const faviconLink = document.querySelector("link[rel='icon']");
+    if (faviconLink && iconPaths[colorValue]) {
+        faviconLink.href = iconPaths[colorValue];
+    }
 };
 
-radioButtons.forEach((radioButton) => {
+radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
         if (this.checked) {
             const colorValue = this.value;
