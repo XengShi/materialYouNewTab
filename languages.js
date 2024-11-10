@@ -880,11 +880,13 @@ const translations = {
 };
 
 // Define the width of the menu container for each language
-// const menuWidths = {
-//     en: '400px',
-//     pt: '400px', 
-//     // Add more languages and widths as needed
-// };
+const menuWidths = {
+    en: '400px',
+    pt: '415px',
+    uz: '455px',
+    vi: '445px',
+    // Add more languages and widths as needed
+};
 
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
@@ -983,17 +985,17 @@ function applyLanguage(lang) {
         }
     }
 
-    // Update the width of the menu container based on the language
-    // const menuCont = document.querySelector('.menuBar .menuCont');
-    // if (menuCont) {
-    //     menuCont.style.width = menuWidths[lang] || menuWidths['en'];
-    // }
-
     // Update hover text for #menuCloseButton
     const menuCloseButton = document.getElementById('menuCloseButton');
     if (menuCloseButton) {
         const hoverText = translations[lang]?.menuCloseText || translations['en'].menuCloseText;
         menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
+    }
+
+    // Update the width of the menu container based on the language
+    const menuCont = document.querySelector('.menuBar .menuCont');
+    if (menuCont) {
+        menuCont.style.width = menuWidths[lang] || menuWidths['en'];
     }
 
     // Save the selected language in localStorage
