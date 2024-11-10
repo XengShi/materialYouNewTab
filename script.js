@@ -1009,7 +1009,6 @@ document.getElementById("0NIHK").onclick = () => {
 }
 
 // ------------search suggestions ---------------
-const resultBox = document.querySelector('.resultBox');
 
 // Show the result box
 function showResultBox() {
