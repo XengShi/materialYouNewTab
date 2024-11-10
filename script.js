@@ -250,11 +250,17 @@ function updateDate() {
         var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
         const dateDisplay = {
-            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`
+            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
+            it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            ru: `${dayName.substring(0, 2)}, ${dayOfMonth} ${monthName.substring(0, 4)}.`,
+            tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
+            uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
+            vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
@@ -375,18 +381,18 @@ function updatedigiClock() {
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
-    // Determine the translated short date string based on language using if-else statements
-    let dateString;
-    if (currentLanguage === 'hi' || currentLanguage === 'bn') {
-        dateString = `${dayName}, ${localizedDayOfMonth}`;
-    } else if (currentLanguage === 'cs') {
-        dateString = `${dayName}, ${dayOfMonth}.`;
-    } else if (currentLanguage === 'pt') {
-        dateString = `${dayName}, ${dayOfMonth}`;
-    } else {
-        // Default format: "day of the month" (e.g., "24 Thu")
-        dateString = `${localizedDayOfMonth} ${dayName.substring(0, 3)}`; // e.g., "24 Thu"
-    }
+    // Determine the translated short date string based on language
+    const dateFormats = {
+        bn: `${dayName}, ${localizedDayOfMonth}`,
+        zh: `${dayOfMonth}日${dayName}`,
+        cs: `${dayName}, ${dayOfMonth}.`,
+        hi: `${dayName}, ${dayOfMonth}`,
+        pt: `${dayName}, ${dayOfMonth}`,
+        ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
+        vi: `${dayOfMonth} ${dayName}`,
+        default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
+    };
+    const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
     // Handle time formatting based on the selected language
     let timeString;
@@ -1795,7 +1801,7 @@ document.addEventListener("DOMContentLoaded", function () {
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            alert("This setting is still experimental");
+            //alert("This setting is still experimental");
             saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
         } else {
