@@ -20,7 +20,7 @@ const translations = {
         "editShortcutsList": "Saved Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
         "adaptiveIconText": "Adaptive Icon Shapes",
-        "adaptiveIconInfoText": "Shortcut icons will appear round",
+        "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Show shortcuts for AI tools",
         // Digital Clock
@@ -109,7 +109,11 @@ const translations = {
         "digitalclockinfo": "Ativar/desativar o Relógio Digital",
         "timeformattittle": "Usar Formato de 12h",
         "timeformatinfo": "Usar formato de hora de 12 horas",
+        "greetingtittle": "Saudação",
+        "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
         // Misc
+        "userTextTitle": "Texto Personalizável",
+        "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
         "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
         "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
         "search_suggestions_button": "Sugestões de Pesquisa",
@@ -252,9 +256,9 @@ const translations = {
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
-        "shortcutsInfoText": "कौन से शॉर्टकट दिखाए जाएँ, निर्धारित करें",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
-        "adaptiveIconInfoText": "शॉर्टकट आइकन गोल प्रदर्शित होंगे",
+        "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         // Digital Clock
@@ -335,7 +339,7 @@ const translations = {
         "editShortcutsList": "Uložené zkratky",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
-        "adaptiveIconInfoText": "Ikony zkratek se zakulatí",
+        "adaptiveIconInfoText": "Ikony zkratek se zmenší",
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         // Digital Clock
@@ -572,7 +576,7 @@ const translations = {
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
-        "adaptiveIconInfoText": "শর্টকাট আইকনগুলি গোলাকৃতি প্রদর্শিত হবে",
+        "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
         // Digital Clock
@@ -875,6 +879,13 @@ const translations = {
 
 };
 
+// Define the width of the menu container for each language
+// const menuWidths = {
+//     en: '400px',
+//     pt: '400px', 
+//     // Add more languages and widths as needed
+// };
+
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
     //"mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' }, // Ensure it is supported in the fonts
@@ -971,6 +982,12 @@ function applyLanguage(lang) {
             userTextDiv.innerText = placeholder;
         }
     }
+
+    // Update the width of the menu container based on the language
+    // const menuCont = document.querySelector('.menuBar .menuCont');
+    // if (menuCont) {
+    //     menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    // }
 
     // Update hover text for #menuCloseButton
     const menuCloseButton = document.getElementById('menuCloseButton');
