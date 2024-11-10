@@ -87,6 +87,13 @@
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
 
+    /* 🩶🩶🩶 */
+    --bg-color-grey: #505050;
+    --accentLightTint-grey: #818181;
+    --darkerColor-grey: #1D1D1D;
+    --darkColor-grey: #434343;
+    --textColorDark-grey: #111111;
+
     /* ⚫⚫⚫ */
 
     --bg-color-dark: #000;
@@ -1623,8 +1630,12 @@ input:checked + .toggle:before {
     background-color: #EC5E78;
 }
 
-.colorsContainer input[value="dark"] {
-    background-color: #434343;
+.colorsContainer input[value="grey"] {
+     background-color: #555555;
+ }
+
+ .colorsContainer input[value="dark"] {
+    background-color: #191919;
 }
 
 .colorsContainer input[type="radio"]:checked::after {
@@ -1657,10 +1668,10 @@ input:checked + .toggle:before {
     align-items: center;
 }
 
-#darkTheme {
-    grid-column: span 2;
-    width: 82px;
-}
+/* #darkTheme {
+     grid-column: span 2;
+     width: 82px;
+ } */
 
 /* -----------end of theming stuff---------------- */
 
