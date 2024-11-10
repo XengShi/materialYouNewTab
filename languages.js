@@ -20,7 +20,7 @@ const translations = {
         "editShortcutsList": "Saved Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
         "adaptiveIconText": "Adaptive Icon Shapes",
-        "adaptiveIconInfoText": "Shortcut icons will appear round",
+        "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Show shortcuts for AI tools",
         // Digital Clock
@@ -252,9 +252,9 @@ const translations = {
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
-        "shortcutsInfoText": "कौन से शॉर्टकट दिखाए जाएँ, निर्धारित करें",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
-        "adaptiveIconInfoText": "शॉर्टकट आइकन गोल प्रदर्शित होंगे",
+        "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         // Digital Clock
@@ -335,7 +335,7 @@ const translations = {
         "editShortcutsList": "Uložené zkratky",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
-        "adaptiveIconInfoText": "Ikony zkratek se zakulatí",
+        "adaptiveIconInfoText": "Ikony zkratek se zmenší",
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         // Digital Clock
@@ -572,7 +572,7 @@ const translations = {
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
-        "adaptiveIconInfoText": "শর্টকাট আইকনগুলি গোলাকৃতি প্রদর্শিত হবে",
+        "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
         // Digital Clock
