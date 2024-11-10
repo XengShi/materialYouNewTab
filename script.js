@@ -855,6 +855,7 @@ const applySelectedTheme = (colorValue) => {
         "orange": "./favicon/orange.png",
         "purple": "./favicon/purple.png",
         "pink": "./favicon/pink.png",
+        "grey": "./favicon/grey.png",
         "dark": "./favicon/dark.png",
     };
 
