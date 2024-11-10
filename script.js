@@ -709,8 +709,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        console.log("Kaala"); // Log the message
-
+        
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -782,17 +781,23 @@ const applySelectedTheme = (colorValue) => {
             #darkFeelsLikeIcon{
                 fill: #fff !important;
             }
+
             .humidityBar .thinLine{
                 background-color: #aaaaaa;
             }
 
-            .search-engine .darkIconForDarkTheme{
-                fill: #bbbbbb;
+            .search-engine .darkIconForDarkTheme, .aiDarkIcons{
+                fill: #bbbbbb !important;
             }
 
+            .divider{
+                background-color: #cdcdcd;
+            }
+    
             .shorcutDarkColor{
                 fill: #3c3c3c !important;
             }
+
             .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
 
