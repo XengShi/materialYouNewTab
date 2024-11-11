@@ -9,7 +9,4 @@ This extension does not require any explicit permissions and does not collect, s
 ## Transparency and Security
 We do not track or store any user data. Our team has no intention to track or collect any personal information. Please review the source code directly on GitHub for transparency.
 
-## Changes to This Policy
-We may update this privacy policy from time to time. When we do, we will update the "last updated" date at the top of the privacy policy.
-
 For more details, please read the full [Privacy Policy](https://xengshi.github.io/materialYouNewTab/privacy-policy.html).
