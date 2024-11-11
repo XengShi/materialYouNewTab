@@ -73,7 +73,7 @@ const translations = {
         // New Tab Item
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Search",
-        "searchPlaceholder": "Your query...",
+        "searchPlaceholder": "Type here...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",

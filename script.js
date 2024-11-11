@@ -664,8 +664,11 @@ if (isSpeechRecognitionAvailable) {
     // When speech recognition starts
     recognition.onstart = () => {
         isRecognizing = true; // Set the flag to indicate recognition is active
-        micIcon.style.color = 'var(--darkerColor-blue)'; // Change mic color when listening
-        micIcon.style.transform = 'scale(1.1)';
+        // micIcon.style.color = 'var(--darkerColor-blue)';
+        // micIcon.style.transform = 'scale(1.1)';
+        searchInput.placeholder = "Listening..."
+        const micIcon = document.querySelector('.micIcon');
+        micIcon.classList.add('micActive'); 
     };
 
     // When speech recognition results are available (including interim results)
@@ -692,8 +695,11 @@ if (isSpeechRecognitionAvailable) {
     // When speech recognition ends (either by user or automatically)
     recognition.onend = () => {
         isRecognizing = false; // Reset the flag to indicate recognition has stopped
-        micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
-        micIcon.style.transform = 'scale(1)'; // Reset scaling
+        // micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
+        // micIcon.style.transform = 'scale(1)'; // Reset scaling
+        const micIcon = document.querySelector('.micIcon');
+        micIcon.classList.remove('micActive'); 
+        searchInput.placeholder = "Type here..."
     };
 
     // Start speech recognition when mic icon is clicked

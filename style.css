@@ -537,7 +537,8 @@ body {
 .tempUnit {
     font-size: 0.4em;
     position: relative;
-    top: -1.15em;
+    top: -1.1em;
+    left: 3px;
     color: var(--darkColor-blue);
 }
 
@@ -601,9 +602,12 @@ body {
     height: 100%;
 }
 
+
+/* --------- .micIcon------------- */
+
 .micIcon {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
     display: flex;
     align-items: center;
@@ -613,16 +617,54 @@ body {
     cursor: pointer;
     border-radius: 50%;
     padding: 3px;
-    box-sizing: content-box;
-    background-color: white;
-    transition: color 0.3s, transform 0.2s;   
+    box-sizing: border-box;
+    background-color: #ffffffd2;
+    transition: all 0.5s;
+    border: 2px solid transparent;  
+}
+
+.micIcon::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+}
+
+.micIcon:hover::after {
+    border-left: 2px dotted var(--darkColor-blue);
+    border-right: 2px solid var(--darkColor-blue);
+    border-top: 2px dashed var(--darkerColor-blue);
+    border-bottom: 2px dashed var(--darkColor-blue);
+    animation: micAnimation 1s ease-in-out;
+    transition: all 0.5s;
+}
+
+.micActive::after {
+    border-left: 2px dotted var(--darkColor-blue);
+    border-right: 2px solid var(--darkColor-blue);
+    border-top: 2px dashed var(--darkerColor-blue);
+    border-bottom: 2px dashed var(--darkerColor-blue);
+    animation: micAnimation 1s ease-in-out infinite;
+    transition: all 0.5s;
 }
 
 .micIcon:hover {
-    color: var(--darkerColor-blue);
-    transform: scale(1.1);
+    background-color: #ffffffe5;
 }
- 
+
+
+@keyframes micAnimation {
+    0%{transform: rotate(0deg);}
+    37%{transform: rotate(-20deg);}
+    69%{transform: rotate(20deg);}
+    100%{transform: rotate(0deg);}
+}
+
+/* ---------End of .micIcon------------- */
+
+
  #enterBtn {
     height: 40px;
     border-radius: 100px;
