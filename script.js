@@ -642,6 +642,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+//  -----------Voice Search------------
+const micIcon = document.getElementById("micIcon");
+const searchInput = document.getElementById("searchQ");
+const resultBox = document.getElementById("resultBox");
+const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+// Check if the browser supports SpeechRecognition API
+const isSpeechRecognitionAvailable = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+
+if (isSpeechRecognitionAvailable) {
+    // Initialize SpeechRecognition (cross-browser compatibility)
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.continuous = false;  // Stop recognition after first result
+    recognition.interimResults = false; // Do not return intermediate results
+    recognition.lang = currentLanguage; // Set the language dynamically based on selected language
+
+    // When speech recognition starts
+    recognition.onstart = () => {
+        micIcon.style.color = 'var(--darkerColor-blue)'; // Change mic color when listening
+        micIcon.style.transform = 'scale(1.1)';
+    };
+
+    // When speech recognition results are available
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript; // Get the text from the speech input
+        searchInput.value = transcript; // Set the value of search input to the transcript
+        resultBox.style.display = 'none'; // Hide result box after input
+    };
+
+    // When an error occurs during speech recognition
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error: ', event.error);
+    };
+
+    // When speech recognition ends (either by user or automatically)
+    recognition.onend = () => {
+        micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
+        micIcon.style.transform = 'scale(1)'; // Reset scaling
+    };
+
+    // Start speech recognition when mic icon is clicked
+    micIcon.addEventListener('click', () => {
+        recognition.start(); // Start speech recognition when mic icon is clicked
+    });
+} else {
+    console.warn('Speech Recognition API not supported in this browser.');
+}
+//  -----------End of Voice Search------------
 
 
 // Function to apply the selected theme
@@ -961,7 +1009,6 @@ document.getElementById("0NIHK").onclick = () => {
 }
 
 // ------------search suggestions ---------------
-const resultBox = document.querySelector('.resultBox');
 
 // Show the result box
 function showResultBox() {

@@ -581,7 +581,7 @@ body {
     display: block;
     position: absolute;
     height: 80%;
-    width: calc(100% - 120px);
+    width: calc(100% - 165px);
     top: 0;
     bottom: 0;
     margin: auto auto auto 20px;
@@ -593,12 +593,37 @@ body {
     font-size: 1rem;
 }
 
-#enterBtn {
+.searchControls {
     position: absolute;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    right: 10px; 
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.micIcon {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--darkColor-blue);
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 3px;
+    box-sizing: content-box;
+    background-color: white;
+    transition: color 0.3s, transform 0.2s;   
+}
+
+.micIcon:hover {
+    color: var(--darkerColor-blue);
+    transform: scale(1.1);
+}
+ 
+ #enterBtn {
     height: 40px;
     border-radius: 100px;
     padding: 0 26px;
@@ -607,7 +632,7 @@ body {
     background-color: var(--darkColor-blue);
     color: white;
     transition: all 0.3s;
-}
+ }
 
 #enterBtn:hover {
     background-color: var(--darkColor-blue);
