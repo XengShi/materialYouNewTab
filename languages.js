@@ -233,6 +233,7 @@ const translations = {
         "conditionText": "你好！今天怎么样？",
         "enterBtn": "搜索",
         "searchPlaceholder": "输入搜索内容...",
+        "listenPlaceholder": "正在聆听...",
         "searchWithHint": "搜索引擎",
         "ai_tools": "AI工具",
         "userText": "点击这里编辑",
@@ -507,7 +508,7 @@ const translations = {
         "timeformattittle": "12 Saat Formatı",
         "timeformatinfo": "12 saat zaman formatını kullanın",
         "greetingtittle": "Hoşgeldiniz",
-        "greetinginfo": "Özel metinin altında hoşgeldiniz mesajını göster", 
+        "greetinginfo": "Özel metinin altında hoşgeldiniz mesajını göster",
         // Misc
         "userTextTitle": "Özelleştirilebilir Metin",
         "userTextInfo": "Saatin altında özel metin göster",
@@ -788,6 +789,7 @@ const translations = {
         "enterBtn": "Поиск",
         "searchPlaceholder": "Ваш запрос...",
         "searchWithHint": "Искать с помощью",
+        "listenPlaceholder": "Слушаю...",
         "ai_tools": "Инструменты ИИ",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
@@ -879,6 +881,249 @@ const translations = {
             "evening": "Xayrli kech!"
         },
     },
+    // spanish
+    "es": {
+        // Menu Items
+        "feedback": "Comentarios",
+        "resetsettings": "Restablecer configuraciones",
+        "menuCloseText": "Cerrar",
+        // Shortcuts
+        "shortcutsText": "Accesos directos",
+        "enableShortcutsText": "Mostrar accesos directos guardados",
+        "editShortcutsText": "Editar accesos directos",
+        "editShortcutsList": "Accesos directos guardados",
+        "shortcutsInfoText": "Elige qué accesos directos mostrar",
+        "adaptiveIconText": "Iconos adaptativos",
+        "adaptiveIconInfoText": "Los iconos de accesos directos serán más pequeños",
+        "ai_tools_button": "Herramientas de IA",
+        "enable_ai_tools": "Mostrar accesos directos de herramientas de IA",
+        // Digital Clock
+        "digitalclocktittle": "Reloj digital",
+        "digitalclockinfo": "Cambiar a reloj digital",
+        "timeformattittle": "Formato de 12 horas",
+        "timeformatinfo": "Usar formato de 12 horas",
+        "greetingtittle": "Saludo",
+        "greetinginfo": "Mostrar saludo debajo del texto personalizado",
+        // Misc
+        "userTextTitle": "Texto personalizable",
+        "userTextInfo": "Mostrar texto personalizado debajo del reloj",
+        "fahrenheitCelsiusCheckbox": "Cambiar a Fahrenheit",
+        "fahrenheitCelsiusText": "Recarga la página para aplicar cambios",
+        "search_suggestions_button": "Sugerencias de búsqueda",
+        "search_suggestions_text": "Habilitar sugerencias de búsqueda",
+        // Proxy
+        "useproxytitletext": "Omisión de proxy",
+        "useproxyText": "Si las sugerencias de búsqueda no funcionan",
+        "ProxyText": "Proxy CORS por defecto",
+        "ProxySubtext": "Añade tu propio proxy CORS",
+        "HostproxyButton": "Aloja tu propio proxy",
+        "saveproxy": "Guardar",
+        // Location
+        "UserLocText": "Ingresa tu ubicación",
+        "UserLocSubtext": "Si la ubicación del clima es incorrecta",
+        "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
+        "InputOptionsButton": "Opciones de entrada",
+        "saveLoc": "Guardar",
+        // Weather
+        "WeatherApiText": "Ingresa tu clave de WeatherAPI",
+        "WeatherApiSubtext": "Si la funcionalidad del clima no funciona",
+        "userAPI": "Tu clave de WeatherAPI",
+        "LearnMoreButton": "Más información",
+        "saveAPI": "Guardar",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        "months": ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Humedad",
+        "feelsLike": "Sensación",
+        "location": "Ubicación",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "¡Hola! ¿Cómo estás hoy?",
+        "enterBtn": "Buscar",
+        "searchPlaceholder": "Escribe tu búsqueda...",
+        "listenPlaceholder": "Escuchando...",
+        "searchWithHint": "Buscar con",
+        "ai_tools": "Herramientas de IA",
+        "userText": "Haz clic aquí para editar",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "¡Buenos días!",
+            "afternoon": "¡Buenas tardes!",
+            "evening": "¡Buenas noches!"
+        }
+    },
+
+
+    // Japanese
+    "ja": {
+        // Menu Items
+        "feedback": "フィードバック",
+        "resetsettings": "設定をリセット",
+        "menuCloseText": "閉じる",
+        // Shortcuts
+        "shortcutsText": "ショートカット",
+        "enableShortcutsText": "保存されたショートカットを表示",
+        "editShortcutsText": "ショートカットを編集",
+        "editShortcutsList": "保存されたショートカット",
+        "shortcutsInfoText": "表示するショートカットを選択",
+        "adaptiveIconText": "アダプティブアイコン",
+        "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
+        "ai_tools_button": "AIツール",
+        "enable_ai_tools": "AIツールのショートカットを表示",
+        // Digital Clock
+        "digitalclocktittle": "デジタル時計",
+        "digitalclockinfo": "デジタル時計に変更",
+        "timeformattittle": "12時間形式",
+        "timeformatinfo": "12時間形式を使用",
+        "greetingtittle": "挨拶",
+        "greetinginfo": "カスタムテキストの下に挨拶を表示",
+        // Misc
+        "userTextTitle": "カスタムテキスト",
+        "userTextInfo": "時計の下にカスタムテキストを表示",
+        "fahrenheitCelsiusCheckbox": "華氏に変更",
+        "fahrenheitCelsiusText": "変更を適用するにはページをリロード",
+        "search_suggestions_button": "検索候補",
+        "search_suggestions_text": "検索候補を有効にする",
+        // Proxy
+        "useproxytitletext": "プロキシ使用",
+        "useproxyText": "検索候補が機能しない場合",
+        "ProxyText": "デフォルトCORSプロキシ",
+        "ProxySubtext": "独自のCORSプロキシを追加",
+        "HostproxyButton": "独自のプロキシをホスト",
+        "saveproxy": "保存",
+        // Location
+        "UserLocText": "場所を入力",
+        "UserLocSubtext": "天気が正しくない場合",
+        "userLoc": "都市または座標（緯度、経度）",
+        "InputOptionsButton": "入力オプション",
+        "saveLoc": "保存",
+        // Weather
+        "WeatherApiText": "WeatherAPIキーを入力",
+        "WeatherApiSubtext": "天気機能が動作しない場合",
+        "userAPI": "WeatherAPIキー",
+        "LearnMoreButton": "詳細情報",
+        "saveAPI": "保存",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+        "months": ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "湿度",
+        "feelsLike": "体感温度",
+        "location": "場所",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "こんにちは！今日はどうですか？",
+        "enterBtn": "検索",
+        "searchPlaceholder": "検索キーワードを入力...",
+        "listenPlaceholder": "聞いています...",
+        "searchWithHint": "検索で検索",
+        "ai_tools": "AIツール",
+        "userText": "ここをクリックして編集",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "おはようございます！",
+            "afternoon": "こんにちは！",
+            "evening": "こんばんは！"
+        }
+    },
+
+    // Korean
+    "ko": {
+        // Menu Items
+        "feedback": "피드백",
+        "resetsettings": "설정 초기화",
+        "menuCloseText": "닫기",
+        // Shortcuts
+        "shortcutsText": "단축키",
+        "enableShortcutsText": "저장된 단축키 표시",
+        "editShortcutsText": "단축키 편집",
+        "editShortcutsList": "저장된 단축키",
+        "shortcutsInfoText": "표시할 단축키 선택",
+        "adaptiveIconText": "적응형 아이콘 모양",
+        "adaptiveIconInfoText": "단축 아이콘이 더 작게 표시됩니다",
+        "ai_tools_button": "AI 도구",
+        "enable_ai_tools": "AI 도구 단축키 표시",
+        // Digital Clock
+        "digitalclocktittle": "디지털 시계",
+        "digitalclockinfo": "디지털 시계로 전환",
+        "timeformattittle": "12시간 형식",
+        "timeformatinfo": "12시간 형식 사용",
+        "greetingtittle": "인사말",
+        "greetinginfo": "사용자 정의 텍스트 아래에 인사말 표시",
+        // Misc
+        "userTextTitle": "사용자 정의 텍스트",
+        "userTextInfo": "시계 아래에 사용자 정의 텍스트 표시",
+        "fahrenheitCelsiusCheckbox": "화씨로 전환",
+        "fahrenheitCelsiusText": "변경 사항을 적용하려면 페이지를 새로 고침하십시오",
+        "search_suggestions_button": "검색 제안",
+        "search_suggestions_text": "검색 제안 활성화",
+        // Proxy
+        "useproxytitletext": "프록시 우회",
+        "useproxyText": "검색 제안이 작동하지 않으면",
+        "ProxyText": "CORS 우회 프록시",
+        "ProxySubtext": "자신의 CORS 우회 프록시 추가",
+        "HostproxyButton": "자신의 프록시 호스팅",
+        "saveproxy": "저장",
+        // Location
+        "UserLocText": "위치 입력",
+        "UserLocSubtext": "날씨 위치가 정확하지 않으면",
+        "userLoc": "당신의 도시 또는 좌표 (위도, 경도)",
+        "InputOptionsButton": "입력 옵션",
+        "saveLoc": "저장",
+        // Weather
+        "WeatherApiText": "WeatherAPI 키 입력",
+        "WeatherApiSubtext": "날씨 기능이 작동하지 않으면",
+        "userAPI": "당신의 WeatherAPI 키",
+        "LearnMoreButton": "자세히 알아보기",
+        "saveAPI": "저장",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+        "months": ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "습도",
+        "feelsLike": "체감",
+        "location": "지구",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "안녕하세요! 오늘 기분은 어떠세요?",
+        "enterBtn": "검색",
+        "searchPlaceholder": "검색어를 입력하세요...",
+        "listenPlaceholder": "듣고 있습니다...",
+        "searchWithHint": "검색 방법",
+        "ai_tools": "AI 도구",
+        "userText": "편집하려면 클릭하세요",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "좋은 아침!",
+            "afternoon": "좋은 오후!",
+            "evening": "좋은 저녁!"
+        }
+    },
 
 };
 
@@ -888,6 +1133,11 @@ const menuWidths = {
     pt: '415px',
     uz: '455px',
     vi: '445px',
+    cs: '412px',
+    es: '446px',
+    hi: '408px',
+    ja: '444px',
+    ru: '450px',
     // Add more languages and widths as needed
 };
 

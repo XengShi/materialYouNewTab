@@ -618,7 +618,7 @@ body {
     border-radius: 50%;
     padding: 3px;
     box-sizing: border-box;
-    background-color: #ffffffd2;
+    background-color: #ffffffc9;
     transition: all 0.5s;
     border: 2px solid transparent;  
 }
@@ -632,14 +632,6 @@ body {
     border: 2px solid transparent;
 }
 
-.micIcon:hover::after {
-    border-left: 2px dotted var(--darkColor-blue);
-    border-right: 2px solid var(--darkColor-blue);
-    border-top: 2px dashed var(--darkerColor-blue);
-    border-bottom: 2px dashed var(--darkColor-blue);
-    animation: micAnimation 1s ease-in-out;
-    transition: all 0.5s;
-}
 
 .micActive::after {
     border-left: 2px dotted var(--darkColor-blue);
@@ -651,7 +643,7 @@ body {
 }
 
 .micIcon:hover {
-    background-color: #ffffffe5;
+    background-color: #fffffff2;
 }
 
 
