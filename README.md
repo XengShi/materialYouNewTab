@@ -225,7 +225,7 @@ If you encounter any bugs or issues, please [submit an issue](https://github.com
 
 ## 🔒 Privacy Policy
 
-For information on how we handle privacy, please read our [Privacy Policy](./privacy-policy.md).
+For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY.md).
 
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
