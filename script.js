@@ -643,6 +643,78 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+//  -----------Voice Search------------
+const micIcon = document.getElementById("micIcon");
+const searchInput = document.getElementById("searchQ");
+const resultBox = document.getElementById("resultBox");
+const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+// Check if the browser supports SpeechRecognition API
+const isSpeechRecognitionAvailable = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+
+if (isSpeechRecognitionAvailable) {
+    // Initialize SpeechRecognition (cross-browser compatibility)
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.continuous = false;  // Stop recognition after first result
+    recognition.interimResults = true; // Enable interim results for live transcription
+    recognition.lang = currentLanguage; // Set the language dynamically based on selected language
+
+    let isRecognizing = false; // Flag to check if recognition is active
+
+    // When speech recognition starts
+    recognition.onstart = () => {
+        isRecognizing = true; // Set the flag to indicate recognition is active
+        // micIcon.style.color = 'var(--darkerColor-blue)';
+        // micIcon.style.transform = 'scale(1.1)';
+        searchInput.placeholder = "Listening..."
+        const micIcon = document.querySelector('.micIcon');
+        micIcon.classList.add('micActive'); 
+    };
+
+    // When speech recognition results are available (including interim results)
+    recognition.onresult = (event) => {
+        let transcript = '';
+        // Loop through results to build the transcript text
+        for (let i = 0; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript; // Append each piece of the transcript
+        }
+        // Display the interim result in the search input
+        searchInput.value = transcript;
+        // If the result is final, hide the result box
+        if (event.results[event.results.length - 1].isFinal) {
+            resultBox.style.display = 'none'; // Hide result box after final input
+        }
+    };
+
+    // When an error occurs during speech recognition
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error: ', event.error);
+        isRecognizing = false; // Reset flag on error
+    };
+
+    // When speech recognition ends (either by user or automatically)
+    recognition.onend = () => {
+        isRecognizing = false; // Reset the flag to indicate recognition has stopped
+        // micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
+        // micIcon.style.transform = 'scale(1)'; // Reset scaling
+        const micIcon = document.querySelector('.micIcon');
+        micIcon.classList.remove('micActive'); 
+        searchInput.placeholder = "Type here..."
+    };
+
+    // Start speech recognition when mic icon is clicked
+    micIcon.addEventListener('click', () => {
+        if (isRecognizing) {
+            recognition.stop(); // Stop recognition if it's already listening
+        } else {
+            recognition.start(); // Start recognition if it's not already listening
+        }
+    });
+} else {
+    console.warn('Speech Recognition API not supported in this browser.');
+}
+//  -----------End of Voice Search------------
+
 
 // Function to apply the selected theme
 const radioButtons = document.querySelectorAll('.colorPlate');
@@ -709,8 +781,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        console.log("Kaala"); // Log the message
-
+        
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -782,17 +853,23 @@ const applySelectedTheme = (colorValue) => {
             #darkFeelsLikeIcon{
                 fill: #fff !important;
             }
+
             .humidityBar .thinLine{
                 background-color: #aaaaaa;
             }
 
-            .search-engine .darkIconForDarkTheme{
-                fill: #bbbbbb;
+            .search-engine .darkIconForDarkTheme, .aiDarkIcons{
+                fill: #bbbbbb !important;
             }
 
+            .divider{
+                background-color: #cdcdcd;
+            }
+    
             .shorcutDarkColor{
                 fill: #3c3c3c !important;
             }
+
             .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
 
@@ -956,7 +1033,6 @@ document.getElementById("0NIHK").onclick = () => {
 }
 
 // ------------search suggestions ---------------
-const resultBox = document.querySelector('.resultBox');
 
 // Show the result box
 function showResultBox() {
