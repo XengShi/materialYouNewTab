@@ -666,7 +666,7 @@ if (isSpeechRecognitionAvailable) {
         isRecognizing = true; // Set the flag to indicate recognition is active
         // micIcon.style.color = 'var(--darkerColor-blue)';
         // micIcon.style.transform = 'scale(1.1)';
-        searchInput.placeholder = "Listening..."
+        searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations['en'].listenPlaceholder}`;
         const micIcon = document.querySelector('.micIcon');
         micIcon.classList.add('micActive'); 
     };
@@ -699,7 +699,7 @@ if (isSpeechRecognitionAvailable) {
         // micIcon.style.transform = 'scale(1)'; // Reset scaling
         const micIcon = document.querySelector('.micIcon');
         micIcon.classList.remove('micActive'); 
-        searchInput.placeholder = "Type here..."
+        searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations['en'].searchPlaceholder}`;
     };
 
     // Start speech recognition when mic icon is clicked
