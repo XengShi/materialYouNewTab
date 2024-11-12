@@ -857,6 +857,7 @@ const applySelectedTheme = (colorValue) => {
         "pink": "./favicon/pink.png",
         "grey": "./favicon/grey.png",
         "dark": "./favicon/dark.png",
+        "brown": "./favicon/brown.png"
     };
 
     // Function to update the extension icon based on browser
