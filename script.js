@@ -255,8 +255,11 @@ function updateDate() {
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
             it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            ja: `${dayName.substring(0, 1)}, ${monthName}${dayOfMonth}`,
+            ko: `${dayName.substring(0, 1)}, ${monthName} ${dayOfMonth}일`,
             pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             ru: `${dayName.substring(0, 2)}, ${dayOfMonth} ${monthName.substring(0, 4)}.`,
+            es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
@@ -387,6 +390,8 @@ function updatedigiClock() {
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
+        ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
+        ko: `${dayOfMonth} ${dayName.substring(0, 1)}`,
         pt: `${dayName}, ${dayOfMonth}`,
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
@@ -399,7 +404,7 @@ function updatedigiClock() {
     let period = ''; // For storing AM/PM equivalent
 
     // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh'];
+    const specialLanguages = ['tr', 'zh', 'ja', 'ko'];
     const localizedLanguages = ['bn'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
@@ -417,7 +422,7 @@ function updatedigiClock() {
     let [hours, minutes] = timeString.split(':');
 
     // Remove leading zero from hours for specific languages in 12-hour format only
-    if (hourformat && currentLanguage !== 'en' && currentLanguage !== 'it') {
+    if (hourformat && currentLanguage !== 'en') {
         hours = parseInt(hours, 10).toString(); // Remove leading zero
     }
 
