@@ -88,11 +88,18 @@
     --textColorDark-purple: #2D1B3E;
 
     /* 🩶🩶🩶 */
-    --bg-color-grey: #505050;
+    --bg-color-grey: #565656;
     --accentLightTint-grey: #818181;
-    --darkerColor-grey: #1D1D1D;
+    --darkerColor-grey: #262626;
     --darkColor-grey: #434343;
     --textColorDark-grey: #111111;
+
+    /* 🟤🟤🟤 */
+    --bg-color-brown: #dfc28d;
+    --accentLightTint-brown: #eae3c9;
+    --darkerColor-brown: #4e3930;
+    --darkColor-brown: #705347;
+    --textColorDark-brown: #16100d;
 
     /* ⚫⚫⚫ */
 
@@ -161,7 +168,7 @@
    color: #fff;
 }
 .spacer {
-    height: 65px; /* Adjust this value to create space */
+    height: 110px; /* Adjust this value to create space */
 }
 
 /* Theme */
@@ -1636,6 +1643,10 @@ input:checked + .toggle:before {
 
  .colorsContainer input[value="dark"] {
     background-color: #191919;
+}
+
+.colorsContainer input[value="brown"] {
+    background-color: #705347;
 }
 
 .colorsContainer input[type="radio"]:checked::after {
