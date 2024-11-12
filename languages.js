@@ -89,7 +89,6 @@ const translations = {
     },
 
     // Portuguese
-    // Machine translated some elements, please verify and delete this comment
     "pt": {
         // Menu Items
         "feedback": "Feedback",
@@ -1150,7 +1149,7 @@ const numberMappings = {
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
     // Define languages that require special decimal formatting
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko']]; // Add more languages here as needed
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
