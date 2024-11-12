@@ -551,7 +551,8 @@ body {
 .tempUnit {
     font-size: 0.4em;
     position: relative;
-    top: -1.15em;
+    top: -1.1em;
+    left: 3px;
     color: var(--darkColor-blue);
 }
 
@@ -595,7 +596,7 @@ body {
     display: block;
     position: absolute;
     height: 80%;
-    width: calc(100% - 120px);
+    width: calc(100% - 165px);
     top: 0;
     bottom: 0;
     margin: auto auto auto 20px;
@@ -607,12 +608,70 @@ body {
     font-size: 1rem;
 }
 
-#enterBtn {
+.searchControls {
     position: absolute;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    right: 10px; 
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+/* --------- .micIcon------------- */
+
+.micIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--darkColor-blue);
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 3px;
+    box-sizing: border-box;
+    background-color: #ffffffc9;
+    transition: all 0.5s;
+    border: 2px solid transparent;  
+}
+
+.micIcon::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+}
+
+
+.micActive::after {
+    border-left: 2px dotted var(--darkColor-blue);
+    border-right: 2px solid var(--darkColor-blue);
+    border-top: 2px dashed var(--darkerColor-blue);
+    border-bottom: 2px dashed var(--darkerColor-blue);
+    animation: micAnimation 1s ease-in-out infinite;
+    transition: all 0.5s;
+}
+
+.micIcon:hover {
+    background-color: #fffffff2;
+}
+
+
+@keyframes micAnimation {
+    0%{transform: rotate(0deg);}
+    37%{transform: rotate(-20deg);}
+    69%{transform: rotate(20deg);}
+    100%{transform: rotate(0deg);}
+}
+
+/* ---------End of .micIcon------------- */
+
+
+ #enterBtn {
     height: 40px;
     border-radius: 100px;
     padding: 0 26px;
@@ -621,7 +680,7 @@ body {
     background-color: var(--darkColor-blue);
     color: white;
     transition: all 0.3s;
-}
+ }
 
 #enterBtn:hover {
     background-color: var(--darkColor-blue);
@@ -1133,7 +1192,7 @@ body {
     position: absolute;
     right: 0;
     height: 100%;
-    width: 400px;
+    width: 400px; /* change on some languages for fix the buttons */
     transition: all 0.5s;
     transform: translateX(100%);
     background-color: var(--accentLightTint-blue);
@@ -1273,8 +1332,9 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
+    min-width: 60px;
     height: 34px;
+    margin-left: 8px;
 }
 
 /* Hide the default checkbox input */
@@ -1729,7 +1789,7 @@ input:checked + .toggle:before {
 #menuCloseButton {
     position: relative;
      /* position: absolute; */
-    bottom: var(--gap);
+    /* bottom: var(--gap); */
     width: 42px;
     height: 42px; 
     max-width: 100%; /* Set max-width to fit-content initially */
@@ -1747,7 +1807,7 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: calc(69px + 20px);
+    margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {

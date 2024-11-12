@@ -55,7 +55,12 @@ Material You NewTab is a versatile browser extension that personalizes your New 
     <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 7" width="100%"></td>
   </tr>
 </table>
-
+<table>
+ <tr>
+    <td><img src="https://i.ibb.co/PC5Td8Q/Screenshot-from-2024-11-10-20-45-51.png" alt="Screenshot 5" width="100%"></td>
+    <td><img src="https://i.ibb.co/Y82qCMB/Screenshot-from-2024-11-10-20-58-20.png" alt="Screenshot 7" width="100%"></td>
+  </tr>
+</table>
 
 #### 🔴 🟡 🟢 Test live : https://xengshi.github.io/materialYouNewTab/
 
@@ -217,6 +222,10 @@ Contributions are welcome! If you’d like to contribute:
 ## ❓ Issues and Support
 
 If you encounter any bugs or issues, please [submit an issue](https://github.com/XengShi/materialYouNewTab/issues) on the GitHub repository. 
+
+## 🔒 Privacy Policy
+
+For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY.md).
 
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
