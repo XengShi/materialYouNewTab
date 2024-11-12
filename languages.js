@@ -395,6 +395,7 @@ const translations = {
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
+        "listenPlaceholder": "Poslouchám...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
