@@ -1767,7 +1767,7 @@ input:checked + .toggle:before {
 #menuCloseButton {
     position: relative;
      /* position: absolute; */
-    bottom: var(--gap);
+    /* bottom: var(--gap); */
     width: 42px;
     height: 42px; 
     max-width: 100%; /* Set max-width to fit-content initially */
@@ -1785,7 +1785,7 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: calc(69px + 20px);
+    margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {
