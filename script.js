@@ -404,7 +404,7 @@ function updatedigiClock() {
     let period = ''; // For storing AM/PM equivalent
 
     // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh', 'ja', 'ko'];
+    const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
     const localizedLanguages = ['bn'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
@@ -435,11 +435,16 @@ function updatedigiClock() {
     document.getElementById('digicolon').textContent = ':'; // Static colon
     document.getElementById('digiminutes').textContent = localizedMinutes;
 
-    // For Turkish and Chinese, no AM/PM; for others, show AM/PM
-    if (specialLanguages.includes(currentLanguage)) {
-        document.getElementById('amPm').textContent = ''; // No AM/PM for Turkish and Chinese
+    // Manually set the period for special languages if 12-hour format is enabled
+    if (hourformat && specialLanguages.includes(currentLanguage)) {
+        period = parseInt(hours, 10) < 12 ? 'AM' : 'PM';
+    }
+    
+    // Display AM/PM if in 12-hour format
+    if (hourformat) {
+        document.getElementById('amPm').textContent = period; // Show AM/PM based on calculated period
     } else {
-        document.getElementById('amPm').textContent = period; // Show AM/PM for other languages
+        document.getElementById('amPm').textContent = ''; // Clear AM/PM for 24-hour format
     }
 
     // Update the translated date
