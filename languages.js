@@ -89,7 +89,6 @@ const translations = {
     },
 
     // Portuguese
-    // Machine translated some elements, please verify and delete this comment
     "pt": {
         // Menu Items
         "feedback": "Feedback",
@@ -396,6 +395,7 @@ const translations = {
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
+        "listenPlaceholder": "Poslouchám...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
@@ -740,15 +740,19 @@ const translations = {
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
-        "enable_ai_tools": "Включить/Отключить ярлыки инструментов ИИ",
+        "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
         // Digital Clock
         "digitalclocktittle": "Цифровые часы",
         "digitalclockinfo": "Включить/Отключить цифровые часы",
         "timeformattittle": "12-часовой формат",
         "timeformatinfo": "Использовать 12-часовой формат времени",
+        "greetingtittle": "Приветствие",
+        "greetinginfo": "Показать приветствие под вашим текстом",
         // Misc
-        "fahrenheitCelsiusCheckbox": "Переключить на Фаренгейт",
-        "fahrenheitCelsiusText": "Обновите страницу, чтобы увидеть изменения",
+        "userTextTitle": "Настраиваемый текст",
+        "userTextInfo": "Отображение текста под часами",
+        "fahrenheitCelsiusCheckbox": "Использовать Фаренгейт",
+        "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -757,19 +761,19 @@ const translations = {
         "ProxyText": "CORS обход прокси",
         "ProxySubtext": "Добавьте свой CORS-прокси",
         "HostproxyButton": "Разместить свой прокси",
-        "saveproxy": "Сохраните",
+        "saveproxy": "Сохранить",
         // Location
         "UserLocText": "Введите ваше местоположение",
         "UserLocSubtext": "Если местоположение для погоды неверно",
         "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
         "InputOptionsButton": "Опции ввода",
-        "saveLoc": "Сохраните",
+        "saveLoc": "Сохранить",
         // Weather
         "WeatherApiText": "Введите свой ключ WeatherAPI",
         "WeatherApiSubtext": "Если функция погоды не работает",
         "userAPI": "Ваш ключ WeatherAPI",
         "LearnMoreButton": "Узнать больше",
-        "saveAPI": "Сохраните",
+        "saveAPI": "Сохранить",
         // End of Menu Items
 
         // Body Items
@@ -788,7 +792,7 @@ const translations = {
         "conditionText": "Привет! Как ты сегодня?",
         "enterBtn": "Поиск",
         "searchPlaceholder": "Ваш запрос...",
-        "searchWithHint": "Искать с помощью",
+        "searchWithHint": "Искать с",
         "listenPlaceholder": "Слушаю...",
         "ai_tools": "Инструменты ИИ",
         "userText": "Нажмите здесь, чтобы редактировать",
@@ -1150,7 +1154,7 @@ const numberMappings = {
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
     // Define languages that require special decimal formatting
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko']; // Add more languages here as needed
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
