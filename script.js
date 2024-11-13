@@ -670,7 +670,6 @@ if (!isSupportedBrowser()) {
     micIcon.style.display = 'none';
 } else {
     // Proceed with Web Speech API if browser supports it
-    const micIcon = document.getElementById("micIcon");
     const searchInput = document.getElementById("searchQ");
     const resultBox = document.getElementById("resultBox");
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
