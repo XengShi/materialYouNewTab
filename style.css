@@ -1698,7 +1698,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="grey"] {
-     background-color: #555555;
+     background-color: #595959;
  }
 
  .colorsContainer input[value="dark"] {
