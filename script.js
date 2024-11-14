@@ -660,8 +660,9 @@ function isSupportedBrowser() {
     const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
     const isEdge = /Edg/.test(userAgent);
     const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
+    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 
-    return (isChrome || isEdge) && isDesktop;
+    return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
 // Hide mic icon if the browser is not supported
