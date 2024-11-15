@@ -660,43 +660,77 @@ function isSupportedBrowser() {
     const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
     const isEdge = /Edg/.test(userAgent);
     const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
+    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 
-    return (isChrome || isEdge) && isDesktop;
+    return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
-// Hide mic icon if the browser is not supported
+// Set the initial state of the mic icon and checkbox based on saved state or supported browser
 const micIcon = document.getElementById("micIcon");
-if (!isSupportedBrowser()) {
-    micIcon.style.display = 'none';
+const micIconCheckbox = document.getElementById("micIconCheckbox");
+
+// Check if there's a saved state in localStorage
+const savedState = localStorage.getItem("micIconVisible");
+let isMicIconVisible;
+
+// If saved state exists, use it; otherwise, fallback to initial state based on browser support
+if (savedState !== null) {
+    isMicIconVisible = savedState === "true";
 } else {
-    // Proceed with Web Speech API if browser supports it
-    const micIcon = document.getElementById("micIcon");
+    // Default state: Hide mic icon if browser is not supported
+    isMicIconVisible = isSupportedBrowser();
+    // Save the initial state based on the user agent
+    localStorage.setItem("micIconVisible", isMicIconVisible);
+}
+
+// Set the checkbox state based on the saved or default state
+micIconCheckbox.checked = !isMicIconVisible; // Checked hides the mic icon
+micIcon.style.visibility = isMicIconVisible ? "visible" : "hidden";
+
+// Function to toggle mic icon visibility
+function toggleMicIconVisibility(isVisible) {
+    micIcon.style.visibility = isVisible ? "visible" : "hidden";
+    localStorage.setItem("micIconVisible", isVisible); // Save to localStorage
+}
+
+// Toggle mic icon display based on checkbox state
+micIconCheckbox.addEventListener("change", () => {
+    const isChecked = micIconCheckbox.checked;
+    toggleMicIconVisibility(!isChecked); // Checked hides the mic icon
+
+    // Only initialize Web Speech API if the mic icon is visible
+    if (!isChecked) {
+        initializeSpeechRecognition();
+    }
+});
+
+// Function to initialize Web Speech API if supported
+function initializeSpeechRecognition() {
     const searchInput = document.getElementById("searchQ");
     const resultBox = document.getElementById("resultBox");
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-    
+
     // Check if the browser supports SpeechRecognition API
     const isSpeechRecognitionAvailable = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
-    
+
     if (isSpeechRecognitionAvailable) {
         // Initialize SpeechRecognition (cross-browser compatibility)
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.continuous = false;  // Stop recognition after first result
         recognition.interimResults = true; // Enable interim results for live transcription
         recognition.lang = currentLanguage; // Set the language dynamically based on selected language
-    
+
         let isRecognizing = false; // Flag to check if recognition is active
-    
+
         // When speech recognition starts
         recognition.onstart = () => {
             isRecognizing = true; // Set the flag to indicate recognition is active
             // micIcon.style.color = 'var(--darkerColor-blue)';
             // micIcon.style.transform = 'scale(1.1)';
             searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations['en'].listenPlaceholder}`;
-            const micIcon = document.querySelector('.micIcon');
-            micIcon.classList.add('micActive'); 
+            micIcon.classList.add('micActive');
         };
-    
+
         // When speech recognition results are available (including interim results)
         recognition.onresult = (event) => {
             let transcript = '';
@@ -711,23 +745,22 @@ if (!isSupportedBrowser()) {
                 resultBox.style.display = 'none'; // Hide result box after final input
             }
         };
-    
+
         // When an error occurs during speech recognition
         recognition.onerror = (event) => {
             console.error('Speech recognition error: ', event.error);
             isRecognizing = false; // Reset flag on error
         };
-    
+
         // When speech recognition ends (either by user or automatically)
         recognition.onend = () => {
             isRecognizing = false; // Reset the flag to indicate recognition has stopped
             // micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
             // micIcon.style.transform = 'scale(1)'; // Reset scaling
-            const micIcon = document.querySelector('.micIcon');
-            micIcon.classList.remove('micActive'); 
+            micIcon.classList.remove('micActive');
             searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations['en'].searchPlaceholder}`;
         };
-    
+
         // Start speech recognition when mic icon is clicked
         micIcon.addEventListener('click', () => {
             if (isRecognizing) {
@@ -739,6 +772,11 @@ if (!isSupportedBrowser()) {
     } else {
         console.warn('Speech Recognition API not supported in this browser.');
     }
+}
+
+// Initialize SpeechRecognition only if the mic icon is visible
+if (!micIconCheckbox.checked) {
+    initializeSpeechRecognition();
 }
 //  -----------End of Voice Search------------
 
