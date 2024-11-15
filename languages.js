@@ -35,6 +35,8 @@ const translations = {
         "userTextInfo": "Show custom text below the clock",
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
+        "micIconTitle": "Hide Microphone Icon",
+        "micIconInfo": "If voice typing is not working",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -274,6 +276,8 @@ const translations = {
         "userTextInfo": "घड़ी के नीचे कस्टम टेक्स्ट दिखाएँ",
         "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
+        "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
+        "micIconInfo": "अगर वॉयस टाइपिंग काम नहीं कर रहा है",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -594,6 +598,8 @@ const translations = {
         "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
+        "micIconTitle": "মাইক্রোফোন আইকন লুকান",
+        "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
@@ -1183,6 +1189,8 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
+        { id: 'micIconTitle', key: 'micIconTitle' },
+        { id: 'micIconInfo', key: 'micIconInfo' },
         { id: 'search_suggestions_button', key: 'search_suggestions_button' },
         { id: 'search_suggestions_text', key: 'search_suggestions_text' },
         { id: 'digitalclocktittle', key: 'digitalclocktittle' },
