@@ -36,7 +36,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
-        "micIconInfo": "If voice search isn't working in your browser",
+        "micIconInfo": "If voice typing is not working",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -119,7 +119,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
         "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
         "micIconTitle": "Ocultar Icone do Microfone",
-        "micIconInfo": "Se a pesquisa por voz não estiver funcionando no seu navegador",
+        "micIconInfo": "Se a digitação por voz não estiver funcionando",
         "search_suggestions_button": "Sugestões de Pesquisa",
         "search_suggestions_text": "Ativar/desativar Sugestões de Pesquisa",
         // Proxy
@@ -203,7 +203,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "切换到华氏温度",
         "fahrenheitCelsiusText": "刷新页面以查看更新",
         "micIconTitle": "隐藏麦克风图标",
-        "micIconInfo": "如果语音搜索在浏览器中不起作用",
+        "micIconInfo": "如果语音输入不起作用",
         "search_suggestions_button": "搜索建议",
         "search_suggestions_text": "启用/禁用搜索建议",
         // Proxy
@@ -286,7 +286,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
-        "micIconInfo": "यदि आपके ब्राउज़र में वॉयस सर्च काम नहीं कर रही है",
+        "micIconInfo": "अगर वॉयस टाइपिंग काम नहीं कर रहा है",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -454,7 +454,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Passa a Fahrenheit",
         "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
         "micIconTitle": "Nascondi icona del microfono",
-        "micIconInfo": "Se la ricerca vocale non funziona nel tuo browser",
+        "micIconInfo": "Se la digitazione vocale non funziona",
         "search_suggestions_button": "Suggerimenti di Ricerca",
         "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
         // Proxy
@@ -537,7 +537,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Fahrenheit'a geç",
         "fahrenheitCelsiusText": "Güncellemeleri görmek için sayfayı yenileyin",
         "micIconTitle": "Mikrofon Simgesini Gizle",
-        "micIconInfo": "Tarayıcınızda sesli arama çalışmıyorsa",
+        "micIconInfo": "Eğer sesli yazma çalışmıyorsa",
         "search_suggestions_button": "Arama Önerileri",
         "search_suggestions_text": "Arama Önerilerini etkinleştir",
         // Proxy
@@ -620,7 +620,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
-        "micIconInfo": "যদি আপনার ব্রাউজারে ভয়েস সার্চ কাজ না করে",
+        "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
@@ -705,7 +705,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Chuyển sang Fahrenheit",
         "fahrenheitCelsiusText": "Tải lại trang để thấy cập nhật",
         "micIconTitle": "Ẩn biểu tượng mic",
-        "micIconInfo": "Nếu tìm kiếm bằng giọng nói không hoạt động trên trình duyệt của bạn",
+        "micIconInfo": "Nếu gõ bằng giọng nói không hoạt động",
         "search_suggestions_button": "Gợi ý Tìm kiếm",
         "search_suggestions_text": "Bật/tắt Gợi ý Tìm kiếm",
         // Proxy
@@ -788,7 +788,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Использовать Фаренгейт",
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
-        "micIconInfo": "Если голосовой поиск не работает в вашем браузере",
+        "micIconInfo": "Если голосовой ввод не работает",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -871,7 +871,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Fahrenheitga o'tish",
         "fahrenheitCelsiusText": "Sahifani yangilash, o'zgarishlarni qo'llash",
         "micIconTitle": "Mikrofon belgisini yashirish",
-        "micIconInfo": "Agar ovozli qidiruv brauzeringizda ishlamayotgan bo‘lsa",
+        "micIconInfo": "Agar ovozli yozish ishlamasa",
         "search_suggestions_button": "Izlash tavsiyalari",
         "search_suggestions_text": "Izlash tavsiyalarini yoqish",
         // Proxy
@@ -953,7 +953,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Cambiar a Fahrenheit",
         "fahrenheitCelsiusText": "Recarga la página para aplicar cambios",
         "micIconTitle": "Ocultar ícono de micrófono",
-        "micIconInfo": "Si la búsqueda por voz no funciona en tu navegador",
+        "micIconInfo": "Si la escritura por voz no está funcionando",
         "search_suggestions_button": "Sugerencias de búsqueda",
         "search_suggestions_text": "Habilitar sugerencias de búsqueda",
         // Proxy
@@ -1037,7 +1037,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "華氏に変更",
         "fahrenheitCelsiusText": "変更を適用するにはページをリロード",
         "micIconTitle": "マイクアイコンを非表示",
-        "micIconInfo": "ブラウザで音声検索が機能しない場合",
+        "micIconInfo": "音声入力が動作しない場合",
         "search_suggestions_button": "検索候補",
         "search_suggestions_text": "検索候補を有効にする",
         // Proxy
@@ -1120,7 +1120,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "화씨로 전환",
         "fahrenheitCelsiusText": "변경 사항을 적용하려면 페이지를 새로 고침하십시오",
         "micIconTitle": "마이크 아이콘 숨기기",
-        "micIconInfo": "브라우저에서 음성 검색이 작동하지 않는 경우",
+        "micIconInfo": "음성 입력이 작동하지 않으면",
         "search_suggestions_button": "검색 제안",
         "search_suggestions_text": "검색 제안 활성화",
         // Proxy
