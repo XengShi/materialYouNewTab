@@ -369,6 +369,8 @@ const translations = {
         "userTextInfo": "Zobrazí upravitelný text pod hodinami",
         "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
+        "micIconTitle": "Skrýt ikonu mikrofonu",
+        "micIconInfo": "Pokud ve vašem prohlížeči nefunguje hlasové vyhledávání",
         "search_suggestions_button": "Návrhy ve vyhledávání",
         "search_suggestions_text": "Zapne návrhy vyhledávání",
         // Proxy
