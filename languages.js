@@ -370,7 +370,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
         "micIconTitle": "Skrýt ikonu mikrofonu",
-        "micIconInfo": "Pokud ve vašem prohlížeči nefunguje hlasové vyhledávání",
+        "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
         "search_suggestions_button": "Návrhy ve vyhledávání",
         "search_suggestions_text": "Zapne návrhy vyhledávání",
         // Proxy
@@ -1182,7 +1182,7 @@ const menuWidths = {
     pt: '415px',
     uz: '455px',
     vi: '445px',
-    cs: '412px',
+    cs: '416px',
     es: '446px',
     hi: '408px',
     ja: '444px',
