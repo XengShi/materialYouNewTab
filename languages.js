@@ -286,7 +286,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
-        "micIconInfo": "अगर वॉयस टाइपिंग काम नहीं कर रहा है",
+        "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
