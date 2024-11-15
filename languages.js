@@ -36,7 +36,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
-        "micIconInfo": "If voice search isn't working in your browser",
+        "micIconInfo": "If voice typing is not working",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -277,7 +277,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
-        "micIconInfo": "यदि आपके ब्राउज़र में वॉयस सर्च काम नहीं कर रही है",
+        "micIconInfo": "अगर वॉयस टाइपिंग काम नहीं कर रहा है",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -599,7 +599,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
-        "micIconInfo": "যদি আপনার ব্রাউজারে ভয়েস সার্চ কাজ না করে",
+        "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
