@@ -291,7 +291,7 @@ body {
 }
 
 /* Icon Styling */
-.icon {
+.menuicon {
   width: 40px;
   height: 40px;
   margin-bottom: 8px;
@@ -341,7 +341,7 @@ body {
 }
 
 .icon-container::-webkit-scrollbar-track {
-  background-color: var(--bg-color-blue);; /* Match the border color */
+  background-color: var(--bg-color-blue); /* Match the border color */
   border-radius: 30px;
 }
 
