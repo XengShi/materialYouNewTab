@@ -208,7 +208,7 @@ body {
 
 /* Styling for the SVG icon */
 .dot-icon {
-  fill: #000; /* Icon color */
+  fill: var(--darkerColor-blue); /* Icon color */
   cursor: pointer;
   transition: transform 0.3s ease, fill 0.3s ease;
 }
@@ -216,14 +216,13 @@ body {
 /* Hover effect for the icon */
 .dot-icon:hover {
   transform: rotate(90deg) scale(1.2);
-  fill: #4CAF50; /* Green color on hover */
 }
 
 /* Tooltip Text Styling */
 .tooltip-text {
   visibility: hidden;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--darkColor-blue);
+  color: white;
   text-align: center;
   padding: 5px;
   border-radius: 5px;
@@ -261,10 +260,10 @@ body {
   display: grid;
   gap: 10px;
   padding: 20px 10px; /* Adjusted padding to account for scrollbar */
-  background-color: #f8fafd;
+  background-color: var(--accentLightTint-blue);
   border-radius: 30px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border: 10px solid #e9eef6;
+  border: 10px solid var(--bg-color-blue);
   grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
   justify-items: center; /* Center icons within each grid cell */
   position: absolute; /* Absolute positioning for dynamic alignment */
@@ -289,7 +288,7 @@ body {
   cursor: pointer;
   position: relative;
   min-width: 100px; /* Ensure consistent width */
-  background-color: #f8fafd; /* Default background */
+  background-color: var(--accentLightTint-blue); /* Default background */
 }
 
 /* Icon Styling */
@@ -297,12 +296,13 @@ body {
   width: 40px;
   height: 40px;
   margin-bottom: 8px;
+  color: var(--darkColor-blue); /* Icon color */
 }
 
 /* Label Styling */
 .label {
   font-size: 14px;
-  color: #333;
+  color: var(--textColorDark-blue);
 }
 
 /* Short Label (Default) */
@@ -319,7 +319,7 @@ body {
 
 /* Hover Effect for Icon Item */
 .icon-item:hover {
-  background-color: #e9eef6;
+  background-color: var(--bg-color-blue);
   transform: scale(1.1); /* Add zoom-in effect */
 }
 
@@ -338,21 +338,21 @@ body {
 
 /* Customize scrollbar to appear on the border */
 .icon-container::-webkit-scrollbar {
-  width: 10px; /* Match the border width */
+  width: 5px; /* Match the border width */
 }
 
 .icon-container::-webkit-scrollbar-track {
-  background-color: #e9eef6; /* Match the border color */
+  background-color: var(--bg-color-blue);; /* Match the border color */
   border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+  background-color: var(--darkColor-blue);
   border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb:hover {
-  background-color: #aaa;
+  background-color: var(--darkerColor-blue);
   border-radius: 30px;
 }
 
