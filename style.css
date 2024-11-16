@@ -192,6 +192,172 @@ body {
     min-height: 100%;
 }
 
+/* Dot Icon Container Styling */
+.dot-icon-container {
+  position: absolute;
+  display: inline-block;
+  margin: 10px;
+  top: 15px; /* Adjust distance from the top */
+  right: 25px; /* Adjust distance from the right */
+  font-size: 24px; /* Set the size of the dots */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2; /* Set z-index */
+}
+
+/* Styling for the SVG icon */
+.dot-icon {
+  fill: #000; /* Icon color */
+  cursor: pointer;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+/* Hover effect for the icon */
+.dot-icon:hover {
+  transform: rotate(90deg) scale(1.2);
+  fill: #4CAF50; /* Green color on hover */
+}
+
+/* Tooltip Text Styling */
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 100%; /* Position below the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 3; /* Set z-index */
+}
+
+/* Show tooltip on hover */
+.dot-icon-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Hide tooltip when menu is open */
+.dot-icon-container:hover + .icon-container .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Hide tooltip when icon button is clicked */
+.dot-icon-container.clicked .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Icon Container Styling (Placed Below Dot Icon) */
+.icon-container {
+  display: grid;
+  gap: 10px;
+  padding: 20px 10px; /* Adjusted padding to account for scrollbar */
+  background-color: #f8fafd;
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 10px solid #e9eef6;
+  grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
+  justify-items: center; /* Center icons within each grid cell */
+  position: absolute; /* Absolute positioning for dynamic alignment */
+  top: calc(15px + 24px + 20px); /* Place below the dot icon */
+  right: 10px;
+  max-height: calc(40px * 3 + 10px * 2 + 200px); /* Limit to 9 icons (3 rows * icon size + gaps) */
+  overflow-y: auto; /* Add vertical scrollbar when needed */
+  box-sizing: border-box; /* Ensure padding is included in width and height */
+  z-index: 1; /* Set z-index */
+}
+
+/* Individual Icon Item Styling */
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  min-width: 100px; /* Ensure consistent width */
+  background-color: #f8fafd; /* Default background */
+}
+
+/* Icon Styling */
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+/* Label Styling */
+.label {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Short Label (Default) */
+.label.short {
+  display: block;
+}
+
+/* Full Label (Hidden by Default) */
+.label.full {
+  display: none;
+  white-space: pre-line; /* Ensure text retains line breaks */
+  text-align: center; /* Center align text */
+}
+
+/* Hover Effect for Icon Item */
+.icon-item:hover {
+  background-color: #e9eef6;
+  transform: scale(1.1); /* Add zoom-in effect */
+}
+
+/* Show Full Label on Hover for Multi-word Labels */
+.icon-item:hover .label.full {
+  display: block;
+}
+
+.icon-item:hover .label.short {
+  display: block; /* Ensure single-word labels remain visible */
+}
+
+.icon-item:hover .label.short.one {
+  display: none; /* Ensure single-word labels remain visible */
+}
+
+/* Customize scrollbar to appear on the border */
+.icon-container::-webkit-scrollbar {
+  width: 10px; /* Match the border width */
+}
+
+.icon-container::-webkit-scrollbar-track {
+  background-color: #e9eef6; /* Match the border color */
+  border-radius: 30px;
+}
+
+.icon-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 30px;
+}
+
+.icon-container::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+  border-radius: 30px;
+}
+
+/**** End of App Menu ****/  
+
 .centerDiv {
     display: grid;
     grid-template-columns: auto auto;

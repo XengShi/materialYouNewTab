@@ -183,6 +183,37 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 // ---------------------------end of weather stuff--------------------
 
+// ------------------------App Menu-----------------------------------
+// Toggle button functionality
+document.getElementById('toggleButton').addEventListener('click', function (event) {
+    var iconContainer = document.getElementById('iconContainer');
+    if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
+        iconContainer.style.display = 'grid';
+    } else {
+        iconContainer.style.display = 'none';
+    }
+
+    // Prevent event propagation to avoid triggering document click
+    event.stopPropagation();
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function (event) {
+    var iconContainer = document.getElementById('iconContainer');
+    if (iconContainer.style.display === 'grid') {
+        var isClickInside = iconContainer.contains(event.target) || event.target.id === 'toggleButton';
+
+        if (!isClickInside) {
+            iconContainer.style.display = 'none';
+        }
+    }
+});
+
+document.querySelector('.dot-icon-container').addEventListener('click', function() {
+  this.classList.toggle('clicked');
+});
+// ------------------------End of App Menu Setup-----------------------------------
+
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
 var initialSeconds = currentTime.getSeconds();
