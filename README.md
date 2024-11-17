@@ -23,16 +23,16 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 </div>
 
 <p align="center">
-  <a href="#features">Features</a> •
-  <a href="#additional-features">Additional Features</a> •
-  <a href="#additional-features">Currently Supported Languages</a> •
-  <a href="#installation-guide">Installation Guide</a>
+  <a href="#-features">Features</a> •
+  <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
+  <a href="#-currently-supported-languages-15">Currently Supported Languages</a> •
+  <a href="#-installation-guide">Installation Guide</a>
 <br>
-  <a href="#credits">Usage</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#issues-and-support">Issues and Support</a> •
-  <a href="#privacy-policy">Privacy Policy</a> •
-  <a href="#license">License</a>
+  <a href="#--usage">Usage</a> •
+  <a href="#-contributing">Contributing</a> •
+  <a href="#-issues-and-support">Issues and Support</a> •
+  <a href="#-privacy-policy">Privacy Policy</a> •
+  <a href="#-license">License</a>
 </p>
 
 <img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
@@ -235,7 +235,7 @@ For information on how we handle privacy, please read our [Privacy Policy](./PRI
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
 
-This project is licensed under the GNU General Public License v3.0 (GPL-3.0) License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
 > GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
 > Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
