@@ -578,11 +578,16 @@ body {
     margin-left: 16px;
 }
 
+.searchbar-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
+}
+
 #searchQ {
-    display: block;
-    position: absolute;
+    flex-grow: 1;
     height: 80%;
-    width: calc(100% - 165px);
     top: 0;
     bottom: 0;
     margin: auto auto auto 20px;
@@ -590,12 +595,13 @@ body {
     border: none;
     background-color: #00000000;
     border-radius: 100px;
-    padding: 0 40px;
+    padding: 0 4px;
+    margin-left: 53px;
     font-size: 1rem;
 }
 
 .searchControls {
-    position: absolute;
+    margin-left: 10px;
     right: 10px; 
     display: flex;
     align-items: center;
@@ -612,7 +618,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     color: var(--darkColor-blue);
     cursor: pointer;
     border-radius: 50%;
