@@ -183,7 +183,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 // ---------------------------end of weather stuff--------------------
 
-// ------------------------App Menu-----------------------------------
+// ------------------------Google App Menu-----------------------------------
 // Toggle button functionality
 document.getElementById('toggleButton').addEventListener('click', function (event) {
     var iconContainer = document.getElementById('iconContainer');
@@ -212,7 +212,7 @@ document.addEventListener('click', function (event) {
 document.querySelector('.dot-icon-container').addEventListener('click', function() {
   this.classList.toggle('clicked');
 });
-// ------------------------End of App Menu Setup-----------------------------------
+// ------------------------End of Google App Menu Setup-----------------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();

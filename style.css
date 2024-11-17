@@ -191,6 +191,7 @@ body {
     min-height: 100%;
 }
 
+/* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .dot-icon-container {
   position: absolute;
@@ -355,7 +356,7 @@ body {
   border-radius: 30px;
 }
 
-/**** End of App Menu ****/  
+/* ----------------- End of Google App Menu ----------------- */  
 
 .centerDiv {
     display: grid;
