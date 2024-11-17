@@ -1175,7 +1175,7 @@ const translations = {
     },
     
     // Indonesian
-    "idn": {
+    "id": {
         // Menu Items
         "feedback": "Umpan Balik",
         "resetsettings": "Setelan Awal",
@@ -1283,7 +1283,7 @@ const numberMappings = {
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
     // Define languages that require special decimal formatting
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'id']; // Add more languages here as needed
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
