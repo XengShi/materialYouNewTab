@@ -31,6 +31,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#credits">Usage</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#issues-and-support">Issues and Support</a> •
+  <a href="#privacy-policy">Privacy Policy</a> •
   <a href="#license">License</a>
 </p>
 
