@@ -820,7 +820,7 @@ const translations = {
 
         // Weather
         "humidityLevel": "Влажность",
-        "feelsLike": "Ощущается как",
+        "feelsLike": "Ощущается",
         "location": "Земля",
         // End of Weather
 
