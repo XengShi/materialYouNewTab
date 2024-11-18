@@ -238,19 +238,19 @@ body {
 }
 
 /* Show tooltip on hover */
-.dot-icon-container:hover .tooltip-text {
+.googleAppsCont:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
 }
 
 /* Hide tooltip when menu is open */
-.dot-icon-container:hover + .icon-container .tooltip-text {
+.googleAppsCont:hover + .icon-container .tooltip-text {
   visibility: hidden;
   opacity: 0;
 }
 
 /* Hide tooltip when icon button is clicked */
-.dot-icon-container.clicked .tooltip-text {
+.googleAppsCont.clicked .tooltip-text {
   visibility: hidden;
   opacity: 0;
 }
@@ -280,7 +280,7 @@ body {
   grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
   justify-items: center; /* Center icons within each grid cell */
   position: absolute; /* Absolute positioning for dynamic alignment */
-  top: calc(15px + 24px + 20px); /* Place below the dot icon */
+  top: calc(30px + 24px + 20px); /* Place below the dot icon */
   right: 10px;
   max-height: calc(40px * 3 + 10px * 2 + 200px); /* Limit to 9 icons (3 rows * icon size + gaps) */
   overflow-y: auto; /* Add vertical scrollbar when needed */
