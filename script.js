@@ -976,6 +976,9 @@ const applySelectedTheme = (colorValue) => {
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
+            .menuicon{
+                color: var(--darkerColor-dark);
+            }
             #menuButton::before{
                 background-color: #bfbfbf;
             }
