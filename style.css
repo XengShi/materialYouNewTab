@@ -199,7 +199,7 @@ body {
   margin: 10px;
   top: 15px; /* Adjust distance from the top */
   right: 25px; /* Adjust distance from the right */
-  font-size: 24px; /* Set the size of the dots */
+  font-size: 25px; /* Set the size of the dots */
   background: transparent;
   border: none;
   cursor: pointer;
@@ -253,6 +253,19 @@ body {
 .dot-icon-container.clicked .tooltip-text {
   visibility: hidden;
   opacity: 0;
+}
+
+/* Separator Styling */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--darkColor-blue); /* Adjust color as needed */
+  margin: 10px 0; /* Adjust spacing as needed */
+}
+
+/* Add Separator in Icon Container */
+.icon-container .separator {
+  grid-column: span 3; /* Ensure separator spans across all columns */
 }
 
 /* Icon Container Styling (Placed Below Dot Icon) */
