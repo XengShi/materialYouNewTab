@@ -276,7 +276,7 @@ body {
   background-color: var(--accentLightTint-blue);
   border-radius: 30px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border: 10px solid var(--bg-color-blue);
+  border: 8px solid var(--bg-color-blue);
   grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
   justify-items: center; /* Center icons within each grid cell */
   position: absolute; /* Absolute positioning for dynamic alignment */
