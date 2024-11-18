@@ -173,7 +173,7 @@ const translations = {
         }
     },
 
-    // Chinese
+    // Chinese (Simplified)
     // Machine translated some elements, please verify and delete this comment
     "zh": {
         // Menu Items
@@ -820,7 +820,7 @@ const translations = {
 
         // Weather
         "humidityLevel": "Влажность",
-        "feelsLike": "Ощущается как",
+        "feelsLike": "Ощущается",
         "location": "Земля",
         // End of Weather
 
@@ -924,7 +924,7 @@ const translations = {
             "evening": "Xayrli kech!"
         },
     },
-    // spanish
+    // Spanish
     "es": {
         // Menu Items
         "feedback": "Comentarios",
@@ -1271,6 +1271,7 @@ const menuWidths = {
     ja: '444px',
     ru: '450px',
     it: '437px',
+    idn: '415px',
     // Add more languages and widths as needed
 };
 
@@ -1282,8 +1283,10 @@ const numberMappings = {
 
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
+<<<
     // Define languages that require special decimal formatting
     const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
+  
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
