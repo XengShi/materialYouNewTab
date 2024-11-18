@@ -1283,7 +1283,7 @@ const numberMappings = {
 
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
-<<<
+    
     // Define languages that use a comma as the decimal separator instead of a dot
     const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
   
