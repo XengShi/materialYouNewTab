@@ -23,15 +23,16 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 </div>
 
 <p align="center">
-  <a href="#features">Features</a> •
-  <a href="#additional-features">Additional Features</a> •
-  <a href="#additional-features">Currently Supported Languages</a> •
-  <a href="#installation-guide">Installation Guide</a>
+  <a href="#-features">Features</a> •
+  <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
+  <a href="#-currently-supported-languages-15">Currently Supported Languages</a> •
+  <a href="#-installation-guide">Installation Guide</a>
 <br>
-  <a href="#credits">Usage</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#issues-and-support">Issues and Support</a> •
-  <a href="#license">License</a>
+  <a href="#--usage">Usage</a> •
+  <a href="#-contributing">Contributing</a> •
+  <a href="#-issues-and-support">Issues and Support</a> •
+  <a href="#-privacy-policy">Privacy Policy</a> •
+  <a href="#-license">License</a>
 </p>
 
 <img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
@@ -80,21 +81,25 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Seamless Integration with Browsers**:
   - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
 
-## 🌐 Currently Supported Languages
+## 🌐 Currently Supported Languages (15)
 
-| Language                                                                           | Code | Translator(s)                                                                          |
-|------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
-| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                 | en   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
-| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla - বাংলা**          | bd   | [It'z RJ](https://github.com/itz-rj-here/), [Prem Kumar](https://github.com/prem-k-r/) |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese - 中文**          | zh   | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
-| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech - Čeština**         | cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi - हिंदी**            | hi   | [XengShi](https://github.com/XengShi/), [Prem Kumar](https://github.com/prem-k-r/)     |
-| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian - Italiano**      | it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
-| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese - Português**  | pt   | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
-| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian - Русский**       | ru   | [giwi](https://github.com/giwih/)                                                      |
-| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish - Türkçe**        | tr   | [Nobody](https://github.com/Nobody9512/)                                               |
-| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek - O'zbek**          | uz   | [Firdavs](https://github.com/Firdavs9512/)                                             |
-| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese - Tiếng Việt** | vn   | [Diep](https://github.com/diepdo1810/)                                                 |
+| Language                                                                                   | Code | Translator(s)                                                                          |
+|--------------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
+| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                         |&nbsp; en | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                   |&nbsp; bd | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)       |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文     |&nbsp; zh | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
+| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština                 |&nbsp; cz | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |&nbsp; hi | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
+| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia   |&nbsp; id | [Ayyas-RF](https://github.com/Ayyas-RF/)                                               |
+| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |&nbsp; it | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |&nbsp; ja | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |&nbsp; ko | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese** - Português          |&nbsp; pt | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
+| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |&nbsp; ru | [giwi](https://github.com/giwih/)                                                      |
+| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |&nbsp; es | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                |&nbsp; tr | [Nobody](https://github.com/Nobody9512/)                                               |
+| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                  |&nbsp; uz | [Firdavs](https://github.com/Firdavs9512/)                                             |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt         |&nbsp; vn | [Diep](https://github.com/diepdo1810/)                                                 |
 
 ## 📥 Installation Guide
 
@@ -225,12 +230,12 @@ If you encounter any bugs or issues, please [submit an issue](https://github.com
 
 ## 🔒 Privacy Policy
 
-For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY.md).
+For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY_POLICY.md).
 
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
 
-This project is licensed under the GNU General Public License v3.0 (GPL-3.0) License. See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
 > GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
 > Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
