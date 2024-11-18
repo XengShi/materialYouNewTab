@@ -306,11 +306,10 @@ body {
 
 /* Icon Styling */
 .menuicon {
-  fill: currentColor;
+  fill: var(--darkColor-blue);
   width: 40px;
   height: 40px;
   margin-bottom: 8px;
-  color: var(--darkColor-blue); /* Icon color */
 }
 
 /* Label Styling */
