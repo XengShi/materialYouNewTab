@@ -355,7 +355,7 @@ body {
 }
 
 .icon-container::-webkit-scrollbar-track {
-  background-color: transparent; /* Match the border color */
+  background-color: transparent;
   border-radius: 30px;
 }
 
