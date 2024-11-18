@@ -198,7 +198,7 @@ body {
   display: inline-block;
   margin: 10px;
   top: 15px; /* Adjust distance from the top */
-  right: 25px; /* Adjust distance from the right */
+  right: 20px; /* Adjust distance from the right */
   font-size: 25px; /* Set the size of the dots */
   background: transparent;
   border: none;
