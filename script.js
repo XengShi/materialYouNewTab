@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // ------------------------Google App Menu-----------------------------------
 // Toggle button functionality
-document.getElementById('toggleButton').addEventListener('click', function (event) {
+document.getElementById('googleAppsCont').addEventListener('click', function (event) {
     var iconContainer = document.getElementById('iconContainer');
     if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
         iconContainer.style.display = 'grid';
@@ -209,7 +209,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-document.querySelector('.dot-icon-container').addEventListener('click', function() {
+document.querySelector('.googleAppsCont').addEventListener('click', function() {
   this.classList.toggle('clicked');
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
@@ -1418,6 +1418,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shortcuts = document.getElementById("shortcuts-section");
     const aiToolsCont = document.getElementById("aiToolsCont");
+    const googleAppsCont = document.getElementById("googleAppsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const proxybypassField = document.getElementById("proxybypassField");
     const proxyinputField = document.getElementById("proxyField");
@@ -1427,6 +1428,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+    const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -1996,6 +1998,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    googleAppsCheckbox.addEventListener("change", function () {
+        saveCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+        if (googleAppsCheckbox.checked) {
+            googleAppsCont.style.display = "flex";
+            saveDisplayStatus("googleAppsDisplayStatus", "flex");
+        } else {
+            googleAppsCont.display = "none";
+            saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
@@ -2130,8 +2143,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
     loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+    loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
+    loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
