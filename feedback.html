@@ -45,7 +45,7 @@
             justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
-            padding: 20px 0;
+            padding: 20px 50px;
         }
 
         .contact-info a {
@@ -84,6 +84,28 @@
                 font-size: 24px;
                 width: 60px;
                 height: 60px;
+            }
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #181818;
+                color: #f0f4f8;
+            }
+
+            .container {
+                background-color: #2a2a2a;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            h1,
+            .feedback-message {
+                color: #f0f4f8;
+            }
+
+            .github {
+                background-color: #1d1d1d;
             }
         }
     </style>
