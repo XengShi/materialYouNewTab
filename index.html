@@ -32,7 +32,7 @@
                 d="M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0m0 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-2 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m8-14a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-2 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m2 4a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4-10a2 2 0 1 0 0-4 2 2 0 0 0 0 4m2 4a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-2 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
         </svg>
         <!-- Text to appear on hover -->
-        <span class="tooltip-text">Google Apps</span>
+        <span class="tooltip-text" id="googleAppsHover">Google Apps</span>
     </div>
 
     <!-- Centered Icon Container -->
@@ -474,12 +474,12 @@
                         <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
-                            <path class="darkIconForDarkTheme" 
+                            <path class="darkIconForDarkTheme"
                                 d="M24.805 12.0177C24.9359 12.756 25.0011 13.504 25 14.2534C25 17.6 23.7796 20.4297 21.6559 22.345H21.6587C19.8016 24.0265 17.2487 25 14.2216 25C11.2455 25 8.3912 23.8411 6.28674 21.7783C4.18227 19.7154 3 16.9176 3 14.0004C3 11.0831 4.18227 8.28528 6.28674 6.22244C8.3912 4.15961 11.2455 3.00073 14.2216 3.00073C17.0073 2.96875 19.6976 3.99459 21.7289 5.86338L18.5251 9.00378C17.367 7.92165 15.8214 7.32907 14.2216 7.35383C11.2942 7.35383 8.80719 9.28977 7.92068 11.8967C7.45064 13.2627 7.45064 14.7421 7.92068 16.1082H7.92489C8.8156 18.711 11.2984 20.6469 14.2258 20.6469C15.7379 20.6469 17.0368 20.2674 18.044 19.5964H18.0398C18.6246 19.2167 19.1248 18.7247 19.5103 18.1502C19.8958 17.5758 20.1585 16.9307 20.2827 16.2539H14.2216V12.0191L24.805 12.0177Z"
                                 fill="white" />
                         </svg>
 
-                        <label class="engine-name">Google</label>
+                        <label class="engine-name" id="googleEngine">Google</label>
                         <input checked class="radio-button" name="search-engine" type="radio" value="engine1">
                     </div>
 
@@ -492,11 +492,9 @@
                                 fill="white" />
                         </svg>
 
-                        <label class="engine-name">Duck</label>
+                        <label class="engine-name" id="duckEngine">Duck</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine2">
                     </div>
-
-
 
                     <div class="search-engine bgLightTint">
                         <!-- <img src="./svgs/bing.svg" alt="B" class="logo"> -->
@@ -507,15 +505,14 @@
                                 fill="white" />
                         </svg>
 
-                        <label class="engine-name">Bing</label>
+                        <label class="engine-name" id="bingEngine">Bing</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine3">
                     </div>
+
                     <div class="search-engine bgLightTint">
                         <!-- <img src="./svgs/brave.svg" alt="B" class="logo"> -->
-
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="300.000000pt" height="300.000000pt"
                             viewBox="0 0 300.000000 300.000000" preserveAspectRatio="xMidYMid meet">
-
                             <g class="accentColor"
                                 transform="translate(-75.000000,380.000000) scale(0.150000,-0.150000)" fill="#FF000F"
                                 stroke="none">
@@ -543,7 +540,7 @@
                             </g>
                         </svg>
 
-                        <label class="engine-name">Brave</label>
+                        <label class="engine-name" id="braveEngine">Brave</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine4">
                     </div>
 
@@ -555,7 +552,7 @@
                                 d="M12 17L17.19 14L12 11V17ZM23.56 9.17C23.69 9.64 23.78 10.27 23.84 11.07C23.91 11.87 23.94 12.56 23.94 13.16L24 14C24 16.19 23.84 17.8 23.56 18.83C23.31 19.73 22.73 20.31 21.83 20.56C21.36 20.69 20.5 20.78 19.18 20.84C17.88 20.91 16.69 20.94 15.59 20.94L14 21C9.81 21 7.2 20.84 6.17 20.56C5.27 20.31 4.69 19.73 4.44 18.83C4.31 18.36 4.22 17.73 4.16 16.93C4.09 16.13 4.06 15.44 4.06 14.84L4 14C4 11.81 4.16 10.2 4.44 9.17C4.69 8.27 5.27 7.69 6.17 7.44C6.64 7.31 7.5 7.22 8.82 7.16C10.12 7.09 11.31 7.06 12.41 7.06L14 7C18.19 7 20.8 7.16 21.83 7.44C22.73 7.69 23.31 8.27 23.56 9.17Z"
                                 fill="white" />
                         </svg>
-                        <label class="engine-name">YouTube</label>
+                        <label class="engine-name" id="youtubeEngine">YouTube</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine5">
                     </div>
                 </div>
@@ -613,7 +610,7 @@
                             fill="white" />
                     </svg>
                 </div>
-                <div class="tLabel">ChatGPT</div>
+                <div class="tLabel" id="chatGPT">ChatGPT</div>
             </a>
             <!-- ---------------- -->
             <!-- ---------------- -->
@@ -634,7 +631,7 @@
                         </defs>
                     </svg>
                 </div>
-                <div class="tLabel">Gemini</div>
+                <div class="tLabel" id="gemini">Gemini</div>
             </a>
             <!-- ---------------- -->
             <!-- ---------------- -->
@@ -657,10 +654,8 @@
                             d="M12.499 24.097H19.791C21.876 24.097 23.125 21.34 23.956 18.588C24.944 15.325 26.237 10.959 22.498 10.959H19.35C18.408 10.959 17.58 11.581 17.323 12.489C16.5812 15.0933 15.8269 17.694 15.06 20.291C14.678 21.585 14.357 22.697 13.868 23.386C13.7169 23.609 13.5126 23.7907 13.2736 23.9149C13.0346 24.039 12.7683 24.1016 12.499 24.097Z"
                             fill="#252525" />
                     </svg>
-
-
                 </div>
-                <div class="tLabel">Copilot</div>
+                <div class="tLabel" id="copilot">Copilot</div>
             </a>
             <!-- ---------------- -->
             <!-- ---------------- -->
@@ -673,14 +668,11 @@
                             d="M18.3372 8L25 24V8H18.3372ZM7 8V24L13.6628 8H7ZM16.0113 13.8908L20.258 24H17.4743L16.2064 20.7759H13.0926L16.0113 13.8908H16.0113Z"
                             fill="white" />
                     </svg>
-
                 </div>
-                <div class="tLabel">Adobe Firefly</div>
+                <div class="tLabel" id="firefly">Adobe Firefly</div>
             </a>
             <!-- ---------------- -->
-
         </div>
-
     </div>
     <!-- -----------end of AI-Tools------------------ -->
 
@@ -721,7 +713,7 @@
                                 </svg>
 
                             </div>
-                            <span>Github</span>
+                            <span id="github">Github</span>
                         </a>
                         <!-- -----end of tiles-------- -->
                         <!-- ----tiles----------- -->
