@@ -184,33 +184,32 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ---------------------------end of weather stuff--------------------
 
 // ------------------------Google App Menu-----------------------------------
-// Toggle button functionality
-document.getElementById('googleAppsCont').addEventListener('click', function (event) {
-    var iconContainer = document.getElementById('iconContainer');
+const iconContainer = document.getElementById("iconContainer"); // Menu to toggle visibility
+const tooltipText = googleAppsCont.querySelector(".tooltip-text"); // Tooltip text element
+// Toggle menu when clicking on googleAppsCont
+googleAppsCont.addEventListener("click", function (event) {
+    tooltipText.style.display = "none"; // Hide the tooltip text
     if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
-        iconContainer.style.display = 'grid';
+        iconContainer.style.display = 'grid'; // Show menu
     } else {
-        iconContainer.style.display = 'none';
+        iconContainer.style.display = 'none'; // Hide menu
     }
 
-    // Prevent event propagation to avoid triggering document click
-    event.stopPropagation();
+    // Reset tooltip visibility after a delay
+    setTimeout(() => {
+        tooltipText.style.display = ""; // Restore default display
+    }, 1000);
+    event.stopPropagation(); // Prevent click propagation
 });
 
 // Close menu when clicking outside
-document.addEventListener('click', function (event) {
-    var iconContainer = document.getElementById('iconContainer');
+document.addEventListener("click", function (event) {
     if (iconContainer.style.display === 'grid') {
-        var isClickInside = iconContainer.contains(event.target) || event.target.id === 'toggleButton';
-
+        const isClickInside = iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
         if (!isClickInside) {
-            iconContainer.style.display = 'none';
+            iconContainer.style.display = 'none'; // Hide menu
         }
     }
-});
-
-document.querySelector('.googleAppsCont').addEventListener('click', function() {
-  this.classList.toggle('clicked');
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
 
@@ -2004,7 +2003,7 @@ document.addEventListener("DOMContentLoaded", function () {
             googleAppsCont.style.display = "flex";
             saveDisplayStatus("googleAppsDisplayStatus", "flex");
         } else {
-            googleAppsCont.display = "none";
+            googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
         }
     });
