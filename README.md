@@ -86,7 +86,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | Language                                                                                   | Code | Translator(s)                                                                          |
 |--------------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
 | <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                         |&nbsp; en | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
-| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                   |&nbsp; bd | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)       |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                   |&nbsp; bn | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)       |
 | <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文     | zh-CN    | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
 | <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština                 |&nbsp; cz | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |&nbsp; hi | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
