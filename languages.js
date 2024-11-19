@@ -22,7 +22,7 @@ const translations = {
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
-        "enable_ai_tools": "Show shortcuts for AI tools",
+        "enable_ai_tools": "Show shortcut for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
@@ -278,9 +278,9 @@ const translations = {
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
-        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "enable_ai_tools": "AI उपकरणों के शॉर्टकट प्रदर्शित करें",
+        "googleAppsMenuText": "गूगल ऐप्स",
+        "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट प्रदर्शित करें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",

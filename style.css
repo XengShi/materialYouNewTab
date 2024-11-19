@@ -193,7 +193,7 @@ body {
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
-.dot-icon-container {
+.googleAppsCont {
   position: absolute;
   display: inline-block;
   margin: 10px;
