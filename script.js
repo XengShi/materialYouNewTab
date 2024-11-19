@@ -263,6 +263,7 @@ function updateDate() {
             tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
+            idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -395,6 +396,7 @@ function updatedigiClock() {
         pt: `${dayName}, ${dayOfMonth}`,
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
+        idn: `${dayOfMonth} ${dayName}`,
         default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
