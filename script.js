@@ -1819,7 +1819,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const hostname = new URL(urlString).hostname;
         if (hostname === "github.com") {
-            logo.src = "./shortcuts_icons/github.png";
+            logo.src = "./shortcuts_icons/github-shortcut.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
         }
