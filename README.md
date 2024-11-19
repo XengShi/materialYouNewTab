@@ -96,7 +96,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |&nbsp; ko | [XengShi](https://github.com/XengShi/)                                                 |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          | pt-BR    | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |&nbsp; ru | [giwi](https://github.com/giwih/)                                                      |
-| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |&nbsp; es | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               | es-ES    | [XengShi](https://github.com/XengShi/)                                                 |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                |&nbsp; tr | [Nobody](https://github.com/Nobody9512/)                                               |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                  |&nbsp; uz | [Firdavs](https://github.com/Firdavs9512/)                                             |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt         |&nbsp; vn | [Diep](https://github.com/diepdo1810/)                                                 |
