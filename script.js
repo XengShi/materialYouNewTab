@@ -165,16 +165,17 @@ window.addEventListener('DOMContentLoaded', async () => {
         const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
         document.getElementById("wIcon").src = weatherIcon;
 
+        // Define minimum width for the slider based on the language
         const humidityMinWidth = {
-            idn: '48%',
+            idn: '47%',
             en: '42%', // Default for English and others
         };
+        const slider = document.getElementById("slider");
+        slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
 
         // Set slider width based on humidity
         if (humidity > 40) {
-            const slider = document.getElementById("slider");
             slider.style.width = `calc(${humidity}% - 60px)`;
-            slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
         }
 
         // Update location
