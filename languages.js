@@ -83,6 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
+        "googleAppsHover": "Google Apps",
         // End of Body and New Tab Items
 
         // Greeting
@@ -103,7 +104,6 @@ const translations = {
         "copilot": "Copilot",
         "firefly": "Adobe Firefly",
         "github": "GitHub",
-        "googleAppsHover": "Google Apps",
     },
 
 
@@ -123,8 +123,8 @@ const translations = {
         "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
         "ai_tools_button": "Ferramentas de IA",
         "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Apps do Google",
+        "googleAppsMenuInfo": "Mostrar atalho para os Apps do Google",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Ativar/desativar o Relógio Digital",
@@ -209,8 +209,8 @@ const translations = {
         "adaptiveIconInfoText": "快捷方式图标将始终为圆形",
         "ai_tools_button": "AI工具",
         "enable_ai_tools": "启用/禁用AI工具快捷方式",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "谷歌应用",
+        "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
         // Digital Clock
         "digitalclocktittle": "数字时钟",
         "digitalclockinfo": "启用/禁用数字时钟",
@@ -492,8 +492,8 @@ const translations = {
         "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
         "ai_tools_button": "Strumenti AI",
         "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "App Google",
+        "googleAppsMenuInfo": "Mostra il collegamento per le App Google",
         // Digital Clock
         "digitalclocktittle": "Orologio Digitale",
         "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
@@ -577,8 +577,8 @@ const translations = {
         "adaptiveIconInfoText": "Kısayol ikonları yuvarlak görünecek",
         "ai_tools_button": "AI Araçları",
         "enable_ai_tools": "AI Araçları kısayollarını göster",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google Uygulamaları",
+        "googleAppsMenuInfo": "Google Uygulamaları için kısayolu göster",
         // Digital Clock
         "digitalclocktittle": "Dijital Saat",
         "digitalclockinfo": "Dijital saate geçiş yap",
@@ -762,8 +762,8 @@ const translations = {
         "adaptiveIconInfoText": "Biểu tượng phím tắt sẽ luôn là hình tròn",
         "ai_tools_button": "Công cụ AI",
         "enable_ai_tools": "Bật/tắt các phím tắt Công cụ AI",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Ứng dụng Google",
+        "googleAppsMenuInfo": "Hiển thị phím tắt cho Ứng dụng Google",
         // Digital Clock
         "digitalclocktittle": "Đồng hồ Kỹ thuật số",
         "digitalclockinfo": "Bật/tắt Đồng hồ Kỹ thuật số",
@@ -847,8 +847,8 @@ const translations = {
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
         "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Приложения Google",
+        "googleAppsMenuInfo": "Показать ярлык для приложений Google",
         // Digital Clock
         "digitalclocktittle": "Цифровые часы",
         "digitalclockinfo": "Включить/Отключить цифровые часы",
@@ -945,8 +945,8 @@ const translations = {
         "adaptiveIconInfoText": "Tezkor tugmalar doimiy ravishda doiraviy bo'ladi",
         "ai_tools_button": "AI-instrumentlar",
         "enable_ai_tools": "Tezkor tugmalarni ko'rsatish AI-instrumentlar",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google Dasturlari",
+        "googleAppsMenuInfo": "Google Dasturlariga yorliqni ko'rsating",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Digital Clockga o'tish",
@@ -1030,8 +1030,8 @@ const translations = {
         "adaptiveIconInfoText": "Los iconos de accesos directos serán más pequeños",
         "ai_tools_button": "Herramientas de IA",
         "enable_ai_tools": "Mostrar accesos directos de herramientas de IA",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Aplicaciones de Google",
+        "googleAppsMenuInfo": "Mostrar acceso directo a las aplicaciones de Google",
         // Digital Clock
         "digitalclocktittle": "Reloj digital",
         "digitalclockinfo": "Cambiar a reloj digital",
@@ -1115,8 +1115,8 @@ const translations = {
         "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
         "ai_tools_button": "AIツール",
         "enable_ai_tools": "AIツールのショートカットを表示",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google アプリ",
+        "googleAppsMenuInfo": "Google アプリのショートカットを表示する",
         // Digital Clock
         "digitalclocktittle": "デジタル時計",
         "digitalclockinfo": "デジタル時計に変更",
@@ -1213,8 +1213,8 @@ const translations = {
         "adaptiveIconInfoText": "단축 아이콘이 더 작게 표시됩니다",
         "ai_tools_button": "AI 도구",
         "enable_ai_tools": "AI 도구 단축키 표시",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google 앱",
+        "googleAppsMenuInfo": "Google 앱 바로가기를 표시합니다",
         // Digital Clock
         "digitalclocktittle": "디지털 시계",
         "digitalclockinfo": "디지털 시계로 전환",
