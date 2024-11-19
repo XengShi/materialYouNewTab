@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 // Translation data
 const translations = {
     "en": {
@@ -90,8 +91,22 @@ const translations = {
             "afternoon": "Good Afternoon!",
             "evening": "Good Evening!"
         },
+
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck", // DuckDuckGo
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "Google Apps",
     },
-    
+
+
     // Portuguese
     "pt": {
         // Menu Items
@@ -174,7 +189,7 @@ const translations = {
             "morning": "Bom dia!",
             "afternoon": "Boa tarde!",
             "evening": "Boa noite!"
-        }
+        },
     },
 
     // Chinese (Simplified)
@@ -260,7 +275,20 @@ const translations = {
             "morning": "早上好!",
             "afternoon": "下午好!",
             "evening": "晚上好!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "谷歌",
+        "duckEngine": "鸭鸭狗",
+        "bingEngine": "必应",
+        "braveEngine": "勇敢",
+        "youtubeEngine": "优兔",
+        "chatGPT": "聊天GPT",
+        "gemini": "双子座",
+        "copilot": "副驾驶",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "谷歌应用",
     },
 
     // Hindi
@@ -346,7 +374,20 @@ const translations = {
             "morning": "सुप्रभात!",
             "afternoon": "शुभ अपराह्न!",
             "evening": "शुभ संध्या!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "गूगल",
+        "duckEngine": "डकडकगो",
+        "bingEngine": "बिंग",
+        "braveEngine": "ब्रेव",
+        "youtubeEngine": "यूट्यूब",
+        "chatGPT": "चैटGPT",
+        "gemini": "जेमिनी",
+        "copilot": "कोपायलट",
+        "firefly": "एडोबी फायरफ्लाई",
+        "github": "गिटहब",
+        "googleAppsHover": "गूगल ऐप्स",
     },
 
     // Czech
@@ -431,7 +472,7 @@ const translations = {
             "morning": "Dobré ráno!",
             "afternoon": "Dobré odpoledne!",
             "evening": "Dobrý večer!"
-        }
+        },
     },
 
     // Italian
@@ -517,7 +558,7 @@ const translations = {
             "morning": "Buongiorno!",
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
-        }
+        },
     },
 
     // Turkish
@@ -602,7 +643,7 @@ const translations = {
             "morning": "Günaydın!",
             "afternoon": "İyi öğleden sonra!",
             "evening": "İyi akşamlar!"
-        }
+        },
     },
 
     // Bengali
@@ -689,7 +730,20 @@ const translations = {
             "morning": "শুভ সকাল!",
             "afternoon": "শুভ বিকেল!",
             "evening": "শুভ সন্ধ্যা!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "গুগল",
+        "duckEngine": "ডাকডাকগো",
+        "bingEngine": "বিং",
+        "braveEngine": "ব্রেভ",
+        "youtubeEngine": "ইউটিউব",
+        "chatGPT": "চ্যাটGPT",
+        "gemini": "জেমিনি",
+        "copilot": "কোপাইলট",
+        "firefly": "এডোবি ফায়ারফ্লাই",
+        "github": "গিটহাব",
+        "googleAppsHover": "গুগল অ্যাপস",
     },
 
     // Vietnamese
@@ -774,7 +828,7 @@ const translations = {
             "morning": "Chào buổi sáng!",
             "afternoon": "Chào buổi chiều!",
             "evening": "Chào buổi tối!"
-        }
+        },
     },
 
     // Russian
@@ -859,7 +913,20 @@ const translations = {
             "morning": "Доброе утро!",
             "afternoon": "Добрый день!",
             "evening": "Добрый вечер!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "Гугл",
+        "duckEngine": "ДакДакГо",
+        "bingEngine": "Бинг",
+        "braveEngine": "Брейв",
+        "youtubeEngine": "Ютуб",
+        "chatGPT": "ЧатGPT",
+        "gemini": "Гемини",
+        "copilot": "Копилот",
+        "firefly": "Адоби Файерфлай",
+        "github": "ГитХаб",
+        "googleAppsHover": "Гугл Приложения",
     },
 
     // Uzbek
@@ -946,6 +1013,7 @@ const translations = {
             "evening": "Xayrli kech!"
         },
     },
+
     // Spanish
     "es": {
         // Menu Items
@@ -1028,9 +1096,8 @@ const translations = {
             "morning": "¡Buenos días!",
             "afternoon": "¡Buenas tardes!",
             "evening": "¡Buenas noches!"
-        }
+        },
     },
-
 
     // Japanese
     "ja": {
@@ -1114,7 +1181,20 @@ const translations = {
             "morning": "おはようございます！",
             "afternoon": "こんにちは！",
             "evening": "こんばんは！"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "グーグル",
+        "duckEngine": "ダックダックゴー",
+        "bingEngine": "ビング",
+        "braveEngine": "ブレイブ",
+        "youtubeEngine": "ユーチューブ",
+        "chatGPT": "チャットGPT",
+        "gemini": "ジェミニ",
+        "copilot": "コパイロット",
+        "firefly": "アドビファイヤフライ",
+        "github": "ギットハブ",
+        "googleAppsHover": "グーグルアプリ",
     },
 
     // Korean
@@ -1199,9 +1279,22 @@ const translations = {
             "morning": "좋은 아침!",
             "afternoon": "좋은 오후!",
             "evening": "좋은 저녁!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "구글",
+        "duckEngine": "덕덕고",
+        "bingEngine": "빙",
+        "braveEngine": "브레이브",
+        "youtubeEngine": "유튜브",
+        "chatGPT": "챗GPT",
+        "gemini": "제미니",
+        "copilot": "코파일럿",
+        "firefly": "어도비 파이어플라이",
+        "github": "깃허브",
+        "googleAppsHover": "구글 앱",
     },
-    
+
     // Indonesian
     "idn": {
         // Menu Items
@@ -1311,10 +1404,10 @@ const numberMappings = {
 
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
-    
+
     // Define languages that use a comma as the decimal separator instead of a dot
     const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
-  
+
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
@@ -1380,7 +1473,19 @@ function applyLanguage(lang) {
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
         { id: 'feelsLike', key: 'feelsLike' },
-        { id: 'location', key: 'location' }
+        { id: 'location', key: 'location' },
+        { id: 'googleEngine', key: 'googleEngine' },
+        { id: 'duckEngine', key: 'duckEngine' },
+        { id: 'bingEngine', key: 'bingEngine' },
+        { id: 'braveEngine', key: 'braveEngine' },
+        { id: 'youtubeEngine', key: 'youtubeEngine' },
+        { id: 'chatGPT', key: 'chatGPT' },
+        { id: 'gemini', key: 'gemini' },
+        { id: 'copilot', key: 'copilot' },
+        { id: 'firefly', key: 'firefly' },
+        { id: 'github', key: 'github' },
+        { id: 'googleAppsHover', key: 'googleAppsHover' },
+
     ];
 
     // Loop through the translation map to apply translations
