@@ -88,8 +88,7 @@
     --textColorDark-purple: #2D1B3E;
 
     /* ⚫⚫⚫ */
-
-    --bg-color-dark: #000;
+    --bg-color-dark: #171615;
     --accentLightTint-dark: #3c3c3c;
     --darkerColor-dark: #eeeeee;
     --darkColor-dark: #212121;
@@ -191,6 +190,186 @@ body {
     width: 100%;
     min-height: 100%;
 }
+
+/* ----------------- Google App Menu CSS Setup ----------------- */
+/* Dot Icon Container Styling */
+.googleAppsCont {
+  position: absolute;
+  display: inline-block;
+  margin: 10px;
+  top: 15px; /* Adjust distance from the top */
+  right: 20px; /* Adjust distance from the right */
+  font-size: 25px; /* Set the size of the dots */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2; /* Set z-index */
+}
+
+/* Styling for the SVG icon */
+.dot-icon {
+  fill: var(--darkerColor-blue); /* Icon color */
+  cursor: pointer;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+/* Hover effect for the icon */
+.dot-icon:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+
+/* Tooltip Text Styling */
+.tooltip-text {
+  visibility: hidden;
+  background-color: var(--darkColor-blue);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 100%; /* Position below the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 3; /* Set z-index */
+}
+
+/* Show tooltip on hover */
+.googleAppsCont:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Hide tooltip when menu is open */
+.googleAppsCont:hover + .icon-container .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Hide tooltip when icon button is clicked */
+.googleAppsCont.clicked .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Separator Styling */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--darkColor-blue); /* Adjust color as needed */
+  margin: 10px 0; /* Adjust spacing as needed */
+}
+
+/* Add Separator in Icon Container */
+.icon-container .separator {
+  grid-column: span 3; /* Ensure separator spans across all columns */
+}
+
+/* Icon Container Styling (Placed Below Dot Icon) */
+.icon-container {
+  display: grid;
+  gap: 10px;
+  padding: 20px 10px; /* Adjusted padding to account for scrollbar */
+  background-color: var(--accentLightTint-blue);
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 8px solid var(--bg-color-blue);
+  grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
+  justify-items: center; /* Center icons within each grid cell */
+  position: absolute; /* Absolute positioning for dynamic alignment */
+  top: calc(30px + 24px + 20px); /* Place below the dot icon */
+  right: 10px;
+  max-height: calc(40px * 3 + 10px * 2 + 200px); /* Limit to 9 icons (3 rows * icon size + gaps) */
+  overflow-y: auto; /* Add vertical scrollbar when needed */
+  box-sizing: border-box; /* Ensure padding is included in width and height */
+  z-index: 1; /* Set z-index */
+}
+
+/* Individual Icon Item Styling */
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  min-width: 100px; /* Ensure consistent width */
+  background-color: var(--accentLightTint-blue); /* Default background */
+}
+
+/* Icon Styling */
+.menuicon {
+  color: var(--darkColor-blue);
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+/* Label Styling */
+.label {
+  font-size: 14px;
+  color: var(--textColorDark-blue);
+}
+
+/* Short Label (Default) */
+.label.short {
+  display: block;
+}
+
+/* Full Label (Hidden by Default) */
+.label.full {
+  display: none;
+  white-space: pre-line; /* Ensure text retains line breaks */
+  text-align: center; /* Center align text */
+}
+
+/* Hover Effect for Icon Item */
+.icon-item:hover {
+  background-color: var(--bg-color-blue);
+  transform: scale(1.1); /* Add zoom-in effect */
+}
+
+/* Show Full Label on Hover for Multi-word Labels */
+.icon-item:hover .label.full {
+  display: block;
+}
+
+.icon-item:hover .label.short {
+  display: block; /* Ensure single-word labels remain visible */
+}
+
+.icon-item:hover .label.short.one {
+  display: none; /* Ensure single-word labels remain visible */
+}
+
+/* Customize scrollbar to appear on the border */
+.icon-container::-webkit-scrollbar {
+  width: 5px; /* Match the border width */
+}
+
+.icon-container::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 30px;
+}
+
+.icon-container::-webkit-scrollbar-thumb {
+  background-color: var(--darkColor-blue);
+  border-radius: 30px;
+}
+
+.icon-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--darkerColor-blue);
+  border-radius: 30px;
+}
+
+/* ----------------- End of Google App Menu ----------------- */  
 
 .centerDiv {
     display: grid;

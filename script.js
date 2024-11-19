@@ -183,6 +183,36 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 // ---------------------------end of weather stuff--------------------
 
+// ------------------------Google App Menu-----------------------------------
+const iconContainer = document.getElementById("iconContainer"); // Menu to toggle visibility
+const tooltipText = googleAppsCont.querySelector(".tooltip-text"); // Tooltip text element
+// Toggle menu when clicking on googleAppsCont
+googleAppsCont.addEventListener("click", function (event) {
+    tooltipText.style.display = "none"; // Hide the tooltip text
+    if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
+        iconContainer.style.display = 'grid'; // Show menu
+    } else {
+        iconContainer.style.display = 'none'; // Hide menu
+    }
+
+    // Reset tooltip visibility after a delay
+    setTimeout(() => {
+        tooltipText.style.display = ""; // Restore default display
+    }, 1000);
+    event.stopPropagation(); // Prevent click propagation
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+    if (iconContainer.style.display === 'grid') {
+        const isClickInside = iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
+        if (!isClickInside) {
+            iconContainer.style.display = 'none'; // Hide menu
+        }
+    }
+});
+// ------------------------End of Google App Menu Setup-----------------------------------
+
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
 var initialSeconds = currentTime.getSeconds();
@@ -947,6 +977,9 @@ const applySelectedTheme = (colorValue) => {
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
+            .menuicon{
+                color: var(--darkerColor-dark);
+            }
             #menuButton::before{
                 background-color: #bfbfbf;
             }
@@ -1386,6 +1419,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shortcuts = document.getElementById("shortcuts-section");
     const aiToolsCont = document.getElementById("aiToolsCont");
+    const googleAppsCont = document.getElementById("googleAppsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const proxybypassField = document.getElementById("proxybypassField");
     const proxyinputField = document.getElementById("proxyField");
@@ -1395,6 +1429,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+    const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -1964,6 +1999,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    googleAppsCheckbox.addEventListener("change", function () {
+        saveCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+        if (googleAppsCheckbox.checked) {
+            googleAppsCont.style.display = "flex";
+            saveDisplayStatus("googleAppsDisplayStatus", "flex");
+        } else {
+            googleAppsCont.style.display = "none";
+            saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
@@ -2098,8 +2144,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
     loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+    loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
+    loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });

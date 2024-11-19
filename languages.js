@@ -22,7 +22,9 @@ const translations = {
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
-        "enable_ai_tools": "Show shortcuts for AI tools",
+        "enable_ai_tools": "Show shortcut for AI tools",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -106,6 +108,8 @@ const translations = {
         "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
         "ai_tools_button": "Ferramentas de IA",
         "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Ativar/desativar o Relógio Digital",
@@ -190,6 +194,8 @@ const translations = {
         "adaptiveIconInfoText": "快捷方式图标将始终为圆形",
         "ai_tools_button": "AI工具",
         "enable_ai_tools": "启用/禁用AI工具快捷方式",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "数字时钟",
         "digitalclockinfo": "启用/禁用数字时钟",
@@ -272,7 +278,9 @@ const translations = {
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
-        "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
+        "enable_ai_tools": "AI उपकरणों के शॉर्टकट प्रदर्शित करें",
+        "googleAppsMenuText": "गूगल ऐप्स",
+        "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट प्रदर्शित करें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -357,6 +365,8 @@ const translations = {
         "adaptiveIconInfoText": "Ikony zkratek se zmenší",
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Přepne hodiny na digitální",
@@ -441,6 +451,8 @@ const translations = {
         "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
         "ai_tools_button": "Strumenti AI",
         "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Orologio Digitale",
         "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
@@ -524,6 +536,8 @@ const translations = {
         "adaptiveIconInfoText": "Kısayol ikonları yuvarlak görünecek",
         "ai_tools_button": "AI Araçları",
         "enable_ai_tools": "AI Araçları kısayollarını göster",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Dijital Saat",
         "digitalclockinfo": "Dijital saate geçiş yap",
@@ -607,6 +621,8 @@ const translations = {
         "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
         "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
+        "googleAppsMenuText": "গুগল অ্যাপস",
+        "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
         // Digital Clock
         "digitalclocktittle": "ডিজিটাল ঘড়ি",
         "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
@@ -692,6 +708,8 @@ const translations = {
         "adaptiveIconInfoText": "Biểu tượng phím tắt sẽ luôn là hình tròn",
         "ai_tools_button": "Công cụ AI",
         "enable_ai_tools": "Bật/tắt các phím tắt Công cụ AI",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Đồng hồ Kỹ thuật số",
         "digitalclockinfo": "Bật/tắt Đồng hồ Kỹ thuật số",
@@ -775,6 +793,8 @@ const translations = {
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
         "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Цифровые часы",
         "digitalclockinfo": "Включить/Отключить цифровые часы",
@@ -858,6 +878,8 @@ const translations = {
         "adaptiveIconInfoText": "Tezkor tugmalar doimiy ravishda doiraviy bo'ladi",
         "ai_tools_button": "AI-instrumentlar",
         "enable_ai_tools": "Tezkor tugmalarni ko'rsatish AI-instrumentlar",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Digital Clockga o'tish",
@@ -940,6 +962,8 @@ const translations = {
         "adaptiveIconInfoText": "Los iconos de accesos directos serán más pequeños",
         "ai_tools_button": "Herramientas de IA",
         "enable_ai_tools": "Mostrar accesos directos de herramientas de IA",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "Reloj digital",
         "digitalclockinfo": "Cambiar a reloj digital",
@@ -1024,6 +1048,8 @@ const translations = {
         "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
         "ai_tools_button": "AIツール",
         "enable_ai_tools": "AIツールのショートカットを表示",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "デジタル時計",
         "digitalclockinfo": "デジタル時計に変更",
@@ -1107,6 +1133,8 @@ const translations = {
         "adaptiveIconInfoText": "단축 아이콘이 더 작게 표시됩니다",
         "ai_tools_button": "AI 도구",
         "enable_ai_tools": "AI 도구 단축키 표시",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Show shortcut for Google Apps",
         // Digital Clock
         "digitalclocktittle": "디지털 시계",
         "digitalclockinfo": "디지털 시계로 전환",
@@ -1313,6 +1341,8 @@ function applyLanguage(lang) {
         { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
         { id: 'ai_tools_button', key: 'ai_tools_button' },
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
+        { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
+        { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
