@@ -1218,6 +1218,8 @@ const translations = {
         "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
         "ai_tools_button": "Utilitas AI",
         "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
         // Digital Clock
         "digitalclocktittle": "Jam Digital",
         "digitalclockinfo": "Ubah menjadi jam digital",
