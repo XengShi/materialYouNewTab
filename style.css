@@ -1211,12 +1211,11 @@ body {
     /* background-color: yellow; */
     overflow-x: hidden;
     border-radius: 100px;
-    position: absolute;
+    position: fixed;
     left: var(--gap);
     bottom: var(--gap);
     margin: auto;
     display: flex;
-    cursor: pointer;
 }
 
 .aiToolsCont .hangno {
@@ -1228,6 +1227,7 @@ body {
     padding: 0 16px;
     border-radius: 100px;
     z-index: 2;
+    cursor: pointer;
 }
 
 .aiToolsCont .hangno .icon {
