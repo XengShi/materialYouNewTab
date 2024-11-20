@@ -926,7 +926,7 @@ const translations = {
         "copilot": "Копилот",
         "firefly": "Адоби Файерфлай",
         "github": "ГитХаб",
-        "googleAppsHover": "Гугл Приложения",
+        //"googleAppsHover": "Гугл Приложения",
     },
 
     // Uzbek
