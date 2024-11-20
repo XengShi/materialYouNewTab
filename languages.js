@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 // Translation data
 const translations = {
     "en": {
@@ -82,6 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
+        "googleAppsHover": "Google Apps",
         // End of Body and New Tab Items
 
         // Greeting
@@ -90,8 +92,21 @@ const translations = {
             "afternoon": "Good Afternoon!",
             "evening": "Good Evening!"
         },
+
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck", // DuckDuckGo
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
     },
-    
+
+
     // Portuguese
     "pt": {
         // Menu Items
@@ -108,8 +123,8 @@ const translations = {
         "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
         "ai_tools_button": "Ferramentas de IA",
         "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Apps do Google",
+        "googleAppsMenuInfo": "Mostrar atalho para os Apps do Google",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Ativar/desativar o Relógio Digital",
@@ -174,7 +189,7 @@ const translations = {
             "morning": "Bom dia!",
             "afternoon": "Boa tarde!",
             "evening": "Boa noite!"
-        }
+        },
     },
 
     // Chinese (Simplified)
@@ -194,8 +209,8 @@ const translations = {
         "adaptiveIconInfoText": "快捷方式图标将始终为圆形",
         "ai_tools_button": "AI工具",
         "enable_ai_tools": "启用/禁用AI工具快捷方式",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "谷歌应用",
+        "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
         // Digital Clock
         "digitalclocktittle": "数字时钟",
         "digitalclockinfo": "启用/禁用数字时钟",
@@ -260,7 +275,20 @@ const translations = {
             "morning": "早上好!",
             "afternoon": "下午好!",
             "evening": "晚上好!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "谷歌",
+        "duckEngine": "鸭鸭狗",
+        "bingEngine": "必应",
+        "braveEngine": "勇敢",
+        "youtubeEngine": "优兔",
+        "chatGPT": "聊天GPT",
+        "gemini": "双子座",
+        "copilot": "副驾驶",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "谷歌应用",
     },
 
     // Hindi
@@ -346,7 +374,20 @@ const translations = {
             "morning": "सुप्रभात!",
             "afternoon": "शुभ अपराह्न!",
             "evening": "शुभ संध्या!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "गूगल",
+        "duckEngine": "डकडकगो",
+        "bingEngine": "बिंग",
+        "braveEngine": "ब्रेव",
+        "youtubeEngine": "यूट्यूब",
+        "chatGPT": "चैटGPT",
+        "gemini": "जेमिनी",
+        "copilot": "कोपायलट",
+        "firefly": "एडोबी फायरफ्लाई",
+        "github": "गिटहब",
+        "googleAppsHover": "गूगल ऐप्स",
     },
 
     // Czech
@@ -431,7 +472,7 @@ const translations = {
             "morning": "Dobré ráno!",
             "afternoon": "Dobré odpoledne!",
             "evening": "Dobrý večer!"
-        }
+        },
     },
 
     // Italian
@@ -451,8 +492,8 @@ const translations = {
         "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
         "ai_tools_button": "Strumenti AI",
         "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "App Google",
+        "googleAppsMenuInfo": "Mostra il collegamento per le App Google",
         // Digital Clock
         "digitalclocktittle": "Orologio Digitale",
         "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
@@ -517,7 +558,7 @@ const translations = {
             "morning": "Buongiorno!",
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
-        }
+        },
     },
 
     // Turkish
@@ -536,8 +577,8 @@ const translations = {
         "adaptiveIconInfoText": "Kısayol ikonları yuvarlak görünecek",
         "ai_tools_button": "AI Araçları",
         "enable_ai_tools": "AI Araçları kısayollarını göster",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google Uygulamaları",
+        "googleAppsMenuInfo": "Google Uygulamaları için kısayolu göster",
         // Digital Clock
         "digitalclocktittle": "Dijital Saat",
         "digitalclockinfo": "Dijital saate geçiş yap",
@@ -602,7 +643,7 @@ const translations = {
             "morning": "Günaydın!",
             "afternoon": "İyi öğleden sonra!",
             "evening": "İyi akşamlar!"
-        }
+        },
     },
 
     // Bengali
@@ -689,7 +730,20 @@ const translations = {
             "morning": "শুভ সকাল!",
             "afternoon": "শুভ বিকেল!",
             "evening": "শুভ সন্ধ্যা!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "গুগল",
+        "duckEngine": "ডাকডাকগো",
+        "bingEngine": "বিং",
+        "braveEngine": "ব্রেভ",
+        "youtubeEngine": "ইউটিউব",
+        "chatGPT": "চ্যাটGPT",
+        "gemini": "জেমিনি",
+        "copilot": "কোপাইলট",
+        "firefly": "এডোবি ফায়ারফ্লাই",
+        "github": "গিটহাব",
+        "googleAppsHover": "গুগল অ্যাপস",
     },
 
     // Vietnamese
@@ -708,8 +762,8 @@ const translations = {
         "adaptiveIconInfoText": "Biểu tượng phím tắt sẽ luôn là hình tròn",
         "ai_tools_button": "Công cụ AI",
         "enable_ai_tools": "Bật/tắt các phím tắt Công cụ AI",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Ứng dụng Google",
+        "googleAppsMenuInfo": "Hiển thị phím tắt cho Ứng dụng Google",
         // Digital Clock
         "digitalclocktittle": "Đồng hồ Kỹ thuật số",
         "digitalclockinfo": "Bật/tắt Đồng hồ Kỹ thuật số",
@@ -774,7 +828,7 @@ const translations = {
             "morning": "Chào buổi sáng!",
             "afternoon": "Chào buổi chiều!",
             "evening": "Chào buổi tối!"
-        }
+        },
     },
 
     // Russian
@@ -793,8 +847,8 @@ const translations = {
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
         "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Приложения Google",
+        "googleAppsMenuInfo": "Показать ярлык для приложений Google",
         // Digital Clock
         "digitalclocktittle": "Цифровые часы",
         "digitalclockinfo": "Включить/Отключить цифровые часы",
@@ -859,7 +913,20 @@ const translations = {
             "morning": "Доброе утро!",
             "afternoon": "Добрый день!",
             "evening": "Добрый вечер!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "Гугл",
+        "duckEngine": "ДакДакГо",
+        "bingEngine": "Бинг",
+        "braveEngine": "Брейв",
+        "youtubeEngine": "Ютуб",
+        "chatGPT": "ЧатGPT",
+        "gemini": "Гемини",
+        "copilot": "Копилот",
+        "firefly": "Адоби Файерфлай",
+        "github": "ГитХаб",
+        //"googleAppsHover": "Гугл Приложения",
     },
 
     // Uzbek
@@ -878,8 +945,8 @@ const translations = {
         "adaptiveIconInfoText": "Tezkor tugmalar doimiy ravishda doiraviy bo'ladi",
         "ai_tools_button": "AI-instrumentlar",
         "enable_ai_tools": "Tezkor tugmalarni ko'rsatish AI-instrumentlar",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google Dasturlari",
+        "googleAppsMenuInfo": "Google Dasturlariga yorliqni ko'rsating",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Digital Clockga o'tish",
@@ -946,6 +1013,7 @@ const translations = {
             "evening": "Xayrli kech!"
         },
     },
+
     // Spanish
     "es": {
         // Menu Items
@@ -962,8 +1030,8 @@ const translations = {
         "adaptiveIconInfoText": "Los iconos de accesos directos serán más pequeños",
         "ai_tools_button": "Herramientas de IA",
         "enable_ai_tools": "Mostrar accesos directos de herramientas de IA",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Aplicaciones de Google",
+        "googleAppsMenuInfo": "Mostrar acceso directo a las aplicaciones de Google",
         // Digital Clock
         "digitalclocktittle": "Reloj digital",
         "digitalclockinfo": "Cambiar a reloj digital",
@@ -1028,9 +1096,8 @@ const translations = {
             "morning": "¡Buenos días!",
             "afternoon": "¡Buenas tardes!",
             "evening": "¡Buenas noches!"
-        }
+        },
     },
-
 
     // Japanese
     "ja": {
@@ -1048,8 +1115,8 @@ const translations = {
         "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
         "ai_tools_button": "AIツール",
         "enable_ai_tools": "AIツールのショートカットを表示",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google アプリ",
+        "googleAppsMenuInfo": "Google アプリのショートカットを表示する",
         // Digital Clock
         "digitalclocktittle": "デジタル時計",
         "digitalclockinfo": "デジタル時計に変更",
@@ -1114,7 +1181,20 @@ const translations = {
             "morning": "おはようございます！",
             "afternoon": "こんにちは！",
             "evening": "こんばんは！"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "グーグル",
+        "duckEngine": "ダックダックゴー",
+        "bingEngine": "ビング",
+        "braveEngine": "ブレイブ",
+        "youtubeEngine": "ユーチューブ",
+        "chatGPT": "チャットGPT",
+        "gemini": "ジェミニ",
+        "copilot": "コパイロット",
+        "firefly": "アドビファイヤフライ",
+        "github": "ギットハブ",
+        "googleAppsHover": "グーグルアプリ",
     },
 
     // Korean
@@ -1133,8 +1213,8 @@ const translations = {
         "adaptiveIconInfoText": "단축 아이콘이 더 작게 표시됩니다",
         "ai_tools_button": "AI 도구",
         "enable_ai_tools": "AI 도구 단축키 표시",
-        "googleAppsMenuText": "Google Apps",
-        "googleAppsMenuInfo": "Show shortcut for Google Apps",
+        "googleAppsMenuText": "Google 앱",
+        "googleAppsMenuInfo": "Google 앱 바로가기를 표시합니다",
         // Digital Clock
         "digitalclocktittle": "디지털 시계",
         "digitalclockinfo": "디지털 시계로 전환",
@@ -1199,9 +1279,22 @@ const translations = {
             "morning": "좋은 아침!",
             "afternoon": "좋은 오후!",
             "evening": "좋은 저녁!"
-        }
+        },
+
+        // Search Engines and rest
+        "googleEngine": "구글",
+        "duckEngine": "덕덕고",
+        "bingEngine": "빙",
+        "braveEngine": "브레이브",
+        "youtubeEngine": "유튜브",
+        "chatGPT": "챗GPT",
+        "gemini": "제미니",
+        "copilot": "코파일럿",
+        "firefly": "어도비 파이어플라이",
+        "github": "깃허브",
+        "googleAppsHover": "구글 앱",
     },
-    
+
     // Indonesian
     "idn": {
         // Menu Items
@@ -1313,10 +1406,10 @@ const numberMappings = {
 
 function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
-    
+
     // Define languages that use a comma as the decimal separator instead of a dot
     const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
-  
+
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
         text = text.replace('.', ',');
@@ -1382,7 +1475,19 @@ function applyLanguage(lang) {
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
         { id: 'feelsLike', key: 'feelsLike' },
-        { id: 'location', key: 'location' }
+        { id: 'location', key: 'location' },
+        { id: 'googleEngine', key: 'googleEngine' },
+        { id: 'duckEngine', key: 'duckEngine' },
+        { id: 'bingEngine', key: 'bingEngine' },
+        { id: 'braveEngine', key: 'braveEngine' },
+        { id: 'youtubeEngine', key: 'youtubeEngine' },
+        { id: 'chatGPT', key: 'chatGPT' },
+        { id: 'gemini', key: 'gemini' },
+        { id: 'copilot', key: 'copilot' },
+        { id: 'firefly', key: 'firefly' },
+        { id: 'github', key: 'github' },
+        { id: 'googleAppsHover', key: 'googleAppsHover' },
+
     ];
 
     // Loop through the translation map to apply translations
