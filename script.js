@@ -1023,6 +1023,10 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #sujhaw {
                 fill: #b1b1b1;
             }
+
+            .resultItem.active {
+                background-color: var(--darkColor-dark);;
+            }
         `;
         document.head.appendChild(darkThemeStyleTag);
 
@@ -1227,15 +1231,6 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
         }
     }
 });
-
-// Apply styles for active item
-const style = document.createElement('style');
-style.innerHTML = `
-    .resultItem.active {
-        background-color: #ffffff;
-    }
-`;
-document.head.appendChild(style);
 
 function getClientParam() {
     const userAgent = navigator.userAgent.toLowerCase();
