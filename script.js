@@ -206,7 +206,7 @@ googleAppsCont.addEventListener("click", function (event) {
     // Reset tooltip visibility after a delay
     setTimeout(() => {
         tooltipText.style.display = ""; // Restore default display
-    }, 1000);
+    }, 1500);
     event.stopPropagation(); // Prevent click propagation
 });
 
