@@ -1153,6 +1153,7 @@ function hideResultBox() {
     resultBox.classList.remove('show');
     //resultBox.style.display = "none";
 }
+
 showResultBox();
 hideResultBox();
 
@@ -1214,6 +1215,10 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
             }
             currentIndex = (currentIndex + 1) % resultBox.children.length;
             resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -1221,6 +1226,10 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
             }
             currentIndex = (currentIndex - 1 + resultBox.children.length) % resultBox.children.length;
             resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
@@ -1301,7 +1310,7 @@ document.addEventListener("click", function (event) {
     const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
-        hideResultBox()
+        hideResultBox();
     }
 });
 // ------------End of Search Suggestions---------------
