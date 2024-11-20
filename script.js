@@ -1140,7 +1140,7 @@ document.getElementById("0NIHK").onclick = () => {
     }
 }
 
-// ------------search suggestions ---------------
+// ------------Search Suggestions---------------
 
 // Show the result box
 function showResultBox() {
@@ -1153,8 +1153,9 @@ function hideResultBox() {
     resultBox.classList.remove('show');
     //resultBox.style.display = "none";
 }
-showResultBox()
-hideResultBox()
+showResultBox();
+hideResultBox();
+
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -1174,30 +1175,67 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             const suggestions = await getAutocompleteSuggestions(query);
 
             if (suggestions == "") {
-                hideResultBox()
+                hideResultBox();
             } else {
                 // Clear the result box
                 resultBox.innerHTML = '';
 
                 // Add suggestions to the result box
-                suggestions.forEach((suggestion) => {
+                suggestions.forEach((suggestion, index) => {
                     const resultItem = document.createElement("div");
                     resultItem.classList.add("resultItem");
                     resultItem.textContent = suggestion;
+                    resultItem.setAttribute("data-index", index);
                     resultItem.onclick = () => {
                         var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
                         window.location.href = resultlink;
                     };
                     resultBox.appendChild(resultItem);
                 });
-                showResultBox()
+                showResultBox();
             }
 
         } else {
-            hideResultBox()
+            hideResultBox();
         }
     }
 });
+
+document.getElementById("searchQ").addEventListener("keydown", function (e) {
+    const resultBox = document.getElementById("resultBox");
+    const activeItem = resultBox.querySelector(".active");
+    let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
+
+    if (resultBox.children.length > 0) {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex + 1) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex - 1 + resultBox.children.length) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+        } else if (e.key === "Enter" && activeItem) {
+            e.preventDefault();
+            activeItem.click();
+        }
+    }
+});
+
+// Apply styles for active item
+const style = document.createElement('style');
+style.innerHTML = `
+    .resultItem.active {
+        background-color: #ffffff;
+    }
+`;
+document.head.appendChild(style);
 
 function getClientParam() {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -1257,7 +1295,6 @@ async function getAutocompleteSuggestions(query) {
     }
 }
 
-
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
@@ -1267,6 +1304,8 @@ document.addEventListener("click", function (event) {
         hideResultBox()
     }
 });
+// ------------End of Search Suggestions---------------
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
