@@ -1205,8 +1205,25 @@ document.getElementById("searchQ").addEventListener("input", async function () {
     }
 });
 
+let isMouseOverResultBox = false;
+// Track mouse entry and exit within the resultBox
+resultBox.addEventListener("mouseenter", () => {
+    isMouseOverResultBox = true;
+    // Remove keyboard highlight
+    const activeItem = resultBox.querySelector(".active");
+    if (activeItem) {
+        activeItem.classList.remove("active");
+    }
+});
+
+resultBox.addEventListener("mouseleave", () => {
+    isMouseOverResultBox = false;
+});
+
 document.getElementById("searchQ").addEventListener("keydown", function (e) {
-    const resultBox = document.getElementById("resultBox");
+    if (isMouseOverResultBox) {
+        return; // Ignore keyboard events if the mouse is in the resultBox
+    }
     const activeItem = resultBox.querySelector(".active");
     let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
 
