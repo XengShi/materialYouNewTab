@@ -328,6 +328,10 @@ body {
   display: none;
   white-space: pre-line; /* Ensure text retains line breaks */
   text-align: center; /* Center align text */
+  position: absolute;
+  font-size: 0.8rem;
+  background-color:  var(--bg-color-blue);
+  bottom: 0;
 }
 
 /* Hover Effect for Icon Item */
