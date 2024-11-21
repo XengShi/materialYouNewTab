@@ -83,7 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",
+        "googleAppsHover": "Google Apps",  // *
         // End of Body and New Tab Items
 
         // Greeting
@@ -1455,7 +1455,7 @@ const translations = {
         "listenPlaceholder": "ऐकत आहे...",
         "searchWithHint": "यासह शोधा",
         "ai_tools": "AI साधने",
-        "userText": "येथे संपादित करा",
+        "userText": "येथे आपला मजकूर लिहा",
         "googleAppsHover": "गुगल अॅप्स",
         // End of Body and New Tab Items
 
