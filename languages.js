@@ -407,7 +407,7 @@ const translations = {
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         "googleAppsMenuText": "Google aplikace",
-        "googleAppsMenuInfo": "Zobrazí zkratky Google aplikace",
+        "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Přepne hodiny na digitální",
