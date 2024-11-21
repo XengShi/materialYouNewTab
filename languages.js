@@ -1444,7 +1444,7 @@ const translations = {
 
         // Weather
         "humidityLevel": "आर्द्रता",
-        "feelsLike": "असे वाटते",
+        "feelsLike": "महसूस होतो",
         "location": "पृथ्वी",
         // End of Weather
 
