@@ -1090,7 +1090,7 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts() {
-    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
+    // const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
     // const element = document.getElementById("0NIHK");
     // const shortcuts = document.getElementById("shortcuts");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
@@ -1101,15 +1101,15 @@ function toggleShortcuts() {
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
-            unfoldShortcutsButton.style.display = "none";
+            // unfoldShortcutsButton.style.display = "none";
 
             setTimeout(() => {
                 element.style.display = "none";
-                shortcuts.style.display = 'flex';
+                // shortcuts.style.display = 'flex';
             }, 500);
         } else {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "block";
+            // unfoldShortcutsButton.style.display = "block";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -1122,7 +1122,7 @@ function toggleShortcuts() {
     } else {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "none";
+            // unfoldShortcutsButton.style.display = "none";
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
@@ -1131,7 +1131,7 @@ function toggleShortcuts() {
             }, 500);
         } else {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "none";
+            // unfoldShortcutsButton.style.display = "none";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -1460,8 +1460,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
-
-    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
+    // const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
 
     /* ------ Helper functions for saving and loading states ------ */
 
@@ -2064,31 +2063,31 @@ document.addEventListener("DOMContentLoaded", function () {
     *
     * This means it can be used both to open and to update the shortcut drawer.
     */
-    function openShortcutDrawer() {
-        //const translationDistance = flexMonitor.clientHeight - defaultHeight;
-        const translationDistance = "90";
-        shortcutsContainer.style.display = "flex";
-        console.log(translationDistance)
-        requestAnimationFrame(() => {
-            shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
-            shortcutsContainer.classList.add("showBackground");
-            unfoldShortcutsButton.style.transform = "rotate(180deg)";
-            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = `translateY(-${translationDistance}px)`;
-        });
-    }
+    // function openShortcutDrawer() {
+    //     //const translationDistance = flexMonitor.clientHeight - defaultHeight;
+    //     const translationDistance = "90";
+    //     shortcutsContainer.style.display = "flex";
+    //     console.log(translationDistance)
+    //     requestAnimationFrame(() => {
+    //         shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
+    //         shortcutsContainer.classList.add("showBackground");
+    //         unfoldShortcutsButton.style.transform = "rotate(180deg)";
+    //         unfoldShortcutsButton.closest(".unfoldContainer").style.transform = `translateY(-${translationDistance}px)`;
+    //     });
+    // }
 
     /**
     * This function closes the shortcut drawer
     */
-    function resetShortcutDrawer() {
-        requestAnimationFrame(() => {
-            shortcutsContainer.style.display = "none";
-            shortcutsContainer.style.transform = "translateY(0)";
-            shortcutsContainer.classList.remove("showBackground");
-            unfoldShortcutsButton.style.transform = "rotate(0)";
-            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = "translateY(0)";
-        });
-    }
+    // function resetShortcutDrawer() {
+    //     requestAnimationFrame(() => {
+    //         shortcutsContainer.style.display = "none";
+    //         shortcutsContainer.style.transform = "translateY(0)";
+    //         shortcutsContainer.classList.remove("showBackground");
+    //         unfoldShortcutsButton.style.transform = "rotate(0)";
+    //         unfoldShortcutsButton.closest(".unfoldContainer").style.transform = "translateY(0)";
+    //     });
+    // }
 
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
@@ -2131,20 +2130,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Shift up shortcuts
-    unfoldShortcutsButton.onclick = (e) => {
+    // unfoldShortcutsButton.onclick = (e) => {
 
-        if (!shortcutsContainer.classList.contains("showBackground")) {
-            e.stopPropagation();
-            openShortcutDrawer();
-        }
-    }
+    //     if (!shortcutsContainer.classList.contains("showBackground")) {
+    //         e.stopPropagation();
+    //         openShortcutDrawer();
+    //     }
+    // }
 
-    document.addEventListener('click', function (event) {
-        // Check if the clicked element is not the shortcut container, yet the container is unfolded
-        if (shortcutsContainer.classList.contains("showBackground") && !shortcutsContainer.contains(event.target)) {
-            resetShortcutDrawer();
-        }
-    });
+    // document.addEventListener('click', function (event) {
+    //     // Check if the clicked element is not the shortcut container, yet the container is unfolded
+    //     if (shortcutsContainer.classList.contains("showBackground") && !shortcutsContainer.contains(event.target)) {
+    //         resetShortcutDrawer();
+    //     }
+    // });
 
     /* ------ Loading ------ */
 
