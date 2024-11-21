@@ -1023,6 +1023,10 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #sujhaw {
                 fill: #b1b1b1;
             }
+
+            .resultItem.active {
+                background-color: var(--darkColor-dark);;
+            }
         `;
         document.head.appendChild(darkThemeStyleTag);
 
@@ -1202,8 +1206,25 @@ document.getElementById("searchQ").addEventListener("input", async function () {
     }
 });
 
+let isMouseOverResultBox = false;
+// Track mouse entry and exit within the resultBox
+resultBox.addEventListener("mouseenter", () => {
+    isMouseOverResultBox = true;
+    // Remove keyboard highlight
+    const activeItem = resultBox.querySelector(".active");
+    if (activeItem) {
+        activeItem.classList.remove("active");
+    }
+});
+
+resultBox.addEventListener("mouseleave", () => {
+    isMouseOverResultBox = false;
+});
+
 document.getElementById("searchQ").addEventListener("keydown", function (e) {
-    const resultBox = document.getElementById("resultBox");
+    if (isMouseOverResultBox) {
+        return; // Ignore keyboard events if the mouse is in the resultBox
+    }
     const activeItem = resultBox.querySelector(".active");
     let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
 
@@ -1236,15 +1257,6 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
         }
     }
 });
-
-// Apply styles for active item
-const style = document.createElement('style');
-style.innerHTML = `
-    .resultItem.active {
-        background-color: #ffffff;
-    }
-`;
-document.head.appendChild(style);
 
 function getClientParam() {
     const userAgent = navigator.userAgent.toLowerCase();
