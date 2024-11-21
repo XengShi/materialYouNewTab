@@ -150,7 +150,7 @@
 .resultItem.active,
 .resultItem:hover {
     background-color: var(--darkColor-blue);
-    border-radius: 15px;
+    border-radius: 18px;
     color: #fff;
  }
 
