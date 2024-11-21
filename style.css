@@ -1059,7 +1059,7 @@ body {
     margin: auto;
 }
 
-#shortcuts-section .unfoldContainer {
+/* #shortcuts-section .unfoldContainer {
     transition: transform 0.5s;
     position: absolute;
     width: 100%;
@@ -1079,7 +1079,7 @@ body {
     transition: 0.2s all;
     transform-origin: 50% 25%;
 }
-
+ */
 #shortcuts-section .wrapper {
     position: relative;
     height: fit-content;
@@ -1089,19 +1089,19 @@ body {
 }
 
 /* Invisible element tracking height changes */
-#shortcuts-section #flexMonitor {
+/* #shortcuts-section #flexMonitor {
     position: absolute;
     height: 100%; /* This will match the height of .shortcutsContainer, which it is supposed to monitor */
     visibility: hidden;
- }
+ } */
 
 /* Invisible element to get standard height */
-#shortcuts-section #defaultMonitor {
+/* #shortcuts-section #defaultMonitor {
     position: absolute;
     /* This is the standard height of one row */
     height: calc(var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding));
     visibility: hidden;
- }
+ } */
 
 .shortcutsContainer {
     pointer-events: auto;
