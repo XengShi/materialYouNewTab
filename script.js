@@ -207,7 +207,7 @@ googleAppsCont.addEventListener("click", function (event) {
     // Reset tooltip visibility after a delay
     setTimeout(() => {
         tooltipText.style.display = ""; // Restore default display
-    }, 1000);
+    }, 1500);
     event.stopPropagation(); // Prevent click propagation
 });
 
@@ -482,7 +482,7 @@ function updatedigiClock() {
     if (hourformat && specialLanguages.includes(currentLanguage)) {
         period = parseInt(hours, 10) < 12 ? 'AM' : 'PM';
     }
-    
+
     // Display AM/PM if in 12-hour format
     if (hourformat) {
         document.getElementById('amPm').textContent = period; // Show AM/PM based on calculated period
@@ -843,11 +843,11 @@ const resetDarkTheme = () => {
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
-        "searchQ", 
-        "searchIconDark", 
-        "darkFeelsLikeIcon", 
-        "menuButton", 
-        "menuCloseButton", 
+        "searchQ",
+        "searchIconDark",
+        "darkFeelsLikeIcon",
+        "menuButton",
+        "menuCloseButton",
         "closeBtnX"
     ];
 
@@ -889,7 +889,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        
+
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -1092,8 +1092,12 @@ radioButtons.forEach(radioButton => {
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
-document.getElementById("0NIHK").onclick = () => {
+function toggleShortcuts() {
     const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
+    // const element = document.getElementById("0NIHK");
+    // const shortcuts = document.getElementById("shortcuts");
+    const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
+
     if (shortcutsCheckbox.checked) {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'flex';
@@ -1142,6 +1146,10 @@ document.getElementById("0NIHK").onclick = () => {
         }
     }
 }
+
+
+
+document.getElementById("0NIHK").onclick = toggleShortcuts;
 
 // ------------search suggestions ---------------
 
@@ -1264,7 +1272,7 @@ async function getAutocompleteSuggestions(query) {
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
-    const resultBox = document.getElementById("resultBox");
+    // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
         hideResultBox()
@@ -1452,8 +1460,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
-    const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
-    const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
+
+    // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
+    // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
+
     const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
 
     /* ------ Helper functions for saving and loading states ------ */
@@ -1520,6 +1530,7 @@ document.addEventListener("DOMContentLoaded", function () {
     * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
     * container.
     */
+
     function loadShortcuts() {
         let amount = localStorage.getItem("shortcutAmount");
 
@@ -1712,7 +1723,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     /* ------ Adding, deleting, and resetting shortcuts ------ */
 
     /**
@@ -1886,7 +1896,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
     }
 
-
     /* ------ Proxy ------ */
 
     /**
@@ -1897,7 +1906,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         confirm(message);
     }
-
 
     /* ------ Event Listeners ------ */
 
@@ -2011,6 +2019,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
+            toggleShortcuts()
         }
     });
 
@@ -2139,8 +2148,6 @@ document.addEventListener("DOMContentLoaded", function () {
             resetShortcutDrawer();
         }
     });
-
-
 
     /* ------ Loading ------ */
 
