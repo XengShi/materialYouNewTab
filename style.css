@@ -111,7 +111,7 @@
      overflow-y: auto;
     
      position: absolute;
-     top: 1;
+     bottom: -100px;;
      left: 0;
      width: 100%;
      border-radius: var(--round);
@@ -150,7 +150,7 @@
 .resultItem.active,
 .resultItem:hover {
     background-color: var(--darkColor-blue);
-    border-radius: 18px;
+    border-radius: 16px;
     color: #fff;
  }
 
