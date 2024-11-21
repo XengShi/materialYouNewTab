@@ -1823,31 +1823,31 @@ document.addEventListener("DOMContentLoaded", function () {
     * @param urls the array of potential URLs of favicons
     * @returns {Promise<unknown>}
     */
-    function filterFavicon(urls) {
-        return new Promise((resolve, reject) => {
-            let found = false;
+    // function filterFavicon(urls) {
+    //     return new Promise((resolve, reject) => {
+    //         let found = false;
 
-            for (const url of urls) {
-                const img = new Image();
-                img.referrerPolicy = "no-referrer"; // Don't send referrer data
-                img.src = url;
+    //         for (const url of urls) {
+    //             const img = new Image();
+    //             img.referrerPolicy = "no-referrer"; // Don't send referrer data
+    //             img.src = url;
 
-                img.onload = () => {
-                    if (!found) { // Make sure to resolve only once
-                        found = true;
-                        resolve(url);
-                    }
-                };
-            }
+    //             img.onload = () => {
+    //                 if (!found) { // Make sure to resolve only once
+    //                     found = true;
+    //                     resolve(url);
+    //                 }
+    //             };
+    //         }
 
-            // If none of the URLs worked after all have been tried
-            setTimeout(() => {
-                if (!found) {
-                    reject();
-                }
-            }, FAVICON_REQUEST_TIMEOUT);
-        });
-    }
+    //         // If none of the URLs worked after all have been tried
+    //         setTimeout(() => {
+    //             if (!found) {
+    //                 reject();
+    //             }
+    //         }, FAVICON_REQUEST_TIMEOUT);
+    //     });
+    // }
 
     /**
     * This function returns the url to the favicon of a website, given a URL.
