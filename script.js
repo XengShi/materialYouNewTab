@@ -140,22 +140,23 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        /// Set humidity level
+        // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
+            const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
             if (fahrenheitCheckbox.checked) {
                 tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -289,6 +290,7 @@ function updateDate() {
 
         const dateDisplay = {
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
@@ -426,6 +428,7 @@ function updatedigiClock() {
     // Determine the translated short date string based on language
     const dateFormats = {
         bn: `${dayName}, ${localizedDayOfMonth}`,
+        mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
@@ -445,7 +448,7 @@ function updatedigiClock() {
 
     // Array of languages to use 'en-US' format
     const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
-    const localizedLanguages = ['bn'];
+    const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
@@ -1878,31 +1881,31 @@ document.addEventListener("DOMContentLoaded", function () {
     * @param urls the array of potential URLs of favicons
     * @returns {Promise<unknown>}
     */
-    function filterFavicon(urls) {
-        return new Promise((resolve, reject) => {
-            let found = false;
+    // function filterFavicon(urls) {
+    //     return new Promise((resolve, reject) => {
+    //         let found = false;
 
-            for (const url of urls) {
-                const img = new Image();
-                img.referrerPolicy = "no-referrer"; // Don't send referrer data
-                img.src = url;
+    //         for (const url of urls) {
+    //             const img = new Image();
+    //             img.referrerPolicy = "no-referrer"; // Don't send referrer data
+    //             img.src = url;
 
-                img.onload = () => {
-                    if (!found) { // Make sure to resolve only once
-                        found = true;
-                        resolve(url);
-                    }
-                };
-            }
+    //             img.onload = () => {
+    //                 if (!found) { // Make sure to resolve only once
+    //                     found = true;
+    //                     resolve(url);
+    //                 }
+    //             };
+    //         }
 
-            // If none of the URLs worked after all have been tried
-            setTimeout(() => {
-                if (!found) {
-                    reject();
-                }
-            }, FAVICON_REQUEST_TIMEOUT);
-        });
-    }
+    //         // If none of the URLs worked after all have been tried
+    //         setTimeout(() => {
+    //             if (!found) {
+    //                 reject();
+    //             }
+    //         }, FAVICON_REQUEST_TIMEOUT);
+    //     });
+    // }
 
     /**
     * This function returns the url to the favicon of a website, given a URL.
