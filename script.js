@@ -1023,6 +1023,10 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #sujhaw {
                 fill: #b1b1b1;
             }
+
+            .resultItem.active {
+                background-color: var(--darkColor-dark);;
+            }
         `;
         document.head.appendChild(darkThemeStyleTag);
 
@@ -1144,11 +1148,9 @@ function toggleShortcuts() {
     }
 }
 
-
-
 document.getElementById("0NIHK").onclick = toggleShortcuts;
 
-// ------------search suggestions ---------------
+// ------------Search Suggestions---------------
 
 // Show the result box
 function showResultBox() {
@@ -1161,8 +1163,10 @@ function hideResultBox() {
     resultBox.classList.remove('show');
     //resultBox.style.display = "none";
 }
-showResultBox()
-hideResultBox()
+
+showResultBox();
+hideResultBox();
+
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -1182,27 +1186,80 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             const suggestions = await getAutocompleteSuggestions(query);
 
             if (suggestions == "") {
-                hideResultBox()
+                hideResultBox();
             } else {
                 // Clear the result box
                 resultBox.innerHTML = '';
 
                 // Add suggestions to the result box
-                suggestions.forEach((suggestion) => {
+                suggestions.forEach((suggestion, index) => {
                     const resultItem = document.createElement("div");
                     resultItem.classList.add("resultItem");
                     resultItem.textContent = suggestion;
+                    resultItem.setAttribute("data-index", index);
                     resultItem.onclick = () => {
                         var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
                         window.location.href = resultlink;
                     };
                     resultBox.appendChild(resultItem);
                 });
-                showResultBox()
+                showResultBox();
             }
 
         } else {
-            hideResultBox()
+            hideResultBox();
+        }
+    }
+});
+
+let isMouseOverResultBox = false;
+// Track mouse entry and exit within the resultBox
+resultBox.addEventListener("mouseenter", () => {
+    isMouseOverResultBox = true;
+    // Remove keyboard highlight
+    const activeItem = resultBox.querySelector(".active");
+    if (activeItem) {
+        activeItem.classList.remove("active");
+    }
+});
+
+resultBox.addEventListener("mouseleave", () => {
+    isMouseOverResultBox = false;
+});
+
+document.getElementById("searchQ").addEventListener("keydown", function (e) {
+    if (isMouseOverResultBox) {
+        return; // Ignore keyboard events if the mouse is in the resultBox
+    }
+    const activeItem = resultBox.querySelector(".active");
+    let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
+
+    if (resultBox.children.length > 0) {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex + 1) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex - 1 + resultBox.children.length) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "Enter" && activeItem) {
+            e.preventDefault();
+            activeItem.click();
         }
     }
 });
@@ -1265,16 +1322,17 @@ async function getAutocompleteSuggestions(query) {
     }
 }
 
-
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
     // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
-        hideResultBox()
+        hideResultBox();
     }
 });
+// ------------End of Search Suggestions---------------
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
