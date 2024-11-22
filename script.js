@@ -1112,7 +1112,7 @@ function toggleShortcuts(event) {
 
             setTimeout(() => {
                 element.style.display = "none";
-                // shortcuts.style.display = 'flex';
+                shortcuts.style.display = 'flex';
             }, 500);
         } else {
             shortcuts.style.display = 'none';
