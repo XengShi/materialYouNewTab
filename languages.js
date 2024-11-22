@@ -83,7 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",  // *
+        "googleAppsHover": "Google Apps",  // Keep untranslated if text width is longer
         // End of Body and New Tab Items
 
         // Greeting
