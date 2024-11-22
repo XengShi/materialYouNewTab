@@ -786,7 +786,7 @@ body {
     outline: none;
     border: none;
     background-color: #00000000;
-    border-radius: 100px;
+    /* border-radius: 100px; */
     padding: 0 4px;
     margin-left: 53px;
     font-size: 1rem;
