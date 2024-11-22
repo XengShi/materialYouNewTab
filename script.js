@@ -1089,7 +1089,7 @@ radioButtons.forEach(radioButton => {
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
-function toggleShortcuts() {
+function toggleShortcuts(event) {
     // const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
     // const element = document.getElementById("0NIHK");
     // const shortcuts = document.getElementById("shortcuts");
@@ -1142,9 +1142,16 @@ function toggleShortcuts() {
             }, 300);
         }
     }
+    // Prevent outside click handler from triggering
+    if (event) event.stopPropagation();
 }
 
-
+// Collapse when clicking outside toolsCont
+document.addEventListener("click", (event) => {
+    if (!element.contains(event.target) && element.style.display === "flex") {
+        toggleShortcuts();
+    }
+});
 
 document.getElementById("0NIHK").onclick = toggleShortcuts;
 
