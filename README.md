@@ -25,7 +25,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
-  <a href="#-currently-supported-languages-15">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-16">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
   <a href="#--usage">Usage</a> •
@@ -81,7 +81,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Seamless Integration with Browsers**:
   - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
 
-## 🌐 Currently Supported Languages (15)
+## 🌐 Currently Supported Languages (16)
 
 | Language                                                                                   | Code | Translator(s)                                                                          |
 |--------------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
@@ -94,6 +94,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |&nbsp; it | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
 | <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |&nbsp; ja | [XengShi](https://github.com/XengShi/)                                                 |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |&nbsp; ko | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |&nbsp; mr | [Prem](https://github.com/prem-k-r/)                                                   |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          | pt-BR    | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |&nbsp; ru | [giwi](https://github.com/giwih/)                                                      |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               | es-ES    | [XengShi](https://github.com/XengShi/)                                                 |
