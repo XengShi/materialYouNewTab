@@ -140,22 +140,23 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        /// Set humidity level
+        // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
+            const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
             if (fahrenheitCheckbox.checked) {
                 tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -289,6 +290,7 @@ function updateDate() {
 
         const dateDisplay = {
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
@@ -426,6 +428,7 @@ function updatedigiClock() {
     // Determine the translated short date string based on language
     const dateFormats = {
         bn: `${dayName}, ${localizedDayOfMonth}`,
+        mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
@@ -445,7 +448,7 @@ function updatedigiClock() {
 
     // Array of languages to use 'en-US' format
     const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
-    const localizedLanguages = ['bn'];
+    const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
@@ -1023,6 +1026,10 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #sujhaw {
                 fill: #b1b1b1;
             }
+
+            .resultItem.active {
+                background-color: var(--darkColor-dark);;
+            }
         `;
         document.head.appendChild(darkThemeStyleTag);
 
@@ -1155,7 +1162,7 @@ document.addEventListener("click", (event) => {
 
 document.getElementById("0NIHK").onclick = toggleShortcuts;
 
-// ------------search suggestions ---------------
+// ------------Search Suggestions---------------
 
 // Show the result box
 function showResultBox() {
@@ -1168,8 +1175,10 @@ function hideResultBox() {
     resultBox.classList.remove('show');
     //resultBox.style.display = "none";
 }
-showResultBox()
-hideResultBox()
+
+showResultBox();
+hideResultBox();
+
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -1189,27 +1198,80 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             const suggestions = await getAutocompleteSuggestions(query);
 
             if (suggestions == "") {
-                hideResultBox()
+                hideResultBox();
             } else {
                 // Clear the result box
                 resultBox.innerHTML = '';
 
                 // Add suggestions to the result box
-                suggestions.forEach((suggestion) => {
+                suggestions.forEach((suggestion, index) => {
                     const resultItem = document.createElement("div");
                     resultItem.classList.add("resultItem");
                     resultItem.textContent = suggestion;
+                    resultItem.setAttribute("data-index", index);
                     resultItem.onclick = () => {
                         var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
                         window.location.href = resultlink;
                     };
                     resultBox.appendChild(resultItem);
                 });
-                showResultBox()
+                showResultBox();
             }
 
         } else {
-            hideResultBox()
+            hideResultBox();
+        }
+    }
+});
+
+let isMouseOverResultBox = false;
+// Track mouse entry and exit within the resultBox
+resultBox.addEventListener("mouseenter", () => {
+    isMouseOverResultBox = true;
+    // Remove keyboard highlight
+    const activeItem = resultBox.querySelector(".active");
+    if (activeItem) {
+        activeItem.classList.remove("active");
+    }
+});
+
+resultBox.addEventListener("mouseleave", () => {
+    isMouseOverResultBox = false;
+});
+
+document.getElementById("searchQ").addEventListener("keydown", function (e) {
+    if (isMouseOverResultBox) {
+        return; // Ignore keyboard events if the mouse is in the resultBox
+    }
+    const activeItem = resultBox.querySelector(".active");
+    let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
+
+    if (resultBox.children.length > 0) {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex + 1) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex - 1 + resultBox.children.length) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "Enter" && activeItem) {
+            e.preventDefault();
+            activeItem.click();
         }
     }
 });
@@ -1272,16 +1334,17 @@ async function getAutocompleteSuggestions(query) {
     }
 }
 
-
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
     // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
-        hideResultBox()
+        hideResultBox();
     }
 });
+// ------------End of Search Suggestions---------------
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
@@ -1826,31 +1889,31 @@ document.addEventListener("DOMContentLoaded", function () {
     * @param urls the array of potential URLs of favicons
     * @returns {Promise<unknown>}
     */
-    function filterFavicon(urls) {
-        return new Promise((resolve, reject) => {
-            let found = false;
+    // function filterFavicon(urls) {
+    //     return new Promise((resolve, reject) => {
+    //         let found = false;
 
-            for (const url of urls) {
-                const img = new Image();
-                img.referrerPolicy = "no-referrer"; // Don't send referrer data
-                img.src = url;
+    //         for (const url of urls) {
+    //             const img = new Image();
+    //             img.referrerPolicy = "no-referrer"; // Don't send referrer data
+    //             img.src = url;
 
-                img.onload = () => {
-                    if (!found) { // Make sure to resolve only once
-                        found = true;
-                        resolve(url);
-                    }
-                };
-            }
+    //             img.onload = () => {
+    //                 if (!found) { // Make sure to resolve only once
+    //                     found = true;
+    //                     resolve(url);
+    //                 }
+    //             };
+    //         }
 
-            // If none of the URLs worked after all have been tried
-            setTimeout(() => {
-                if (!found) {
-                    reject();
-                }
-            }, FAVICON_REQUEST_TIMEOUT);
-        });
-    }
+    //         // If none of the URLs worked after all have been tried
+    //         setTimeout(() => {
+    //             if (!found) {
+    //                 reject();
+    //             }
+    //         }, FAVICON_REQUEST_TIMEOUT);
+    //     });
+    // }
 
     /**
     * This function returns the url to the favicon of a website, given a URL.
