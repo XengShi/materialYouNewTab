@@ -612,10 +612,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const searchbar = document.getElementById('searchbar');
 searchbar.addEventListener('click', function () {
     searchbar.classList.toggle('active');
-    // if (searchInput2.value !== "") {
-    //     showResultBox()
-    // }
 });
+
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
     if (!searchbar.contains(event.target)) {
@@ -623,12 +621,16 @@ document.addEventListener('click', function (event) {
     }
 });
 
-
 //search function
 document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+
+    // Set focus to search input field with a delay when the page loads
+    setTimeout(() => {
+        searchInput.focus();
+    }, 100);
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
@@ -669,7 +671,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
     if (storedSearchEngine) {
-        const selectedRadioButton = document.querySelector(`input[name = "search-engine"][value = "${storedSearchEngine}"]`);
+        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
@@ -682,19 +684,18 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value = "${storedTheme}"]`);
+        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
-
 });
-
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
