@@ -114,7 +114,7 @@
      bottom: -100px;;
      left: 0;
      width: 100%;
-     border-radius: var(--round);
+     border-radius: 25px;
  
      padding: 5px 10px;
      scrollbar-width: none; /* For Firefox */
@@ -150,7 +150,7 @@
 .resultItem.active,
 .resultItem:hover {
     background-color: var(--darkColor-blue);
-    border-radius: 16px;
+    border-radius: 15px;
     color: #fff;
  }
 
