@@ -1091,19 +1091,19 @@ body {
 }
 
 /* Invisible element tracking height changes */
-/* #shortcuts-section #flexMonitor {
+#shortcuts-section #flexMonitor {
     position: absolute;
     height: 100%; /* This will match the height of .shortcutsContainer, which it is supposed to monitor */
     visibility: hidden;
- } */
+ }
 
 /* Invisible element to get standard height */
-/* #shortcuts-section #defaultMonitor {
+#shortcuts-section #defaultMonitor {
     position: absolute;
     /* This is the standard height of one row */
     height: calc(var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding));
     visibility: hidden;
- } */
+ }
 
 .shortcutsContainer {
     pointer-events: auto;
