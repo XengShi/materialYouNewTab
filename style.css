@@ -672,7 +672,6 @@ body {
 
 #humidityLevel {
     color: #fff;
-    /* background-color: yellow; */
     width: fit-content;
     position: absolute;
     bottom: 0;
@@ -714,14 +713,12 @@ body {
     transform: translateX(14px);
     width: 100px;
     height: 80%;
-    /* background-color: #17a638; */
 }
 
 #temp {
     font-size: 3.5rem;
     font-weight: bold;
     color: var(--darkerColor-blue);
-    /* background-color: yellow; */
     margin: auto;
     width: fit-content;
 }
@@ -739,7 +736,6 @@ body {
     height: 80px;
     margin-top: -11px;
     margin-left: -30px;
-    /* background-color: olive; */
 }
 
 /* ------------End of Weather Pill------------- */
@@ -786,7 +782,6 @@ body {
     outline: none;
     border: none;
     background-color: #00000000;
-    /* border-radius: 100px; */
     padding: 0 4px;
     margin-left: 53px;
     font-size: 1rem;
@@ -1061,27 +1056,6 @@ body {
     margin: auto;
 }
 
-/* #shortcuts-section .unfoldContainer {
-    transition: transform 0.5s;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: center;
-}
-
-#shortcuts-section #unfoldShortcutsBtn {
-    display: none;
-    pointer-events: auto;
-    fill: var(--textColorDark-blue);
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    transition: 0.2s all;
-    transform-origin: 50% 25%;
-}
- */
 #shortcuts-section .wrapper {
     position: relative;
     height: fit-content;
