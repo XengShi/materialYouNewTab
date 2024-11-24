@@ -1962,7 +1962,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function showProxyDisclaimer() {
         const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
 
-        confirm(message);
+        return confirm(message);
     }
 
     /* ------ Event Listeners ------ */
@@ -2047,12 +2047,21 @@ document.addEventListener("DOMContentLoaded", function () {
         updatedigiClock();
     });
     useproxyCheckbox.addEventListener("change", function () {
-        saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.checked) {
-            showProxyDisclaimer();
-            proxyinputField.classList.remove("inactive");
-            saveActiveStatus("proxyinputField", "active");
+            // Show the disclaimer and check the user's choice
+            const userConfirmed = showProxyDisclaimer();
+            if (userConfirmed) {
+                // Only enable the proxy if the user confirmed
+                saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
+                proxyinputField.classList.remove("inactive");
+                saveActiveStatus("proxyinputField", "active");
+            } else {
+                // Revert the checkbox state if the user did not confirm
+                useproxyCheckbox.checked = false;
+            }
         } else {
+            // If the checkbox is unchecked, disable the proxy
+            saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
             proxyinputField.classList.add("inactive");
             saveActiveStatus("proxyinputField", "inactive");
         }
