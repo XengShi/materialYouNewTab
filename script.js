@@ -608,10 +608,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Showing border or outline in when you click on searchbar
+// Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById('searchbar');
-searchbar.addEventListener('click', function () {
-    searchbar.classList.toggle('active');
+searchbar.addEventListener('click', function (event) {
+    event.stopPropagation(); // Stop the click event from propagating to the document
+    searchbar.classList.add('active');
 });
 
 document.addEventListener('click', function (event) {
@@ -626,12 +627,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
-
-    // Set focus to search input field with a delay when the page loads
-    setTimeout(() => {
-        searchInput.focus();
-        searchbar.classList.add('active');
-    }, 100);
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
@@ -685,7 +680,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
-
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
