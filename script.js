@@ -630,6 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set focus to search input field with a delay when the page loads
     setTimeout(() => {
         searchInput.focus();
+        searchbar.classList.add('active');
     }, 100);
 
     // Make entire search-engine div clickable
