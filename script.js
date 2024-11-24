@@ -612,7 +612,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const searchbar = document.getElementById('searchbar');
 searchbar.addEventListener('click', function () {
     searchbar.classList.toggle('active');
-    }
 });
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
