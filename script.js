@@ -1185,30 +1185,33 @@ document.getElementById("searchQ").addEventListener("input", async function () {
         const resultBox = document.getElementById("resultBox");
 
         if (query.length > 0) {
-            // Fetch autocomplete suggestions
-            const suggestions = await getAutocompleteSuggestions(query);
+            try {
+                // Fetch autocomplete suggestions
+                const suggestions = await getAutocompleteSuggestions(query);
 
-            if (suggestions == "") {
-                hideResultBox();
-            } else {
-                // Clear the result box
-                resultBox.innerHTML = '';
+                if (suggestions == "") {
+                    hideResultBox();
+                } else {
+                    // Clear the result box
+                    resultBox.innerHTML = '';
 
-                // Add suggestions to the result box
-                suggestions.forEach((suggestion, index) => {
-                    const resultItem = document.createElement("div");
-                    resultItem.classList.add("resultItem");
-                    resultItem.textContent = suggestion;
-                    resultItem.setAttribute("data-index", index);
-                    resultItem.onclick = () => {
-                        var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
-                        window.location.href = resultlink;
-                    };
-                    resultBox.appendChild(resultItem);
-                });
-                showResultBox();
+                    // Add suggestions to the result box
+                    suggestions.forEach((suggestion, index) => {
+                        const resultItem = document.createElement("div");
+                        resultItem.classList.add("resultItem");
+                        resultItem.textContent = suggestion;
+                        resultItem.setAttribute("data-index", index);
+                        resultItem.onclick = () => {
+                            var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
+                            window.location.href = resultlink;
+                        };
+                        resultBox.appendChild(resultItem);
+                    });
+                    showResultBox();
+                }
+            } catch (error) {
+                // Handle the error (if needed)
             }
-
         } else {
             hideResultBox();
         }
