@@ -465,6 +465,7 @@ const translations = {
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
+        "googleAppsHover": "Google aplikace",
         // End of Body and New Tab Items
 
         // Greeting
@@ -926,7 +927,7 @@ const translations = {
         "copilot": "Копилот",
         "firefly": "Адоби Файерфлай",
         "github": "ГитХаб",
-        //"googleAppsHover": "Гугл Приложения",
+        "googleAppsHover": "Гугл Приложения",
     },
 
     // Uzbek
