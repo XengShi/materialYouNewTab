@@ -132,6 +132,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
      - Ensure you’ve cloned the repository or downloaded the ZIP file and extracted it.
    
    - **Open Extensions Page**:
+     Open your preferred browser and enter the following text in the address bar
      - ![Chrome](https://img.icons8.com/color/20/000000/chrome--v1.png) Chrome: `chrome://extensions`
 
      -  ![Edge](https://img.icons8.com/?size=20&id=dGm9KIZPpukc&format=png&color=000000) Edge: `edge://extensions`
