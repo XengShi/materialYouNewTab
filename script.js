@@ -608,21 +608,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Showing border or outline in when you click on searchbar
+// Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById('searchbar');
-searchbar.addEventListener('click', function () {
-    searchbar.classList.toggle('active');
-    // if (searchInput2.value !== "") {
-    //     showResultBox()
-    // }
+searchbar.addEventListener('click', function (event) {
+    event.stopPropagation(); // Stop the click event from propagating to the document
+    searchbar.classList.add('active');
 });
+
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
     if (!searchbar.contains(event.target)) {
         searchbar.classList.remove('active');
     }
 });
-
 
 //search function
 document.addEventListener("DOMContentLoaded", () => {
@@ -669,7 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
     if (storedSearchEngine) {
-        const selectedRadioButton = document.querySelector(`input[name = "search-engine"][value = "${storedSearchEngine}"]`);
+        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
@@ -687,14 +685,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value = "${storedTheme}"]`);
+        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
-
 });
-
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
