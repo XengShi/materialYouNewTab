@@ -1787,6 +1787,25 @@ input:checked + .toggle:before {
         -moz-appearance: none; /* For Firefox */
     cursor: pointer;
     padding-left: 13px;
+
+    /* Scrollbar styles For Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--darkColor-blue) transparent;
+}
+
+/* Scrollbar styles For Chrome, Edge, Safari */
+.languageSelector::-webkit-scrollbar {
+	width: 6px;
+}
+
+.languageSelector::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.languageSelector::-webkit-scrollbar-thumb,
+.languageSelector::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
 }
 
 .languageSelector:focus {
