@@ -768,8 +768,11 @@ function initializeSpeechRecognition() {
         // When speech recognition starts
         recognition.onstart = () => {
             isRecognizing = true; // Set the flag to indicate recognition is active
-            // micIcon.style.color = 'var(--darkerColor-blue)';
-            // micIcon.style.transform = 'scale(1.1)';
+            const selectedRadio = document.querySelector('.colorPlate:checked');
+            if (selectedRadio.value !== 'dark') {
+                micIcon.style.color = 'var(--darkerColor-blue)';
+                // micIcon.style.transform = 'scale(1.05)';
+            }
             searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations['en'].listenPlaceholder}`;
             micIcon.classList.add('micActive');
         };
@@ -798,7 +801,7 @@ function initializeSpeechRecognition() {
         // When speech recognition ends (either by user or automatically)
         recognition.onend = () => {
             isRecognizing = false; // Reset the flag to indicate recognition has stopped
-            // micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
+            micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
             // micIcon.style.transform = 'scale(1)'; // Reset scaling
             micIcon.classList.remove('micActive');
             searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations['en'].searchPlaceholder}`;
