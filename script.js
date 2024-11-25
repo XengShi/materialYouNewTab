@@ -923,6 +923,12 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageIcon,
             .dark-theme .languageSelector {
                 background-color: #212121;
+                scrollbar-color: var(--darkerColor-blue) transparent;
+            }
+
+            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
+            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
+                background-color: var(--darkerColor-blue);
             }
 
             .dark-theme .bottom a {
