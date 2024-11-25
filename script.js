@@ -988,6 +988,9 @@ const applySelectedTheme = (colorValue) => {
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
+            .dot-icon {
+                fill: #bfbfbf;
+            }
             .menuicon{
                 color: var(--darkerColor-dark);
             }
