@@ -199,8 +199,8 @@ body {
   position: fixed;
   display: inline-block;
   margin: 10px;
-  top: 15px; /* Adjust distance from the top */
-  right: 20px; /* Adjust distance from the right */
+  top: var(--gap);
+  right: var(--gap);
   font-size: 25px; /* Set the size of the dots */
   background: transparent;
   border: none;
@@ -210,26 +210,30 @@ body {
 
 /* Styling for the SVG icon */
 .dot-icon {
-  fill: var(--darkerColor-blue); /* Icon color */
+  fill: var(--darkColor-blue); /* Icon color */
+  background-color: var(--accentLightTint-blue);
+  border-radius: 25%;
+  padding: 1px;
   cursor: pointer;
   transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 /* Hover effect for the icon */
 .dot-icon:hover {
-  transform: rotate(90deg) scale(1.2);
+  transform: rotate(90deg) scale(1.05);
+  fill: var(--darkerColor-blue);
 }
 
 /* Tooltip Text Styling */
 .tooltip-text {
   visibility: hidden;
   background-color: var(--darkColor-blue);
-  color: white;
+  color:rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   position: absolute;
-  top: 100%; /* Position below the icon */
+  top: 108%; /* Position below the icon */
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
@@ -282,7 +286,7 @@ body {
   grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
   justify-items: center; /* Center icons within each grid cell */
   position: absolute; /* Absolute positioning for dynamic alignment */
-  top: calc(30px + 24px + 20px); /* Place below the dot icon */
+  top: 85px; /* Place below the dot icon */
   right: 10px;
   max-height: calc(40px * 3 + 10px * 2 + 290px); /* Limit to 12 icons (3 rows * icon size + gaps) */
   overflow-y: auto; /* Add vertical scrollbar when needed */
