@@ -376,7 +376,7 @@ body {
   border-radius: 30px;
 }
 
-* For Firefox */
+/* For Firefox */
 .icon-container {
     scrollbar-width: thin; /* Thin scrollbar */
     scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
