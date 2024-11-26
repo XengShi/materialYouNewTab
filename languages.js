@@ -194,7 +194,6 @@ const translations = {
     },
 
     // Chinese (Simplified)
-    // Machine translated some elements, please verify and delete this comment
     "zh": {
         // Menu Items
         "feedback": "反馈",
@@ -202,49 +201,49 @@ const translations = {
         "menuCloseText": "关闭",
         // Shortcuts
         "shortcutsText": "快捷方式",
-        "enableShortcutsText": "启用/禁用快捷方式",
+        "enableShortcutsText": "显示已保存的快捷方式",
         "editShortcutsText": "编辑快捷方式",
-        "editShortcutsList": "编辑快捷方式",
+        "editShortcutsList": "已保存的快捷方式",
         "shortcutsInfoText": "选择要显示的快捷方式",
         "adaptiveIconText": "自适应图标形状",
-        "adaptiveIconInfoText": "快捷方式图标将始终为圆形",
-        "ai_tools_button": "AI工具",
-        "enable_ai_tools": "显示AI工具快捷方式",
+        "adaptiveIconInfoText": "快捷方式图标将显示为圆形",
+        "ai_tools_button": "AI 工具",
+        "enable_ai_tools": "显示 AI 工具快捷方式",
         "googleAppsMenuText": "谷歌应用",
         "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
         // Digital Clock
         "digitalclocktittle": "数字时钟",
-        "digitalclockinfo": "启用/禁用数字时钟",
-        "timeformattittle": "使用12小时格式",
-        "timeformatinfo": "使用12小时制时间格式",
-        "greetingtittle": "问候",
-        "greetinginfo": "在自定义文本下显示问候",
+        "digitalclockinfo": "切换到数字时钟",
+        "timeformattittle": "12 小时制",
+        "timeformatinfo": "使用 12 小时制时间格式",
+        "greetingtittle": "问候语",
+        "greetinginfo": "在自定义文本下显示问候语",
         // Misc
-        "userTextTitle": "可自定义文本",
+        "userTextTitle": "自定义文本",
         "userTextInfo": "在时钟下方显示自定义文本",
         "fahrenheitCelsiusCheckbox": "切换到华氏温度",
-        "fahrenheitCelsiusText": "刷新页面以查看更新",
+        "fahrenheitCelsiusText": "刷新页面以应用更改",
         "micIconTitle": "隐藏麦克风图标",
-        "micIconInfo": "如果语音输入不起作用",
+        "micIconInfo": "如果语音输入无法使用",
         "search_suggestions_button": "搜索建议",
-        "search_suggestions_text": "启用/禁用搜索建议",
+        "search_suggestions_text": "启用搜索建议",
         // Proxy
         "useproxytitletext": "代理绕过",
         "useproxyText": "如果搜索建议无法正常工作",
-        "ProxyText": "CORS绕过代理",
-        "ProxySubtext": "添加您自己的CORS绕过代理",
+        "ProxyText": "CORS 绕过代理",
+        "ProxySubtext": "添加您的地址以绕过CORS限制",
         "HostproxyButton": "托管您自己的代理",
         "saveproxy": "保存",
         // Location
         "UserLocText": "输入您的位置",
         "UserLocSubtext": "如果天气位置不正确",
-        "userLoc": "您的位置（城市/纬度，经度）",
+        "userLoc": "您的城市或坐标（纬度，经度）",
         "InputOptionsButton": "输入选项",
         "saveLoc": "保存",
         // Weather
-        "WeatherApiText": "输入您自己的天气API密钥",
+        "WeatherApiText": "输入您的 WeatherAPI 密钥",
         "WeatherApiSubtext": "如果天气功能无法正常工作",
-        "userAPI": "您的天气API密钥",
+        "userAPI": "您的 WeatherAPI 密钥",
         "LearnMoreButton": "了解更多",
         "saveAPI": "保存",
         // End of Menu Items
@@ -262,34 +261,25 @@ const translations = {
         // End of Weather
 
         // New Tab Item
-        "conditionText": "你好！今天怎么样？",
+        "conditionText": "你好！今天感觉怎么样？",
         "enterBtn": "搜索",
         "searchPlaceholder": "输入搜索内容...",
         "listenPlaceholder": "正在聆听...",
         "searchWithHint": "搜索引擎",
-        "ai_tools": "AI工具",
-        "userText": "点击这里编辑",
+        "ai_tools": "AI 工具",
+        "userText": "点击这里以编辑",
         // End of Body and New Tab Items
 
         // Greeting
         greeting: {
-            "morning": "早上好!",
-            "afternoon": "下午好!",
-            "evening": "晚上好!"
+            "morning": "早上好！",
+            "afternoon": "下午好！",
+            "evening": "晚上好！"
         },
 
         // Search Engines and rest
         "googleEngine": "谷歌",
-        "duckEngine": "达克达狗",
         "bingEngine": "必应",
-        "braveEngine": "布雷夫",
-        "youtubeEngine": "优兔",
-        "chatGPT": "查特吉皮提",
-        "gemini": "双美尼",
-        "copilot": "科波莱特",
-        "perplexity": "佩尔普雷克西蒂",
-        "firefly": " 阿多比 火萤",
-        "github": "吉特哈布",
         "googleAppsHover": "谷歌应用",
     },
 
