@@ -1625,6 +1625,16 @@ function applyLanguage(lang) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
     }
 
+    // Function to update padding of Feedback tile based on the selected language       
+    const menuTileFeedback = document.getElementById('menuTileFeedback');
+    if (menuTileFeedback) {
+        if (['idn', 'ja', 'ru', 'tr', 'uz'].includes(lang)) {
+            menuTileFeedback.style.paddingRight = '0';  // Set padding-right to 0 for specified languages
+        } else {
+            menuTileFeedback.style.paddingRight = '';   // Reset padding-right for other languages
+        }
+    }
+
     // Save the selected language in localStorage
     saveLanguageStatus('selectedLanguage', lang);
 }
