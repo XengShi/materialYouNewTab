@@ -6,7 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 // Translation data
 const translations = {
     "en": {
@@ -116,20 +115,20 @@ const translations = {
         "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
-        "enableShortcutsText": "Mostrar atalhos salvos",
+        "enableShortcutsText": "Exibir atalhos salvos",
         "editShortcutsText": "Editar Atalhos",
         "editShortcutsList": "Atalhos Salvos",
         "shortcutsInfoText": "Escolha quais atalhos serão exibidos",
         "adaptiveIconText": "Formas de Ícone Adaptativo",
         "adaptiveIconInfoText": "Os ícones de atalhos serão redondos",
         "ai_tools_button": "Ferramentas de IA",
-        "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
+        "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
         "googleAppsMenuText": "Apps do Google",
         "googleAppsMenuInfo": "Mostrar atalhos para os Apps do Google",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Mudar para o relógio digital",
-        "timeformattittle": "Usar Formato de 12h",
+        "timeformattittle": "Formato de 12h",
         "timeformatinfo": "Usar formato de hora de 12 horas",
         "greetingtittle": "Saudação",
         "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
@@ -137,22 +136,22 @@ const translations = {
         "userTextTitle": "Texto Personalizável",
         "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
         "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
-        "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
-        "micIconTitle": "Ocultar Icone do Microfone",
+        "fahrenheitCelsiusText": "Atualize a página para aplicar as alterações",
+        "micIconTitle": "Ocultar Ícone do Microfone",
         "micIconInfo": "Se a digitação por voz não estiver funcionando",
         "search_suggestions_button": "Sugestões de Pesquisa",
         "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
         "useproxytitletext": "Bypass de Proxy",
         "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
-        "ProxyText": "Proxy de Bypass CORS",
-        "ProxySubtext": "Adicione seu próprio Proxy de Bypass CORS",
-        "HostproxyButton": "Hospede Seu Próprio Proxy",
+        "ProxyText": "Proxy para contornar CORS",
+        "ProxySubtext": "Adicione seu próprio proxy de bypass CORS",
+        "HostproxyButton": "Configurar proxy próprio",
         "saveproxy": "Salvar",
         // Location
         "UserLocText": "Insira sua localização",
         "UserLocSubtext": "Se a localização do clima não estiver correta",
-        "userLoc": "Sua localização (Cidade/Latitude,Longitude)",
+        "userLoc": "Sua cidade ou coordenadas (Latitude, Longitude)",
         "InputOptionsButton": "Opções de Entrada",
         "saveLoc": "Salvar",
         // Weather
@@ -183,6 +182,7 @@ const translations = {
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
+        "googleAppsHover": "Apps do Google",
         // End of Body and New Tab Items
 
         // Greeting
@@ -191,6 +191,19 @@ const translations = {
             "afternoon": "Boa tarde!",
             "evening": "Boa noite!"
         },
+
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub"
     },
 
     // Chinese (Simplified)
@@ -1477,7 +1490,6 @@ const translations = {
         "firefly": "अॅडोबी फायरफ्लाय",
         "github": "गिटहब",
     },
-
 };
 
 // Define the width of the menu container for each language
@@ -1585,7 +1597,7 @@ function applyLanguage(lang) {
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
         { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'googleAppsHover', key: 'googleAppsHover' }
 
     ];
 
