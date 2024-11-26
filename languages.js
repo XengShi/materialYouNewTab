@@ -194,7 +194,6 @@ const translations = {
     },
 
     // Chinese (Simplified)
-    // Machine translated some elements, please verify and delete this comment
     "zh": {
         // Menu Items
         "feedback": "反馈",
@@ -280,16 +279,7 @@ const translations = {
 
         // Search Engines and rest
         "googleEngine": "谷歌",
-        "duckEngine": "DuckDuckGo",
         "bingEngine": "必应",
-        "braveEngine": "Brave",
-        "youtubeEngine": "YouTube",
-        "chatGPT": "ChatGPT",
-        "gemini": "Gemini",
-        "copilot": "Copilot",
-        "perplexity": "Perplexity",
-        "firefly": "Adobe Firefly",
-        "github": "GitHub",
         "googleAppsHover": "谷歌应用",
     },
 
