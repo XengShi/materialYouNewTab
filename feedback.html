@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - MaterialYouNewTab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body, h1, .feedback-message {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 703px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .feedback-message {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 38px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            transform: scale(1.1);
+        }
+
+        .github { background-color: #333; }
+        .telegram { background-color: #0088cc; }
+        .email { background-color: #d14836; }
+        .chrome { background-color: #25d669; }
+        .firefox { background-color: #f9c431; }
+
+        @media (max-width: 600px) {
+            .contact-info a {
+                font-size: 30px;
+                width: 60px;
+                height: 60px;
+                margin: 20px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body { background-color: #181818; color: #f0f4f8; }
+            .container { background-color: #2a2a2a; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
+            .github { background-color: #1d1d1d; }
+            h1, .feedback-message { color: #f0f4f8; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>We Value Your Feedback</h1>
+        <div class="feedback-message">
+            <p>If you have any suggestions or questions, feel free to reach out:</p>
+        </div>
+        <div class="contact-info">
+            <a href="https://github.com/XengShi" target="_blank" class="github"><i class="fab fa-github"></i></a>
+            <a href="https://t.me/xengshi" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="mailto:xengshi@duck.com" target="_blank" class="email"><i class="fas fa-envelope"></i></a>
+            <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn/reviews" target="_blank" class="chrome"><i class="fab fa-chrome"></i></a>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/reviews/" target="_blank" class="firefox"><i class="fab fa-firefox"></i></a>
+        </div>
+    </div>
+</body>
+
+</html>

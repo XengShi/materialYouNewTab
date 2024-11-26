@@ -1,3 +1,12 @@
+/* 
+ * Material You NewTab
+ * Copyright (c) 2023-2024 XengShi
+ * Licensed under the GNU General Public License v3.0 (GPL-3.0)
+ * You should have received a copy of the GNU General Public License along with this program. 
+ * If not, see <https://www.gnu.org/licenses/>.
+ */
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
 
@@ -15,7 +24,7 @@
 
 :root {
     /* 🔵🔵🔵 */
-    /* ⚠️ Please don't change the color value for this one (if ? then you have to change all colorCode in JavaScript file too */
+    /* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
     --bg-color-blue: #BBD6FD;
     --accentLightTint-blue: #E2EEFF;
     --darkerColor-blue: #3569b2;
@@ -29,12 +38,12 @@
     --darkColor-red: #EC4343;
     --textColorDark-red: #411B1B;
 
-    /*Peela*/
-    --bg-color-yellow: #edea8c;
-    --accentLightTint-yellow: #fff2c2;
-    --darkerColor-yellow: #CCA243;
-    --darkColor-yellow: #f4d837;
-    --textColorDark-yellow: #5B5428;
+    /* 🟡🟡🟡 */
+    --bg-color-yellow: #ffed80;
+    --accentLightTint-yellow: #fff6c3;
+    --darkerColor-yellow: #ae9502;
+    --darkColor-yellow: #d1a93d;
+    --textColorDark-yellow: #2f2707;
 
     /* 🟢🟢🟢 */
     --bg-color-green: #C7E4C7;
@@ -44,11 +53,18 @@
     --textColorDark-green: #1B411B;
 
     /* Cyan */
-    --bg-color-cyan: #9bffff;
+    /* --bg-color-cyan: #9bffff;
     --accentLightTint-cyan: #d5ffff;
     --darkerColor-cyan: #5E9CA0;
     --darkColor-cyan: #00CED1;
+    --textColorDark-cyan: #08354B; */
+
+    --bg-color-cyan:    #9cefef;
+    --accentLightTint-cyan: #d5ffff;
+    --darkerColor-cyan: #07787f;
+    --darkColor-cyan: #09b2b4;
     --textColorDark-cyan: #08354B;
+
 
     /* 🩷💗🩷 */
     --bg-color-pink: #F9C8D6;
@@ -71,12 +87,14 @@
     --darkColor-purple: #9563B5;
     --textColorDark-purple: #2D1B3E;
 
-    /* Dark Kaala */
-    --bg-color-dark: #505050;
-    --accentLightTint-dark: #818181;
-    --darkerColor-dark: #010208;
-    --darkColor-dark: #434343;
-    --textColorDark-dark: #010208;
+    /* ⚫⚫⚫ */
+    --bg-color-dark: #171615;
+    --accentLightTint-dark: #3c3c3c;
+    --darkerColor-dark: #eeeeee;
+    --darkColor-dark: #212121;
+    --textColorDark-dark: #d6d6d6;
+
+/* ----------------- */
 
     /* Global variables */
     --gap: 30px;
@@ -89,51 +107,53 @@
     --always-show-dock-background: 0;
 }
 .resultBox {
-    max-height: 250px;
-    overflow-y: auto;
-   
-    position: absolute;
-    top: 1;
-    left: 0;
-    width: 100%;
-    border-radius: var(--round);
+     max-height: 222px;
+     overflow-y: auto;
+    
+     position: absolute;
+     bottom: -100px;;
+     left: 0;
+     width: 100%;
+     border-radius: 25px;
+ 
+     padding: 5px 10px;
+     scrollbar-width: none; /* For Firefox */
+ 
+     /* Initially hidden */
+     opacity: 0;
+     z-index: -1000;
+     transform: translateY(-70px);
+     transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
+     pointer-events: none; 
+ }
+ 
+ .resultBox::-webkit-scrollbar {
+     display: none; /* For Chrome, Safari, and Edge */
+ }
+ 
+ /* Visible state: when you want the result box to appear */
+ .resultBox.show {
+     opacity: 1;
+     visibility: visible; 
+     transform: translateY(0); 
+     z-index: 1000;
+     pointer-events: all;
+ }
+ 
+ .resultItem {
+     padding: 8px;
+     cursor: pointer;
+     font-size: 1.1rem;
+     color: var(--textColorDark-blue);
+ }
 
-    padding: 10px;
-    scrollbar-width: none; /* For Firefox */
-
-    /* Initially hidden */
-    opacity: 0;
-    z-index: -1000;
-    transform: translateY(-70px);
-    transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
-    pointer-events: none; 
-}
-
-.resultBox::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Edge */
-}
-
-/* Visible state: when you want the result box to appear */
-.resultBox.show {
-    opacity: 1;
-    visibility: visible; 
-    transform: translateY(0); 
-    z-index: 1000;
-    pointer-events: all;
-}
-
-.resultItem {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--textColorDark-blue);
-}
-
+.resultItem.active,
 .resultItem:hover {
-   background-color: var(--darkColor-blue);
-   border-radius: 15px;
-   color: #fff;
-}
+    background-color: var(--darkColor-blue);
+    border-radius: 15px;
+    color: #fff;
+ }
+
 .spacer {
     height: 65px; /* Adjust this value to create space */
 }
@@ -172,6 +192,201 @@ body {
     width: 100%;
     min-height: 100%;
 }
+
+/* ----------------- Google App Menu CSS Setup ----------------- */
+/* Dot Icon Container Styling */
+.googleAppsCont {
+  position: fixed;
+  display: inline-block;
+  margin: 10px;
+  top: var(--gap);
+  right: var(--gap);
+  font-size: 25px; /* Set the size of the dots */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2; /* Set z-index */
+}
+
+/* Styling for the SVG icon */
+.dot-icon {
+  fill: var(--darkColor-blue); /* Icon color */
+  background-color: var(--accentLightTint-blue);
+  border-radius: 25%;
+  padding: 1px;
+  cursor: pointer;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+/* Hover effect for the icon */
+.dot-icon:hover {
+  transform: rotate(90deg) scale(1.05);
+  fill: var(--darkerColor-blue);
+}
+
+/* Tooltip Text Styling */
+.tooltip-text {
+  visibility: hidden;
+  background-color: var(--darkColor-blue);
+  color:rgba(255, 255, 255, 0.9);
+  text-align: center;
+  padding: 5px;
+  border-radius: 7px;
+  position: absolute;
+  top: 108%; /* Position below the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 3; /* Set z-index */
+}
+
+/* Show tooltip on hover */
+.googleAppsCont:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Hide tooltip when menu is open */
+.googleAppsCont:hover + .icon-container .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Hide tooltip when icon button is clicked */
+.googleAppsCont.clicked .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Separator Styling */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--darkColor-blue); /* Adjust color as needed */
+  margin: 10px 0; /* Adjust spacing as needed */
+}
+
+/* Add Separator in Icon Container */
+.icon-container .separator {
+  grid-column: span 3; /* Ensure separator spans across all columns */
+}
+
+/* Icon Container Styling (Placed Below Dot Icon) */
+.icon-container {
+  display: grid;
+  gap: 10px;
+  padding: 20px 10px; /* Adjusted padding to account for scrollbar */
+  background-color: var(--accentLightTint-blue);
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: 8px solid var(--bg-color-blue);
+  grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
+  justify-items: center; /* Center icons within each grid cell */
+  position: absolute; /* Absolute positioning for dynamic alignment */
+  top: 85px; /* Place below the dot icon */
+  right: 10px;
+  max-height: calc(40px * 3 + 10px * 2 + 290px); /* Limit to 12 icons (3 rows * icon size + gaps) */
+  overflow-y: auto; /* Add vertical scrollbar when needed */
+  box-sizing: border-box; /* Ensure padding is included in width and height */
+  z-index: 1; /* Set z-index */
+}
+
+/* Individual Icon Item Styling */
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  min-width: 100px; /* Ensure consistent width */
+  background-color: var(--accentLightTint-blue); /* Default background */
+}
+
+/* Icon Styling */
+.menuicon {
+  color: var(--darkColor-blue);
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+/* Label Styling */
+.label {
+  font-size: 14px;
+  color: var(--textColorDark-blue);
+}
+
+/* Short Label (Default) */
+.label.short {
+  display: block;
+}
+
+/* Full Label (Hidden by Default) */
+.label.full {
+  display: none;
+  white-space: pre-line; /* Ensure text retains line breaks */
+  text-align: center; /* Center align text */
+  position: absolute;
+  font-size: 0.8rem;
+  bottom: 0;
+}
+
+/* Hover Effect for Icon Item */
+.icon-item:hover {
+  background-color: var(--bg-color-blue);
+  transform: scale(1.1); /* Add zoom-in effect */
+}
+
+/* Show Full Label on Hover for Multi-word Labels */
+.icon-item:hover .label.full {
+  display: block;
+}
+
+.icon-item:hover .label.short {
+  display: block; /* Ensure single-word labels remain visible */
+}
+
+.icon-item:hover .label.short.one {
+  display: none; /* Ensure single-word labels remain visible */
+}
+
+/* Customize scrollbar to appear on the border */
+/* For Chrome, Edge, Safari */
+.icon-container::-webkit-scrollbar {
+  width: 5px; /* Match the border width */
+}
+.icon-container::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 30px;
+}
+.icon-container::-webkit-scrollbar-thumb {
+  background-color: var(--darkColor-blue);
+  border-radius: 30px;
+}
+.icon-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--darkerColor-blue);
+  border-radius: 30px;
+}
+
+/* For Firefox */
+.icon-container {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+/* .icon-container:hover {
+    scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
+} */
+
+/* ----------------- End of Google App Menu ----------------- */  
 
 .centerDiv {
     display: grid;
@@ -461,7 +676,6 @@ body {
 
 #humidityLevel {
     color: #fff;
-    /* background-color: yellow; */
     width: fit-content;
     position: absolute;
     bottom: 0;
@@ -503,23 +717,21 @@ body {
     transform: translateX(14px);
     width: 100px;
     height: 80%;
-    /* background-color: #17a638; */
 }
 
 #temp {
     font-size: 3.5rem;
     font-weight: bold;
     color: var(--darkerColor-blue);
-    /* background-color: yellow; */
     margin: auto;
     width: fit-content;
 }
 
 .tempUnit {
     font-size: 0.4em;
-    vertical-align: super;
     position: relative;
-    top: -0.25em;
+    top: -1.1em;
+    left: 3px;
     color: var(--darkColor-blue);
 }
 
@@ -528,7 +740,6 @@ body {
     height: 80px;
     margin-top: -11px;
     margin-left: -30px;
-    /* background-color: olive; */
 }
 
 /* ------------End of Weather Pill------------- */
@@ -559,28 +770,90 @@ body {
     margin-left: 16px;
 }
 
+.searchbar-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
+}
+
 #searchQ {
-    display: block;
-    position: absolute;
+    flex-grow: 1;
     height: 80%;
-    width: calc(100% - 120px);
     top: 0;
     bottom: 0;
     margin: auto auto auto 20px;
     outline: none;
     border: none;
     background-color: #00000000;
-    border-radius: 100px;
-    padding: 0 40px;
+    padding: 0 4px;
+    margin-left: 53px;
     font-size: 1rem;
 }
 
-#enterBtn {
+.searchControls {
+    margin-left: 10px;
+    right: 10px; 
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+/* --------- .micIcon------------- */
+
+.micIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--darkColor-blue);
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 3px;
+    box-sizing: border-box;
+    background-color: #ffffffc9;
+    transition: all 0.5s;
+    border: 2px solid transparent;  
+}
+
+.micIcon::after {
+    content: "";
     position: absolute;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+}
+
+.micActive::after,
+.micIcon:hover::after {
+    border-left: 2px dotted var(--darkColor-blue);
+    border-right: 2px solid var(--darkColor-blue);
+    border-top: 2px dashed var(--darkerColor-blue);
+    border-bottom: 2px dashed var(--darkerColor-blue);
+    animation: micAnimation 1s ease-in-out infinite;
+    transition: all 0.5s;
+}
+
+.micIcon:hover {
+    background-color: #fffffff2;
+}
+
+
+@keyframes micAnimation {
+    0%{transform: rotate(0deg);}
+    37%{transform: rotate(-20deg);}
+    69%{transform: rotate(20deg);}
+    100%{transform: rotate(0deg);}
+}
+
+/* ---------End of .micIcon------------- */
+
+
+ #enterBtn {
     height: 40px;
     border-radius: 100px;
     padding: 0 26px;
@@ -589,7 +862,7 @@ body {
     background-color: var(--darkColor-blue);
     color: white;
     transition: all 0.3s;
-}
+ }
 
 #enterBtn:hover {
     background-color: var(--darkColor-blue);
@@ -649,6 +922,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor: pointer;
 }
 
 .searchEnginesContainer .search-engine svg {
@@ -663,6 +937,7 @@ body {
 
 .searchEnginesContainer .search-engine label {
     margin: 0 16px 0 10px;
+    cursor: pointer;
 }
 
 /* -----------Radio Button Customizing------------ */
@@ -785,27 +1060,6 @@ body {
     margin: auto;
 }
 
-#shortcuts-section .unfoldContainer {
-    transition: transform 0.5s;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: center;
-}
-
-#shortcuts-section #unfoldShortcutsBtn {
-    display: none;
-    pointer-events: auto;
-    fill: var(--textColorDark-blue);
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    transition: 0.2s all;
-    transform-origin: 50% 25%;
-}
-
 #shortcuts-section .wrapper {
     position: relative;
     height: fit-content;
@@ -845,7 +1099,8 @@ body {
     padding: var(--shortcut-bar-gap-and-padding);
     justify-content: left;
     width: fit-content;
-    gap: var(--gap) var(--shortcut-bar-gap-and-padding);
+    /* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
+    gap: 20px;
 }
 
 .shortcutsContainer::before {
@@ -873,8 +1128,8 @@ body {
 }
 
 .shortcutsContainer .shortcuts:hover {
-    transform: translateY(-10px) scale(1.06);
-    box-shadow: 0 5px 10px var(--accentLightTint-blue);
+    transform: translateY(-10px) scale(1.06) rotate(10deg);
+    /* box-shadow: 0 5px 10px var(--accentLightTint-blue); */
     border-radius: 100px;
 }
 
@@ -947,7 +1202,7 @@ body {
     /* background-color: yellow; */
     overflow-x: hidden;
     border-radius: 100px;
-    position: absolute;
+    position: fixed;
     left: var(--gap);
     bottom: var(--gap);
     margin: auto;
@@ -963,6 +1218,7 @@ body {
     padding: 0 16px;
     border-radius: 100px;
     z-index: 2;
+    cursor: pointer;
 }
 
 .aiToolsCont .hangno .icon {
@@ -974,7 +1230,7 @@ body {
 .aiToolsCont .hangno .label {
     font-size: 1rem;
     color: var(--textColorDark-blue);
-    cursor: default;
+    cursor: pointer;
 }
 
 .aiToolsCont .toolsCont {
@@ -1531,6 +1787,25 @@ input:checked + .toggle:before {
         -moz-appearance: none; /* For Firefox */
     cursor: pointer;
     padding-left: 13px;
+
+    /* Scrollbar styles For Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--darkColor-blue) transparent;
+}
+
+/* Scrollbar styles For Chrome, Edge, Safari */
+.languageSelector::-webkit-scrollbar {
+	width: 6px;
+}
+
+.languageSelector::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.languageSelector::-webkit-scrollbar-thumb,
+.languageSelector::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
 }
 
 .languageSelector:focus {
@@ -1575,35 +1850,35 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="yellow"] {
-    background-color: #f3f05a;
+    background-color: #ffcc00;
 }
 
 .colorsContainer input[value="red"] {
-    background-color: #f91d1d;
+    background-color: #EC4343;
 }
 
 .colorsContainer input[value="green"] {
-    background-color: #17a638;
+    background-color: #5CBA5C;
 }
 
 .colorsContainer input[value="cyan"] {
-    background-color: #2acdf5;
+    background-color: #00CED1;
 }
 
 .colorsContainer input[value="orange"] {
-    background-color: orange;
+    background-color: #EC844D
 }
 
 .colorsContainer input[value="purple"] {
-    background-color: #b830de;
+    background-color: #9563B5;
 }
 
 .colorsContainer input[value="pink"] {
-    background-color: #e41b9e;
+    background-color: #EC5E78;
 }
 
 .colorsContainer input[value="dark"] {
-    background-color: #282828;
+    background-color: #434343;
 }
 
 .colorsContainer input[type="radio"]:checked::after {
@@ -1622,7 +1897,6 @@ input:checked + .toggle:before {
     right: 0;
     border-radius: 100%;
     z-index: 2;
-    cursor: pointer;
 }
 
 .languageIcon {
@@ -1632,7 +1906,6 @@ input:checked + .toggle:before {
     right: 0;
     border-radius: 100%;
     z-index: 2;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1688,7 +1961,7 @@ input:checked + .toggle:before {
 #menuCloseButton {
     position: relative;
      /* position: absolute; */
-    bottom: var(--gap);
+    /* bottom: var(--gap); */
     width: 42px;
     height: 42px; 
     max-width: 100%; /* Set max-width to fit-content initially */
@@ -1706,7 +1979,7 @@ input:checked + .toggle:before {
     transition: all 0.4s;
     /* Transition the max-width property */
     cursor: pointer;
-    margin-top: calc(69px + 20px);
+    margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {
