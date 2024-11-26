@@ -1458,7 +1458,6 @@ body {
 .menuBar .optCont .tilesCont {
     width: 100%;
     height: 50px;
-    /* background-color: #17a638; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--gap);
@@ -1479,6 +1478,14 @@ body {
     height: 24px;
     margin-left: 13px;
     margin-right: 13px;
+}
+
+.menuTile {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	padding-right: 13px;
 }
 
 .divider {
