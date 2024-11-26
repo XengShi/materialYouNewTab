@@ -80,7 +80,6 @@ const translations = {
     },
 
     // Portuguese
-    // Machine translated some elements, please verify and delete this comment
     "pt": {
         // Menu Items
         "feedback": "Feedback",
@@ -88,17 +87,17 @@ const translations = {
         "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
-        "enableShortcutsText": "Ativar/desativar atalhos",
+        "enableShortcutsText": "Mostrar atalhos salvos",
         "editShortcutsText": "Editar Atalhos",
-        "editShortcutsList": "Editar Atalhos",
+        "editShortcutsList": "Atalhos Salvos",
         "shortcutsInfoText": "Escolha quais atalhos serão exibidos",
         "adaptiveIconText": "Formas de Ícone Adaptativo",
-        "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
+        "adaptiveIconInfoText": "Os ícones de atalhos serão redondos",
         "ai_tools_button": "Ferramentas de IA",
-        "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
+        "enable_ai_tools": "Mostrar atalhos de ferramentas de IA",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
-        "digitalclockinfo": "Ativar/desativar o Relógio Digital",
+        "digitalclockinfo": "Mudar para o relógio digital",
         "timeformattittle": "Usar Formato de 12h",
         "timeformatinfo": "Usar formato de hora de 12 horas",
         "greetingtittle": "Saudação",
@@ -109,7 +108,7 @@ const translations = {
         "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
         "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
         "search_suggestions_button": "Sugestões de Pesquisa",
-        "search_suggestions_text": "Ativar/desativar Sugestões de Pesquisa",
+        "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
         "useproxytitletext": "Bypass de Proxy",
         "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
@@ -120,7 +119,7 @@ const translations = {
         // Location
         "UserLocText": "Insira sua localização",
         "UserLocSubtext": "Se a localização do clima não estiver correta",
-        "userLoc": "Sua localização (Cidade/Aletitude,Longitude)",
+        "userLoc": "Sua localização (Cidade/Latitude,Longitude)",
         "InputOptionsButton": "Opções de Entrada",
         "saveLoc": "Salvar",
         // Weather
