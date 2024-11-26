@@ -1627,11 +1627,16 @@ function applyLanguage(lang) {
 
     // Function to update padding of Feedback tile based on the selected language       
     const menuTileFeedback = document.getElementById('menuTileFeedback');
+    const iconElement = menuTileFeedback?.querySelector('.icon');
     if (menuTileFeedback) {
         if (['idn', 'ja', 'ru', 'tr', 'uz'].includes(lang)) {
             menuTileFeedback.style.paddingRight = '0';  // Set padding-right to 0 for specified languages
+            iconElement.style.marginLeft = '0px';   // Set margin-left to 0 for .icon inside #menuTileFeedback
+            iconElement.style.marginRight = '7px';
         } else {
             menuTileFeedback.style.paddingRight = '';   // Reset padding-right for other languages
+            iconElement.style.marginLeft = '';     // Reset margin-left for other languages
+            iconElement.style.marginRight = '';
         }
     }
 
