@@ -1494,7 +1494,7 @@ const menuWidths = {
     ru: '450px',
     it: '437px',
     idn: '415px',
-    tr: '415px',
+    tr: '418px',
     // Add more languages and widths as needed
 };
 
