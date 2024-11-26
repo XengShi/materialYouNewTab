@@ -1484,7 +1484,7 @@ const translations = {
 // Define the width of the menu container for each language
 const menuWidths = {
     en: '400px',
-    pt: '415px',
+    pt: '465px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
@@ -1494,6 +1494,7 @@ const menuWidths = {
     ru: '450px',
     it: '437px',
     idn: '415px',
+    tr: '415px',
     // Add more languages and widths as needed
 };
 
