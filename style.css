@@ -1760,8 +1760,8 @@ input:checked + .toggle:before {
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: center;
-    gap: calc(var(--gap) + 10px);
+    justify-content: space-around;
+    gap: var(--gap);
 }
 
 .languageSelector {
