@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -900,9 +901,10 @@ const applySelectedTheme = (colorValue) => {
         darkThemeStyleTag = document.createElement('style');
         darkThemeStyleTag.textContent = `
             .dark-theme .search-engine input[type="radio"]:checked {
-                background-color: #333;
+                background-color: #2a2a2a;
                 border: 2px solid #919191;
             }
+
             .dark-theme .search-engine input[type="radio"] {
                 background-color: #9d9d9d   ;
                 border: 0px solid #000000;
@@ -983,22 +985,34 @@ const applySelectedTheme = (colorValue) => {
                 fill: #3c3c3c !important;
             }
 
+            #darkLightTint{
+                fill: #bfbfbf;
+            }
+
+            .strokecolor {
+	            stroke: #3c3c3c;
+            }
+
             .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
-
             }
+
             .digiclock {
                 fill: #909090;
             }
+
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
+
             .dot-icon {
                 fill: #bfbfbf;
             }
+
             .menuicon{
-                color: var(--darkerColor-dark);
+                color: #c2c2c2;
             }
+
             #menuButton::before{
                 background-color: #bfbfbf;
             }
@@ -1006,9 +1020,11 @@ const applySelectedTheme = (colorValue) => {
             #menuButton::after{
                 border: 4px solid #858585;
             }
+
             #menuCloseButton, #menuCloseButton:hover {
                 background-color: var(--darkColor-dark);
             }
+
             #menuCloseButton .icon{
                 background-color: #cdcdcd;
             }
@@ -1451,10 +1467,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M11.6698 9.82604L9.33021 8.73437C9.12604 8.63958 8.95833 8.74583 8.95833 8.97187V11.0281C8.95833 11.2542 9.12604 11.3604 9.33021 11.2656L11.6688 10.174C11.874 10.0781 11.874 9.92188 11.6698 9.82604ZM10 0C4.47708 0 0 4.47708 0 10C0 15.5229 4.47708 20 10 20C15.5229 20 20 15.5229 20 10C20 4.47708 15.5229 0 10 0ZM10 14.0625C4.88125 14.0625 4.79167 13.601 4.79167 10C4.79167 6.39896 4.88125 5.9375 10 5.9375C15.1187 5.9375 15.2083 6.39896 15.2083 10C15.2083 13.601 15.1187 14.0625 10 14.0625Z"
                     fill="#617859"/>
             </svg>`], ["mail.google.com", `
-            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
-                <path class="accentColor shorcutDarkColor"
-                    d="M10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0ZM5 5H15C15.1788 5 15.3513 5.03875 15.5113 5.11L10 11.5387L4.48875 5.11C4.64929 5.03704 4.82366 4.99952 5 5ZM3.75 13.75V6.25L3.7525 6.17125L7.4175 10.4475L3.7925 14.0725C3.76387 13.9674 3.74957 13.8589 3.75 13.75ZM15 15H5C4.89 15 4.78125 14.985 4.6775 14.9575L8.235 11.4L10.0013 13.46L11.7675 11.4L15.325 14.9575C15.2199 14.9861 15.1114 15.0004 15.0025 15H15ZM16.25 13.75C16.25 13.86 16.235 13.9688 16.2075 14.0725L12.5825 10.4475L16.2475 6.17125L16.25 6.25V13.75Z"
-                    fill="#00f"/>
+            <svg fill="none" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	            <circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/>
+                <g transform="translate(12, 12) scale(0.7) translate(-10, -10)">
+	            <path class="bgLightTint" id="darkLightTint" fill-rule="evenodd"
+                    d="m7.172 11.334l2.83 1.935l2.728-1.882l6.115 6.033q-.242.079-.512.08H1.667c-.22 0-.43-.043-.623-.12zM20 6.376v9.457c0 .247-.054.481-.15.692l-5.994-5.914zM0 6.429l6.042 4.132l-5.936 5.858A1.7 1.7 0 0 1 0 15.833zM18.333 2.5c.92 0 1.667.746 1.667 1.667v.586L9.998 11.648L0 4.81v-.643C0 3.247.746 2.5 1.667 2.5z" />
+                </g>
             </svg>
             `], ["web.telegram.org", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -1470,9 +1488,11 @@ document.addEventListener("DOMContentLoaded", function () {
             </svg>
             `], ["instagram.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.44" class="strokecolor" stroke-width="3" fill="none" />
+                <g transform="translate(10, 10) scale(0.85) translate(-10, -10)">
                 <path class="accentColor shorcutDarkColor"
-                    d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z"
-                    fill="#617859"/>
+                    d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z" fill="#617859"/>
+                </g>
             </svg>
             `], ["x.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">

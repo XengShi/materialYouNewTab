@@ -170,6 +170,10 @@
     background-color: var(--accentLightTint-blue);
 }
 
+.strokecolor {
+	stroke: var(--darkColor-blue);
+}
+
 .lessDark {
     background-color: var(--bg-color-blue);
     fill: var(--bg-color-blue);
