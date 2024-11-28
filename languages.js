@@ -56,7 +56,7 @@ const translations = {
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your WeatherAPI key",
+        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn more",
@@ -83,7 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",  // Keep untranslated if text width is longer
+        "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
         // End of Body and New Tab Items
 
         // Greeting
@@ -156,7 +156,7 @@ const translations = {
         "InputOptionsButton": "Opções de Entrada",
         "saveLoc": "Salvar",
         // Weather
-        "WeatherApiText": "Insira sua própria chave da API de Clima",
+        "WeatherApiText": "Insira sua própria chave do WeatherAPI",
         "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
         "userAPI": "Sua chave da WeatherAPI",
         "LearnMoreButton": "Saiba Mais",
@@ -279,6 +279,7 @@ const translations = {
 
         // Search Engines and rest
         "googleEngine": "谷歌",
+        "duckEngine": "DuckDuckGo",
         "bingEngine": "必应",
         "googleAppsHover": "谷歌应用",
     },
@@ -603,9 +604,9 @@ const translations = {
         "InputOptionsButton": "Girdi Seçenekleri",
         "saveLoc": "Kaydet",
         // Weather
-        "WeatherApiText": "Kendi Hava Durumu API anahtarınızı girin",
+        "WeatherApiText": "Kendi WeatherAPI anahtarınızı girin",
         "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
-        "userAPI": "Hava Durumu API anahtarınız",
+        "userAPI": "WeatherAPI anahtarınız",
         "LearnMoreButton": "Daha Fazla Bilgi Edinin",
         "saveAPI": "Kaydet",
         // End of Menu Items
@@ -1483,7 +1484,7 @@ const translations = {
 // Define the width of the menu container for each language
 const menuWidths = {
     en: '400px',
-    pt: '415px',
+    pt: '470px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
@@ -1493,6 +1494,7 @@ const menuWidths = {
     ru: '450px',
     it: '437px',
     idn: '415px',
+    tr: '418px',
     // Add more languages and widths as needed
 };
 
