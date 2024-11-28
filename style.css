@@ -111,7 +111,7 @@
      overflow-y: auto;
     
      position: absolute;
-     bottom: -100px;;
+     bottom: -100px;
      left: 0;
      width: 100%;
      border-radius: 25px;
@@ -367,14 +367,17 @@ body {
 .icon-container::-webkit-scrollbar {
   width: 5px; /* Match the border width */
 }
+
 .icon-container::-webkit-scrollbar-track {
   background-color: transparent;
   border-radius: 30px;
 }
+
 .icon-container::-webkit-scrollbar-thumb {
   background-color: var(--darkColor-blue);
   border-radius: 30px;
 }
+
 .icon-container::-webkit-scrollbar-thumb:hover {
   background-color: var(--darkerColor-blue);
   border-radius: 30px;
@@ -386,6 +389,7 @@ body {
     scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+
 /* .icon-container:hover {
     scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
 } */
@@ -636,7 +640,6 @@ body {
     height: fit-content;
 }
 
-
 .humidityBar {
     border-radius: 20px;
     height: 40px;
@@ -803,7 +806,6 @@ body {
     height: 100%;
 }
 
-
 /* --------- .micIcon------------- */
 
 .micIcon {
@@ -846,7 +848,6 @@ body {
     background-color: #fffffff2;
 }
 
-
 @keyframes micAnimation {
     0%{transform: rotate(0deg);}
     37%{transform: rotate(-20deg);}
@@ -855,7 +856,6 @@ body {
 }
 
 /* ---------End of .micIcon------------- */
-
 
  #enterBtn {
     height: 40px;
@@ -936,7 +936,6 @@ body {
     border-radius: 100%;
     margin-left: 4px;
     padding: 3px;
-
 }
 
 .searchEnginesContainer .search-engine label {
@@ -957,97 +956,14 @@ body {
     outline: none;
     margin-right: 8px;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .search-engine input[type="radio"]:checked {
     background-color: var(--darkColor-blue);
 }
 
-/* -----------Radio Button Customizing------------ */
-
-/* -----------Theming Stuff------------------ */
-/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
-/* .themingStuff {
-    position: absolute;
-    width: fit-content;
-    height: 50px;
-    right: var(--gap);
-    bottom: var(--gap);
-    display: flex;
-    align-items: center;
-}
-.colorsContainer {
-    background-color: var(--accentLightTint-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 10px;
-    margin-right: 20px;
-    border-radius: 100px;
-    height: 50px;
-    transition: all 0.6s;
-    opacity: 0;
-    width: 30px;
-    height: 30px;
-    transform: translateX(50px);
-    z-index: 1;
-}
-.showColorPlate {
-    opacity: 1;
-    width: fit-content;
-    height: 50px;
-    transform: translateX(0px);
-}
-.colorsContainer input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #fff;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    outline: none;
-    margin-right: 10px;
-    cursor: pointer;
-}
-.colorsContainer input[value="blue"] {
-    background-color: #4382EC;
-}
-.colorsContainer input[value="red"] {
-    background-color: #f91d1d;
-}
-.colorsContainer input[value="green"] {
-    background-color: #17a638;
-}
-.colorsContainer input[value="orange"] {
-    background-color: orange;
-}
-.colorsContainer input[value="purple"] {
-    background-color: #b830de;
-}
-.colorsContainer input[value="pink"] {
-    background-color: #e41b9e;
-}
-.colorsContainer input[type="radio"]:checked::after {
-    position: absolute;
-    content: "";
-    width: 30px;
-    height: 30px;
-    background: url("./svgs/tick.svg") center center no-repeat;
-    background-size: 74%;
-}
-.themingStuff .btn {
-    height: 100%;
-    aspect-ratio: 1/1;
-    right: 0;
-    border-radius: 100%;
-    z-index: 2;
-    cursor: pointer;
-} */
-
-/* -----------End of Theming Stuff------------------ */
-
+/* -----------end of Radio Button Customizing------------ */
 
 /* ----------Shortcuts----------------- */
 
@@ -1196,7 +1112,6 @@ body {
     border-radius: 100%;
 }
 
-
 /* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */
@@ -1280,9 +1195,7 @@ body {
     margin-right: 12px;
 }
 
-
 /* -----------End of Ai-Tools---------- */
-
 
 /* -------media query ------------------- */
 
@@ -1335,7 +1248,6 @@ body {
         left: 300px;
         /*Because Clock width is 300px*/
         margin: auto auto auto var(--gap);
-
     }
 }
 
@@ -1458,7 +1370,6 @@ body {
 
 /* -------------End of Scrollbar for menu-------------- */
 
-
 .menuBar .optCont .tilesCont {
     width: 100%;
     height: 50px;
@@ -1533,7 +1444,6 @@ body {
     /* Slider color when on */
     transition: 0.4s;
     border-radius: 50%;
-
 }
 
 #shortcutEditButton {
@@ -1624,6 +1534,7 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
+
 .resetbtn {
     width: -webkit-fill-available;
     border: none;
@@ -1634,6 +1545,7 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
+
 .topBar {
     display: flex;
     justify-content: space-between;
@@ -1686,10 +1598,17 @@ input:checked + .toggle:before {
 }
 
 .pageTitle {
-    margin: var(--gap) 0;
-    width: 100%;
-    font-size: 1.8rem;
-    color: var(--textColorDark-blue);
+	margin-top: 10px;
+	width: 100%;
+	font-size: 1.6rem;
+	color: var(--textColorDark-blue);
+}
+
+#editShortcutsListInfo {
+	font-size: 0.8rem;
+	margin-top: 5px;
+	margin-bottom: var(--gap);
+	text-align: justify;
 }
 
 .shortcutSettingsEntry {
@@ -1844,8 +1763,6 @@ input:checked + .toggle:before {
     padding: 10px;
     /* padding-right: 0px; */
     border-radius: 26px;
-
-
 }
 
 .colorsContainer input[type="radio"] {
@@ -2009,7 +1926,7 @@ input:checked + .toggle:before {
     padding-right: 12px;
     opacity: 0;
     transform: translateX(-20px);
-    animation: .6s menuCloseButtonHoverReverse forwards;
+    animation: 0.6s menuCloseButtonHoverReverse forwards;
     z-index: 1;
 }
 
@@ -2019,8 +1936,8 @@ input:checked + .toggle:before {
     padding-left: 36px;
     /* width: 32px; */
     /* Expand the max-width on hover */
-    animation: .6s menuCloseButtonHover forwards;
-    animation-delay: .1s;
+    animation: 0.6s menuCloseButtonHover forwards;
+    animation-delay: 0.1s;
 }
 
 @keyframes menuCloseButtonHover {
@@ -2053,7 +1970,7 @@ input:checked + .toggle:before {
     height: 30px;
     border-radius: 100px;
     /* transform: translateX(30px); */
-    transition: .4s;
+    transition: 0.4s;
     z-index: 2;
 }
 
