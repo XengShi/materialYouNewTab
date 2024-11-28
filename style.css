@@ -1638,7 +1638,7 @@ input:checked + .toggle:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 50px;
     position: sticky;
     top: 0;
     left: 0;
@@ -1657,6 +1657,19 @@ input:checked + .toggle:before {
 .rightButtons {
     display: flex;
     gap: 24px;
+}
+
+#newShortcutButton svg {
+	transition: transform 0.3s ease;
+}
+
+#newShortcutButton:active svg {
+	transform: scale(1.2);
+}
+
+.rotateResetButton {
+	transform: rotate(-360deg);
+	transition: transform 0.3s ease;
 }
 
 #resetButton,
