@@ -2184,6 +2184,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 650);
     }
 
+    // Rotate reset button when clicked
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', () => {
+        resetButton.querySelector('svg').classList.toggle('rotateResetButton');
+    });
+
     /* ------ Loading ------ */
 
     // Load and apply the saved checkbox states and display statuses
