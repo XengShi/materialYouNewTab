@@ -1801,7 +1801,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
         let url = shortcut.querySelector("input.URL").value;
-        const normalizedUrl = url.startsWith('https://') ? url : 'https://' + url.replace("http://", "");
+        const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
 
