@@ -189,22 +189,12 @@ html {
     height: 100%;
     width: 100%;
     margin: 0;
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: var(--darkColor-blue) transparent; /* For Firefox */
+    scrollbar-width: none; /* For Firefox */
 }
-.html::-webkit-scrollbar{
-    width: 8px; /* Width of the scrollbar */
-    height: 8px; /* Height of the scrollbar for horizontal scrolling */
-}
-html::-webkit-scrollbar-thumb {
-    background: transparent; /* Scrollbar color */
-    border-radius: 4px; /* Rounded corners for the thumb */
-    background-color: var(--darkColor-blue);
-  }
-  html::-webkit-scrollbar-track {
-    background: transparent; /* Background of the scrollbar track */
-  }
 
+.html::-webkit-scrollbar{
+    display: none;
+}
 
 body {
     background-color: var(--bg-color-blue);
@@ -1081,7 +1071,7 @@ body {
     justify-content: center;
     width: fit-content;
     /* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-    gap: 28px;
+    gap: 26px;
 }
 
 .shortcutsContainer::before {
