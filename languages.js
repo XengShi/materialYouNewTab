@@ -1308,6 +1308,7 @@ const translations = {
         "enableShortcutsText": "Menampilkan Pintasan",
         "editShortcutsText": "Ubah Pintasan",
         "editShortcutsList": "Pintasan Tersimpan",
+        'editShortcutsListInfo': 'Anda dapat menambahkan pintasan baru dengan mengeklik ikon "+" atau mengedit pintasan yang sudah ada dengan mengeklik nama pintasan atau URL',
         "shortcutsInfoText": "Pilih pintasan apa yang akan ditampilkan",
         "adaptiveIconText": "Penyesuaian Bentuk Ikon",
         "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
