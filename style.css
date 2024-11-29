@@ -979,63 +979,15 @@ body {
 #shortcuts-section {
     pointer-events: none;
     display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
-    padding-left: 20px; 
-    width: auto; 
-    height: calc(var(--shortcut-size) + var(--gap) * 2);
-    position: fixed;
     justify-content: center;
-    right: 25%; /* Adjusted margin for shortcuts to align right using percentage */
+    width: 100%;
+    height: calc(var(--shortcut-size) + var(--gap) * 2);
+    position: absolute;
+    /* background: gold; */
+    left: 0;
+    right: 0;
     bottom: 0;
     margin: auto;
-}
-
-/* Media query for screens with width between 1200px and 1400px */
-@media (max-width: 1400px) and (min-width: 1200px) {
-    #shortcuts-section {
-        right: 25%; /* Adjusted margin for screens between 1200px and 1400px using percentage */
-    }
-}
-
-/* Media query for screens with width between 1400px and 1600px */
-@media (max-width: 1700px) and (min-width: 1400px) {
-    #shortcuts-section {
-        right: 24%; /* Adjusted margin for screens between 1400px and 1600px using percentage */
-    }
-}
-
-/* Media query for screens with width between 1600px and 1800px */
-@media (max-width: 1800px) and (min-width: 1600px) {
-    #shortcuts-section {
-        right: 28%; /* Adjusted margin for screens between 1600px and 1800px using percentage */
-    }
-}
-
-/* Media query for screens with width greater than 1800px */
-@media (min-width: 1800px) {
-    #shortcuts-section {
-        right: 28%; /* Adjusted margin for screens greater than 1800px using percentage */
-    }
-}
-
-/* Media query for screens with width less than 1200px */
-@media (max-width: 1200px) {
-    #shortcuts-section {
-        right: 0;
-        left: 0;
-        margin: auto; 
-    }
-}
-
-/* Media query for screens with width less than 900px */
-@media (max-width: 900px) {
-    #shortcuts-section {
-        right: 15%;
-        left: 0;
-        margin: auto; 
-        width: 100%; 
-    }
 }
 
 
