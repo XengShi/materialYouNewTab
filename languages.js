@@ -17,8 +17,9 @@ const translations = {
         "shortcutsText": "Shortcuts",
         "enableShortcutsText": "Show saved shortcuts",
         "editShortcutsText": "Edit Shortcuts",
-        "editShortcutsList": "Saved Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
+        "editShortcutsList": "Saved Shortcuts",
+        'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL',
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
@@ -55,7 +56,7 @@ const translations = {
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your WeatherAPI key",
+        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn more",
@@ -82,7 +83,7 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",  // Keep untranslated if text width is longer
+        "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
         // End of Body and New Tab Items
 
         // Greeting
@@ -155,7 +156,7 @@ const translations = {
         "InputOptionsButton": "Opções de Entrada",
         "saveLoc": "Salvar",
         // Weather
-        "WeatherApiText": "Insira sua própria chave da API de Clima",
+        "WeatherApiText": "Insira sua própria chave do WeatherAPI",
         "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
         "userAPI": "Sua chave da WeatherAPI",
         "LearnMoreButton": "Saiba Mais",
@@ -292,6 +293,7 @@ const translations = {
 
         // Search Engines and rest
         "googleEngine": "谷歌",
+        "duckEngine": "DuckDuckGo",
         "bingEngine": "必应",
         "googleAppsHover": "谷歌应用",
     },
@@ -306,8 +308,9 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "editShortcutsList": "सहेजे गए शॉर्टकट",
         "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
+        "editShortcutsList": "सहेजे गए शॉर्टकट",
+        'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
@@ -616,9 +619,9 @@ const translations = {
         "InputOptionsButton": "Girdi Seçenekleri",
         "saveLoc": "Kaydet",
         // Weather
-        "WeatherApiText": "Kendi Hava Durumu API anahtarınızı girin",
+        "WeatherApiText": "Kendi WeatherAPI anahtarınızı girin",
         "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
-        "userAPI": "Hava Durumu API anahtarınız",
+        "userAPI": "WeatherAPI anahtarınız",
         "LearnMoreButton": "Daha Fazla Bilgi Edinin",
         "saveAPI": "Kaydet",
         // End of Menu Items
@@ -663,8 +666,9 @@ const translations = {
         "shortcutsText": "শর্টকাট",
         "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
-        "editShortcutsList": "সংরক্ষিত শর্টকাট",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
+        "editShortcutsList": "সংরক্ষিত শর্টকাট",
+        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন',
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
         "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
@@ -1317,6 +1321,7 @@ const translations = {
         "enableShortcutsText": "Menampilkan Pintasan",
         "editShortcutsText": "Ubah Pintasan",
         "editShortcutsList": "Pintasan Tersimpan",
+        'editShortcutsListInfo': 'Anda dapat menambahkan pintasan baru dengan mengeklik ikon "+" atau mengedit pintasan yang sudah ada dengan mengeklik nama pintasan atau URL',
         "shortcutsInfoText": "Pilih pintasan apa yang akan ditampilkan",
         "adaptiveIconText": "Penyesuaian Bentuk Ikon",
         "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
@@ -1401,8 +1406,9 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "जतन केलेले शॉर्टकट दाखवा",
         "editShortcutsText": "शॉर्टकट्स संपादित करा",
-        "editShortcutsList": "जतन केलेले शॉर्टकट्स",
         "shortcutsInfoText": "कोणते शॉर्टकट दाखवायचे ते निवडा",
+        "editShortcutsList": "जतन केलेले शॉर्टकट्स",
+        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता',
         "adaptiveIconText": "अनुकूल आयकॉन आकार",
         "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
         "ai_tools_button": "AI साधने",
@@ -1495,7 +1501,7 @@ const translations = {
 // Define the width of the menu container for each language
 const menuWidths = {
     en: '400px',
-    pt: '415px',
+    pt: '470px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
@@ -1505,6 +1511,7 @@ const menuWidths = {
     ru: '450px',
     it: '437px',
     idn: '415px',
+    tr: '418px',
     // Add more languages and widths as needed
 };
 
@@ -1540,8 +1547,9 @@ function applyLanguage(lang) {
         { id: 'shortcutsText', key: 'shortcutsText' },
         { id: 'enableShortcutsText', key: 'enableShortcutsText' },
         { id: 'editShortcutsText', key: 'editShortcutsText' },
-        { id: 'editShortcutsList', key: 'editShortcutsList' },
         { id: 'shortcutsInfoText', key: 'shortcutsInfoText' },
+        { id: 'editShortcutsList', key: 'editShortcutsList' },
+        { id: 'editShortcutsListInfo', key: 'editShortcutsListInfo' },
         { id: 'adaptiveIconText', key: 'adaptiveIconText' },
         { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
         { id: 'ai_tools_button', key: 'ai_tools_button' },
