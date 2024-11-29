@@ -1971,6 +1971,11 @@ document.addEventListener("DOMContentLoaded", function () {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+
+            // Handle image loading error on offline scenario
+            logo.onerror = () => {
+                logo.src = "./shortcuts_icons/offline.svg";
+            };
         }
 
         return logo;
