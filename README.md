@@ -25,7 +25,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
-  <a href="#-currently-supported-languages-15">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-16">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
   <a href="#--usage">Usage</a> •
@@ -81,25 +81,26 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Seamless Integration with Browsers**:
   - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
 
-## 🌐 Currently Supported Languages (15)
+## 🌐 Currently Supported Languages (16)
 
-| Language                                                                                   | Code | Translator(s)                                                                          |
-|--------------------------------------------------------------------------------------------|------|----------------------------------------------------------------------------------------|
-| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                         |&nbsp; en | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
-| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                   |&nbsp; bd | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)       |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文     |&nbsp; zh | [Guy Berryman](https://github.com/Guy-Berryman)                                        |
-| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština                 |&nbsp; cz | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |&nbsp; hi | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
-| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia   |&nbsp; id | [Ayyas-RF](https://github.com/Ayyas-RF/)                                               |
-| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |&nbsp; it | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
-| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |&nbsp; ja | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |&nbsp; ko | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/pt.svg' width=20> &nbsp; **Portuguese** - Português          |&nbsp; pt | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
-| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |&nbsp; ru | [giwi](https://github.com/giwih/)                                                      |
-| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |&nbsp; es | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                |&nbsp; tr | [Nobody](https://github.com/Nobody9512/)                                               |
-| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                  |&nbsp; uz | [Firdavs](https://github.com/Firdavs9512/)                                             |
-| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt         |&nbsp; vn | [Diep](https://github.com/diepdo1810/)                                                 |
+| Language                                                                                   |  Code  | Translator(s)                                                                          |
+|--------------------------------------------------------------------------------------------|:------:|----------------------------------------------------------------------------------------|
+| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                         |   en   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                   |   bn   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)       |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文     |  zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0)   |
+| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština                 |   cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                           |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |   hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
+| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia   |  idn   | [Ayyas-RF](https://github.com/Ayyas-RF/)                                               |
+| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |   it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |   ko   | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/)                                                   |
+| <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          |  pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
+| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |   ru   | [giwi](https://github.com/giwih/)                                                      |
+| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |  es-ES | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                |   tr   | [Nobody](https://github.com/Nobody9512/)                                               |
+| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                  |   uz   | [Firdavs](https://github.com/Firdavs9512/)                                             |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt         |   vn   | [Diep](https://github.com/diepdo1810/)                                                 |
 
 ## 📥 Installation Guide
 
@@ -131,6 +132,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
      - Ensure you’ve cloned the repository or downloaded the ZIP file and extracted it.
    
    - **Open Extensions Page**:
+     Open your preferred browser and enter the following text in the address bar
      - ![Chrome](https://img.icons8.com/color/20/000000/chrome--v1.png) Chrome: `chrome://extensions`
 
      -  ![Edge](https://img.icons8.com/?size=20&id=dGm9KIZPpukc&format=png&color=000000) Edge: `edge://extensions`

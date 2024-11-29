@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -140,22 +141,23 @@ window.addEventListener('DOMContentLoaded', async () => {
         const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
         const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-        /// Set humidity level
+        // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
+            const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
             if (fahrenheitCheckbox.checked) {
                 tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${translations[currentLanguage]?.feelsLike || translations['en'].feelsLike} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -206,7 +208,7 @@ googleAppsCont.addEventListener("click", function (event) {
     // Reset tooltip visibility after a delay
     setTimeout(() => {
         tooltipText.style.display = ""; // Restore default display
-    }, 1000);
+    }, 1500);
     event.stopPropagation(); // Prevent click propagation
 });
 
@@ -289,6 +291,7 @@ function updateDate() {
 
         const dateDisplay = {
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
@@ -426,6 +429,7 @@ function updatedigiClock() {
     // Determine the translated short date string based on language
     const dateFormats = {
         bn: `${dayName}, ${localizedDayOfMonth}`,
+        mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
@@ -445,7 +449,7 @@ function updatedigiClock() {
 
     // Array of languages to use 'en-US' format
     const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
-    const localizedLanguages = ['bn'];
+    const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
@@ -479,7 +483,7 @@ function updatedigiClock() {
     if (hourformat && specialLanguages.includes(currentLanguage)) {
         period = parseInt(hours, 10) < 12 ? 'AM' : 'PM';
     }
-    
+
     // Display AM/PM if in 12-hour format
     if (hourformat) {
         document.getElementById('amPm').textContent = period; // Show AM/PM based on calculated period
@@ -605,21 +609,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Showing border or outline in when you click on searchbar
+// Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById('searchbar');
-searchbar.addEventListener('click', function () {
-    searchbar.classList.toggle('active');
-    // if (searchInput2.value !== "") {
-    //     showResultBox()
-    // }
+searchbar.addEventListener('click', function (event) {
+    event.stopPropagation(); // Stop the click event from propagating to the document
+    searchbar.classList.add('active');
 });
+
 document.addEventListener('click', function (event) {
     // Check if the clicked element is not the searchbar
     if (!searchbar.contains(event.target)) {
         searchbar.classList.remove('active');
     }
 });
-
 
 //search function
 document.addEventListener("DOMContentLoaded", () => {
@@ -666,7 +668,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
     if (storedSearchEngine) {
-        const selectedRadioButton = document.querySelector(`input[name = "search-engine"][value = "${storedSearchEngine}"]`);
+        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
@@ -684,14 +686,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedTheme = localStorage.getItem(themeStorageKey);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value = "${storedTheme}"]`);
+        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
-
 });
-
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
@@ -765,8 +765,11 @@ function initializeSpeechRecognition() {
         // When speech recognition starts
         recognition.onstart = () => {
             isRecognizing = true; // Set the flag to indicate recognition is active
-            // micIcon.style.color = 'var(--darkerColor-blue)';
-            // micIcon.style.transform = 'scale(1.1)';
+            const selectedRadio = document.querySelector('.colorPlate:checked');
+            if (selectedRadio.value !== 'dark') {
+                micIcon.style.color = 'var(--darkerColor-blue)';
+                // micIcon.style.transform = 'scale(1.05)';
+            }
             searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations['en'].listenPlaceholder}`;
             micIcon.classList.add('micActive');
         };
@@ -795,7 +798,7 @@ function initializeSpeechRecognition() {
         // When speech recognition ends (either by user or automatically)
         recognition.onend = () => {
             isRecognizing = false; // Reset the flag to indicate recognition has stopped
-            // micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
+            micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
             // micIcon.style.transform = 'scale(1)'; // Reset scaling
             micIcon.classList.remove('micActive');
             searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations['en'].searchPlaceholder}`;
@@ -840,11 +843,11 @@ const resetDarkTheme = () => {
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
-        "searchQ", 
-        "searchIconDark", 
-        "darkFeelsLikeIcon", 
-        "menuButton", 
-        "menuCloseButton", 
+        "searchQ",
+        "searchIconDark",
+        "darkFeelsLikeIcon",
+        "menuButton",
+        "menuCloseButton",
         "closeBtnX"
     ];
 
@@ -886,7 +889,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        
+
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -898,9 +901,10 @@ const applySelectedTheme = (colorValue) => {
         darkThemeStyleTag = document.createElement('style');
         darkThemeStyleTag.textContent = `
             .dark-theme .search-engine input[type="radio"]:checked {
-                background-color: #333;
+                background-color: #2a2a2a;
                 border: 2px solid #919191;
             }
+
             .dark-theme .search-engine input[type="radio"] {
                 background-color: #9d9d9d   ;
                 border: 0px solid #000000;
@@ -921,6 +925,12 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageIcon,
             .dark-theme .languageSelector {
                 background-color: #212121;
+                scrollbar-color: var(--darkerColor-blue) transparent;
+            }
+
+            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
+            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
+                background-color: var(--darkerColor-blue);
             }
 
             .dark-theme .bottom a {
@@ -975,19 +985,34 @@ const applySelectedTheme = (colorValue) => {
                 fill: #3c3c3c !important;
             }
 
+            #darkLightTint{
+                fill: #bfbfbf;
+            }
+
+            .strokecolor {
+	            stroke: #3c3c3c;
+            }
+
             .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
-
             }
+
             .digiclock {
                 fill: #909090;
             }
+
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
-            .menuicon{
-                color: var(--darkerColor-dark);
+
+            .dot-icon {
+                fill: #bfbfbf;
             }
+
+            .menuicon{
+                color: #c2c2c2;
+            }
+
             #menuButton::before{
                 background-color: #bfbfbf;
             }
@@ -995,9 +1020,11 @@ const applySelectedTheme = (colorValue) => {
             #menuButton::after{
                 border: 4px solid #858585;
             }
+
             #menuCloseButton, #menuCloseButton:hover {
                 background-color: var(--darkColor-dark);
             }
+
             #menuCloseButton .icon{
                 background-color: #cdcdcd;
             }
@@ -1022,6 +1049,10 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #githab,
             .dark-theme #sujhaw {
                 fill: #b1b1b1;
+            }
+
+            .resultItem.active {
+                background-color: var(--darkColor-dark);;
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -1089,15 +1120,17 @@ radioButtons.forEach(radioButton => {
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
-document.getElementById("0NIHK").onclick = () => {
-    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
+function toggleShortcuts(event) {
+    // const element = document.getElementById("0NIHK");
+    // const shortcuts = document.getElementById("shortcuts");
+    const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
+
     if (shortcutsCheckbox.checked) {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'flex';
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
-            unfoldShortcutsButton.style.display = "none";
 
             setTimeout(() => {
                 element.style.display = "none";
@@ -1105,7 +1138,6 @@ document.getElementById("0NIHK").onclick = () => {
             }, 500);
         } else {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "block";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -1118,7 +1150,6 @@ document.getElementById("0NIHK").onclick = () => {
     } else {
         if (element.style.display === "flex") {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "none";
             element.style.opacity = "0";
             element.style.gap = "0";
             element.style.transform = "translateX(-100%)";
@@ -1127,7 +1158,6 @@ document.getElementById("0NIHK").onclick = () => {
             }, 500);
         } else {
             shortcuts.style.display = 'none';
-            unfoldShortcutsButton.style.display = "none";
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.opacity = "1";
@@ -1138,9 +1168,20 @@ document.getElementById("0NIHK").onclick = () => {
             }, 300);
         }
     }
+    // Prevent outside click handler from triggering
+    if (event) event.stopPropagation();
 }
 
-// ------------search suggestions ---------------
+// Collapse when clicking outside toolsCont
+document.addEventListener("click", (event) => {
+    if (!element.contains(event.target) && element.style.display === "flex") {
+        toggleShortcuts();
+    }
+});
+
+document.getElementById("0NIHK").onclick = toggleShortcuts;
+
+// ------------Search Suggestions---------------
 
 // Show the result box
 function showResultBox() {
@@ -1153,8 +1194,10 @@ function hideResultBox() {
     resultBox.classList.remove('show');
     //resultBox.style.display = "none";
 }
-showResultBox()
-hideResultBox()
+
+showResultBox();
+hideResultBox();
+
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -1170,31 +1213,87 @@ document.getElementById("searchQ").addEventListener("input", async function () {
         const resultBox = document.getElementById("resultBox");
 
         if (query.length > 0) {
-            // Fetch autocomplete suggestions
-            const suggestions = await getAutocompleteSuggestions(query);
+            try {
+                // Fetch autocomplete suggestions
+                const suggestions = await getAutocompleteSuggestions(query);
 
-            if (suggestions == "") {
-                hideResultBox()
-            } else {
-                // Clear the result box
-                resultBox.innerHTML = '';
+                if (suggestions == "") {
+                    hideResultBox();
+                } else {
+                    // Clear the result box
+                    resultBox.innerHTML = '';
 
-                // Add suggestions to the result box
-                suggestions.forEach((suggestion) => {
-                    const resultItem = document.createElement("div");
-                    resultItem.classList.add("resultItem");
-                    resultItem.textContent = suggestion;
-                    resultItem.onclick = () => {
-                        var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
-                        window.location.href = resultlink;
-                    };
-                    resultBox.appendChild(resultItem);
-                });
-                showResultBox()
+                    // Add suggestions to the result box
+                    suggestions.forEach((suggestion, index) => {
+                        const resultItem = document.createElement("div");
+                        resultItem.classList.add("resultItem");
+                        resultItem.textContent = suggestion;
+                        resultItem.setAttribute("data-index", index);
+                        resultItem.onclick = () => {
+                            var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
+                            window.location.href = resultlink;
+                        };
+                        resultBox.appendChild(resultItem);
+                    });
+                    showResultBox();
+                }
+            } catch (error) {
+                // Handle the error (if needed)
             }
-
         } else {
-            hideResultBox()
+            hideResultBox();
+        }
+    }
+});
+
+let isMouseOverResultBox = false;
+// Track mouse entry and exit within the resultBox
+resultBox.addEventListener("mouseenter", () => {
+    isMouseOverResultBox = true;
+    // Remove keyboard highlight
+    const activeItem = resultBox.querySelector(".active");
+    if (activeItem) {
+        activeItem.classList.remove("active");
+    }
+});
+
+resultBox.addEventListener("mouseleave", () => {
+    isMouseOverResultBox = false;
+});
+
+document.getElementById("searchQ").addEventListener("keydown", function (e) {
+    if (isMouseOverResultBox) {
+        return; // Ignore keyboard events if the mouse is in the resultBox
+    }
+    const activeItem = resultBox.querySelector(".active");
+    let currentIndex = activeItem ? parseInt(activeItem.getAttribute("data-index")) : -1;
+
+    if (resultBox.children.length > 0) {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex + 1) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (activeItem) {
+                activeItem.classList.remove("active");
+            }
+            currentIndex = (currentIndex - 1 + resultBox.children.length) % resultBox.children.length;
+            resultBox.children[currentIndex].classList.add("active");
+
+            // Ensure the active item is visible within the result box
+            const activeElement = resultBox.children[currentIndex];
+            activeElement.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "Enter" && activeItem) {
+            e.preventDefault();
+            activeItem.click();
         }
     }
 });
@@ -1257,16 +1356,17 @@ async function getAutocompleteSuggestions(query) {
     }
 }
 
-
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
-    const resultBox = document.getElementById("resultBox");
+    // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
-        hideResultBox()
+        hideResultBox();
     }
 });
+// ------------End of Search Suggestions---------------
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
@@ -1367,10 +1467,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M11.6698 9.82604L9.33021 8.73437C9.12604 8.63958 8.95833 8.74583 8.95833 8.97187V11.0281C8.95833 11.2542 9.12604 11.3604 9.33021 11.2656L11.6688 10.174C11.874 10.0781 11.874 9.92188 11.6698 9.82604ZM10 0C4.47708 0 0 4.47708 0 10C0 15.5229 4.47708 20 10 20C15.5229 20 20 15.5229 20 10C20 4.47708 15.5229 0 10 0ZM10 14.0625C4.88125 14.0625 4.79167 13.601 4.79167 10C4.79167 6.39896 4.88125 5.9375 10 5.9375C15.1187 5.9375 15.2083 6.39896 15.2083 10C15.2083 13.601 15.1187 14.0625 10 14.0625Z"
                     fill="#617859"/>
             </svg>`], ["mail.google.com", `
-            <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
-                <path class="accentColor shorcutDarkColor"
-                    d="M10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0ZM5 5H15C15.1788 5 15.3513 5.03875 15.5113 5.11L10 11.5387L4.48875 5.11C4.64929 5.03704 4.82366 4.99952 5 5ZM3.75 13.75V6.25L3.7525 6.17125L7.4175 10.4475L3.7925 14.0725C3.76387 13.9674 3.74957 13.8589 3.75 13.75ZM15 15H5C4.89 15 4.78125 14.985 4.6775 14.9575L8.235 11.4L10.0013 13.46L11.7675 11.4L15.325 14.9575C15.2199 14.9861 15.1114 15.0004 15.0025 15H15ZM16.25 13.75C16.25 13.86 16.235 13.9688 16.2075 14.0725L12.5825 10.4475L16.2475 6.17125L16.25 6.25V13.75Z"
-                    fill="#00f"/>
+            <svg fill="none" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	            <circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/>
+                <g transform="translate(12, 12) scale(0.7) translate(-10, -10)">
+	            <path class="bgLightTint" id="darkLightTint" fill-rule="evenodd"
+                    d="m7.172 11.334l2.83 1.935l2.728-1.882l6.115 6.033q-.242.079-.512.08H1.667c-.22 0-.43-.043-.623-.12zM20 6.376v9.457c0 .247-.054.481-.15.692l-5.994-5.914zM0 6.429l6.042 4.132l-5.936 5.858A1.7 1.7 0 0 1 0 15.833zM18.333 2.5c.92 0 1.667.746 1.667 1.667v.586L9.998 11.648L0 4.81v-.643C0 3.247.746 2.5 1.667 2.5z" />
+                </g>
             </svg>
             `], ["web.telegram.org", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -1386,9 +1488,11 @@ document.addEventListener("DOMContentLoaded", function () {
             </svg>
             `], ["instagram.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="8.44" class="strokecolor" stroke-width="3" fill="none" />
+                <g transform="translate(10, 10) scale(0.85) translate(-10, -10)">
                 <path class="accentColor shorcutDarkColor"
-                    d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z"
-                    fill="#617859"/>
+                    d="M10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 7.77778C11.2222 7.77778 12.2222 8.77778 12.2222 10C12.2222 11.2222 11.2222 12.2222 10 12.2222C8.77778 12.2222 7.77778 11.2222 7.77778 10C7.77778 8.77778 8.77778 7.77778 10 7.77778ZM13.1111 5.55556C13.1111 4.77778 13.7778 4.22222 14.4444 4.22222C15.1111 4.22222 15.7778 4.88889 15.7778 5.55556C15.7778 6.22222 15.2222 6.88889 14.4444 6.88889C13.6667 6.88889 13.1111 6.33333 13.1111 5.55556ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10H5.55556C5.55556 12.4444 7.55556 14.4444 10 14.4444C12.4444 14.4444 14.4444 12.4444 14.4444 10H17.7778C17.7778 14.3333 14.3333 17.7778 10 17.7778Z" fill="#617859"/>
+                </g>
             </svg>
             `], ["x.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -1449,9 +1553,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
-    const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
-    const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
-    const unfoldShortcutsButton = document.getElementById("unfoldShortcutsBtn");
+
+    // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
+    // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
 
     /* ------ Helper functions for saving and loading states ------ */
 
@@ -1517,6 +1621,7 @@ document.addEventListener("DOMContentLoaded", function () {
     * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
     * container.
     */
+
     function loadShortcuts() {
         let amount = localStorage.getItem("shortcutAmount");
 
@@ -1709,7 +1814,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
     /* ------ Adding, deleting, and resetting shortcuts ------ */
 
     /**
@@ -1810,31 +1914,31 @@ document.addEventListener("DOMContentLoaded", function () {
     * @param urls the array of potential URLs of favicons
     * @returns {Promise<unknown>}
     */
-    function filterFavicon(urls) {
-        return new Promise((resolve, reject) => {
-            let found = false;
+    // function filterFavicon(urls) {
+    //     return new Promise((resolve, reject) => {
+    //         let found = false;
 
-            for (const url of urls) {
-                const img = new Image();
-                img.referrerPolicy = "no-referrer"; // Don't send referrer data
-                img.src = url;
+    //         for (const url of urls) {
+    //             const img = new Image();
+    //             img.referrerPolicy = "no-referrer"; // Don't send referrer data
+    //             img.src = url;
 
-                img.onload = () => {
-                    if (!found) { // Make sure to resolve only once
-                        found = true;
-                        resolve(url);
-                    }
-                };
-            }
+    //             img.onload = () => {
+    //                 if (!found) { // Make sure to resolve only once
+    //                     found = true;
+    //                     resolve(url);
+    //                 }
+    //             };
+    //         }
 
-            // If none of the URLs worked after all have been tried
-            setTimeout(() => {
-                if (!found) {
-                    reject();
-                }
-            }, FAVICON_REQUEST_TIMEOUT);
-        });
-    }
+    //         // If none of the URLs worked after all have been tried
+    //         setTimeout(() => {
+    //             if (!found) {
+    //                 reject();
+    //             }
+    //         }, FAVICON_REQUEST_TIMEOUT);
+    //     });
+    // }
 
     /**
     * This function returns the url to the favicon of a website, given a URL.
@@ -1863,7 +1967,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const logo = document.createElement("img");
 
         const hostname = new URL(urlString).hostname;
-        logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+        if (hostname === "github.com") {
+            logo.src = "./shortcuts_icons/github-shortcut.svg";
+        } else {
+            logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+        }
 
         return logo;
     }
@@ -1879,7 +1987,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
     }
 
-
     /* ------ Proxy ------ */
 
     /**
@@ -1888,9 +1995,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function showProxyDisclaimer() {
         const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
 
-        confirm(message);
+        return confirm(message);
     }
-
 
     /* ------ Event Listeners ------ */
 
@@ -1974,12 +2080,21 @@ document.addEventListener("DOMContentLoaded", function () {
         updatedigiClock();
     });
     useproxyCheckbox.addEventListener("change", function () {
-        saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
         if (useproxyCheckbox.checked) {
-            showProxyDisclaimer();
-            proxyinputField.classList.remove("inactive");
-            saveActiveStatus("proxyinputField", "active");
+            // Show the disclaimer and check the user's choice
+            const userConfirmed = showProxyDisclaimer();
+            if (userConfirmed) {
+                // Only enable the proxy if the user confirmed
+                saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
+                proxyinputField.classList.remove("inactive");
+                saveActiveStatus("proxyinputField", "active");
+            } else {
+                // Revert the checkbox state if the user did not confirm
+                useproxyCheckbox.checked = false;
+            }
         } else {
+            // If the checkbox is unchecked, disable the proxy
+            saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);
             proxyinputField.classList.add("inactive");
             saveActiveStatus("proxyinputField", "inactive");
         }
@@ -1987,7 +2102,6 @@ document.addEventListener("DOMContentLoaded", function () {
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            //alert("This setting is still experimental");
             saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
         } else {
@@ -2004,6 +2118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
+            toggleShortcuts()
         }
     });
 
@@ -2026,56 +2141,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetShortcutsButton.addEventListener("click", () => resetShortcuts());
 
-    // Create a ResizeObserver to watch the height changes of the shortcut container and see if it is wrapped
-    /*new ResizeObserver(e => {
-        if (shortcutsContainer.classList.contains("showBackground")) {
-            openShortcutDrawer()
-        }
-        const height = e[0].contentRect.height;
-        if (height === defaultHeight) {
-            setTimeout(() => {
-                unfoldShortcutsButton.style.display = "block";
-            });
-        } else {
-            setTimeout(() => {
-                unfoldShortcutsButton.style.display = "block";
-            });
-        }
-    }).observe(flexMonitor);*/
-
 
     /* ------ Page Transitions & Animations ------ */
-
-    /**
-    * This function sets the state of the shortcut drawer to open.
-    *
-    * This means it can be used both to open and to update the shortcut drawer.
-    */
-    function openShortcutDrawer() {
-        //const translationDistance = flexMonitor.clientHeight - defaultHeight;
-        const translationDistance = "90";
-        shortcutsContainer.style.display = "flex";
-        console.log(translationDistance)
-        requestAnimationFrame(() => {
-            shortcutsContainer.style.transform = `translateY(-${translationDistance}px)`;
-            shortcutsContainer.classList.add("showBackground");
-            unfoldShortcutsButton.style.transform = "rotate(180deg)";
-            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = `translateY(-${translationDistance}px)`;
-        });
-    }
-
-    /**
-    * This function closes the shortcut drawer
-    */
-    function resetShortcutDrawer() {
-        requestAnimationFrame(() => {
-            shortcutsContainer.style.display = "none";
-            shortcutsContainer.style.transform = "translateY(0)";
-            shortcutsContainer.classList.remove("showBackground");
-            unfoldShortcutsButton.style.transform = "rotate(0)";
-            unfoldShortcutsButton.closest(".unfoldContainer").style.transform = "translateY(0)";
-        });
-    }
 
     // When clicked, open new page by sliding it in from the right.
     shortcutEditButton.onclick = () => {
@@ -2117,23 +2184,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 650);
     }
 
-    // Shift up shortcuts
-    unfoldShortcutsButton.onclick = (e) => {
-
-        if (!shortcutsContainer.classList.contains("showBackground")) {
-            e.stopPropagation();
-            openShortcutDrawer();
-        }
-    }
-
-    document.addEventListener('click', function (event) {
-        // Check if the clicked element is not the shortcut container, yet the container is unfolded
-        if (shortcutsContainer.classList.contains("showBackground") && !shortcutsContainer.contains(event.target)) {
-            resetShortcutDrawer();
-        }
+    // Rotate reset button when clicked
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', () => {
+        resetButton.querySelector('svg').classList.toggle('rotateResetButton');
     });
-
-
 
     /* ------ Loading ------ */
 

@@ -107,51 +107,53 @@
     --always-show-dock-background: 0;
 }
 .resultBox {
-    max-height: 250px;
-    overflow-y: auto;
-   
-    position: absolute;
-    top: 1;
-    left: 0;
-    width: 100%;
-    border-radius: var(--round);
+     max-height: 222px;
+     overflow-y: auto;
+    
+     position: absolute;
+     bottom: -100px;
+     left: 0;
+     width: 100%;
+     border-radius: 25px;
+ 
+     padding: 5px 10px;
+     scrollbar-width: none; /* For Firefox */
+ 
+     /* Initially hidden */
+     opacity: 0;
+     z-index: -1000;
+     transform: translateY(-70px);
+     transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
+     pointer-events: none; 
+ }
+ 
+ .resultBox::-webkit-scrollbar {
+     display: none; /* For Chrome, Safari, and Edge */
+ }
+ 
+ /* Visible state: when you want the result box to appear */
+ .resultBox.show {
+     opacity: 1;
+     visibility: visible; 
+     transform: translateY(0); 
+     z-index: 1000;
+     pointer-events: all;
+ }
+ 
+ .resultItem {
+     padding: 8px;
+     cursor: pointer;
+     font-size: 1.1rem;
+     color: var(--textColorDark-blue);
+ }
 
-    padding: 10px;
-    scrollbar-width: none; /* For Firefox */
-
-    /* Initially hidden */
-    opacity: 0;
-    z-index: -1000;
-    transform: translateY(-70px);
-    transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease; 
-    pointer-events: none; 
-}
-
-.resultBox::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Edge */
-}
-
-/* Visible state: when you want the result box to appear */
-.resultBox.show {
-    opacity: 1;
-    visibility: visible; 
-    transform: translateY(0); 
-    z-index: 1000;
-    pointer-events: all;
-}
-
-.resultItem {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: var(--textColorDark-blue);
-}
-
+.resultItem.active,
 .resultItem:hover {
-   background-color: var(--darkColor-blue);
-   border-radius: 15px;
-   color: #fff;
-}
+    background-color: var(--darkColor-blue);
+    border-radius: 15px;
+    color: #fff;
+ }
+
 .spacer {
     height: 65px; /* Adjust this value to create space */
 }
@@ -166,6 +168,10 @@
 .bgLightTint {
     fill: var(--accentLightTint-blue);
     background-color: var(--accentLightTint-blue);
+}
+
+.strokecolor {
+	stroke: var(--darkColor-blue);
 }
 
 .lessDark {
@@ -194,11 +200,11 @@ body {
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .googleAppsCont {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   margin: 10px;
-  top: 15px; /* Adjust distance from the top */
-  right: 20px; /* Adjust distance from the right */
+  top: var(--gap);
+  right: var(--gap);
   font-size: 25px; /* Set the size of the dots */
   background: transparent;
   border: none;
@@ -208,26 +214,30 @@ body {
 
 /* Styling for the SVG icon */
 .dot-icon {
-  fill: var(--darkerColor-blue); /* Icon color */
+  fill: var(--darkColor-blue); /* Icon color */
+  background-color: var(--accentLightTint-blue);
+  border-radius: 25%;
+  padding: 1px;
   cursor: pointer;
   transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 /* Hover effect for the icon */
 .dot-icon:hover {
-  transform: rotate(90deg) scale(1.2);
+  transform: rotate(90deg) scale(1.05);
+  fill: var(--darkerColor-blue);
 }
 
 /* Tooltip Text Styling */
 .tooltip-text {
   visibility: hidden;
   background-color: var(--darkColor-blue);
-  color: white;
+  color:rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   position: absolute;
-  top: 100%; /* Position below the icon */
+  top: 108%; /* Position below the icon */
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
@@ -280,9 +290,9 @@ body {
   grid-template-columns: repeat(3, 1fr); /* 3 icons per row */
   justify-items: center; /* Center icons within each grid cell */
   position: absolute; /* Absolute positioning for dynamic alignment */
-  top: calc(30px + 24px + 20px); /* Place below the dot icon */
+  top: 85px; /* Place below the dot icon */
   right: 10px;
-  max-height: calc(40px * 3 + 10px * 2 + 200px); /* Limit to 9 icons (3 rows * icon size + gaps) */
+  max-height: calc(40px * 3 + 10px * 2 + 290px); /* Limit to 12 icons (3 rows * icon size + gaps) */
   overflow-y: auto; /* Add vertical scrollbar when needed */
   box-sizing: border-box; /* Ensure padding is included in width and height */
   z-index: 1; /* Set z-index */
@@ -328,6 +338,9 @@ body {
   display: none;
   white-space: pre-line; /* Ensure text retains line breaks */
   text-align: center; /* Center align text */
+  position: absolute;
+  font-size: 0.8rem;
+  bottom: 0;
 }
 
 /* Hover Effect for Icon Item */
@@ -350,6 +363,7 @@ body {
 }
 
 /* Customize scrollbar to appear on the border */
+/* For Chrome, Edge, Safari */
 .icon-container::-webkit-scrollbar {
   width: 5px; /* Match the border width */
 }
@@ -368,6 +382,17 @@ body {
   background-color: var(--darkerColor-blue);
   border-radius: 30px;
 }
+
+/* For Firefox */
+.icon-container {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* .icon-container:hover {
+    scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
+} */
 
 /* ----------------- End of Google App Menu ----------------- */  
 
@@ -615,7 +640,6 @@ body {
     height: fit-content;
 }
 
-
 .humidityBar {
     border-radius: 20px;
     height: 40px;
@@ -659,7 +683,6 @@ body {
 
 #humidityLevel {
     color: #fff;
-    /* background-color: yellow; */
     width: fit-content;
     position: absolute;
     bottom: 0;
@@ -701,14 +724,12 @@ body {
     transform: translateX(14px);
     width: 100px;
     height: 80%;
-    /* background-color: #17a638; */
 }
 
 #temp {
     font-size: 3.5rem;
     font-weight: bold;
     color: var(--darkerColor-blue);
-    /* background-color: yellow; */
     margin: auto;
     width: fit-content;
 }
@@ -726,7 +747,6 @@ body {
     height: 80px;
     margin-top: -11px;
     margin-left: -30px;
-    /* background-color: olive; */
 }
 
 /* ------------End of Weather Pill------------- */
@@ -773,7 +793,6 @@ body {
     outline: none;
     border: none;
     background-color: #00000000;
-    border-radius: 100px;
     padding: 0 4px;
     margin-left: 53px;
     font-size: 1rem;
@@ -786,7 +805,6 @@ body {
     align-items: center;
     height: 100%;
 }
-
 
 /* --------- .micIcon------------- */
 
@@ -816,8 +834,8 @@ body {
     border: 2px solid transparent;
 }
 
-
-.micActive::after {
+.micActive::after,
+.micIcon:hover::after {
     border-left: 2px dotted var(--darkColor-blue);
     border-right: 2px solid var(--darkColor-blue);
     border-top: 2px dashed var(--darkerColor-blue);
@@ -830,7 +848,6 @@ body {
     background-color: #fffffff2;
 }
 
-
 @keyframes micAnimation {
     0%{transform: rotate(0deg);}
     37%{transform: rotate(-20deg);}
@@ -839,7 +856,6 @@ body {
 }
 
 /* ---------End of .micIcon------------- */
-
 
  #enterBtn {
     height: 40px;
@@ -920,7 +936,6 @@ body {
     border-radius: 100%;
     margin-left: 4px;
     padding: 3px;
-
 }
 
 .searchEnginesContainer .search-engine label {
@@ -941,97 +956,14 @@ body {
     outline: none;
     margin-right: 8px;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .search-engine input[type="radio"]:checked {
     background-color: var(--darkColor-blue);
 }
 
-/* -----------Radio Button Customizing------------ */
-
-/* -----------Theming Stuff------------------ */
-/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
-/* .themingStuff {
-    position: absolute;
-    width: fit-content;
-    height: 50px;
-    right: var(--gap);
-    bottom: var(--gap);
-    display: flex;
-    align-items: center;
-}
-.colorsContainer {
-    background-color: var(--accentLightTint-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 10px;
-    margin-right: 20px;
-    border-radius: 100px;
-    height: 50px;
-    transition: all 0.6s;
-    opacity: 0;
-    width: 30px;
-    height: 30px;
-    transform: translateX(50px);
-    z-index: 1;
-}
-.showColorPlate {
-    opacity: 1;
-    width: fit-content;
-    height: 50px;
-    transform: translateX(0px);
-}
-.colorsContainer input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #fff;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    outline: none;
-    margin-right: 10px;
-    cursor: pointer;
-}
-.colorsContainer input[value="blue"] {
-    background-color: #4382EC;
-}
-.colorsContainer input[value="red"] {
-    background-color: #f91d1d;
-}
-.colorsContainer input[value="green"] {
-    background-color: #17a638;
-}
-.colorsContainer input[value="orange"] {
-    background-color: orange;
-}
-.colorsContainer input[value="purple"] {
-    background-color: #b830de;
-}
-.colorsContainer input[value="pink"] {
-    background-color: #e41b9e;
-}
-.colorsContainer input[type="radio"]:checked::after {
-    position: absolute;
-    content: "";
-    width: 30px;
-    height: 30px;
-    background: url("./svgs/tick.svg") center center no-repeat;
-    background-size: 74%;
-}
-.themingStuff .btn {
-    height: 100%;
-    aspect-ratio: 1/1;
-    right: 0;
-    border-radius: 100%;
-    z-index: 2;
-    cursor: pointer;
-} */
-
-/* -----------End of Theming Stuff------------------ */
-
+/* -----------end of Radio Button Customizing------------ */
 
 /* ----------Shortcuts----------------- */
 
@@ -1046,27 +978,6 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
-}
-
-#shortcuts-section .unfoldContainer {
-    transition: transform 0.5s;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    display: flex;
-    justify-content: center;
-}
-
-#shortcuts-section #unfoldShortcutsBtn {
-    display: none;
-    pointer-events: auto;
-    fill: var(--textColorDark-blue);
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
-    transition: 0.2s all;
-    transform-origin: 50% 25%;
 }
 
 #shortcuts-section .wrapper {
@@ -1201,7 +1112,6 @@ body {
     border-radius: 100%;
 }
 
-
 /* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */
@@ -1211,12 +1121,11 @@ body {
     /* background-color: yellow; */
     overflow-x: hidden;
     border-radius: 100px;
-    position: absolute;
+    position: fixed;
     left: var(--gap);
     bottom: var(--gap);
     margin: auto;
     display: flex;
-    cursor: pointer;
 }
 
 .aiToolsCont .hangno {
@@ -1228,6 +1137,7 @@ body {
     padding: 0 16px;
     border-radius: 100px;
     z-index: 2;
+    cursor: pointer;
 }
 
 .aiToolsCont .hangno .icon {
@@ -1285,9 +1195,7 @@ body {
     margin-right: 12px;
 }
 
-
 /* -----------End of Ai-Tools---------- */
-
 
 /* -------media query ------------------- */
 
@@ -1340,7 +1248,6 @@ body {
         left: 300px;
         /*Because Clock width is 300px*/
         margin: auto auto auto var(--gap);
-
     }
 }
 
@@ -1463,7 +1370,6 @@ body {
 
 /* -------------End of Scrollbar for menu-------------- */
 
-
 .menuBar .optCont .tilesCont {
     width: 100%;
     height: 50px;
@@ -1538,7 +1444,6 @@ body {
     /* Slider color when on */
     transition: 0.4s;
     border-radius: 50%;
-
 }
 
 #shortcutEditButton {
@@ -1629,6 +1534,7 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
+
 .resetbtn {
     width: -webkit-fill-available;
     border: none;
@@ -1639,11 +1545,12 @@ input:checked + .toggle:before {
     border-radius: 100px;
     cursor: pointer;
 }
+
 .topBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 50px;
     position: sticky;
     top: 0;
     left: 0;
@@ -1664,6 +1571,19 @@ input:checked + .toggle:before {
     gap: 24px;
 }
 
+#newShortcutButton svg {
+	transition: transform 0.3s ease;
+}
+
+#newShortcutButton:active svg {
+	transform: scale(1.2);
+}
+
+.rotateResetButton {
+	transform: rotate(-360deg);
+	transition: transform 0.3s ease;
+}
+
 #resetButton,
 #newShortcutButton {
     fill: var(--textColorDark-blue);
@@ -1678,10 +1598,17 @@ input:checked + .toggle:before {
 }
 
 .pageTitle {
-    margin: var(--gap) 0;
-    width: 100%;
-    font-size: 1.8rem;
-    color: var(--textColorDark-blue);
+	margin-top: 10px;
+	width: 100%;
+	font-size: 1.6rem;
+	color: var(--textColorDark-blue);
+}
+
+#editShortcutsListInfo {
+	font-size: 0.8rem;
+	margin-top: 5px;
+	margin-bottom: var(--gap);
+	text-align: justify;
 }
 
 .shortcutSettingsEntry {
@@ -1764,14 +1691,13 @@ input:checked + .toggle:before {
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
-.themingStuff, .languageSection {
+.themingStuff,
+.languageSection {
     width: 100%;
     height: 50px;
     display: flex;
-    /* align-items: center; */
-    justify-content: space-between;
+    justify-content: space-around;
     gap: var(--gap);
-    /* background-color: yellow; */
 }
 
 .languageSelector {
@@ -1796,6 +1722,25 @@ input:checked + .toggle:before {
         -moz-appearance: none; /* For Firefox */
     cursor: pointer;
     padding-left: 13px;
+
+    /* Scrollbar styles for Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--darkColor-blue) transparent;
+}
+
+/* Scrollbar styles for Chrome, Edge, Safari */
+.languageSelector::-webkit-scrollbar {
+	width: 6px;
+}
+
+.languageSelector::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.languageSelector::-webkit-scrollbar-thumb,
+.languageSelector::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
 }
 
 .languageSelector:focus {
@@ -1818,8 +1763,6 @@ input:checked + .toggle:before {
     padding: 10px;
     /* padding-right: 0px; */
     border-radius: 26px;
-
-
 }
 
 .colorsContainer input[type="radio"] {
@@ -1983,7 +1926,7 @@ input:checked + .toggle:before {
     padding-right: 12px;
     opacity: 0;
     transform: translateX(-20px);
-    animation: .6s menuCloseButtonHoverReverse forwards;
+    animation: 0.6s menuCloseButtonHoverReverse forwards;
     z-index: 1;
 }
 
@@ -1993,8 +1936,8 @@ input:checked + .toggle:before {
     padding-left: 36px;
     /* width: 32px; */
     /* Expand the max-width on hover */
-    animation: .6s menuCloseButtonHover forwards;
-    animation-delay: .1s;
+    animation: 0.6s menuCloseButtonHover forwards;
+    animation-delay: 0.1s;
 }
 
 @keyframes menuCloseButtonHover {
@@ -2027,7 +1970,7 @@ input:checked + .toggle:before {
     height: 30px;
     border-radius: 100px;
     /* transform: translateX(30px); */
-    transition: .4s;
+    transition: 0.4s;
     z-index: 2;
 }
 
