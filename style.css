@@ -1130,84 +1130,102 @@ body {
 
 /* -----------Ai-Tools----------------- */
 .aiToolsCont {
-  height: 50px;
-  width: fit-content;
-  /* background-color: yellow; */
-  overflow-x: hidden;
-  border-radius: 100px;
-  position: fixed;
-  left: var(--gap);
-  bottom: var(--gap);
-  margin: auto;
-  display: flex;
+    height: auto; /* Adjust height to auto to allow wrapping */
+    width: fit-content;
+    overflow: hidden; /* Hide overflow content */
+    border-radius: 0; /* Remove border radius */
+    position: fixed;
+    left: var(--gap);
+    bottom: var(--gap);
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+    transition: all 500ms; /* Add transition for smooth appearance */
 }
 
 .aiToolsCont .hangno {
-  background-color: var(--accentLightTint-blue);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px;
-  border-radius: 100px;
-  z-index: 2;
-  cursor: pointer;
+    background-color: var(--accentLightTint-blue);
+    height: 50px; /* Set a fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border-radius: 100px;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 500ms; /* Add transition for smooth appearance */
 }
 
 .aiToolsCont .hangno .icon {
-  width: 26px;
-  height: 26px;
-  margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
 }
 
 .aiToolsCont .hangno .label {
-  font-size: 1rem;
-  color: var(--textColorDark-blue);
-  cursor: pointer;
+    font-size: 1rem;
+    color: var(--textColorDark-blue);
+    cursor: pointer;
 }
 
 .aiToolsCont .toolsCont {
-  /* display: flex; */
-  display: none;
-  /* background-color: orange; */
-  position: relative;
-  margin-left: 30px;
-  transition: all 500ms;
-  gap: 0;
-  transform-origin: left;
-  transform: scale(0.5) translateX(-70px);
-  opacity: 0.2;
+    display: flex; /* Ensure the tools container is displayed as flex */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    position: relative;
+    margin-left: 30px;
+    transition: all 500ms; /* Add transition for smooth appearance */
+    gap: 10px; /* Add gap between items */
+    transform-origin: left; /* Change transform origin to left */
+    transform: scale(0.5) translateX(-70px); /* Adjust to expand beside */
+    opacity: 0.2;
 }
 
 .aiToolsCont .toolsCont::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 6px;
-  background-color: var(--accentLightTint-blue);
-  border-radius: 6px;
-  left: -18px;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 6px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 6px;
+    left: -18px;
 }
 
 .aiToolsCont .toolsCont a {
-  background-color: var(--accentLightTint-blue);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px;
-  border-radius: 100px;
-  text-decoration: none;
-  color: var(--textColorDark-blue);
-  font-size: 1rem;
+    background-color: var(--accentLightTint-blue);
+    height: 50px; /* Set a fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--textColorDark-blue);
+    font-size: 1rem;
+    transition: all 500ms; /* Add transition for smooth appearance */
 }
 
 .aiToolsCont .toolsCont .tIcon {
-  width: 26px;
-  height: 26px;
-  /* background-color: turquoise; */
-  margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
 }
+
+/* Media query for screens with width less than 960px */
+@media (max-width: 960px) {
+    .aiToolsCont {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .aiToolsCont .toolsCont {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 10px; /* Add margin from the main AI tools button */
+        transform: scale(0.5) translateY(70px); /* Adjust to expand downward */
+    }
+}
+
+
 
 /* -----------End of Ai-Tools---------- */
 
