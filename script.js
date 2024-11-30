@@ -276,12 +276,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function changeLanguage(languageCode) {
-    console.log(`Language changed to: ${languageCode}`);
-    // Add your logic here to handle the language change based on the languageCode
-    // For example, you might want to reload the page with the selected language or load different content
-}
-
 // ------------------------End of Language Selector Setup------------------------
 
 // Retrieve current time and calculate initial angles
@@ -984,14 +978,25 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .languageIcon,
-            .dark-theme .languageSelector {
+            .dark-theme .languageButton {
                 background-color: #212121;
                 scrollbar-color: var(--darkerColor-blue) transparent;
             }
 
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
+            .dark-theme .languageButton .arrow {
+                color: var(--textColorDark-blue);
+            }
+
+            .dark-theme .languageDropdown {
+                background-color: #212121;
+            }
+            .dark-theme .languageDropdown::-webkit-scrollbar-thumb,
+            .dark-theme .languageDropdown::-webkit-scrollbar-thumb:hover {
                 background-color: var(--darkerColor-blue);
+            }
+
+            .dark-theme .languageDropdown {
+                scrollbar-color: var(--accentLightTint-blue) transparent;
             }
 
             .dark-theme .bottom a {
