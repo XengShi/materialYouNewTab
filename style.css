@@ -1130,23 +1130,34 @@ body {
 
 /* -----------Ai-Tools----------------- */
 .aiToolsCont {
-    height: auto; /* Adjust height to auto to allow wrapping */
+    height: auto;
     width: fit-content;
-    overflow: hidden; /* Hide overflow content */
-    border-radius: 0; /* Remove border radius */
+    overflow: hidden;
+    border-radius: 10px;
     position: fixed;
     left: var(--gap);
     bottom: var(--gap);
     margin: auto;
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    max-width: 100%; /* Ensure the container doesn't exceed the screen width */
-    transition: all 500ms; /* Add transition for smooth appearance */
+    flex-wrap: wrap;
+    max-width: 100%;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.aiToolsCont.open {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+.aiToolsCont.closed {
+    transform: translateX(-150px) scale(0);
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out 200ms;
 }
 
 .aiToolsCont .hangno {
     background-color: var(--accentLightTint-blue);
-    height: 50px; /* Set a fixed height for consistency */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1154,7 +1165,7 @@ body {
     border-radius: 100px;
     z-index: 2;
     cursor: pointer;
-    transition: all 500ms; /* Add transition for smooth appearance */
+    transition: all 1s ease-in-out;
 }
 
 .aiToolsCont .hangno .icon {
@@ -1170,15 +1181,27 @@ body {
 }
 
 .aiToolsCont .toolsCont {
-    display: flex; /* Ensure the tools container is displayed as flex */
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    display: flex;
+    flex-wrap: wrap;
     position: relative;
     margin-left: 30px;
-    transition: all 500ms; /* Add transition for smooth appearance */
-    gap: 10px; /* Add gap between items */
-    transform-origin: left; /* Change transform origin to left */
-    transform: scale(0.5) translateX(-70px); /* Adjust to expand beside */
-    opacity: 0.2;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out 200ms;
+    gap: 10px;
+    transform-origin: left;
+    transform: translateX(-150px) scale(0.5); /* Start further from the button */
+    opacity: 0;
+}
+
+.aiToolsCont.open .toolsCont {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out 200ms; /* Longer opacity transition */
+}
+
+.aiToolsCont.closed .toolsCont {
+    transform: translateX(-150px) scale(0); /* Maintain distance from button when closing */
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out 200ms;
 }
 
 .aiToolsCont .toolsCont::before {
@@ -1193,7 +1216,7 @@ body {
 
 .aiToolsCont .toolsCont a {
     background-color: var(--accentLightTint-blue);
-    height: 50px; /* Set a fixed height for consistency */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1202,7 +1225,7 @@ body {
     text-decoration: none;
     color: var(--textColorDark-blue);
     font-size: 1rem;
-    transition: all 500ms; /* Add transition for smooth appearance */
+    transition: all 1s ease-in-out;
 }
 
 .aiToolsCont .toolsCont .tIcon {
@@ -1214,15 +1237,39 @@ body {
 /* Media query for screens with width less than 960px */
 @media (max-width: 960px) {
     .aiToolsCont {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .aiToolsCont .toolsCont {
-        margin-left: 0; /* Remove left margin */
-        margin-top: 10px; /* Add margin from the main AI tools button */
-        transform: scale(0.5) translateY(70px); /* Adjust to expand downward */
+        margin-left: 0;
+        margin-top: 10px;
+        transform: scale(0.5) translateY(70px);
     }
+}
+
+/* Initial state */
+.your-ai-tools-class {
+  opacity: 0;
+  visibility: hidden;  /* Hidden initially */
+  transform: translateY(100px);  /* Initially off-screen (for example) */
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Delay visibility reset */
+}
+
+/* When the box is visible */
+.your-ai-tools-class.open {
+  opacity: 1;
+  visibility: visible;  /* Make visible */
+  transform: translateY(0);  /* Set it to its final position */
+  transition: opacity 0.5s ease, visibility 0s; /* Immediate visibility change */
+}
+
+/* When the box is hidden (closed) */
+.your-ai-tools-class.closed {
+  opacity: 0;
+  visibility: hidden;  /* Make hidden */
+  transform: translateY(100px); /* Keep it off-screen */
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Delay visibility reset */
 }
 
 
