@@ -189,11 +189,6 @@
 	color: #fff;
 }
 
-.spacer {
-	height: 110px;
-	/* Adjust this value to create space */
-}
-
 /* Theme */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
 
@@ -1980,6 +1975,59 @@ input:checked + .toggle:before {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+/* Upload/Clear Buttons */
+.uploadClearContainer {
+	display: flex;
+	justify-content: center; /* Center the buttons horizontally */
+	gap: var(--gap); /* Maintain consistent spacing */
+	margin-top: 122px; /* Add spacing below the theming section */
+}
+
+/* Styling for Upload/Clear Buttons with SVGs */
+.uploadButton,
+.clearButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px; /* Space between SVG and text */
+	background-color: var(--whitishColor-blue);
+	color: var(--darkColor-blue);
+	padding: 10px 20px;
+	font-size: 16px;
+	border: 2px solid transparent;
+	border-radius: 26px;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
+}
+
+.clearButton {
+	padding: 10px; /* Smaller padding for the delete icon */
+}
+
+/* Ensure consistent SVG sizing */
+.uploadButton svg,
+.clearButton svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* Hover Effects */
+.uploadButton:hover,
+.clearButton:hover {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+/* File input remains hidden */
+#imageUpload {
+	display: none;
+}
+
+.spacer {
+	height: 40px;
+	/* Adjust this value to create space */
 }
 
 /* #darkTheme {
