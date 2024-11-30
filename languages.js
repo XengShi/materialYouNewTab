@@ -6,7 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 // Translation data
 const translations = {
     "en": {
@@ -117,50 +116,51 @@ const translations = {
         "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
-        "enableShortcutsText": "Ativar/desativar atalhos",
+        "enableShortcutsText": "Mostrar atalhos salvos",
         "editShortcutsText": "Editar Atalhos",
-        "editShortcutsList": "Editar Atalhos",
         "shortcutsInfoText": "Escolha quais atalhos serão exibidos",
-        "adaptiveIconText": "Formas de Ícone Adaptativo",
-        "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
+        "editShortcutsList": "Atalhos Salvos",
+        "editShortcutsListInfo": "Você pode adicionar novos atalhos clicando no ícone \"+\" ou editar os existentes clicando no nome ou URL do atalho",
+        "adaptiveIconText": "Ícones Adaptativos",
+        "adaptiveIconInfoText": "Os ícones de atalho aparecerão redondos",
         "ai_tools_button": "Ferramentas de IA",
-        "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
-        "googleAppsMenuText": "Apps do Google",
-        "googleAppsMenuInfo": "Mostrar atalhos para os Apps do Google",
+        "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
+        "googleAppsMenuText": "Apps Google",
+        "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
-        "digitalclockinfo": "Ativar/desativar o Relógio Digital",
-        "timeformattittle": "Usar Formato de 12h",
-        "timeformatinfo": "Usar formato de hora de 12 horas",
+        "digitalclockinfo": "Mudar para o relógio digital",
+        "timeformattittle": "Formato 12 Horas",
+        "timeformatinfo": "Usar formato de 12 horas",
         "greetingtittle": "Saudação",
         "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
         // Misc
         "userTextTitle": "Texto Personalizável",
         "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
-        "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
-        "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
-        "micIconTitle": "Ocultar Icone do Microfone",
-        "micIconInfo": "Se a digitação por voz não estiver funcionando",
+        "fahrenheitCelsiusCheckbox": "Mudar para Fahrenheit",
+        "fahrenheitCelsiusText": "Atualize a página para aplicar as mudanças",
+        "micIconTitle": "Ocultar Ícone do Microfone",
+        "micIconInfo": "Se o ditado por voz não estiver funcionando",
         "search_suggestions_button": "Sugestões de Pesquisa",
-        "search_suggestions_text": "Ativar/desativar Sugestões de Pesquisa",
+        "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
         "useproxytitletext": "Bypass de Proxy",
         "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
         "ProxyText": "Proxy de Bypass CORS",
-        "ProxySubtext": "Adicione seu próprio Proxy de Bypass CORS",
-        "HostproxyButton": "Hospede Seu Próprio Proxy",
+        "ProxySubtext": "Adicione seu próprio proxy de bypass CORS",
+        "HostproxyButton": "Hospede seu próprio proxy",
         "saveproxy": "Salvar",
         // Location
-        "UserLocText": "Insira sua localização",
+        "UserLocText": "Digite sua Localização",
         "UserLocSubtext": "Se a localização do clima não estiver correta",
-        "userLoc": "Sua localização (Cidade/Aletitude,Longitude)",
-        "InputOptionsButton": "Opções de Entrada",
+        "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
+        "InputOptionsButton": "Opções de entrada",
         "saveLoc": "Salvar",
         // Weather
-        "WeatherApiText": "Insira sua própria chave do WeatherAPI",
+        "WeatherApiText": "Digite sua chave WeatherAPI",
         "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
-        "userAPI": "Sua chave da WeatherAPI",
-        "LearnMoreButton": "Saiba Mais",
+        "userAPI": "Sua chave weatherAPI",
+        "LearnMoreButton": "Saiba mais",
         "saveAPI": "Salvar",
         // End of Menu Items
 
@@ -179,11 +179,12 @@ const translations = {
         // New Tab Item
         "conditionText": "Olá! Como você está hoje?",
         "enterBtn": "Pesquisar",
-        "searchPlaceholder": "Digite sua consulta...",
+        "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
+        "googleAppsHover": "Apps do Google",
         // End of Body and New Tab Items
 
         // Greeting
@@ -192,7 +193,20 @@ const translations = {
             "afternoon": "Boa tarde!",
             "evening": "Boa noite!"
         },
+        // Search Engines
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub"
     },
+
 
     // Chinese (Simplified)
     "zh": {
@@ -284,6 +298,7 @@ const translations = {
         "bingEngine": "必应",
         "googleAppsHover": "谷歌应用",
     },
+
 
     // Hindi
     "hi": {
@@ -386,6 +401,7 @@ const translations = {
         "googleAppsHover": "गूगल ऐप्स",
     },
 
+
     // Czech
     "cs": {
         // Menu Items
@@ -473,6 +489,7 @@ const translations = {
         },
     },
 
+
     // Italian
     // Machine translated some elements, please verify and delete this comment
     "it": {
@@ -559,6 +576,7 @@ const translations = {
         },
     },
 
+
     // Turkish
     "tr": {
         // Menu Items
@@ -643,6 +661,7 @@ const translations = {
             "evening": "İyi akşamlar!"
         },
     },
+
 
     // Bengali
     "bn": {
@@ -746,6 +765,7 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
     },
 
+
     // Vietnamese
     "vi": {
         // Menu Items
@@ -830,6 +850,7 @@ const translations = {
             "evening": "Chào buổi tối!"
         },
     },
+
 
     // Russian
     "ru": {
@@ -930,6 +951,7 @@ const translations = {
         "googleAppsHover": "Гугл Приложения",
     },
 
+
     // Uzbek
     "uz": {
         // Menu Items
@@ -1015,6 +1037,7 @@ const translations = {
         },
     },
 
+
     // Spanish
     "es": {
         // Menu Items
@@ -1099,6 +1122,7 @@ const translations = {
             "evening": "¡Buenas noches!"
         },
     },
+
 
     // Japanese
     "ja": {
@@ -1199,6 +1223,7 @@ const translations = {
         "googleAppsHover": "グーグルアプリ",
     },
 
+
     // Korean
     "ko": {
         // Menu Items
@@ -1298,6 +1323,7 @@ const translations = {
         "googleAppsHover": "구글 앱",
     },
 
+
     // Indonesian
     "idn": {
         // Menu Items
@@ -1383,6 +1409,7 @@ const translations = {
             "evening": "Selamat Malam!"
         },
     },
+
 
     // Marathi
     "mr": {
@@ -1484,7 +1511,6 @@ const translations = {
         "firefly": "अॅडोबी फायरफ्लाय",
         "github": "गिटहब",
     },
-
 };
 
 // Define the width of the menu container for each language
@@ -1594,7 +1620,7 @@ function applyLanguage(lang) {
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
         { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'googleAppsHover', key: 'googleAppsHover' }
 
     ];
 
