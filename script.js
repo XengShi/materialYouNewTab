@@ -623,7 +623,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-//search function
+// Search function
 document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
@@ -878,12 +878,14 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
             document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
             document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+            document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
         } else {
             document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty('--whitishColor-blue', `var(--whitishColor-${colorValue})`);
         }
     }
 
@@ -1077,6 +1079,9 @@ const applySelectedTheme = (colorValue) => {
         "orange": "./favicon/orange.png",
         "purple": "./favicon/purple.png",
         "pink": "./favicon/pink.png",
+        "brown": "./favicon/brown.png",
+        "silver": "./favicon/silver.png",
+        "grey": "./favicon/grey.png",
         "dark": "./favicon/dark.png",
     };
 
@@ -1111,7 +1116,6 @@ radioButtons.forEach(radioButton => {
         }
     });
 });
-
 
 // end of Function to apply the selected theme
 
@@ -2024,6 +2028,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("adaptiveIconField", "inactive");
         }
     });
+
     searchsuggestionscheckbox.addEventListener("change", function () {
         saveCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
         if (searchsuggestionscheckbox.checked) {
@@ -2072,6 +2077,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("greetingField", "inactive");
         }
     });
+
     hourcheckbox.addEventListener("change", function () {
         saveCheckboxState("hourcheckboxState", hourcheckbox);
         if (hourcheckbox.checked) {
@@ -2080,10 +2086,12 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("hourformat", "false");
         }
     });
+
     greetingCheckbox.addEventListener("change", () => {
         localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
         updatedigiClock();
     });
+
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -2104,6 +2112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
