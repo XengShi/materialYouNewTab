@@ -1804,7 +1804,7 @@ input:checked+.toggle:before {
   background-color: white;
   position: absolute; /* Position dropdown absolutely */
   bottom: -160px; /* Adjust this value based on the height of the dropdown */
-  width: 250px; /* Match width of button */
+  width: 240px; /* Match width of button */
   max-height: 150px; /* Set max height for scrollbar */
   overflow-y: auto; /* Enable vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
@@ -1862,7 +1862,6 @@ input:checked+.toggle:before {
   scrollbar-width: thin; /* Thin scrollbar */
   scrollbar-color: #000000 transparent; /* Thumb color and track color */
 }
-
 
 /*---------------------------------------------------*/
 
