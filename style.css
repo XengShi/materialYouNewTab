@@ -1447,7 +1447,7 @@ body {
 }
 
 #shortcutEditButton {
-    fill: var(--textColorDark-blue);
+    fill: var(--darkerColor-blue);
     display: flex;
     align-items: center;
     justify-content: center;
