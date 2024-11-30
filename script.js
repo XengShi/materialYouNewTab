@@ -7,6 +7,22 @@
  */
 
 
+// Check if alert has already been shown
+if (!localStorage.getItem('alertShown')) {
+    // Show the alert after 4 seconds
+    setTimeout(() => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const message = isMac
+            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
+            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
+
+        alert(message);
+
+        // Set a flag in localStorage so the alert is not shown again
+        localStorage.setItem('alertShown', 'true');
+    }, 4000);
+}
+
 let proxyurl;
 let clocktype;
 let hourformat;
