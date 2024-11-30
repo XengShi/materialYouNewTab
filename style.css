@@ -1770,7 +1770,7 @@ input:checked+.toggle:before {
   height: fit-content;
   border: 2px solid transparent;
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 20px;
   background-color: #ffffffe8;
   color: var(--textColorDark-blue);
@@ -1804,6 +1804,7 @@ input:checked+.toggle:before {
   bottom: -160px; /* Adjust this value based on the height of the dropdown */
   width: 240px; /* Match width of button */
   max-height: 150px; /* Set max height for scrollbar */
+  font-size: 12px;
   overflow-y: auto; /* Enable vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
   z-index: 3; /* Ensure the dropdown stays below the button */
@@ -1816,7 +1817,7 @@ input:checked+.toggle:before {
 
 .languageDropdown .languageOption .subtext {
   color: gray; /* Inherit color from parent */
-  font-size: 12px; /* Adjust font size as needed */
+  font-size: 10px; /* Adjust font size as needed */
   margin-left: 5px; /* Space between main text and subtext */
 }
 
