@@ -1476,6 +1476,23 @@ body {
     display: none;
 }
 
+.switchTheme {
+    position: relative;
+    display: inline-block;
+    min-width: 60px;
+    height: 34px;
+    margin-left: 0px;
+    margin-right: 180px;
+    margin-bottom: 20px;
+    /* margin-top: -150px; */
+}
+
+/* Hide the default checkbox input */
+.switchTheme input {
+    display: none;
+}
+
+
 /* Styling for the slider */
 .toggle {
     position: absolute;
@@ -1893,6 +1910,15 @@ input:checked+.toggle:before {
 
 .themingStuff .btn {
     background-color: #ffffffe8;
+    height: 20%;
+    aspect-ratio: 1/1;
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
+}
+
+.themingStuff .btn {
+    background-color: #ffffffe8;
     height: 100%;
     aspect-ratio: 1/1;
     right: 0;
@@ -1915,6 +1941,25 @@ input:checked+.toggle:before {
 #darkTheme {
     grid-column: span 2;
     width: 82px;
+}
+
+.themeChangeContainer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    align-items: center;
+
+}
+.themeChangeContainer .btn {
+    background-color: #ffffffe8;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    z-index: 2;
+    margin-bottom: 5%;
 }
 
 /* -----------end of theming stuff---------------- */

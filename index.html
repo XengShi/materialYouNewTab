@@ -21,9 +21,10 @@
 
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
+    <script defer src="themeChange.js"></script>
 </head>
 
-<body>
+<body id="body">
     <!----------------------- Google App Menu Setup Starting ----------------------->
     <!-- 9 Dot Icon -->
     <div class="googleAppsCont" id="googleAppsCont">
@@ -465,7 +466,6 @@
             </div>
 
             <!-- ____________end of clock______________ -->
-
             <div class="ttteexxtt">
                 <div id="userText" contenteditable="true" spellcheck="false">Click here to edit</div>
                 <div id="date"></div>
@@ -1071,6 +1071,8 @@
                                     fill="#f00" />
                             </svg>
                         </div>
+
+
                         <!-- -------- -->
                         <div class="colorsContainer" id="colorsContainer">
                             <input class="colorPlate" name="color" type="radio" value="red">
@@ -1088,7 +1090,24 @@
 
                         </div>
 
+
+
                     </div><br>
+                    <br>
+                    <br>
+                    <div class="themeChangeContainer">
+                        <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
+                        <div class="btn" id="themeButton1">
+                            <!-- <img src="./svgs/theme.svg" alt=""> -->
+                            <svg id="themeChange" width="60px" height="60px" viewBox="-1 0 20 20" xmlns="http://www.w3.org/2000/svg"  fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.00000001">
+                                <path id="themeChangeSvg" class="accentColor" d="m1.75 8c0 3.45 2.8 6.25 6.25 6.25 3.41-.0027 6.25-3 6.25-6-1 .5-4 1.5-6-.5s-1-5-.5-6c-3 0-6 2.84-6 6.25z"/>
+                            </svg>
+                        </div>
+                        <label class="switchTheme">
+                            <input id="lightDarkCheckbox" type="checkbox">
+                            <span class="toggle"></span>
+                        </label>
+                    </div>
                     <!-- end of themingStuff -->
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
