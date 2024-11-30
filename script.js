@@ -634,7 +634,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
         element.addEventListener('click', () => {
-            const radioButton = engineDiv.querySelector('input[type="radio"]');
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
             radioButton.checked = true;
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
