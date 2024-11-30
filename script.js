@@ -10,6 +10,7 @@
 let proxyurl;
 let clocktype;
 let hourformat;
+
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         // Cache DOM elements
@@ -628,6 +629,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not([id$="default-dropdown"])');
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const radioButton = engineDiv.querySelector('input[type="radio"]');
+            radioButton.checked = true;
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
