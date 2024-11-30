@@ -1803,7 +1803,7 @@ input:checked+.toggle:before {
   position: absolute; /* Position dropdown absolutely */
   bottom: -160px; /* Adjust this value based on the height of the dropdown */
   width: 240px; /* Match width of button */
-  max-height: 150px; /* Set max height for scrollbar */
+  max-height: 155px; /* Set max height for scrollbar */
   font-size: 12px;
   overflow-y: auto; /* Enable vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
