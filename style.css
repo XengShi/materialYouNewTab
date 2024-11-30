@@ -2087,3 +2087,7 @@ input:checked+.toggle:before {
     padding: 8px 16px;
     cursor: pointer;
 }
+
+#default-dropdown-item .engine-name {
+    display: none;
+}
