@@ -1037,27 +1037,50 @@
                             </svg>
                         </div>
 
-                        <!-- Language selection button -->
-                        <select class="languageSelector" id="languageSelector">
-                            <option value="en">English</option>
-                            <option value="bn">বাংলা (Bangla)</option>
-                            <option value="zh">中文 (Simplified Chinese)</option>
-                            <option value="cs">Čeština (Czech)</option>
-                            <option value="hi">हिन्दी (Hindi)</option>
-                            <option value="idn">Bahasa Indonesia (Indonesian)</option>
-                            <option value="it">Italiano (Italian)</option>
-                            <option value="ja">日本語 (Japanese)</option>
-                            <option value="ko">한국어 (Korean)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="pt">Português (Portuguese)</option>
-                            <option value="ru">Русский (Russian)</option>
-                            <option value="es">Español (Spanish)</option>
-                            <option value="tr">Türkçe (Turkish)</option>
-                            <option value="uz">O'zbek (Uzbek)</option>
-                            <option value="vi">Tiếng Việt (Vietnamese)</option>
-                            <!-- Place new language alphabetically -->
-                        </select>
-                        <!-- end of languageSelector -->
+                        <div class="languageSection">
+                            <button class="languageButton" id="languageButton">
+                                <span class="selectedLanguage">English</span>
+                                <span class="arrow" id="arrowIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496" />
+                                    </svg>
+                                </span>
+                            </button>
+                    
+                            <div class="languageDropdown" id="languageDropdown">
+                                <div class="languageOption selected" data-value="en">English</div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="bn">Bangla <span class="subtext">(বাংলা)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="zh">Simplified Chinese <span class="subtext">(中文)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="cs">Czech <span class="subtext">(Čeština)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="hi">Hindi <span class="subtext">(हिन्दी)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="idn">Indonesian <span class="subtext">(Bahasa Indonesia)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="it">Italian <span class="subtext">(Italiano)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="ja">Japanese <span class="subtext">(日本語)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="ko">Korean <span class="subtext">(한국어)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="mr">Marathi <span class="subtext">(मराठी)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="pt">Portuguese <span class="subtext">(Português)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="ru">Russian <span class="subtext">(Русский)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="es">Spanish <span class="subtext">(Español)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="tr">Turkish <span class="subtext">(Türkçe)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="uz">Uzbek <span class="subtext">(O'zbek)</span></div>
+                                <div class="divider"></div>
+                                <div class="languageOption" data-value="vi">Vietnamese <span class="subtext">(Tiếng Việt)</span></div>
+                            </div>
+                        </div>
                     </div>
                     <br>
                     <div class="themingStuff">

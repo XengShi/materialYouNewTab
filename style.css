@@ -1760,61 +1760,111 @@ input:checked+.toggle:before {
     display: flex;
     justify-content: space-around;
     gap: var(--gap);
+    position: relative; /* Ensure the dropdown is positioned relative to this container */
 }
 
-.languageSelector {
-    background-color: #ffffffe8;
+.languageButton {
+    display: flex;
+    justify-content: space-between; /* Ensure space between text and arrow */
     align-items: center;
-    justify-content: center;
-    height: fit-content;
-    /* width: 80%; */
-    width: 240px;
-    border: 2px solid transparent;
-    /* adding transparent border on focus it will be turned to theme color*/
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    /* 5 divs in the first row */
-    grid-auto-rows: auto;
-    grid-gap: 10px;
-    padding: 12px;
-    color: var(--textColorDark-blue);
-    /* padding-right: 0px; */
-    border-radius: 26px;
-    appearance: none;
-    /* Remove default browser styles */
-    -webkit-appearance: none;
-    /* For Safari */
-    -moz-appearance: none;
-    /* For Firefox */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
     cursor: pointer;
-    padding-left: 13px;
-
-    /* Scrollbar styles for Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: var(--darkColor-blue) transparent;
+    width: 240px; /* Set a fixed width */
+    transition: outline 0.2s ease-in-out;
+    z-index: 1; /* Ensure the button stays above the dropdown */
 }
 
-/* Scrollbar styles for Chrome, Edge, Safari */
-.languageSelector::-webkit-scrollbar {
-    width: 6px;
+.languageButton .selectedLanguage {
+    flex-grow: 1; /* Ensure the text takes up available space */
+    text-align: left; /* Align text to the left */
 }
 
-.languageSelector::-webkit-scrollbar-track {
+.languageButton .arrow {
+    font-size: 10px;
+    transition: transform 0.2s ease-in-out; /* Smooth rotation */
+}
+
+.languageButton:hover {
+    background-color: #f0f0f0;
+}
+
+.languageButton.rotated .arrow {
+    transform: rotate(180deg);
+}
+
+.languageDropdown {
+    display: none;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px; /* Rounded corners */
+    background-color: white;
+    position: absolute; /* Position dropdown absolutely */
+    bottom: -160px; /* Adjust this value based on the height of the dropdown */
+    width: 250px; /* Match width of button */
+    max-height: 150px; /* Set max height for scrollbar */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    z-index: 3; /* Ensure the dropdown stays below the button */
+}
+
+.languageDropdown .languageOption {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.languageDropdown .languageOption .subtext {
+    color: gray; /* Inherit color from parent */
+    font-size: 14px; /* Adjust font size as needed */
+    margin-left: 5px; /* Space between main text and subtext */
+}
+
+.languageDropdown .languageOption:hover,
+.languageDropdown .languageOption.selected {
+    background-color: #f0f0f0;
+}
+
+.languageDropdown .divider {
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 20px; /* Adjust divider margins */
+}
+
+.languageDropdown.show {
+    display: flex;
+}
+
+/* Customize scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.languageDropdown::-webkit-scrollbar {
+    width: 5px;
+}
+
+.languageDropdown::-webkit-scrollbar-track {
     background-color: transparent;
+    border-radius: 20px;
 }
 
-.languageSelector::-webkit-scrollbar-thumb,
-.languageSelector::-webkit-scrollbar-thumb:hover {
-    background-color: var(--darkColor-blue);
-    border-radius: 3px;
+.languageDropdown::-webkit-scrollbar-thumb {
+    background-color: #000000; /* Customize the color as needed */
+    border-radius: 20px;
 }
 
-.languageSelector:focus {
-    border: 2px solid var(--darkColor-blue);
-    /* color matching border on focus */
-    outline: none;
-    /* Removes the default outline */
+.languageDropdown::-webkit-scrollbar-thumb:hover {
+    background-color: #333333; /* Customize the color as needed */
+    border-radius: 20px;
 }
+
+/* Customize scrollbar for Firefox */
+.languageDropdown {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #000000 transparent; /* Thumb color and track color */
+}
+
+
+/*---------------------------------------------------*/
 
 .colorsContainer {
     background-color: #ffffffe8;

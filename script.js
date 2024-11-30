@@ -221,7 +221,68 @@ document.addEventListener("click", function (event) {
         }
     }
 });
-// ------------------------End of Google App Menu Setup-----------------------------------
+// ------------------------End of Google App Menu Setup------------------------
+
+// ------------------------Language Selector Setup------------------------
+document.addEventListener("DOMContentLoaded", function() {
+    const languageButton = document.getElementById("languageButton");
+    const languageDropdown = document.getElementById("languageDropdown");
+
+    languageButton.addEventListener("click", function() {
+        const isDropdownVisible = languageDropdown.classList.toggle("show");
+        languageButton.classList.toggle("rotated", isDropdownVisible);
+        if (isDropdownVisible) {
+            languageButton.classList.add("outline");
+        } else {
+            setTimeout(() => {
+                languageButton.classList.remove("outline");
+            }, 200); // Delay to allow the outline transition to complete
+        }
+    });
+
+    const languageOptions = document.querySelectorAll(".languageOption");
+    languageOptions.forEach(option => {
+        option.addEventListener("click", function() {
+            // Remove selected class from all options
+            languageOptions.forEach(opt => opt.classList.remove("selected"));
+            // Add selected class to clicked option
+            this.classList.add("selected");
+            // Update button text with subtext
+            const mainText = this.childNodes[0].textContent.trim();
+            const subtext = this.querySelector(".subtext") ? this.querySelector(".subtext").outerHTML : "";
+            languageButton.querySelector(".selectedLanguage").innerHTML = mainText + " " + subtext;
+            // Update button's data-value attribute
+            languageButton.setAttribute("data-value", this.getAttribute("data-value"));
+            // Close dropdown
+            languageButton.classList.remove("rotated");
+            languageDropdown.classList.remove("show");
+            setTimeout(() => {
+                languageButton.classList.remove("outline");
+            }, 200); // Delay to allow the outline transition to complete
+            // Trigger language change function
+            changeLanguage(this.getAttribute("data-value"));
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageButton.classList.remove("rotated");
+            languageDropdown.classList.remove("show");
+            setTimeout(() => {
+                languageButton.classList.remove("outline");
+            }, 200); // Delay to allow the outline transition to complete
+        }
+    });
+});
+
+function changeLanguage(languageCode) {
+    console.log(`Language changed to: ${languageCode}`);
+    // Add your logic here to handle the language change based on the languageCode
+    // For example, you might want to reload the page with the selected language or load different content
+}
+
+// ------------------------End of Language Selector Setup------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
