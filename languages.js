@@ -413,6 +413,7 @@ const translations = {
         "enableShortcutsText": "Zobrazí zkratky",
         "editShortcutsText": "Upravit zkratky",
         "editShortcutsList": "Uložené zkratky",
+        "editShortcutsListInfo": "Nové zkratky můžete přidat klepnutím na ikonku „+“. Upravit existující můžete klepnutím na název nebo URL adresu zkratky.",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
         "adaptiveIconInfoText": "Ikony zkratek se zmenší",
