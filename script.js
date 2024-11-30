@@ -1801,7 +1801,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
         let url = shortcut.querySelector("input.URL").value;
-        const normalizedUrl = url.startsWith('https://') ? url : 'https://' + url.replace("http://", "");
+        const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
 
@@ -1971,6 +1971,11 @@ document.addEventListener("DOMContentLoaded", function () {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+
+            // Handle image loading error on offline scenario
+            logo.onerror = () => {
+                logo.src = "./shortcuts_icons/offline.svg";
+            };
         }
 
         return logo;
