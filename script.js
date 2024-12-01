@@ -711,18 +711,13 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element) {
 
-        console.log('here',engine, engineName, defaultEngineSR, defaultEngineName, element);
-        
         defaultEngine.setAttribute('data-engine-name', defaultEngineName);
         defaultEngine.setAttribute('id', `${defaultEngineName}-dropdown`);
-        defaultEngine.setAttribute('data-engine', defaultEngine);
+        defaultEngine.setAttribute('data-engine', defaultEngineSR);
 
         element.setAttribute('data-engine', engine);
         element.setAttribute('id', `${engineName}-dropdown`);
         element.setAttribute('data-engine-name', engineName);
-
-        console.log(element);
-        
     }
 
     // Function to perform search
@@ -772,6 +767,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
             defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
+    console.log(defaultDropdownSN, defaultDropdownEngineName, storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, storedSearchEngineDropdown);
 
             swapDropdown(defaultDropdownSN, defaultDropdownEngineName, storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, storedSearchEngineDropdown);
             sortDropdown();
