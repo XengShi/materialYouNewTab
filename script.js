@@ -1235,12 +1235,25 @@ document.getElementById('imageUpload').addEventListener('change', function (even
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            const imageUrl = e.target.result;
-            saveImageToIndexedDB(imageUrl)
-                .then(() => {
-                    document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-                })
-                .catch((error) => console.error(error));
+            const image = new Image();
+            image.onload = function () {
+                // Check if dimensions exceed the threshold
+                const totalPixels = image.width * image.height;
+                if (totalPixels > 1000000) {
+                    alert(
+                        `Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed 1,000,000 pixels. ` +
+                        `This may impact performance or fail to load properly.`
+                    );
+                }
+
+                // Save image to IndexedDB
+                saveImageToIndexedDB(e.target.result)
+                    .then(() => {
+                        document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
+                    })
+                    .catch((error) => console.error(error));
+            };
+            image.src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
