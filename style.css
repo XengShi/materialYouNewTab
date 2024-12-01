@@ -1990,6 +1990,7 @@ input:checked + .toggle:before {
 	justify-content: center; /* Center the buttons horizontally */
 	gap: var(--gap); /* Maintain consistent spacing */
 	margin-top: 122px; /* Add spacing below the theming section */
+	justify-content: space-around;
 }
 
 /* Styling for Upload/Clear Buttons with SVGs */
@@ -2009,9 +2010,9 @@ input:checked + .toggle:before {
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
-.clearButton {
-	padding: 10px; /* Smaller padding for the delete icon */
-}
+/* .clearButton {
+	padding: 10px;
+} */
 
 /* Ensure consistent SVG sizing */
 .uploadButton svg,
@@ -2033,7 +2034,7 @@ input:checked + .toggle:before {
 }
 
 .spacer {
-	height: 40px;
+	height: 35px;
 	/* Adjust this value to create space */
 }
 
