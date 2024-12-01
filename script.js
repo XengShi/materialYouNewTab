@@ -626,8 +626,15 @@ document.addEventListener('click', function (event) {
 
 //search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', () => {
+        if (dropdown.style.display == "block"){
+            document.querySelector('.dropdown-btn').click()        
+        }
+    })
+
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
-        var dropdown = document.querySelector('.dropdown-content');
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
