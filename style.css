@@ -1832,7 +1832,7 @@ input:checked + .toggle:before {
   padding: 10px 20px;
   font-size: 12px;
   border-radius: 20px;
-  background-color: #ffffffe8;
+  background-color: var(--whitishColor-blue);
   color: var(--textColorDark-blue);
   cursor: pointer;
   width: 240px; /* Set a fixed width */
@@ -1859,7 +1859,7 @@ input:checked + .toggle:before {
   display: none;
   flex-direction: column;
   border-radius: 20px; /* Rounded corners */
-  background-color: #ffffff;
+  background-color: var(--whitishColor-blue);
   position: absolute; /* Position dropdown absolutely */
   bottom: -160px; /* Adjust this value based on the height of the dropdown */
   width: 240px; /* Match width of button */
@@ -1940,7 +1940,7 @@ input:checked + .toggle:before {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 	height: 36px;
 	width: 36px;
 	border-radius: 18px;
