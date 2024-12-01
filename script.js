@@ -1281,7 +1281,6 @@ document.getElementById('clearImage').addEventListener('click', function () {
         .catch((error) => console.error(error));
 });
 
-
 // Load saved background image on page load
 loadImageFromIndexedDB()
     .then((savedImage) => {
@@ -1306,16 +1305,21 @@ function applyRandomImage() {
 // Event listener for Random button
 document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
 
-// Schedule daily random image at 10:30 AM
+// Function to schedule a daily random image at 10:30 AM
 function scheduleDailyImage() {
     const now = new Date();
     const target = new Date();
     target.setHours(10, 30, 0, 0);
 
-    if (target <= now) target.setDate(target.getDate() + 1); // Schedule for next day if time has passed.
+    // If the current time is after 10:30 AM, apply wallpaper immediately and set for next day.
+    if (now >= target) {
+        applyRandomImage();
+        target.setDate(target.getDate() + 1); // Schedule for the next day
+    }
 
     const timeUntilTarget = target.getTime() - now.getTime();
 
+    // Schedule the next change
     setTimeout(() => {
         applyRandomImage();
         setInterval(applyRandomImage, 24 * 60 * 60 * 1000); // Repeat every 24 hours.
