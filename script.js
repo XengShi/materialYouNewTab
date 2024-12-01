@@ -656,27 +656,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
         element.addEventListener('click', () => {
-            const defaultEngineHTML = defaultEngine.innerHTML;
-
             const engine = element.getAttribute('data-engine');
-            const engineName = element.getAttribute('data-engine-name');
-
-            const defaultEngineName = defaultEngine.getAttribute('data-engine-name');
-
-            // Finds the serial number of the default search engine.
-            const defaultEngineSR = defaultEngine.getAttribute('data-engine');
-
-            defaultEngine.innerHTML = element.innerHTML;
-            element.innerHTML = defaultEngineHTML;
-
-            // Swap The dropdown.
-            swapDropdown(defaultEngineSR, defaultEngineName, engine, engineName, element);
-
-            sortDropdown()
-
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
             radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(element);
+            sortDropdown()
+
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
@@ -684,41 +673,41 @@ document.addEventListener("DOMContentLoaded", () => {
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
-
-            // storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
-            // defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
-
-            // swapDropdown(storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, defaultDropdownSN, defaultDropdownEngineName, defaultEngine);
-            
             const radioButton = engineDiv.querySelector('input[type="radio"]');
             radioButton.checked = true;
 
             const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
-            
+
+            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+
+            // Swap The dropdown.
+            swapDropdown(element);
+            sortDropdown()
+
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
-    
+
     /**
-     * The following JS will swap their IDS And Data - Attribute values.
-     * In result the selected search engine will take the place of the onclicked (New Selected) engine
-     * 
-     * @param {String} engine 
-     * @param {String} engineName 
-     * @param {String} defaultEngineSR 
-     * @param {String} defaultEngineName 
-     * @param {HTMLElement} element 
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
      */
-    function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element) {
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = selectedElement.innerHTML;
+        selectedElement.innerHTML = tempHTML;
 
-        defaultEngine.setAttribute('data-engine-name', defaultEngineName);
-        defaultEngine.setAttribute('id', `${defaultEngineName}-dropdown`);
-        defaultEngine.setAttribute('data-engine', defaultEngineSR);
-
-        element.setAttribute('data-engine', engine);
-        element.setAttribute('id', `${engineName}-dropdown`);
-        element.setAttribute('data-engine-name', engineName);
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+            selectedElement.setAttribute(attr, tempAttr);
+        });
     }
+
 
     // Function to perform search
     function performSearch() {
@@ -754,24 +743,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Find Serial Number - SN with the help of charAt.
         const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
         const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
-        
+
         // check if the default selected search engine is same as the stored one.
-        if(storedSearchEngineSN !== defaultDropdownSN) {
+        if (storedSearchEngineSN !== defaultDropdownSN) {
             // The following line will find out the appropriate dropdown for the selected search engine.
             const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
-            const storedSearchEngineDropdownEngineSN = storedSearchEngineDropdown.getAttribute('data-engine'); 
-            const storedSearchEngineDropdownEnginName = storedSearchEngineDropdown.getAttribute('data-engine-name'); 
 
-            const defaultDropdownEngineName = defaultEngine.getAttribute('data-engine-name');
-            const storedSearchEngineDropdownHTML = storedSearchEngineDropdown.innerHTML;
-
-            storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
-            defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
-    console.log(defaultDropdownSN, defaultDropdownEngineName, storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, storedSearchEngineDropdown);
-
-            swapDropdown(defaultDropdownSN, defaultDropdownEngineName, storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, storedSearchEngineDropdown);
+            swapDropdown(storedSearchEngineDropdown);
             sortDropdown();
-// 
         }
 
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
