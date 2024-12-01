@@ -630,14 +630,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
     const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not([id$="default-dropdown"])');
-    const defaultEngine = document.querySelector('#default-dropdown-item > div');
     
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
         element.addEventListener('click', () => {
+            const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+            const defaultEngineHTML = defaultEngine.innerHTML;
+
             const engine = element.getAttribute('data-engine');
+            const engineName = element.getAttribute('data-engine-name');
+
+            const defaultEngineName = defaultEngine.getAttribute('data-engine-name');
+
+            // Finds the serial number of the default search engine.
+            const defaultEngineSR = defaultEngine.getAttribute('data-engine');
+
             defaultEngine.innerHTML = element.innerHTML;
-            element.innerHTML = defaultEngine.innerHTML;
+            element.innerHTML = defaultEngineHTML;
+
+            /**
+             * The following JS will swap their IDS And Data - Attribute values.
+             * In result the selected search engine will take the place of the onclicked (New Selected) engine
+             */
+            
+            defaultEngine.setAttribute('data-engine-name', engineName);
+            defaultEngine.setAttribute('id', `${engineName}-dropdown`);
+            defaultEngine.setAttribute('data-engine', engine);
+            
+            element.setAttribute('data-engine', defaultEngineSR);
+            element.setAttribute('id', `${defaultEngineName}-dropdown`);
+            element.setAttribute('data-engine-name', defaultEngineName);
             
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
