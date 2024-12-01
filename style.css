@@ -201,10 +201,10 @@
 	background-color: var(--accentLightTint-blue);
 }
 
-.whitishColor {
+/* .whitishColor {
 	fill: var(--whitishColor-blue);
 	background-color: var(--whitishColor-blue);
-}
+} */
 
 .strokecolor {
 	stroke: var(--darkColor-blue);
@@ -288,9 +288,9 @@ body {
 	color: rgba(255, 255, 255, 0.9);
 	text-align: center;
 	padding: 5px;
-	border-radius: 7px;
+	border-radius: 8px;
 	position: absolute;
-	top: 108%;
+	top: 120%;
 	/* Position below the icon */
 	left: 50%;
 	transform: translateX(-50%);
@@ -308,16 +308,10 @@ body {
 	opacity: 1;
 }
 
-/* Hide tooltip when menu is open */
-.googleAppsCont:hover + .icon-container .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
-}
-
-/* Hide tooltip when icon button is clicked */
-.googleAppsCont.clicked .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
+/* Ensure tooltip remains hidden when menu is visible */
+.menu-open .tooltip-text {
+	visibility: hidden !important;
+	opacity: 0 !important;
 }
 
 /* Separator Styling */
@@ -885,9 +879,9 @@ body {
 }
 
 /* Placeholder color when the condition is met */
-#searchQ.darker-placeholder::placeholder {
+/* #searchQ.darker-placeholder::placeholder {
 	color: #3c3c3c;
-}
+} */
 
 .searchControls {
 	margin-left: 10px;
