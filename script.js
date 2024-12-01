@@ -7,25 +7,10 @@
  */
 
 
-// Check if alert has already been shown
-if (!localStorage.getItem('alertShown')) {
-    // Show the alert after 4 seconds
-    setTimeout(() => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const message = isMac
-            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
-            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
-
-        alert(message);
-
-        // Set a flag in localStorage so the alert is not shown again
-        localStorage.setItem('alertShown', 'true');
-    }, 4000);
-}
-
 let proxyurl;
 let clocktype;
 let hourformat;
+
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         // Cache DOM elements
@@ -639,20 +624,104 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Search function
+//search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', (event) => {
+        if (dropdown.style.display == "block") {
+            event.stopPropagation();
+            dropdown.style.display = 'none';
+        }
+    })
+
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+
+    const sortDropdown = () => {
+        // Change the elements to the array
+        const elements = Array.from(searchDropdowns);
+
+        // Sort the dropdown
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+
+            return engineA - engineB;
+        })
+
+        // get the parent
+        const parent = sortedDropdowns[0]?.parentNode;
+
+        // Append the items. if parent exists.
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item));
+        }
+    }
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+            radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(element);
+            sortDropdown()
+
+
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
             const radioButton = engineDiv.querySelector('input[type="radio"]');
+
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+
+            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+
+            // Swap The dropdown.
+            swapDropdown(element);
+            sortDropdown()
+
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+
+    /**
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
+     */
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = selectedElement.innerHTML;
+        selectedElement.innerHTML = tempHTML;
+
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+            selectedElement.setAttribute(attr, tempAttr);
+        });
+    }
+
 
     // Function to perform search
     function performSearch() {
@@ -683,7 +752,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+
+        // check if the default selected search engine is same as the stored one.
+        if (storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+
+            swapDropdown(storedSearchEngineDropdown);
+            sortDropdown();
+        }
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
@@ -894,14 +977,12 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
             document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
             document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
-            document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
         } else {
             document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
-            document.documentElement.style.setProperty('--whitishColor-blue', `var(--whitishColor-${colorValue})`);
         }
     }
 
@@ -1095,9 +1176,6 @@ const applySelectedTheme = (colorValue) => {
         "orange": "./favicon/orange.png",
         "purple": "./favicon/purple.png",
         "pink": "./favicon/pink.png",
-        "brown": "./favicon/brown.png",
-        "silver": "./favicon/silver.png",
-        "grey": "./favicon/grey.png",
         "dark": "./favicon/dark.png",
     };
 
@@ -1133,132 +1211,9 @@ radioButtons.forEach(radioButton => {
     });
 });
 
+
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper --------------
-// Constants for database and storage
-const dbName = 'ImageDB';
-const storeName = 'backgroundImages';
-
-// Open IndexedDB database
-function openDatabase() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open(dbName, 1);
-
-        request.onupgradeneeded = function (event) {
-            const db = event.target.result;
-            db.createObjectStore(storeName);
-        };
-
-        request.onsuccess = function (event) {
-            resolve(event.target.result);
-        };
-
-        request.onerror = function (event) {
-            reject('Database error: ' + event.target.errorCode);
-        };
-    });
-}
-
-// Save image data to IndexedDB
-function saveImageToIndexedDB(imageUrl) {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            store.put(imageUrl, 'backgroundImage');
-
-            transaction.oncomplete = function () {
-                resolve();
-            };
-
-            transaction.onerror = function (event) {
-                reject('Transaction error: ' + event.target.errorCode);
-            };
-        });
-    });
-}
-
-// Load image data from IndexedDB
-function loadImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readonly');
-            const store = transaction.objectStore(storeName);
-            const request = store.get('backgroundImage');
-
-            request.onsuccess = function (event) {
-                resolve(event.target.result);
-            };
-
-            request.onerror = function (event) {
-                reject('Request error: ' + event.target.errorCode);
-            };
-        });
-    });
-}
-
-// Clear image data from IndexedDB
-function clearImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            const request = store.delete('backgroundImage');
-
-            request.onsuccess = function () {
-                resolve();
-            };
-
-            request.onerror = function (event) {
-                reject('Delete error: ' + event.target.errorCode);
-            };
-        });
-    });
-}
-
-// Event listener for Upload button
-document.getElementById('uploadTrigger').addEventListener('click', function () {
-    document.getElementById('imageUpload').click();
-});
-
-// Handle file input and save image
-document.getElementById('imageUpload').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const imageUrl = e.target.result;
-            saveImageToIndexedDB(imageUrl)
-                .then(() => {
-                    document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-                })
-                .catch((error) => console.error(error));
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-// Event listener for Clear button
-document.getElementById('clearImage').addEventListener('click', function () {
-    if (confirm('Are you sure you want to clear the background image?')) {
-        clearImageFromIndexedDB()
-            .then(() => {
-                document.body.style.removeProperty('--bg-image');
-            })
-            .catch((error) => console.error(error));
-    }
-});
-
-// Load saved background image on page load
-loadImageFromIndexedDB()
-    .then((savedImage) => {
-        if (savedImage) {
-            document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-        }
-    })
-    .catch((error) => console.error(error));
-// --------------------------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
@@ -1586,7 +1541,34 @@ document.getElementById("menuCloseButton").onclick = () => {
 
 // ---------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    let selectedIndex = -1;
 
+    // Function to update the selected item
+    function updateSelection() {
+        dropdownItems.forEach((item, index) => {
+            if (index === selectedIndex) {
+                item.focus()
+                item.classList.add('selected');
+            } else {
+                item.focus()
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Event listener for keydown events to navigate up/down
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowDown') {
+            selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+        } else if (event.key === 'ArrowUp') {
+            selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+        }
+        updateSelection();
+    });
+
+    // Initial setup for highlighting
+    updateSelection();
 
     /* ------ Constants ------ */
 
@@ -2168,7 +2150,6 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("adaptiveIconField", "inactive");
         }
     });
-
     searchsuggestionscheckbox.addEventListener("change", function () {
         saveCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
         if (searchsuggestionscheckbox.checked) {
@@ -2217,7 +2198,6 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("greetingField", "inactive");
         }
     });
-
     hourcheckbox.addEventListener("change", function () {
         saveCheckboxState("hourcheckboxState", hourcheckbox);
         if (hourcheckbox.checked) {
@@ -2226,12 +2206,10 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("hourformat", "false");
         }
     });
-
     greetingCheckbox.addEventListener("change", () => {
         localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
         updatedigiClock();
     });
-
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -2252,7 +2230,6 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
-
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {

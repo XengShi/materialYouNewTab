@@ -6,465 +6,428 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
 
 @font-face {
-	font-family: "poppins";
-	src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+    font-family: 'poppins';
+    src: url('/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "poppins", "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', 'Poppins', sans-serif;
 }
 
 :root {
-	/* 🔵🔵🔵 */
-	/* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
-	--bg-color-blue: #bbd6fd;
-	--accentLightTint-blue: #e2eeff;
-	--darkerColor-blue: #3569b2;
-	--darkColor-blue: #4382ec;
-	--textColorDark-blue: #1b3041;
-	--whitishColor-blue: #ffffff;
+    /* 🔵🔵🔵 */
+    /* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
+    --bg-color-blue: #BBD6FD;
+    --accentLightTint-blue: #E2EEFF;
+    --darkerColor-blue: #3569b2;
+    --darkColor-blue: #030303;
+    --textColorDark-blue: #1b3041;
 
-	/* 🔴🔴🔴 */
-	--bg-color-red: #fdbdbd;
-	--accentLightTint-red: #ffe7e7;
-	--darkerColor-red: #b23535;
-	--darkColor-red: #ec4343;
-	--textColorDark-red: #411b1b;
-	--whitishColor-red: #ffffff;
+    /* 🔴🔴🔴 */
+    --bg-color-red: #FDBDBD;
+    --accentLightTint-red: #ffe7e7;
+    --darkerColor-red: #B23535;
+    --darkColor-red: #EC4343;
+    --textColorDark-red: #411B1B;
 
-	/* 🟡🟡🟡 */
-	--bg-color-yellow: #ffed80;
-	--accentLightTint-yellow: #fff6c3;
-	--darkerColor-yellow: #ae9502;
-	--darkColor-yellow: #d1a93d;
-	--textColorDark-yellow: #2f2707;
-	--whitishColor-yellow: #ffffff;
+    /* 🟡🟡🟡 */
+    --bg-color-yellow: #ffed80;
+    --accentLightTint-yellow: #fff6c3;
+    --darkerColor-yellow: #ae9502;
+    --darkColor-yellow: #d1a93d;
+    --textColorDark-yellow: #2f2707;
 
-	/* 🟢🟢🟢 */
-	--bg-color-green: #c7e4c7;
-	--accentLightTint-green: #e1f1e1;
-	--darkerColor-green: #458245;
-	--darkColor-green: #5cba5c;
-	--textColorDark-green: #1b411b;
-	--whitishColor-green: #ffffff;
+    /* 🟢🟢🟢 */
+    --bg-color-green: #C7E4C7;
+    --accentLightTint-green: #E1F1E1;
+    --darkerColor-green: #458245;
+    --darkColor-green: #5CBA5C;
+    --textColorDark-green: #1B411B;
 
-	/* Cyan */
-	/* --bg-color-cyan: #9bffff;
+    /* Cyan */
+    /* --bg-color-cyan: #9bffff;
     --accentLightTint-cyan: #d5ffff;
     --darkerColor-cyan: #5E9CA0;
     --darkColor-cyan: #00CED1;
     --textColorDark-cyan: #08354B; */
 
-	--bg-color-cyan: #9cefef;
-	--accentLightTint-cyan: #d5ffff;
-	--darkerColor-cyan: #07787f;
-	--darkColor-cyan: #09b2b4;
-	--textColorDark-cyan: #08354b;
-	--whitishColor-cyan: #ffffff;
-
-	/* 🩷💗🩷 */
-	--bg-color-pink: #f9c8d6;
-	--accentLightTint-pink: #ffebf2;
-	--darkerColor-pink: #b24b64;
-	--darkColor-pink: #ec5e78;
-	--textColorDark-pink: #411b28;
-	--whitishColor-pink: #ffffff;
-
-	/* 🟠🟠🟠 */
-	--bg-color-orange: #ffd8b2;
-	--accentLightTint-orange: #ffedd5;
-	--darkerColor-orange: #b26d3e;
-	--darkColor-orange: #ec844d;
-	--textColorDark-orange: #412b1e;
-	--whitishColor-orange: #ffffff;
-
-	/* 🟣🟣🟣 */
-	--bg-color-purple: #dac2e8;
-	--accentLightTint-purple: #e9e2f3;
-	--darkerColor-purple: #724b8f;
-	--darkColor-purple: #9563b5;
-	--textColorDark-purple: #2d1b3e;
-	--whitishColor-purple: #ffffff;
-
-	/* ⚪ Silver */
-	--bg-color-silver: #c6c6c6;
-	--accentLightTint-silver: #e5e5e5;
-	--darkerColor-silver: #6f6f6f;
-	--darkColor-silver: #9e9e9e;
-	--textColorDark-silver: #333333;
-	--whitishColor-silver: #ffffff;
-
-	/* 🟤🟤🟤 */
-	--bg-color-brown: #dfc28d;
-	--accentLightTint-brown: #eae3c9;
-	--darkerColor-brown: #4e3930;
-	--darkColor-brown: #705347;
-	--textColorDark-brown: #16100d;
-	--whitishColor-brown: #ffffff;
-
-	/* 🩶🩶🩶 Grey */
-	--bg-color-grey: #565656;
-	--accentLightTint-grey: #818181;
-	--darkerColor-grey: #262626;
-	--darkColor-grey: #434343;
-	--textColorDark-grey: #111111;
-	--whitishColor-grey: #999999;
+    --bg-color-cyan: #9cefef;
+    --accentLightTint-cyan: #d5ffff;
+    --darkerColor-cyan: #07787f;
+    --darkColor-cyan: #09b2b4;
+    --textColorDark-cyan: #08354B;
 
 
-	/* ⚫⚫⚫ */
-	--bg-color-dark: #171615;
-	--accentLightTint-dark: #3c3c3c;
-	--darkerColor-dark: #eeeeee;
-	--darkColor-dark: #212121;
-	--textColorDark-dark: #d6d6d6;
-	--whitishColor-dark: #ffffff;
+    /* 🩷💗🩷 */
+    --bg-color-pink: #F9C8D6;
+    --accentLightTint-pink: #FFEBF2;
+    --darkerColor-pink: #B24B64;
+    --darkColor-pink: #EC5E78;
+    --textColorDark-pink: #411B28;
 
-	/* ----------------- */
+    /* 🟠🟠🟠 */
+    --bg-color-orange: #FFD8B2;
+    --accentLightTint-orange: #FFEDD5;
+    --darkerColor-orange: #B26D3E;
+    --darkColor-orange: #EC844D;
+    --textColorDark-orange: #412B1E;
 
-	/* Global variables */
-	--gap: 30px;
-	--round: 30px;
+    /* 🟣🟣🟣 */
+    --bg-color-purple: #DAC2E8;
+    --accentLightTint-purple: #E9E2F3;
+    --darkerColor-purple: #724B8F;
+    --darkColor-purple: #9563B5;
+    --textColorDark-purple: #2D1B3E;
 
-	/* Shortcut bar */
-	--max-shortcut-bar-width: 60vw;
-	--shortcut-bar-gap-and-padding: 10px;
-	--shortcut-size: 50px;
-	--always-show-dock-background: 0;
+    /* ⚫⚫⚫ */
+    --bg-color-dark: #171615;
+    --accentLightTint-dark: #3c3c3c;
+    --darkerColor-dark: #eeeeee;
+    --darkColor-dark: #212121;
+    --textColorDark-dark: #d6d6d6;
+
+    /* ----------------- */
+
+    /* Global variables */
+    --gap: 30px;
+    --round: 30px;
+
+    /* Shortcut bar */
+    --max-shortcut-bar-width: 60vw;
+    --shortcut-bar-gap-and-padding: 10px;
+    --shortcut-size: 50px;
+    --always-show-dock-background: 0;
+
+    --alpha: 0.7;
 }
 
 .resultBox {
-	max-height: 222px;
-	overflow-y: auto;
+    max-height: 222px;
+    overflow-y: auto;
 
-	position: absolute;
-	bottom: -100px;
-	left: 0;
-	width: 100%;
-	border-radius: 25px;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    border-radius: 25px;
 
-	padding: 5px 10px;
-	scrollbar-width: none;
-	/* For Firefox */
+    padding: 5px 10px;
+    scrollbar-width: none;
+    /* For Firefox */
 
-	/* Initially hidden */
-	opacity: 0;
-	z-index: -1000;
-	transform: translateY(-70px);
-	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
-	pointer-events: none;
+    /* Initially hidden */
+    opacity: 0;
+    z-index: -1000;
+    transform: translateY(-70px);
+    transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
+    pointer-events: none;
 }
 
 .resultBox::-webkit-scrollbar {
-	display: none;
-	/* For Chrome, Safari, and Edge */
+    display: none;
+    /* For Chrome, Safari, and Edge */
 }
 
 /* Visible state: when you want the result box to appear */
 .resultBox.show {
-	opacity: 1;
-	visibility: visible;
-	transform: translateY(0);
-	z-index: 1000;
-	pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    z-index: 1000;
+    pointer-events: all;
 }
 
 .resultItem {
-	padding: 8px;
-	cursor: pointer;
-	font-size: 1.1rem;
-	color: var(--textColorDark-blue);
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--textColorDark-blue);
 }
 
 .resultItem.active,
 .resultItem:hover {
-	background-color: var(--darkColor-blue);
-	border-radius: 15px;
-	color: #fff;
+    background-color: var(--darkColor-blue);
+    border-radius: 15px;
+    color: #fff;
+}
+
+.spacer {
+    height: 65px;
+    /* Adjust this value to create space */
 }
 
 /* Theme */
 /* ⚫🟣🔵🔴🟡🟢🟠⚪ */
 
 .accentColor {
-	fill: var(--darkColor-blue);
+    fill: var(--darkColor-blue);
 }
 
 .bgLightTint {
-	fill: var(--accentLightTint-blue);
-	background-color: var(--accentLightTint-blue);
-}
-
-.whitishColor {
-	fill: var(--whitishColor-blue);
-	background-color: var(--whitishColor-blue);
+    fill: var(--accentLightTint-blue);
+    background-color: var(--accentLightTint-blue);
 }
 
 .strokecolor {
-	stroke: var(--darkColor-blue);
+    stroke: var(--darkColor-blue);
 }
 
 .lessDark {
-	background-color: var(--bg-color-blue);
-	fill: var(--bg-color-blue);
+    background-color: var(--bg-color-blue);
+    fill: var(--bg-color-blue);
 }
 
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
 
 html {
-	height: 100%;
-	width: 100%;
-	margin: 0;
-	scrollbar-width: none; /* For Firefox */
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    scrollbar-width: none; /* For Firefox */
 }
 
-.html::-webkit-scrollbar {
-	display: none;
+.html::-webkit-scrollbar{
+    display: none;
 }
 
 body {
-	background-color: var(--bg-color-blue);
-	color: var(--textColorDark-blue);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	min-height: 100%;
-	/* background-color: red; */
-	overflow: auto;
-
-	background-image: var(--bg-image, none);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 100vh; /* Ensure the image fits the viewport height */
-	margin: 0; /* Remove margin to avoid unwanted spacing */
+    background-color: var(--bg-color-blue);
+    color: var(--textColorDark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    /* background-color: red; */
+    overflow: auto;
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .googleAppsCont {
-	position: fixed;
-	display: inline-block;
-	margin: 10px;
-	top: var(--gap);
-	right: var(--gap);
-	font-size: 25px;
-	/* Set the size of the dots */
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	z-index: 2;
-	/* Set z-index */
+    position: fixed;
+    display: inline-block;
+    margin: 10px;
+    top: var(--gap);
+    right: var(--gap);
+    font-size: 25px;
+    /* Set the size of the dots */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    /* Set z-index */
 }
 
 /* Styling for the SVG icon */
 .dot-icon {
-	fill: var(--darkColor-blue);
-	/* Icon color */
-	background-color: var(--accentLightTint-blue);
-	border-radius: 25%;
-	padding: 1px;
-	cursor: pointer;
-	transition: transform 0.3s ease, fill 0.3s ease;
+    fill: var(--darkColor-blue);
+    /* Icon color */
+    background-color: var(--accentLightTint-blue);
+    border-radius: 25%;
+    padding: 1px;
+    cursor: pointer;
+    transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 /* Hover effect for the icon */
 .dot-icon:hover {
-	transform: rotate(90deg) scale(1.05);
-	fill: var(--darkerColor-blue);
+    transform: rotate(90deg) scale(1.05);
+    fill: var(--darkerColor-blue);
 }
 
 /* Tooltip Text Styling */
 .tooltip-text {
-	visibility: hidden;
-	background-color: var(--darkColor-blue);
-	color: rgba(255, 255, 255, 0.9);
-	text-align: center;
-	padding: 5px;
-	border-radius: 7px;
-	position: absolute;
-	top: 108%;
-	/* Position below the icon */
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 12px;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	white-space: nowrap;
-	z-index: 3;
-	/* Set z-index */
+    visibility: hidden;
+    background-color: var(--darkColor-blue);
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    padding: 5px;
+    border-radius: 7px;
+    position: absolute;
+    top: 108%;
+    /* Position below the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 3;
+    /* Set z-index */
 }
 
 /* Show tooltip on hover */
 .googleAppsCont:hover .tooltip-text {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Hide tooltip when menu is open */
-.googleAppsCont:hover + .icon-container .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
+.googleAppsCont:hover+.icon-container .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* Hide tooltip when icon button is clicked */
 .googleAppsCont.clicked .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* Separator Styling */
 .separator {
-	width: 100%;
-	height: 1px;
-	background-color: var(--darkColor-blue);
-	/* Adjust color as needed */
-	margin: 10px 0;
-	/* Adjust spacing as needed */
+    width: 100%;
+    height: 1px;
+    background-color: var(--darkColor-blue);
+    /* Adjust color as needed */
+    margin: 10px 0;
+    /* Adjust spacing as needed */
 }
 
 /* Add Separator in Icon Container */
 .icon-container .separator {
-	grid-column: span 3;
-	/* Ensure separator spans across all columns */
+    grid-column: span 3;
+    /* Ensure separator spans across all columns */
 }
 
 /* Icon Container Styling (Placed Below Dot Icon) */
 .icon-container {
-	display: grid;
-	gap: 10px;
-	padding: 20px 10px;
-	/* Adjusted padding to account for scrollbar */
-	background-color: var(--accentLightTint-blue);
-	border-radius: 30px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: repeat(3, 1fr);
-	/* 3 icons per row */
-	justify-items: center;
-	/* Center icons within each grid cell */
-	position: absolute;
-	/* Absolute positioning for dynamic alignment */
-	top: 85px;
-	/* Place below the dot icon */
-	right: 10px;
-	max-height: calc(40px * 3 + 10px * 2 + 290px);
-	/* Limit to 12 icons (3 rows * icon size + gaps) */
-	overflow-y: auto;
-	/* Add vertical scrollbar when needed */
-	box-sizing: border-box;
-	/* Ensure padding is included in width and height */
-	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
+    display: grid;
+    gap: 10px;
+    padding: 20px 10px;
+    /* Adjusted padding to account for scrollbar */
+    background-color: var(--accentLightTint-blue);
+    border-radius: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 8px solid var(--bg-color-blue);
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 icons per row */
+    justify-items: center;
+    /* Center icons within each grid cell */
+    position: absolute;
+    /* Absolute positioning for dynamic alignment */
+    top: 85px;
+    /* Place below the dot icon */
+    right: 10px;
+    max-height: calc(40px * 3 + 10px * 2 + 290px);
+    /* Limit to 12 icons (3 rows * icon size + gaps) */
+    overflow-y: auto;
+    /* Add vertical scrollbar when needed */
+    box-sizing: border-box;
+    /* Ensure padding is included in width and height */
+    z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
 
 /* Individual Icon Item Styling */
 .icon-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	padding: 10px;
-	border-radius: 10px;
-	transition: transform 0.3s ease, background-color 0.3s ease;
-	text-decoration: none;
-	cursor: pointer;
-	position: relative;
-	min-width: 100px;
-	/* Ensure consistent width */
-	background-color: var(--accentLightTint-blue);
-	/* Default background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    min-width: 100px;
+    /* Ensure consistent width */
+    background-color: var(--accentLightTint-blue);
+    /* Default background */
 }
 
 /* Icon Styling */
 .menuicon {
-	color: var(--darkColor-blue);
-	width: 40px;
-	height: 40px;
-	margin-bottom: 8px;
+    color: var(--darkColor-blue);
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
 }
 
 /* Label Styling */
 .label {
-	font-size: 14px;
-	color: var(--textColorDark-blue);
+    font-size: 14px;
+    color: var(--textColorDark-blue);
 }
 
 /* Short Label (Default) */
 .label.short {
-	display: block;
+    display: block;
 }
 
 /* Full Label (Hidden by Default) */
 .label.full {
-	display: none;
-	white-space: pre-line;
-	/* Ensure text retains line breaks */
-	text-align: center;
-	/* Center align text */
-	position: absolute;
-	font-size: 0.8rem;
-	bottom: 0;
+    display: none;
+    white-space: pre-line;
+    /* Ensure text retains line breaks */
+    text-align: center;
+    /* Center align text */
+    position: absolute;
+    font-size: 0.8rem;
+    bottom: 0;
 }
 
 /* Hover Effect for Icon Item */
 .icon-item:hover {
-	background-color: var(--bg-color-blue);
-	transform: scale(1.1);
-	/* Add zoom-in effect */
+    background-color: var(--bg-color-blue);
+    transform: scale(1.1);
+    /* Add zoom-in effect */
 }
 
 /* Show Full Label on Hover for Multi-word Labels */
 .icon-item:hover .label.full {
-	display: block;
+    display: block;
 }
 
 .icon-item:hover .label.short {
-	display: block;
-	/* Ensure single-word labels remain visible */
+    display: block;
+    /* Ensure single-word labels remain visible */
 }
 
 .icon-item:hover .label.short.one {
-	display: none;
-	/* Ensure single-word labels remain visible */
+    display: none;
+    /* Ensure single-word labels remain visible */
 }
 
 /* Customize scrollbar to appear on the border */
 /* For Chrome, Edge, Safari */
 .icon-container::-webkit-scrollbar {
-	width: 5px;
-	/* Match the border width */
+    width: 5px;
+    /* Match the border width */
 }
 
 .icon-container::-webkit-scrollbar-track {
-	background-color: transparent;
-	border-radius: 30px;
+    background-color: transparent;
+    border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
-	background-color: var(--darkColor-blue);
-	border-radius: 30px;
+    background-color: var(--darkColor-blue);
+    border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkerColor-blue);
-	border-radius: 30px;
+    background-color: var(--darkerColor-blue);
+    border-radius: 30px;
 }
 
 /* For Firefox */
 .icon-container {
-	scrollbar-width: thin;
-	/* Thin scrollbar */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Thumb color and track color */
-	overflow-x: hidden;
-	/* Hide horizontal scrollbar */
+    scrollbar-width: thin;
+    /* Thin scrollbar */
+    scrollbar-color: var(--darkColor-blue) transparent;
+    /* Thumb color and track color */
+    overflow-x: hidden;
+    /* Hide horizontal scrollbar */
 }
 
 /* .icon-container:hover {
@@ -474,360 +437,359 @@ body {
 /* ----------------- End of Google App Menu ----------------- */
 
 .centerDiv {
-	display: grid;
-	grid-template-columns: auto auto;
-	width: fit-content;
-	height: fit-content;
-	/* background-color: #17a638; */
-	/* always leave enough space for the shortcuts bar at the bottom */
-	padding-bottom: calc(var(--shortcut-size) + var(--gap) * 2);
+    display: grid;
+    grid-template-columns: auto auto;
+    width: fit-content;
+    height: fit-content;
+    /* background-color: #17a638; */
+    /* always leave enough space for the shortcuts bar at the bottom */
+    padding-bottom: calc(var(--shortcut-size) + var(--gap) * 2);
 }
 
 /* ____________Clock_____________________---- */
 #digitalClock {
-	width: 300px;
-	height: 300px;
-	border-radius: 100%;
-	position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    position: relative;
 }
 
 #analogClock {
-	width: 300px;
-	height: 300px;
-	border-radius: 100%;
-	position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    position: relative;
 }
 
 #clock svg {
-	position: absolute;
-	animation: clockAnm 1s;
+    position: absolute;
+    animation: clockAnm 1s;
 }
 
 @keyframes clockAnm {
-	from {
-		transform: rotate(40deg);
-	}
+    from {
+        transform: rotate(40deg);
+    }
 
-	to {
-		transform: rotate(0deg);
-	}
+    to {
+        transform: rotate(0deg);
+    }
 }
 
 .clock .centerPoint {
-	width: 20px;
-	height: 20px;
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .clock .centerPoint .sui {
-	position: absolute;
-	width: 20px;
-	height: 100px;
-	background-color: var(--darkColor-blue);
-	top: -90px;
-	transform-origin: bottom;
-	border-radius: 10px;
+    position: absolute;
+    width: 20px;
+    height: 100px;
+    background-color: var(--darkColor-blue);
+    top: -90px;
+    transform-origin: bottom;
+    border-radius: 10px;
 }
 
 #hour {
-	height: 80px;
-	top: -70px;
-	background-color: var(--darkerColor-blue);
-	transform: rotate(90deg);
-	transition: transform 1.5s;
+    height: 80px;
+    top: -70px;
+    background-color: var(--darkerColor-blue);
+    transform: rotate(90deg);
+    transition: transform 1.50s;
 }
 
 #hour::after {
-	content: "";
-	position: absolute;
-	width: 20px;
-	height: 30px;
-	background-color: var(--darkerColor-blue);
-	bottom: -10px;
-	border-radius: 100px;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: var(--darkerColor-blue);
+    bottom: -10px;
+    border-radius: 100px;
 }
 
 #minute {
-	z-index: 9 !important;
-	transition: transform 1.5s;
+    z-index: 9 !important;
+    transition: transform 1.50s;
 }
 
 #minute::after {
-	content: "";
-	position: absolute;
-	width: 20px;
-	height: 30px;
-	background-color: var(--darkColor-blue);
-	bottom: -10px;
-	border-radius: 100px;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: var(--darkColor-blue);
+    bottom: -10px;
+    border-radius: 100px;
 }
 
 #second {
-	background-color: #00000000;
-	transition: transform 1s;
+    background-color: #00000000;
+    transition: transform 1s;
 }
 
 #second::after {
-	content: "";
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	background-color: var(--darkColor-blue);
-	top: -28px;
-	border-radius: 100%;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--darkColor-blue);
+    top: -28px;
+    border-radius: 100%;
 }
 
 /* ---------------------- */
 .ttteexxtt {
-	position: absolute;
-	/* background-color: yellow; */
-	bottom: 18px;
-	/*Because search engines has margin-bottom 20px*/
-	left: 5px;
+    position: absolute;
+    /* background-color: yellow; */
+    bottom: 18px;
+    /*Because search engines has margin-bottom 20px*/
+    left: 5px;
 }
 
 #userText {
-	font-family: "poppins", serif;
-	font-size: 1.4rem;
-	margin-bottom: 10px;
+    font-family: 'poppins', serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
 #date {
-	font-size: 1.4rem;
+    font-size: 1.4rem;
 }
 
 .digidate {
-	fill: var(--textColorDark-blue);
+    fill: var(--textColorDark-blue);
 }
 
 .amPm {
-	fill: var(--textColorDark-blue);
+    fill: var(--textColorDark-blue);
 }
 
 .digiclock {
-	text-anchor: middle;
-	fill: var(--darkColor-blue);
-	font-size: 8rem;
-	font-weight: lighter;
-	/* background-color: yellow; */
-	margin: auto;
-	width: fit-content;
+    text-anchor: middle;
+    fill: var(--darkColor-blue);
+    font-size: 8rem;
+    font-weight: lighter;
+    /* background-color: yellow; */
+    margin: auto;
+    width: fit-content;
 }
 
 #digihours {
-	fill: var(--darkerColor-blue);
+    fill: var(--darkerColor-blue);
 }
 
 #digicolon {
-	animation: blink 1s infinite;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
-	50% {
-		opacity: 0;
-	}
+    50% {
+        opacity: 0;
+    }
 }
 
 /* __________end of clock___________________ */
 .leftDiv {
-	/* padding-right: 100px; */
-	transform: translateX(-100px);
-	/* background-color: rgba(102, 51, 153, 0.404); */
-	/* height: fit-content; */
+    /* padding-right: 100px; */
+    transform: translateX(-100px);
+    /* background-color: rgba(102, 51, 153, 0.404); */
+    /* height: fit-content; */
 }
 
 .rightDiv {
-	position: relative;
-	width: 640px;
-	transform: translateX(100px);
+    position: relative;
+    width: 640px;
+    transform: translateX(100px);
 }
 
 .rightDiv .topDiv {
-	height: 196px;
-	display: flex;
-	justify-content: flex-end;
+    height: 196px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* lrectangle______________________ */
 .rightDiv .topDiv .lrectangle {
-	height: 100%;
-	width: 100%;
-	border-radius: var(--round);
-	padding: 20px;
-	position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: var(--round);
+    padding: 20px;
+    position: relative;
 }
 
 #conditionText {
-	font-size: 1.2rem;
-	color: var(--textColorDark-blue);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 372px;
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 372px;
 }
 
 .cconnt {
-	width: calc(100% - 40px);
-	bottom: 20px;
-	height: fit-content;
-	position: absolute;
-	font-size: 1rem;
+    width: calc(100% - 40px);
+    bottom: 20px;
+    height: fit-content;
+    position: absolute;
+    font-size: 1rem;
 }
 
 .tilesContainer {
-	height: 50px;
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 20px;
+    height: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .tilesContainer .tiles {
-	background-color: var(--whitishColor-blue);
-	border-radius: 22px;
-	position: relative;
-	height: 50px;
+    background-color: #ffffff;
+    border-radius: 22px;
+    position: relative;
+    height: 50px;
 }
 
 .tilesContainer .location {
-	background-color: var(--darkColor-blue);
+    background-color: var(--darkColor-blue);
 }
 
 .tilesContainer .location .location_spn {
-	color: #fff;
+    color: #fff;
 }
 
 .tilesContainer .tiles .icon {
-	height: 100%;
-	aspect-ratio: 1/1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tilesContainer .tiles span {
-	position: absolute;
-	top: 0;
-	left: 46px;
-	bottom: 0;
-	margin: auto;
-	color: var(--textColorDark-blue);
-	height: fit-content;
+    position: absolute;
+    top: 0;
+    left: 46px;
+    bottom: 0;
+    margin: auto;
+    color: var(--textColorDark-blue);
+    height: fit-content;
 }
 
 .humidityBar {
-	border-radius: 20px;
-	height: 40px;
-	width: 100%;
-	margin-bottom: 20px;
-	position: relative;
+    border-radius: 20px;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .humidityBar::after {
-	position: absolute;
-	content: "";
-	height: 100%;
-	width: 40px;
-	background-size: 66%;
-	background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center
-		center;
-	right: 0;
-	border-radius: 100%;
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 40px;
+    background-size: 66%;
+    background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center center;
+    right: 0;
+    border-radius: 100%;
 }
 
 .humidityBar .thinLine {
-	position: absolute;
-	width: calc(100% - 60px);
-	background-color: var(--whitishColor-blue);
-	height: 6px;
-	border-radius: 10px;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+    position: absolute;
+    width: calc(100% - 60px);
+    background-color: white;
+    height: 6px;
+    border-radius: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .humidityBar .slider {
-	height: 100%;
-	width: calc(10% - 60px);
-	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
-	min-width: 42%;
-	background-color: var(--darkColor-blue);
-	border-radius: 100px;
-	position: absolute;
-	transition: width 1s;
+    height: 100%;
+    width: calc(10% - 60px);
+    /*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
+    min-width: 42%;
+    background-color: var(--darkColor-blue);
+    border-radius: 100px;
+    position: absolute;
+    transition: width 1s;
 }
 
 #humidityLevel {
-	color: #fff;
-	width: fit-content;
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	margin: auto;
-	left: 20px;
-	height: fit-content;
+    color: #fff;
+    width: fit-content;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    left: 20px;
+    height: fit-content;
 }
 
 /* End of _____________________- */
 
 /* ------------Weather Pill------------- */
 .rightDiv .topDiv .rAndakar {
-	position: relative;
-	height: 100%;
-	aspect-ratio: 1/1;
-	margin-left: var(--gap);
-	animation: rAndAnm 1s;
-	/* transition: rotate 1s; */
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin-left: var(--gap);
+    animation: rAndAnm 1s;
+    /* transition: rotate 1s; */
 }
 
 @keyframes rAndAnm {
-	from {
-		transform: rotate(-45deg);
-	}
+    from {
+        transform: rotate(-45deg);
+    }
 
-	to {
-		transform: rotate(0deg);
-	}
+    to {
+        transform: rotate(0deg);
+    }
 }
 
 .rightDiv .topDiv .rAndakar .wInfo {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	transform: translateX(14px);
-	width: 100px;
-	height: 80%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateX(14px);
+    width: 100px;
+    height: 80%;
 }
 
 #temp {
-	font-size: 3.5rem;
-	font-weight: bold;
-	color: var(--darkerColor-blue);
-	margin: auto;
-	width: fit-content;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--darkerColor-blue);
+    margin: auto;
+    width: fit-content;
 }
 
 .tempUnit {
-	font-size: 0.4em;
-	position: relative;
-	top: -1.1em;
-	left: 3px;
-	color: var(--darkColor-blue);
+    font-size: 0.4em;
+    position: relative;
+    top: -1.1em;
+    left: 3px;
+    color: var(--darkColor-blue);
 }
 
 #wIcon {
-	width: 80px;
-	height: 80px;
-	margin-top: -11px;
-	margin-left: -30px;
+    width: 80px;
+    height: 80px;
+    margin-top: -11px;
+    margin-left: -30px;
 }
 
 /* ------------End of Weather Pill------------- */
@@ -836,233 +798,223 @@ body {
 
 /* _____________Searchbar___________________ */
 .searchbar {
-	margin-top: var(--gap);
-	width: 100%;
-	height: 60px;
-	border-radius: var(--round);
-	/* background-color: var(--accentLightTint-blue); */
-	position: relative;
-	outline: 2px solid #00000000;
-	transition: outline 0.3s;
+    margin-top: var(--gap);
+    width: 100%;
+    height: 60px;
+    border-radius: var(--round);
+    /* background-color: var(--accentLightTint-blue); */
+    position: relative;
+    outline: 2px solid #00000000;
+    transition: outline 0.3s;
 }
 
 .searchbar.active {
-	outline: 2px solid var(--darkColor-blue);
+    outline: 2px solid var(--darkColor-blue);
 }
 
 .searchbar .searchIcon {
-	width: 30px;
-	height: 30px;
-	position: absolute;
-	margin-top: 16px;
-	margin-left: 16px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-top: 16px;
+    margin-left: 16px;
 }
 
 .searchbar-content {
-	display: flex;
-	align-items: center;
-	height: 100%;
-	padding-right: 10px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
 }
 
 #searchQ {
-	flex-grow: 1;
-	height: 80%;
-	top: 0;
-	bottom: 0;
-	margin: auto auto auto 20px;
-	outline: none;
-	border: none;
-	background-color: #00000000;
-	padding: 0 4px;
-	margin-left: 53px;
-	font-size: 1rem;
-}
-
-/* Default placeholder color */
-#searchQ::placeholder {
-	color: #757575;
-}
-
-/* Placeholder color when the condition is met */
-#searchQ.darker-placeholder::placeholder {
-	color: #3c3c3c;
+    flex-grow: 1;
+    height: 80%;
+    top: 0;
+    bottom: 0;
+    margin: auto auto auto 20px;
+    outline: none;
+    border: none;
+    background-color: #00000000;
+    padding: 0 4px;
+    margin-left: 53px;
+    font-size: 1rem;
 }
 
 .searchControls {
-	margin-left: 10px;
-	right: 10px;
-	display: flex;
-	align-items: center;
-	height: 100%;
+    margin-left: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 /* --------- .micIcon------------- */
 
 .micIcon {
-	width: 40px;
-	height: 40px;
-	margin-right: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: var(--darkColor-blue);
-	cursor: pointer;
-	border-radius: 50%;
-	padding: 3px;
-	box-sizing: border-box;
-	background-color: var(--whitishColor-blue);
-	transition: all 0.5s;
-	border: 2px solid transparent;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--darkColor-blue);
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 3px;
+    box-sizing: border-box;
+    background-color: #ffffffc9;
+    transition: all 0.5s;
+    border: 2px solid transparent;
 }
 
 .micIcon::after {
-	content: "";
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 100%;
-	border: 2px solid transparent;
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid transparent;
 }
 
 .micActive::after,
 .micIcon:hover::after {
-	border-left: 2px dotted var(--darkColor-blue);
-	border-right: 2px solid var(--darkColor-blue);
-	border-top: 2px dashed var(--darkerColor-blue);
-	border-bottom: 2px dashed var(--darkerColor-blue);
-	animation: micAnimation 1s ease-in-out infinite;
-	transition: all 0.5s;
+    border-left: 2px dotted var(--darkColor-blue);
+    border-right: 2px solid var(--darkColor-blue);
+    border-top: 2px dashed var(--darkerColor-blue);
+    border-bottom: 2px dashed var(--darkerColor-blue);
+    animation: micAnimation 1s ease-in-out infinite;
+    transition: all 0.5s;
 }
 
 .micIcon:hover {
-	background-color: #fffffff2;
+    background-color: #fffffff2;
 }
 
 @keyframes micAnimation {
-	0% {
-		transform: rotate(0deg);
-	}
+    0% {
+        transform: rotate(0deg);
+    }
 
-	37% {
-		transform: rotate(-20deg);
-	}
+    37% {
+        transform: rotate(-20deg);
+    }
 
-	69% {
-		transform: rotate(20deg);
-	}
+    69% {
+        transform: rotate(20deg);
+    }
 
-	100% {
-		transform: rotate(0deg);
-	}
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 /* ---------End of .micIcon------------- */
 
 #enterBtn {
-	height: 40px;
-	border-radius: 100px;
-	padding: 0 26px;
-	border: none;
-	font-size: 1.1rem;
-	background-color: var(--darkColor-blue);
-	color: white;
-	transition: all 0.3s;
+    height: 40px;
+    border-radius: 100px;
+    padding: 0 26px;
+    border: none;
+    font-size: 1.1rem;
+    background-color: var(--darkColor-blue);
+    color: white;
+    transition: all 0.3s;
 }
 
 #enterBtn:hover {
-	background-color: var(--darkColor-blue);
-	color: #fff;
-	cursor: pointer;
+    background-color: var(--darkColor-blue);
+    color: #fff;
+    cursor: pointer;
 }
 
 #enterBtn:active {
-	transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 /* ________________End of Searchbar______________________ */
 
 .searchWithCont {
-	margin-top: var(--gap);
-	border-radius: var(--round);
-	position: relative;
-	display: flex;
-	font-size: 1rem;
+    margin-top: var(--gap);
+    border-radius: var(--round);
+    position: relative;
+    display: flex;
+    font-size: 1rem;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px;
-	position: relative;
-	margin-right: 16px;
-	border-radius: var(--round);
+    /* background-color: var(--accentLightTint-blue); */
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    margin-right: 16px;
+    border-radius: var(--round);
 }
 
 .searchWithCont .hint::after {
-	content: "";
-	position: absolute;
-	width: 6px;
-	height: 100%;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 3px;
-	right: -20px;
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 3px;
+    right: -20px;
 }
 
 .searchEnginesContainer {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 20px;
 }
 
 .searchEnginesContainer .search-engine {
-	/* background-color: var(--accentLightTint-blue); */
-	border-radius: 20px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	cursor: pointer;
+    /* background-color: var(--accentLightTint-blue); */
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
 }
 
-.searchEnginesContainer .search-engine svg {
-	width: 30px;
-	height: 30px;
-	background-color: var(--darkColor-blue);
-	border-radius: 100%;
-	margin-left: 4px;
-	padding: 3px;
+.searchEnginesContainer .search-engine svg,  .search-dropdown .dropdown-item svg{
+    width: 30px;
+    height: 30px;
+    background-color: var(--darkColor-blue);
+    border-radius: 100%;
+    margin-left: 4px;
+    padding: 3px;
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 16px 0 10px;
-	cursor: pointer;
+    margin: 0 16px 0 10px;
+    cursor: pointer;
 }
 
 /* -----------Radio Button Customizing------------ */
 .search-engine input[type="radio"] {
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	background-color: var(--whitishColor-blue);
-	width: 22px;
-	height: 22px;
-	border-radius: 50%;
-	border: 2px solid var(--whitishColor-blue);
-	outline: none;
-	margin-right: 8px;
-	cursor: pointer;
-	transition: 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: rgb(255, 255, 255);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    outline: none;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .search-engine input[type="radio"]:checked {
-	background-color: var(--darkColor-blue);
+    background-color: var(--darkColor-blue);
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1070,237 +1022,230 @@ body {
 /* ----------Shortcuts----------------- */
 
 #shortcuts-section {
-	pointer-events: none;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	height: calc(var(--shortcut-size) + var(--gap) * 2);
-	position: absolute;
-	/* background: gold; */
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(var(--shortcut-size) + var(--gap) * 2);
+    position: absolute;
+    /* background: gold; */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 #shortcuts-section .wrapper {
-	position: relative;
-	height: fit-content;
-	display: inline-flex;
-	/* make sure elements are next to each other */
-	align-items: stretch;
-	/* make sure both elements grow to the same height */
-	width: fit-content;
+    position: relative;
+    height: fit-content;
+    display: inline-flex;
+    /* make sure elements are next to each other */
+    align-items: stretch;
+    /* make sure both elements grow to the same height */
+    width: fit-content;
 }
 
 /* Invisible element tracking height changes */
 #shortcuts-section #flexMonitor {
-	position: absolute;
-	height: 100%;
-	/* This will match the height of .shortcutsContainer, which it is supposed to monitor */
-	visibility: hidden;
+    position: absolute;
+    height: 100%;
+    /* This will match the height of .shortcutsContainer, which it is supposed to monitor */
+    visibility: hidden;
 }
 
 /* Invisible element to get standard height */
 #shortcuts-section #defaultMonitor {
-	position: absolute;
-	/* This is the standard height of one row */
-	height: calc(
-		var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding)
-	);
-	visibility: hidden;
+    position: absolute;
+    /* This is the standard height of one row */
+    height: calc(var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding));
+    visibility: hidden;
 }
 
 .shortcutsContainer {
-	pointer-events: auto;
-	transition: transform 0.5s;
-	margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
-	max-width: calc(
-		var(--max-shortcut-bar-width) -
-			mod(
-				var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
-				var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
-			)
-	);
-	display: flex;
-	flex-wrap: wrap;
-	padding: var(--shortcut-bar-gap-and-padding);
-	justify-content: center;
-	width: fit-content;
-	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-	gap: 26px;
+    pointer-events: auto;
+    transition: transform 0.5s;
+    margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
+    max-width: calc(var(--max-shortcut-bar-width) - mod(var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
+                var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)));
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--shortcut-bar-gap-and-padding);
+    justify-content: center;
+    width: fit-content;
+    /* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
+    gap: 26px;
 }
 
 .shortcutsContainer::before {
-	border-radius: 34px;
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: var(--accentLightTint-blue);
-	z-index: -1;
-	opacity: var(--always-show-dock-background);
-	transition: opacity 0.5s;
-	pointer-events: none;
+    border-radius: 34px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--accentLightTint-blue);
+    z-index: -1;
+    opacity: var(--always-show-dock-background);
+    transition: opacity 0.5s;
+    pointer-events: none;
 }
 
 .shortcutsContainer.showBackground::before {
-	opacity: 1;
+    opacity: 1;
 }
 
 .shortcutsContainer .shortcuts {
-	position: relative;
-	transition: all 0.3s;
+    position: relative;
+    transition: all 0.3s;
 }
 
 .shortcutsContainer .shortcuts:hover {
-	transform: translateY(-10px) scale(1.03);
-	/* box-shadow: 0 5px 10px var(--accentLightTint-blue); */
-	border-radius: 100px;
+    transform: translateY(-10px) scale(1.03);
+    /* box-shadow: 0 5px 10px var(--accentLightTint-blue); */
+    border-radius: 100px;
 }
 
 .shortcuts .shortcut-name {
-	visibility: hidden;
-	position: absolute;
-	bottom: -30px;
-	right: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	/* Center horizontally */
-	margin: auto;
-	/* background-color: #000000d7; */
-	width: fit-content;
-	text-align: center;
-	color: var(--textColorDark-blue);
-	opacity: 0;
-	transition: all 0.3s;
-	font-size: 1rem;
-	white-space: nowrap;
+    visibility: hidden;
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center horizontally */
+    margin: auto;
+    /* background-color: #000000d7; */
+    width: fit-content;
+    text-align: center;
+    color: var(--textColorDark-blue);
+    opacity: 0;
+    transition: all 0.3s;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .shortcuts:hover .shortcut-name {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .shortcutsContainer .shortcuts a {
-	border-radius: 100px;
-	display: block;
-	height: var(--shortcut-size);
-	width: var(--shortcut-size);
+    border-radius: 100px;
+    display: block;
+    height: var(--shortcut-size);
+    width: var(--shortcut-size);
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+    background-color: var(--accentLightTint-blue);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
-	background-color: var(--darkColor-blue);
+    background-color: var(--darkColor-blue);
 }
 
 .shortcutsContainer .shortcuts a svg {
-	height: 100%;
-	width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .shortcutsContainer .shortcuts .shortcutLogoContainer {
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .shortcutsContainer .shortcuts .shortcutLogoContainer img {
-	height: 100%;
-	width: 100%;
-	border-radius: 100%;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
 }
 
 /* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */
 .aiToolsCont {
-	height: 50px;
-	width: fit-content;
-	/* background-color: yellow; */
-	overflow-x: hidden;
-	border-radius: 100px;
-	position: fixed;
-	left: var(--gap);
-	bottom: var(--gap);
-	margin: auto;
-	display: flex;
+    height: 50px;
+    width: fit-content;
+    /* background-color: yellow; */
+    overflow-x: hidden;
+    border-radius: 100px;
+    position: fixed;
+    left: var(--gap);
+    bottom: var(--gap);
+    margin: auto;
+    display: flex;
 }
 
 .aiToolsCont .hangno {
-	background-color: var(--accentLightTint-blue);
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0 16px;
-	border-radius: 100px;
-	z-index: 2;
-	cursor: pointer;
+    background-color: var(--accentLightTint-blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border-radius: 100px;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .aiToolsCont .hangno .icon {
-	width: 26px;
-	height: 26px;
-	margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
 }
 
 .aiToolsCont .hangno .label {
-	font-size: 1rem;
-	color: var(--textColorDark-blue);
-	cursor: pointer;
+    font-size: 1rem;
+    color: var(--textColorDark-blue);
+    cursor: pointer;
 }
 
 .aiToolsCont .toolsCont {
-	/* display: flex; */
-	display: none;
-	/* background-color: orange; */
-	position: relative;
-	margin-left: 30px;
-	transition: all 500ms;
-	gap: 0;
-	transform-origin: left;
-	transform: scale(0.5) translateX(-70px);
-	opacity: 0.2;
+    /* display: flex; */
+    display: none;
+    /* background-color: orange; */
+    position: relative;
+    margin-left: 30px;
+    transition: all 500ms;
+    gap: 0;
+    transform-origin: left;
+    transform: scale(0.5) translateX(-70px);
+    opacity: 0.2;
 }
 
 .aiToolsCont .toolsCont::before {
-	content: "";
-	position: absolute;
-	height: 100%;
-	width: 6px;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 6px;
-	left: -18px;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 6px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 6px;
+    left: -18px;
 }
 
 .aiToolsCont .toolsCont a {
-	background-color: var(--accentLightTint-blue);
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0 16px;
-	border-radius: 100px;
-	text-decoration: none;
-	color: var(--textColorDark-blue);
-	font-size: 1rem;
+    background-color: var(--accentLightTint-blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--textColorDark-blue);
+    font-size: 1rem;
 }
 
 .aiToolsCont .toolsCont .tIcon {
-	width: 26px;
-	height: 26px;
-	/* background-color: turquoise; */
-	margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    /* background-color: turquoise; */
+    margin-right: 12px;
 }
 
 /* -----------End of Ai-Tools---------- */
@@ -1308,506 +1253,503 @@ body {
 /* -------media query ------------------- */
 
 @media screen and (max-width: 1400px) {
-	.leftDiv {
-		transform: translateX(-50px);
-	}
+    .leftDiv {
+        transform: translateX(-50px);
+    }
 
-	.rightDiv {
-		transform: translateX(50px);
-	}
+    .rightDiv {
+        transform: translateX(50px);
+    }
 }
 
 @media screen and (max-width: 1200px) {
-	body {
-		display: block;
-	}
+    body {
+        display: block;
+    }
+    
+    .shortcutsContainer{
+        margin-top: 169px;
+    }
 
-	.shortcutsContainer {
-		margin-top: 169px;
-	}
+    .centerDiv {
+        /* display: grid; */
+        grid-template-columns: auto;
+        /* width: fit-content; */
+        /* height: 500px; */
+        /* background-color: orange; */
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: var(--gap) auto auto;
+    }
 
-	.centerDiv {
-		/* display: grid; */
-		grid-template-columns: auto;
-		/* width: fit-content; */
-		/* height: 500px; */
-		/* background-color: orange; */
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: var(--gap) auto auto;
-	}
+    .leftDiv {
+        transform: translateX(0px);
+        /* background-color: green; */
+        margin-bottom: var(--gap);
+    }
 
-	.leftDiv {
-		transform: translateX(0px);
-		/* background-color: green; */
-		margin-bottom: var(--gap);
-	}
-
-	.rightDiv {
-		/* position: relative;
+    .rightDiv {
+        /* position: relative;
         width: 640px; */
-		transform: translateX(0px);
-		/* background-color: rgba(0, 0, 255, 0.159); */
-	}
+        transform: translateX(0px);
+        /* background-color: rgba(0, 0, 255, 0.159); */
+    }
 
-	.ttteexxtt {
-		/* background-color: yellow; */
-		height: fit-content;
-		width: fit-content;
-		bottom: 0;
-		top: 0;
-		left: 300px;
-		/*Because Clock width is 300px*/
-		margin: auto auto auto var(--gap);
-	}
+    .ttteexxtt {
+        /* background-color: yellow; */
+        height: fit-content;
+        width: fit-content;
+        bottom: 0;
+        top: 0;
+        left: 300px;
+        /*Because Clock width is 300px*/
+        margin: auto auto auto var(--gap);
+    }
 }
 
 /* ---------------Menu-bar-css---------------- */
 .menuBar {
-	background-color: #0000004f;
-	backdrop-filter: blur(15px) saturate(160%);
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	opacity: 0;
-	/*we are increasing opacity in js file*/
-	transition: all 0.5s;
-	overflow: hidden;
+    background-color: #0000004f;
+    backdrop-filter: blur(15px) saturate(160%);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0;
+    /*we are increasing opacity in js file*/
+    transition: all 0.5s;
+    overflow: hidden;
 }
 
 .menuBar .menuCont {
-	position: absolute;
-	right: 0;
-	height: 100%;
-	width: 400px;
-	/* change on some languages for fix the buttons */
-	transition: all 0.5s;
-	transform: translateX(100%);
-	background-color: var(--accentLightTint-blue);
-	border-bottom-left-radius: var(--round);
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    /* change on some languages for fix the buttons */
+    transition: all 0.5s;
+    transform: translateX(100%);
+    background-color: var(--accentLightTint-blue);
+    border-bottom-left-radius: var(--round);
 }
 
 .menuBar .menuCont .topRounder {
-	width: var(--round);
-	/*30px*/
-	height: var(--round);
-	/* background-color: #17a638; */
-	position: absolute;
-	left: -30px;
-	/* transform: translateX(-100%); */
+    width: var(--round);
+    /*30px*/
+    height: var(--round);
+    /* background-color: #17a638; */
+    position: absolute;
+    left: -30px;
+    /* transform: translateX(-100%); */
 }
 
 .menuCont .topDiv {
-	width: 100%;
-	height: 140px;
-	/*🚦🛺 🚜*/
-	background-color: var(--bg-color-blue);
-	position: relative;
+    width: 100%;
+    height: 140px;
+    /*🚦🛺 🚜*/
+    background-color: var(--bg-color-blue);
+    position: relative;
 }
 
 .menuCont .topDiv::after {
-	position: absolute;
-	content: "";
-	width: 100%;
-	height: var(--gap);
-	background-color: var(--accentLightTint-blue);
-	border-top-left-radius: var(--round);
-	border-top-right-radius: var(--round);
-	bottom: 0;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: var(--gap);
+    background-color: var(--accentLightTint-blue);
+    border-top-left-radius: var(--round);
+    border-top-right-radius: var(--round);
+    bottom: 0;
 }
 
 .menuCont .topDiv h1 {
-	font-size: 1.6rem;
-	/* background-color: yellow; */
-	width: fit-content;
-	height: fit-content;
-	color: var(--textColorDark-blue);
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	transform: translateY(-50%);
+    font-size: 1.6rem;
+    /* background-color: yellow; */
+    width: fit-content;
+    height: fit-content;
+    color: var(--textColorDark-blue);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: translateY(-50%);
 }
 
 .menuCont .optCont {
-	width: 100%;
-	height: calc(100% - 140px);
-	/*for this 👁️ look above at🚦🛺 🚜*/
-	/* background-color: oldlace; */
-	transition: all 0.6s;
-	transform: translateX(100%);
-	opacity: 0;
-	overflow-y: scroll;
-	/* Allow vertical scrolling only */
-	overflow-x: hidden;
-	/* Hide horizontal overflow */
+    width: 100%;
+    height: calc(100% - 140px);
+    /*for this 👁️ look above at🚦🛺 🚜*/
+    /* background-color: oldlace; */
+    transition: all 0.6s;
+    transform: translateX(100%);
+    opacity: 0;
+    overflow-y: scroll;
+    /* Allow vertical scrolling only */
+    overflow-x: hidden;
+    /* Hide horizontal overflow */
 }
 
 .menuCont .optCont .page {
-	width: 100%;
-	padding: 0 var(--gap) var(--gap) var(--gap);
-	position: absolute;
-	transition: all 0.6s;
+    width: 100%;
+    padding: 0 var(--gap) var(--gap) var(--gap);
+    position: absolute;
+    transition: all 0.6s;
 }
 
 /* -----------Scrollbar for menu---------------- */
 /* For WebKit browsers (Chrome, Safari) */
 .menuCont .optCont::-webkit-scrollbar {
-	width: 2px;
-	/* Width of the scrollbar */
+    width: 2px;
+    /* Width of the scrollbar */
 }
 
 /* Track */
 .menuCont .optCont::-webkit-scrollbar-track {
-	background: transparent;
-	/* Background of the track */
+    background: transparent;
+    /* Background of the track */
 }
 
 /* Handle */
 .menuCont .optCont::-webkit-scrollbar-thumb {
-	background: var(--darkColor-blue);
-	/* Color of the scrollbar handle */
-	border-radius: 2px;
-	/* Rounded corners for the scrollbar handle */
+    background: var(--darkColor-blue);
+    /* Color of the scrollbar handle */
+    border-radius: 2px;
+    /* Rounded corners for the scrollbar handle */
 }
 
 /* For Firefox */
 .menuCont .optCont {
-	scrollbar-width: thin;
-	/* Makes the scrollbar thin */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Handle color and track color */
+    scrollbar-width: thin;
+    /* Makes the scrollbar thin */
+    scrollbar-color: var(--darkColor-blue) transparent;
+    /* Handle color and track color */
 }
 
 /* -------------End of Scrollbar for menu-------------- */
 
 .menuBar .optCont .tilesCont {
-	width: 100%;
-	height: 50px;
-	/* background-color: #17a638; */
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: var(--gap);
+    width: 100%;
+    height: 50px;
+    /* background-color: #17a638; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
 }
 
 .tilesCont .tiles {
-	background-color: var(--darkColor-blue);
-	border-radius: 20px;
-	font-size: 1rem;
-	color: var(--accentLightTint-blue);
-	display: flex;
-	align-items: center;
-	text-decoration: none;
+    background-color: var(--darkColor-blue);
+    border-radius: 20px;
+    font-size: 1rem;
+    color: var(--accentLightTint-blue);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .tilesCont .tiles .icon {
-	width: 24px;
-	height: 24px;
-	margin-left: 13px;
-	margin-right: 13px;
+    width: 24px;
+    height: 24px;
+    margin-left: 13px;
+    margin-right: 13px;
 }
 
 .divider {
-	height: 6px;
-	width: 100px;
-	background-color: #fff;
-	border-radius: 3px;
-	margin: 20px auto;
+    height: 6px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 20px auto;
 }
 
 /* --- 🔴⚪🟡style for toggle buttons---- */
 .switch {
-	position: relative;
-	display: inline-block;
-	min-width: 60px;
-	height: 34px;
-	margin-left: 8px;
+    position: relative;
+    display: inline-block;
+    min-width: 60px;
+    height: 34px;
+    margin-left: 8px;
 }
 
 /* Hide the default checkbox input */
 .switch input {
-	display: none;
+    display: none;
 }
 
 /* Styling for the slider */
 .toggle {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: var(--bg-color-blue);
-	/* Background color when off */
-	transition: 0.4s;
-	border-radius: 34px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-color-blue);
+    /* Background color when off */
+    transition: 0.4s;
+    border-radius: 34px;
 }
 
 /* Styling for the slider when it's in the "on" position */
 .toggle:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: var(--accentLightTint-blue);
-	/* Slider color when on */
-	transition: 0.4s;
-	border-radius: 50%;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--accentLightTint-blue);
+    /* Slider color when on */
+    transition: 0.4s;
+    border-radius: 50%;
 }
 
 #shortcutEditButton {
-	fill: var(--darkerColor-blue);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: none;
-	border-radius: 34px;
-	cursor: pointer;
-	transition: 0.3s all;
-	margin: 0 auto;
-	background: none;
-	height: 100%;
-	width: 100%;
+    fill: var(--darkerColor-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.3s all;
+    margin: 0 auto;
+    background: none;
+    height: 100%;
+    width: 100%;
 }
 
 .toggleTextsCont .ttcont.inactive {
-	opacity: 0.5;
-	pointer-events: none;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 /* Apply styles when the input is checked (on) */
-input:checked + .toggle {
-	background-color: var(--darkColor-blue);
-	/* Background color when on */
+input:checked+.toggle {
+    background-color: var(--darkColor-blue);
+    /* Background color when on */
 }
 
-input:checked + .toggle:before {
-	transform: translateX(26px);
+input:checked+.toggle:before {
+    transform: translateX(26px);
 }
 
 /* --- END OF 🔴⚪🟡style for toggle buttons---- */
 
 .toggleTextsCont .ttcont {
-	display: flex;
-	height: 50px;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .unflex {
-	display: block !important;
+    display: block !important;
 }
 
 .ttcont input {
-	width: 100%;
-	margin-top: 6px;
-	height: 30px;
-	border-radius: 10px;
-	border: none;
-	outline: none;
-	padding: 0 11px;
+    width: 100%;
+    margin-top: 6px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 0 11px;
 }
 
 .ttcont .texts .bigText {
-	font-size: 1.2rem;
-	color: var(--textColorDark-blue);
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
 }
 
 .ttcont .texts .infoText {
-	font-size: 0.9rem;
-	color: var(--textColorDark-blue);
-	opacity: 0.86;
-	margin-top: -3px;
+    font-size: 0.9rem;
+    color: var(--textColorDark-blue);
+    opacity: 0.86;
+    margin-top: -3px;
 }
 
 .bottom {
-	/* background-color: #17a638; */
-	display: flex;
-	justify-content: space-between;
-	margin-top: 12px;
+    /* background-color: #17a638; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
 }
 
 .bottom a {
-	text-decoration: none;
-	color: var(--darkColor-blue);
-	font-size: 1rem;
+    text-decoration: none;
+    color: var(--darkColor-blue);
+    font-size: 1rem;
 }
 
 .bottom button {
-	border: none;
-	color: #fff;
-	background-color: var(--darkColor-blue);
-	padding: 6px 20px;
-	font-size: 1rem;
-	border-radius: 100px;
-	cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: var(--darkColor-blue);
+    padding: 6px 20px;
+    font-size: 1rem;
+    border-radius: 100px;
+    cursor: pointer;
 }
 
 .resetbtn {
-	width: -webkit-fill-available;
-	border: none;
-	color: #fff;
-	background-color: var(--darkColor-blue);
-	padding: 6px 20px;
-	font-size: 1rem;
-	border-radius: 100px;
-	cursor: pointer;
+    width: -webkit-fill-available;
+    border: none;
+    color: #fff;
+    background-color: var(--darkColor-blue);
+    padding: 6px 20px;
+    font-size: 1rem;
+    border-radius: 100px;
+    cursor: pointer;
 }
 
 .topBar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 50px;
-	position: sticky;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 1000;
-	background-color: var(--accentLightTint-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--accentLightTint-blue);
 }
 
 #backButton {
-	fill: var(--textColorDark-blue);
-	border: none;
-	background: none;
-	cursor: pointer;
+    fill: var(--textColorDark-blue);
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .rightButtons {
-	display: flex;
-	gap: 24px;
+    display: flex;
+    gap: 24px;
 }
 
 #newShortcutButton svg {
-	transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 #newShortcutButton:active svg {
-	transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .rotateResetButton {
-	transform: rotate(-360deg);
-	transition: transform 0.3s ease;
+    transform: rotate(-360deg);
+    transition: transform 0.3s ease;
 }
 
 #resetButton,
 #newShortcutButton {
-	fill: var(--textColorDark-blue);
-	border: none;
-	background: none;
-	cursor: pointer;
+    fill: var(--textColorDark-blue);
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 #newShortcutButton.inactive {
-	opacity: 0.5;
-	pointer-events: none;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .pageTitle {
-	margin-top: 10px;
-	width: 100%;
-	font-size: 1.6rem;
-	color: var(--textColorDark-blue);
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1.6rem;
+    color: var(--textColorDark-blue);
 }
 
 #editShortcutsListInfo {
-	font-size: 0.8rem;
-	margin-top: 5px;
-	margin-bottom: var(--gap);
-	text-align: justify;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    margin-bottom: var(--gap);
+    text-align: justify;
 }
 
 .shortcutSettingsEntry {
-	width: 100%;
-	display: flex;
-	height: 50px;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .shortcutSettingsEntry input {
-	width: calc(100% - var(--gap));
-	background: none;
-	border: none;
+    width: calc(100% - var(--gap));
+    background: none;
+    border: none;
 }
 
 .shortcutSettingsEntry .shortcutName {
-	font-size: 1.2rem;
-	color: var(--textColorDark-blue);
-	text-overflow: ellipsis;
+    font-size: 1.2rem;
+    color: var(--textColorDark-blue);
+    text-overflow: ellipsis;
 }
 
 .shortcutSettingsEntry .URL {
-	font-size: 0.9rem;
-	color: var(--textColorDark-blue);
-	opacity: 0.86;
-	margin-top: -3px;
-	text-overflow: ellipsis;
+    font-size: 0.9rem;
+    color: var(--textColorDark-blue);
+    opacity: 0.86;
+    margin-top: -3px;
+    text-overflow: ellipsis;
 }
 
 .delete button {
-	fill: var(--textColorDark-blue);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 60px;
-	height: 34px;
-	background: var(--bg-color-blue);
-	border: none;
-	border-radius: 34px;
-	cursor: pointer;
-	transition: 0.3s all;
+    fill: var(--textColorDark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 34px;
+    background: var(--bg-color-blue);
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.3s all;
 }
 
 .delete button:hover {
-	fill: white;
-	background: var(--darkColor-blue);
+    fill: white;
+    background: var(--darkColor-blue);
 }
 
 .delete button.inactive {
-	opacity: 0.5;
-	pointer-events: none;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .addShortcutContainer button {
-	fill: white;
-	background: var(--darkColor-blue);
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 60px;
-	height: 34px;
-	border: none;
-	border-radius: 34px;
-	cursor: pointer;
-	transition: 0.3s all;
+    fill: white;
+    background: var(--darkColor-blue);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 34px;
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: 0.3s all;
 }
 
 /* Placeholder InputText color*/
 #userproxy {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
+    color: var(--textColorDark-blue);
 }
 
 #userLoc {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
+    color: var(--textColorDark-blue);
 }
 
 #userAPI {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
+    color: var(--textColorDark-blue);
 }
 
 /* ---------------Menu-bar-css---------------- */
@@ -1815,359 +1757,294 @@ input:checked + .toggle:before {
 /* --------------Theming stuff------------------ */
 .themingStuff,
 .languageSection {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	justify-content: space-around;
-	gap: var(--gap);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
 }
 
 .languageSelector {
-	background-color: var(--whitishColor-blue);
-	align-items: center;
-	justify-content: center;
-	height: fit-content;
-	/* width: 80%; */
-	width: 240px;
-	border: 2px solid transparent;
-	/* adding transparent border on focus it will be turned to theme color*/
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	/* 5 divs in the first row */
-	grid-auto-rows: auto;
-	grid-gap: 10px;
-	padding: 12px;
-	color: var(--textColorDark-blue);
-	/* padding-right: 0px; */
-	border-radius: 26px;
-	appearance: none;
-	/* Remove default browser styles */
-	-webkit-appearance: none;
-	/* For Safari */
-	-moz-appearance: none;
-	/* For Firefox */
-	cursor: pointer;
-	padding-left: 13px;
+    background-color: #ffffffe8;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    /* width: 80%; */
+    width: 240px;
+    border: 2px solid transparent;
+    /* adding transparent border on focus it will be turned to theme color*/
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 divs in the first row */
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    padding: 12px;
+    color: var(--textColorDark-blue);
+    /* padding-right: 0px; */
+    border-radius: 26px;
+    appearance: none;
+    /* Remove default browser styles */
+    -webkit-appearance: none;
+    /* For Safari */
+    -moz-appearance: none;
+    /* For Firefox */
+    cursor: pointer;
+    padding-left: 13px;
 
-	/* Scrollbar styles for Firefox */
-	scrollbar-width: thin;
-	scrollbar-color: var(--darkColor-blue) transparent;
+    /* Scrollbar styles for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--darkColor-blue) transparent;
 }
 
 /* Scrollbar styles for Chrome, Edge, Safari */
 .languageSelector::-webkit-scrollbar {
-	width: 6px;
+    width: 6px;
 }
 
 .languageSelector::-webkit-scrollbar-track {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .languageSelector::-webkit-scrollbar-thumb,
 .languageSelector::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkColor-blue);
-	border-radius: 3px;
+    background-color: var(--darkColor-blue);
+    border-radius: 3px;
 }
 
 .languageSelector:focus {
-	border: 2px solid var(--darkColor-blue);
-	/* color matching border on focus */
-	outline: none;
-	/* Removes the default outline */
+    border: 2px solid var(--darkColor-blue);
+    /* color matching border on focus */
+    outline: none;
+    /* Removes the default outline */
 }
 
 .colorsContainer {
-	background-color: var(--whitishColor-blue);
-	align-items: center;
-	justify-content: center;
-	height: fit-content;
-	width: fit-content;
+    background-color: #ffffffe8;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: fit-content;
 
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	/* 5 divs in the first row */
-	grid-auto-rows: auto;
-	grid-gap: 10px;
-	padding: 10px;
-	/* padding-right: 0px; */
-	border-radius: 26px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 divs in the first row */
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    padding: 10px;
+    /* padding-right: 0px; */
+    border-radius: 26px;
 }
 
 .colorsContainer input[type="radio"] {
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	background-color: #fff;
-	height: 36px;
-	width: 36px;
-	border-radius: 18px;
-	outline: none;
-	/* margin-right: 10px; */
-	cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
+    outline: none;
+    /* margin-right: 10px; */
+    cursor: pointer;
 }
 
 .colorsContainer input[value="blue"] {
-	background-color: #4382ec;
+    background-color: #4382EC;
 }
 
 .colorsContainer input[value="yellow"] {
-	background-color: #ffcc00;
+    background-color: #ffcc00;
 }
 
 .colorsContainer input[value="red"] {
-	background-color: #ec4343;
+    background-color: #EC4343;
 }
 
 .colorsContainer input[value="green"] {
-	background-color: #5cba5c;
+    background-color: #5CBA5C;
 }
 
 .colorsContainer input[value="cyan"] {
-	background-color: #00ced1;
+    background-color: #00CED1;
 }
 
 .colorsContainer input[value="orange"] {
-	background-color: #ec844d;
+    background-color: #EC844D
 }
 
 .colorsContainer input[value="purple"] {
-	background-color: #9563b5;
+    background-color: #9563B5;
 }
 
 .colorsContainer input[value="pink"] {
-	background-color: #ec5e78;
-}
-
-.colorsContainer input[value="brown"] {
-	background-color: #705347;
-}
-
-.colorsContainer input[value="silver"] {
-	background-color: #9e9e9e;
-}
-
-.colorsContainer input[value="grey"] {
-	background-color: #585858;
+    background-color: #EC5E78;
 }
 
 .colorsContainer input[value="dark"] {
-	background-color: #171717;
+    background-color: #434343;
 }
 
 .colorsContainer input[type="radio"]:checked::after {
-	position: absolute;
-	content: "";
-	width: 36px;
-	height: 36px;
-	background: url("./svgs/tick.svg") center center no-repeat;
-	background-size: 74%;
+    position: absolute;
+    content: "";
+    width: 36px;
+    height: 36px;
+    background: url("./svgs/tick.svg") center center no-repeat;
+    background-size: 74%;
 }
 
 .themingStuff .btn {
-	background-color: var(--whitishColor-blue);
-	height: 100%;
-	aspect-ratio: 1/1;
-	right: 0;
-	border-radius: 100%;
-	z-index: 2;
+    background-color: #ffffffe8;
+    height: 100%;
+    aspect-ratio: 1/1;
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
 }
 
 .languageIcon {
-	background-color: var(--whitishColor-blue);
-	height: 100%;
-	aspect-ratio: 1/1;
-	right: 0;
-	border-radius: 100%;
-	z-index: 2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    background-color: #ffffffe8;
+    height: 100%;
+    aspect-ratio: 1/1;
+    right: 0;
+    border-radius: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Upload/Clear Buttons */
-.uploadClearContainer {
-	display: flex;
-	justify-content: center; /* Center the buttons horizontally */
-	gap: var(--gap); /* Maintain consistent spacing */
-	margin-top: 122px; /* Add spacing below the theming section */
+#darkTheme {
+    grid-column: span 2;
+    width: 82px;
 }
-
-/* Styling for Upload/Clear Buttons with SVGs */
-.uploadButton,
-.clearButton {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px; /* Space between SVG and text */
-	background-color: var(--whitishColor-blue);
-	color: var(--darkColor-blue);
-	padding: 10px 20px;
-	font-size: 16px;
-	border: 2px solid transparent;
-	border-radius: 26px;
-	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
-}
-
-.clearButton {
-	padding: 10px; /* Smaller padding for the delete icon */
-}
-
-/* Ensure consistent SVG sizing */
-.uploadButton svg,
-.clearButton svg {
-	width: 24px;
-	height: 24px;
-}
-
-/* Hover Effects */
-.uploadButton:hover,
-.clearButton:hover {
-	background-color: var(--darkColor-blue);
-	color: var(--whitishColor-blue);
-}
-
-/* File input remains hidden */
-#imageUpload {
-	display: none;
-}
-
-.spacer {
-	height: 40px;
-	/* Adjust this value to create space */
-}
-
-/* #darkTheme {
-	grid-column: span 2;
-	width: 82px;
-} */
 
 /* -----------end of theming stuff---------------- */
 
 #menuButton {
-	position: fixed;
-	right: var(--gap);
-	bottom: var(--gap);
-	width: 50px;
-	height: 50px;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 100%;
-	cursor: pointer;
+    position: fixed;
+    right: var(--gap);
+    bottom: var(--gap);
+    width: 50px;
+    height: 50px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 100%;
+    cursor: pointer;
 }
 
 #menuButton::after {
-	position: absolute;
-	content: "";
-	width: 62%;
-	height: 62%;
-	border-radius: 100%;
-	border: 4px solid var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+    position: absolute;
+    content: "";
+    width: 62%;
+    height: 62%;
+    border-radius: 100%;
+    border: 4px solid var(--darkColor-blue);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 #menuButton::before {
-	position: absolute;
-	content: "";
-	width: 40%;
-	height: 40%;
-	border-radius: 100%;
-	background-color: var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+    position: absolute;
+    content: "";
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    background-color: var(--darkColor-blue);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 /* ---------------------- */
 #menuCloseButton {
-	position: relative;
-	/* position: absolute; */
-	/* bottom: var(--gap); */
-	width: 42px;
-	height: 42px;
-	max-width: 100%;
-	/* Set max-width to fit-content initially */
-	background-color: var(--bg-color-blue);
-	color: var(--textColorDark-blue);
-	font-size: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	padding: 6px;
-	border-radius: 100px;
-	overflow: hidden;
-	/* Hide the overflow when content expands */
-	transition: all 0.4s;
-	/* Transition the max-width property */
-	cursor: pointer;
-	margin-top: var(--gap);
+    position: relative;
+    /* position: absolute; */
+    /* bottom: var(--gap); */
+    width: 42px;
+    height: 42px;
+    max-width: 100%;
+    /* Set max-width to fit-content initially */
+    background-color: var(--bg-color-blue);
+    color: var(--textColorDark-blue);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 100px;
+    overflow: hidden;
+    /* Hide the overflow when content expands */
+    transition: all 0.4s;
+    /* Transition the max-width property */
+    cursor: pointer;
+    margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {
-	width: fit-content;
-	background-color: #fff;
+    width: fit-content;
+    background-color: #fff;
 }
 
 #menuCloseButton::after {
-	content: var(--hover-close-text, "Close");
-	white-space: nowrap;
-	padding-right: 12px;
-	opacity: 0;
-	transform: translateX(-20px);
-	animation: 0.6s menuCloseButtonHoverReverse forwards;
-	z-index: 1;
+    content: var(--hover-close-text, "Close");
+    white-space: nowrap;
+    padding-right: 12px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: 0.6s menuCloseButtonHoverReverse forwards;
+    z-index: 1;
 }
 
 #menuCloseButton:hover::after {
-	content: var(--hover-close-text, "Close");
-	padding-right: 12px;
-	padding-left: 36px;
-	/* width: 32px; */
-	/* Expand the max-width on hover */
-	animation: 0.6s menuCloseButtonHover forwards;
-	animation-delay: 0.1s;
+    content: var(--hover-close-text, "Close");
+    padding-right: 12px;
+    padding-left: 36px;
+    /* width: 32px; */
+    /* Expand the max-width on hover */
+    animation: 0.6s menuCloseButtonHover forwards;
+    animation-delay: 0.1s;
 }
 
 @keyframes menuCloseButtonHover {
-	0% {
-		opacity: 0;
-		transform: translateX(-20px);
-	}
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
 
-	100% {
-		opacity: 1;
-		transform: translate(0);
-	}
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 
 @keyframes menuCloseButtonHoverReverse {
-	0% {
-		opacity: 1;
-		transform: translateX(0);
-	}
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-	100% {
-		opacity: 0;
-		transform: translateX(-10px);
-	}
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
 }
 
 #menuCloseButton .icon {
-	position: absolute;
-	left: 6px;
-	background-color: #fff;
-	width: 30px;
-	height: 30px;
-	border-radius: 100px;
-	/* transform: translateX(30px); */
-	transition: 0.4s;
-	z-index: 2;
+    position: absolute;
+    left: 6px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    /* transform: translateX(30px); */
+    transition: 0.4s;
+    z-index: 2;
 }
 
 /* #menuCloseButton .icon:hover{
@@ -2176,5 +2053,69 @@ input:checked + .toggle:before {
 } */
 
 #menuCloseButton:hover .icon {
-	transform: translateX(0) rotate(90deg);
+    transform: translateX(0) rotate(90deg);
+}
+
+
+/* Dropdown css */
+.dropdown-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    background: var(--accentLightTint-blue);
+    border-radius: 12px;
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 57px;
+    left: -14px;
+}
+
+.dropdown-content .dropdown-item {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#default-dropdown-item .engine-name {
+    display: none;
+}
+
+.dropdown-content .engine-name {
+    font-size: 1rem;
+}
+
+.dropdown-item {
+    position: relative;
+}
+
+.dropdown-item:hover::before, .dropdown-item.selected:not(*[data-default]):before {
+    border-radius: 12px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--darkerColor-blue);;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+#default-dropdown-item {
+    outline: none !important;
 }
