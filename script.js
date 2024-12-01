@@ -963,7 +963,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .ttcont input {
-                background-color: #212121;
+                background-color: #212121 !important;
             }
 
             .dark-theme input:checked + .toggle {
