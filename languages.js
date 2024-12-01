@@ -1197,7 +1197,7 @@ const translations = {
         "enterBtn": "検索",
         "searchPlaceholder": "検索キーワードを入力...",
         "listenPlaceholder": "聴き取り中...",
-        "searchWithHint": "次のもので検索",
+        "searchWithHint": "次で検索",
         "ai_tools": "AIツール",
         "userText": "ここをクリックして編集",
         "googleAppsHover": "Googleアプリ",
