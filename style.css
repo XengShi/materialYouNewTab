@@ -19,7 +19,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "poppins", "Poppins", sans-serif;
-	user-select: none
+	user-select: none;
 }
 
 :root {
