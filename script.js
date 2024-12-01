@@ -630,6 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
     const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
 
     const sortDropdown = () => {
         // Change the elements to the array
@@ -655,7 +656,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
         element.addEventListener('click', () => {
-            const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
             const defaultEngineHTML = defaultEngine.innerHTML;
 
             const engine = element.getAttribute('data-engine');
@@ -670,7 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.innerHTML = defaultEngineHTML;
 
             // Swap The dropdown.
-            swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName);
+            swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element);
 
             sortDropdown()
 
@@ -698,8 +698,9 @@ document.addEventListener("DOMContentLoaded", () => {
      * @param {String} engineName 
      * @param {String} defaultEngineSR 
      * @param {String} defaultEngineName 
+     * @param {HTMLElement} element 
      */
-    function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName) {
+    function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element) {
 
         defaultEngine.setAttribute('data-engine-name', engineName);
         defaultEngine.setAttribute('id', `${engineName}-dropdown`);
@@ -743,11 +744,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
         const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+        
+        // check if the default selected search engine is same as the stored one.
+        if(storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+            const storedSearchEngineDropdownEngineSN = storedSearchEngineDropdown.getAttribute('data-engine'); 
+            const storedSearchEngineDropdownEnginName = storedSearchEngineDropdown.getAttribute('data-engine-name'); 
 
-        // The following line will find out the appropriate dropdown for the selected search engine.
-        const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
-        console.log(storedSearchEngineDropdown);
+            const defaultDropdownEngineName = defaultEngine.getAttribute('data-engine-name');
+            const storedSearchEngineDropdownHTML = storedSearchEngineDropdown.innerHTML;
 
+            storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
+            defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
+
+            swapDropdown(storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, defaultDropdownSN, defaultDropdownEngineName, defaultEngine);
+        }
 
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
