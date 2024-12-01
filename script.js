@@ -634,18 +634,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const sortDropdown = () => {
         // Change the elements to the array
         const elements = Array.from(searchDropdowns);
-        
+
         // Sort the dropdown
         const sortedDropdowns = elements.sort((a, b) => {
             const engineA = parseInt(a.getAttribute('data-engine'), 10);
             const engineB = parseInt(b.getAttribute('data-engine'), 10);
-            
+
             return engineA - engineB;
         })
 
         // get the parent
-        const parent = sortedDropdowns[0]?.parentNode; 
-        
+        const parent = sortedDropdowns[0]?.parentNode;
+
         // Append the items. if parent exists.
         if (parent) {
             sortedDropdowns.forEach(item => parent.appendChild(item));
@@ -669,18 +669,8 @@ document.addEventListener("DOMContentLoaded", () => {
             defaultEngine.innerHTML = element.innerHTML;
             element.innerHTML = defaultEngineHTML;
 
-            /**
-             * The following JS will swap their IDS And Data - Attribute values.
-             * In result the selected search engine will take the place of the onclicked (New Selected) engine
-             */
-
-            defaultEngine.setAttribute('data-engine-name', engineName);
-            defaultEngine.setAttribute('id', `${engineName}-dropdown`);
-            defaultEngine.setAttribute('data-engine', engine);
-
-            element.setAttribute('data-engine', defaultEngineSR);
-            element.setAttribute('id', `${defaultEngineName}-dropdown`);
-            element.setAttribute('data-engine-name', defaultEngineName);
+            // Swap The dropdown.
+            swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName);
 
             sortDropdown()
 
@@ -699,6 +689,26 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+    
+    /**
+     * The following JS will swap their IDS And Data - Attribute values.
+     * In result the selected search engine will take the place of the onclicked (New Selected) engine
+     * 
+     * @param {String} engine 
+     * @param {String} engineName 
+     * @param {String} defaultEngineSR 
+     * @param {String} defaultEngineName 
+     */
+    function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName) {
+
+        defaultEngine.setAttribute('data-engine-name', engineName);
+        defaultEngine.setAttribute('id', `${engineName}-dropdown`);
+        defaultEngine.setAttribute('data-engine', engine);
+
+        element.setAttribute('data-engine', defaultEngineSR);
+        element.setAttribute('id', `${defaultEngineName}-dropdown`);
+        element.setAttribute('data-engine-name', defaultEngineName);
+    }
 
     // Function to perform search
     function performSearch() {
@@ -729,7 +739,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+
+        // The following line will find out the appropriate dropdown for the selected search engine.
+        const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+        console.log(storedSearchEngineDropdown);
+
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
