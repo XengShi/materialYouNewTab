@@ -844,10 +844,10 @@
                             </div>
                             <label class="switch">
                                 <button id="shortcutEditButton">
-                                    <svg height="20px" viewBox="140 -820 680 820" width="20px"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        style="transform: scale(1.1); transform-origin: center;">
                                         <path
-                                            d="M492.21-144q-15.21 0-25.71-10.35T456-180v-168q0-15.3 10.29-25.65Q476.58-384 491.79-384t25.71 10.35Q528-363.3 528-348v48h251.72q15.28 0 25.78 10.29 10.5 10.29 10.5 25.5t-10.35 25.71Q795.3-228 780-228H528v48q0 15.3-10.29 25.65Q507.42-144 492.21-144ZM180-228q-15.3 0-25.65-10.29Q144-248.58 144-263.79t10.35-25.71Q164.7-300 180-300h168q15.3 0 25.65 10.29Q384-279.42 384-264.21t-10.35 25.71Q363.3-228 348-228H180Zm144.21-132q-15.21 0-25.71-10.35T288-396v-48H180.26q-15.26 0-25.76-10.29-10.5-10.29-10.5-25.5t10.35-25.71Q164.7-516 180-516h108v-48q0-15.3 10.29-25.65Q308.58-600 323.79-600t25.71 10.35Q360-579.3 360-564v168q0 15.3-10.29 25.65Q339.42-360 324.21-360ZM468-444q-15.3 0-25.65-10.29Q432-464.58 432-479.79t10.35-25.71Q452.7-516 468-516h312q15.3 0 25.65 10.29Q816-495.42 816-480.21t-10.35 25.71Q795.3-444 780-444H468Zm144.21-132q-15.21 0-25.71-10.35T576-612v-168q0-15.3 10.29-25.65Q596.58-816 611.79-816t25.71 10.35Q648-795.3 648-780v48h132q15.3 0 25.65 10.29Q816-711.42 816-696.21t-10.35 25.71Q795.3-660 780-660H648v48q0 15.3-10.29 25.65Q627.42-576 612.21-576ZM180-660q-15.3 0-25.65-10.29Q144-680.58 144-695.79t10.35-25.71Q164.7-732 180-732h312q15.3 0 25.65 10.29Q528-711.42 528-696.21t-10.35 25.71Q507.3-660 492-660H180Z" />
+                                            d="M12 21q-.425 0-.712-.288T11 20v-4q0-.425.288-.712T12 15t.713.288T13 16v1h7q.425 0 .713.288T21 18t-.288.713T20 19h-7v1q0 .425-.288.713T12 21m-8-2q-.425 0-.712-.288T3 18t.288-.712T4 17h4q.425 0 .713.288T9 18t-.288.713T8 19zm4-4q-.425 0-.712-.288T7 14v-1H4q-.425 0-.712-.288T3 12t.288-.712T4 11h3v-1q0-.425.288-.712T8 9t.713.288T9 10v4q0 .425-.288.713T8 15m4-2q-.425 0-.712-.288T11 12t.288-.712T12 11h8q.425 0 .713.288T21 12t-.288.713T20 13zm4-4q-.425 0-.712-.288T15 8V4q0-.425.288-.712T16 3t.713.288T17 4v1h3q.425 0 .713.288T21 6t-.288.713T20 7h-3v1q0 .425-.288.713T16 9M4 7q-.425 0-.712-.288T3 6t.288-.712T4 5h8q.425 0 .713.288T13 6t-.288.713T12 7z" />
                                     </svg>
                                 </button>
                             </label>
@@ -1106,13 +1106,42 @@
                             <input class="colorPlate" name="color" type="radio" value="pink">
                             <input class="colorPlate" name="color" type="radio" value="purple">
                             <input class="colorPlate" name="color" type="radio" value="orange">
+                            <input class="colorPlate" name="color" type="radio" value="brown">
+                            <input class="colorPlate" name="color" type="radio" value="silver">
+
+                            <!-- -------- -->
+
+
+
+                            <input class="colorPlate" name="color" type="radio" value="grey">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
-                            <!-- grid-column: span 2; -->
-
                         </div>
+                    </div>
 
-                    </div><br>
+                     <div class="uploadClearContainer">
+                        <!-- Upload Wallpaper Button -->
+                        <button class="uploadButton" id="uploadTrigger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="m11.558 13.646l-.084.071l-6.927 6.8a3.23 3.23 0 0 0 1.703.481h4.914l.356-1.423c.162-.648.497-1.24.97-1.712l2.11-2.11l-2.075-2.036l-.094-.078a.75.75 0 0 0-.873.007m4.945-5.394a.752.752 0 1 0-1.504 0a.752.752 0 0 0 1.504 0m-.843 6.441l-2.085-2.046l-.128-.117a2.25 2.25 0 0 0-2.888-.006l-.136.123l-6.938 6.81A3.23 3.23 0 0 1 3 17.75V6.25A3.25 3.25 0 0 1 6.25 3h11.499a3.25 3.25 0 0 1 3.25 3.25v4.762a3.28 3.28 0 0 0-2.608.95zM13.5 8.252a2.252 2.252 0 1 0 4.503 0a2.252 2.252 0 0 0-4.504 0m5.598 4.417l-5.901 5.901a2.7 2.7 0 0 0-.707 1.248l-.457 1.83c-.2.797.522 1.518 1.318 1.319l1.83-.458a2.7 2.7 0 0 0 1.248-.706L22.33 15.9a2.286 2.286 0 0 0-3.233-3.232" />
+                            </svg>
+                            Upload Wallpaper
+                        </button>
+
+                        <!-- Clear Background Button -->
+                        <button class="clearButton" id="clearImage">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z" />
+                            </svg>
+                        </button>
+
+                        <!-- Hidden File Input -->
+                        <input type="file" id="imageUpload" accept="image/*" />
+                    </div>
+
                     <!-- end of themingStuff -->
+                     
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
                     <div id="menuCloseButton">
