@@ -632,14 +632,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
 
     const sortDropdown = () => {
+        // Change the elements to the array
         const elements = Array.from(searchDropdowns);
+        
+        // Sort the dropdown
         const sortedDropdowns = elements.sort((a, b) => {
             const engineA = parseInt(a.getAttribute('data-engine'), 10);
             const engineB = parseInt(b.getAttribute('data-engine'), 10);
             return engineA - engineB;
         })
 
+        // get the parent
         const parent = sortedDropdowns[0]?.parentNode; // Get the parent node of the first element
+        
+        // Append the items. if parent exists.
         if (parent) {
             sortedDropdowns.forEach(item => parent.appendChild(item)); // Append sorted elements back to the parent
         }
