@@ -981,7 +981,8 @@ body {
     cursor: pointer;
 }
 
-.searchEnginesContainer .search-engine svg,  .search-dropdown .dropdown-item svg{
+.searchEnginesContainer .search-engine svg,
+.search-dropdown .dropdown-item svg {
     width: 30px;
     height: 30px;
     background-color: var(--darkColor-blue);
