@@ -639,15 +639,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const sortedDropdowns = elements.sort((a, b) => {
             const engineA = parseInt(a.getAttribute('data-engine'), 10);
             const engineB = parseInt(b.getAttribute('data-engine'), 10);
+            
             return engineA - engineB;
         })
 
         // get the parent
-        const parent = sortedDropdowns[0]?.parentNode; // Get the parent node of the first element
+        const parent = sortedDropdowns[0]?.parentNode; 
         
         // Append the items. if parent exists.
         if (parent) {
-            sortedDropdowns.forEach(item => parent.appendChild(item)); // Append sorted elements back to the parent
+            sortedDropdowns.forEach(item => parent.appendChild(item));
         }
     }
 
