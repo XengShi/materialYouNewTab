@@ -670,7 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.innerHTML = defaultEngineHTML;
 
             // Swap The dropdown.
-            swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element);
+            swapDropdown(defaultEngineSR, defaultEngineName, engine, engineName, element);
 
             sortDropdown()
 
@@ -684,8 +684,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
+
+            // storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
+            // defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
+
+            // swapDropdown(storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, defaultDropdownSN, defaultDropdownEngineName, defaultEngine);
+            
             const radioButton = engineDiv.querySelector('input[type="radio"]');
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+            
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
@@ -702,13 +711,18 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function swapDropdown(engine, engineName, defaultEngineSR, defaultEngineName, element) {
 
-        defaultEngine.setAttribute('data-engine-name', engineName);
-        defaultEngine.setAttribute('id', `${engineName}-dropdown`);
-        defaultEngine.setAttribute('data-engine', engine);
+        console.log('here',engine, engineName, defaultEngineSR, defaultEngineName, element);
+        
+        defaultEngine.setAttribute('data-engine-name', defaultEngineName);
+        defaultEngine.setAttribute('id', `${defaultEngineName}-dropdown`);
+        defaultEngine.setAttribute('data-engine', defaultEngine);
 
-        element.setAttribute('data-engine', defaultEngineSR);
-        element.setAttribute('id', `${defaultEngineName}-dropdown`);
-        element.setAttribute('data-engine-name', defaultEngineName);
+        element.setAttribute('data-engine', engine);
+        element.setAttribute('id', `${engineName}-dropdown`);
+        element.setAttribute('data-engine-name', engineName);
+
+        console.log(element);
+        
     }
 
     // Function to perform search
@@ -759,7 +773,9 @@ document.addEventListener("DOMContentLoaded", () => {
             storedSearchEngineDropdown.innerHTML = defaultEngine.innerHTML;
             defaultEngine.innerHTML = storedSearchEngineDropdownHTML;
 
-            swapDropdown(storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, defaultDropdownSN, defaultDropdownEngineName, defaultEngine);
+            swapDropdown(defaultDropdownSN, defaultDropdownEngineName, storedSearchEngineDropdownEngineSN, storedSearchEngineDropdownEnginName, storedSearchEngineDropdown);
+            sortDropdown();
+// 
         }
 
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
