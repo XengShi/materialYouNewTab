@@ -238,11 +238,11 @@ body {
 	min-height: 100%;
 	/* background-color: red; */
 	overflow: auto;
-
 	background-image: var(--bg-image, none);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-attachment: fixed;
 	height: 100vh; /* Ensure the image fits the viewport height */
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
