@@ -219,6 +219,7 @@ const translations = {
         "enableShortcutsText": "显示已保存的快捷方式",
         "editShortcutsText": "编辑快捷方式",
         "editShortcutsList": "已保存的快捷方式",
+        "editShortcutsListInfo": "您可以通过单击“+”图标添加新的快捷方式，或通过单击快捷方式名称或 URL 来编辑现有快捷方式",
         "shortcutsInfoText": "选择要显示的快捷方式",
         "adaptiveIconText": "自适应图标形状",
         "adaptiveIconInfoText": "快捷方式图标将显示为圆形",
