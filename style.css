@@ -228,23 +228,22 @@ html {
 }
 
 body {
-  background-color: var(--bg-color-blue);
-  color: var(--textColorDark-blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  /* background-color: red; */
-  overflow: auto;
-
-  background-image: var(--bg-image, none);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed; /* Keep this if you want the parallax effect */
-  height: 100vh; /* Ensure the image fits the viewport height */
-  margin: 0; /* Remove margin to avoid unwanted spacing */
+	background-color: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 100%;
+	/* background-color: red; */
+	overflow: auto;
+	background-image: var(--bg-image, none);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	height: 100vh; /* Ensure the image fits the viewport height */
+	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
