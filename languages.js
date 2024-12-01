@@ -6,7 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 // Translation data
 const translations = {
     "en": {
@@ -117,50 +116,51 @@ const translations = {
         "menuCloseText": "Fechar",
         // Shortcuts
         "shortcutsText": "Atalhos",
-        "enableShortcutsText": "Ativar/desativar atalhos",
+        "enableShortcutsText": "Mostrar atalhos salvos",
         "editShortcutsText": "Editar Atalhos",
-        "editShortcutsList": "Editar Atalhos",
         "shortcutsInfoText": "Escolha quais atalhos serão exibidos",
-        "adaptiveIconText": "Formas de Ícone Adaptativo",
-        "adaptiveIconInfoText": "Os ícones de atalhos serão sempre redondos",
+        "editShortcutsList": "Atalhos Salvos",
+        "editShortcutsListInfo": "Você pode adicionar novos atalhos clicando no ícone \"+\" ou editar os existentes clicando no nome ou URL do atalho",
+        "adaptiveIconText": "Ícones Adaptativos",
+        "adaptiveIconInfoText": "Os ícones de atalho aparecerão redondos",
         "ai_tools_button": "Ferramentas de IA",
-        "enable_ai_tools": "Ativar/desativar atalhos de ferramentas de IA",
-        "googleAppsMenuText": "Apps do Google",
-        "googleAppsMenuInfo": "Mostrar atalhos para os Apps do Google",
+        "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
+        "googleAppsMenuText": "Apps Google",
+        "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
-        "digitalclockinfo": "Ativar/desativar o Relógio Digital",
-        "timeformattittle": "Usar Formato de 12h",
-        "timeformatinfo": "Usar formato de hora de 12 horas",
+        "digitalclockinfo": "Mudar para o relógio digital",
+        "timeformattittle": "Formato 12 Horas",
+        "timeformatinfo": "Usar formato de 12 horas",
         "greetingtittle": "Saudação",
         "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
         // Misc
         "userTextTitle": "Texto Personalizável",
         "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
-        "fahrenheitCelsiusCheckbox": "Alternar para Fahrenheit",
-        "fahrenheitCelsiusText": "Atualize a página para ver as atualizações",
-        "micIconTitle": "Ocultar Icone do Microfone",
-        "micIconInfo": "Se a digitação por voz não estiver funcionando",
+        "fahrenheitCelsiusCheckbox": "Mudar para Fahrenheit",
+        "fahrenheitCelsiusText": "Atualize a página para aplicar as mudanças",
+        "micIconTitle": "Ocultar Ícone do Microfone",
+        "micIconInfo": "Se o ditado por voz não estiver funcionando",
         "search_suggestions_button": "Sugestões de Pesquisa",
-        "search_suggestions_text": "Ativar/desativar Sugestões de Pesquisa",
+        "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
         "useproxytitletext": "Bypass de Proxy",
         "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
         "ProxyText": "Proxy de Bypass CORS",
-        "ProxySubtext": "Adicione seu próprio Proxy de Bypass CORS",
-        "HostproxyButton": "Hospede Seu Próprio Proxy",
+        "ProxySubtext": "Adicione seu próprio proxy de bypass CORS",
+        "HostproxyButton": "Hospede seu próprio proxy",
         "saveproxy": "Salvar",
         // Location
-        "UserLocText": "Insira sua localização",
+        "UserLocText": "Digite sua Localização",
         "UserLocSubtext": "Se a localização do clima não estiver correta",
-        "userLoc": "Sua localização (Cidade/Aletitude,Longitude)",
-        "InputOptionsButton": "Opções de Entrada",
+        "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
+        "InputOptionsButton": "Opções de entrada",
         "saveLoc": "Salvar",
         // Weather
-        "WeatherApiText": "Insira sua própria chave do WeatherAPI",
+        "WeatherApiText": "Digite sua chave WeatherAPI",
         "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
-        "userAPI": "Sua chave da WeatherAPI",
-        "LearnMoreButton": "Saiba Mais",
+        "userAPI": "Sua chave weatherAPI",
+        "LearnMoreButton": "Saiba mais",
         "saveAPI": "Salvar",
         // End of Menu Items
 
@@ -179,11 +179,12 @@ const translations = {
         // New Tab Item
         "conditionText": "Olá! Como você está hoje?",
         "enterBtn": "Pesquisar",
-        "searchPlaceholder": "Digite sua consulta...",
+        "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
+        "googleAppsHover": "Apps do Google",
         // End of Body and New Tab Items
 
         // Greeting
@@ -192,7 +193,20 @@ const translations = {
             "afternoon": "Boa tarde!",
             "evening": "Boa noite!"
         },
+        // Search Engines
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub"
     },
+
 
     // Chinese (Simplified)
     "zh": {
@@ -205,6 +219,7 @@ const translations = {
         "enableShortcutsText": "显示已保存的快捷方式",
         "editShortcutsText": "编辑快捷方式",
         "editShortcutsList": "已保存的快捷方式",
+        "editShortcutsListInfo": "您可以通过单击“+”图标添加新的快捷方式，或通过单击快捷方式名称或 URL 来编辑现有快捷方式",
         "shortcutsInfoText": "选择要显示的快捷方式",
         "adaptiveIconText": "自适应图标形状",
         "adaptiveIconInfoText": "快捷方式图标将显示为圆形",
@@ -284,6 +299,7 @@ const translations = {
         "bingEngine": "必应",
         "googleAppsHover": "谷歌应用",
     },
+
 
     // Hindi
     "hi": {
@@ -386,6 +402,7 @@ const translations = {
         "googleAppsHover": "गूगल ऐप्स",
     },
 
+
     // Czech
     "cs": {
         // Menu Items
@@ -397,6 +414,7 @@ const translations = {
         "enableShortcutsText": "Zobrazí zkratky",
         "editShortcutsText": "Upravit zkratky",
         "editShortcutsList": "Uložené zkratky",
+        "editShortcutsListInfo": "Nové zkratky můžete přidat klepnutím na ikonku „+“. Upravit existující můžete klepnutím na název nebo URL adresu zkratky.",
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
         "adaptiveIconInfoText": "Ikony zkratek se zmenší",
@@ -471,6 +489,7 @@ const translations = {
             "evening": "Dobrý večer!"
         },
     },
+
 
     // Italian
     // Machine translated some elements, please verify and delete this comment
@@ -558,6 +577,7 @@ const translations = {
         },
     },
 
+
     // Turkish
     "tr": {
         // Menu Items
@@ -642,6 +662,7 @@ const translations = {
             "evening": "İyi akşamlar!"
         },
     },
+
 
     // Bengali
     "bn": {
@@ -745,6 +766,7 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
     },
 
+
     // Vietnamese
     "vi": {
         // Menu Items
@@ -829,6 +851,7 @@ const translations = {
             "evening": "Chào buổi tối!"
         },
     },
+
 
     // Russian
     "ru": {
@@ -929,6 +952,7 @@ const translations = {
         "googleAppsHover": "Гугл Приложения",
     },
 
+
     // Uzbek
     "uz": {
         // Menu Items
@@ -1013,6 +1037,7 @@ const translations = {
             "evening": "Xayrli kech!"
         },
     },
+
 
     // Spanish
     "es": {
@@ -1099,6 +1124,7 @@ const translations = {
         },
     },
 
+
     // Japanese
     "ja": {
         // Menu Items
@@ -1111,24 +1137,25 @@ const translations = {
         "editShortcutsText": "ショートカットを編集",
         "editShortcutsList": "保存されたショートカット",
         "shortcutsInfoText": "表示するショートカットを選択",
+        'editShortcutsListInfo': '"+" アイコンをクリックして新しいショートカットを追加したり、ショートカット名またはURLをクリックして既存のショートカットを編集したりできます',
         "adaptiveIconText": "アダプティブアイコン",
         "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
         "ai_tools_button": "AIツール",
         "enable_ai_tools": "AIツールのショートカットを表示",
-        "googleAppsMenuText": "Google アプリ",
-        "googleAppsMenuInfo": "Google アプリのショートカットを表示",
+        "googleAppsMenuText": "Googleアプリ",
+        "googleAppsMenuInfo": "Googleアプリのショートカットを表示",
         // Digital Clock
         "digitalclocktittle": "デジタル時計",
         "digitalclockinfo": "デジタル時計に変更",
         "timeformattittle": "12時間形式",
         "timeformatinfo": "12時間形式を使用",
-        "greetingtittle": "挨拶",
-        "greetinginfo": "カスタムテキストの下に挨拶を表示",
+        "greetingtittle": "あいさつ",
+        "greetinginfo": "カスタムテキストの下にあいさつを表示",
         // Misc
         "userTextTitle": "カスタムテキスト",
         "userTextInfo": "時計の下にカスタムテキストを表示",
         "fahrenheitCelsiusCheckbox": "華氏に変更",
-        "fahrenheitCelsiusText": "変更を適用するにはページをリロード",
+        "fahrenheitCelsiusText": "変更を適用するにはページを再読み込み",
         "micIconTitle": "マイクアイコンを非表示",
         "micIconInfo": "音声入力が動作しない場合",
         "search_suggestions_button": "検索候補",
@@ -1142,7 +1169,7 @@ const translations = {
         "saveproxy": "保存",
         // Location
         "UserLocText": "場所を入力",
-        "UserLocSubtext": "天気が正しくない場合",
+        "UserLocSubtext": "天気の地域が正しくない場合",
         "userLoc": "都市または座標（緯度、経度）",
         "InputOptionsButton": "入力オプション",
         "saveLoc": "保存",
@@ -1167,13 +1194,14 @@ const translations = {
         // End of Weather
 
         // New Tab Item
-        "conditionText": "こんにちは！今日はどうですか？",
+        "conditionText": "こんにちは！本日の調子はいかがですか？",
         "enterBtn": "検索",
         "searchPlaceholder": "検索キーワードを入力...",
-        "listenPlaceholder": "聞いています...",
-        "searchWithHint": "検索で検索",
+        "listenPlaceholder": "聴き取り中...",
+        "searchWithHint": "次で検索",
         "ai_tools": "AIツール",
         "userText": "ここをクリックして編集",
+        "googleAppsHover": "Googleアプリ",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1184,19 +1212,19 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "グーグル",
-        "duckEngine": "ダックダックゴー",
-        "bingEngine": "ビング",
-        "braveEngine": "ブレイブ",
-        "youtubeEngine": "ユーチューブ",
-        "chatGPT": "チャットGPT",
-        "gemini": "ジェミニ",
-        "copilot": "コパイロット",
-        "perplexity": "パープレクシティ",
-        "firefly": "アドビファイヤフライ",
-        "github": "ギットハブ",
-        "googleAppsHover": "グーグルアプリ",
+        "googleEngine": "Google",
+        "duckEngine": "DuckDuckGo",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
     },
+
 
     // Korean
     "ko": {
@@ -1297,6 +1325,7 @@ const translations = {
         "googleAppsHover": "구글 앱",
     },
 
+
     // Indonesian
     "idn": {
         // Menu Items
@@ -1308,6 +1337,7 @@ const translations = {
         "enableShortcutsText": "Menampilkan Pintasan",
         "editShortcutsText": "Ubah Pintasan",
         "editShortcutsList": "Pintasan Tersimpan",
+        'editShortcutsListInfo': 'Anda dapat menambahkan pintasan baru dengan mengeklik ikon "+" atau mengedit pintasan yang sudah ada dengan mengeklik nama pintasan atau URL',
         "shortcutsInfoText": "Pilih pintasan apa yang akan ditampilkan",
         "adaptiveIconText": "Penyesuaian Bentuk Ikon",
         "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
@@ -1381,6 +1411,7 @@ const translations = {
             "evening": "Selamat Malam!"
         },
     },
+
 
     // Marathi
     "mr": {
@@ -1482,7 +1513,6 @@ const translations = {
         "firefly": "अॅडोबी फायरफ्लाय",
         "github": "गिटहब",
     },
-
 };
 
 // Define the width of the menu container for each language
@@ -1592,7 +1622,7 @@ function applyLanguage(lang) {
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
         { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'googleAppsHover', key: 'googleAppsHover' }
 
     ];
 

@@ -7,6 +7,22 @@
  */
 
 
+// Check if alert has already been shown
+if (!localStorage.getItem('alertShown')) {
+    // Show the alert after 4 seconds
+    setTimeout(() => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const message = isMac
+            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
+            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
+
+        alert(message);
+
+        // Set a flag in localStorage so the alert is not shown again
+        localStorage.setItem('alertShown', 'true');
+    }, 4000);
+}
+
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -109,7 +125,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.city; // Update to user's city from IP
+
+		// If the country is India and the location is 'Delhi', update to 'New Delhi'
+                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
+                    currentUserLocation = "New Delhi";
+                } else {
+                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
+                }  
+
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
@@ -623,7 +646,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-//search function
+// Search function
 document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
@@ -878,12 +901,14 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
             document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
             document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+            document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
         } else {
             document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty('--whitishColor-blue', `var(--whitishColor-${colorValue})`);
         }
     }
 
@@ -1077,6 +1102,9 @@ const applySelectedTheme = (colorValue) => {
         "orange": "./favicon/orange.png",
         "purple": "./favicon/purple.png",
         "pink": "./favicon/pink.png",
+        "brown": "./favicon/brown.png",
+        "silver": "./favicon/silver.png",
+        "grey": "./favicon/grey.png",
         "dark": "./favicon/dark.png",
     };
 
@@ -1112,9 +1140,143 @@ radioButtons.forEach(radioButton => {
     });
 });
 
-
 // end of Function to apply the selected theme
 
+// ------------ Wallpaper --------------
+// Constants for database and storage
+const dbName = 'ImageDB';
+const storeName = 'backgroundImages';
+
+// Open IndexedDB database
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, 1);
+
+        request.onupgradeneeded = function (event) {
+            const db = event.target.result;
+            db.createObjectStore(storeName);
+        };
+
+        request.onsuccess = function (event) {
+            resolve(event.target.result);
+        };
+
+        request.onerror = function (event) {
+            reject('Database error: ' + event.target.errorCode);
+        };
+    });
+}
+
+// Save image data to IndexedDB
+function saveImageToIndexedDB(imageUrl) {
+    return openDatabase().then((db) => {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(storeName, 'readwrite');
+            const store = transaction.objectStore(storeName);
+            store.put(imageUrl, 'backgroundImage');
+
+            transaction.oncomplete = function () {
+                resolve();
+            };
+
+            transaction.onerror = function (event) {
+                reject('Transaction error: ' + event.target.errorCode);
+            };
+        });
+    });
+}
+
+// Load image data from IndexedDB
+function loadImageFromIndexedDB() {
+    return openDatabase().then((db) => {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(storeName, 'readonly');
+            const store = transaction.objectStore(storeName);
+            const request = store.get('backgroundImage');
+
+            request.onsuccess = function (event) {
+                resolve(event.target.result);
+            };
+
+            request.onerror = function (event) {
+                reject('Request error: ' + event.target.errorCode);
+            };
+        });
+    });
+}
+
+// Clear image data from IndexedDB
+function clearImageFromIndexedDB() {
+    return openDatabase().then((db) => {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(storeName, 'readwrite');
+            const store = transaction.objectStore(storeName);
+            const request = store.delete('backgroundImage');
+
+            request.onsuccess = function () {
+                resolve();
+            };
+
+            request.onerror = function (event) {
+                reject('Delete error: ' + event.target.errorCode);
+            };
+        });
+    });
+}
+
+// Event listener for Upload button
+document.getElementById('uploadTrigger').addEventListener('click', function () {
+    document.getElementById('imageUpload').click();
+});
+
+// Handle file input and save image
+document.getElementById('imageUpload').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imageUrl = e.target.result;
+            saveImageToIndexedDB(imageUrl)
+                .then(() => {
+                    document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+                })
+                .catch((error) => console.error(error));
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Event listener for Clear button
+document.getElementById('clearImage').addEventListener('click', function () {
+    // Check if there is an existing background image
+    loadImageFromIndexedDB()
+        .then((savedImage) => {
+            if (savedImage) {
+                // If an image exists, ask for confirmation
+                if (confirm('Are you sure you want to clear the background image?')) {
+                    clearImageFromIndexedDB()
+                        .then(() => {
+                            document.body.style.removeProperty('--bg-image');
+                        })
+                        .catch((error) => console.error(error));
+                }
+            } else {
+                // No image exists, do nothing
+                alert('No background image is currently set.');
+            }
+        })
+        .catch((error) => console.error(error));
+});
+
+// Load saved background image on page load
+loadImageFromIndexedDB()
+    .then((savedImage) => {
+        if (savedImage) {
+            document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+        }
+    })
+    .catch((error) => console.error(error));
+// --------------------------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
@@ -1801,7 +1963,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
         let url = shortcut.querySelector("input.URL").value;
-        const normalizedUrl = url.startsWith('https://') ? url : 'https://' + url.replace("http://", "");
+        const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
 
@@ -1971,6 +2133,11 @@ document.addEventListener("DOMContentLoaded", function () {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+
+            // Handle image loading error on offline scenario
+            logo.onerror = () => {
+                logo.src = "./shortcuts_icons/offline.svg";
+            };
         }
 
         return logo;
@@ -2019,6 +2186,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("adaptiveIconField", "inactive");
         }
     });
+
     searchsuggestionscheckbox.addEventListener("change", function () {
         saveCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
         if (searchsuggestionscheckbox.checked) {
@@ -2067,6 +2235,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("greetingField", "inactive");
         }
     });
+
     hourcheckbox.addEventListener("change", function () {
         saveCheckboxState("hourcheckboxState", hourcheckbox);
         if (hourcheckbox.checked) {
@@ -2075,10 +2244,12 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("hourformat", "false");
         }
     });
+
     greetingCheckbox.addEventListener("change", () => {
         localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
         updatedigiClock();
     });
+
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -2099,6 +2270,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
