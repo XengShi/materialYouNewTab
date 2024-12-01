@@ -629,8 +629,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
-    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not([id$="default-dropdown"])');
-    
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+
+    const sortDropdown = () => {
+        const elements = Array.from(searchDropdowns);
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+            return engineA - engineB;
+        })
+
+        const parent = sortedDropdowns[0]?.parentNode; // Get the parent node of the first element
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item)); // Append sorted elements back to the parent
+        }
+    }
+
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
         element.addEventListener('click', () => {
@@ -652,15 +666,17 @@ document.addEventListener("DOMContentLoaded", () => {
              * The following JS will swap their IDS And Data - Attribute values.
              * In result the selected search engine will take the place of the onclicked (New Selected) engine
              */
-            
+
             defaultEngine.setAttribute('data-engine-name', engineName);
             defaultEngine.setAttribute('id', `${engineName}-dropdown`);
             defaultEngine.setAttribute('data-engine', engine);
-            
+
             element.setAttribute('data-engine', defaultEngineSR);
             element.setAttribute('id', `${defaultEngineName}-dropdown`);
             element.setAttribute('data-engine-name', defaultEngineName);
-            
+
+            sortDropdown()
+
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
             radioButton.checked = true;
