@@ -2091,3 +2091,7 @@ input:checked+.toggle:before {
 #default-dropdown-item .engine-name {
     display: none;
 }
+
+.dropdown-content .engine-name {
+    font-size: 1rem;
+}
