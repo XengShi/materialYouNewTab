@@ -1136,24 +1136,25 @@ const translations = {
         "editShortcutsText": "ショートカットを編集",
         "editShortcutsList": "保存されたショートカット",
         "shortcutsInfoText": "表示するショートカットを選択",
+        'editShortcutsListInfo': '"+" アイコンをクリックして新しいショートカットを追加したり、ショートカット名またはURLをクリックして既存のショートカットを編集したりできます',
         "adaptiveIconText": "アダプティブアイコン",
         "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
         "ai_tools_button": "AIツール",
         "enable_ai_tools": "AIツールのショートカットを表示",
-        "googleAppsMenuText": "Google アプリ",
-        "googleAppsMenuInfo": "Google アプリのショートカットを表示",
+        "googleAppsMenuText": "Googleアプリ",
+        "googleAppsMenuInfo": "Googleアプリのショートカットを表示",
         // Digital Clock
         "digitalclocktittle": "デジタル時計",
         "digitalclockinfo": "デジタル時計に変更",
         "timeformattittle": "12時間形式",
         "timeformatinfo": "12時間形式を使用",
-        "greetingtittle": "挨拶",
-        "greetinginfo": "カスタムテキストの下に挨拶を表示",
+        "greetingtittle": "あいさつ",
+        "greetinginfo": "カスタムテキストの下にあいさつを表示",
         // Misc
         "userTextTitle": "カスタムテキスト",
         "userTextInfo": "時計の下にカスタムテキストを表示",
         "fahrenheitCelsiusCheckbox": "華氏に変更",
-        "fahrenheitCelsiusText": "変更を適用するにはページをリロード",
+        "fahrenheitCelsiusText": "変更を適用するにはページを再読み込み",
         "micIconTitle": "マイクアイコンを非表示",
         "micIconInfo": "音声入力が動作しない場合",
         "search_suggestions_button": "検索候補",
@@ -1167,7 +1168,7 @@ const translations = {
         "saveproxy": "保存",
         // Location
         "UserLocText": "場所を入力",
-        "UserLocSubtext": "天気が正しくない場合",
+        "UserLocSubtext": "天気の地域が正しくない場合",
         "userLoc": "都市または座標（緯度、経度）",
         "InputOptionsButton": "入力オプション",
         "saveLoc": "保存",
@@ -1192,13 +1193,14 @@ const translations = {
         // End of Weather
 
         // New Tab Item
-        "conditionText": "こんにちは！今日はどうですか？",
+        "conditionText": "こんにちは！本日の調子はいかがですか？",
         "enterBtn": "検索",
         "searchPlaceholder": "検索キーワードを入力...",
-        "listenPlaceholder": "聞いています...",
-        "searchWithHint": "検索で検索",
+        "listenPlaceholder": "聴き取り中...",
+        "searchWithHint": "次のもので検索",
         "ai_tools": "AIツール",
         "userText": "ここをクリックして編集",
+        "googleAppsHover": "Googleアプリ",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1209,18 +1211,17 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "グーグル",
-        "duckEngine": "ダックダックゴー",
-        "bingEngine": "ビング",
-        "braveEngine": "ブレイブ",
-        "youtubeEngine": "ユーチューブ",
-        "chatGPT": "チャットGPT",
-        "gemini": "ジェミニ",
-        "copilot": "コパイロット",
-        "perplexity": "パープレクシティ",
-        "firefly": "アドビファイヤフライ",
-        "github": "ギットハブ",
-        "googleAppsHover": "グーグルアプリ",
+        "googleEngine": "Google",
+        "duckEngine": "DuckDuckGo",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
     },
 
 
