@@ -628,9 +628,10 @@ document.addEventListener('click', function (event) {
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector('.dropdown-content');
 
-    document.addEventListener('click', () => {
+    document.addEventListener('click', (event) => {
         if (dropdown.style.display == "block"){
-            document.querySelector('.dropdown-btn').click()        
+            event.stopPropagation();
+            dropdown.style.display = 'none';
         }
     })
 
