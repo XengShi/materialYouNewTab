@@ -1235,12 +1235,25 @@ document.getElementById('imageUpload').addEventListener('change', function (even
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            const imageUrl = e.target.result;
-            saveImageToIndexedDB(imageUrl)
-                .then(() => {
-                    document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-                })
-                .catch((error) => console.error(error));
+            const image = new Image();
+            image.onload = function () {
+                // Check if dimensions exceed the threshold
+                const totalPixels = image.width * image.height;
+                if (totalPixels > 2073600) {
+                    alert(
+                        `Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed 2,073,600 pixels. ` +
+                        `This may impact performance or fail to load properly.`
+                    );
+                }
+
+                // Save image to IndexedDB
+                saveImageToIndexedDB(e.target.result)
+                    .then(() => {
+                        document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
+                    })
+                    .catch((error) => console.error(error));
+            };
+            image.src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
@@ -1268,6 +1281,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
         .catch((error) => console.error(error));
 });
 
+
 // Load saved background image on page load
 loadImageFromIndexedDB()
     .then((savedImage) => {
@@ -1276,6 +1290,40 @@ loadImageFromIndexedDB()
         }
     })
     .catch((error) => console.error(error));
+
+// Fetch and apply random image as background, then save to IndexedDB
+const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
+function applyRandomImage() {
+    fetch(RANDOM_IMAGE_URL)
+        .then(response => {
+            const imageUrl = response.url;
+            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            return saveImageToIndexedDB(imageUrl); // Save the random image URL
+        })
+        .catch(error => console.error('Error fetching random image:', error));
+}
+
+// Event listener for Random button
+document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
+
+// Schedule daily random image at 10:30 AM
+function scheduleDailyImage() {
+    const now = new Date();
+    const target = new Date();
+    target.setHours(10, 30, 0, 0);
+
+    if (target <= now) target.setDate(target.getDate() + 1); // Schedule for next day if time has passed.
+
+    const timeUntilTarget = target.getTime() - now.getTime();
+
+    setTimeout(() => {
+        applyRandomImage();
+        setInterval(applyRandomImage, 24 * 60 * 60 * 1000); // Repeat every 24 hours.
+    }, timeUntilTarget);
+}
+
+// Start scheduling on page load
+scheduleDailyImage();
 // --------------------------------------------------
 
 // when User click on "AI-Tools"
