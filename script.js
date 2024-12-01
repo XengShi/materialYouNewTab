@@ -626,6 +626,11 @@ document.addEventListener('click', function (event) {
 
 //search function
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        var dropdown = document.querySelector('.dropdown-content');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
