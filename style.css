@@ -2003,7 +2003,7 @@ input:checked + .toggle:before {
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
-	font-size: 16px;
+	font-size: 1rem;
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
