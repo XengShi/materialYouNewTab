@@ -126,12 +126,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
 
-		// If the country is India and the location is 'Delhi', update to 'New Delhi'
+                // If the country is India and the location is 'Delhi', update to 'New Delhi'
                 if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
                     currentUserLocation = "New Delhi";
                 } else {
                     currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }  
+                }
 
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
@@ -854,10 +854,18 @@ if (!micIconCheckbox.checked) {
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 const storedTheme = localStorage.getItem(themeStorageKey);
+// const radioButtons = document.querySelectorAll('.colorPlate');
+// const themeStorageKey = 'selectedTheme'; // For predefined themes
+const customThemeStorageKey = 'customThemeColor'; // For color picker
+// const storedTheme = localStorage.getItem(themeStorageKey);
+const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
+let darkThemeEnabled = false;
+
 const resetDarkTheme = () => {
+    darkThemeEnabled = false
     // Remove the dark theme class
     document.documentElement.classList.remove('dark-theme');
 
@@ -866,6 +874,14 @@ const resetDarkTheme = () => {
         darkThemeStyleTag.remove();
         darkThemeStyleTag = null;
     }
+
+    // Reset all dark-theme-specific styles and variables
+    document.documentElement.style.setProperty('--bg-color-blue', '');
+    document.documentElement.style.setProperty('--accentLightTint-blue', '');
+    document.documentElement.style.setProperty('--darkerColor-blue', '');
+    document.documentElement.style.setProperty('--darkColor-blue', '');
+    document.documentElement.style.setProperty('--textColorDark-blue', '');
+    document.documentElement.style.setProperty('--whitishColor-blue', '');
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
@@ -894,8 +910,18 @@ const resetDarkTheme = () => {
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
+        darkThemeEnabled = false;
         resetDarkTheme();
-
+        document.documentElement.classList.add('dark-theme');
+        // Apply dark theme styles
+        darkThemeStyleTag = document.createElement('style');
+        darkThemeStyleTag.textContent = `
+            .resultItem.active {
+                background-color: var(--darkColor-dark);
+            }
+        `;
+        document.head.appendChild(darkThemeStyleTag);
+    
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
             // Special handling for blue theme
@@ -917,7 +943,7 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-
+        darkThemeEnabled = true;
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -1110,20 +1136,11 @@ const applySelectedTheme = (colorValue) => {
     }
 
     // Change the extension icon based on the selected theme
-    const iconPaths = {
-        "blue": "./favicon/blue.png",
-        "yellow": "./favicon/yellow.png",
-        "red": "./favicon/red.png",
-        "green": "./favicon/green.png",
-        "cyan": "./favicon/cyan.png",
-        "orange": "./favicon/orange.png",
-        "purple": "./favicon/purple.png",
-        "pink": "./favicon/pink.png",
-        "brown": "./favicon/brown.png",
-        "silver": "./favicon/silver.png",
-        "grey": "./favicon/grey.png",
-        "dark": "./favicon/dark.png",
-    };
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+        .reduce((acc, color) => {
+            acc[color] = `./favicon/${color}.png`;
+            return acc;
+        }, {});
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
@@ -1146,6 +1163,115 @@ const applySelectedTheme = (colorValue) => {
         faviconLink.href = iconPaths[colorValue];
     }
 };
+
+// ----Color Picker || ColorPicker----
+function darkenHexColor(hex, factor = 0.6) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r * (1 - factor));
+    g = Math.floor(g * (1 - factor));
+    b = Math.floor(b * (1 - factor));
+    return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightenHexColor(hex, factor = 0.85) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightestColor(hex, factor = 0.95) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function isNearWhite(hex, threshold = 240) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    return r > threshold && g > threshold && b > threshold;
+}
+
+// ---- Color Picker || ColorPicker----
+
+const applyCustomTheme = (color) => {
+    const darkerColorHex = darkenHexColor(color);
+    const lighterColorHex = lightenHexColor(color, 0.85);
+    const lightTin = lightestColor(color, 0.95);
+    // resetDarkTheme();
+    document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
+    document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
+    document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--darkColor-blue', color);
+    document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.getElementById("rangColor").style.borderColor = color;
+    document.getElementById('dfChecked').checked = false;       
+};
+
+// Load theme on page reload
+window.addEventListener('load', function () {
+    if (storedTheme) {
+        applySelectedTheme(storedTheme);
+    } else if (storedCustomColor) {
+        applyCustomTheme(storedCustomColor);
+    }
+});
+
+// Handle radio button changes
+radioButtons.forEach(radioButton => {
+    radioButton.addEventListener('change', function () {
+        if (this.checked) {
+            const colorValue = this.value;
+            localStorage.setItem(themeStorageKey, colorValue);
+            localStorage.removeItem(customThemeStorageKey); // Clear custom theme
+            applySelectedTheme(colorValue);
+        }
+    });
+});
+
+// Handle color picker changes
+const colorPicker = document.getElementById('colorPicker');
+colorPicker.addEventListener('input', function (event) {
+    // resetDarkTheme();
+    const selectedColor = event.target.value;
+    localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
+    localStorage.removeItem(themeStorageKey); // Clear predefined theme
+    applyCustomTheme(selectedColor);
+    const radioButtons = document.querySelectorAll('.colorPlate');
+    radioButtons.forEach((radio) => {
+        radio.checked = false;
+    });
+});
+colorPicker.addEventListener('change', function () {
+    // Perform any operations you need to handle the color change here
+    console.log('Color chosen:', colorPicker.value);
+    location.reload();
+});
+
+// ---- End of Color Picker || ColorPicker----
+
+
 
 radioButtons.forEach(radioButton => {
     radioButton.addEventListener('change', function () {
@@ -1621,6 +1747,12 @@ const closeMenuBar = () => {
     setTimeout(() => {
         menuBar.style.display = "none";
     }, 555);
+
+    if (darkThemeEnabled == false){
+        console.log(darkThemeEnabled)
+        // reloading the page for getting rid of dark effect after chnaging theme from dark to light.
+        location.reload();
+    }
 }
 
 const openMenuBar = () => {
