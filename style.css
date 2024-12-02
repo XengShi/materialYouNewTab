@@ -125,7 +125,7 @@
 	--darkerColor-dark: #eeeeee;
 	--darkColor-dark: #212121;
 	--textColorDark-dark: #d6d6d6;
-	--whitishColor-dark: #ffffff;
+	--whitishColor-dark: #cccccc;
 
 	/* ----------------- */
 
@@ -202,10 +202,10 @@
 	background-color: var(--accentLightTint-blue);
 }
 
-.whitishColor {
+/* .whitishColor {
 	fill: var(--whitishColor-blue);
 	background-color: var(--whitishColor-blue);
-}
+} */
 
 .strokecolor {
 	stroke: var(--darkColor-blue);
@@ -289,9 +289,9 @@ body {
 	color: rgba(255, 255, 255, 0.9);
 	text-align: center;
 	padding: 5px;
-	border-radius: 7px;
+	border-radius: 8px;
 	position: absolute;
-	top: 108%;
+	top: 120%;
 	/* Position below the icon */
 	left: 50%;
 	transform: translateX(-50%);
@@ -309,16 +309,10 @@ body {
 	opacity: 1;
 }
 
-/* Hide tooltip when menu is open */
-.googleAppsCont:hover + .icon-container .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
-}
-
-/* Hide tooltip when icon button is clicked */
-.googleAppsCont.clicked .tooltip-text {
-	visibility: hidden;
-	opacity: 0;
+/* Ensure tooltip remains hidden when menu is visible */
+.menu-open .tooltip-text {
+	visibility: hidden !important;
+	opacity: 0 !important;
 }
 
 /* Separator Styling */
@@ -587,19 +581,31 @@ body {
 .ttteexxtt {
 	position: absolute;
 	/* background-color: yellow; */
-	bottom: 18px;
+ 	/*bottom: 18px; */
 	/*Because search engines has margin-bottom 20px*/
+	bottom: 8px;
 	left: 5px;
 }
 
 #userText {
-	font-family: "poppins", serif;
+	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
+	text-shadow:
+		1px 1px 2px rgba(255, 255, 255, 0.2),
+		-1px -1px 2px rgba(255, 255, 255, 0.2),
+		1px -1px 2px rgba(255, 255, 255, 0.2),
+		-1px 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 #date {
 	font-size: 1.4rem;
+	/* text-align: center; */
+	text-shadow:
+		1px 1px 2px rgba(255, 255, 255, 0.2),
+		-1px -1px 2px rgba(255, 255, 255, 0.2),
+		1px -1px 2px rgba(255, 255, 255, 0.2),
+		-1px 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 .digidate {
@@ -886,9 +892,9 @@ body {
 }
 
 /* Placeholder color when the condition is met */
-#searchQ.darker-placeholder::placeholder {
+/* #searchQ.darker-placeholder::placeholder {
 	color: #3c3c3c;
-}
+} */
 
 .searchControls {
 	margin-left: 10px;
@@ -2032,12 +2038,14 @@ input:checked + .toggle:before {
 .uploadClearContainer {
 	display: flex;
 	justify-content: center; /* Center the buttons horizontally */
-	gap: var(--gap); /* Maintain consistent spacing */
+	gap: 10px; /* Maintain consistent spacing */
 	margin-top: 122px; /* Add spacing below the theming section */
+	justify-content: space-around;
 }
 
 /* Styling for Upload/Clear Buttons with SVGs */
 .uploadButton,
+.randomButton,
 .clearButton {
 	display: flex;
 	align-items: center;
@@ -2046,19 +2054,30 @@ input:checked + .toggle:before {
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
-	font-size: 16px;
+	font-size: 1rem;
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
+.uploadButton {
+	font-size: 0.95rem !important;
+}
+
+.randomButton {
+	padding: 10px;
+}
+
 .clearButton {
-	padding: 10px; /* Smaller padding for the delete icon */
+	padding: 10px;
+	color: var(--whitishColor-blue) !important;
+	background-color: var(--darkColor-blue) !important;
 }
 
 /* Ensure consistent SVG sizing */
 .uploadButton svg,
+.randomButton svg,
 .clearButton svg {
 	width: 24px;
 	height: 24px;
@@ -2066,9 +2085,14 @@ input:checked + .toggle:before {
 
 /* Hover Effects */
 .uploadButton:hover,
-.clearButton:hover {
+.randomButton:hover {
 	background-color: var(--darkColor-blue);
 	color: var(--whitishColor-blue);
+}
+
+.clearButton:hover {
+	color: var(--darkColor-blue) !important;
+	background-color: var(--whitishColor-blue) !important;
 }
 
 /* File input remains hidden */
@@ -2077,7 +2101,7 @@ input:checked + .toggle:before {
 }
 
 .spacer {
-	height: 40px;
+	height: 35px;
 	/* Adjust this value to create space */
 }
 
