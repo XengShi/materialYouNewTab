@@ -1256,6 +1256,9 @@ document.getElementById('imageUpload').addEventListener('change', function (even
                     })
                     .catch((error) => console.error(error));
             };
+	    reader.readAsDataURL(file);
+    }
+});
 
 // Event listener for Clear button
 document.getElementById('clearImage').addEventListener('click', function () {
