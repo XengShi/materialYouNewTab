@@ -125,7 +125,7 @@
 	--darkerColor-dark: #eeeeee;
 	--darkColor-dark: #212121;
 	--textColorDark-dark: #d6d6d6;
-	--whitishColor-dark: #ffffff;
+	--whitishColor-dark: #cccccc;
 
 	/* ----------------- */
 
@@ -587,19 +587,31 @@ body {
 .ttteexxtt {
 	position: absolute;
 	/* background-color: yellow; */
-	bottom: 18px;
+ 	/*bottom: 18px; */
 	/*Because search engines has margin-bottom 20px*/
+	bottom: 8px;
 	left: 5px;
 }
 
 #userText {
-	font-family: "poppins", serif;
+	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
+	text-shadow:
+		1px 1px 2px rgba(255, 255, 255, 0.2),
+		-1px -1px 2px rgba(255, 255, 255, 0.2),
+		1px -1px 2px rgba(255, 255, 255, 0.2),
+		-1px 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 #date {
 	font-size: 1.4rem;
+	/* text-align: center; */
+	text-shadow:
+		1px 1px 2px rgba(255, 255, 255, 0.2),
+		-1px -1px 2px rgba(255, 255, 255, 0.2),
+		1px -1px 2px rgba(255, 255, 255, 0.2),
+		-1px 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 .digidate {

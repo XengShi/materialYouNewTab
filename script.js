@@ -963,7 +963,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .ttcont input {
-                background-color: #212121;
+                background-color: #212121 !important;
             }
 
             .dark-theme input:checked + .toggle {
@@ -1024,6 +1024,20 @@ const applySelectedTheme = (colorValue) => {
 
             .digiclock {
                 fill: #909090;
+            }
+	    
+	    #userText {
+	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
+		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
+		                    1px -1px 2px rgba(0, 0, 0, 0.2),
+                                    -1px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            #date {
+	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
+		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
+		                    1px -1px 2px rgba(0, 0, 0, 0.2),
+                                    -1px 1px 2px rgba(0, 0, 0, 0.2);
             }
 
             #minute, #minute::after, #second::after {
