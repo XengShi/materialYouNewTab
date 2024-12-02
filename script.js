@@ -1030,10 +1030,10 @@ const applySelectedTheme = (colorValue) => {
             }
 	    
 	    #userText, #date {
-	        text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2),
-	 		-1px -1px 10px rgba(0, 0, 0, 0.2),
-    			1px -1px 10px rgba(0, 0, 0, 0.2),
-       			-1px 1px 10px rgba(0, 0, 0, 0.2) !important;
+	        text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.9),
+	 		-1px -1px 15px rgba(0, 0, 0, 0.9),
+    			1px -1px 15px rgba(0, 0, 0, 0.9),
+       			-1px 1px 15px rgba(0, 0, 0, 0.9) !important;
             }
 
             #minute, #minute::after, #second::after {
@@ -1298,10 +1298,10 @@ function updateTextShadow(hasWallpaper) {
     const elements = [document.getElementById('userText'), document.getElementById('date')];
     elements.forEach(element => {
         if (hasWallpaper) {
-            element.style.textShadow = '1px 1px 10px rgba(255, 255, 255, 0.2), ' +
-                '-1px -1px 10px rgba(255, 255, 255, 0.2), ' +
-                '1px -1px 10px rgba(255, 255, 255, 0.2), ' +
-                '-1px 1px 10px rgba(255, 255, 255, 0.2)';
+            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
         } else {
             element.style.textShadow = 'none'; // Remove the text-shadow
         }
