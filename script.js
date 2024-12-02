@@ -1267,15 +1267,16 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
-function applyRandomImage() {
+async function applyRandomImage() {
     if (confirm('Do you want to set a random image as wallpaper?')) {
-        fetch(RANDOM_IMAGE_URL)
-            .then((response) => {
-                const imageUrl = response.url;
-                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-                return saveImageToIndexedDB(imageUrl, true);
-            })
-            .catch((error) => console.error('Error fetching random image:', error));
+        try {
+            const response = await fetch(RANDOM_IMAGE_URL);
+            const imageUrl = response.url;
+            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            await saveImageToIndexedDB(imageUrl, true);
+        } catch (error) {
+            console.error('Error fetching random image:', error);
+        }
     }
 }
 
