@@ -1286,6 +1286,7 @@ function checkAndUpdateImage() {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
+            if (!savedTimestamp || isNaN(lastUpdate)) return;
             if (!savedImage || imageType === 'upload') return;
 
             if (lastUpdate.toDateString() !== now.toDateString()) {
