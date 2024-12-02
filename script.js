@@ -125,7 +125,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.city; // Update to user's city from IP
+
+		// If the country is India and the location is 'Delhi', update to 'New Delhi'
+                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
+                    currentUserLocation = "New Delhi";
+                } else {
+                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
+                }  
+
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
@@ -1307,13 +1314,24 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
 // Event listener for Clear button
 document.getElementById('clearImage').addEventListener('click', function () {
-    if (confirm('Are you sure you want to clear the background image?')) {
-        clearImageFromIndexedDB()
-            .then(() => {
-                document.body.style.removeProperty('--bg-image');
-            })
-            .catch((error) => console.error(error));
-    }
+    // Check if there is an existing background image
+    loadImageFromIndexedDB()
+        .then((savedImage) => {
+            if (savedImage) {
+                // If an image exists, ask for confirmation
+                if (confirm('Are you sure you want to clear the background image?')) {
+                    clearImageFromIndexedDB()
+                        .then(() => {
+                            document.body.style.removeProperty('--bg-image');
+                        })
+                        .catch((error) => console.error(error));
+                }
+            } else {
+                // No image exists, do nothing
+                alert('No background image is currently set.');
+            }
+        })
+        .catch((error) => console.error(error));
 });
 
 // Load saved background image on page load
