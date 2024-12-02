@@ -1142,51 +1142,80 @@ radioButtons.forEach(radioButton => {
 
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper --------------
+// ------------ Wallpaper ----------------------------------------------------------------
 // Constants for database and storage
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
+const timestampKey = 'lastUpdateTime'; // Key to store last update time
+const imageTypeKey = 'imageType'; // Key to store the type of image ('random' or 'upload')
 
 // Open IndexedDB database
 function openDatabase() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(dbName, 1);
-
         request.onupgradeneeded = function (event) {
             const db = event.target.result;
             db.createObjectStore(storeName);
         };
-
         request.onsuccess = function (event) {
             resolve(event.target.result);
         };
-
         request.onerror = function (event) {
             reject('Database error: ' + event.target.errorCode);
         };
     });
 }
 
-// Save image data to IndexedDB
-function saveImageToIndexedDB(imageUrl) {
+// Save image data, timestamp, and type to IndexedDB
+function saveImageToIndexedDB(imageUrl, isRandom) {
     return openDatabase().then((db) => {
         return new Promise((resolve, reject) => {
             const transaction = db.transaction(storeName, 'readwrite');
             const store = transaction.objectStore(storeName);
+
             store.put(imageUrl, 'backgroundImage');
+            store.put(new Date().toISOString(), timestampKey);
+            store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
-            transaction.oncomplete = function () {
-                resolve();
-            };
-
-            transaction.onerror = function (event) {
-                reject('Transaction error: ' + event.target.errorCode);
-            };
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
         });
     });
 }
 
-// Load image data from IndexedDB
+// Load image, timestamp, and type from IndexedDB
+function loadImageAndDetails() {
+    return openDatabase().then((db) => {
+        return Promise.all([
+            new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.get('backgroundImage');
+
+                request.onsuccess = (event) => resolve(request.result);
+                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
+            }),
+            new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.get(timestampKey);
+
+                request.onsuccess = (event) => resolve(request.result);
+                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
+            }),
+            new Promise((resolve, reject) => {
+                const transaction = db.transaction(storeName, 'readonly');
+                const store = transaction.objectStore(storeName);
+                const request = store.get(imageTypeKey);
+
+                request.onsuccess = (event) => resolve(request.result);
+                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
+            })
+        ]);
+    });
+}
+
+// Load only the background image
 function loadImageFromIndexedDB() {
     return openDatabase().then((db) => {
         return new Promise((resolve, reject) => {
@@ -1194,13 +1223,8 @@ function loadImageFromIndexedDB() {
             const store = transaction.objectStore(storeName);
             const request = store.get('backgroundImage');
 
-            request.onsuccess = function (event) {
-                resolve(event.target.result);
-            };
-
-            request.onerror = function (event) {
-                reject('Request error: ' + event.target.errorCode);
-            };
+            request.onsuccess = (event) => resolve(request.result);
+            request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
         });
     });
 }
@@ -1213,23 +1237,13 @@ function clearImageFromIndexedDB() {
             const store = transaction.objectStore(storeName);
             const request = store.delete('backgroundImage');
 
-            request.onsuccess = function () {
-                resolve();
-            };
-
-            request.onerror = function (event) {
-                reject('Delete error: ' + event.target.errorCode);
-            };
+            request.onsuccess = () => resolve();
+            request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
         });
     });
 }
 
-// Event listener for Upload button
-document.getElementById('uploadTrigger').addEventListener('click', function () {
-    document.getElementById('imageUpload').click();
-});
-
-// Handle file input and save image
+// Handle file input and save image as upload
 document.getElementById('imageUpload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
@@ -1237,21 +1251,13 @@ document.getElementById('imageUpload').addEventListener('change', function (even
         reader.onload = function (e) {
             const image = new Image();
             image.onload = function () {
-                // Check if dimensions exceed the threshold
                 const totalPixels = image.width * image.height;
                 if (totalPixels > 2073600) {
-                    alert(
-                        `Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed 2,073,600 pixels. ` +
-                        `This may impact performance or fail to load properly.`
-                    );
+                    alert(`Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed (1920x1080) pixels. ` +
+                        `This may impact performance or image may fail to load properly.`);
                 }
-
-                // Save image to IndexedDB
-                saveImageToIndexedDB(e.target.result)
-                    .then(() => {
-                        document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
-                    })
-                    .catch((error) => console.error(error));
+                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
+                saveImageToIndexedDB(e.target.result, false).catch(error => console.error(error));
             };
             image.src = e.target.result;
         };
@@ -1259,76 +1265,59 @@ document.getElementById('imageUpload').addEventListener('change', function (even
     }
 });
 
-// Event listener for Clear button
+// Fetch and apply random image as background
+const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
+function applyRandomImage() {
+    if (confirm('Do you want to set a random image as wallpaper?')) {
+        fetch(RANDOM_IMAGE_URL)
+            .then((response) => {
+                const imageUrl = response.url;
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+                return saveImageToIndexedDB(imageUrl, true);
+            })
+            .catch((error) => console.error('Error fetching random image:', error));
+    }
+}
+
+// Check and update image on page load
+function checkAndUpdateImage() {
+    loadImageAndDetails()
+        .then(([savedImage, savedTimestamp, imageType]) => {
+            const now = new Date();
+            const lastUpdate = new Date(savedTimestamp);
+
+            if (!savedImage || imageType === 'upload') return;
+
+            if (lastUpdate.toDateString() !== now.toDateString()) {
+                applyRandomImage();
+            } else {
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+            }
+        })
+        .catch((error) => console.error(error));
+}
+
+// Event listeners for buttons
+document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
 document.getElementById('clearImage').addEventListener('click', function () {
-    // Check if there is an existing background image
     loadImageFromIndexedDB()
         .then((savedImage) => {
-            if (savedImage) {
-                // If an image exists, ask for confirmation
-                if (confirm('Are you sure you want to clear the background image?')) {
-                    clearImageFromIndexedDB()
-                        .then(() => {
-                            document.body.style.removeProperty('--bg-image');
-                        })
-                        .catch((error) => console.error(error));
-                }
+            if (savedImage && confirm('Are you sure you want to clear the background image?')) {
+                clearImageFromIndexedDB()
+                    .then(() => document.body.style.removeProperty('--bg-image'))
+                    .catch((error) => console.error(error));
             } else {
-                // No image exists, do nothing
                 alert('No background image is currently set.');
             }
         })
         .catch((error) => console.error(error));
 });
-
-// Load saved background image on page load
-loadImageFromIndexedDB()
-    .then((savedImage) => {
-        if (savedImage) {
-            document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-        }
-    })
-    .catch((error) => console.error(error));
-
-// Fetch and apply random image as background, then save to IndexedDB
-const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
-function applyRandomImage() {
-    fetch(RANDOM_IMAGE_URL)
-        .then(response => {
-            const imageUrl = response.url;
-            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-            return saveImageToIndexedDB(imageUrl); // Save the random image URL
-        })
-        .catch(error => console.error('Error fetching random image:', error));
-}
-
-// Event listener for Random button
 document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
 
-// Function to schedule a daily random image at 10:30 AM
-function scheduleDailyImage() {
-    const now = new Date();
-    const target = new Date();
-    target.setHours(10, 30, 0, 0);
+// Start image check on page load
+checkAndUpdateImage();
 
-    // If the current time is after 10:30 AM, apply wallpaper immediately and set for next day.
-    if (now >= target) {
-        applyRandomImage();
-        target.setDate(target.getDate() + 1); // Schedule for the next day
-    }
-
-    const timeUntilTarget = target.getTime() - now.getTime();
-
-    // Schedule the next change
-    setTimeout(() => {
-        applyRandomImage();
-        setInterval(applyRandomImage, 24 * 60 * 60 * 1000); // Repeat every 24 hours.
-    }, timeUntilTarget);
-}
-
-// Start scheduling on page load
-scheduleDailyImage();
-// --------------------------------------------------
+// ------- End of BG Image -------------------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
