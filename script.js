@@ -2371,18 +2371,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------ Event Listeners ------ */
-
-    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
-    document.getElementById('shortcut_switchcheckbox').addEventListener('change', (e) => {
-        if (e.target.checked) {
-            hideEngineContainer();
-            localStorage.setItem('showShortcutSwitch', true)
-        } else {
-            showEngineContainer();
-            localStorage.setItem('showShortcutSwitch', false)
-        }
-    })
-
     const searchIconContainer = document.querySelectorAll('.searchIcon');
 
     const showEngineContainer = () => {
@@ -2396,6 +2384,24 @@ document.addEventListener("DOMContentLoaded", function () {
         searchIconContainer[1].style.display = 'block';
         document.getElementById('search-with-container').style.visibility = 'hidden';
     }
+
+    const initShortCutSwitch = (element) => {
+        if (element.checked) {
+            hideEngineContainer();
+            localStorage.setItem('showShortcutSwitch', true)
+        } else {
+            showEngineContainer();
+            localStorage.setItem('showShortcutSwitch', false)
+        }
+    }
+
+    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
+    const element = document.getElementById('shortcut_switchcheckbox');
+    element.addEventListener('change', (e) => {
+        initShortCutSwitch(e.target);
+    })
+
+    initShortCutSwitch(element);
 
     // Intialize shortcut switch
     if (localStorage.getItem('showShortcutSwitch')) {
