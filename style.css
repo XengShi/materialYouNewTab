@@ -2041,8 +2041,8 @@ input:checked + .toggle:before {
 }
 
 .clearButton:hover {
-	background-color: var(--darkerColor-blue) !important;
-	color: var(--accentLightTint-blue) !important;
+	color: var(--darkColor-blue) !important;
+	background-color: var(--whitishColor-blue) !important;
 }
 
 /* File input remains hidden */
