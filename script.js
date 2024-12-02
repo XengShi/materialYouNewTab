@@ -801,17 +801,9 @@ document.addEventListener("DOMContentLoaded", () => {
         dropdownItems.forEach((item, index) => {
 
             item.addEventListener('mouseenter', () => {
-                // if(hasSelected.length > 0){
-                //     hasSelected[0].classList.remove('selected');
-                //     hasSelected = [];
-                // }
                 item.classList.add('selected');
             })
             item.addEventListener('mouseleave', () => {
-                // if(hasSelected.length > 0){
-                //     hasSelected[0].classList.remove('selected');
-                //     hasSelected = [];
-                // }
                 item.classList.remove('selected');
             })
 
