@@ -1030,10 +1030,10 @@ const applySelectedTheme = (colorValue) => {
             }
 	    
 	    #userText, #date {
-	        text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.9),
-	 		-1px -1px 15px rgba(0, 0, 0, 0.9),
-    			1px -1px 15px rgba(0, 0, 0, 0.9),
-       			-1px 1px 15px rgba(0, 0, 0, 0.9) !important;
+	        text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		-1px -1px 15px rgba(15, 15, 15, 0.9),
+    			1px -1px 15px rgba(15, 15, 15, 0.9),
+       			-1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
             #minute, #minute::after, #second::after {
