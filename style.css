@@ -2225,7 +2225,7 @@ input:checked + .toggle:before {
     position: relative;
 }
 
-.dropdown-item:hover::before, .dropdown-item.selected:not(*[data-default]):before {
+.dropdown-item.selected:not(*[data-default]):before {
 	border-radius: 16px;
 	content: '';
 	margin-right: 6px;

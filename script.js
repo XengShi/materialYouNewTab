@@ -797,7 +797,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to update the selected item
     function updateSelection() {
+        // let hasSelected = [];
         dropdownItems.forEach((item, index) => {
+
+            item.addEventListener('mouseenter', () => {
+                // if(hasSelected.length > 0){
+                //     hasSelected[0].classList.remove('selected');
+                //     hasSelected = [];
+                // }
+                item.classList.add('selected');
+            })
+            item.addEventListener('mouseleave', () => {
+                // if(hasSelected.length > 0){
+                //     hasSelected[0].classList.remove('selected');
+                //     hasSelected = [];
+                // }
+                item.classList.remove('selected');
+            })
+
             if (index === selectedIndex) {
                 item.focus()
                 item.classList.add('selected');
