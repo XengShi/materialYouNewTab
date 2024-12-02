@@ -2401,8 +2401,6 @@ document.addEventListener("DOMContentLoaded", function () {
         initShortCutSwitch(e.target);
     })
 
-    initShortCutSwitch(element);
-
     // Intialize shortcut switch
     if (localStorage.getItem('showShortcutSwitch')) {
         const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
@@ -2418,6 +2416,8 @@ document.addEventListener("DOMContentLoaded", function () {
     else {
         localStorage.setItem('showShortcutSwitch', false);
     }
+
+    initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
