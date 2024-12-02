@@ -2244,7 +2244,7 @@ input:checked + .toggle:before {
     outline: none !important;
 }
 
-*[id$="-dropdown"]:not(:nth-child(1)) {
+*[id$="-dropdown"]:not(.dropdown-content .dropdown-item:nth-child(1)) {
 	bottom: 3px;
 }
 
