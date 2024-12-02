@@ -1031,7 +1031,7 @@ body {
 	cursor: pointer;
 }
 
-.searchEnginesContainer .search-engine svg, .search-dropdown .dropdown-item svg {
+.searchEnginesContainer .search-engine svg{
 	width: 30px;
 	height: 30px;
 	background-color: var(--darkColor-blue);
@@ -2242,4 +2242,17 @@ input:checked + .toggle:before {
 
 #default-dropdown-item {
     outline: none !important;
+}
+
+*[id$="-dropdown"]:not(:nth-child(1)) {
+	bottom: 3px;
+}
+
+.search-dropdown .dropdown-item svg {
+	width: 36px;
+	height: 36px;
+	margin-left: 0;
+	padding: 0;
+	background-color: var(--darkColor-blue);
+	border-radius: 100%;
 }
