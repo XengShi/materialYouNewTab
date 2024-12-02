@@ -1343,13 +1343,15 @@ document.getElementById('uploadTrigger').addEventListener('click', () => documen
 document.getElementById('clearImage').addEventListener('click', function () {
     loadImageFromIndexedDB()
         .then((savedImage) => {
-            if (savedImage && confirm('Are you sure you want to clear the background image?')) {
-                clearImageFromIndexedDB()
-                    .then(() => {
-                        document.body.style.removeProperty('--bg-image');
-                        updateTextShadow(false);
-                    })
-                    .catch((error) => console.error(error));
+            if (savedImage) {
+                if (confirm('Are you sure you want to clear the background image?')) {
+                    clearImageFromIndexedDB()
+                        .then(() => {
+                            document.body.style.removeProperty('--bg-image');
+                            updateTextShadow(false);
+                        })
+                        .catch((error) => console.error(error));
+                }
             } else {
                 alert('No background image is currently set.');
             }
