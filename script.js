@@ -1280,7 +1280,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
 async function applyRandomImage() {
-    if (confirm('Do you want to set a random image as wallpaper?')) {
+    if (confirm('Would you like to set a new image as your wallpaper for the day?')) {
         try {
             const response = await fetch(RANDOM_IMAGE_URL);
             const imageUrl = response.url;
