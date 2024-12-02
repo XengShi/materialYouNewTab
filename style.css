@@ -1227,7 +1227,7 @@ body {
     height: auto;
     width: fit-content;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 25px;
     position: fixed;
     left: var(--gap);
     bottom: var(--gap);
@@ -1339,7 +1339,7 @@ body {
     }
 }
 
-/* Initial state */
+
 .your-ai-tools-class {
   opacity: 1;
   visibility: visible;
@@ -1347,7 +1347,7 @@ body {
   transition: opacity 0.3s ease, visibility 0s;
 }
 
-/* When the box is visible */
+
 .your-ai-tools-class.open {
   opacity: 1;
   visibility: visible;
@@ -1355,7 +1355,6 @@ body {
   transition: opacity 0.3s ease, visibility 0s;
 }
 
-/* When the box is hidden (closed) */
 .your-ai-tools-class.closed {
   opacity: 0;
   visibility: hidden;
