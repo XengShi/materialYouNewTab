@@ -1989,12 +1989,14 @@ input:checked + .toggle:before {
 .uploadClearContainer {
 	display: flex;
 	justify-content: center; /* Center the buttons horizontally */
-	gap: var(--gap); /* Maintain consistent spacing */
+	gap: 10px; /* Maintain consistent spacing */
 	margin-top: 122px; /* Add spacing below the theming section */
+	justify-content: space-around;
 }
 
 /* Styling for Upload/Clear Buttons with SVGs */
 .uploadButton,
+.randomButton,
 .clearButton {
 	display: flex;
 	align-items: center;
@@ -2003,19 +2005,30 @@ input:checked + .toggle:before {
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
-	font-size: 16px;
+	font-size: 1rem;
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
+.uploadButton {
+	font-size: 0.95rem !important;
+}
+
+.randomButton {
+	padding: 10px;
+}
+
 .clearButton {
-	padding: 10px; /* Smaller padding for the delete icon */
+	padding: 10px;
+	color: var(--whitishColor-blue) !important;
+	background-color: var(--darkColor-blue) !important;
 }
 
 /* Ensure consistent SVG sizing */
 .uploadButton svg,
+.randomButton svg,
 .clearButton svg {
 	width: 24px;
 	height: 24px;
@@ -2023,9 +2036,14 @@ input:checked + .toggle:before {
 
 /* Hover Effects */
 .uploadButton:hover,
-.clearButton:hover {
+.randomButton:hover {
 	background-color: var(--darkColor-blue);
 	color: var(--whitishColor-blue);
+}
+
+.clearButton:hover {
+	color: var(--darkColor-blue) !important;
+	background-color: var(--whitishColor-blue) !important;
 }
 
 /* File input remains hidden */
@@ -2034,7 +2052,7 @@ input:checked + .toggle:before {
 }
 
 .spacer {
-	height: 40px;
+	height: 35px;
 	/* Adjust this value to create space */
 }
 
