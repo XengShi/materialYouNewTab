@@ -217,31 +217,34 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ---------------------------end of weather stuff--------------------
 
 // ------------------------Google App Menu-----------------------------------
-const iconContainer = document.getElementById("iconContainer"); // Menu to toggle visibility
-const tooltipText = googleAppsCont.querySelector(".tooltip-text"); // Tooltip text element
-// Toggle menu when clicking on googleAppsCont
+const iconContainer = document.getElementById("iconContainer");
+const googleAppsCont = document.getElementById("googleAppsCont");
+
+// Toggle menu and tooltip visibility
 googleAppsCont.addEventListener("click", function (event) {
-    tooltipText.style.display = "none"; // Hide the tooltip text
-    if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
-        iconContainer.style.display = 'grid'; // Show menu
+    const isMenuVisible = iconContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    iconContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        googleAppsCont.classList.add('menu-open'); // Hide tooltip
     } else {
-        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 
-    // Reset tooltip visibility after a delay
-    setTimeout(() => {
-        tooltipText.style.display = ""; // Restore default display
-    }, 1500);
-    event.stopPropagation(); // Prevent click propagation
+    event.stopPropagation();
 });
 
 // Close menu when clicking outside
 document.addEventListener("click", function (event) {
-    if (iconContainer.style.display === 'grid') {
-        const isClickInside = iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
-        if (!isClickInside) {
-            iconContainer.style.display = 'none'; // Hide menu
-        }
+    const isClickInside =
+        iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
+
+    if (!isClickInside && iconContainer.style.display === 'grid') {
+        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
