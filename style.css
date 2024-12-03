@@ -592,12 +592,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 #date {
 	font-size: 1.4rem;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 .digidate {
