@@ -19,7 +19,7 @@ const translations = {
         "editShortcutsText": "Edit Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
         "editShortcutsList": "Saved Shortcuts",
-        'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL',
+        'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.',
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
@@ -105,6 +105,9 @@ const translations = {
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
         "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Upload Wallpaper",
     },
 
 
@@ -313,7 +316,7 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
-        'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं',
+        'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
@@ -400,6 +403,9 @@ const translations = {
         "firefly": "एडोबी फायरफ्लाई",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "वॉलपेपर अपलोड करें",
     },
 
 
@@ -676,7 +682,7 @@ const translations = {
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
-        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন',
+        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন।',
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
         "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
@@ -764,6 +770,9 @@ const translations = {
         "firefly": "এডোবি ফায়ারফ্লাই",
         "github": "গিটহাব",
         "googleAppsHover": "গুগল অ্যাপস",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "ওয়ালপেপার আপলোড করুন",
     },
 
 
@@ -1425,7 +1434,7 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करा",
         "shortcutsInfoText": "कोणते शॉर्टकट दाखवायचे ते निवडा",
         "editShortcutsList": "जतन केलेले शॉर्टकट्स",
-        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता',
+        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता।',
         "adaptiveIconText": "अनुकूल आयकॉन आकार",
         "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
         "ai_tools_button": "AI साधने",
@@ -1512,6 +1521,9 @@ const translations = {
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "अॅडोबी फायरफ्लाय",
         "github": "गिटहब",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "वॉलपेपर अपलोड करा",
     },
 };
 
@@ -1622,7 +1634,8 @@ function applyLanguage(lang) {
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
         { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' }
+        { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
 
     ];
 
