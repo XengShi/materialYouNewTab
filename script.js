@@ -1107,18 +1107,32 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	        #userText {
-	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
-		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
-		                    1px -1px 2px rgba(0, 0, 0, 0.2),
-                                    -1px 1px 2px rgba(0, 0, 0, 0.2);
+	          #userText, #date, .shortcuts .shortcut-name {
+	              text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		            -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			        1px -1px 15px rgba(15, 15, 15, 0.9),
+       			      -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
-            #date {
-	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
-		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
-		                    1px -1px 2px rgba(0, 0, 0, 0.2),
-                                    -1px 1px 2px rgba(0, 0, 0, 0.2);
+     	    .uploadButton,
+            .randomButton{
+	            background-color: var(--whitishColor-dark);
+	            color: var(--darkColor-blue);
+            }
+
+            .uploadButton:hover,
+            .randomButton:hover,
+            .clearButton{
+                background-color: var(--darkColor-blue);
+                color: var(--whitishColor-dark);
+            }
+
+            .clearButton:hover{
+                background-color: var(--whitishColor-dark) !important;
+            }
+
+     	    .micIcon{
+                background-color: var(--whitishColor-dark);
             }
 
             #minute, #minute::after, #second::after {
@@ -1456,7 +1470,9 @@ document.getElementById('imageUpload').addEventListener('change', function (even
                         `This may impact performance or image may fail to load properly.`);
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
-                saveImageToIndexedDB(e.target.result, false).catch(error => console.error(error));
+                saveImageToIndexedDB(e.target.result, false)
+                    .then(() => updateTextShadow(true))
+                    .catch(error => console.error(error));
             };
             image.src = e.target.result;
         };
@@ -1466,17 +1482,34 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
-async function applyRandomImage() {
-    if (confirm('Do you want to set a random image as wallpaper?')) {
-        try {
-            const response = await fetch(RANDOM_IMAGE_URL);
-            const imageUrl = response.url;
-            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-            await saveImageToIndexedDB(imageUrl, true);
-        } catch (error) {
-            console.error('Error fetching random image:', error);
-        }
+async function applyRandomImage(showConfirmation = true) {
+    if (showConfirmation && !confirm('Would you like to set a new image as your wallpaper for the day?')) {
+        return;
     }
+    try {
+        const response = await fetch(RANDOM_IMAGE_URL);
+        const imageUrl = response.url;
+        document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+        await saveImageToIndexedDB(imageUrl, true);
+        updateTextShadow(true);
+    } catch (error) {
+        console.error('Error fetching random image:', error);
+    }
+}
+
+// Function to update text-shadow styles with animation
+function updateTextShadow(hasWallpaper) {
+    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
+    elements.forEach(element => {
+        if (hasWallpaper) {
+            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+        } else {
+            element.style.textShadow = 'none'; // Remove the text-shadow
+        }
+    });
 }
 
 // Check and update image on page load
@@ -1486,16 +1519,27 @@ function checkAndUpdateImage() {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
-            if (!savedTimestamp || isNaN(lastUpdate)) return;
-            if (!savedImage || imageType === 'upload') return;
+            if (!savedTimestamp || isNaN(lastUpdate)) {
+                updateTextShadow(false);
+                return;
+            }
+
+            if (!savedImage || imageType === 'upload') {
+                updateTextShadow(false);
+                return;
+            }
 
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage();
+                applyRandomImage(false);
             } else {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                updateTextShadow(true);
             }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+            console.error(error);
+            updateTextShadow(false);
+        });
 }
 
 // Event listeners for buttons
@@ -1503,10 +1547,15 @@ document.getElementById('uploadTrigger').addEventListener('click', () => documen
 document.getElementById('clearImage').addEventListener('click', function () {
     loadImageFromIndexedDB()
         .then((savedImage) => {
-            if (savedImage && confirm('Are you sure you want to clear the background image?')) {
-                clearImageFromIndexedDB()
-                    .then(() => document.body.style.removeProperty('--bg-image'))
-                    .catch((error) => console.error(error));
+            if (savedImage) {
+                if (confirm('Are you sure you want to clear the background image?')) {
+                    clearImageFromIndexedDB()
+                        .then(() => {
+                            document.body.style.removeProperty('--bg-image');
+                            updateTextShadow(false);
+                        })
+                        .catch((error) => console.error(error));
+                }
             } else {
                 alert('No background image is currently set.');
             }
