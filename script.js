@@ -1029,7 +1029,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	    #userText, #date {
+	    #userText, #date, .shortcuts .shortcut-name {
 	        text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
 	 		-1px -1px 15px rgba(15, 15, 15, 0.9),
     			1px -1px 15px rgba(15, 15, 15, 0.9),
@@ -1317,7 +1317,7 @@ async function applyRandomImage(showConfirmation = true) {
 
 // Function to update text-shadow styles with animation
 function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date')];
+    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
     elements.forEach(element => {
         if (hasWallpaper) {
             element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
