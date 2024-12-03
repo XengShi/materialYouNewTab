@@ -2004,7 +2004,7 @@ input:checked + .toggle:before {
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
 	font-size: 1rem;
-	white-space: nowrap;
+ 	/*white-space: nowrap; */
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
