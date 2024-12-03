@@ -1036,6 +1036,24 @@ const applySelectedTheme = (colorValue) => {
        			-1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
+     	    .uploadButton,
+            .randomButton
+            {
+	            background-color: var(--whitishColor-dark);
+	            color: var(--darkColor-blue);
+            }
+
+            .uploadButton:hover,
+            .randomButton:hover,
+            .clearButton{
+                background-color: var(--darkColor-blue);
+                color: var(--whitishColor-dark);
+            }
+
+            .clearButton:hover{
+                background-color: var(--whitishColor-dark) !important;
+            }
+
             #minute, #minute::after, #second::after {
                 background-color: #909090;
             }
