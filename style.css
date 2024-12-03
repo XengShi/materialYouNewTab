@@ -1826,9 +1826,14 @@ input:checked + .toggle:before {
 	margin-top: -20px;
 	font-size: 0.74rem;
 }
-.themingStuff,
-.languageSection {
+.themingStuff {
 	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	gap: var(--gap);
+}
+.languageSection {
 	height: 50px;
 	display: flex;
 	justify-content: space-around;
@@ -1849,6 +1854,7 @@ input:checked + .toggle:before {
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: 240px; /* Set a fixed width */
+	max-width: 100%;
 	transition: outline 0.3s ease-in-out;
 	z-index: 1; /* Ensure the button stays above the dropdown */
 }
