@@ -1821,7 +1821,7 @@ input:checked + .toggle:before {
 
 /* --------------Theming stuff------------------ */
 .themingStuff{
-	margin-top: 24px;
+	margin-top: 30px;
 	position: relative;
 }
 
@@ -1832,6 +1832,7 @@ input:checked + .toggle:before {
 	right: 0;
 	margin-right: 6px;
 	margin-top: -20px;
+	font-size: 0.7.4rem;
 }
 .themingStuff,
 .languageSection {
