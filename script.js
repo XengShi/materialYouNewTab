@@ -1300,17 +1300,18 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
-async function applyRandomImage() {
-    if (confirm('Would you like to set a new image as your wallpaper for the day?')) {
-        try {
-            const response = await fetch(RANDOM_IMAGE_URL);
-            const imageUrl = response.url;
-            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-            await saveImageToIndexedDB(imageUrl, true);
-            updateTextShadow(true);
-        } catch (error) {
-            console.error('Error fetching random image:', error);
-        }
+async function applyRandomImage(showConfirmation = true) {
+    if (showConfirmation && !confirm('Would you like to set a new image as your wallpaper for the day?')) {
+        return;
+    }
+    try {
+        const response = await fetch(RANDOM_IMAGE_URL);
+        const imageUrl = response.url;
+        document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+        await saveImageToIndexedDB(imageUrl, true);
+        updateTextShadow(true);
+    } catch (error) {
+        console.error('Error fetching random image:', error);
     }
 }
 
@@ -1347,7 +1348,7 @@ function checkAndUpdateImage() {
             }
 
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage();
+                applyRandomImage(false);
             } else {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 updateTextShadow(true);
