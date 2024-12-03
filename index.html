@@ -1055,6 +1055,7 @@
                         <!-- end of languageSelector -->
                     </div>
                     <br>
+                
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">
@@ -1072,7 +1073,7 @@
                             <input class="colorPlate" name="color" type="radio" value="yellow">
                             <input class="colorPlate" name="color" type="radio" value="green">
                             <input class="colorPlate" name="color" type="radio" value="cyan">
-                            <input class="colorPlate" name="color" type="radio" checked value="blue">
+                            <input id="dfChecked" class="colorPlate" name="color" type="radio" checked value="blue">
 
                             <!-- -------- -->
                             <input class="colorPlate" name="color" type="radio" value="pink">
@@ -1083,13 +1084,18 @@
 
                             <!-- -------- -->
 
-
-
                             <input class="colorPlate" name="color" type="radio" value="grey">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
+
+                            <!-- ----Color Picker || ColorPicker---- -->
+                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
+                            <input type="color" id="colorPicker" value="#EA1010" />
+                            <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
+
                     </div>
 
+                    <!-- ----Custom Wallpaper uploading thingsss------------- -->
                     <div class="uploadClearContainer">
                         <!-- Upload Wallpaper Button -->
                         <button class="uploadButton" id="uploadTrigger">
@@ -1119,6 +1125,7 @@
                         <!-- Hidden File Input -->
                         <input type="file" id="imageUpload" accept="image/*" />
                     </div>
+                    <!-- ----End of Custom Wallpaper uploading thingsss------------- -->
 
                     <!-- end of themingStuff -->
                      

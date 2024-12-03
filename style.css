@@ -1812,6 +1812,20 @@ input:checked + .toggle:before {
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
+.themingStuff{
+	margin-top: 30px;
+	position: relative;
+}
+
+.themingStuff:hover:after{
+	content: "Reload the page after applying themes";
+	position: absolute;
+	/* background-color: red; */
+	right: 0;
+	margin-right: 6px;
+	margin-top: -20px;
+	font-size: 0.7.4rem;
+}
 .themingStuff,
 .languageSection {
 	width: 100%;
@@ -1987,9 +2001,8 @@ input:checked + .toggle:before {
 .uploadClearContainer {
 	display: flex;
 	justify-content: center; /* Center the buttons horizontally */
-	gap: 10px; /* Maintain consistent spacing */
 	margin-top: 122px; /* Add spacing below the theming section */
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 /* Styling for Upload/Clear Buttons with SVGs */
@@ -2060,7 +2073,27 @@ input:checked + .toggle:before {
 	width: 82px;
 } */
 
-/* -----------end of theming stuff---------------- */
+/* <!-- ----Color Picker || ColorPicker---- --> */
+#colorPicker{
+	display: none;
+}
+.colorPickerLabel{
+	grid-column: span 3;
+    width: 100%;
+    background: var(--accentLightTint-blue);
+    height: 100%;
+    border-radius: 100px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    line-height: 35px;
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+/* <!-- ----End of Color Picker || ColorPicker---- --> */
+
+/* -----------End of theming stuff---------------- */
 
 #menuButton {
 	position: fixed;
