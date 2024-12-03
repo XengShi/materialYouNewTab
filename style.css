@@ -1820,6 +1820,19 @@ input:checked + .toggle:before {
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
+.themingStuff{
+	margin-top: 24px;
+	position: relative;
+}
+
+.themingStuff:hover:after{
+	content: "Reload the page after applying themes";
+	position: absolute;
+	/* background-color: red; */
+	right: 0;
+	margin-right: 6px;
+	margin-top: -20px;
+}
 .themingStuff,
 .languageSection {
 	width: 100%;

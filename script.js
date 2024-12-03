@@ -862,10 +862,7 @@ const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
-let darkThemeEnabled = false;
-
 const resetDarkTheme = () => {
-    darkThemeEnabled = false
     // Remove the dark theme class
     document.documentElement.classList.remove('dark-theme');
 
@@ -874,14 +871,6 @@ const resetDarkTheme = () => {
         darkThemeStyleTag.remove();
         darkThemeStyleTag = null;
     }
-
-    // Reset all dark-theme-specific styles and variables
-    document.documentElement.style.setProperty('--bg-color-blue', '');
-    document.documentElement.style.setProperty('--accentLightTint-blue', '');
-    document.documentElement.style.setProperty('--darkerColor-blue', '');
-    document.documentElement.style.setProperty('--darkColor-blue', '');
-    document.documentElement.style.setProperty('--textColorDark-blue', '');
-    document.documentElement.style.setProperty('--whitishColor-blue', '');
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
@@ -905,26 +894,24 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ''; // Reset fill color
     });
+    // Reset the CSS variables to default (for non-dark themes)
+    document.documentElement.style.setProperty('--bg-color-blue', '#ffffff');
+    document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
+    document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
+    document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
+    document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
 };
+
+
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
-        darkThemeEnabled = false;
         resetDarkTheme();
-        document.documentElement.classList.add('dark-theme');
-        // Apply dark theme styles
-        darkThemeStyleTag = document.createElement('style');
-        darkThemeStyleTag.textContent = `
-            .resultItem.active {
-                background-color: var(--darkColor-dark);
-            }
-        `;
-        document.head.appendChild(darkThemeStyleTag);
-    
+
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
-            // Special handling for blue theme
             document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
             document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
@@ -943,7 +930,6 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        darkThemeEnabled = true;
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -1055,7 +1041,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	    #userText {
+	        #userText {
 	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
 		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
 		                    1px -1px 2px rgba(0, 0, 0, 0.2),
@@ -1134,6 +1120,7 @@ const applySelectedTheme = (colorValue) => {
             element.style.fill = '#212121';
         });
     }
+
 
     // Change the extension icon based on the selected theme
     const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
@@ -1215,22 +1202,30 @@ function isNearWhite(hex, threshold = 240) {
 // ---- Color Picker || ColorPicker----
 
 const applyCustomTheme = (color) => {
-    const darkerColorHex = darkenHexColor(color);
-    const lighterColorHex = lightenHexColor(color, 0.85);
-    const lightTin = lightestColor(color, 0.95);
+
+    adjustedColor = color;
+    if (isNearWhite(color)) {
+        adjustedColor = '#696969'; // Light gray if near white
+    }
+    const darkerColorHex = darkenHexColor(adjustedColor);
+    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
+    const lightTin = lightestColor(adjustedColor, 0.95);
+
     // resetDarkTheme();
     document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
     document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
     document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--darkColor-blue', color);
+    document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
     document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
     document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
     document.getElementById("rangColor").style.borderColor = color;
-    document.getElementById('dfChecked').checked = false;       
+    document.getElementById('dfChecked').checked = false;
 };
 
-// Load theme on page reload
+// Load theme on page reload// Load theme on page reload
 window.addEventListener('load', function () {
+    // console.log('Page loaded, stored theme:', storedTheme);
+    // console.log('Page loaded, stored custom color:', storedCustomColor);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -1239,49 +1234,48 @@ window.addEventListener('load', function () {
 });
 
 // Handle radio button changes
+const handleThemeChange = function () {
+    if (this.checked) {
+        const colorValue = this.value;
+        // console.log('Radio button changed, selected theme:', colorValue);
+        localStorage.setItem(themeStorageKey, colorValue);
+        localStorage.removeItem(customThemeStorageKey); // Clear custom theme
+        applySelectedTheme(colorValue);
+    }
+};
+
+// Remove any previously attached listeners and add only one
 radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', function () {
-        if (this.checked) {
-            const colorValue = this.value;
-            localStorage.setItem(themeStorageKey, colorValue);
-            localStorage.removeItem(customThemeStorageKey); // Clear custom theme
-            applySelectedTheme(colorValue);
-        }
-    });
+    radioButton.removeEventListener('change', handleThemeChange); // Remove if already attached
+    radioButton.addEventListener('change', handleThemeChange);    // Add fresh listener
 });
 
 // Handle color picker changes
-const colorPicker = document.getElementById('colorPicker');
-colorPicker.addEventListener('input', function (event) {
-    // resetDarkTheme();
+const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
+    // console.log('Color picker changed, selected color:', selectedColor);
+    resetDarkTheme(); // Clear dark theme if active
     localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
     localStorage.removeItem(themeStorageKey); // Clear predefined theme
     applyCustomTheme(selectedColor);
-    const radioButtons = document.querySelectorAll('.colorPlate');
-    radioButtons.forEach((radio) => {
+
+    // Uncheck all radio buttons
+    radioButtons.forEach(radio => {
         radio.checked = false;
     });
-});
-colorPicker.addEventListener('change', function () {
-    // Perform any operations you need to handle the color change here
-    console.log('Color chosen:', colorPicker.value);
-    location.reload();
-});
+};
 
-// ---- End of Color Picker || ColorPicker----
+// Add listeners for color picker
+colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('input', handleColorPickerChange);
+// colorPicker.addEventListener('change', function () {
+//     // console.log('Final color applied:', colorPicker.value);
+//     location.reload();
+// });
 
 
 
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', function () {
-        if (this.checked) {
-            const colorValue = this.value;
-            localStorage.setItem(themeStorageKey, colorValue);
-            applySelectedTheme(colorValue);
-        }
-    });
-});
+
 
 // end of Function to apply the selected theme
 
@@ -1310,79 +1304,75 @@ function openDatabase() {
 }
 
 // Save image data, timestamp, and type to IndexedDB
-function saveImageToIndexedDB(imageUrl, isRandom) {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
+async function saveImageToIndexedDB(imageUrl, isRandom) {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
 
-            store.put(imageUrl, 'backgroundImage');
-            store.put(new Date().toISOString(), timestampKey);
-            store.put(isRandom ? 'random' : 'upload', imageTypeKey);
+        store.put(imageUrl, 'backgroundImage');
+        store.put(new Date().toISOString(), timestampKey);
+        store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
-            transaction.oncomplete = () => resolve();
-            transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
-        });
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
     });
 }
 
 // Load image, timestamp, and type from IndexedDB
-function loadImageAndDetails() {
-    return openDatabase().then((db) => {
-        return Promise.all([
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get('backgroundImage');
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            }),
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get(timestampKey);
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            }),
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get(imageTypeKey);
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            })
-        ]);
-    });
-}
-
-// Load only the background image
-function loadImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
+async function loadImageAndDetails() {
+    const db = await openDatabase();
+    return await Promise.all([
+        new Promise((resolve, reject) => {
             const transaction = db.transaction(storeName, 'readonly');
             const store = transaction.objectStore(storeName);
             const request = store.get('backgroundImage');
 
             request.onsuccess = (event) => resolve(request.result);
-            request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-        });
+            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        }),
+        new Promise((resolve_1, reject_1) => {
+            const transaction_1 = db.transaction(storeName, 'readonly');
+            const store_1 = transaction_1.objectStore(storeName);
+            const request_1 = store_1.get(timestampKey);
+
+            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
+            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
+        }),
+        new Promise((resolve_2, reject_2) => {
+            const transaction_2 = db.transaction(storeName, 'readonly');
+            const store_2 = transaction_2.objectStore(storeName);
+            const request_2 = store_2.get(imageTypeKey);
+
+            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
+            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
+        })
+    ]);
+}
+
+// Load only the background image
+async function loadImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const request = store.get('backgroundImage');
+
+        request.onsuccess = (event) => resolve(request.result);
+        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
-function clearImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            const request = store.delete('backgroundImage');
+async function clearImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.delete('backgroundImage');
 
-            request.onsuccess = () => resolve();
-            request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
-        });
+        request.onsuccess = () => resolve();
+        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
@@ -1469,8 +1459,6 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts(event) {
-    // const element = document.getElementById("0NIHK");
-    // const shortcuts = document.getElementById("shortcuts");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
 
     if (shortcutsCheckbox.checked) {
@@ -1747,12 +1735,6 @@ const closeMenuBar = () => {
     setTimeout(() => {
         menuBar.style.display = "none";
     }, 555);
-
-    if (darkThemeEnabled == false){
-        console.log(darkThemeEnabled)
-        // reloading the page for getting rid of dark effect after chnaging theme from dark to light.
-        location.reload();
-    }
 }
 
 const openMenuBar = () => {
