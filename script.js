@@ -43,12 +43,15 @@ window.addEventListener('DOMContentLoaded', async () => {
         const savedProxy = localStorage.getItem("proxy");
 
         // Pre-fill input fields with saved data
+        if (savedLocation) userLocInput.value = savedLocation;
+
+        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
         if (savedApiKey) userAPIInput.value = savedApiKey;
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-            //document.getElementById("location").textContent = savedLocation;
+
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+        if (savedProxy && savedProxy !== defaultProxyURL) {
+            userProxyInput.value = savedProxy;
         }
-        if (savedProxy) userProxyInput.value = savedProxy;
 
         // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
@@ -64,7 +67,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value;
+            const apiKey = userAPIInput.value.trim();
             localStorage.setItem("weatherApiKey", apiKey);
             userAPIInput.value = "";
             location.reload();
@@ -72,7 +75,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value;
+            const userLocation = userLocInput.value.trim();
             localStorage.setItem("weatherLocation", userLocation);
             userLocInput.value = "";
             location.reload();
@@ -86,35 +89,35 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Save the proxy to localStorage
         saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value;
+            const proxyurl = userProxyInput.value.trim();
 
-            // Check if the input contains 'http://' or 'https://'
+            // If the input is empty, use the default proxy.
+            if (proxyurl === "") {
+                localStorage.setItem("proxy", defaultProxyURL);
+                userProxyInput.value = "";
+                location.reload();
+                return;
+            }
+
+            // Validate if input starts with 'http://' or 'https://'
             if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
                 if (!proxyurl.endsWith("/")) {
-                    // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
                     userProxyInput.value = "";
                     location.reload();
-                }
-                else {
+                } else {
                     alert("There shouldn't be / at the end of the link");
                 }
             } else {
-                // Alert the user if it's not a valid link
                 alert("Only links (starting with http:// or https://) are allowed.");
             }
         });
 
-        // Use the saved or default API key and proxy
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        // Check if the user has entered their own API key
-        const userApiKey = userAPIInput.value.trim();
-        const userproxyurl = userProxyInput.value.trim();
-        // Use the user's API key if available, otherwise use the default API key
-        const apiKey = userApiKey || defaultApiKey;
-        proxyurl = userproxyurl || defaultProxyURL;
+        // Determine API key and proxy URL to use
+        const apiKey = savedApiKey || defaultApiKey;
+        proxyurl = savedProxy || defaultProxyURL;
 
         // Determine the location to use
         let currentUserLocation = savedLocation;
