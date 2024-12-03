@@ -1037,8 +1037,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
      	    .uploadButton,
-            .randomButton
-            {
+            .randomButton{
 	            background-color: var(--whitishColor-dark);
 	            color: var(--darkColor-blue);
             }
@@ -1052,6 +1051,10 @@ const applySelectedTheme = (colorValue) => {
 
             .clearButton:hover{
                 background-color: var(--whitishColor-dark) !important;
+            }
+
+     	    .micIcon{
+                background-color: var(--whitishColor-dark);
             }
 
             #minute, #minute::after, #second::after {
