@@ -220,6 +220,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 Contributions are welcome! If you’d like to contribute:
 
+0. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 1. Fork the repository.
 2. Create a feature branch: `git checkout -b feature/YourFeature`.
 3. Commit your changes: `git commit -m 'Add Your Feature'`.
@@ -239,6 +240,5 @@ Copyright (C) 2023-2024 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
-> GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
-> Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
-> Email [xengshi@duck.com](mailto:xengshi@duck.com)
+[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
+
