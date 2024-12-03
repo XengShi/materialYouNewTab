@@ -126,12 +126,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
 
-		// If the country is India and the location is 'Delhi', update to 'New Delhi'
+                // If the country is India and the location is 'Delhi', update to 'New Delhi'
                 if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
                     currentUserLocation = "New Delhi";
                 } else {
                     currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }  
+                }
 
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
@@ -909,6 +909,11 @@ if (!micIconCheckbox.checked) {
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 const storedTheme = localStorage.getItem(themeStorageKey);
+// const radioButtons = document.querySelectorAll('.colorPlate');
+// const themeStorageKey = 'selectedTheme'; // For predefined themes
+const customThemeStorageKey = 'customThemeColor'; // For color picker
+// const storedTheme = localStorage.getItem(themeStorageKey);
+const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
@@ -944,7 +949,16 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ''; // Reset fill color
     });
+    // Reset the CSS variables to default (for non-dark themes)
+    document.documentElement.style.setProperty('--bg-color-blue', '#ffffff');
+    document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
+    document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
+    document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
+    document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
 };
+
+
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
@@ -953,7 +967,6 @@ const applySelectedTheme = (colorValue) => {
 
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
-            // Special handling for blue theme
             document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
             document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
@@ -972,7 +985,6 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -1095,7 +1107,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	    #userText {
+	        #userText {
 	            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2),
 		                    -1px -1px 2px rgba(0, 0, 0, 0.2),
 		                    1px -1px 2px rgba(0, 0, 0, 0.2),
@@ -1175,21 +1187,13 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
+
     // Change the extension icon based on the selected theme
-    const iconPaths = {
-        "blue": "./favicon/blue.png",
-        "yellow": "./favicon/yellow.png",
-        "red": "./favicon/red.png",
-        "green": "./favicon/green.png",
-        "cyan": "./favicon/cyan.png",
-        "orange": "./favicon/orange.png",
-        "purple": "./favicon/purple.png",
-        "pink": "./favicon/pink.png",
-        "brown": "./favicon/brown.png",
-        "silver": "./favicon/silver.png",
-        "grey": "./favicon/grey.png",
-        "dark": "./favicon/dark.png",
-    };
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+        .reduce((acc, color) => {
+            acc[color] = `./favicon/${color}.png`;
+            return acc;
+        }, {});
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
@@ -1213,15 +1217,131 @@ const applySelectedTheme = (colorValue) => {
     }
 };
 
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', function () {
-        if (this.checked) {
-            const colorValue = this.value;
-            localStorage.setItem(themeStorageKey, colorValue);
-            applySelectedTheme(colorValue);
-        }
-    });
+// ----Color Picker || ColorPicker----
+function darkenHexColor(hex, factor = 0.6) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r * (1 - factor));
+    g = Math.floor(g * (1 - factor));
+    b = Math.floor(b * (1 - factor));
+    return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightenHexColor(hex, factor = 0.85) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightestColor(hex, factor = 0.95) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function isNearWhite(hex, threshold = 240) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    return r > threshold && g > threshold && b > threshold;
+}
+
+// ---- Color Picker || ColorPicker----
+
+const applyCustomTheme = (color) => {
+
+    adjustedColor = color;
+    if (isNearWhite(color)) {
+        adjustedColor = '#696969'; // Light gray if near white
+    }
+    const darkerColorHex = darkenHexColor(adjustedColor);
+    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
+    const lightTin = lightestColor(adjustedColor, 0.95);
+
+    // resetDarkTheme();
+    document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
+    document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
+    document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
+    document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.getElementById("rangColor").style.borderColor = color;
+    document.getElementById('dfChecked').checked = false;
+};
+
+// Load theme on page reload// Load theme on page reload
+window.addEventListener('load', function () {
+    // console.log('Page loaded, stored theme:', storedTheme);
+    // console.log('Page loaded, stored custom color:', storedCustomColor);
+    if (storedTheme) {
+        applySelectedTheme(storedTheme);
+    } else if (storedCustomColor) {
+        applyCustomTheme(storedCustomColor);
+    }
 });
+
+// Handle radio button changes
+const handleThemeChange = function () {
+    if (this.checked) {
+        const colorValue = this.value;
+        // console.log('Radio button changed, selected theme:', colorValue);
+        localStorage.setItem(themeStorageKey, colorValue);
+        localStorage.removeItem(customThemeStorageKey); // Clear custom theme
+        applySelectedTheme(colorValue);
+    }
+};
+
+// Remove any previously attached listeners and add only one
+radioButtons.forEach(radioButton => {
+    radioButton.removeEventListener('change', handleThemeChange); // Remove if already attached
+    radioButton.addEventListener('change', handleThemeChange);    // Add fresh listener
+});
+
+// Handle color picker changes
+const handleColorPickerChange = function (event) {
+    const selectedColor = event.target.value;
+    // console.log('Color picker changed, selected color:', selectedColor);
+    resetDarkTheme(); // Clear dark theme if active
+    localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
+    localStorage.removeItem(themeStorageKey); // Clear predefined theme
+    applyCustomTheme(selectedColor);
+
+    // Uncheck all radio buttons
+    radioButtons.forEach(radio => {
+        radio.checked = false;
+    });
+};
+
+// Add listeners for color picker
+colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('input', handleColorPickerChange);
+// colorPicker.addEventListener('change', function () {
+//     // console.log('Final color applied:', colorPicker.value);
+//     location.reload();
+// });
+
+
+
+
 
 // end of Function to apply the selected theme
 
@@ -1250,79 +1370,75 @@ function openDatabase() {
 }
 
 // Save image data, timestamp, and type to IndexedDB
-function saveImageToIndexedDB(imageUrl, isRandom) {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
+async function saveImageToIndexedDB(imageUrl, isRandom) {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
 
-            store.put(imageUrl, 'backgroundImage');
-            store.put(new Date().toISOString(), timestampKey);
-            store.put(isRandom ? 'random' : 'upload', imageTypeKey);
+        store.put(imageUrl, 'backgroundImage');
+        store.put(new Date().toISOString(), timestampKey);
+        store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
-            transaction.oncomplete = () => resolve();
-            transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
-        });
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
     });
 }
 
 // Load image, timestamp, and type from IndexedDB
-function loadImageAndDetails() {
-    return openDatabase().then((db) => {
-        return Promise.all([
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get('backgroundImage');
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            }),
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get(timestampKey);
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            }),
-            new Promise((resolve, reject) => {
-                const transaction = db.transaction(storeName, 'readonly');
-                const store = transaction.objectStore(storeName);
-                const request = store.get(imageTypeKey);
-
-                request.onsuccess = (event) => resolve(request.result);
-                request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-            })
-        ]);
-    });
-}
-
-// Load only the background image
-function loadImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
+async function loadImageAndDetails() {
+    const db = await openDatabase();
+    return await Promise.all([
+        new Promise((resolve, reject) => {
             const transaction = db.transaction(storeName, 'readonly');
             const store = transaction.objectStore(storeName);
             const request = store.get('backgroundImage');
 
             request.onsuccess = (event) => resolve(request.result);
-            request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
-        });
+            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        }),
+        new Promise((resolve_1, reject_1) => {
+            const transaction_1 = db.transaction(storeName, 'readonly');
+            const store_1 = transaction_1.objectStore(storeName);
+            const request_1 = store_1.get(timestampKey);
+
+            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
+            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
+        }),
+        new Promise((resolve_2, reject_2) => {
+            const transaction_2 = db.transaction(storeName, 'readonly');
+            const store_2 = transaction_2.objectStore(storeName);
+            const request_2 = store_2.get(imageTypeKey);
+
+            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
+            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
+        })
+    ]);
+}
+
+// Load only the background image
+async function loadImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const request = store.get('backgroundImage');
+
+        request.onsuccess = (event) => resolve(request.result);
+        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
-function clearImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            const request = store.delete('backgroundImage');
+async function clearImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.delete('backgroundImage');
 
-            request.onsuccess = () => resolve();
-            request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
-        });
+        request.onsuccess = () => resolve();
+        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
@@ -1409,8 +1525,6 @@ const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts(event) {
-    // const element = document.getElementById("0NIHK");
-    // const shortcuts = document.getElementById("shortcuts");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
 
     if (shortcutsCheckbox.checked) {
