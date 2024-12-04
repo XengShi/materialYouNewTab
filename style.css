@@ -1859,24 +1859,13 @@ input:checked + .toggle:before {
 	z-index: 1; /* Ensure the button stays above the dropdown */
 }
 
-.languageButton:focus {
+.languageButton.active {
 	border: 2px solid var(--darkColor-blue);
-	outline: none;
 }
 
 .languageButton .selectedLanguage {
 	flex-grow: 1; /* Ensure the text takes up available space */
 	text-align: left; /* Align text to the left */
-}
-
-.languageButton .arrow {
-	color: var(--darkColor-blue);
-	font-size: 5px;
-	transition: transform 0.2s ease-in-out; /* Smooth rotation */
-}
-
-.languageButton.rotated .arrow {
-	transform: rotate(180deg);
 }
 
 .languageDropdown {
@@ -1940,8 +1929,6 @@ input:checked + .toggle:before {
 	scrollbar-width: thin; /* Thin scrollbar */
 	scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
 }
-
-/*---------------------------------------------------*/
 
 .colorsContainer {
 	background-color: var(--whitishColor-blue);

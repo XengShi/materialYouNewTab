@@ -270,14 +270,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     languageButton.addEventListener("click", function() {
         const isDropdownVisible = languageDropdown.classList.toggle("show");
-        languageButton.classList.toggle("rotated", isDropdownVisible);
-        if (isDropdownVisible) {
-            languageButton.classList.add("outline");
-        } else {
-            setTimeout(() => {
-                languageButton.classList.remove("outline");
-            }, 200); // Delay to allow the outline transition to complete
-        }
+        languageButton.classList.toggle("active", isDropdownVisible);
     });
 
     const languageOptions = document.querySelectorAll(".languageOption");
@@ -294,28 +287,19 @@ document.addEventListener("DOMContentLoaded", function() {
             // Update button's data-value attribute
             languageButton.setAttribute("data-value", this.getAttribute("data-value"));
             // Close dropdown
-            languageButton.classList.remove("rotated");
             languageDropdown.classList.remove("show");
-            setTimeout(() => {
-                languageButton.classList.remove("outline");
-            }, 200); // Delay to allow the outline transition to complete
-            // Trigger language change function
-            changeLanguage(this.getAttribute("data-value"));
+            languageButton.classList.remove("active");
         });
     });
 
     // Close dropdown when clicking outside
     document.addEventListener("click", function(event) {
         if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
-            languageButton.classList.remove("rotated");
             languageDropdown.classList.remove("show");
-            setTimeout(() => {
-                languageButton.classList.remove("outline");
-            }, 200); // Delay to allow the outline transition to complete
+            languageButton.classList.remove("active");
         }
     });
 });
-
 // ------------------------End of Language Selector Setup------------------------
 
 // Retrieve current time and calculate initial angles
