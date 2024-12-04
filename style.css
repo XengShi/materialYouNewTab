@@ -1848,15 +1848,20 @@ input:checked + .toggle:before {
 	height: fit-content;
 	border: 2px solid transparent;
 	padding: 10px 20px;
-	font-size: 12px;
+	font-size: 14px;
 	border-radius: 20px;
 	background-color: var(--whitishColor-blue);
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: 240px; /* Set a fixed width */
-	max-width: 100%;
+	max-width: 100%; /* Set the position fixed when changing languages */
 	transition: outline 0.3s ease-in-out;
 	z-index: 1; /* Ensure the button stays above the dropdown */
+}
+
+.languageButton:focus {
+	border: 2px solid var(--darkColor-blue);
+	outline: none;
 }
 
 .languageButton .selectedLanguage {
@@ -1880,9 +1885,9 @@ input:checked + .toggle:before {
 	border-radius: 20px; /* Rounded corners */
 	background-color: var(--whitishColor-blue);
 	position: absolute; /* Position dropdown absolutely */
-	bottom: -160px; /* Adjust this value based on the height of the dropdown */
+	bottom: -200px; /* Adjust this value based on the height of the dropdown */
 	width: 240px; /* Match width of button */
-	max-height: 155px; /* Set max height for scrollbar */
+	max-height: 200px; /* Set max height for scrollbar */
 	font-size: 12px;
 	overflow-y: auto; /* Enable vertical scrollbar */
 	overflow-x: hidden; /* Hide horizontal scrollbar */
