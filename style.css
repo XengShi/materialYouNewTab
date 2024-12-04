@@ -1848,7 +1848,7 @@ input:checked + .toggle:before {
 	height: fit-content;
 	border: 2px solid transparent;
 	padding: 10px 20px;
-	font-size: 14px;
+	font-size: 0.82rem;
 	border-radius: 20px;
 	background-color: var(--whitishColor-blue);
 	color: var(--textColorDark-blue);
@@ -1892,6 +1892,11 @@ input:checked + .toggle:before {
 	color: gray; /* Inherit color from parent */
 	font-size: 10px; /* Adjust font size as needed */
 	margin-left: 5px; /* Space between main text and subtext */
+}
+
+.languageDropdown .languageOption:hover .subtext,
+.languageDropdown .languageOption.selected .subtext {
+	color: var(--darkColor-blue);
 }
 
 .languageDropdown .languageOption:hover,
