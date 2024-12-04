@@ -567,6 +567,8 @@ body {
 	transition: transform 1s;
 }
 
+
+
 #second::after {
 	content: "";
 	position: absolute;
@@ -578,22 +580,68 @@ body {
 }
 
 /* ---------------------- */
-.ttteexxtt {
-	position: absolute;
-	/* background-color: yellow; */
- 	/*bottom: 18px; */
-	/*Because search engines has margin-bottom 20px*/
-	bottom: 8px;
-	left: 10px;
-	/* text-align: center; */
+.ttteexxtt{
+	margin-top: 20px;
+	font-size: 1.2rem;
+	color: var(--textColorDark-blue);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 372px;
+	padding: 5px;
 }
 
-#userText {
-	font-family: "poppins", "Poppins", serif;
-	font-size: 1.4rem;
-	margin-bottom: 10px;
-	transition: text-shadow 0.3s ease-in-out;
+
+
+#deathDate{
+	margin-top: 10px;
+	font-size: 1.2rem;
+	color: var(--textColorDark-blue);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 372px;
+	border-radius: 10px;
+	border: 2px solid var(--darkColor-blue);
+	text-align: center;
+	text-decoration: none;
+	color: var(--textColorDark-blue);	
+	padding: 5px;
 }
+
+#countdown{
+	border-radius: 20px;
+	
+	position: absolute;
+	background: #E2EEFF;
+	padding: 20px;
+	overflow: hidden;
+
+
+}
+
+
+#submitDate{
+	font-family: "poppins", "Poppins", sans-serif;
+	font-size: 1.2rem;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 372px;
+	border-radius: 10px;
+	border: 2px solid var(--darkColor-blue);
+	text-align: center;
+	text-decoration: none;
+	background: var(--darkColor-blue);
+	
+	
+}
+
 
 #date {
 	font-size: 1.4rem;
