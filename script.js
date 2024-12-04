@@ -1523,7 +1523,9 @@ function checkAndUpdateImage() {
             }
 
             if (!savedImage || imageType === 'upload') {
-                updateTextShadow(false);
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                document.body.style.backgroundImage = `var(--bg-image)`;
+                updateTextShadow(true);
                 return;
             }
 
