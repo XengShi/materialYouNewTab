@@ -1920,7 +1920,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
         `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
 
-    const FAVICON_REQUEST_TIMEOUT = 5000;
+    // const FAVICON_REQUEST_TIMEOUT = 5000;
 
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
@@ -2201,7 +2201,21 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
-        let url = shortcut.querySelector("input.URL").value;
+        let url = shortcut.querySelector("input.URL").value.trim();
+
+        // URL validation function
+        function isValidUrl(url) {
+            const pattern = /^(https:\/\/|http:\/\/)?(([a-zA-Z\d-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(\/[^\s]*)?$/i;
+            return pattern.test(url);
+        }
+
+        // Validate URL before normalizing
+        if (!isValidUrl(url)) {
+            // alert("Invalid URL. Please enter a valid URL with http or https protocol.");
+            url = "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html";
+        }
+
+        // Normalize URL if valid
         const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
@@ -2366,10 +2380,13 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
-
         const hostname = new URL(urlString).hostname;
+
         if (hostname === "github.com") {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
+        } else if (urlString === "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html") {
+            // Special case for invalid URLs
+            logo.src = "./shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
