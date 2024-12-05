@@ -1055,11 +1055,11 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	          #userText, #date, .shortcuts .shortcut-name {
-	              text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		            -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			        1px -1px 15px rgba(15, 15, 15, 0.9),
-       			      -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
+	    #userText, #date, .shortcuts .shortcut-name {
+	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			          1px -1px 15px rgba(15, 15, 15, 0.9),
+       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
      	    .uploadButton,
@@ -1076,12 +1076,22 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .clearButton:hover{
-                background-color: var(--whitishColor-dark) !important;
+                background-color: var(--whitishColor-dark);
             }
-	    
-	    #backupBtn:hover,
-            #restoreBtn:hover {
-                background-color: #0e0e0e !important;
+
+            .clearButton:active{
+                color: #0e0e0e;
+            }
+
+            .backupRestoreBtn {
+                background-color: #212121;
+            }
+            
+            .uploadButton:active,
+            .randomButton:active,
+            .backupRestoreBtn:active,
+            .resetbtn:active {
+                background-color: #0e0e0e;
             }
 
      	    .micIcon{
