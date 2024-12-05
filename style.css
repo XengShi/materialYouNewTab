@@ -116,7 +116,7 @@
 	--darkerColor-grey: #262626;
 	--darkColor-grey: #434343;
 	--textColorDark-grey: #111111;
-	--whitishColor-grey: #999999;
+	--whitishColor-grey: #adadad;
 
 
 	/* ⚫⚫⚫ */
@@ -592,12 +592,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 #date {
 	font-size: 1.4rem;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 .digidate {
@@ -2086,17 +2084,19 @@ input:checked + .toggle:before {
 
 /* Style for Backup and Restore buttons */
 .backupRestoreContainer {
-	display: flex;
-	justify-content: center;
+	width: 100%;
+	height: 36px;
 	margin-top: 30px;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
 }
 
 .backupRestoreBtn {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 9px;
-	padding: 8px 36px;
 	font-size: 0.9rem;
 	cursor: pointer;
 	border: none;
