@@ -1467,27 +1467,37 @@ function checkAndUpdateImage() {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
+            // Case 1: No image found, disable text shadow and return.
+            if (!savedImage) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 2: Invalid or missing timestamp, disable text shadow and return.
             if (!savedTimestamp || isNaN(lastUpdate)) {
                 updateTextShadow(false);
                 return;
             }
 
-            if (!savedImage || imageType === 'upload') {
+            // Case 3: Uploaded image should always be applied.
+            if (imageType === 'upload') {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 document.body.style.backgroundImage = `var(--bg-image)`;
                 updateTextShadow(true);
                 return;
             }
 
+            // Case 4: Random image should be refreshed if it's a new day.
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage(false);
+                applyRandomImage(false); // Fetch new random image and apply it.
             } else {
+                // Case 5: Same day random image, reapply saved image.
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 updateTextShadow(true);
             }
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Error loading image details:', error);
             updateTextShadow(false);
         });
 }
