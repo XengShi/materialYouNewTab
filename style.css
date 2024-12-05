@@ -2008,9 +2008,9 @@ input:checked + .toggle:before {
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
-	justify-content: center;
 	margin-top: 130px;
 	justify-content: space-between;
+	gap: 10px;
 }
 
 /* Styling for Upload/Random/Clear Buttons */
@@ -2024,7 +2024,7 @@ input:checked + .toggle:before {
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
 	/*white-space: nowrap; */
-	border-radius: 20px;
+	border-radius: 23px;
 	border: 2px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
@@ -2085,7 +2085,7 @@ input:checked + .toggle:before {
 /* Style for Backup and Restore buttons */
 .backupRestoreContainer {
 	width: 100%;
-	height: 36px;
+	height: 38px;
 	margin-top: 30px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
