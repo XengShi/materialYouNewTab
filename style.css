@@ -116,7 +116,7 @@
 	--darkerColor-grey: #262626;
 	--darkColor-grey: #434343;
 	--textColorDark-grey: #111111;
-	--whitishColor-grey: #999999;
+	--whitishColor-grey: #adadad;
 
 
 	/* ⚫⚫⚫ */
@@ -592,12 +592,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 #date {
 	font-size: 1.4rem;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 .digidate {
@@ -1660,6 +1658,10 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
+.resetbtn:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .topBar {
 	display: flex;
 	justify-content: space-between;
@@ -1813,8 +1815,13 @@ input:checked + .toggle:before {
 
 /* --------------Theming stuff------------------ */
 .themingStuff{
-	margin-top: 30px;
+	margin-top: 15px;
 	position: relative;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	gap: var(--gap);
 }
 
 .themingStuff:hover:after{
@@ -1826,13 +1833,14 @@ input:checked + .toggle:before {
 	margin-top: -20px;
 	font-size: 0.74rem;
 }
-.themingStuff,
+
 .languageSection {
 	width: 100%;
 	height: 50px;
 	display: flex;
 	justify-content: space-around;
 	gap: var(--gap);
+	margin-top: 30px;
 }
 
 .languageSelector {
@@ -2000,50 +2008,52 @@ input:checked + .toggle:before {
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
-	justify-content: center; /* Center the buttons horizontally */
-	margin-top: 122px; /* Add spacing below the theming section */
+	margin-top: 130px;
 	justify-content: space-between;
+	gap: 10px;
 }
 
-/* Styling for Upload/Clear Buttons with SVGs */
-.uploadButton,
-.randomButton,
-.clearButton {
+/* Styling for Upload/Random/Clear Buttons */
+.uploadButton {
+	font-size: 0.95rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10px; /* Space between SVG and text */
+	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	padding: 10px 20px;
-	font-size: 1rem;
- 	/*white-space: nowrap; */
+	padding: 10px 18px;
+	/*white-space: nowrap; */
+	border-radius: 23px;
 	border: 2px solid transparent;
-	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
-.uploadButton {
-	font-size: 0.95rem !important;
-}
-
 .randomButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--whitishColor-blue);
+	color: var(--darkColor-blue);
+	border-radius: 26px;
+	border: 2px solid transparent;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 	padding: 10px;
 }
 
 .clearButton {
 	padding: 10px;
-	color: var(--whitishColor-blue) !important;
-	background-color: var(--darkColor-blue) !important;
-}
-
-/* Ensure consistent SVG sizing */
-.uploadButton svg,
-.randomButton svg,
-.clearButton svg {
-	width: 24px;
-	height: 24px;
+	color: var(--whitishColor-blue);
+	background-color: var(--darkColor-blue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid transparent;
+	border-radius: 26px;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* Hover Effects */
@@ -2053,9 +2063,18 @@ input:checked + .toggle:before {
 	color: var(--whitishColor-blue);
 }
 
+.uploadButton:active,
+.randomButton:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .clearButton:hover {
-	color: var(--darkColor-blue) !important;
-	background-color: var(--whitishColor-blue) !important;
+	color: var(--darkColor-blue);
+	background-color: var(--whitishColor-blue);
+}
+
+.clearButton:active {
+	color: var(--darkerColor-blue);
 }
 
 /* File input remains hidden */
@@ -2063,8 +2082,42 @@ input:checked + .toggle:before {
 	display: none;
 }
 
+/* Style for Backup and Restore buttons */
+.backupRestoreContainer {
+	width: 100%;
+	height: 38px;
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
+
+.backupRestoreBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 9px;
+	font-size: 0.9rem;
+	cursor: pointer;
+	border: none;
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
+	border-radius: 20px;
+	transition: background-color 0.3s ease;
+}
+
+.backupRestoreBtn:hover {
+	background-color: var(--darkColor-blue);
+	color: #fffffff5;
+}
+
+.backupRestoreBtn:active {
+	background-color: var(--darkerColor-blue);
+	color: #fffffff5;
+}
+
 .spacer {
-	height: 35px;
+	height: 20px;
 	/* Adjust this value to create space */
 }
 
