@@ -108,6 +108,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "Upload Wallpaper",
+        "backupText": "Backup",
+        "restoreText": "Restore",
     },
 
 
@@ -406,6 +408,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "backupText": "बैकअप",
+        "restoreText": "रिस्टोर",
     },
 
 
@@ -772,7 +776,9 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "ওয়ালপেপার আপলোড করুন",
+        "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+        "backupText": "ব্যাকআপ",
+        "restoreText": "পুনরুদ্ধার",
     },
 
 
@@ -1524,6 +1530,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करा",
+        "backupText": "बॅकअप",
+        "restoreText": "पुनर्संचयित",
     },
 };
 
@@ -1636,6 +1644,8 @@ function applyLanguage(lang) {
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
+        { id: 'backupText', key: 'backupText' },
+        { id: 'restoreText', key: 'restoreText' }
 
     ];
 
