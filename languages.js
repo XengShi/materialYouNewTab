@@ -1462,7 +1462,7 @@ const translations = {
         "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
         "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
         "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
-        "hideSearchWithInfo": "आयकॉनवर क्लिक करून सर्च इंजिन बदला"
+        "hideSearchWithInfo": "आयकॉनवर क्लिक करून सर्च इंजिन बदला",
         "search_suggestions_button": "शोध सूचना",
         "search_suggestions_text": "शोध सूचना सक्षम करा",
         // Proxy
