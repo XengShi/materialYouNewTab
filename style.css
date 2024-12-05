@@ -202,11 +202,6 @@
 	background-color: var(--accentLightTint-blue);
 }
 
-/* .whitishColor {
-	fill: var(--whitishColor-blue);
-	background-color: var(--whitishColor-blue);
-} */
-
 .strokecolor {
 	stroke: var(--darkColor-blue);
 }
