@@ -784,6 +784,13 @@
             </div>
             <div class="optCont" id="optCont">
                 <div class="page" id="overviewPage">
+
+                    <div class="zoomSliderContainer">
+                        <div class="sliderBGBar"></div>
+                        <input type="range" id="zoom-slider" min="15" max="100" value="90">
+                        <!-- <div id="fillller"></div> -->
+                    </div>
+
                     <div class="tilesCont">
 
                         <!-- ----tiles----------- -->
@@ -818,6 +825,7 @@
 
                     </div>
                     <!-- end of tilesCont -->
+
                     <div class="divider"></div>
 
                     <div class="toggleTextsCont">
@@ -949,6 +957,7 @@
                             </label>
                         </div>
                         <!-- ---🟡--- -->
+
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="search_suggestions_button">Search Suggestions</div>
@@ -1055,7 +1064,7 @@
                         <!-- end of languageSelector -->
                     </div>
                     <br>
-                
+
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">
@@ -1088,7 +1097,8 @@
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
                             <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
+                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
+                                color</label>
                             <input type="color" id="colorPicker" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
@@ -1128,7 +1138,7 @@
                     <!-- ----End of Custom Wallpaper uploading thingsss------------- -->
 
                     <!-- end of themingStuff -->
-                     
+
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
                     <div id="menuCloseButton">
@@ -1182,5 +1192,6 @@
     <div id="menuButton"></div>
     <!-- ending-of-body -->
 </body>
+
 
 </html>

@@ -23,10 +23,12 @@ if (!localStorage.getItem('alertShown')) {
     }, 4000);
 }
 
+
 let proxyurl;
 let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
+
     try {
         // Cache DOM elements
         const userAPIInput = document.getElementById("userAPI");
@@ -113,7 +115,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-	// Default Weather API key
+        // Default Weather API key
         const weatherApiKeys = [
             'd36ce712613d4f21a6083436240910',
             'db0392b338114f208ee135134240312',
@@ -1252,8 +1254,7 @@ const applyCustomTheme = (color) => {
 
 // Load theme on page reload// Load theme on page reload
 window.addEventListener('load', function () {
-    // console.log('Page loaded, stored theme:', storedTheme);
-    // console.log('Page loaded, stored custom color:', storedCustomColor);
+
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -1840,6 +1841,48 @@ menuBar.addEventListener("click", (event) => {
 document.getElementById("menuCloseButton").onclick = () => {
     closeMenuBar()
 }
+
+
+// ------- Zooming in out function-----------
+const slider = document.getElementById('zoom-slider');
+const body = document.body;
+
+function applyZoom(value, min, max) {
+    const percentage = (value / max) * 100;
+    const sliderValue = percentage - 8;
+
+    slider.style.borderRadius = "100px";
+    slider.style.background = `linear-gradient(to right, var(--darkColor-blue) ${sliderValue}%, #00000000 ${sliderValue}%)`;
+
+    const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
+    body.style.zoom = zoomLevel;
+
+    localStorage.setItem('zoomLevel', value);
+}
+
+slider.addEventListener('input', function () {
+    const value = this.value;
+    const max = this.max;
+    const min = this.min;
+
+    applyZoom(value, min, max);
+});
+
+window.addEventListener('load', function () {
+    const savedZoomLevel = localStorage.getItem('zoomLevel');
+
+    if (savedZoomLevel) {
+        slider.value = savedZoomLevel;
+        const max = slider.max;
+        const min = slider.min;
+
+        applyZoom(savedZoomLevel, min, max);
+    }
+});
+// ------- End of Zooming in out function-----------
+
+
+
 
 // ---------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
@@ -2625,3 +2668,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
+
+
+
+
