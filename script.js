@@ -2827,3 +2827,63 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
+
+// death to the console
+
+const deathContainer = document.getElementById('death-container');
+const countdownDiv = document.getElementById('countdown');
+const deathDateInput = document.getElementById('deathDate');
+const submitDateButton = document.getElementById('submitDate');
+
+// Function to calculate remaining time
+function calculateRemainingTime(endDate) {
+    const now = new Date();
+    const end = new Date(endDate);
+    const diff = end - now;
+
+    if (diff <= 0) return "Time is up!";
+
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+    const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+    const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return `${years} years, ${months} months<br>${days} days, ${hours}  hours <br/> ${minutes} minutes, ${seconds} seconds`;
+
+}
+
+// Function to update countdown
+function updateCountdown() {
+    const storedDate = localStorage.getItem('deathDate');
+    if (!storedDate) return;
+
+    countdownDiv.innerHTML = calculateRemainingTime(storedDate);
+}
+
+// Check if date is already stored in localStorage
+const savedDate = localStorage.getItem('deathDate');
+if (savedDate) {
+    deathContainer.style.display = 'none';
+    countdownDiv.style.display = 'block';
+    setInterval(updateCountdown, 1000); // Update every second
+}
+
+// Handle form submission
+submitDateButton.addEventListener('click', () => {
+    const deathDate = deathDateInput.value;
+    if (!deathDate) {
+        alert("Please select a valid date.");
+        return;
+    }
+
+    // Store the selected date in localStorage
+    localStorage.setItem('deathDate', deathDate);
+
+    // Switch to countdown mode
+    deathContainer.style.display = 'none';
+    countdownDiv.style.display = 'block';
+    setInterval(updateCountdown, 1000); // Update every second
+});
+

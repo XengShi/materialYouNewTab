@@ -18,6 +18,7 @@
     <link href="style.css" rel="stylesheet">
     <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
     <style id="iconStyle"></style>
+    
 
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
@@ -464,6 +465,19 @@
             <div class="ttteexxtt">
                 <div id="userText" contenteditable="true" spellcheck="false">Click here to edit</div>
                 <div id="date"></div>
+            </div>
+
+            <div id="death-date-container" style="overflow: hidden;">
+                <div id="death-container">
+                    <p>Set Your Lifetime Goal Date : </p>
+                    <input type="date" id="deathDate" name="deathDate" min="2025-01-01" max="2099-12-31">
+                    <button id="submitDate">Submit</button>
+                </div>
+            
+                <div id="countdown" style="display:none;">
+                    
+                </div>
+
             </div>
         </div>
         <!-- ---------end of leftDiv--------------- -->
