@@ -1660,6 +1660,10 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
+.resetbtn:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .topBar {
 	display: flex;
 	justify-content: space-between;
@@ -2006,15 +2010,14 @@ input:checked + .toggle:before {
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
-	justify-content: center; /* Center the buttons horizontally */
-	margin-top: 122px; /* Add spacing below the theming section */
+	justify-content: center;
+	margin-top: 130px;
 	justify-content: space-between;
 }
 
-/* Styling for Upload/Clear Buttons with SVGs */
-.uploadButton,
-.randomButton,
-.clearButton {
+/* Styling for Upload/Random/Clear Buttons */
+.uploadButton {
+	font-size: 0.95rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2022,34 +2025,37 @@ input:checked + .toggle:before {
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
 	padding: 10px 20px;
-	font-size: 1rem;
- 	/*white-space: nowrap; */
+	/*white-space: nowrap; */
+	border-radius: 20px;
 	border: 2px solid transparent;
-	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
-.uploadButton {
-	font-size: 0.95rem !important;
-}
-
 .randomButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--whitishColor-blue);
+	color: var(--darkColor-blue);
+	border-radius: 26px;
+	border: 2px solid transparent;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 	padding: 10px;
 }
 
 .clearButton {
 	padding: 10px;
-	color: var(--whitishColor-blue) !important;
-	background-color: var(--darkColor-blue) !important;
-}
-
-/* Ensure consistent SVG sizing */
-.uploadButton svg,
-.randomButton svg,
-.clearButton svg {
-	width: 24px;
-	height: 24px;
+	color: var(--whitishColor-blue);
+	background-color: var(--darkColor-blue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid transparent;
+	border-radius: 26px;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* Hover Effects */
@@ -2059,9 +2065,18 @@ input:checked + .toggle:before {
 	color: var(--whitishColor-blue);
 }
 
+.uploadButton:active,
+.randomButton:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .clearButton:hover {
-	color: var(--darkColor-blue) !important;
-	background-color: var(--whitishColor-blue) !important;
+	color: var(--darkColor-blue);
+	background-color: var(--whitishColor-blue);
+}
+
+.clearButton:active {
+	color: var(--darkerColor-blue);
 }
 
 /* File input remains hidden */
@@ -2077,8 +2092,7 @@ input:checked + .toggle:before {
 	justify-content: space-between;
 }
 
-#backupBtn,
-#restoreBtn {
+.backupRestoreBtn {
 	display: flex;
 	align-items: center;
 	gap: 9px;
@@ -2086,15 +2100,20 @@ input:checked + .toggle:before {
 	font-size: 0.9rem;
 	cursor: pointer;
 	border: none;
-	background-color: var(--darkColor-blue);
-	color: #fffffff0;
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
 	border-radius: 20px;
 	transition: background-color 0.3s ease;
 }
 
-#backupBtn:hover,
-#restoreBtn:hover {
+.backupRestoreBtn:hover {
+	background-color: var(--darkColor-blue);
+	color: #fffffff5;
+}
+
+.backupRestoreBtn:active {
 	background-color: var(--darkerColor-blue);
+	color: #fffffff5;
 }
 
 .spacer {
