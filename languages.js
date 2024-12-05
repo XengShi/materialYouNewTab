@@ -40,8 +40,8 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
-        "hideSearchWith": "Hide Search Engines",    // "Hide Search Engine Selector"
-        "hideSearchWithInfo": "Switch between search engines by clicking their icons",
+        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -109,7 +109,7 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
         "backupText": "Backup",
         "restoreText": "Restore",
     },
