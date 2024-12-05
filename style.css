@@ -2088,7 +2088,7 @@ input:checked + .toggle:before {
 .backupRestoreContainer {
 	display: flex;
 	justify-content: center;
-	margin-top: 35px;
+	margin-top: 30px;
 	justify-content: space-between;
 }
 
@@ -2117,7 +2117,7 @@ input:checked + .toggle:before {
 }
 
 .spacer {
-	height: 15px;
+	height: 20px;
 	/* Adjust this value to create space */
 }
 
