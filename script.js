@@ -1570,7 +1570,7 @@ async function backupData() {
         link.click();
         document.body.removeChild(link);
 
-        alert("Backup completed successfully!");
+        console.log("Backup completed successfully!");
     } catch (error) {
         alert("Backup failed: " + error.message);
     }
