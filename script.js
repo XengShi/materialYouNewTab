@@ -1200,11 +1200,11 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	          #userText, #date, .shortcuts .shortcut-name {
-	              text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		            -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			        1px -1px 15px rgba(15, 15, 15, 0.9),
-       			      -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
+	    #userText, #date, .shortcuts .shortcut-name {
+	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			          1px -1px 15px rgba(15, 15, 15, 0.9),
+       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
      	    .uploadButton,
@@ -1221,7 +1221,22 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .clearButton:hover{
-                background-color: var(--whitishColor-dark) !important;
+                background-color: var(--whitishColor-dark);
+            }
+
+            .clearButton:active{
+                color: #0e0e0e;
+            }
+
+            .backupRestoreBtn {
+                background-color: #212121;
+            }
+            
+            .uploadButton:active,
+            .randomButton:active,
+            .backupRestoreBtn:active,
+            .resetbtn:active {
+                background-color: #0e0e0e;
             }
 
      	    .micIcon{
@@ -1452,7 +1467,7 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper ----------------------------------------------------------------
+// ------------ Wallpaper ---------------------------------
 // Constants for database and storage
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
@@ -1673,6 +1688,145 @@ document.getElementById('randomImageTrigger').addEventListener('click', applyRan
 checkAndUpdateImage();
 
 // ------- End of BG Image -------------------------------------------
+
+// -------- Backup-Restore Settings ----------------------------------
+document.getElementById("backupBtn").addEventListener("click", backupData);
+document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
+
+// Backup data from localStorage and IndexedDB
+async function backupData() {
+    if (!confirm("Are you sure you want to backup your settings?")) return;
+
+    try {
+        const backup = { localStorage: {}, indexedDB: {} };
+
+        // Backup localStorage
+        for (let key in localStorage) {
+            if (localStorage.hasOwnProperty(key)) {
+                backup.localStorage[key] = localStorage.getItem(key);
+            }
+        }
+
+        // Backup IndexedDB (ImageDB)
+        backup.indexedDB = await backupIndexedDB();
+
+        // Generate filename with current date (format: DDMMYYYY)
+        const date = new Date();
+        const formattedDate = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${date.getFullYear()}`;
+        const fileName = `NewTab_Backup_${formattedDate}.json`;
+
+        // Create and download the backup file
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        console.log("Backup completed successfully!");
+    } catch (error) {
+        alert("Backup failed: " + error.message);
+    }
+}
+
+// Validate and restore data from a backup file
+async function validateAndRestoreData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const backup = JSON.parse(e.target.result);
+            await restoreData(backup);
+
+            alert("Restore completed successfully!");
+            location.reload();
+        } catch (error) {
+            alert("Restore failed: " + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Backup IndexedDB: Extract data from ImageDB -> backgroundImages
+function backupIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readonly");
+            const store = transaction.objectStore("backgroundImages");
+            const data = {};
+
+            store.getAllKeys().onsuccess = (keysEvent) => {
+                const keys = keysEvent.target.result;
+
+                if (!keys.length) {
+                    resolve({ backgroundImages: {} });
+                    return;
+                }
+
+                let pending = keys.length;
+                keys.forEach(key => {
+                    store.get(key).onsuccess = (getEvent) => {
+                        data[key] = getEvent.target.result;
+                        if (--pending === 0) resolve({ backgroundImages: data });
+                    };
+                });
+            };
+
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
+function restoreIndexedDB(data) {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readwrite");
+            const store = transaction.objectStore("backgroundImages");
+
+            store.clear();
+            Object.entries(data).forEach(([key, value]) => {
+                store.put(value, key);
+            });
+
+            transaction.oncomplete = resolve;
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore data for both localStorage and IndexedDB
+async function restoreData(backup) {
+    // Clear localStorage before restoring
+    localStorage.clear();
+
+    // Restore localStorage from backup
+    if (backup.localStorage) {
+        Object.keys(backup.localStorage).forEach(key => {
+            localStorage.setItem(key, backup.localStorage[key]);
+        });
+    }
+
+    // Restore IndexedDB from backup
+    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
+        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    }
+}
+// -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
