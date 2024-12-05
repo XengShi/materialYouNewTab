@@ -109,6 +109,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "Upload Wallpaper",
+        "backupText": "Backup",
+        "restoreText": "Restore",
     },
 
 
@@ -408,6 +410,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "backupText": "बैकअप",
+        "restoreText": "रिस्टोर",
     },
 
 
@@ -775,7 +779,9 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "ওয়ালপেপার আপলোড করুন",
+        "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+        "backupText": "ব্যাকআপ",
+        "restoreText": "পুনরুদ্ধার",
     },
 
 
@@ -1437,13 +1443,13 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करा",
         "shortcutsInfoText": "कोणते शॉर्टकट दाखवायचे ते निवडा",
         "editShortcutsList": "जतन केलेले शॉर्टकट्स",
-        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता।',
+        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता.',
         "adaptiveIconText": "अनुकूल आयकॉन आकार",
         "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
         "ai_tools_button": "AI साधने",
         "enable_ai_tools": "AI साधनांसाठी शॉर्टकट्स दाखवा",
-        "googleAppsMenuText": "गुगल अॅप्स",
-        "googleAppsMenuInfo": "गुगल अॅप्ससाठी शॉर्टकट्स दाखवा",
+        "googleAppsMenuText": "गुगल ॲप्स",
+        "googleAppsMenuInfo": "गुगल ॲप्ससाठी शॉर्टकट्स दाखवा",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड्याळ",
         "digitalclockinfo": "डिजिटल घड्याळावर स्विच करा",
@@ -1474,7 +1480,7 @@ const translations = {
         "InputOptionsButton": "इनपुट पर्याय",
         "saveLoc": "जतन करा",
         // Weather
-        "WeatherApiText": "आपली WeatherAPI कळी प्रविष्ट करा",
+        "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
         "WeatherApiSubtext": "जर हवामान कार्यरत नसेल",
         "userAPI": "आपली WeatherAPI कळी",
         "LearnMoreButton": "अधिक जाणून घ्या",
@@ -1502,7 +1508,7 @@ const translations = {
         "searchWithHint": "यासह शोधा",
         "ai_tools": "AI साधने",
         "userText": "येथे आपला मजकूर लिहा",
-        "googleAppsHover": "गुगल अॅप्स",
+        "googleAppsHover": "गुगल ॲप्स",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1523,11 +1529,13 @@ const translations = {
         "copilot": "कोपायलट",
         "claude": "क्लॉड",
         "perplexity": "पर्प्लेक्सिटी",
-        "firefly": "अॅडोबी फायरफ्लाय",
+        "firefly": "अडोबी फायरफ्लाय",
         "github": "गिटहब",
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करा",
+        "backupText": "बॅकअप",
+        "restoreText": "पुनर्संचयित",
     },
 };
 
@@ -1641,6 +1649,8 @@ function applyLanguage(lang) {
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
+        { id: 'backupText', key: 'backupText' },
+        { id: 'restoreText', key: 'restoreText' }
 
     ];
 

@@ -43,12 +43,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         const savedProxy = localStorage.getItem("proxy");
 
         // Pre-fill input fields with saved data
+        if (savedLocation) userLocInput.value = savedLocation;
         if (savedApiKey) userAPIInput.value = savedApiKey;
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-            //document.getElementById("location").textContent = savedLocation;
+
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+        if (savedProxy && savedProxy !== defaultProxyURL) {
+            userProxyInput.value = savedProxy;
         }
-        if (savedProxy) userProxyInput.value = savedProxy;
 
         // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
@@ -64,7 +65,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value;
+            const apiKey = userAPIInput.value.trim();
             localStorage.setItem("weatherApiKey", apiKey);
             userAPIInput.value = "";
             location.reload();
@@ -72,7 +73,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value;
+            const userLocation = userLocInput.value.trim();
             localStorage.setItem("weatherLocation", userLocation);
             userLocInput.value = "";
             location.reload();
@@ -86,35 +87,48 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Save the proxy to localStorage
         saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value;
+            const proxyurl = userProxyInput.value.trim();
 
-            // Check if the input contains 'http://' or 'https://'
+            // If the input is empty, use the default proxy.
+            if (proxyurl === "") {
+                localStorage.setItem("proxy", defaultProxyURL);
+                userProxyInput.value = "";
+                location.reload();
+                return;
+            }
+
+            // Validate if input starts with 'http://' or 'https://'
             if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
                 if (!proxyurl.endsWith("/")) {
-                    // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
                     userProxyInput.value = "";
                     location.reload();
-                }
-                else {
+                } else {
                     alert("There shouldn't be / at the end of the link");
                 }
             } else {
-                // Alert the user if it's not a valid link
                 alert("Only links (starting with http:// or https://) are allowed.");
             }
         });
 
-        // Use the saved or default API key and proxy
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        // Check if the user has entered their own API key
-        const userApiKey = userAPIInput.value.trim();
-        const userproxyurl = userProxyInput.value.trim();
-        // Use the user's API key if available, otherwise use the default API key
-        const apiKey = userApiKey || defaultApiKey;
-        proxyurl = userproxyurl || defaultProxyURL;
+	// Default Weather API key
+        const weatherApiKeys = [
+            'd36ce712613d4f21a6083436240910',
+            'db0392b338114f208ee135134240312',
+            'de5f7396db034fa2bf3140033240312',
+            'c64591e716064800992140217240312',
+            '9b3204c5201b4b4d8a2140330240312',
+            'eb8a315c15214422b60140503240312',
+            'cd148ebb1b784212b74140622240312',
+            '7ae67e219af54df2840140801240312'
+        ];
+        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
+
+        // Determine API key and proxy URL to use
+        const apiKey = savedApiKey || defaultApiKey;
+        proxyurl = savedProxy || defaultProxyURL;
 
         // Determine the location to use
         let currentUserLocation = savedLocation;
@@ -651,18 +665,99 @@ document.addEventListener('click', function (event) {
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', (event) => {
+        if (dropdown.style.display == "block") {
+            event.stopPropagation();
+            dropdown.style.display = 'none';
+        }
+    })
+
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+
+    const sortDropdown = () => {
+        // Change the elements to the array
+        const elements = Array.from(searchDropdowns);
+
+        // Sort the dropdown
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+
+            return engineA - engineB;
+        })
+
+        // get the parent
+        const parent = sortedDropdowns[0]?.parentNode;
+
+        // Append the items. if parent exists.
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item));
+        }
+    }
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+            radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(element);
+            sortDropdown()
+
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
             const radioButton = engineDiv.querySelector('input[type="radio"]');
+
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+
+            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+
+            // Swap The dropdown.
+            swapDropdown(element);
+            sortDropdown()
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+
+    /**
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
+     */
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = selectedElement.innerHTML;
+        selectedElement.innerHTML = tempHTML;
+
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+            selectedElement.setAttribute(attr, tempAttr);
+        });
+    }
 
     // Function to perform search
     function performSearch() {
@@ -693,12 +788,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+
+        // check if the default selected search engine is same as the stored one.
+        if (storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+
+            swapDropdown(storedSearchEngineDropdown);
+            sortDropdown();
+        }
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    let selectedIndex = -1;
+
+    // Function to update the selected item
+    function updateSelection() {
+        // let hasSelected = [];
+        dropdownItems.forEach((item, index) => {
+
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('selected');
+            })
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('selected');
+            })
+
+            if (index === selectedIndex) {
+                item.focus()
+                item.classList.add('selected');
+            } else {
+                item.focus()
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Event listener for keydown events to navigate up/down
+    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+        if (dropdown.style.display == "block") {
+            if (event.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+            } else if (event.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+            } else if (event.key === "Enter") {
+                const element = document.querySelector('.dropdown-content .selected');
+                const engine = element.getAttribute('data-engine');
+                const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+                radioButton.checked = true;
+
+                // Swap The dropdown. and sort them
+                swapDropdown(element);
+                sortDropdown()
+            }
+            updateSelection();
+        }
+    });
+
+    // Initial setup for highlighting
+    updateSelection();
 
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
@@ -1041,11 +1200,11 @@ const applySelectedTheme = (colorValue) => {
                 fill: #909090;
             }
 	    
-	          #userText, #date, .shortcuts .shortcut-name {
-	              text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		            -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			        1px -1px 15px rgba(15, 15, 15, 0.9),
-       			      -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
+	    #userText, #date, .shortcuts .shortcut-name {
+	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			          1px -1px 15px rgba(15, 15, 15, 0.9),
+       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
      	    .uploadButton,
@@ -1062,7 +1221,22 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .clearButton:hover{
-                background-color: var(--whitishColor-dark) !important;
+                background-color: var(--whitishColor-dark);
+            }
+
+            .clearButton:active{
+                color: #0e0e0e;
+            }
+
+            .backupRestoreBtn {
+                background-color: #212121;
+            }
+            
+            .uploadButton:active,
+            .randomButton:active,
+            .backupRestoreBtn:active,
+            .resetbtn:active {
+                background-color: #0e0e0e;
             }
 
      	    .micIcon{
@@ -1293,7 +1467,7 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper ----------------------------------------------------------------
+// ------------ Wallpaper ---------------------------------
 // Constants for database and storage
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
@@ -1453,25 +1627,37 @@ function checkAndUpdateImage() {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
+            // Case 1: No image found, disable text shadow and return.
+            if (!savedImage) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 2: Invalid or missing timestamp, disable text shadow and return.
             if (!savedTimestamp || isNaN(lastUpdate)) {
                 updateTextShadow(false);
                 return;
             }
 
-            if (!savedImage || imageType === 'upload') {
-                updateTextShadow(false);
+            // Case 3: Uploaded image should always be applied.
+            if (imageType === 'upload') {
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                document.body.style.backgroundImage = `var(--bg-image)`;
+                updateTextShadow(true);
                 return;
             }
 
+            // Case 4: Random image should be refreshed if it's a new day.
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage(false);
+                applyRandomImage(false); // Fetch new random image and apply it.
             } else {
+                // Case 5: Same day random image, reapply saved image.
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 updateTextShadow(true);
             }
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Error loading image details:', error);
             updateTextShadow(false);
         });
 }
@@ -1502,6 +1688,145 @@ document.getElementById('randomImageTrigger').addEventListener('click', applyRan
 checkAndUpdateImage();
 
 // ------- End of BG Image -------------------------------------------
+
+// -------- Backup-Restore Settings ----------------------------------
+document.getElementById("backupBtn").addEventListener("click", backupData);
+document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
+
+// Backup data from localStorage and IndexedDB
+async function backupData() {
+    if (!confirm("Are you sure you want to backup your settings?")) return;
+
+    try {
+        const backup = { localStorage: {}, indexedDB: {} };
+
+        // Backup localStorage
+        for (let key in localStorage) {
+            if (localStorage.hasOwnProperty(key)) {
+                backup.localStorage[key] = localStorage.getItem(key);
+            }
+        }
+
+        // Backup IndexedDB (ImageDB)
+        backup.indexedDB = await backupIndexedDB();
+
+        // Generate filename with current date (format: DDMMYYYY)
+        const date = new Date();
+        const formattedDate = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${date.getFullYear()}`;
+        const fileName = `NewTab_Backup_${formattedDate}.json`;
+
+        // Create and download the backup file
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        console.log("Backup completed successfully!");
+    } catch (error) {
+        alert("Backup failed: " + error.message);
+    }
+}
+
+// Validate and restore data from a backup file
+async function validateAndRestoreData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const backup = JSON.parse(e.target.result);
+            await restoreData(backup);
+
+            alert("Restore completed successfully!");
+            location.reload();
+        } catch (error) {
+            alert("Restore failed: " + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Backup IndexedDB: Extract data from ImageDB -> backgroundImages
+function backupIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readonly");
+            const store = transaction.objectStore("backgroundImages");
+            const data = {};
+
+            store.getAllKeys().onsuccess = (keysEvent) => {
+                const keys = keysEvent.target.result;
+
+                if (!keys.length) {
+                    resolve({ backgroundImages: {} });
+                    return;
+                }
+
+                let pending = keys.length;
+                keys.forEach(key => {
+                    store.get(key).onsuccess = (getEvent) => {
+                        data[key] = getEvent.target.result;
+                        if (--pending === 0) resolve({ backgroundImages: data });
+                    };
+                });
+            };
+
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
+function restoreIndexedDB(data) {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readwrite");
+            const store = transaction.objectStore("backgroundImages");
+
+            store.clear();
+            Object.entries(data).forEach(([key, value]) => {
+                store.put(value, key);
+            });
+
+            transaction.oncomplete = resolve;
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore data for both localStorage and IndexedDB
+async function restoreData(backup) {
+    // Clear localStorage before restoring
+    localStorage.clear();
+
+    // Restore localStorage from backup
+    if (backup.localStorage) {
+        Object.keys(backup.localStorage).forEach(key => {
+            localStorage.setItem(key, backup.localStorage[key]);
+        });
+    }
+
+    // Restore IndexedDB from backup
+    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
+        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    }
+}
+// -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
@@ -1904,7 +2229,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
         `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
 
-    const FAVICON_REQUEST_TIMEOUT = 5000;
+    // const FAVICON_REQUEST_TIMEOUT = 5000;
 
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
@@ -2185,7 +2510,21 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
-        let url = shortcut.querySelector("input.URL").value;
+        let url = shortcut.querySelector("input.URL").value.trim();
+
+        // URL validation function
+        function isValidUrl(url) {
+            const pattern = /^(https:\/\/|http:\/\/)?(([a-zA-Z\d-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(\/[^\s]*)?$/i;
+            return pattern.test(url);
+        }
+
+        // Validate URL before normalizing
+        if (!isValidUrl(url)) {
+            // alert("Invalid URL. Please enter a valid URL with http or https protocol.");
+            url = "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html";
+        }
+
+        // Normalize URL if valid
         const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
@@ -2350,10 +2689,13 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
-
         const hostname = new URL(urlString).hostname;
+
         if (hostname === "github.com") {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
+        } else if (urlString === "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html") {
+            // Special case for invalid URLs
+            logo.src = "./shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
@@ -2389,6 +2731,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------ Event Listeners ------ */
+    const searchIconContainer = document.querySelectorAll('.searchIcon');
+
+    const showEngineContainer = () => {
+        searchIconContainer[1].style.display = 'none';
+        searchIconContainer[0].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'visible';
+    }
+    
+    const hideEngineContainer = () => {
+        searchIconContainer[0].style.display = 'none';
+        searchIconContainer[1].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'hidden';
+    }
+
+    const initShortCutSwitch = (element) => {
+        if (element.checked) {
+            hideEngineContainer();
+            localStorage.setItem('showShortcutSwitch', true)
+        } else {
+            showEngineContainer();
+            localStorage.setItem('showShortcutSwitch', false)
+        }
+    }
+
+    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
+    const element = document.getElementById('shortcut_switchcheckbox');
+    element.addEventListener('change', (e) => {
+        initShortCutSwitch(e.target);
+    })
+
+    // Intialize shortcut switch
+    if (localStorage.getItem('showShortcutSwitch')) {
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+
+        if (isShortCutSwitchEnabled) {
+            hideEngineContainer();
+        }
+        else if (!isShortCutSwitchEnabled) {
+            showEngineContainer()
+        }
+    }
+    else {
+        localStorage.setItem('showShortcutSwitch', false);
+    }
+
+    initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
