@@ -1656,12 +1656,17 @@ function restoreIndexedDB(data) {
 
 // Restore data for both localStorage and IndexedDB
 async function restoreData(backup) {
+    // Clear localStorage before restoring
+    localStorage.clear();
+
+    // Restore localStorage from backup
     if (backup.localStorage) {
         Object.keys(backup.localStorage).forEach(key => {
             localStorage.setItem(key, backup.localStorage[key]);
         });
     }
 
+    // Restore IndexedDB from backup
     if (backup.indexedDB && backup.indexedDB.backgroundImages) {
         await restoreIndexedDB(backup.indexedDB.backgroundImages);
     }
