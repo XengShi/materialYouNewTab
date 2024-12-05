@@ -665,18 +665,99 @@ document.addEventListener('click', function (event) {
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', (event) => {
+        if (dropdown.style.display == "block") {
+            event.stopPropagation();
+            dropdown.style.display = 'none';
+        }
+    })
+
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+
+    const sortDropdown = () => {
+        // Change the elements to the array
+        const elements = Array.from(searchDropdowns);
+
+        // Sort the dropdown
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+
+            return engineA - engineB;
+        })
+
+        // get the parent
+        const parent = sortedDropdowns[0]?.parentNode;
+
+        // Append the items. if parent exists.
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item));
+        }
+    }
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+            radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(element);
+            sortDropdown()
+
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
             const radioButton = engineDiv.querySelector('input[type="radio"]');
+
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+
+            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+
+            // Swap The dropdown.
+            swapDropdown(element);
+            sortDropdown()
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+
+    /**
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
+     */
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = selectedElement.innerHTML;
+        selectedElement.innerHTML = tempHTML;
+
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+            selectedElement.setAttribute(attr, tempAttr);
+        });
+    }
 
     // Function to perform search
     function performSearch() {
@@ -707,12 +788,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+
+        // check if the default selected search engine is same as the stored one.
+        if (storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+
+            swapDropdown(storedSearchEngineDropdown);
+            sortDropdown();
+        }
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    let selectedIndex = -1;
+
+    // Function to update the selected item
+    function updateSelection() {
+        // let hasSelected = [];
+        dropdownItems.forEach((item, index) => {
+
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('selected');
+            })
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('selected');
+            })
+
+            if (index === selectedIndex) {
+                item.focus()
+                item.classList.add('selected');
+            } else {
+                item.focus()
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Event listener for keydown events to navigate up/down
+    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+        if (dropdown.style.display == "block") {
+            if (event.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+            } else if (event.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+            } else if (event.key === "Enter") {
+                const element = document.querySelector('.dropdown-content .selected');
+                const engine = element.getAttribute('data-engine');
+                const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+                radioButton.checked = true;
+
+                // Swap The dropdown. and sort them
+                swapDropdown(element);
+                sortDropdown()
+            }
+            updateSelection();
+        }
+    });
+
+    // Initial setup for highlighting
+    updateSelection();
 
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
@@ -2415,6 +2560,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------ Event Listeners ------ */
+    const searchIconContainer = document.querySelectorAll('.searchIcon');
+
+    const showEngineContainer = () => {
+        searchIconContainer[1].style.display = 'none';
+        searchIconContainer[0].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'visible';
+    }
+    
+    const hideEngineContainer = () => {
+        searchIconContainer[0].style.display = 'none';
+        searchIconContainer[1].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'hidden';
+    }
+
+    const initShortCutSwitch = (element) => {
+        if (element.checked) {
+            hideEngineContainer();
+            localStorage.setItem('showShortcutSwitch', true)
+        } else {
+            showEngineContainer();
+            localStorage.setItem('showShortcutSwitch', false)
+        }
+    }
+
+    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
+    const element = document.getElementById('shortcut_switchcheckbox');
+    element.addEventListener('change', (e) => {
+        initShortCutSwitch(e.target);
+    })
+
+    // Intialize shortcut switch
+    if (localStorage.getItem('showShortcutSwitch')) {
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+
+        if (isShortCutSwitchEnabled) {
+            hideEngineContainer();
+        }
+        else if (!isShortCutSwitchEnabled) {
+            showEngineContainer()
+        }
+    }
+    else {
+        localStorage.setItem('showShortcutSwitch', false);
+    }
+
+    initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
