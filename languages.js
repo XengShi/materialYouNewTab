@@ -507,6 +507,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "Nahrát tapetu",
+        "backupText": "Zálohovat",
+        "restoreText": "Obnovit",
     },
 
 
