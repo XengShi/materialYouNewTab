@@ -880,8 +880,8 @@ body {
 	outline: none;
 	border: none;
 	background-color: #00000000;
-	padding: 0 4px;
-    margin-left: 53px;
+	padding: 0 2px;
+	margin-left: 55px;
 	font-size: 1rem;
 }
 
@@ -2294,54 +2294,55 @@ input:checked + .toggle:before {
 
 /* Dropdown css */
 .dropdown-item {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+	display: flex;
+	gap: 8px;
+	align-items: center;
 }
 
 .dropdown-btn {
-    background: none;
-    border: none;
+	background: none;
+	border: none;
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 .dropdown-content {
-    background: var(--accentLightTint-blue);
-    border-radius: 16px;
-    display: none;
-    position: absolute;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    top: 57px;
-    left: -14px;
+	background: var(--accentLightTint-blue);
+	border-radius: 16px;
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	top: 47px;
+	left: -14px;
 	overflow: hidden;
+	max-height: 205px;
 }
 
 .dropdown-content .dropdown-item {
-    padding: 8px 16px;
-    cursor: pointer;
+	padding: 8px 16px;
+	cursor: pointer;
 }
 
 #default-dropdown-item .engine-name {
-    display: none;
+	display: none;
 }
 
 .dropdown-content .engine-name {
-    font-size: 1rem;
+	font-size: 1rem;
 }
 
 .dropdown-item {
-    position: relative;
+	position: relative;
 }
 
 .dropdown-item.selected:not(*[data-default]):before {
 	/* border-radius: 16px; */
-	content: '';
+	content: "";
 	position: absolute;
 	top: 0px;
 	left: 0;
@@ -2352,9 +2353,8 @@ input:checked + .toggle:before {
 	z-index: -1;
 }
 
-
 #default-dropdown-item {
-    outline: none !important;
+	outline: none !important;
 }
 
 *[id$="-dropdown"]:not(.dropdown-content .dropdown-item:nth-child(1)) {
@@ -2362,8 +2362,8 @@ input:checked + .toggle:before {
 }
 
 .search-dropdown .dropdown-item svg {
-	width: 36px;
-	height: 36px;
+	width: 33px;
+	height: 33px;
 	margin-left: 0;
 	padding: 2px;
 	background-color: var(--darkColor-blue);
