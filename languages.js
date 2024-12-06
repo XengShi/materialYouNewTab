@@ -504,6 +504,9 @@ const translations = {
             "afternoon": "Dobré odpoledne!",
             "evening": "Dobrý večer!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Nahrát tapetu",
     },
 
 
