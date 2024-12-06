@@ -2326,7 +2326,7 @@ input:checked + .toggle:before {
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	top: 47px;
+	top: 50px;
 	left: -15px;
 	overflow: hidden;
 	max-height: 192px;
@@ -2357,8 +2357,8 @@ input:checked + .toggle:before {
 	left: 0;
 	right: 0;
 	bottom: 0px;
-	background-color: var(--darkerColor-blue);
-	opacity: 0.3;
+	background-color: var(--bg-color-blue);
+	opacity: 0.8;
 	z-index: -1;
 }
 
