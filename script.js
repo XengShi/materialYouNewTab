@@ -1943,8 +1943,10 @@ document.getElementById("searchQ").addEventListener("input", async function () {
 
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
+                    console.log(dropdown.style.display == "block");
+                    
                     if(dropdown.style.display == "block") {
-                        dropdown.style.display == "none";
+                        dropdown.style.display = "none";
                     }
                     
 
