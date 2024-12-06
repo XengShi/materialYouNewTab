@@ -835,8 +835,13 @@
             </div>
             <div class="optCont" id="optCont">
                 <div class="page" id="overviewPage">
-                    <div class="tilesCont">
 
+                    <div class="zoomSliderContainer">
+                        <div class="sliderBGBar"></div>
+                        <input type="range" id="zoom-slider" min="15" max="100" value="90">
+                    </div>
+
+                    <div class="tilesCont">
                         <!-- ----tiles----------- -->
                         <a class="tiles" href="https://github.com/XengShi/materialYouNewTab">
                             <div class="icon">
@@ -868,6 +873,7 @@
                         <!-- -----end of tiles-------- -->
 
                     </div>
+
                     <!-- end of tilesCont -->
                     <div class="divider"></div>
 
@@ -898,6 +904,16 @@
                                 </button>
                             </label>
                         </div>
+
+                        <div class="ttcont" id="shortcutEditField">
+                            <div class="texts">
+                                <div class="bigText">Show Bookmakrs</div>
+                                <div class="infoText" id="bookmakrsMessage"></div>
+                            </div>
+
+                        </div>
+
+
 
                         <div class="ttcont" id="adaptiveIconField">
                             <div class="texts">
@@ -1002,8 +1018,8 @@
 
                         <div class="ttcont">
                             <div class="texts">
-                                <div class="bigText" id="shortcut_switch">Shortcut Search Switch</div>
-                                <div class="infoText" id="shortcut_switch">Enable Shortcut for search engines switch
+                                <div class="bigText" id="shortcut_switch">Hide Search Engines</div>
+                                <div class="infoText" id="shortcut_switch">Switch between search engines by clicking its icon
                                 </div>
                             </div>
                             <label class="switch">

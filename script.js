@@ -113,7 +113,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-	// Default Weather API key
+        // Default Weather API key
         const weatherApiKeys = [
             'db0392b338114f208ee135134240312',
             'de5f7396db034fa2bf3140033240312',
@@ -226,6 +226,30 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
+
+    // Get the platform
+    const platform = navigator.platform.toUpperCase();
+
+    // Get the div element
+    const bookmakrsMessage = document.getElementById("bookmakrsMessage");
+
+    // Determine the message based on the platform
+    let message = "";
+    if (platform.indexOf("MAC") >= 0) {
+        message = "Press Cmd (⌘) + Shift + B to show the bookmarks bar.";
+    } else if (platform.indexOf("WIN") >= 0) {
+        message = "Press Ctrl + Shift + B to show the bookmarks bar.";
+    } else if (platform.indexOf("LINUX") >= 0) {
+        message = "Press Ctrl + Shift + B to show the bookmarks bar.";
+    } else if (/IPHONE|IPAD|ANDROID/i.test(platform)) {
+        message = "Bookmarks bar functionality is not available on mobile devices.";
+    } else {
+        message = "Your device may not support showing the bookmarks bar.";
+    }
+
+    // Update the div with the message
+    bookmakrsMessage.textContent = message;
+
 });
 // ---------------------------end of weather stuff--------------------
 
@@ -1681,6 +1705,46 @@ checkAndUpdateImage();
 
 // ------- End of BG Image -------------------------------------------
 
+
+// ------- Zooming in out function-----------
+const slider = document.getElementById('zoom-slider');
+const body = document.body;
+
+function applyZoom(value, min, max) {
+    const percentage = (value / max) * 100;
+    const sliderValue = percentage - 8;
+
+    slider.style.borderRadius = "100px";
+    slider.style.background = `linear-gradient(to right, var(--darkColor-blue) ${sliderValue}%, #00000000 ${sliderValue}%)`;
+
+    const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
+    body.style.zoom = zoomLevel;
+
+    localStorage.setItem('zoomLevel', value);
+}
+
+slider.addEventListener('input', function () {
+    const value = this.value;
+    const max = this.max;
+    const min = this.min;
+
+    applyZoom(value, min, max);
+});
+
+window.addEventListener('load', function () {
+    const savedZoomLevel = localStorage.getItem('zoomLevel');
+
+    if (savedZoomLevel) {
+        slider.value = savedZoomLevel;
+        const max = slider.max;
+        const min = slider.min;
+
+        applyZoom(savedZoomLevel, min, max);
+    }
+});
+// ------- End of Zooming in out function-----------
+
+
 // -------- Backup-Restore Settings ----------------------------------
 document.getElementById("backupBtn").addEventListener("click", backupData);
 document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
@@ -2730,7 +2794,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchIconContainer[0].style.display = 'block';
         document.getElementById('search-with-container').style.visibility = 'visible';
     }
-    
+
     const hideEngineContainer = () => {
         searchIconContainer[0].style.display = 'none';
         searchIconContainer[1].style.display = 'block';
@@ -2762,7 +2826,7 @@ document.addEventListener("DOMContentLoaded", function () {
             hideEngineContainer();
         }
         else if (!isShortCutSwitchEnabled) {
-            showEngineContainer()
+            showEngineContainer();
         }
     }
     else {
