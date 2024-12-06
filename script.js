@@ -1727,8 +1727,13 @@ slider.addEventListener('input', function () {
     const value = this.value;
     const max = this.max;
     const min = this.min;
+    document.getElementById("zoomMessage").style.display = "block"
 
     applyZoom(value, min, max);
+});
+
+slider.addEventListener('change', function () {
+    document.getElementById("zoomMessage").style.display = "none";
 });
 
 window.addEventListener('load', function () {

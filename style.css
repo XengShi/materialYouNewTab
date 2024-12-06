@@ -1429,6 +1429,19 @@ body {
 	cursor: pointer;
 }
 
+#zoomMessage{
+	height: fit-content;
+    position: absolute;
+    z-index: 4;
+    margin: auto;
+    left: 0;
+	bottom: -20px;
+    width: fit-content;
+    right: 0;
+	color: var(--textColorDark-blue);
+	display: none;
+}
+
 /* ----End Zooming page------- */
 
 
