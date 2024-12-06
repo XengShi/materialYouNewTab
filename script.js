@@ -1940,6 +1940,14 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         };
                         resultBox.appendChild(resultItem);
                     });
+
+                    // Check if the dropdown of search shortcut is open
+                    const dropdown = document.querySelector('.dropdown-content');
+                    if(dropdown.style.display == "block") {
+                        dropdown.style.display == "none";
+                    }
+                    
+
                     showResultBox();
                 }
             } catch (error) {
