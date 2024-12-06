@@ -2039,7 +2039,8 @@ input:checked + .toggle:before {
 	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	padding: 10px 18px;
+	width: 65%;
+	padding: 10px 12px;
 	/*white-space: nowrap; */
 	border-radius: 23px;
 	border: 2px solid transparent;
