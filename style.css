@@ -1240,11 +1240,21 @@ body {
 	bottom: var(--gap);
 	margin: auto;
 	display: flex;
+
+    max-width: calc(100% - 140px);
+    overflow-x: scroll;
+	overflow-y: hidden;
+	scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.aiToolsCont::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Edge, Opera */
 }
 
 .aiToolsCont .hangno {
 	background-color: var(--accentLightTint-blue);
 	height: 100%;
+	/* width: 131px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1264,6 +1274,7 @@ body {
 	font-size: 1rem;
 	color: var(--textColorDark-blue);
 	cursor: pointer;
+	width: 61px;
 }
 
 .aiToolsCont .toolsCont {
@@ -1287,6 +1298,9 @@ body {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 6px;
 	left: -18px;
+}
+#firefly{
+	width: 103px;
 }
 
 .aiToolsCont .toolsCont a {

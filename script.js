@@ -115,7 +115,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 	// Default Weather API key
         const weatherApiKeys = [
-            'd36ce712613d4f21a6083436240910',
             'db0392b338114f208ee135134240312',
             'de5f7396db034fa2bf3140033240312',
             'c64591e716064800992140217240312',
