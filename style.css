@@ -2318,7 +2318,7 @@ input:checked + .toggle:before {
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	top: 47px;
-	left: -14px;
+	left: -15px;
 	overflow: hidden;
 	max-height: 192px;
 }
