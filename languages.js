@@ -40,6 +40,8 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
+        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -107,7 +109,9 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Restore",
     },
 
 
@@ -337,6 +341,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
+        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -406,6 +412,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "backupText": "बैकअप",
+        "restoreText": "रिस्टोर",
     },
 
 
@@ -703,6 +711,8 @@ const translations = {
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
         "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
+        "hideSearchWith": "সার্চ ইঞ্জিন সিলেক্টর লুকান",
+        "hideSearchWithInfo": "আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
@@ -772,7 +782,9 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "ওয়ালপেপার আপলোড করুন",
+        "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+        "backupText": "ব্যাকআপ",
+        "restoreText": "পুনরুদ্ধার",
     },
 
 
@@ -1455,6 +1467,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदल लागू करण्यासाठी पृष्ठ रीफ्रेश करा",
         "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
         "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
+        "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
+        "hideSearchWithInfo": "आयकॉनवर क्लिक करून सर्च इंजिन बदला",
         "search_suggestions_button": "शोध सूचना",
         "search_suggestions_text": "शोध सूचना सक्षम करा",
         // Proxy
@@ -1524,6 +1538,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करा",
+        "backupText": "बॅकअप",
+        "restoreText": "पुनर्संचयित",
     },
 };
 
@@ -1589,6 +1605,8 @@ function applyLanguage(lang) {
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
         { id: 'micIconInfo', key: 'micIconInfo' },
+        { id: 'hideSearchWith', key: 'hideSearchWith' },
+        { id: 'hideSearchWithInfo', key: 'hideSearchWithInfo' },
         { id: 'search_suggestions_button', key: 'search_suggestions_button' },
         { id: 'search_suggestions_text', key: 'search_suggestions_text' },
         { id: 'digitalclocktittle', key: 'digitalclocktittle' },
@@ -1628,6 +1646,11 @@ function applyLanguage(lang) {
         { id: 'bingEngine', key: 'bingEngine' },
         { id: 'braveEngine', key: 'braveEngine' },
         { id: 'youtubeEngine', key: 'youtubeEngine' },
+        { id: 'googleEngineDD', key: 'googleEngine' },
+        { id: 'duckEngineDD', key: 'duckEngine' },
+        { id: 'bingEngineDD', key: 'bingEngine' },
+        { id: 'braveEngineDD', key: 'braveEngine' },
+        { id: 'youtubeEngineDD', key: 'youtubeEngine' },
         { id: 'chatGPT', key: 'chatGPT' },
         { id: 'gemini', key: 'gemini' },
         { id: 'copilot', key: 'copilot' },
@@ -1636,6 +1659,8 @@ function applyLanguage(lang) {
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
+        { id: 'backupText', key: 'backupText' },
+        { id: 'restoreText', key: 'restoreText' }
 
     ];
 
