@@ -1209,13 +1209,6 @@ const applySelectedTheme = (colorValue) => {
 
      	    .uploadButton,
             .randomButton{
-	            background-color: var(--whitishColor-dark);
-	            color: var(--darkColor-blue);
-            }
-
-            .uploadButton:hover,
-            .randomButton:hover,
-            .clearButton{
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
@@ -1277,7 +1270,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             body{
-                background-color: #191919
+                background-color: #000000;
             }
             
             #HangNoAlive{
