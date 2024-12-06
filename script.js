@@ -1159,6 +1159,10 @@ const applySelectedTheme = (colorValue) => {
             #searchIconDark {
                 fill: #bbb !important;
             }
+	    
+	    .dropdown-item.selected:not(*[data-default]):before {
+                background-color: #707070;
+            }
 
             .tilesContainer .tiles {
                 background-color: #212121;
