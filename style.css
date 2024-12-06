@@ -2320,7 +2320,7 @@ input:checked + .toggle:before {
 	top: 47px;
 	left: -14px;
 	overflow: hidden;
-	max-height: 205px;
+	max-height: 192px;
 }
 
 .dropdown-content .dropdown-item {
