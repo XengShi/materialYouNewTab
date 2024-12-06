@@ -676,9 +676,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
         const resultBox = document.getElementById('resultBox');
-        if(resultBox.classList.toString().includes('show')) {
-            resultBox.classList.remove('show');
-        }
+        if(resultBox.classList.toString().includes('show')) return;
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
