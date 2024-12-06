@@ -277,12 +277,11 @@ body {
 	border-radius: 25%;
 	padding: 1px;
 	cursor: pointer;
-	transition: transform 0.3s ease, fill 0.3s ease;
+	transition: fill 0.3s ease;
 }
 
-/* Hover effect for the icon */
-.dot-icon:hover {
-	transform: rotate(90deg) scale(1.05);
+/* Click effect for the icon */
+.dot-icon:active {
 	fill: var(--darkerColor-blue);
 }
 
