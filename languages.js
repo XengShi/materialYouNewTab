@@ -450,6 +450,8 @@ const translations = {
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
         "micIconTitle": "Skrýt ikonu mikrofonu",
         "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
+        "hideSearchWith": "Skrýt vyhledávače",
+        "hideSearchWithInfo": "Mezi vyhledávači přepnete klepnutím na jejich ikonky",
         "search_suggestions_button": "Návrhy ve vyhledávání",
         "search_suggestions_text": "Zapne návrhy vyhledávání",
         // Proxy
@@ -502,6 +504,11 @@ const translations = {
             "afternoon": "Dobré odpoledne!",
             "evening": "Dobrý večer!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Nahrát tapetu",
+        "backupText": "Zálohovat",
+        "restoreText": "Obnovit",
     },
 
 
