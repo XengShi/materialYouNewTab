@@ -675,6 +675,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        const resultBox = document.getElementById('resultBox');
+        if(resultBox.classList.toString().includes('show')) return;
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
@@ -1942,6 +1944,15 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         };
                         resultBox.appendChild(resultItem);
                     });
+
+                    // Check if the dropdown of search shortcut is open
+                    const dropdown = document.querySelector('.dropdown-content');
+                    
+                    if(dropdown.style.display == "block") {
+                        dropdown.style.display = "none";
+                    }
+                    
+
                     showResultBox();
                 }
             } catch (error) {
