@@ -1380,6 +1380,8 @@ const translations = {
         "fahrenheitCelsiusText": "Muat ulang halaman untuk mengaplikasikan perubahan",
         "micIconTitle": "Sembunyikan Ikon Microfon",
         "micIconInfo": "Jika voice typing tidak berfungsi",
+        "hideSearchWith": "Sembunyikan Mesin Pencarian",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
         "search_suggestions_button": "Saran Pencarian",
         "search_suggestions_text": "Mengaktifkan saran pencarian",
         // Proxy
@@ -1431,6 +1433,11 @@ const translations = {
             "afternoon": "Selamat Sore!",
             "evening": "Selamat Malam!"
         },
+        
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Unggah Wallpaper",    // Keep it shorter
+        "backupText": "Cadangkan",
+        "restoreText": "Mengembalikan",
     },
 
 
