@@ -43,12 +43,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         const savedProxy = localStorage.getItem("proxy");
 
         // Pre-fill input fields with saved data
+        if (savedLocation) userLocInput.value = savedLocation;
         if (savedApiKey) userAPIInput.value = savedApiKey;
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-            //document.getElementById("location").textContent = savedLocation;
+
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+        if (savedProxy && savedProxy !== defaultProxyURL) {
+            userProxyInput.value = savedProxy;
         }
-        if (savedProxy) userProxyInput.value = savedProxy;
 
         // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
@@ -64,7 +65,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value;
+            const apiKey = userAPIInput.value.trim();
             localStorage.setItem("weatherApiKey", apiKey);
             userAPIInput.value = "";
             location.reload();
@@ -72,7 +73,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value;
+            const userLocation = userLocInput.value.trim();
             localStorage.setItem("weatherLocation", userLocation);
             userLocInput.value = "";
             location.reload();
@@ -86,35 +87,48 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Save the proxy to localStorage
         saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value;
+            const proxyurl = userProxyInput.value.trim();
 
-            // Check if the input contains 'http://' or 'https://'
+            // If the input is empty, use the default proxy.
+            if (proxyurl === "") {
+                localStorage.setItem("proxy", defaultProxyURL);
+                userProxyInput.value = "";
+                location.reload();
+                return;
+            }
+
+            // Validate if input starts with 'http://' or 'https://'
             if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
                 if (!proxyurl.endsWith("/")) {
-                    // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
                     userProxyInput.value = "";
                     location.reload();
-                }
-                else {
+                } else {
                     alert("There shouldn't be / at the end of the link");
                 }
             } else {
-                // Alert the user if it's not a valid link
                 alert("Only links (starting with http:// or https://) are allowed.");
             }
         });
 
-        // Use the saved or default API key and proxy
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        // Check if the user has entered their own API key
-        const userApiKey = userAPIInput.value.trim();
-        const userproxyurl = userProxyInput.value.trim();
-        // Use the user's API key if available, otherwise use the default API key
-        const apiKey = userApiKey || defaultApiKey;
-        proxyurl = userproxyurl || defaultProxyURL;
+	// Default Weather API key
+        const weatherApiKeys = [
+            // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+            'db0392b338114f208ee135134240312',
+            'de5f7396db034fa2bf3140033240312',
+            'c64591e716064800992140217240312',
+            '9b3204c5201b4b4d8a2140330240312',
+            'eb8a315c15214422b60140503240312',
+            'cd148ebb1b784212b74140622240312',
+            '7ae67e219af54df2840140801240312'
+        ];
+        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
+
+        // Determine API key and proxy URL to use
+        const apiKey = savedApiKey || defaultApiKey;
+        proxyurl = savedProxy || defaultProxyURL;
 
         // Determine the location to use
         let currentUserLocation = savedLocation;
@@ -126,12 +140,12 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
 
-		// If the country is India and the location is 'Delhi', update to 'New Delhi'
+                // If the country is India and the location is 'Delhi', update to 'New Delhi'
                 if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
                     currentUserLocation = "New Delhi";
                 } else {
                     currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }  
+                }
 
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
@@ -217,31 +231,34 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ---------------------------end of weather stuff--------------------
 
 // ------------------------Google App Menu-----------------------------------
-const iconContainer = document.getElementById("iconContainer"); // Menu to toggle visibility
-const tooltipText = googleAppsCont.querySelector(".tooltip-text"); // Tooltip text element
-// Toggle menu when clicking on googleAppsCont
+const iconContainer = document.getElementById("iconContainer");
+const googleAppsCont = document.getElementById("googleAppsCont");
+
+// Toggle menu and tooltip visibility
 googleAppsCont.addEventListener("click", function (event) {
-    tooltipText.style.display = "none"; // Hide the tooltip text
-    if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
-        iconContainer.style.display = 'grid'; // Show menu
+    const isMenuVisible = iconContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    iconContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        googleAppsCont.classList.add('menu-open'); // Hide tooltip
     } else {
-        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 
-    // Reset tooltip visibility after a delay
-    setTimeout(() => {
-        tooltipText.style.display = ""; // Restore default display
-    }, 1500);
-    event.stopPropagation(); // Prevent click propagation
+    event.stopPropagation();
 });
 
 // Close menu when clicking outside
 document.addEventListener("click", function (event) {
-    if (iconContainer.style.display === 'grid') {
-        const isClickInside = iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
-        if (!isClickInside) {
-            iconContainer.style.display = 'none'; // Hide menu
-        }
+    const isClickInside =
+        iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
+
+    if (!isClickInside && iconContainer.style.display === 'grid') {
+        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
@@ -648,18 +665,99 @@ document.addEventListener('click', function (event) {
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', (event) => {
+        if (dropdown.style.display == "block") {
+            event.stopPropagation();
+            dropdown.style.display = 'none';
+        }
+    })
+
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+
+    const sortDropdown = () => {
+        // Change the elements to the array
+        const elements = Array.from(searchDropdowns);
+
+        // Sort the dropdown
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+
+            return engineA - engineB;
+        })
+
+        // get the parent
+        const parent = sortedDropdowns[0]?.parentNode;
+
+        // Append the items. if parent exists.
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item));
+        }
+    }
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+            radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(element);
+            sortDropdown()
+
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
             const radioButton = engineDiv.querySelector('input[type="radio"]');
+
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+
+            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+
+            // Swap The dropdown.
+            swapDropdown(element);
+            sortDropdown()
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+
+    /**
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
+     */
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = selectedElement.innerHTML;
+        selectedElement.innerHTML = tempHTML;
+
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+            selectedElement.setAttribute(attr, tempAttr);
+        });
+    }
 
     // Function to perform search
     function performSearch() {
@@ -690,12 +788,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+
+        // check if the default selected search engine is same as the stored one.
+        if (storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+
+            swapDropdown(storedSearchEngineDropdown);
+            sortDropdown();
+        }
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    let selectedIndex = -1;
+
+    // Function to update the selected item
+    function updateSelection() {
+        // let hasSelected = [];
+        dropdownItems.forEach((item, index) => {
+
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('selected');
+            })
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('selected');
+            })
+
+            if (index === selectedIndex) {
+                item.focus()
+                item.classList.add('selected');
+            } else {
+                item.focus()
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Event listener for keydown events to navigate up/down
+    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+        if (dropdown.style.display == "block") {
+            if (event.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+            } else if (event.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+            } else if (event.key === "Enter") {
+                const element = document.querySelector('.dropdown-content .selected');
+                const engine = element.getAttribute('data-engine');
+                const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+                radioButton.checked = true;
+
+                // Swap The dropdown. and sort them
+                swapDropdown(element);
+                sortDropdown()
+            }
+            updateSelection();
+        }
+    });
+
+    // Initial setup for highlighting
+    updateSelection();
 
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
@@ -851,6 +1013,11 @@ if (!micIconCheckbox.checked) {
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 const storedTheme = localStorage.getItem(themeStorageKey);
+// const radioButtons = document.querySelectorAll('.colorPlate');
+// const themeStorageKey = 'selectedTheme'; // For predefined themes
+const customThemeStorageKey = 'customThemeColor'; // For color picker
+// const storedTheme = localStorage.getItem(themeStorageKey);
+const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
@@ -886,7 +1053,16 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ''; // Reset fill color
     });
+    // Reset the CSS variables to default (for non-dark themes)
+    document.documentElement.style.setProperty('--bg-color-blue', '#ffffff');
+    document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
+    document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
+    document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
+    document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
 };
+
+
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
@@ -895,7 +1071,6 @@ const applySelectedTheme = (colorValue) => {
 
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
-            // Special handling for blue theme
             document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
             document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
@@ -914,7 +1089,6 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -963,7 +1137,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .ttcont input {
-                background-color: #212121;
+                background-color: #212121 !important;
             }
 
             .dark-theme input:checked + .toggle {
@@ -1025,6 +1199,42 @@ const applySelectedTheme = (colorValue) => {
             .digiclock {
                 fill: #909090;
             }
+	    
+	    #userText, #date, .shortcuts .shortcut-name {
+	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			          1px -1px 15px rgba(15, 15, 15, 0.9),
+       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
+            }
+
+     	    .uploadButton,
+            .randomButton{
+                background-color: var(--darkColor-blue);
+                color: var(--whitishColor-dark);
+            }
+
+            .clearButton:hover{
+                background-color: var(--whitishColor-dark);
+            }
+
+            .clearButton:active{
+                color: #0e0e0e;
+            }
+
+            .backupRestoreBtn {
+                background-color: #212121;
+            }
+            
+            .uploadButton:active,
+            .randomButton:active,
+            .backupRestoreBtn:active,
+            .resetbtn:active {
+                background-color: #0e0e0e;
+            }
+
+     	    .micIcon{
+                background-color: var(--whitishColor-dark);
+            }
 
             #minute, #minute::after, #second::after {
                 background-color: #909090;
@@ -1060,7 +1270,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             body{
-                background-color: #191919
+                background-color: #000000;
             }
             
             #HangNoAlive{
@@ -1092,21 +1302,13 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
+
     // Change the extension icon based on the selected theme
-    const iconPaths = {
-        "blue": "./favicon/blue.png",
-        "yellow": "./favicon/yellow.png",
-        "red": "./favicon/red.png",
-        "green": "./favicon/green.png",
-        "cyan": "./favicon/cyan.png",
-        "orange": "./favicon/orange.png",
-        "purple": "./favicon/purple.png",
-        "pink": "./favicon/pink.png",
-        "brown": "./favicon/brown.png",
-        "silver": "./favicon/silver.png",
-        "grey": "./favicon/grey.png",
-        "dark": "./favicon/dark.png",
-    };
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+        .reduce((acc, color) => {
+            acc[color] = `./favicon/${color}.png`;
+            return acc;
+        }, {});
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
@@ -1130,161 +1332,500 @@ const applySelectedTheme = (colorValue) => {
     }
 };
 
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', function () {
-        if (this.checked) {
-            const colorValue = this.value;
-            localStorage.setItem(themeStorageKey, colorValue);
-            applySelectedTheme(colorValue);
-        }
-    });
+// ----Color Picker || ColorPicker----
+function darkenHexColor(hex, factor = 0.6) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r * (1 - factor));
+    g = Math.floor(g * (1 - factor));
+    b = Math.floor(b * (1 - factor));
+    return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightenHexColor(hex, factor = 0.85) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightestColor(hex, factor = 0.95) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function isNearWhite(hex, threshold = 240) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    return r > threshold && g > threshold && b > threshold;
+}
+
+// ---- Color Picker || ColorPicker----
+
+const applyCustomTheme = (color) => {
+
+    adjustedColor = color;
+    if (isNearWhite(color)) {
+        adjustedColor = '#696969'; // Light gray if near white
+    }
+    const darkerColorHex = darkenHexColor(adjustedColor);
+    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
+    const lightTin = lightestColor(adjustedColor, 0.95);
+
+    // resetDarkTheme();
+    document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
+    document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
+    document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
+    document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.getElementById("rangColor").style.borderColor = color;
+    document.getElementById('dfChecked').checked = false;
+};
+
+// Load theme on page reload// Load theme on page reload
+window.addEventListener('load', function () {
+    // console.log('Page loaded, stored theme:', storedTheme);
+    // console.log('Page loaded, stored custom color:', storedCustomColor);
+    if (storedTheme) {
+        applySelectedTheme(storedTheme);
+    } else if (storedCustomColor) {
+        applyCustomTheme(storedCustomColor);
+    }
 });
+
+// Handle radio button changes
+const handleThemeChange = function () {
+    if (this.checked) {
+        const colorValue = this.value;
+        // console.log('Radio button changed, selected theme:', colorValue);
+        localStorage.setItem(themeStorageKey, colorValue);
+        localStorage.removeItem(customThemeStorageKey); // Clear custom theme
+        applySelectedTheme(colorValue);
+    }
+};
+
+// Remove any previously attached listeners and add only one
+radioButtons.forEach(radioButton => {
+    radioButton.removeEventListener('change', handleThemeChange); // Remove if already attached
+    radioButton.addEventListener('change', handleThemeChange);    // Add fresh listener
+});
+
+// Handle color picker changes
+const handleColorPickerChange = function (event) {
+    const selectedColor = event.target.value;
+    // console.log('Color picker changed, selected color:', selectedColor);
+    resetDarkTheme(); // Clear dark theme if active
+    localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
+    localStorage.removeItem(themeStorageKey); // Clear predefined theme
+    applyCustomTheme(selectedColor);
+
+    // Uncheck all radio buttons
+    radioButtons.forEach(radio => {
+        radio.checked = false;
+    });
+};
+
+// Add listeners for color picker
+colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('input', handleColorPickerChange);
+// colorPicker.addEventListener('change', function () {
+//     // console.log('Final color applied:', colorPicker.value);
+//     location.reload();
+// });
+
+
+
+
 
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper --------------
+// ------------ Wallpaper ---------------------------------
 // Constants for database and storage
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
+const timestampKey = 'lastUpdateTime'; // Key to store last update time
+const imageTypeKey = 'imageType'; // Key to store the type of image ('random' or 'upload')
 
 // Open IndexedDB database
 function openDatabase() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(dbName, 1);
-
         request.onupgradeneeded = function (event) {
             const db = event.target.result;
             db.createObjectStore(storeName);
         };
-
         request.onsuccess = function (event) {
             resolve(event.target.result);
         };
-
         request.onerror = function (event) {
             reject('Database error: ' + event.target.errorCode);
         };
     });
 }
 
-// Save image data to IndexedDB
-function saveImageToIndexedDB(imageUrl) {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            store.put(imageUrl, 'backgroundImage');
+// Save image data, timestamp, and type to IndexedDB
+async function saveImageToIndexedDB(imageUrl, isRandom) {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
 
-            transaction.oncomplete = function () {
-                resolve();
-            };
+        store.put(imageUrl, 'backgroundImage');
+        store.put(new Date().toISOString(), timestampKey);
+        store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
-            transaction.onerror = function (event) {
-                reject('Transaction error: ' + event.target.errorCode);
-            };
-        });
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
     });
 }
 
-// Load image data from IndexedDB
-function loadImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
+// Load image, timestamp, and type from IndexedDB
+async function loadImageAndDetails() {
+    const db = await openDatabase();
+    return await Promise.all([
+        new Promise((resolve, reject) => {
             const transaction = db.transaction(storeName, 'readonly');
             const store = transaction.objectStore(storeName);
             const request = store.get('backgroundImage');
 
-            request.onsuccess = function (event) {
-                resolve(event.target.result);
-            };
+            request.onsuccess = (event) => resolve(request.result);
+            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        }),
+        new Promise((resolve_1, reject_1) => {
+            const transaction_1 = db.transaction(storeName, 'readonly');
+            const store_1 = transaction_1.objectStore(storeName);
+            const request_1 = store_1.get(timestampKey);
 
-            request.onerror = function (event) {
-                reject('Request error: ' + event.target.errorCode);
-            };
-        });
+            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
+            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
+        }),
+        new Promise((resolve_2, reject_2) => {
+            const transaction_2 = db.transaction(storeName, 'readonly');
+            const store_2 = transaction_2.objectStore(storeName);
+            const request_2 = store_2.get(imageTypeKey);
+
+            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
+            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
+        })
+    ]);
+}
+
+// Load only the background image
+async function loadImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const request = store.get('backgroundImage');
+
+        request.onsuccess = (event) => resolve(request.result);
+        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
-function clearImageFromIndexedDB() {
-    return openDatabase().then((db) => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readwrite');
-            const store = transaction.objectStore(storeName);
-            const request = store.delete('backgroundImage');
+async function clearImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.delete('backgroundImage');
 
-            request.onsuccess = function () {
-                resolve();
-            };
-
-            request.onerror = function (event) {
-                reject('Delete error: ' + event.target.errorCode);
-            };
-        });
+        request.onsuccess = () => resolve();
+        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
-// Event listener for Upload button
-document.getElementById('uploadTrigger').addEventListener('click', function () {
-    document.getElementById('imageUpload').click();
-});
-
-// Handle file input and save image
+// Handle file input and save image as upload
 document.getElementById('imageUpload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-            const imageUrl = e.target.result;
-            saveImageToIndexedDB(imageUrl)
-                .then(() => {
-                    document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-                })
-                .catch((error) => console.error(error));
+            const image = new Image();
+            image.onload = function () {
+                const totalPixels = image.width * image.height;
+                if (totalPixels > 2073600) {
+                    alert(`Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed (1920x1080) pixels. ` +
+                        `This may impact performance or image may fail to load properly.`);
+                }
+                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
+                saveImageToIndexedDB(e.target.result, false)
+                    .then(() => updateTextShadow(true))
+                    .catch(error => console.error(error));
+            };
+            image.src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
 });
 
-// Event listener for Clear button
+// Fetch and apply random image as background
+const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
+async function applyRandomImage(showConfirmation = true) {
+    if (showConfirmation && !confirm('Would you like to set a new image as your wallpaper for the day?')) {
+        return;
+    }
+    try {
+        const response = await fetch(RANDOM_IMAGE_URL);
+        const imageUrl = response.url;
+        document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+        await saveImageToIndexedDB(imageUrl, true);
+        updateTextShadow(true);
+    } catch (error) {
+        console.error('Error fetching random image:', error);
+    }
+}
+
+// Function to update text-shadow styles with animation
+function updateTextShadow(hasWallpaper) {
+    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
+    elements.forEach(element => {
+        if (hasWallpaper) {
+            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+        } else {
+            element.style.textShadow = 'none'; // Remove the text-shadow
+        }
+    });
+}
+
+// Check and update image on page load
+function checkAndUpdateImage() {
+    loadImageAndDetails()
+        .then(([savedImage, savedTimestamp, imageType]) => {
+            const now = new Date();
+            const lastUpdate = new Date(savedTimestamp);
+
+            // Case 1: No image found, disable text shadow and return.
+            if (!savedImage) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 2: Invalid or missing timestamp, disable text shadow and return.
+            if (!savedTimestamp || isNaN(lastUpdate)) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 3: Uploaded image should always be applied.
+            if (imageType === 'upload') {
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                document.body.style.backgroundImage = `var(--bg-image)`;
+                updateTextShadow(true);
+                return;
+            }
+
+            // Case 4: Random image should be refreshed if it's a new day.
+            if (lastUpdate.toDateString() !== now.toDateString()) {
+                applyRandomImage(false); // Fetch new random image and apply it.
+            } else {
+                // Case 5: Same day random image, reapply saved image.
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                updateTextShadow(true);
+            }
+        })
+        .catch((error) => {
+            console.error('Error loading image details:', error);
+            updateTextShadow(false);
+        });
+}
+
+// Event listeners for buttons
+document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
 document.getElementById('clearImage').addEventListener('click', function () {
-    // Check if there is an existing background image
     loadImageFromIndexedDB()
         .then((savedImage) => {
             if (savedImage) {
-                // If an image exists, ask for confirmation
                 if (confirm('Are you sure you want to clear the background image?')) {
                     clearImageFromIndexedDB()
                         .then(() => {
                             document.body.style.removeProperty('--bg-image');
+                            updateTextShadow(false);
                         })
                         .catch((error) => console.error(error));
                 }
             } else {
-                // No image exists, do nothing
                 alert('No background image is currently set.');
             }
         })
         .catch((error) => console.error(error));
 });
+document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
 
-// Load saved background image on page load
-loadImageFromIndexedDB()
-    .then((savedImage) => {
-        if (savedImage) {
-            document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+// Start image check on page load
+checkAndUpdateImage();
+
+// ------- End of BG Image -------------------------------------------
+
+// -------- Backup-Restore Settings ----------------------------------
+document.getElementById("backupBtn").addEventListener("click", backupData);
+document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
+
+// Backup data from localStorage and IndexedDB
+async function backupData() {
+    if (!confirm("Are you sure you want to backup your settings?")) return;
+
+    try {
+        const backup = { localStorage: {}, indexedDB: {} };
+
+        // Backup localStorage
+        for (let key in localStorage) {
+            if (localStorage.hasOwnProperty(key)) {
+                backup.localStorage[key] = localStorage.getItem(key);
+            }
         }
-    })
-    .catch((error) => console.error(error));
-// --------------------------------------------------
+
+        // Backup IndexedDB (ImageDB)
+        backup.indexedDB = await backupIndexedDB();
+
+        // Generate filename with current date (format: DDMMYYYY)
+        const date = new Date();
+        const formattedDate = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${date.getFullYear()}`;
+        const fileName = `NewTab_Backup_${formattedDate}.json`;
+
+        // Create and download the backup file
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        console.log("Backup completed successfully!");
+    } catch (error) {
+        alert("Backup failed: " + error.message);
+    }
+}
+
+// Validate and restore data from a backup file
+async function validateAndRestoreData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const backup = JSON.parse(e.target.result);
+            await restoreData(backup);
+
+            alert("Restore completed successfully!");
+            location.reload();
+        } catch (error) {
+            alert("Restore failed: " + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Backup IndexedDB: Extract data from ImageDB -> backgroundImages
+function backupIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readonly");
+            const store = transaction.objectStore("backgroundImages");
+            const data = {};
+
+            store.getAllKeys().onsuccess = (keysEvent) => {
+                const keys = keysEvent.target.result;
+
+                if (!keys.length) {
+                    resolve({ backgroundImages: {} });
+                    return;
+                }
+
+                let pending = keys.length;
+                keys.forEach(key => {
+                    store.get(key).onsuccess = (getEvent) => {
+                        data[key] = getEvent.target.result;
+                        if (--pending === 0) resolve({ backgroundImages: data });
+                    };
+                });
+            };
+
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
+function restoreIndexedDB(data) {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readwrite");
+            const store = transaction.objectStore("backgroundImages");
+
+            store.clear();
+            Object.entries(data).forEach(([key, value]) => {
+                store.put(value, key);
+            });
+
+            transaction.oncomplete = resolve;
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore data for both localStorage and IndexedDB
+async function restoreData(backup) {
+    // Clear localStorage before restoring
+    localStorage.clear();
+
+    // Restore localStorage from backup
+    if (backup.localStorage) {
+        Object.keys(backup.localStorage).forEach(key => {
+            localStorage.setItem(key, backup.localStorage[key]);
+        });
+    }
+
+    // Restore IndexedDB from backup
+    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
+        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    }
+}
+// -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts(event) {
-    // const element = document.getElementById("0NIHK");
-    // const shortcuts = document.getElementById("shortcuts");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
 
     if (shortcutsCheckbox.checked) {
@@ -1681,7 +2222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
         `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
 
-    const FAVICON_REQUEST_TIMEOUT = 5000;
+    // const FAVICON_REQUEST_TIMEOUT = 5000;
 
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
@@ -1962,7 +2503,21 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
-        let url = shortcut.querySelector("input.URL").value;
+        let url = shortcut.querySelector("input.URL").value.trim();
+
+        // URL validation function
+        function isValidUrl(url) {
+            const pattern = /^(https:\/\/|http:\/\/)?(([a-zA-Z\d-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(\/[^\s]*)?$/i;
+            return pattern.test(url);
+        }
+
+        // Validate URL before normalizing
+        if (!isValidUrl(url)) {
+            // alert("Invalid URL. Please enter a valid URL with http or https protocol.");
+            url = "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html";
+        }
+
+        // Normalize URL if valid
         const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
@@ -2127,10 +2682,13 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
-
         const hostname = new URL(urlString).hostname;
+
         if (hostname === "github.com") {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
+        } else if (urlString === "https://xengshi.github.io/materialYouNewTab/shortcuts_icons/PageNotFound.html") {
+            // Special case for invalid URLs
+            logo.src = "./shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
@@ -2166,6 +2724,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ------ Event Listeners ------ */
+    const searchIconContainer = document.querySelectorAll('.searchIcon');
+
+    const showEngineContainer = () => {
+        searchIconContainer[1].style.display = 'none';
+        searchIconContainer[0].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'visible';
+    }
+    
+    const hideEngineContainer = () => {
+        searchIconContainer[0].style.display = 'none';
+        searchIconContainer[1].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'hidden';
+    }
+
+    const initShortCutSwitch = (element) => {
+        if (element.checked) {
+            hideEngineContainer();
+            localStorage.setItem('showShortcutSwitch', true)
+        } else {
+            showEngineContainer();
+            localStorage.setItem('showShortcutSwitch', false)
+        }
+    }
+
+    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
+    const element = document.getElementById('shortcut_switchcheckbox');
+    element.addEventListener('change', (e) => {
+        initShortCutSwitch(e.target);
+    })
+
+    // Intialize shortcut switch
+    if (localStorage.getItem('showShortcutSwitch')) {
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+
+        if (isShortCutSwitchEnabled) {
+            hideEngineContainer();
+        }
+        else if (!isShortCutSwitchEnabled) {
+            showEngineContainer()
+        }
+    }
+    else {
+        localStorage.setItem('showShortcutSwitch', false);
+    }
+
+    initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {

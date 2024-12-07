@@ -19,7 +19,7 @@ const translations = {
         "editShortcutsText": "Edit Shortcuts",
         "shortcutsInfoText": "Choose which shortcuts get shown",
         "editShortcutsList": "Saved Shortcuts",
-        'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL',
+        'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.',
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
@@ -40,6 +40,8 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
+        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -105,6 +107,11 @@ const translations = {
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
         "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Restore",
     },
 
 
@@ -313,7 +320,7 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
         "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
-        'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं',
+        'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
         "ai_tools_button": "AI-उपकरण",
@@ -334,6 +341,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
+        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -400,6 +409,11 @@ const translations = {
         "firefly": "एडोबी फायरफ्लाई",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "backupText": "बैकअप",
+        "restoreText": "रिस्टोर",
     },
 
 
@@ -676,7 +690,7 @@ const translations = {
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
         "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
-        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন',
+        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন।',
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
         "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
         "ai_tools_button": "AI সরঞ্জাম",
@@ -697,6 +711,8 @@ const translations = {
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
         "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
+        "hideSearchWith": "সার্চ ইঞ্জিন সিলেক্টর লুকান",
+        "hideSearchWithInfo": "আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
@@ -764,6 +780,11 @@ const translations = {
         "firefly": "এডোবি ফায়ারফ্লাই",
         "github": "গিটহাব",
         "googleAppsHover": "গুগল অ্যাপস",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+        "backupText": "ব্যাকআপ",
+        "restoreText": "পুনরুদ্ধার",
     },
 
 
@@ -1425,13 +1446,13 @@ const translations = {
         "editShortcutsText": "शॉर्टकट्स संपादित करा",
         "shortcutsInfoText": "कोणते शॉर्टकट दाखवायचे ते निवडा",
         "editShortcutsList": "जतन केलेले शॉर्टकट्स",
-        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता',
+        'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता.',
         "adaptiveIconText": "अनुकूल आयकॉन आकार",
         "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
         "ai_tools_button": "AI साधने",
         "enable_ai_tools": "AI साधनांसाठी शॉर्टकट्स दाखवा",
-        "googleAppsMenuText": "गुगल अॅप्स",
-        "googleAppsMenuInfo": "गुगल अॅप्ससाठी शॉर्टकट्स दाखवा",
+        "googleAppsMenuText": "गुगल ॲप्स",
+        "googleAppsMenuInfo": "गुगल ॲप्ससाठी शॉर्टकट्स दाखवा",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड्याळ",
         "digitalclockinfo": "डिजिटल घड्याळावर स्विच करा",
@@ -1446,6 +1467,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदल लागू करण्यासाठी पृष्ठ रीफ्रेश करा",
         "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
         "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
+        "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
+        "hideSearchWithInfo": "आयकॉनवर क्लिक करून सर्च इंजिन बदला",
         "search_suggestions_button": "शोध सूचना",
         "search_suggestions_text": "शोध सूचना सक्षम करा",
         // Proxy
@@ -1462,7 +1485,7 @@ const translations = {
         "InputOptionsButton": "इनपुट पर्याय",
         "saveLoc": "जतन करा",
         // Weather
-        "WeatherApiText": "आपली WeatherAPI कळी प्रविष्ट करा",
+        "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
         "WeatherApiSubtext": "जर हवामान कार्यरत नसेल",
         "userAPI": "आपली WeatherAPI कळी",
         "LearnMoreButton": "अधिक जाणून घ्या",
@@ -1490,7 +1513,7 @@ const translations = {
         "searchWithHint": "यासह शोधा",
         "ai_tools": "AI साधने",
         "userText": "येथे आपला मजकूर लिहा",
-        "googleAppsHover": "गुगल अॅप्स",
+        "googleAppsHover": "गुगल ॲप्स",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1510,8 +1533,13 @@ const translations = {
         "gemini": "जेमिनी",
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
-        "firefly": "अॅडोबी फायरफ्लाय",
+        "firefly": "अडोबी फायरफ्लाय",
         "github": "गिटहब",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "वॉलपेपर अपलोड करा",
+        "backupText": "बॅकअप",
+        "restoreText": "पुनर्संचयित",
     },
 };
 
@@ -1577,6 +1605,8 @@ function applyLanguage(lang) {
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
         { id: 'micIconInfo', key: 'micIconInfo' },
+        { id: 'hideSearchWith', key: 'hideSearchWith' },
+        { id: 'hideSearchWithInfo', key: 'hideSearchWithInfo' },
         { id: 'search_suggestions_button', key: 'search_suggestions_button' },
         { id: 'search_suggestions_text', key: 'search_suggestions_text' },
         { id: 'digitalclocktittle', key: 'digitalclocktittle' },
@@ -1616,13 +1646,21 @@ function applyLanguage(lang) {
         { id: 'bingEngine', key: 'bingEngine' },
         { id: 'braveEngine', key: 'braveEngine' },
         { id: 'youtubeEngine', key: 'youtubeEngine' },
+        { id: 'googleEngineDD', key: 'googleEngine' },
+        { id: 'duckEngineDD', key: 'duckEngine' },
+        { id: 'bingEngineDD', key: 'bingEngine' },
+        { id: 'braveEngineDD', key: 'braveEngine' },
+        { id: 'youtubeEngineDD', key: 'youtubeEngine' },
         { id: 'chatGPT', key: 'chatGPT' },
         { id: 'gemini', key: 'gemini' },
         { id: 'copilot', key: 'copilot' },
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
         { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' }
+        { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
+        { id: 'backupText', key: 'backupText' },
+        { id: 'restoreText', key: 'restoreText' }
 
     ];
 

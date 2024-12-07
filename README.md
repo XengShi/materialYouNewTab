@@ -92,7 +92,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |   hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
 | <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia   |  idn   | [Ayyas-RF](https://github.com/Ayyas-RF/)                                               |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |   it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
-| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)         |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |   ko   | [XengShi](https://github.com/XengShi/)                                                 |
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/)                                                   |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          |  pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
@@ -220,6 +220,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 Contributions are welcome! If you’d like to contribute:
 
+0. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 1. Fork the repository.
 2. Create a feature branch: `git checkout -b feature/YourFeature`.
 3. Commit your changes: `git commit -m 'Add Your Feature'`.
@@ -239,6 +240,5 @@ Copyright (C) 2023-2024 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
-> GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
-> Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
-> Email [xengshi@duck.com](mailto:xengshi@duck.com)
+[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
+
