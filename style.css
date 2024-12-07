@@ -277,12 +277,11 @@ body {
 	border-radius: 25%;
 	padding: 1px;
 	cursor: pointer;
-	transition: transform 0.3s ease, fill 0.3s ease;
+	transition: fill 0.3s ease;
 }
 
-/* Hover effect for the icon */
-.dot-icon:hover {
-	transform: rotate(90deg) scale(1.05);
+/* Click effect for the icon */
+.dot-icon:active {
 	fill: var(--darkerColor-blue);
 }
 
@@ -2040,7 +2039,8 @@ input:checked + .toggle:before {
 	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	padding: 10px 18px;
+	width: 65%;
+	padding: 10px 12px;
 	/*white-space: nowrap; */
 	border-radius: 23px;
 	border: 2px solid transparent;
@@ -2326,7 +2326,7 @@ input:checked + .toggle:before {
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	top: 47px;
+	top: 50px;
 	left: -15px;
 	overflow: hidden;
 	max-height: 192px;
@@ -2357,8 +2357,8 @@ input:checked + .toggle:before {
 	left: 0;
 	right: 0;
 	bottom: 0px;
-	background-color: var(--darkerColor-blue);
-	opacity: 0.3;
+	background-color: var(--bg-color-blue);
+	opacity: 0.8;
 	z-index: -1;
 }
 
