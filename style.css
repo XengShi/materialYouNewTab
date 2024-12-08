@@ -119,7 +119,6 @@
 	--whitishColor-pink: #ffffff; */
 
 
-
 	--bg-color-grey: #ffccbf;
 	--accentLightTint-grey: #fdf1ef;
 	--darkerColor-grey: #f67455;
@@ -147,56 +146,6 @@
 	--shortcut-bar-gap-and-padding: 10px;
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
-}
-
-.resultBox {
-	max-height: 222px;
-	overflow-y: auto;
-
-	position: absolute;
-	bottom: -100px;
-	left: 0;
-	width: 100%;
-	border-radius: 25px;
-
-	padding: 5px 10px;
-	scrollbar-width: none;
-	/* For Firefox */
-
-	/* Initially hidden */
-	opacity: 0;
-	z-index: -1000;
-	transform: translateY(-70px);
-	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
-	pointer-events: none;
-}
-
-.resultBox::-webkit-scrollbar {
-	display: none;
-	/* For Chrome, Safari, and Edge */
-}
-
-/* Visible state: when you want the result box to appear */
-.resultBox.show {
-	opacity: 1;
-	visibility: visible;
-	transform: translateY(0);
-	z-index: 1000;
-	pointer-events: all;
-}
-
-.resultItem {
-	padding: 8px;
-	cursor: pointer;
-	font-size: 1.1rem;
-	color: var(--textColorDark-blue);
-}
-
-.resultItem.active,
-.resultItem:hover {
-	background-color: var(--darkColor-blue);
-	border-radius: 15px;
-	color: #fff;
 }
 
 /* Theme */
@@ -250,6 +199,58 @@ body {
 	background-attachment: fixed;
 	height: 100vh; /* Ensure the image fits the viewport height */
 	margin: 0; /* Remove margin to avoid unwanted spacing */
+}
+
+
+/* Search suggestions box */
+.resultBox {
+	max-height: 222px;
+	overflow-y: auto;
+
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	width: 100%;
+	border-radius: 25px;
+
+	padding: 5px 10px;
+	scrollbar-width: none;
+	/* For Firefox */
+
+	/* Initially hidden */
+	opacity: 0;
+	z-index: -1000;
+	transform: translateY(-70px);
+	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
+	pointer-events: none;
+}
+
+.resultBox::-webkit-scrollbar {
+	display: none;
+	/* For Chrome, Safari, and Edge */
+}
+
+/* Visible state: when you want the result box to appear */
+.resultBox.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	z-index: 1000;
+	pointer-events: all;
+}
+
+.resultItem {
+	padding: 8px;
+	cursor: pointer;
+	font-size: 1.1rem;
+	color: var(--textColorDark-blue);
+}
+
+.resultItem.active,
+.resultItem:hover {
+	background-color: var(--darkColor-blue);
+	border-radius: 15px;
+	color: #fff;
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
@@ -339,7 +340,6 @@ body {
 	display: grid;
 	gap: 10px;
 	padding: 20px 10px;
-	/* Adjusted padding to account for scrollbar */
 	background-color: var(--accentLightTint-blue);
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -349,16 +349,13 @@ body {
 	justify-items: center;
 	/* Center icons within each grid cell */
 	position: absolute;
-	/* Absolute positioning for dynamic alignment */
 	top: 85px;
-	/* Place below the dot icon */
-	right: 10px;
+	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
 	overflow-y: auto;
 	/* Add vertical scrollbar when needed */
 	box-sizing: border-box;
-	/* Ensure padding is included in width and height */
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
 
@@ -437,38 +434,29 @@ body {
 /* For Chrome, Edge, Safari */
 .icon-container::-webkit-scrollbar {
 	width: 5px;
-	/* Match the border width */
 }
 
 .icon-container::-webkit-scrollbar-track {
 	background-color: transparent;
-	border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 .icon-container::-webkit-scrollbar-thumb:hover {
 	background-color: var(--darkerColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 /* For Firefox */
-.icon-container {
-	scrollbar-width: thin;
-	/* Thin scrollbar */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Thumb color and track color */
-	overflow-x: hidden;
-	/* Hide horizontal scrollbar */
+@-moz-document url-prefix() {
+	.icon-container {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
-
-/* .icon-container:hover {
-    scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
-} */
-
 /* ----------------- End of Google App Menu ----------------- */
 
 .centerDiv {
@@ -1471,7 +1459,7 @@ body {
 /* -----------Scrollbar for menu---------------- */
 /* For WebKit browsers (Chrome, Safari) */
 .menuCont .optCont::-webkit-scrollbar {
-	width: 2px;
+	width: 6px;
 	/* Width of the scrollbar */
 }
 
@@ -1485,16 +1473,22 @@ body {
 .menuCont .optCont::-webkit-scrollbar-thumb {
 	background: var(--darkColor-blue);
 	/* Color of the scrollbar handle */
-	border-radius: 2px;
+	border-radius: 3px;
 	/* Rounded corners for the scrollbar handle */
 }
 
+.menuCont .optCont::-webkit-scrollbar-thumb:hover {
+	background: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
 /* For Firefox */
-.menuCont .optCont {
-	scrollbar-width: thin;
-	/* Makes the scrollbar thin */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Handle color and track color */
+@-moz-document url-prefix() {
+	.menuCont .optCont {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+		/* Handle color and track color */
+	}
 }
 
 /* -------------End of Scrollbar for menu-------------- */
@@ -1887,9 +1881,11 @@ input:checked + .toggle:before {
 	cursor: pointer;
 	padding-left: 13px;
 
-	/* Scrollbar styles for Firefox */
-	scrollbar-width: thin;
-	scrollbar-color: var(--darkColor-blue) transparent;
+	@-moz-document url-prefix() {
+		/* Scrollbar styles for Firefox */
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 /* Scrollbar styles for Chrome, Edge, Safari */
@@ -1901,9 +1897,8 @@ input:checked + .toggle:before {
 	background-color: transparent;
 }
 
-.languageSelector::-webkit-scrollbar-thumb,
-.languageSelector::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkColor-blue);
+.languageSelector::-webkit-scrollbar-thumb {
+	background-color: var(--bg-color-blue);
 	border-radius: 3px;
 }
 
@@ -2301,7 +2296,7 @@ input:checked + .toggle:before {
 	transform: translateX(0) rotate(90deg);
 }
 
-/* Dropdown css */
+/* Search engines Dropdown css */
 .dropdown-item {
 	display: flex;
 	gap: 8px;
