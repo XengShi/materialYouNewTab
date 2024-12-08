@@ -13,8 +13,8 @@ if (!localStorage.getItem('alertShown')) {
     setTimeout(() => {
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
         const message = isMac
-            ? translations[currentLanguage]?.Macbookmarks || translations['en'].Macbookmarks
-            : translations[currentLanguage]?.Winbookmarks || translations['en'].Winbookmarks;
+            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
+            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
 
         alert(message);
 
