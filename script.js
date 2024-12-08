@@ -180,22 +180,40 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
             const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-            if (fahrenheitCheckbox.checked) {
-                tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-            } else {
-                tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
-            }
+
+            // Clear the tempElement content
+            tempElement.textContent = '';
+
+            // Create temperature value node
+            const tempValue = document.createTextNode(
+                fahrenheitCheckbox.checked ? localizedTempFahrenheit : localizedTempCelsius
+            );
+
+            // Create span for the unit
+            const tempUnit = document.createElement("span");
+            tempUnit.className = "tempUnit";
+            tempUnit.textContent = fahrenheitCheckbox.checked ? "°F" : "°C";
+
+            // Append text and span to tempElement
+            tempElement.appendChild(tempValue);
+            tempElement.appendChild(tempUnit);
+
+            // Set feels-like temperature
+            const feelsLikeElement = document.getElementById("feelsLike");
+            const feelsLikeTemp = fahrenheitCheckbox.checked
+                ? localizedFeelsLikeFahrenheit
+                : localizedFeelsLikeCelsius;
+            const feelsLikeUnit = fahrenheitCheckbox.checked
+                ? (currentLanguage === 'cs' ? ' °F' : '°F')
+                : (currentLanguage === 'cs' ? ' °C' : '°C');
+            feelsLikeElement.textContent = `${feelsLikeLabel} ${feelsLikeTemp}${feelsLikeUnit}`;
         };
         updateTemperatureDisplay();
 
@@ -1318,12 +1336,12 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof browser !== "undefined" && browser.browserAction) {
+        if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
