@@ -1747,7 +1747,7 @@ function applyLanguage(lang) {
     const menuCloseButton = document.getElementById('menuCloseButton');
     if (menuCloseButton) {
         const hoverText = translations[lang]?.menuCloseText || translations['en'].menuCloseText;
-        menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
+        menuCloseButton.setAttribute('data-lang', hoverText);
     }
 
     // Update the width of the menu container based on the language
@@ -1760,7 +1760,7 @@ function applyLanguage(lang) {
     const themingElement = document.querySelector('.themingStuff');
     if (themingElement) {
         const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
-        themingElement.setAttribute('data-content', localizedText);
+        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage
