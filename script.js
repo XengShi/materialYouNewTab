@@ -1573,7 +1573,9 @@ document.getElementById('imageUpload').addEventListener('change', function (even
             image.onload = function () {
                 const totalPixels = image.width * image.height;
                 if (totalPixels > 2073600) {
-                    alert(translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions);
+                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
+                    .replace('{width}', image.width)
+                    .replace('{height}', image.height));
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
                 saveImageToIndexedDB(e.target.result, false)
