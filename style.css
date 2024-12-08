@@ -438,6 +438,7 @@ body {
 
 .icon-container::-webkit-scrollbar-track {
 	background-color: transparent;
+	margin: 11px 0;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
