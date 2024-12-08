@@ -187,15 +187,33 @@ window.addEventListener('DOMContentLoaded', async () => {
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
             const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-            if (fahrenheitCheckbox.checked) {
-                tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-            } else {
-                tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
-            }
+
+            // Clear the tempElement content
+            tempElement.textContent = '';
+
+            // Create temperature value node
+            const tempValue = document.createTextNode(
+                fahrenheitCheckbox.checked ? localizedTempFahrenheit : localizedTempCelsius
+            );
+
+            // Create span for the unit
+            const tempUnit = document.createElement("span");
+            tempUnit.className = "tempUnit";
+            tempUnit.textContent = fahrenheitCheckbox.checked ? "°F" : "°C";
+
+            // Append text and span to tempElement
+            tempElement.appendChild(tempValue);
+            tempElement.appendChild(tempUnit);
+
+            // Set feels-like temperature
+            const feelsLikeElement = document.getElementById("feelsLike");
+            const feelsLikeTemp = fahrenheitCheckbox.checked
+                ? localizedFeelsLikeFahrenheit
+                : localizedFeelsLikeCelsius;
+            const feelsLikeUnit = fahrenheitCheckbox.checked
+                ? (currentLanguage === 'cs' ? ' °F' : '°F')
+                : (currentLanguage === 'cs' ? ' °C' : '°C');
+            feelsLikeElement.textContent = `${feelsLikeLabel} ${feelsLikeTemp}${feelsLikeUnit}`;
         };
         updateTemperatureDisplay();
 
