@@ -1257,7 +1257,7 @@ body {
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: fit-content;
-    	min-width: 61px; // 61px is working fine for english lang
+    	min-width: 61px; /* 61px is working fine for english lang */
 }
 
 .aiToolsCont .toolsCont {
