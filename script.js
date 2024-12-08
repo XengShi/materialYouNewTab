@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
-            const feelsLikeLabel = translations[currentLanguage]?.textContent || translations['en'].feelsLike;
+            const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
             if (fahrenheitCheckbox.checked) {
                 tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
