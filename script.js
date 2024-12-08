@@ -1043,8 +1043,9 @@ const resetDarkTheme = () => {
         "closeBtnX"
     ];
 
+    const safeElementById = (id) => document.getElementById(id) || null;
     resetElements.forEach((id) => {
-        const element = document.getElementById(id);
+        const element = safeElementById(id);
         if (element) {
             element.removeAttribute('style');
         }
@@ -1461,10 +1462,8 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 // });
 
 
-
-
-
 // end of Function to apply the selected theme
+
 
 // ------------ Wallpaper ---------------------------------
 // Constants for database and storage
