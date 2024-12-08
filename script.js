@@ -1336,12 +1336,12 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof browser !== "undefined" && browser.browserAction) {
+        if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
