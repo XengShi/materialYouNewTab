@@ -180,7 +180,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
