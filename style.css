@@ -1666,6 +1666,7 @@ input:checked + .toggle:before {
 
 .resetbtn {
 	width: -webkit-fill-available;
+	width: -moz-available;
 	border: none;
 	color: #fff;
 	background-color: var(--darkColor-blue);
@@ -2039,7 +2040,8 @@ input:checked + .toggle:before {
 	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	width: 65%;
+	width: -webkit-fill-available;
+	width: -moz-available;
 	padding: 10px 12px;
 	/*white-space: nowrap; */
 	border-radius: 23px;
