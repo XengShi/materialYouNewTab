@@ -577,7 +577,7 @@ body {
 	/*Because search engines has margin-bottom 20px*/
 	bottom: 8px;
 	left: 10px;
-	text-align: center;
+ 	/*text-align: center; */
 }
 
 #userText {
