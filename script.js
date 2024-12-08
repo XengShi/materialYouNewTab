@@ -180,7 +180,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
@@ -190,11 +190,11 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (fahrenheitCheckbox.checked) {
                 tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
                 const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
                 tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
                 const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
