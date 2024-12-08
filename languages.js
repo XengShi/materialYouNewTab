@@ -112,6 +112,8 @@ const translations = {
         "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
         "backupText": "Backup",
         "restoreText": "Restore",
+        "rangColor": "Pick color",
+        "reloadHint": "Reload the page after applying themes",
     },
 
 
@@ -893,6 +895,8 @@ const translations = {
         "editShortcutsText": "Редактировать ярлыки",
         "editShortcutsList": "Редактировать ярлыки",
         "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+        "editShortcutsList": "Сохранёные ярлыки",
+        'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
@@ -913,6 +917,8 @@ const translations = {
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
         "micIconInfo": "Если голосовой ввод не работает",
+        "hideSearchWith": "Скрыть поисковые системы",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -954,7 +960,7 @@ const translations = {
         "searchPlaceholder": "Ваш запрос...",
         "listenPlaceholder": "Слушаю...",
         "searchWithHint": "Искать с",
-        "ai_tools": "Инструменты ИИ",
+        "ai_tools": "Нейросети",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
 
@@ -966,18 +972,25 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "Гугл",
-        "duckEngine": "ДакДакГо",
-        "bingEngine": "Бинг",
-        "braveEngine": "Брейв",
-        "youtubeEngine": "Ютуб",
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
         "chatGPT": "ЧатGPT",
-        "gemini": "Гемини",
+        "gemini": "Gemini",
         "copilot": "Копилот",
-        "perplexity": "Перплексити",
-        "firefly": "Адоби Файерфлай",
-        "github": "ГитХаб",
-        "googleAppsHover": "Гугл Приложения",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "Гугл приложения",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Загрузить обои",    // Keep it shorter
+        "backupText": "Экспорт настроек",
+        "restoreText": "Сбросить",
+        "rangColor": "Выбрать цвет",
+        "reloadHint": "Перезагрузите страницу для применения темы.",
     },
 
 
@@ -1674,7 +1687,8 @@ function applyLanguage(lang) {
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
-        { id: 'restoreText', key: 'restoreText' }
+        { id: 'restoreText', key: 'restoreText' },
+        { id: 'rangColor', key: 'rangColor' }
 
     ];
 
@@ -1712,6 +1726,13 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    //Update hover text for .themingStuff
+    const themingElement = document.querySelector('.themingStuff');
+    if (themingElement) {
+        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
+        themingElement.setAttribute('data-content', localizedText);
     }
 
     // Save the selected language in localStorage
