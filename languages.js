@@ -112,6 +112,22 @@ const translations = {
         "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
         "backupText": "Backup",
         "restoreText": "Restore",
+        "rangColor": "Pick color",
+        "reloadHint": "Reload the page after applying themes",
+
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
+        "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
+        "Nobackgroundset": "No background image is currently set.",
+        "clearbackgroundimage": "Are you sure you want to clear the background image?",
+        "confirmbackup": "Are you sure you want to backup your settings?",
+        "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+        "endlink": "There shouldn't be / at the end of the link",
+        "onlylinks": "Only links (starting with http:// or https://) are allowed.",
+        "imagedimensions": "Warning: The uploaded image dimensions ({width}x{height}) exceed 1920x1080 pixels. \n\nThis may impact performance or image may fail to load properly.",
+        "failedbackup": "Backup failed: ",
+        "restorecompleted": "Restore completed successfully!",
+        "restorefailed": "Restore failed: ",
     },
 
 
@@ -893,6 +909,8 @@ const translations = {
         "editShortcutsText": "Редактировать ярлыки",
         "editShortcutsList": "Редактировать ярлыки",
         "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+        "editShortcutsList": "Сохранёные ярлыки",
+        'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
@@ -913,6 +931,8 @@ const translations = {
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
         "micIconInfo": "Если голосовой ввод не работает",
+        "hideSearchWith": "Скрыть поисковые системы",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -954,7 +974,7 @@ const translations = {
         "searchPlaceholder": "Ваш запрос...",
         "listenPlaceholder": "Слушаю...",
         "searchWithHint": "Искать с",
-        "ai_tools": "Инструменты ИИ",
+        "ai_tools": "Нейросети",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
 
@@ -966,18 +986,39 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "Гугл",
-        "duckEngine": "ДакДакГо",
-        "bingEngine": "Бинг",
-        "braveEngine": "Брейв",
-        "youtubeEngine": "Ютуб",
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
         "chatGPT": "ЧатGPT",
-        "gemini": "Гемини",
+        "gemini": "Gemini",
         "copilot": "Копилот",
-        "perplexity": "Перплексити",
-        "firefly": "Адоби Файерфлай",
-        "github": "ГитХаб",
-        "googleAppsHover": "Гугл Приложения",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "Гугл приложения",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Загрузить обои",    // Keep it shorter
+        "backupText": "Экспорт настроек",
+        "restoreText": "Восстановить",
+        "rangColor": "Выбрать цвет",
+        "reloadHint": "Перезагрузите страницу для применения темы.",
+
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
+        "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
+        "Nobackgroundset": "В настоящее время обои не установлены.",
+        "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
+        "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
+        "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
+        "endlink": "В конце ссылки не должно быть /",
+        "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
+        "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
+        "failedbackup": "Резервное копирование не удалось: ",
+        "restorecompleted": "Восстановление настроек успешно завершено!",
+        "restorefailed": "Восстановление настроек не удалось: ",
     },
 
 
@@ -1674,7 +1715,8 @@ function applyLanguage(lang) {
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
-        { id: 'restoreText', key: 'restoreText' }
+        { id: 'restoreText', key: 'restoreText' },
+        { id: 'rangColor', key: 'rangColor' }
 
     ];
 
@@ -1712,6 +1754,13 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    //Update hover text for .themingStuff
+    const themingElement = document.querySelector('.themingStuff');
+    if (themingElement) {
+        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
+        themingElement.setAttribute('data-content', localizedText);
     }
 
     // Save the selected language in localStorage

@@ -1836,7 +1836,7 @@ input:checked + .toggle:before {
 }
 
 .themingStuff:hover:after{
-	content: "Reload the page after applying themes";
+	content: attr(data-content);
 	position: absolute;
 	/* background-color: red; */
 	right: 0;
