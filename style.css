@@ -1513,6 +1513,10 @@ body {
 	text-decoration: none;
 }
 
+.tiles:hover {
+	background-color: var(--darkerColor-blue);
+}
+
 .tilesCont .tiles .icon {
 	width: 24px;
 	height: 24px;
@@ -1647,6 +1651,11 @@ input:checked + .toggle:before {
 	text-decoration: none;
 	color: var(--darkColor-blue);
 	font-size: 1rem;
+	transition: color 0.3s ease;
+}
+
+.bottom a:hover {
+	color: var(--darkerColor-blue);
 }
 
 .bottom button {
@@ -1668,10 +1677,16 @@ input:checked + .toggle:before {
 	font-size: 1rem;
 	border-radius: 100px;
 	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.resetbtn:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .resetbtn:active {
-	background-color: var(--darkerColor-blue);
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
 }
 
 .topBar {
@@ -2157,6 +2172,10 @@ input:checked + .toggle:before {
     line-height: 35px;
 	cursor: pointer;
 	border: 2px solid transparent;
+	transition: background-color 0.3s ease;
+}
+.colorPickerLabel:hover{
+    background: var(--bg-color-blue);
 }
 /* <!-- ----End of Color Picker || ColorPicker---- --> */
 
@@ -2269,11 +2288,13 @@ input:checked + .toggle:before {
 	0% {
 		opacity: 1;
 		transform: translateX(0);
+		visibility: hidden;
 	}
 
 	100% {
 		opacity: 0;
 		transform: translateX(-10px);
+		visibility: hidden;
 	}
 }
 
@@ -2374,4 +2395,20 @@ input:checked + .toggle:before {
 	padding: 2px;
 	background-color: var(--darkColor-blue);
 	border-radius: 100%;
+}
+
+.savebtn {
+	transition: background-color 0.3s ease;;
+}
+
+.savebtn:hover {
+	background-color: var(--darkerColor-blue);
+}
+
+.gitback {
+	transition: background-color 0.3s ease;;
+}
+
+.gitback:hover {
+	background-color: var(--darkerColor-blue);
 }
