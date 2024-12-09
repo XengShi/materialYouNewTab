@@ -800,7 +800,7 @@ const translations = {
         "listenPlaceholder": "শোনা হচ্ছে...",
         "searchWithHint": "সার্চের মাধ্যম",
         "ai_tools": "এআই টুলস",
-        "userText": "এডিট করতে এখানে ক্লিক করুন",
+        "userText": "এখানে আপনার টেক্সট লিখুন",
         "googleAppsHover": "গুগল অ্যাপস",
 
         // Greeting
