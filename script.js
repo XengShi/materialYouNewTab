@@ -2327,7 +2327,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to load style data
     function loadIconStyle(key, element) {
-        element.innerHTML = localStorage.getItem(key);
+        element.textContent = localStorage.getItem(key);
     }
 
 
@@ -2392,7 +2392,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
-        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
+        deleteButtonContainer.insertAdjacentHTML('beforeend', SHORTCUT_DELETE_BUTTON_HTML);
 
         const deleteButton = deleteButtonContainer.children[0];
         if (deleteInactive) deleteButton.className = "inactive";
@@ -2726,7 +2726,11 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getCustomLogo(url) {
         const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
-        return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
+        if (!html) return null;
+
+        const template = document.createElement("template");
+        template.innerHTML = html.trim();
+        return template.content.firstElementChild;
     }
 
     /* ------ Proxy ------ */
@@ -2897,10 +2901,10 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
             saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
-            iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
+            iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
             saveIconStyle("iconStyle", "");
-            iconStyle.innerHTML = "";
+            iconStyle.textContent = "";
         }
     })
 
