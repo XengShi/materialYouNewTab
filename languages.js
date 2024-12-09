@@ -107,6 +107,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
+        "metaAI" : "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -1622,6 +1623,7 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "अडोबी फायरफ्लाय",
+        "metaAI" : "मेटा AI",
         "github": "गिटहब",
 
         // Wallpaper and alerts
@@ -1761,6 +1763,7 @@ function applyLanguage(lang) {
         { id: 'copilot', key: 'copilot' },
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
+        { id: 'metaAI', key: 'metaAI'},
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
