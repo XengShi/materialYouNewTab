@@ -429,8 +429,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
-        "backupText": "बैकअप",
-        "restoreText": "रिस्टोर",
+        "backupText": "बैकअप करें",
+        "restoreText": "रिस्टोर करें",
         "rangColor": "रंग चुनें",
         "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
 
@@ -823,8 +823,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
-        "backupText": "ব্যাকআপ",
-        "restoreText": "পুনরুদ্ধার",
+        "backupText": "ব্যাকআপ করুন",
+        "restoreText": "পুনরুদ্ধার করুন",
         "rangColor": "রঙ বাছাই",
         "reloadHint": "থিম প্রয়োগ করার পর পৃষ্ঠাটি রিফ্রেশ করুন",
 
