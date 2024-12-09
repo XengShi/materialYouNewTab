@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Reset settings (clear localStorage)
         resetbtn.addEventListener("click", () => {
-            if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
+            if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
                 localStorage.clear();
                 location.reload();
             }
@@ -106,10 +106,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                     userProxyInput.value = "";
                     location.reload();
                 } else {
-                    alert("There shouldn't be / at the end of the link");
+                    alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
                 }
             } else {
-                alert("Only links (starting with http:// or https://) are allowed.");
+                alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
             }
         });
 
@@ -1577,8 +1577,9 @@ document.getElementById('imageUpload').addEventListener('change', function (even
             image.onload = function () {
                 const totalPixels = image.width * image.height;
                 if (totalPixels > 2073600) {
-                    alert(`Warning: The uploaded image dimensions (${image.width}x${image.height}) exceed (1920x1080) pixels. ` +
-                        `This may impact performance or image may fail to load properly.`);
+                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
+                    .replace('{width}', image.width)
+                    .replace('{height}', image.height));
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
                 saveImageToIndexedDB(e.target.result, false)
@@ -1593,8 +1594,9 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
+const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 async function applyRandomImage(showConfirmation = true) {
-    if (showConfirmation && !confirm('Would you like to set a new image as your wallpaper for the day?')) {
+    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations['en'].confirmWallpaper)) {
         return;
     }
     try {
@@ -1671,7 +1673,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
     loadImageFromIndexedDB()
         .then((savedImage) => {
             if (savedImage) {
-                if (confirm('Are you sure you want to clear the background image?')) {
+                if (confirm(translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage)) {
                     clearImageFromIndexedDB()
                         .then(() => {
                             document.body.style.removeProperty('--bg-image');
@@ -1680,7 +1682,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
                         .catch((error) => console.error(error));
                 }
             } else {
-                alert('No background image is currently set.');
+                alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
             }
         })
         .catch((error) => console.error(error));
@@ -1699,7 +1701,7 @@ document.getElementById("fileInput").addEventListener("change", validateAndResto
 
 // Backup data from localStorage and IndexedDB
 async function backupData() {
-    if (!confirm("Are you sure you want to backup your settings?")) return;
+    if (!confirm(translations[currentLanguage]?.confirmbackup || translations['en'].confirmbackup)) return;
 
     try {
         const backup = { localStorage: {}, indexedDB: {} };
@@ -1730,7 +1732,7 @@ async function backupData() {
 
         console.log("Backup completed successfully!");
     } catch (error) {
-        alert("Backup failed: " + error.message);
+        alert(translations[currentLanguage]?.failedbackup || translations['en'].failedbackup + error.message);
     }
 }
 
@@ -1745,10 +1747,10 @@ async function validateAndRestoreData(event) {
             const backup = JSON.parse(e.target.result);
             await restoreData(backup);
 
-            alert("Restore completed successfully!");
+            alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
             location.reload();
         } catch (error) {
-            alert("Restore failed: " + error.message);
+            alert(translations[currentLanguage]?.restorefailed || translations['en'].restorefailed + error.message);
         }
     };
     reader.readAsText(file);
@@ -2737,7 +2739,7 @@ document.addEventListener("DOMContentLoaded", function () {
     * This function shows the proxy disclaimer.
     */
     function showProxyDisclaimer() {
-        const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+        const message = translations[currentLanguage]?.ProxyDisclaimer || translations['en'].ProxyDisclaimer;
 
         return confirm(message);
     }

@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 // Translation data
 const translations = {
     "en": {
@@ -112,6 +113,22 @@ const translations = {
         "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
         "backupText": "Backup",
         "restoreText": "Restore",
+        "rangColor": "Pick color",    // Keep it shorter
+        "reloadHint": "Reload the page after applying themes",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
+        "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
+        "Nobackgroundset": "No background image is currently set.",
+        "clearbackgroundimage": "Are you sure you want to clear the background image?",
+        "confirmbackup": "Are you sure you want to backup your settings?",
+        "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+        "endlink": "There shouldn't be / at the end of the link",
+        "onlylinks": "Only links (starting with http:// or https://) are allowed.",
+        "imagedimensions": "Warning: The uploaded image dimensions ({width}x{height}) exceed 1920x1080 pixels. \n\nThis may impact performance or image may fail to load properly.",
+        "failedbackup": "Backup failed: ",
+        "restorecompleted": "Restore completed successfully!",
+        "restorefailed": "Restore failed: ",
     },
 
 
@@ -412,8 +429,24 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
-        "backupText": "बैकअप",
-        "restoreText": "रिस्टोर",
+        "backupText": "बैकअप करें",
+        "restoreText": "रिस्टोर करें",
+        "rangColor": "रंग चुनें",
+        "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
+        "confirmRestore": "क्या आप वाकई अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
+        "clearbackgroundimage": "क्या आप वाकई बैकग्राउंड छवि को हटाना चाहते हैं?",
+        "confirmbackup": "क्या आप वाकई अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
+        "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
+        "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
+        "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
+        "imagedimensions": "चेतावनी: अपलोड की गई छवि का आकार ({width}x{height}) 1920x1080 पिक्सेल से अधिक है।\n\nयह प्रदर्शन को प्रभावित कर सकता है या छवि ठीक से लोड होने में विफल हो सकती है।",
+        "failedbackup": "बैकअप विफल: ",
+        "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
+        "restorefailed": "पुनर्स्थापना विफल: ",
     },
 
 
@@ -790,8 +823,24 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
-        "backupText": "ব্যাকআপ",
-        "restoreText": "পুনরুদ্ধার",
+        "backupText": "ব্যাকআপ করুন",
+        "restoreText": "পুনরুদ্ধার করুন",
+        "rangColor": "রঙ বাছাই",
+        "reloadHint": "থিম প্রয়োগ করার পর পৃষ্ঠাটি রিফ্রেশ করুন",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন চিত্র ওয়ালপেপার হিসেবে সেট করতে চান?",
+        "confirmRestore": "আপনি কি সত্যিই আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফিরিয়ে নেওয়া যাবে না।",
+        "Nobackgroundset": "কোনো ব্যাকগ্রাউন্ড চিত্র বর্তমানে সেট করা হয়নি।",
+        "clearbackgroundimage": "আপনি কি সত্যিই ব্যাকগ্রাউন্ড চিত্র মুছতে চান?",
+        "confirmbackup": "আপনি কি সত্যিই আপনার সেটিংসের ব্যাকআপ নিতে চান?",
+        "ProxyDisclaimer": "সব প্রক্সি ফিচার ডিফল্টরূপে বন্ধ থাকে।\n\nযদি আপনি সার্চ সাজেস্টশন এবং CORS বাইপাস প্রক্সি সক্ষম করেন, তবে গোপনীয়তা বাড়ানোর জন্য নিজে একটি প্রক্সি হোস্ট করার জন্য সুপারিশ করা হয়।\n\nডিফল্টরূপে প্রক্সি https://mynt-proxy.rhythmcorehq.com তে সেট করা হবে, যার মানে হল আপনার সমস্ত ডেটা এই পরিষেবার মাধ্যমে যাবে, যা গোপনীয়তা সংশ্লিষ্ট উদ্বেগ তৈরি করতে পারে।",
+        "endlink": "লিঙ্কের শেষে / থাকা উচিত নয়।",
+        "onlylinks": "মাত্র লিঙ্ক (http:// অথবা https:// দিয়ে শুরু হওয়া) অনুমোদিত।",
+        "imagedimensions": "সতর্কতা: আপলোড করা চিত্রের আকার ({width}x{height}) 1920x1080 পিক্সেলের বেশি।\n\nএটি পারফরম্যান্সে প্রভাব ফেলতে পারে বা চিত্রটি সঠিকভাবে লোড না-ও হতে পারে।",
+        "failedbackup": "ব্যাকআপ ব্যর্থ: ",
+        "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
+        "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
     },
 
 
@@ -893,6 +942,8 @@ const translations = {
         "editShortcutsText": "Редактировать ярлыки",
         "editShortcutsList": "Редактировать ярлыки",
         "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+        "editShortcutsList": "Сохранёные ярлыки",
+        'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
@@ -913,6 +964,8 @@ const translations = {
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
         "micIconInfo": "Если голосовой ввод не работает",
+        "hideSearchWith": "Скрыть поисковые системы",
+        "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -954,7 +1007,7 @@ const translations = {
         "searchPlaceholder": "Ваш запрос...",
         "listenPlaceholder": "Слушаю...",
         "searchWithHint": "Искать с",
-        "ai_tools": "Инструменты ИИ",
+        "ai_tools": "Нейросети",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
 
@@ -966,18 +1019,39 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "Гугл",
-        "duckEngine": "ДакДакГо",
-        "bingEngine": "Бинг",
-        "braveEngine": "Брейв",
-        "youtubeEngine": "Ютуб",
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
         "chatGPT": "ЧатGPT",
-        "gemini": "Гемини",
+        "gemini": "Gemini",
         "copilot": "Копилот",
-        "perplexity": "Перплексити",
-        "firefly": "Адоби Файерфлай",
-        "github": "ГитХаб",
-        "googleAppsHover": "Гугл Приложения",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "Гугл приложения",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Загрузить обои",
+        "backupText": "Экспорт настроек",
+        "restoreText": "Восстановить",
+        "rangColor": "Выбрать цвет",
+        "reloadHint": "Перезагрузите страницу для применения темы.",
+
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
+        "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
+        "Nobackgroundset": "В настоящее время обои не установлены.",
+        "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
+        "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
+        "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
+        "endlink": "В конце ссылки не должно быть /",
+        "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
+        "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
+        "failedbackup": "Резервное копирование не удалось: ",
+        "restorecompleted": "Восстановление настроек успешно завершено!",
+        "restorefailed": "Восстановление настроек не удалось: ",
     },
 
 
@@ -1387,7 +1461,7 @@ const translations = {
         "fahrenheitCelsiusText": "Muat ulang halaman untuk mengaplikasikan perubahan",
         "micIconTitle": "Sembunyikan Ikon Microfon",
         "micIconInfo": "Jika voice typing tidak berfungsi",
-        "hideSearchWith": "Sembunyikan Mesin Pencarian",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Sembunyikan Mesin Pencarian",
         "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
         "search_suggestions_button": "Saran Pencarian",
         "search_suggestions_text": "Mengaktifkan saran pencarian",
@@ -1442,7 +1516,7 @@ const translations = {
         },
         
         // Wallpaper and alerts
-        "uploadWallpaperText": "Unggah Wallpaper",    // Keep it shorter
+        "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
         "restoreText": "Mengembalikan",
     },
@@ -1551,9 +1625,26 @@ const translations = {
         "github": "गिटहब",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "वॉलपेपर अपलोड करा",
-        "backupText": "बॅकअप",
-        "restoreText": "पुनर्संचयित",
+       "uploadWallpaperText": "वॉलपेपर सेट करा",
+        "backupText": "बॅकअप करा",
+        "restoreText": "पुनर्संचयित करा",
+        "rangColor": "रंग निवडा",
+        "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
+        
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
+        "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
+        "Nobackgroundset": "सद्यस्थितीत कोणतीही पार्श्वभूमी सेट केलेली नाही.",
+        "clearbackgroundimage": "तुम्हाला पार्श्वभूमी इमेज क्लिअर करायची आहे का?",
+        "confirmbackup": "तुम्हाला तुमचे सेटिंग्स बॅकअप करायचे आहेत का?",
+        "ProxyDisclaimer": "सर्व प्रॉक्सी फीचर्स डिफॉल्टनुसार बंद असतात.\n\nजर तुम्ही सर्च सुजेशन्स आणि CORS बायपास प्रॉक्सी सक्षम केले, तर गोपनीयतेसाठी तुमची स्वतःची प्रॉक्सी होस्ट करणे अत्यंत शिफारसीय आहे.\n\nडिफॉल्टनुसार, प्रॉक्सी https://mynt-proxy.rhythmcorehq.com म्हणून सेट केले जाईल, म्हणजे तुमचे सर्व डेटा या सर्विसमधून जाईल, ज्यामुळे गोपनीयतेच्या संदर्भात धोका होऊ शकतो.",
+        "endlink": "लिंकमध्ये / नसावा.",
+        "onlylinks": "फक्त लिंक (http:// किंवा https:// ने सुरू होणाऱ्या) चालू आहेत.",
+        "imagedimensions": "तयार केलेली इमेज ({width}x{height}) चे परिमाण 1920x1080 पिक्सल्सपेक्षा जास्त आहे. \n\nयामुळे कार्यक्षमता प्रभावित होऊ शकते किंवा इमेज नीट लोड होऊ नये.",
+        "failedbackup": "बॅकअप अयशस्वी: ",
+        "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
+        "restorefailed": "पुनर्संचयित अयशस्वी: "
+
     },
 };
 
@@ -1674,7 +1765,8 @@ function applyLanguage(lang) {
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
-        { id: 'restoreText', key: 'restoreText' }
+        { id: 'restoreText', key: 'restoreText' },
+        { id: 'rangColor', key: 'rangColor' }
 
     ];
 
@@ -1705,13 +1797,20 @@ function applyLanguage(lang) {
     const menuCloseButton = document.getElementById('menuCloseButton');
     if (menuCloseButton) {
         const hoverText = translations[lang]?.menuCloseText || translations['en'].menuCloseText;
-        menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
+        menuCloseButton.setAttribute('data-lang', hoverText);
     }
 
     // Update the width of the menu container based on the language
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    //Update hover text for .themingStuff
+    const themingElement = document.querySelector('.themingStuff');
+    if (themingElement) {
+        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
+        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage
