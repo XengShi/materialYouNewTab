@@ -843,7 +843,6 @@ const translations = {
         "failedbackup": "ব্যাকআপ ব্যর্থ: ",
         "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
         "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
-
     },
 
 
