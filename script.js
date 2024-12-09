@@ -735,11 +735,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
 
-            const element = `[data-engine="${radioButtonValue}"]`;
-            // const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+            const selector = `[data-engine="${radioButtonValue}"]`;
 
             // Swap The dropdown.
-            swapDropdown(element);
+            swapDropdown(selector);
             sortDropdown()
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
@@ -804,10 +803,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // check if the default selected search engine is same as the stored one.
         if (storedSearchEngineSN !== defaultDropdownSN) {
             // The following line will find out the appropriate dropdown for the selected search engine.
-            const storedSearchEngineDropdown = `*[data-engine="${storedSearchEngineSN}"]`;
-            // const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+            const selector = `*[data-engine="${storedSearchEngineSN}"]`;
 
-            swapDropdown(storedSearchEngineDropdown);
+            swapDropdown(selector);
             sortDropdown();
         }
 
@@ -850,15 +848,14 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (event.key === 'ArrowUp') {
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
-                const element = '.dropdown-content .selected';
-                // const element = document.querySelector('.dropdown-content .selected');
+                const selector = '.dropdown-content .selected';
                 const engine = element.getAttribute('data-engine');
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
 
                 // Swap The dropdown. and sort them
-                swapDropdown(element);
+                swapDropdown(selector);
                 sortDropdown()
             }
             updateSelection();
