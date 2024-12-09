@@ -40,6 +40,8 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
+        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
         // Proxy
@@ -107,7 +109,25 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Restore",
+        "rangColor": "Pick color",
+        "reloadHint": "Reload the page after applying themes",
+
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
+        "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
+        "Nobackgroundset": "No background image is currently set.",
+        "clearbackgroundimage": "Are you sure you want to clear the background image?",
+        "confirmbackup": "Are you sure you want to backup your settings?",
+        "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+        "endlink": "There shouldn't be / at the end of the link",
+        "onlylinks": "Only links (starting with http:// or https://) are allowed.",
+        "imagedimensions": "Warning: The uploaded image dimensions ({width}x{height}) exceed 1920x1080 pixels. \n\nThis may impact performance or image may fail to load properly.",
+        "failedbackup": "Backup failed: ",
+        "restorecompleted": "Restore completed successfully!",
+        "restorefailed": "Restore failed: ",
     },
 
 
@@ -337,6 +357,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
+        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
         // Proxy
@@ -406,6 +428,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "backupText": "बैकअप",
+        "restoreText": "रिस्टोर",
     },
 
 
@@ -442,6 +466,8 @@ const translations = {
         "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
         "micIconTitle": "Skrýt ikonu mikrofonu",
         "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
+        "hideSearchWith": "Skrýt vyhledávače",
+        "hideSearchWithInfo": "Mezi vyhledávači přepnete klepnutím na jejich ikonky",
         "search_suggestions_button": "Návrhy ve vyhledávání",
         "search_suggestions_text": "Zapne návrhy vyhledávání",
         // Proxy
@@ -494,6 +520,11 @@ const translations = {
             "afternoon": "Dobré odpoledne!",
             "evening": "Dobrý večer!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Nahrát tapetu",
+        "backupText": "Zálohovat",
+        "restoreText": "Obnovit",
     },
 
 
@@ -703,6 +734,8 @@ const translations = {
         "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
         "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
+        "hideSearchWith": "সার্চ ইঞ্জিন সিলেক্টর লুকান",
+        "hideSearchWithInfo": "আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
         "search_suggestions_button": "অনুসন্ধান পরামর্শ",
         "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
         // Proxy
@@ -772,7 +805,9 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "ওয়ালপেপার আপলোড করুন",
+        "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+        "backupText": "ব্যাকআপ",
+        "restoreText": "পুনরুদ্ধার",
     },
 
 
@@ -874,6 +909,8 @@ const translations = {
         "editShortcutsText": "Редактировать ярлыки",
         "editShortcutsList": "Редактировать ярлыки",
         "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+        "editShortcutsList": "Сохранёные ярлыки",
+        'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
         "adaptiveIconText": "Адаптивные формы значков",
         "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
         "ai_tools_button": "Инструменты ИИ",
@@ -894,6 +931,8 @@ const translations = {
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
         "micIconInfo": "Если голосовой ввод не работает",
+        "hideSearchWith": "Скрыть поисковые системы",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
         // Proxy
@@ -935,7 +974,7 @@ const translations = {
         "searchPlaceholder": "Ваш запрос...",
         "listenPlaceholder": "Слушаю...",
         "searchWithHint": "Искать с",
-        "ai_tools": "Инструменты ИИ",
+        "ai_tools": "Нейросети",
         "userText": "Нажмите здесь, чтобы редактировать",
         // End of Body and New Tab Items
 
@@ -947,18 +986,39 @@ const translations = {
         },
 
         // Search Engines and rest
-        "googleEngine": "Гугл",
-        "duckEngine": "ДакДакГо",
-        "bingEngine": "Бинг",
-        "braveEngine": "Брейв",
-        "youtubeEngine": "Ютуб",
+        "googleEngine": "Google",
+        "duckEngine": "Duck",
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
         "chatGPT": "ЧатGPT",
-        "gemini": "Гемини",
+        "gemini": "Gemini",
         "copilot": "Копилот",
-        "perplexity": "Перплексити",
-        "firefly": "Адоби Файерфлай",
-        "github": "ГитХаб",
-        "googleAppsHover": "Гугл Приложения",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "github": "GitHub",
+        "googleAppsHover": "Гугл приложения",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Загрузить обои",    // Keep it shorter
+        "backupText": "Экспорт настроек",
+        "restoreText": "Восстановить",
+        "rangColor": "Выбрать цвет",
+        "reloadHint": "Перезагрузите страницу для применения темы.",
+
+        //Dialog boxes (alerts)
+        "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
+        "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
+        "Nobackgroundset": "В настоящее время обои не установлены.",
+        "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
+        "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
+        "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
+        "endlink": "В конце ссылки не должно быть /",
+        "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
+        "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
+        "failedbackup": "Резервное копирование не удалось: ",
+        "restorecompleted": "Восстановление настроек успешно завершено!",
+        "restorefailed": "Восстановление настроек не удалось: ",
     },
 
 
@@ -1368,6 +1428,8 @@ const translations = {
         "fahrenheitCelsiusText": "Muat ulang halaman untuk mengaplikasikan perubahan",
         "micIconTitle": "Sembunyikan Ikon Microfon",
         "micIconInfo": "Jika voice typing tidak berfungsi",
+        "hideSearchWith": "Sembunyikan Mesin Pencarian",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
         "search_suggestions_button": "Saran Pencarian",
         "search_suggestions_text": "Mengaktifkan saran pencarian",
         // Proxy
@@ -1419,6 +1481,11 @@ const translations = {
             "afternoon": "Selamat Sore!",
             "evening": "Selamat Malam!"
         },
+        
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Unggah Wallpaper",    // Keep it shorter
+        "backupText": "Cadangkan",
+        "restoreText": "Mengembalikan",
     },
 
 
@@ -1455,6 +1522,8 @@ const translations = {
         "fahrenheitCelsiusText": "बदल लागू करण्यासाठी पृष्ठ रीफ्रेश करा",
         "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
         "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
+        "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
+        "hideSearchWithInfo": "आयकॉनवर क्लिक करून सर्च इंजिन बदला",
         "search_suggestions_button": "शोध सूचना",
         "search_suggestions_text": "शोध सूचना सक्षम करा",
         // Proxy
@@ -1524,6 +1593,8 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करा",
+        "backupText": "बॅकअप",
+        "restoreText": "पुनर्संचयित",
     },
 };
 
@@ -1589,6 +1660,8 @@ function applyLanguage(lang) {
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
         { id: 'micIconInfo', key: 'micIconInfo' },
+        { id: 'hideSearchWith', key: 'hideSearchWith' },
+        { id: 'hideSearchWithInfo', key: 'hideSearchWithInfo' },
         { id: 'search_suggestions_button', key: 'search_suggestions_button' },
         { id: 'search_suggestions_text', key: 'search_suggestions_text' },
         { id: 'digitalclocktittle', key: 'digitalclocktittle' },
@@ -1628,6 +1701,11 @@ function applyLanguage(lang) {
         { id: 'bingEngine', key: 'bingEngine' },
         { id: 'braveEngine', key: 'braveEngine' },
         { id: 'youtubeEngine', key: 'youtubeEngine' },
+        { id: 'googleEngineDD', key: 'googleEngine' },
+        { id: 'duckEngineDD', key: 'duckEngine' },
+        { id: 'bingEngineDD', key: 'bingEngine' },
+        { id: 'braveEngineDD', key: 'braveEngine' },
+        { id: 'youtubeEngineDD', key: 'youtubeEngine' },
         { id: 'chatGPT', key: 'chatGPT' },
         { id: 'gemini', key: 'gemini' },
         { id: 'copilot', key: 'copilot' },
@@ -1636,6 +1714,9 @@ function applyLanguage(lang) {
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
+        { id: 'backupText', key: 'backupText' },
+        { id: 'restoreText', key: 'restoreText' },
+        { id: 'rangColor', key: 'rangColor' }
 
     ];
 
@@ -1666,13 +1747,20 @@ function applyLanguage(lang) {
     const menuCloseButton = document.getElementById('menuCloseButton');
     if (menuCloseButton) {
         const hoverText = translations[lang]?.menuCloseText || translations['en'].menuCloseText;
-        menuCloseButton.style.setProperty('--hover-close-text', `"${hoverText}"`);
+        menuCloseButton.setAttribute('data-lang', hoverText);
     }
 
     // Update the width of the menu container based on the language
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    //Update hover text for .themingStuff
+    const themingElement = document.querySelector('.themingStuff');
+    if (themingElement) {
+        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
+        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage

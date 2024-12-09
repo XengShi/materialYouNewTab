@@ -111,12 +111,20 @@
 	--whitishColor-brown: #ffffff;
 
 	/* 🩶🩶🩶 Grey */
-	--bg-color-grey: #565656;
-	--accentLightTint-grey: #818181;
-	--darkerColor-grey: #262626;
-	--darkColor-grey: #434343;
-	--textColorDark-grey: #111111;
-	--whitishColor-grey: #999999;
+	/* --bg-color-pink: #f9c8d6;
+	--accentLightTint-pink: #ffebf2;
+	--darkerColor-pink: #b24b64;
+	--darkColor-pink: #ec5e78;
+	--textColorDark-pink: #411b28;
+	--whitishColor-pink: #ffffff; */
+
+
+	--bg-color-grey: #ffccbf;
+	--accentLightTint-grey: #fdf1ef;
+	--darkerColor-grey: #f67455;
+	--darkColor-grey: #9c29ba;
+	--textColorDark-grey: #441730;
+	--whitishColor-grey: #ffffff;
 
 
 	/* ⚫⚫⚫ */
@@ -140,6 +148,61 @@
 	--always-show-dock-background: 0;
 }
 
+/* Theme */
+/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
+
+.accentColor {
+	fill: var(--darkColor-blue);
+}
+
+.bgLightTint {
+	fill: var(--accentLightTint-blue);
+	background-color: var(--accentLightTint-blue);
+}
+
+.strokecolor {
+	stroke: var(--darkColor-blue);
+}
+
+.lessDark {
+	background-color: var(--bg-color-blue);
+	fill: var(--bg-color-blue);
+}
+
+/* ⚫🟣🟡🔵🔴🟠⚪🟢 */
+
+html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	scrollbar-width: none; /* For Firefox */
+}
+
+.html::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	background-color: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 100%;
+	/* background-color: red; */
+	overflow: auto;
+	background-image: var(--bg-image, none);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	height: 100vh; /* Ensure the image fits the viewport height */
+	margin: 0; /* Remove margin to avoid unwanted spacing */
+}
+
+
+/* Search suggestions box */
 .resultBox {
 	max-height: 222px;
 	overflow-y: auto;
@@ -190,64 +253,6 @@
 	color: #fff;
 }
 
-/* Theme */
-/* ⚫🟣🔵🔴🟡🟢🟠⚪ */
-
-.accentColor {
-	fill: var(--darkColor-blue);
-}
-
-.bgLightTint {
-	fill: var(--accentLightTint-blue);
-	background-color: var(--accentLightTint-blue);
-}
-
-/* .whitishColor {
-	fill: var(--whitishColor-blue);
-	background-color: var(--whitishColor-blue);
-} */
-
-.strokecolor {
-	stroke: var(--darkColor-blue);
-}
-
-.lessDark {
-	background-color: var(--bg-color-blue);
-	fill: var(--bg-color-blue);
-}
-
-/* ⚫🟣🟡🔵🔴🟠⚪🟢 */
-
-html {
-	height: 100%;
-	width: 100%;
-	margin: 0;
-	scrollbar-width: none; /* For Firefox */
-}
-
-.html::-webkit-scrollbar {
-	display: none;
-}
-
-body {
-	background-color: var(--bg-color-blue);
-	color: var(--textColorDark-blue);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	min-height: 100%;
-	/* background-color: red; */
-	overflow: auto;
-	background-image: var(--bg-image, none);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-attachment: fixed;
-	height: 100vh; /* Ensure the image fits the viewport height */
-	margin: 0; /* Remove margin to avoid unwanted spacing */
-}
-
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .googleAppsCont {
@@ -273,12 +278,11 @@ body {
 	border-radius: 25%;
 	padding: 1px;
 	cursor: pointer;
-	transition: transform 0.3s ease, fill 0.3s ease;
+	transition: fill 0.3s ease;
 }
 
-/* Hover effect for the icon */
-.dot-icon:hover {
-	transform: rotate(90deg) scale(1.05);
+/* Click effect for the icon */
+.dot-icon:active {
 	fill: var(--darkerColor-blue);
 }
 
@@ -336,7 +340,6 @@ body {
 	display: grid;
 	gap: 10px;
 	padding: 20px 10px;
-	/* Adjusted padding to account for scrollbar */
 	background-color: var(--accentLightTint-blue);
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -346,16 +349,13 @@ body {
 	justify-items: center;
 	/* Center icons within each grid cell */
 	position: absolute;
-	/* Absolute positioning for dynamic alignment */
 	top: 85px;
-	/* Place below the dot icon */
-	right: 10px;
+	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
 	overflow-y: auto;
 	/* Add vertical scrollbar when needed */
 	box-sizing: border-box;
-	/* Ensure padding is included in width and height */
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
 
@@ -434,38 +434,29 @@ body {
 /* For Chrome, Edge, Safari */
 .icon-container::-webkit-scrollbar {
 	width: 5px;
-	/* Match the border width */
 }
 
 .icon-container::-webkit-scrollbar-track {
 	background-color: transparent;
-	border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 .icon-container::-webkit-scrollbar-thumb:hover {
 	background-color: var(--darkerColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 /* For Firefox */
-.icon-container {
-	scrollbar-width: thin;
-	/* Thin scrollbar */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Thumb color and track color */
-	overflow-x: hidden;
-	/* Hide horizontal scrollbar */
+@-moz-document url-prefix() {
+	.icon-container {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
-
-/* .icon-container:hover {
-    scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
-} */
-
 /* ----------------- End of Google App Menu ----------------- */
 
 .centerDiv {
@@ -592,12 +583,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 #date {
 	font-size: 1.4rem;
-	transition: text-shadow 0.3s ease-in-out;
 }
 
 .digidate {
@@ -873,8 +862,8 @@ body {
 	outline: none;
 	border: none;
 	background-color: #00000000;
-	padding: 0 4px;
-	margin-left: 53px;
+	padding: 0 2px;
+	margin-left: 55px;
 	font-size: 1rem;
 }
 
@@ -1030,7 +1019,7 @@ body {
 	cursor: pointer;
 }
 
-.searchEnginesContainer .search-engine svg {
+.searchEnginesContainer .search-engine svg{
 	width: 30px;
 	height: 30px;
 	background-color: var(--darkColor-blue);
@@ -1233,11 +1222,21 @@ body {
 	bottom: var(--gap);
 	margin: auto;
 	display: flex;
+
+    max-width: calc(100% - 140px);
+    overflow-x: scroll;
+	overflow-y: hidden;
+	scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+.aiToolsCont::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Edge, Opera */
 }
 
 .aiToolsCont .hangno {
 	background-color: var(--accentLightTint-blue);
 	height: 100%;
+	/* width: 131px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1257,6 +1256,8 @@ body {
 	font-size: 1rem;
 	color: var(--textColorDark-blue);
 	cursor: pointer;
+	width: fit-content;
+    	min-width: 61px; /* 61px is working fine for english lang */
 }
 
 .aiToolsCont .toolsCont {
@@ -1280,6 +1281,9 @@ body {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 6px;
 	left: -18px;
+}
+#firefly{
+	width: 103px;
 }
 
 .aiToolsCont .toolsCont a {
@@ -1456,7 +1460,7 @@ body {
 /* -----------Scrollbar for menu---------------- */
 /* For WebKit browsers (Chrome, Safari) */
 .menuCont .optCont::-webkit-scrollbar {
-	width: 2px;
+	width: 6px;
 	/* Width of the scrollbar */
 }
 
@@ -1470,16 +1474,22 @@ body {
 .menuCont .optCont::-webkit-scrollbar-thumb {
 	background: var(--darkColor-blue);
 	/* Color of the scrollbar handle */
-	border-radius: 2px;
+	border-radius: 3px;
 	/* Rounded corners for the scrollbar handle */
 }
 
+.menuCont .optCont::-webkit-scrollbar-thumb:hover {
+	background: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
 /* For Firefox */
-.menuCont .optCont {
-	scrollbar-width: thin;
-	/* Makes the scrollbar thin */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Handle color and track color */
+@-moz-document url-prefix() {
+	.menuCont .optCont {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+		/* Handle color and track color */
+	}
 }
 
 /* -------------End of Scrollbar for menu-------------- */
@@ -1660,6 +1670,10 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
+.resetbtn:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .topBar {
 	display: flex;
 	justify-content: space-between;
@@ -1813,12 +1827,17 @@ input:checked + .toggle:before {
 
 /* --------------Theming stuff------------------ */
 .themingStuff{
-	margin-top: 30px;
+	margin-top: 15px;
 	position: relative;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	gap: var(--gap);
 }
 
 .themingStuff:hover:after{
-	content: "Reload the page after applying themes";
+	content: attr(data-lang);
 	position: absolute;
 	/* background-color: red; */
 	right: 0;
@@ -1826,13 +1845,14 @@ input:checked + .toggle:before {
 	margin-top: -20px;
 	font-size: 0.74rem;
 }
-.themingStuff,
+
 .languageSection {
 	width: 100%;
 	height: 50px;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	gap: var(--gap);
+	margin-top: 30px;
 }
 
 .languageSelector {
@@ -1862,9 +1882,11 @@ input:checked + .toggle:before {
 	cursor: pointer;
 	padding-left: 13px;
 
-	/* Scrollbar styles for Firefox */
-	scrollbar-width: thin;
-	scrollbar-color: var(--darkColor-blue) transparent;
+	@-moz-document url-prefix() {
+		/* Scrollbar styles for Firefox */
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 /* Scrollbar styles for Chrome, Edge, Safari */
@@ -1876,9 +1898,8 @@ input:checked + .toggle:before {
 	background-color: transparent;
 }
 
-.languageSelector::-webkit-scrollbar-thumb,
-.languageSelector::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkColor-blue);
+.languageSelector::-webkit-scrollbar-thumb {
+	background-color: var(--bg-color-blue);
 	border-radius: 3px;
 }
 
@@ -1960,7 +1981,7 @@ input:checked + .toggle:before {
 }
 
 .colorsContainer input[value="grey"] {
-	background-color: #585858;
+	background: linear-gradient(45deg,#bb4dee, #f8b880);
 }
 
 .colorsContainer input[value="dark"] {
@@ -2000,50 +2021,53 @@ input:checked + .toggle:before {
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
-	justify-content: center; /* Center the buttons horizontally */
-	margin-top: 122px; /* Add spacing below the theming section */
+	margin-top: 130px;
 	justify-content: space-between;
+	gap: 10px;
 }
 
-/* Styling for Upload/Clear Buttons with SVGs */
-.uploadButton,
-.randomButton,
-.clearButton {
+/* Styling for Upload/Random/Clear Buttons */
+.uploadButton {
+	font-size: 0.95rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 10px; /* Space between SVG and text */
+	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	padding: 10px 20px;
-	font-size: 1rem;
- 	/*white-space: nowrap; */
+	width: 65%;
+	padding: 10px 12px;
+	/*white-space: nowrap; */
+	border-radius: 23px;
 	border: 2px solid transparent;
-	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, border-color 0.3s;
 }
 
-.uploadButton {
-	font-size: 0.95rem !important;
-}
-
 .randomButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--whitishColor-blue);
+	color: var(--darkColor-blue);
+	border-radius: 26px;
+	border: 2px solid transparent;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 	padding: 10px;
 }
 
 .clearButton {
 	padding: 10px;
-	color: var(--whitishColor-blue) !important;
-	background-color: var(--darkColor-blue) !important;
-}
-
-/* Ensure consistent SVG sizing */
-.uploadButton svg,
-.randomButton svg,
-.clearButton svg {
-	width: 24px;
-	height: 24px;
+	color: var(--whitishColor-blue);
+	background-color: var(--darkColor-blue);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid transparent;
+	border-radius: 26px;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* Hover Effects */
@@ -2053,9 +2077,18 @@ input:checked + .toggle:before {
 	color: var(--whitishColor-blue);
 }
 
+.uploadButton:active,
+.randomButton:active {
+	background-color: var(--darkerColor-blue);
+}
+
 .clearButton:hover {
-	color: var(--darkColor-blue) !important;
-	background-color: var(--whitishColor-blue) !important;
+	color: var(--darkColor-blue);
+	background-color: var(--whitishColor-blue);
+}
+
+.clearButton:active {
+	color: var(--darkerColor-blue);
 }
 
 /* File input remains hidden */
@@ -2063,8 +2096,42 @@ input:checked + .toggle:before {
 	display: none;
 }
 
+/* Style for Backup and Restore buttons */
+.backupRestoreContainer {
+	width: 100%;
+	height: 38px;
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
+
+.backupRestoreBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 9px;
+	font-size: 0.9rem;
+	cursor: pointer;
+	border: none;
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
+	border-radius: 20px;
+	transition: background-color 0.3s ease;
+}
+
+.backupRestoreBtn:hover {
+	background-color: var(--darkColor-blue);
+	color: #fffffff5;
+}
+
+.backupRestoreBtn:active {
+	background-color: var(--darkerColor-blue);
+	color: #fffffff5;
+}
+
 .spacer {
-	height: 35px;
+	height: 20px;
 	/* Adjust this value to create space */
 }
 
@@ -2166,7 +2233,7 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton::after {
-	content: var(--hover-close-text, "Close");
+	content: attr(data-lang);
 	white-space: nowrap;
 	padding-right: 12px;
 	opacity: 0;
@@ -2176,7 +2243,7 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton:hover::after {
-	content: var(--hover-close-text, "Close");
+	content: attr(data-lang);
 	padding-right: 12px;
 	padding-left: 36px;
 	/* width: 32px; */
@@ -2184,6 +2251,7 @@ input:checked + .toggle:before {
 	animation: 0.6s menuCloseButtonHover forwards;
 	animation-delay: 0.1s;
 }
+
 
 @keyframes menuCloseButtonHover {
 	0% {
@@ -2228,4 +2296,82 @@ input:checked + .toggle:before {
 
 #menuCloseButton:hover .icon {
 	transform: translateX(0) rotate(90deg);
+}
+
+/* Search engines Dropdown css */
+.dropdown-item {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.dropdown-btn {
+	background: none;
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	background: var(--accentLightTint-blue);
+	border-radius: 16px;
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	top: 50px;
+	left: -15px;
+	overflow: hidden;
+	max-height: 192px;
+}
+
+.dropdown-content .dropdown-item {
+	padding: 8px 16px;
+	cursor: pointer;
+}
+
+#default-dropdown-item .engine-name {
+	display: none;
+}
+
+.dropdown-content .engine-name {
+	font-size: 1rem;
+}
+
+.dropdown-item {
+	position: relative;
+}
+
+.dropdown-item.selected:not(*[data-default]):before {
+	/* border-radius: 16px; */
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0;
+	right: 0;
+	bottom: 0px;
+	background-color: var(--bg-color-blue);
+	opacity: 0.8;
+	z-index: -1;
+}
+
+#default-dropdown-item {
+	outline: none !important;
+}
+
+*[id$="-dropdown"]:not(.dropdown-content .dropdown-item:nth-child(1)) {
+	bottom: 3px;
+}
+
+.search-dropdown .dropdown-item svg {
+	width: 33px;
+	height: 33px;
+	margin-left: 0;
+	padding: 2px;
+	background-color: var(--darkColor-blue);
+	border-radius: 100%;
 }
