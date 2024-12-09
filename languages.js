@@ -6,6 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 // Translation data
 const translations = {
     "en": {
@@ -112,10 +113,10 @@ const translations = {
         "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
         "backupText": "Backup",
         "restoreText": "Restore",
-        "rangColor": "Pick color",
+        "rangColor": "Pick color",    // Keep it shorter
         "reloadHint": "Reload the page after applying themes",
 
-        //Dialog boxes (alerts)
+        // Dialog boxes (alerts)
         "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
         "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
         "Nobackgroundset": "No background image is currently set.",
@@ -428,8 +429,24 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
-        "backupText": "बैकअप",
-        "restoreText": "रिस्टोर",
+        "backupText": "बैकअप करें",
+        "restoreText": "रिस्टोर करें",
+        "rangColor": "रंग चुनें",
+        "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
+        "confirmRestore": "क्या आप वाकई अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
+        "clearbackgroundimage": "क्या आप वाकई बैकग्राउंड छवि को हटाना चाहते हैं?",
+        "confirmbackup": "क्या आप वाकई अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
+        "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
+        "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
+        "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
+        "imagedimensions": "चेतावनी: अपलोड की गई छवि का आकार ({width}x{height}) 1920x1080 पिक्सेल से अधिक है।\n\nयह प्रदर्शन को प्रभावित कर सकता है या छवि ठीक से लोड होने में विफल हो सकती है।",
+        "failedbackup": "बैकअप विफल: ",
+        "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
+        "restorefailed": "पुनर्स्थापना विफल: ",
     },
 
 
@@ -806,8 +823,24 @@ const translations = {
 
         // Wallpaper and alerts
         "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
-        "backupText": "ব্যাকআপ",
-        "restoreText": "পুনরুদ্ধার",
+        "backupText": "ব্যাকআপ করুন",
+        "restoreText": "পুনরুদ্ধার করুন",
+        "rangColor": "রঙ বাছাই",
+        "reloadHint": "থিম প্রয়োগ করার পর পৃষ্ঠাটি রিফ্রেশ করুন",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন চিত্র ওয়ালপেপার হিসেবে সেট করতে চান?",
+        "confirmRestore": "আপনি কি সত্যিই আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফিরিয়ে নেওয়া যাবে না।",
+        "Nobackgroundset": "কোনো ব্যাকগ্রাউন্ড চিত্র বর্তমানে সেট করা হয়নি।",
+        "clearbackgroundimage": "আপনি কি সত্যিই ব্যাকগ্রাউন্ড চিত্র মুছতে চান?",
+        "confirmbackup": "আপনি কি সত্যিই আপনার সেটিংসের ব্যাকআপ নিতে চান?",
+        "ProxyDisclaimer": "সব প্রক্সি ফিচার ডিফল্টরূপে বন্ধ থাকে।\n\nযদি আপনি সার্চ সাজেস্টশন এবং CORS বাইপাস প্রক্সি সক্ষম করেন, তবে গোপনীয়তা বাড়ানোর জন্য নিজে একটি প্রক্সি হোস্ট করার জন্য সুপারিশ করা হয়।\n\nডিফল্টরূপে প্রক্সি https://mynt-proxy.rhythmcorehq.com তে সেট করা হবে, যার মানে হল আপনার সমস্ত ডেটা এই পরিষেবার মাধ্যমে যাবে, যা গোপনীয়তা সংশ্লিষ্ট উদ্বেগ তৈরি করতে পারে।",
+        "endlink": "লিঙ্কের শেষে / থাকা উচিত নয়।",
+        "onlylinks": "মাত্র লিঙ্ক (http:// অথবা https:// দিয়ে শুরু হওয়া) অনুমোদিত।",
+        "imagedimensions": "সতর্কতা: আপলোড করা চিত্রের আকার ({width}x{height}) 1920x1080 পিক্সেলের বেশি।\n\nএটি পারফরম্যান্সে প্রভাব ফেলতে পারে বা চিত্রটি সঠিকভাবে লোড না-ও হতে পারে।",
+        "failedbackup": "ব্যাকআপ ব্যর্থ: ",
+        "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
+        "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
     },
 
 
@@ -931,7 +964,7 @@ const translations = {
         "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
         "micIconTitle": "Скрыть значок микрофона",
         "micIconInfo": "Если голосовой ввод не работает",
-        "hideSearchWith": "Скрыть поисковые системы",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Скрыть поисковые системы",
         "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
         "search_suggestions_button": "Поисковые подсказки",
         "search_suggestions_text": "Включить/Отключить поисковые подсказки",
@@ -1000,7 +1033,7 @@ const translations = {
         "googleAppsHover": "Гугл приложения",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Загрузить обои",    // Keep it shorter
+        "uploadWallpaperText": "Загрузить обои",
         "backupText": "Экспорт настроек",
         "restoreText": "Восстановить",
         "rangColor": "Выбрать цвет",
@@ -1428,7 +1461,7 @@ const translations = {
         "fahrenheitCelsiusText": "Muat ulang halaman untuk mengaplikasikan perubahan",
         "micIconTitle": "Sembunyikan Ikon Microfon",
         "micIconInfo": "Jika voice typing tidak berfungsi",
-        "hideSearchWith": "Sembunyikan Mesin Pencarian",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Sembunyikan Mesin Pencarian",
         "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
         "search_suggestions_button": "Saran Pencarian",
         "search_suggestions_text": "Mengaktifkan saran pencarian",
@@ -1483,7 +1516,7 @@ const translations = {
         },
         
         // Wallpaper and alerts
-        "uploadWallpaperText": "Unggah Wallpaper",    // Keep it shorter
+        "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
         "restoreText": "Mengembalikan",
     },

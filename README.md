@@ -68,7 +68,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |   it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
 | <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)         |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |   ko   | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/)                                                   |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)    |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          |  pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |   ru   | [giwi](https://github.com/giwih/)                                                      |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |  es-ES | [XengShi](https://github.com/XengShi/)                                                 |
