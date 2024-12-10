@@ -1170,140 +1170,164 @@ const applySelectedTheme = (colorValue) => {
                 color: #e8e8e8;
             }
 
-            #searchQ{
+            .dark-theme .resetbtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .resetbtn:active {
+                background-color: #4e4e4e;
+            }
+
+            .dark-theme .savebtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .tiles:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .bottom a:hover {
+                color: var(--darkerColor-blue);
+            }
+
+            .dark-theme #searchQ{
             color: #fff;
             }
 
-            .searchbar.active {
+            .dark-theme .searchbar.active {
                 outline: 2px solid #696969;
             }
 
-            #searchIconDark {
+            .dark-theme #searchIconDark {
                 fill: #bbb !important;
             }
 	    
-	    .dropdown-item.selected:not(*[data-default]):before {
+	    .dark-theme .dropdown-item.selected:not(*[data-default]):before {
                 background-color: #707070;
             }
 
-            .tilesContainer .tiles {
+            .dark-theme .tilesContainer .tiles {
                 background-color: #212121;
             }
 
-            #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon{
                 fill: #fff !important;
             }
 
-            .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine{
                 background-color: #aaaaaa;
             }
 
-            .search-engine .darkIconForDarkTheme, .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons{
                 fill: #bbbbbb !important;
             }
 
-            .divider{
+            .dark-theme .divider{
                 background-color: #cdcdcd;
             }
     
-            .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor{
                 fill: #3c3c3c !important;
             }
 
-            #darkLightTint{
+            .dark-theme #darkLightTint{
                 fill: #bfbfbf;
             }
 
-            .strokecolor {
+            .dark-theme .strokecolor {
 	            stroke: #3c3c3c;
             }
 
-            .shortcutsContainer .shortcuts .shortcutLogoContainer {
+            .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
             }
 
-            .digiclock {
+            .dark-theme .digiclock {
                 fill: #909090;
             }
 	    
-	    #userText, #date, .shortcuts .shortcut-name {
+	    .dark-theme #userText, .dark-theme #date, .dark-theme .shortcuts .shortcut-name {
 	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
 	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
     			          1px -1px 15px rgba(15, 15, 15, 0.9),
        			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
-     	    .uploadButton,
-            .randomButton{
+     	    .dark-theme .uploadButton,
+            .dark-theme .randomButton{
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
 
-            .clearButton:hover{
+            .dark-theme .clearButton:hover{
                 background-color: var(--whitishColor-dark);
             }
 
-            .clearButton:active{
+            .dark-theme .clearButton:active{
                 color: #0e0e0e;
             }
 
-            .backupRestoreBtn {
-                background-color: #212121;
+            .dark-theme .backupRestoreBtn {
+                background-color: var(--darkColor-dark);
+            }
+
+            .dark-theme .backupRestoreBtn:hover {
+                background-color: var(--bg-color-dark);
             }
             
             .uploadButton:active,
             .randomButton:active,
             .backupRestoreBtn:active,
-            .resetbtn:active {
+            .dark-theme. resetbtn:active {
                 background-color: #0e0e0e;
             }
 
-     	    .micIcon{
+     	    .dark-theme .micIcon{
                 background-color: var(--whitishColor-dark);
             }
 
-            #minute, #minute::after, #second::after {
+            .dark-theme #minute, .dark-theme #minute::after, .dark-theme #second::after {
                 background-color: #909090;
             }
 
-            .dot-icon {
+            .dark-theme .dot-icon {
                 fill: #bfbfbf;
             }
 
-            .menuicon{
+            .dark-theme .menuicon{
                 color: #c2c2c2;
             }
 
-            #menuButton::before{
+            .dark-theme#menuButton::before{
                 background-color: #bfbfbf;
             }
             
-            #menuButton::after{
+            .dark-theme #menuButton::after{
                 border: 4px solid #858585;
             }
 
-            #menuCloseButton, #menuCloseButton:hover {
+            .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
                 background-color: var(--darkColor-dark);
             }
 
-            #menuCloseButton .icon{
+            .dark-theme #menuCloseButton .icon{
                 background-color: #cdcdcd;
             }
 
-            #closeBtnX{
+            .dark-theme #closeBtnX{
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            body{
+            .dark-theme body{
                 background-color: #000000;
             }
             
-            #HangNoAlive{
+            .dark-theme #HangNoAlive{
                 fill: #c2c2c2 !important;
             }
 
-            .tempUnit{
+            .dark-theme .tempUnit{
                 color: #dadada;
             }
 

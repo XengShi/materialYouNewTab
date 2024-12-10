@@ -1511,6 +1511,7 @@ body {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
+	transition: background-color 0.3s ease;;
 }
 
 .tiles:hover {
@@ -2402,13 +2403,5 @@ input:checked + .toggle:before {
 }
 
 .savebtn:hover {
-	background-color: var(--darkerColor-blue);
-}
-
-.gitback {
-	transition: background-color 0.3s ease;;
-}
-
-.gitback:hover {
 	background-color: var(--darkerColor-blue);
 }
