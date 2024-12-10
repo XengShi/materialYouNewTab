@@ -546,7 +546,6 @@ const translations = {
 
 
     // Italian
-    // Machine translated some elements, please verify and delete this comment
     "it": {
         // Menu Items
         "feedback": "Feedback",
@@ -560,8 +559,8 @@ const translations = {
         "shortcutsInfoText": "Scegli quali scorciatoie mostrare",
         "adaptiveIconText": "Forme di Icona Adattiva",
         "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
-        "ai_tools_button": "Strumenti AI",
-        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+        "ai_tools_button": "Strumenti IA",
+        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti IA",
         "googleAppsMenuText": "App Google",
         "googleAppsMenuInfo": "Mostra collegamenti App Google",
         // Digital Clock
@@ -617,9 +616,9 @@ const translations = {
         "conditionText": "Ciao! Come stai oggi?",
         "enterBtn": "Cerca",
         "searchPlaceholder": "Cerca...",
-        "listenPlaceholder": "In ascolto...",
+        "listenPlaceholder": "Ascoltando...",
         "searchWithHint": "Cerca con",
-        "ai_tools": "Strumenti AI",
+        "ai_tools": "Strumenti IA",
         "userText": "Clicca qui per modificare",
         // End of Body and New Tab Items
 
@@ -629,6 +628,20 @@ const translations = {
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
         },
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
+        "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
+        "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
+        "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
+        "confirmbackup": "Sei sicuro di voler eseguire il backup delle tue impostazioni?",
+        "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
+        "endlink": "Non ci dovrebbe essere uno / alla fine del link",
+        "onlylinks": "Solo link (che iniziano con http:// o https://) sono consentiti.",
+        "imagedimensions": "Attenzione: Le dimensioni dell'immagine caricata ({width}x{height}) superano i 1920x1080 pixel. \n\nCiò potrebbe influire sulle prestazioni o l'immagine potrebbe non essere caricata correttamente.",
+        "failedbackup": "Backup fallito: ",
+        "restorecompleted": "Ripristino completato con successo!",
+        "restorefailed": "Ripristino fallito: "
     },
 
 
@@ -1514,7 +1527,7 @@ const translations = {
             "afternoon": "Selamat Sore!",
             "evening": "Selamat Malam!"
         },
-        
+
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
@@ -1630,7 +1643,7 @@ const translations = {
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
         "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
-        
+
         //Dialog boxes (alerts)
         "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
         "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
