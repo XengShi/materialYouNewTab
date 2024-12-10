@@ -180,21 +180,37 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
+            const feelsLikeElement = document.getElementById("feelsLike");
             const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
             if (fahrenheitCheckbox.checked) {
-                tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                // Update temperature
+                tempElement.textContent = localizedTempFahrenheit;
+                const tempUnitF = document.createElement("span");
+                tempUnitF.className = "tempUnit";
+                tempUnitF.textContent = "°F";
+                tempElement.appendChild(tempUnitF);
+
+                // Update feels like
+                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
-                tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                // Update temperature
+                tempElement.textContent = localizedTempCelsius;
+                const tempUnitC = document.createElement("span");
+                tempUnitC.className = "tempUnit";
+                tempUnitC.textContent = "°C";
+                tempElement.appendChild(tempUnitC);
+
+                // Update feels like
+                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -712,11 +728,14 @@ document.addEventListener("DOMContentLoaded", () => {
         element.addEventListener('click', () => {
             const engine = element.getAttribute('data-engine');
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+            const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
 
+            // console.log(element, selector);
+            
             radioButton.checked = true;
 
             // Swap The dropdown. and sort them
-            swapDropdown(element);
+            swapDropdown(selector);
             sortDropdown()
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
@@ -732,10 +751,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
 
-            const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
+            const selector = `[data-engine="${radioButtonValue}"]`;
 
             // Swap The dropdown.
-            swapDropdown(element);
+            swapDropdown(selector);
             sortDropdown()
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
@@ -749,15 +768,16 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function swapDropdown(selectedElement) {
         // Swap innerHTML
+        const element = document.querySelector(selectedElement);
         const tempHTML = defaultEngine.innerHTML;
-        defaultEngine.innerHTML = selectedElement.innerHTML;
-        selectedElement.innerHTML = tempHTML;
+        defaultEngine.innerHTML = element.innerHTML;
+        element.innerHTML = tempHTML;
 
         // Swap attributes
         ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
             const tempAttr = defaultEngine.getAttribute(attr);
-            defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
-            selectedElement.setAttribute(attr, tempAttr);
+            defaultEngine.setAttribute(attr, element.getAttribute(attr));
+            element.setAttribute(attr, tempAttr);
         });
     }
 
@@ -799,9 +819,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // check if the default selected search engine is same as the stored one.
         if (storedSearchEngineSN !== defaultDropdownSN) {
             // The following line will find out the appropriate dropdown for the selected search engine.
-            const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
+            const selector = `*[data-engine="${storedSearchEngineSN}"]`;
 
-            swapDropdown(storedSearchEngineDropdown);
+            swapDropdown(selector);
             sortDropdown();
         }
 
@@ -844,14 +864,14 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (event.key === 'ArrowUp') {
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
-                const element = document.querySelector('.dropdown-content .selected');
+                const selector = '.dropdown-content .selected';
                 const engine = element.getAttribute('data-engine');
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
 
                 // Swap The dropdown. and sort them
-                swapDropdown(element);
+                swapDropdown(selector);
                 sortDropdown()
             }
             updateSelection();
@@ -1318,12 +1338,12 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof browser !== "undefined" && browser.browserAction) {
+        if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
@@ -2327,7 +2347,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to load style data
     function loadIconStyle(key, element) {
-        element.innerHTML = localStorage.getItem(key);
+        element.textContent = localStorage.getItem(key);
     }
 
 
@@ -2392,7 +2412,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
-        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
+        deleteButtonContainer.insertAdjacentHTML('beforeend', SHORTCUT_DELETE_BUTTON_HTML);
 
         const deleteButton = deleteButtonContainer.children[0];
         if (deleteInactive) deleteButton.className = "inactive";
@@ -2726,7 +2746,11 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getCustomLogo(url) {
         const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
-        return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
+        if (!html) return null;
+
+        const template = document.createElement("template");
+        template.innerHTML = html.trim();
+        return template.content.firstElementChild;
     }
 
     /* ------ Proxy ------ */
@@ -2897,10 +2921,10 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
             saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
-            iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
+            iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
             saveIconStyle("iconStyle", "");
-            iconStyle.innerHTML = "";
+            iconStyle.textContent = "";
         }
     })
 
