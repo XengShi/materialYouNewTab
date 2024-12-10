@@ -629,6 +629,13 @@ const translations = {
             "evening": "Buona sera!"
         },
 
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Ripristina",
+        "rangColor": "Scegli colore",    // Keep it shorter
+        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
+
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
         "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
