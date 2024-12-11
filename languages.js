@@ -577,6 +577,8 @@ const translations = {
         "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
         "micIconTitle": "Nascondi icona del microfono",
         "micIconInfo": "Se la digitazione vocale non funziona",
+        "hideSearchWith": "Noscondi motori di ricerca",
+        "hideSearchWithInfo": "Scegli tra i motori di ricerca cliccando l'icona",
         "search_suggestions_button": "Suggerimenti di Ricerca",
         "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
         // Proxy
