@@ -1775,7 +1775,7 @@ const translations = {
         "reloadHint": "Actualiser la page après l'application des thèmes",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "Vous souhaitez définir une nouvelle image comme fond d'écran pour la journée?",
+        "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
         "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
         "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
         "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
