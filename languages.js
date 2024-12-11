@@ -1771,7 +1771,7 @@ const translations = {
         "uploadWallpaperText": "Uploader un fond d'ecran",    // Keep it shorter
         "backupText": "Sauvegarder",
         "restoreText": "Restaurer",
-        "rangColor": "Choisir une couleur",    // Keep it shorter
+        "rangColor": "Choisir la couleur",    // Keep it shorter
         "reloadHint": "Actualiser la page après l'application des thèmes",
 
         // Dialog boxes (alerts)
