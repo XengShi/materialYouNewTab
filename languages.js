@@ -335,7 +335,7 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाएँ",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाए जाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
@@ -434,7 +434,7 @@ const translations = {
         "rangColor": "रंग चुनें",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहते हैं?",
+        "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
         "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
         "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
         "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
