@@ -335,7 +335,7 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
@@ -371,13 +371,13 @@ const translations = {
         "saveproxy": "सहेजें",
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
-        "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
+        "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
         "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
         "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
-        "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
+        "WeatherApiSubtext": "यदि मौसम की सुविधा काम नहीं कर रही है",
         "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "सहेजें",
@@ -428,17 +428,17 @@ const translations = {
         "googleAppsHover": "गूगल ऐप्स",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "uploadWallpaperText": "वॉलपेपर सेट करें",
         "backupText": "बैकअप करें",
         "restoreText": "रिस्टोर करें",
         "rangColor": "रंग चुनें",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
-        "confirmRestore": "क्या आप वाकई अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहते हैं?",
+        "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
         "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
-        "clearbackgroundimage": "क्या आप वाकई बैकग्राउंड छवि को हटाना चाहते हैं?",
-        "confirmbackup": "क्या आप वाकई अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
+        "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
+        "confirmbackup": "क्या आप अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
         "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
         "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
         "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
