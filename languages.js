@@ -1772,7 +1772,7 @@ const translations = {
         "backupText": "Sauvegarder",
         "restoreText": "Restaurer",
         "rangColor": "Choisir une couleur",    // Keep it shorter
-        "reloadHint": "Actualiser la page pour appliquez le thème",
+        "reloadHint": "Actualiser la page après l'application des thèmes",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vous souhaitez définir une nouvelle image comme fond d'écran pour la journée?",
