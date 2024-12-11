@@ -115,7 +115,6 @@ const translations = {
         "backupText": "Backup",
         "restoreText": "Restore",
         "rangColor": "Pick color",    // Keep it shorter
-        "reloadHint": "Reload the page after applying themes",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
@@ -433,7 +432,6 @@ const translations = {
         "backupText": "बैकअप करें",
         "restoreText": "रिस्टोर करें",
         "rangColor": "रंग चुनें",
-        "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
@@ -842,7 +840,6 @@ const translations = {
         "backupText": "ব্যাকআপ করুন",
         "restoreText": "পুনরুদ্ধার করুন",
         "rangColor": "রঙ নির্বাচন করুন",
-        "reloadHint": "থিম প্রয়োগ করার পরে পেজ রিফ্রেশ করুন",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
@@ -1053,7 +1050,6 @@ const translations = {
         "backupText": "Экспорт настроек",
         "restoreText": "Восстановить",
         "rangColor": "Выбрать цвет",
-        "reloadHint": "Перезагрузите страницу для применения темы.",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
@@ -1646,7 +1642,6 @@ const translations = {
         "backupText": "बॅकअप करा",
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
-        "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
@@ -1822,13 +1817,6 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
-    }
-
-    //Update hover text for .themingStuff
-    const themingElement = document.querySelector('.themingStuff');
-    if (themingElement) {
-        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
-        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage
