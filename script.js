@@ -898,6 +898,10 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // it is necessary for some elements not to blink when the page is reloaded
+    setTimeout(() => {
+        document.documentElement.classList.add('theme-transition');
+    }, 25); // 
 });
 
 //  -----------Voice Search------------
@@ -1298,7 +1302,7 @@ const applySelectedTheme = (colorValue) => {
                 color: #c2c2c2;
             }
 
-            .dark-theme#menuButton::before{
+            .dark-theme #menuButton::before{
                 background-color: #bfbfbf;
             }
             

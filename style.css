@@ -900,8 +900,12 @@ body {
 	padding: 3px;
 	box-sizing: border-box;
 	background-color: var(--whitishColor-blue);
-	transition: all 0.5s;
+	/* transition: all 0.5s; */
 	border: 2px solid transparent;
+}
+
+.theme-transition .micIcon {
+    transition: all 0.5s;
 }
 
 .micIcon::after {
@@ -955,7 +959,7 @@ body {
 	font-size: 1.1rem;
 	background-color: var(--darkColor-blue);
 	color: white;
-	transition: all 0.3s;
+	/* transition: all 0.3s; */
 }
 
 #enterBtn:hover {
@@ -966,6 +970,10 @@ body {
 
 #enterBtn:active {
 	transform: scale(0.9);
+}
+
+.theme-transition #enterBtn {
+    transition: all 0.3s;
 }
 
 /* ________________End of Searchbar______________________ */
@@ -1046,11 +1054,15 @@ body {
 	outline: none;
 	margin-right: 8px;
 	cursor: pointer;
-	transition: 0.2s;
+	/* transition: 0.2s; */
 }
 
 .search-engine input[type="radio"]:checked {
 	background-color: var(--darkColor-blue);
+}
+
+.theme-transition .search-engine input[type="radio"] {
+    transition: 0.2s;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1511,7 +1523,7 @@ body {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
-	transition: background-color 0.3s ease;;
+	transition: background-color 0.3s ease;
 }
 
 .tilesCont .tiles:hover {
