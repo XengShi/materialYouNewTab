@@ -1687,8 +1687,8 @@ const translations = {
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
-        "timeformattittle": "Format de 12 heures",
-        "timeformatinfo": "Utiliser le format 12 heures",
+        "timeformattittle": "Format 12h",
+        "timeformatinfo": "Utiliser le format 12h",
         "greetingtittle": "Salutation",
         "greetinginfo": "Afficher la salutation sous le texte personnalisé",
         // Misc
@@ -1736,7 +1736,7 @@ const translations = {
         // End of Weather
 
         // New Tab Item
-        "conditionText": "Bonjour, comment allez-vous aujourd'hui?",
+        "conditionText": "Bonjour, comment allez-vous?",
         "enterBtn": "Rechercher",
         "searchPlaceholder": "Saisissez ici...",
         "listenPlaceholder": "Écoute...",
@@ -1772,7 +1772,7 @@ const translations = {
         "backupText": "Sauvegarder",
         "restoreText": "Restaurer",
         "rangColor": "Choisir une couleur",    // Keep it shorter
-        "reloadHint": "Reload the page after applying themes",
+        "reloadHint": "Actualiser la page pour appliquez le thème",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vous souhaitez définir une nouvelle image comme fond d'écran pour la journée?",
@@ -1804,7 +1804,7 @@ const menuWidths = {
     it: '437px',
     idn: '415px',
     tr: '418px',
-    fr: '432px',
+    fr: '490px',
     // Add more languages and widths as needed
 };
 
