@@ -495,6 +495,7 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
+        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
         default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
