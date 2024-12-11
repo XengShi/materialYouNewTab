@@ -1827,7 +1827,7 @@ input:checked + .toggle:before {
 
 /* --------------Theming stuff------------------ */
 .themingStuff{
-	margin-top: 3px;
+	margin-top: 4px;
 	position: relative;
 	width: 100%;
 	height: 50px;
