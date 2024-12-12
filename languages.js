@@ -41,7 +41,7 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
-        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Hide Search Engines",
         "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
@@ -358,7 +358,7 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWith": "सर्च इंजन छिपाएं",
         "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
@@ -424,6 +424,7 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "एडोबी फायरफ्लाई",
+        "metaAI" : "मेटा AI",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
 
@@ -833,6 +834,7 @@ const translations = {
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
         "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+        "metaAI" : "মেটা এআই",
         "github": "গিটহাব",
 
         // Wallpaper and alerts
