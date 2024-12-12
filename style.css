@@ -901,8 +901,12 @@ body {
 	padding: 3px;
 	box-sizing: border-box;
 	background-color: var(--whitishColor-blue);
-	transition: all 0.5s;
+	/* transition: all 0.5s; */
 	border: 2px solid transparent;
+}
+
+.theme-transition .micIcon {
+    transition: all 0.5s;
 }
 
 .micIcon::after {
@@ -956,7 +960,7 @@ body {
 	font-size: 1.1rem;
 	background-color: var(--darkColor-blue);
 	color: white;
-	transition: all 0.3s;
+	/* transition: all 0.3s; */
 }
 
 #enterBtn:hover {
@@ -967,6 +971,10 @@ body {
 
 #enterBtn:active {
 	transform: scale(0.9);
+}
+
+.theme-transition #enterBtn {
+    transition: all 0.3s;
 }
 
 /* ________________End of Searchbar______________________ */
@@ -1047,11 +1055,15 @@ body {
 	outline: none;
 	margin-right: 8px;
 	cursor: pointer;
-	transition: 0.2s;
+	/* transition: 0.2s; */
 }
 
 .search-engine input[type="radio"]:checked {
 	background-color: var(--darkColor-blue);
+}
+
+.theme-transition .search-engine input[type="radio"] {
+    transition: 0.2s;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1298,6 +1310,12 @@ body {
 	text-decoration: none;
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.aiToolsCont .toolsCont a:hover {
+	background-color: var(--bg-color-blue);
+	box-shadow: inset 0 0 0 1px var(--darkColor-blue);
 }
 
 .aiToolsCont .toolsCont .tIcon {
@@ -1512,6 +1530,11 @@ body {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.tilesCont .tiles:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .tilesCont .tiles .icon {
@@ -1648,6 +1671,11 @@ input:checked + .toggle:before {
 	text-decoration: none;
 	color: var(--darkColor-blue);
 	font-size: 1rem;
+	transition: color 0.3s ease;
+}
+
+.bottom a:hover {
+	color: var(--darkerColor-blue);
 }
 
 .bottom button {
@@ -1670,10 +1698,16 @@ input:checked + .toggle:before {
 	font-size: 1rem;
 	border-radius: 100px;
 	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.resetbtn:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .resetbtn:active {
-	background-color: var(--darkerColor-blue);
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
 }
 
 .topBar {
@@ -2044,7 +2078,7 @@ input:checked + .toggle:before {
 	border-radius: 23px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .randomButton {
@@ -2056,7 +2090,7 @@ input:checked + .toggle:before {
 	border-radius: 26px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 	padding: 10px;
 }
 
@@ -2070,7 +2104,7 @@ input:checked + .toggle:before {
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 /* Hover Effects */
@@ -2160,6 +2194,10 @@ input:checked + .toggle:before {
     line-height: 35px;
 	cursor: pointer;
 	border: 2px solid transparent;
+	transition: background-color 0.3s ease;
+}
+.colorPickerLabel:hover{
+    background: var(--bg-color-blue);
 }
 /* <!-- ----End of Color Picker || ColorPicker---- --> */
 
@@ -2272,11 +2310,13 @@ input:checked + .toggle:before {
 	0% {
 		opacity: 1;
 		transform: translateX(0);
+		visibility: hidden;
 	}
 
 	100% {
 		opacity: 0;
 		transform: translateX(-10px);
+		visibility: hidden;
 	}
 }
 
@@ -2377,4 +2417,12 @@ input:checked + .toggle:before {
 	padding: 2px;
 	background-color: var(--darkColor-blue);
 	border-radius: 100%;
+}
+
+.savebtn {
+	transition: background-color 0.3s ease;;
+}
+
+.savebtn:hover {
+	background-color: var(--darkerColor-blue);
 }

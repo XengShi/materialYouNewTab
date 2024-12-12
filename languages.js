@@ -107,6 +107,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
+        "metaAI" : "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -546,7 +547,6 @@ const translations = {
 
 
     // Italian
-    // Machine translated some elements, please verify and delete this comment
     "it": {
         // Menu Items
         "feedback": "Feedback",
@@ -560,8 +560,8 @@ const translations = {
         "shortcutsInfoText": "Scegli quali scorciatoie mostrare",
         "adaptiveIconText": "Forme di Icona Adattiva",
         "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
-        "ai_tools_button": "Strumenti AI",
-        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti AI",
+        "ai_tools_button": "Strumenti IA",
+        "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti IA",
         "googleAppsMenuText": "App Google",
         "googleAppsMenuInfo": "Mostra collegamenti App Google",
         // Digital Clock
@@ -578,6 +578,8 @@ const translations = {
         "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
         "micIconTitle": "Nascondi icona del microfono",
         "micIconInfo": "Se la digitazione vocale non funziona",
+        "hideSearchWith": "Noscondi motori di ricerca",
+        "hideSearchWithInfo": "Scegli tra i motori di ricerca cliccando l'icona",
         "search_suggestions_button": "Suggerimenti di Ricerca",
         "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
         // Proxy
@@ -617,9 +619,9 @@ const translations = {
         "conditionText": "Ciao! Come stai oggi?",
         "enterBtn": "Cerca",
         "searchPlaceholder": "Cerca...",
-        "listenPlaceholder": "In ascolto...",
+        "listenPlaceholder": "Ascoltando...",
         "searchWithHint": "Cerca con",
-        "ai_tools": "Strumenti AI",
+        "ai_tools": "Strumenti IA",
         "userText": "Clicca qui per modificare",
         // End of Body and New Tab Items
 
@@ -629,6 +631,27 @@ const translations = {
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Ripristina",
+        "rangColor": "Scegli colore",    // Keep it shorter
+        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
+        "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
+        "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
+        "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
+        "confirmbackup": "Sei sicuro di voler eseguire il backup delle tue impostazioni?",
+        "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
+        "endlink": "Non ci dovrebbe essere uno / alla fine del link",
+        "onlylinks": "Solo link (che iniziano con http:// o https://) sono consentiti.",
+        "imagedimensions": "Attenzione: Le dimensioni dell'immagine caricata ({width}x{height}) superano i 1920x1080 pixel. \n\nCiò potrebbe influire sulle prestazioni o l'immagine potrebbe non essere caricata correttamente.",
+        "failedbackup": "Backup fallito: ",
+        "restorecompleted": "Ripristino completato con successo!",
+        "restorefailed": "Ripristino fallito: "
     },
 
 
@@ -722,59 +745,64 @@ const translations = {
     "bn": {
         // Menu Items
         "feedback": "মতামত",
-        "resetsettings": "সেটিংস রিসেট করুন",
+        "resetsettings": "সেটিংস পুনরায় সেট করুন",
         "menuCloseText": "বন্ধ করুন",
+
         // Shortcuts
         "shortcutsText": "শর্টকাট",
         "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",
         "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
-        "shortcutsInfoText": "যেসব শর্টকাট প্রদর্শিত হবে তা নির্বাচন করুন",
+        "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
         "editShortcutsList": "সংরক্ষিত শর্টকাট",
-        'editShortcutsListInfo': 'আপনি "+" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করতে পারেন অথবা শর্টকাটের নাম বা URL-এ ক্লিক করে বিদ্যমান শর্টকাট সম্পাদনা করতে পারেন।',
-        "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকার",
-        "adaptiveIconInfoText": "শর্টকাট আইকন ছোট আকারে প্রদর্শন হবে",
-        "ai_tools_button": "AI সরঞ্জাম",
-        "enable_ai_tools": "AI সরঞ্জাম শর্টকাট প্রদর্শন করুন",
+        "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
+        "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
+        "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+        "ai_tools_button": "এআই সরঞ্জাম",
+        "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
         "googleAppsMenuText": "গুগল অ্যাপস",
         "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
+
         // Digital Clock
         "digitalclocktittle": "ডিজিটাল ঘড়ি",
         "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
-        "timeformattittle": "১২ ঘণ্টার ফরম্যাট",
-        "timeformatinfo": "১২ ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
+        "timeformattittle": "১২-ঘণ্টা ফরম্যাট",
+        "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
+
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
         "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
         "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
-        "fahrenheitCelsiusText": "পরিবর্তনের জন্য পৃষ্ঠাটি রিফ্রেশ করুন",
+        "fahrenheitCelsiusText": "পরিবর্তন প্রয়োগ করতে পেজ রিফ্রেশ করুন",
         "micIconTitle": "মাইক্রোফোন আইকন লুকান",
-        "micIconInfo": "যদি ভয়েস টাইপিং কাজ করছে না",
-        "hideSearchWith": "সার্চ ইঞ্জিন সিলেক্টর লুকান",
-        "hideSearchWithInfo": "আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
-        "search_suggestions_button": "অনুসন্ধান পরামর্শ",
-        "search_suggestions_text": "অনুসন্ধান পরামর্শ সক্ষম করুন",
+        "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
+        "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
+        "hideSearchWithInfo": "সার্চ ইঞ্জিনের আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
+        "search_suggestions_button": "সার্চ সাজেশন",
+        "search_suggestions_text": "সার্চ সাজেশন সক্রিয় করুন",
+
         // Proxy
         "useproxytitletext": "প্রক্সি বাইপাস",
-        "useproxyText": "যদি অনুসন্ধান পরামর্শ কাজ না করে",
+        "useproxyText": "যদি সার্চ সাজেশন কাজ না করে",
         "ProxyText": "CORS বাইপাস প্রক্সি",
-        "ProxySubtext": "আপনার নিজের CORS বাইপাস প্রক্সি যোগ করুন",
-        "HostproxyButton": "নিজের প্রক্সি হোস্ট করুন",
+        "ProxySubtext": "নিজস্ব CORS বাইপাস প্রক্সি যোগ করুন",
+        "HostproxyButton": "নিজস্ব প্রক্সি হোস্ট করুন",
         "saveproxy": "সংরক্ষণ করুন",
+
         // Location
         "UserLocText": "আপনার অবস্থান লিখুন",
-        "UserLocSubtext": "যদি আবহাওয়ার অবস্থান সঠিক না হয়",
+        "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
         "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
         "InputOptionsButton": "ইনপুট অপশন",
         "saveLoc": "সংরক্ষণ করুন",
+
         // Weather
-        "WeatherApiText": "আপনার WeatherAPI টীকা লিখুন",
-        "WeatherApiSubtext": "যদি আবহাওয়া কার্যকারিতা কাজ না করে",
-        "userAPI": "আপনার WeatherAPI টীকা",
+        "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
+        "WeatherApiSubtext": "যদি আবহাওয়ার ফাংশন কাজ না করে",
+        "userAPI": "আপনার WeatherAPI কী",
         "LearnMoreButton": "আরও জানুন",
         "saveAPI": "সংরক্ষণ করুন",
-        // End of Menu Items
 
         // Body Items
         // Calendar
@@ -782,23 +810,21 @@ const translations = {
         //"days": ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'],   // Full
         "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
         // "months": ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
-        // End of Calendar
 
         // Weather
         "humidityLevel": "আর্দ্রতা",
-        "feelsLike": "অনুভব হয়",
+        "feelsLike": "অনুভূতি হয়",
         "location": "পৃথিবী",
-        // End of Weather
 
         // New Tab Item
         "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
-        "enterBtn": "অনুসন্ধান করুন",
-        "searchPlaceholder": "আপনার প্রশ্ন...",
+        "enterBtn": "সার্চ করুন",
+        "searchPlaceholder": "এখানে টাইপ করুন...",
         "listenPlaceholder": "শোনা হচ্ছে...",
-        "searchWithHint": "অনুসন্ধানের মাধ্যম",
-        "ai_tools": "AI সরঞ্জাম",
+        "searchWithHint": "সার্চের মাধ্যম",
+        "ai_tools": "এআই টুলস",
         "userText": "এখানে আপনার টেক্সট লিখুন",
-        // End of Body and New Tab Items
+        "googleAppsHover": "গুগল অ্যাপস",
 
         // Greeting
         greeting: {
@@ -813,31 +839,30 @@ const translations = {
         "bingEngine": "বিং",
         "braveEngine": "ব্রেভ",
         "youtubeEngine": "ইউটিউব",
-        "chatGPT": "চ্যাটGPT",
+        "chatGPT": "চ্যাটজিপিটি",
         "gemini": "জেমিনি",
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
-        "firefly": "এডোবি ফায়ারফ্লাই",
+        "firefly": "অ্যাডোবি ফায়ারফ্লাই",
         "github": "গিটহাব",
-        "googleAppsHover": "গুগল অ্যাপস",
 
         // Wallpaper and alerts
         "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
         "backupText": "ব্যাকআপ করুন",
         "restoreText": "পুনরুদ্ধার করুন",
-        "rangColor": "রঙ বাছাই",
-        "reloadHint": "থিম প্রয়োগ করার পর পৃষ্ঠাটি রিফ্রেশ করুন",
+        "rangColor": "রঙ নির্বাচন করুন",
+        "reloadHint": "থিম প্রয়োগ করার পরে পেজ রিফ্রেশ করুন",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন চিত্র ওয়ালপেপার হিসেবে সেট করতে চান?",
-        "confirmRestore": "আপনি কি সত্যিই আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফিরিয়ে নেওয়া যাবে না।",
-        "Nobackgroundset": "কোনো ব্যাকগ্রাউন্ড চিত্র বর্তমানে সেট করা হয়নি।",
-        "clearbackgroundimage": "আপনি কি সত্যিই ব্যাকগ্রাউন্ড চিত্র মুছতে চান?",
-        "confirmbackup": "আপনি কি সত্যিই আপনার সেটিংসের ব্যাকআপ নিতে চান?",
-        "ProxyDisclaimer": "সব প্রক্সি ফিচার ডিফল্টরূপে বন্ধ থাকে।\n\nযদি আপনি সার্চ সাজেস্টশন এবং CORS বাইপাস প্রক্সি সক্ষম করেন, তবে গোপনীয়তা বাড়ানোর জন্য নিজে একটি প্রক্সি হোস্ট করার জন্য সুপারিশ করা হয়।\n\nডিফল্টরূপে প্রক্সি https://mynt-proxy.rhythmcorehq.com তে সেট করা হবে, যার মানে হল আপনার সমস্ত ডেটা এই পরিষেবার মাধ্যমে যাবে, যা গোপনীয়তা সংশ্লিষ্ট উদ্বেগ তৈরি করতে পারে।",
-        "endlink": "লিঙ্কের শেষে / থাকা উচিত নয়।",
-        "onlylinks": "মাত্র লিঙ্ক (http:// অথবা https:// দিয়ে শুরু হওয়া) অনুমোদিত।",
-        "imagedimensions": "সতর্কতা: আপলোড করা চিত্রের আকার ({width}x{height}) 1920x1080 পিক্সেলের বেশি।\n\nএটি পারফরম্যান্সে প্রভাব ফেলতে পারে বা চিত্রটি সঠিকভাবে লোড না-ও হতে পারে।",
+        "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
+        "confirmRestore": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।",
+        "Nobackgroundset": "বর্তমানে কোন ব্যাকগ্রাউন্ড ইমেজ সেট করা হয়নি।",
+        "clearbackgroundimage": "আপনি কি ব্যাকগ্রাউন্ড ইমেজ মুছে ফেলতে চান?",
+        "confirmbackup": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস ব্যাকআপ করতে চান?",
+        "ProxyDisclaimer": "সমস্ত প্রক্সি ফিচার ডিফল্টভাবে বন্ধ থাকে।\n\nআপনি যদি সার্চ সাজেশন এবং CORS বাইপাস প্রক্সি সক্রিয় করেন, তাহলে উন্নত গোপনীয়তার জন্য আপনার নিজস্ব প্রক্সি হোস্ট করার পরামর্শ দেওয়া হয়।\n\nডিফল্টভাবে প্রক্সি https://mynt-proxy.rhythmcorehq.com এ সেট করা হবে, যার মানে আপনার সমস্ত ডেটা এই পরিষেবার মাধ্যমে যাবে, যা গোপনীয়তার ঝুঁকি তৈরি করতে পারে।",
+        "endlink": "লিঙ্কের শেষে / থাকা উচিত নয়",
+        "onlylinks": "শুধুমাত্র লিঙ্ক (http:// বা https:// দিয়ে শুরু) অনুমোদিত।",
+        "imagedimensions": "সতর্কতা: আপলোড করা ছবির মাত্রা ({width}x{height}) ১৯২০x১০৮০ পিক্সেলের বেশি। \n\nএটি কর্মক্ষমতায় প্রভাব ফেলতে পারে বা ছবি সঠিকভাবে লোড হতে ব্যর্থ হতে পারে।",
         "failedbackup": "ব্যাকআপ ব্যর্থ: ",
         "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
         "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
@@ -1514,7 +1539,7 @@ const translations = {
             "afternoon": "Selamat Sore!",
             "evening": "Selamat Malam!"
         },
-        
+
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
@@ -1622,6 +1647,7 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "अडोबी फायरफ्लाय",
+        "metaAI" : "मेटा AI",
         "github": "गिटहब",
 
         // Wallpaper and alerts
@@ -1630,7 +1656,7 @@ const translations = {
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
         "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
-        
+
         //Dialog boxes (alerts)
         "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
         "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
@@ -1646,6 +1672,131 @@ const translations = {
         "restorefailed": "पुनर्संचयित अयशस्वी: "
 
     },
+
+
+    // French
+    "fr": {
+        // Menu Items
+        "feedback": "Feedback",
+        "resetsettings": "Réinitialiser les paramètres",
+        "menuCloseText": "Fermer",
+        // Shortcuts
+        "shortcutsText": "Raccourcis",
+        "enableShortcutsText": "Afficher les raccourcis sauvegardés",
+        "editShortcutsText": "Modifier les raccourcis",
+        "shortcutsInfoText": "Choisir les raccourcis à afficher",
+        "editShortcutsList": "Raccourcis Sauvegardés",
+        'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
+        "adaptiveIconText": "Formes d'Icônes Adaptatives",
+        "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
+        "ai_tools_button": "Outils IA",
+        "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
+        "googleAppsMenuText": "Apps Google",
+        "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        // Digital Clock
+        "digitalclocktittle": "Horloge Numérique",
+        "digitalclockinfo": "Passer à l'horloge numérique",
+        "timeformattittle": "Format 12h",
+        "timeformatinfo": "Utiliser le format 12h",
+        "greetingtittle": "Salutation",
+        "greetinginfo": "Afficher la salutation sous le texte personnalisé",
+        // Misc
+        "userTextTitle": "Texte personnalisé",
+        "userTextInfo": "Afficher le texte personnalisé sous l'horloge",
+        "fahrenheitCelsiusCheckbox": "Passer à Fahrenheit",
+        "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
+        "micIconTitle": "Masquer l'Icône du Microphone",
+        "micIconInfo": "Si la saisie vocale ne fonctionne pas",
+        "hideSearchWith": "Masquer les Moteurs de Recherche",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
+        "search_suggestions_button": "Suggestions de Recherche",
+        "search_suggestions_text": "Activer les suggestions de recherche",
+        // Proxy
+        "useproxytitletext": "Contournement du Proxy",
+        "useproxyText": "Si les suggestions de recherche ne fonctionnent pas",
+        "ProxyText": "Proxy de contournement CORS",
+        "ProxySubtext": "Ajouter votre propre proxy de contournement CORS",
+        "HostproxyButton": "Hébergez votre propre proxy",
+        "saveproxy": "Enregistrer",
+        // Location
+        "UserLocText": "Saisissez votre localisation",
+        "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
+        "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
+        "InputOptionsButton": "Options de saisie",
+        "saveLoc": "Enregistrer",
+        // Weather
+        "WeatherApiText": "Entrez votre clé WeatherAPI",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiSubtext": "Si la fonctionnalité météo ne fonctionne pas",
+        "userAPI": "Your weatherAPI key",
+        "LearnMoreButton": "En savoir plus",
+        "saveAPI": "Enregistrer",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+        "months": ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Humidité",
+        "feelsLike": "Ressenti",
+        "location": "Terre",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Bonjour, comment allez-vous?",
+        "enterBtn": "Rechercher",
+        "searchPlaceholder": "Saisissez ici...",
+        "listenPlaceholder": "Écoute...",
+        "searchWithHint": "Rechercher avec",
+        "ai_tools": "Outils IA",
+        "userText": "Cliquez ici pour modifier",
+        "googleAppsHover": "Applications Google",    // Keep this untranslated if string width is much longer
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "Bonjour!",
+            "afternoon": "Bonsoir!",
+            "evening": "Bonne nuit!"
+        },
+
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck", // DuckDuckGo
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "metaAI" : "Meta AI",
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Uploader un fond d'ecran",    // Keep it shorter
+        "backupText": "Sauvegarder",
+        "restoreText": "Restaurer",
+        "rangColor": "Choisir la couleur",    // Keep it shorter
+        "reloadHint": "Actualiser la page après l'application des thèmes",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
+        "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
+        "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
+        "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
+        "confirmbackup": "Êtes-vous sûr de vouloir sauvegarder vos paramètres?",
+        "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
+        "endlink": "Il ne doit pas y avoir de / à la fin du lien.",
+        "onlylinks": "Seuls les liens (commençant par http:// ou https://) sont autorisés.",
+        "imagedimensions": "Attention: Les dimensions de l'image téléchargée ({largeur}x{hauteur}) dépassent 1920x1080 pixels.\n\nCela peut avoir un impact sur les performances ou l'image peut ne pas se charger correctement.",
+        "failedbackup": "Échec de la sauvegarde: ",
+        "restorecompleted": "Restauration terminée avec succès!",
+        "restorefailed": "Échec de la restauration: ",
+    }
 };
 
 // Define the width of the menu container for each language
@@ -1662,6 +1813,7 @@ const menuWidths = {
     it: '437px',
     idn: '415px',
     tr: '418px',
+    fr: '490px',
     // Add more languages and widths as needed
 };
 
@@ -1675,7 +1827,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr']; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
@@ -1761,6 +1913,7 @@ function applyLanguage(lang) {
         { id: 'copilot', key: 'copilot' },
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
+        { id: 'metaAI', key: 'metaAI'},
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
