@@ -632,11 +632,10 @@ const translations = {
         },
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "uploadWallpaperText": "Carica immagine",
         "backupText": "Backup",
         "restoreText": "Ripristina",
-        "rangColor": "Scegli colore",    // Keep it shorter
-        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
+        "rangColor": "Scegli colore",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
@@ -1704,7 +1703,7 @@ const translations = {
         "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
         "micIconTitle": "Masquer l'Icône du Microphone",
         "micIconInfo": "Si la saisie vocale ne fonctionne pas",
-        "hideSearchWith": "Masquer les Moteurs de Recherche",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Masquer les Moteurs de Recherche",
         "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
         "search_suggestions_button": "Suggestions de Recherche",
         "search_suggestions_text": "Activer les suggestions de recherche",
@@ -1722,7 +1721,7 @@ const translations = {
         "InputOptionsButton": "Options de saisie",
         "saveLoc": "Enregistrer",
         // Weather
-        "WeatherApiText": "Entrez votre clé WeatherAPI",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiText": "Entrez votre clé WeatherAPI",
         "WeatherApiSubtext": "Si la fonctionnalité météo ne fonctionne pas",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "En savoir plus",
@@ -1749,7 +1748,7 @@ const translations = {
         "searchWithHint": "Rechercher avec",
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
-        "googleAppsHover": "Applications Google",    // Keep this untranslated if string width is much longer
+        "googleAppsHover": "Apps Google",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1774,11 +1773,10 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Uploader un fond d'ecran",    // Keep it shorter
+        "uploadWallpaperText": "Uploader un fond d'ecran",
         "backupText": "Sauvegarder",
         "restoreText": "Restaurer",
-        "rangColor": "Choisir la couleur",    // Keep it shorter
-        "reloadHint": "Actualiser la page après l'application des thèmes",
+        "rangColor": "Choisir la couleur",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
@@ -1810,7 +1808,7 @@ const menuWidths = {
     it: '437px',
     idn: '415px',
     tr: '418px',
-    fr: '490px',
+    fr: '475px',
     // Add more languages and widths as needed
 };
 
