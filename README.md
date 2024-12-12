@@ -24,7 +24,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
   <a href="#-currently-supported-languages-16">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
@@ -45,15 +44,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Personalized Greeting**: Add a custom message or your name, so you're greeted each time you open a new tab.
 - **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
 - **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
-
-## 🛠️ Additional Features
-
-- **Responsive and Modern Design**:
-  - The extension is built with a clean, modern interface inspired by Material You, offering a consistent aesthetic that’s pleasing to the eye.
-  - Elements are intuitively placed, ensuring ease of use and accessibility for users of all ages.
-
-- **Seamless Integration with Browsers**:
-  - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
 
 ## 🌐 Currently Supported Languages (16)
 
