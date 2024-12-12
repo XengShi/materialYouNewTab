@@ -41,7 +41,7 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
-        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Hide Search Engines",
         "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
@@ -115,7 +115,6 @@ const translations = {
         "backupText": "Backup",
         "restoreText": "Restore",
         "rangColor": "Pick color",    // Keep it shorter
-        "reloadHint": "Reload the page after applying themes",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
@@ -336,7 +335,7 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाए जाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
@@ -359,7 +358,7 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWith": "सर्च इंजन छिपाएं",
         "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
@@ -372,13 +371,13 @@ const translations = {
         "saveproxy": "सहेजें",
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
-        "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
+        "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
         "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
         "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
-        "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
+        "WeatherApiSubtext": "यदि मौसम की सुविधा काम नहीं कर रही है",
         "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "सहेजें",
@@ -425,22 +424,22 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "एडोबी फायरफ्लाई",
+        "metaAI" : "मेटा AI",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "uploadWallpaperText": "वॉलपेपर सेट करें",
         "backupText": "बैकअप करें",
         "restoreText": "रिस्टोर करें",
         "rangColor": "रंग चुनें",
-        "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
-        "confirmRestore": "क्या आप वाकई अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
+        "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
         "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
-        "clearbackgroundimage": "क्या आप वाकई बैकग्राउंड छवि को हटाना चाहते हैं?",
-        "confirmbackup": "क्या आप वाकई अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
+        "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
+        "confirmbackup": "क्या आप अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
         "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
         "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
         "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
@@ -835,6 +834,7 @@ const translations = {
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
         "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+        "metaAI" : "মেটা এআই",
         "github": "গিটহাব",
 
         // Wallpaper and alerts
@@ -842,7 +842,6 @@ const translations = {
         "backupText": "ব্যাকআপ করুন",
         "restoreText": "পুনরুদ্ধার করুন",
         "rangColor": "রঙ নির্বাচন করুন",
-        "reloadHint": "থিম প্রয়োগ করার পরে পেজ রিফ্রেশ করুন",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
@@ -1053,7 +1052,6 @@ const translations = {
         "backupText": "Экспорт настроек",
         "restoreText": "Восстановить",
         "rangColor": "Выбрать цвет",
-        "reloadHint": "Перезагрузите страницу для применения темы.",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
@@ -1646,7 +1644,6 @@ const translations = {
         "backupText": "बॅकअप करा",
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
-        "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
@@ -1822,13 +1819,6 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
-    }
-
-    //Update hover text for .themingStuff
-    const themingElement = document.querySelector('.themingStuff');
-    if (themingElement) {
-        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
-        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage
