@@ -163,7 +163,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
 
 2. **Clock Widget**:
-   - Two clock options are available: a modern **dial clock** (default) and a **digital clock**.
+   - Two clock options are available: a modern **analog clock** (default) and a **digital clock**.
    - Users can switch between these clock types in the **menu settings**, providing flexibility to choose their preferred style for displaying the current time.
 
 3. **Weather Information**:
