@@ -901,7 +901,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
-    }, 25); // 
+    }, 25);
 });
 
 //  -----------Voice Search------------
@@ -1194,7 +1194,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--darkerColor-blue);
             }
 
-            .dark-theme #searchQ{
+            .dark-theme #searchQ {
             color: #fff;
             }
 
@@ -1214,27 +1214,27 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #212121;
             }
 
-            .dark-theme #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon {
                 fill: #fff !important;
             }
 
-            .dark-theme .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine {
                 background-color: #aaaaaa;
             }
 
-            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
                 fill: #bbbbbb !important;
             }
 
-            .dark-theme .divider{
+            .dark-theme .divider {
                 background-color: #cdcdcd;
             }
     
-            .dark-theme .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor {
                 fill: #3c3c3c !important;
             }
 
-            .dark-theme #darkLightTint{
+            .dark-theme #darkLightTint {
                 fill: #bfbfbf;
             }
 
@@ -1258,16 +1258,16 @@ const applySelectedTheme = (colorValue) => {
             }
 
      	    .dark-theme .uploadButton,
-            .dark-theme .randomButton{
+            .dark-theme .randomButton {
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
 
-            .dark-theme .clearButton:hover{
+            .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
             }
 
-            .dark-theme .clearButton:active{
+            .dark-theme .clearButton:active {
                 color: #0e0e0e;
             }
 
@@ -1275,18 +1275,20 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme .backupRestoreBtn:hover {
+            .dark-theme .backupRestoreBtn:hover,
+            .dark-theme .uploadButton:hover,
+            .dark-theme .randomButton:hover {
                 background-color: var(--bg-color-dark);
             }
             
-            .uploadButton:active,
-            .randomButton:active,
-            .backupRestoreBtn:active,
+            .dark-theme .uploadButton:active,
+            .dark-theme .randomButton:active,
+            .dark-theme .backupRestoreBtn:active,
             .dark-theme. resetbtn:active {
                 background-color: #0e0e0e;
             }
 
-     	    .dark-theme .micIcon{
+     	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
 
@@ -1298,15 +1300,15 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bfbfbf;
             }
 
-            .dark-theme .menuicon{
+            .dark-theme .menuicon {
                 color: #c2c2c2;
             }
 
-            .dark-theme #menuButton::before{
+            .dark-theme #menuButton::before {
                 background-color: #bfbfbf;
             }
             
-            .dark-theme #menuButton::after{
+            .dark-theme #menuButton::after {
                 border: 4px solid #858585;
             }
 
@@ -1314,24 +1316,24 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme #menuCloseButton .icon{
+            .dark-theme #menuCloseButton .icon {
                 background-color: #cdcdcd;
             }
 
-            .dark-theme #closeBtnX{
+            .dark-theme #closeBtnX {
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            .dark-theme body{
+            .dark-theme body {
                 background-color: #000000;
             }
             
-            .dark-theme #HangNoAlive{
+            .dark-theme #HangNoAlive {
                 fill: #c2c2c2 !important;
             }
 
-            .dark-theme .tempUnit{
+            .dark-theme .tempUnit {
                 color: #dadada;
             }
 
@@ -1340,7 +1342,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #b1b1b1;
             }
 
-            .resultItem.active {
+            .dark-theme .resultItem.active {
                 background-color: var(--darkColor-dark);;
             }
         `;
