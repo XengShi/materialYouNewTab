@@ -2407,9 +2407,13 @@ input:checked + .toggle:before {
 }
 
 .savebtn {
-	transition: background-color 0.3s ease;;
+	transition: background-color 0.3s ease;
 }
 
 .savebtn:hover {
 	background-color: var(--darkerColor-blue);
+}
+
+.savebtn:active {
+	transform: scale(0.96);
 }
