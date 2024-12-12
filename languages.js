@@ -1682,8 +1682,8 @@ const translations = {
         "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
         "ai_tools_button": "Outils IA",
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
-        "googleAppsMenuText": "Applications Google",
-        "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        "googleAppsMenuText": "Apps Google",
+        "googleAppsMenuInfo": "Afficher les raccourcis pour les Apps Google",
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
