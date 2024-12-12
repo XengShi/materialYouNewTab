@@ -1309,6 +1309,12 @@ body {
 	text-decoration: none;
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.aiToolsCont .toolsCont a:hover {
+	background-color: var(--bg-color-blue);
+	box-shadow: inset 0 0 0 1px var(--darkColor-blue);
 }
 
 .aiToolsCont .toolsCont .tIcon {
@@ -2069,7 +2075,7 @@ input:checked + .toggle:before {
 	border-radius: 23px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .randomButton {
@@ -2081,7 +2087,7 @@ input:checked + .toggle:before {
 	border-radius: 26px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 	padding: 10px;
 }
 
@@ -2095,7 +2101,7 @@ input:checked + .toggle:before {
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 /* Hover Effects */
