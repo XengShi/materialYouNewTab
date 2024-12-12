@@ -578,6 +578,8 @@ const translations = {
         "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
         "micIconTitle": "Nascondi icona del microfono",
         "micIconInfo": "Se la digitazione vocale non funziona",
+        "hideSearchWith": "Noscondi motori di ricerca",
+        "hideSearchWithInfo": "Scegli tra i motori di ricerca cliccando l'icona",
         "search_suggestions_button": "Suggerimenti di Ricerca",
         "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
         // Proxy
@@ -629,6 +631,13 @@ const translations = {
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Ripristina",
+        "rangColor": "Scegli colore",    // Keep it shorter
+        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
