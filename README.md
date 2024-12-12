@@ -173,33 +173,56 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
 
 2. **Clock Widget**:
-   - A modern, animated clock is displayed prominently on the left side, keeping you aware of the current time without needing to check elsewhere.
+   - Two clock options are available: a modern **dial clock** (default) and a **digital clock**.
+   - Users can switch between these clock types in the **menu settings**, providing flexibility to choose their preferred style for displaying the current time.
 
 3. **Weather Information**:
    - Displays real-time weather information for your location, including temperature, weather condition (like "Sunny"), humidity, and "Feels like" temperature.
-   - Users can set their location (like "Dhaka" in the screenshot) to get accurate weather data. A visual icon represents the weather, and temperature is displayed in degrees Celsius.
+   - Users can set their location (like "Dhaka") to get accurate weather data. A visual icon represents the weather, and temperature is displayed in degrees Celsius by default. However, it can be switched to Fahrenheit in the menu settings.
 
 4. **Search Bar**:
    - The search bar allows you to enter queries directly from the new tab page. This makes it quick and easy to start searching without switching to a different page or window.
    - Below the search bar, there are search engine options that allow you to choose your preferred search engine: Google, DuckDuckGo, Bing, Brave, or YouTube.
+   - A **voice typing feature** is integrated, enabling hands-free searches for added convenience.
 
-5. **Quick Access Social Media Icons**:
+5. **Shortcuts**:
    - At the bottom, there are quick-access icons for popular platforms, including YouTube, Email, Telegram, WhatsApp, Twitter, and more.
    - Clicking on any of these icons will redirect you to the respective platform, allowing for easy access to your frequently used services.
+   - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-   - On the bottom left, an "AI Tools" button is available, which could provide access to AI-powered tools directly from the New Tab page. This feature can be helpful for quick, AI-driven assistance or tasks.
+   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
+
+7. **Wallpaper Management**:
+   - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
+   - A **random image icon** lets users receive a new wallpaper daily. The wallpaper updates automatically every 24 hours or at the end of each day.
+
+8. **Backup System**:
+   - The menu settings include a backup system that allows users to save and restore their customized settings.
+   - This feature is detailed with screenshots, showing how users can manage backups effectively.
+
+9. **Themes and Personalization**:
+   - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
+   - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking. Details and screenshots of this feature are included in the documentation.
+
+10. **Google Apps Integration**:
+    - The extension includes a dedicated section for quick access to Google apps such as Drive, Docs, Sheets, Gmail, and more.
+    - This ensures seamless productivity for users who rely on Google services.
+
+11. **Language Selector**:
+    - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
+    - This feature supports multilingual customization, enhancing accessibility for users worldwide.
 
 ## 🤝 Contributing
 
 Contributions are welcome! If you’d like to contribute:
 
-0. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m 'Add Your Feature'`.
-4. Push to the branch: `git push origin feature/YourFeature`.
-5. Open a pull request.
+1. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
+2. Fork the repository.
+3. Create a feature branch: `git checkout -b feature/YourFeature`.
+4. Commit your changes: `git commit -m 'Add Your Feature'`.
+5. Push to the branch: `git push origin feature/YourFeature`.
+6. Open a pull request.
 
 ## ❓ Issues and Support
 
@@ -215,4 +238,3 @@ Copyright (C) 2023-2024 XengShi
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
 [GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
-
