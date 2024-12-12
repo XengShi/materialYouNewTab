@@ -453,7 +453,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.icon-container {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
@@ -1486,7 +1486,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.menuCont .optCont {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 		/* Handle color and track color */
 	}
@@ -1874,7 +1874,7 @@ input:checked + .toggle:before {
 
 	@-moz-document url-prefix() {
 		/* Scrollbar styles for Firefox */
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
