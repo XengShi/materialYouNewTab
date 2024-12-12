@@ -203,7 +203,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 9. **Themes and Personalization**:
    - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
-   - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking. Details and screenshots of this feature are included in the documentation.
+   - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking.
 
 10. **Google Apps Integration**:
     - The extension includes a dedicated section for quick access to Google apps such as Drive, Docs, Sheets, Gmail, and more.
