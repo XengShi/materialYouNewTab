@@ -1881,14 +1881,6 @@ input:checked + .toggle:before {
 }
 
 .languageSection {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	gap: var(--gap);
-	margin-top: 30px;
-}
-.languageSection {
 	height: 50px;
 	display: flex;
 	justify-content: space-around;
@@ -1916,11 +1908,7 @@ input:checked + .toggle:before {
 
 .languageButton.active {
 	border: 2px solid var(--darkColor-blue);
-	@-moz-document url-prefix() {
-		/* Scrollbar styles for Firefox */
-		scrollbar-width: auto;
-		scrollbar-color: var(--darkColor-blue) transparent;
-	}
+	outline: none;
 }
 
 .languageButton .selectedLanguage {
@@ -1934,9 +1922,9 @@ input:checked + .toggle:before {
 	border-radius: 20px; /* Rounded corners */
 	background-color: var(--whitishColor-blue);
 	position: absolute; /* Position dropdown absolutely */
-	bottom: -200px; /* Adjust this value based on the height of the dropdown */
-	width: 240px; /* Match width of button */
-	max-height: 200px; /* Set max height for scrollbar */
+	bottom: -190px; /* Adjust this value based on the height of the dropdown */
+	width: 250px; /* Match width of button */
+	max-height: 190px; /* Set max height for scrollbar */
 	font-size: 12px;
 	overflow-y: auto; /* Enable vertical scrollbar */
 	overflow-x: hidden; /* Hide horizontal scrollbar */
@@ -1974,27 +1962,28 @@ input:checked + .toggle:before {
 	display: flex;
 }
 
-/* Customize scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+/* Customize scrollbar to appear on the border */
+/* For Chrome, Edge, Safari */
 .languageDropdown::-webkit-scrollbar {
 	width: 6px;
 }
 
 .languageDropdown::-webkit-scrollbar-track {
 	background-color: transparent;
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Add shadow */
 }
 
 .languageDropdown::-webkit-scrollbar-thumb,
 .languageDropdown::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkColor-blue); /* Customize the color as needed */
+	background-color: var(--darkColor-blue);
 	border-radius: 3px;
-	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); /* Add shadow */
 }
 
-/* Customize scrollbar for Firefox */
-.languageDropdown {
-	scrollbar-width: thin; /* Thin scrollbar */
-	scrollbar-color: var(--darkColor-blue) transparent; /* Thumb color and track color */
+/* For Firefox */
+@-moz-document url-prefix() {
+	.languageDropdown {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 .colorsContainer {

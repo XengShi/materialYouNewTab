@@ -1194,10 +1194,6 @@ const applySelectedTheme = (colorValue) => {
                 scrollbar-color: var(--darkerColor-blue) transparent;
             }
 
-            .dark-theme .languageButton .arrow {
-                color: var(--textColorDark-blue);
-            }
-
             .dark-theme .languageDropdown {
                 background-color: #212121;
             }
