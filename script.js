@@ -2370,16 +2370,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Function to save style data
-    function saveIconStyle(key, CSS) {
-        localStorage.setItem(key, CSS);
-    }
-
-    // Function to load style data
-    function loadIconStyle(key, element) {
-        element.textContent = localStorage.getItem(key);
-    }
-
 
     /* ------ Loading shortcuts ------ */
 
@@ -2947,16 +2937,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Load checkbox state
+    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+    // Apply CSS based on initial state
+    document.head.appendChild(iconStyle);
+    iconStyle.textContent = adaptiveIconToggle.checked ? ADAPTIVE_ICON_CSS : "";
+
+    // Add event listener for checkbox
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
-            saveIconStyle("iconStyle", "");
             iconStyle.textContent = "";
         }
-    })
+    });
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -3052,8 +3047,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-    loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
