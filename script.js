@@ -1191,7 +1191,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageIcon,
             .dark-theme .languageButton {
                 background-color: #212121;
-                scrollbar-color: var(--darkerColor-blue) transparent;
             }
 
             .dark-theme .languageDropdown {
@@ -1200,10 +1199,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageDropdown::-webkit-scrollbar-thumb,
             .dark-theme .languageDropdown::-webkit-scrollbar-thumb:hover {
                 background-color: var(--darkerColor-blue);
-            }
-
-            .dark-theme .languageDropdown {
-                scrollbar-color: var(--accentLightTint-blue) transparent;
             }
 
             .dark-theme .bottom a {
