@@ -122,11 +122,11 @@ Below are screenshots of the process to guide you through each step visually.
 #### ![Firefox](https://img.icons8.com/color/20/000000/firefox--v1.png) Firefox
 
 1. **Install from Mozilla Extensions Store**:
+
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
   <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-  
    **Or** follow the manual steps below:
 
 2. **Manual Installation**:
@@ -134,6 +134,7 @@ Below are screenshots of the process to guide you through each step visually.
    - **Prepare the Manifest**:
      - Delete the existing `manifest.json` file.
      - Rename `manifest(firefox).json` to `manifest.json`.
+
    - **Load Temporary Add-on**:
      - Go to `about:debugging#/runtime/this-firefox`, select **"This Firefox"**, then click **Load Temporary Add-on**.
      - Browse and select the updated `manifest.json`.
@@ -143,8 +144,10 @@ Below are screenshots of the process to guide you through each step visually.
 #### ![Safari](https://img.icons8.com/color/20/000000/safari--v1.png) Safari
 
 1. Clone the repository or download and extract the ZIP file.
+
 2. **Enable Developer Mode**:
    - Open **Safari**, go to **Preferences > Advanced** and enable **Show Develop menu in the menu bar**.
+
 3. **Install Extension**:
    - Go to **Develop > Show Extension Builder**, click the **"+"** button, and select your extension folder.
    - Click **Install**.
