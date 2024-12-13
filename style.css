@@ -119,7 +119,6 @@
 	--whitishColor-pink: #ffffff; */
 
 
-
 	--bg-color-grey: #ffccbf;
 	--accentLightTint-grey: #fdf1ef;
 	--darkerColor-grey: #f67455;
@@ -147,56 +146,6 @@
 	--shortcut-bar-gap-and-padding: 10px;
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
-}
-
-.resultBox {
-	max-height: 222px;
-	overflow-y: auto;
-
-	position: absolute;
-	bottom: -100px;
-	left: 0;
-	width: 100%;
-	border-radius: 25px;
-
-	padding: 5px 10px;
-	scrollbar-width: none;
-	/* For Firefox */
-
-	/* Initially hidden */
-	opacity: 0;
-	z-index: -1000;
-	transform: translateY(-70px);
-	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
-	pointer-events: none;
-}
-
-.resultBox::-webkit-scrollbar {
-	display: none;
-	/* For Chrome, Safari, and Edge */
-}
-
-/* Visible state: when you want the result box to appear */
-.resultBox.show {
-	opacity: 1;
-	visibility: visible;
-	transform: translateY(0);
-	z-index: 1000;
-	pointer-events: all;
-}
-
-.resultItem {
-	padding: 8px;
-	cursor: pointer;
-	font-size: 1.1rem;
-	color: var(--textColorDark-blue);
-}
-
-.resultItem.active,
-.resultItem:hover {
-	background-color: var(--darkColor-blue);
-	border-radius: 15px;
-	color: #fff;
 }
 
 /* Theme */
@@ -252,6 +201,58 @@ body {
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
+
+/* Search suggestions box */
+.resultBox {
+	max-height: 222px;
+	overflow-y: auto;
+
+	position: absolute;
+	bottom: -100px;
+	left: 0;
+	width: 100%;
+	border-radius: 25px;
+
+	padding: 5px 10px;
+	scrollbar-width: none;
+	/* For Firefox */
+
+	/* Initially hidden */
+	opacity: 0;
+	z-index: -1000;
+	transform: translateY(-70px);
+	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
+	pointer-events: none;
+}
+
+.resultBox::-webkit-scrollbar {
+	display: none;
+	/* For Chrome, Safari, and Edge */
+}
+
+/* Visible state: when you want the result box to appear */
+.resultBox.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+	z-index: 1000;
+	pointer-events: all;
+}
+
+.resultItem {
+	padding: 8px;
+	cursor: pointer;
+	font-size: 1.1rem;
+	color: var(--textColorDark-blue);
+}
+
+.resultItem.active,
+.resultItem:hover {
+	background-color: var(--darkColor-blue);
+	border-radius: 15px;
+	color: #fff;
+}
+
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .googleAppsCont {
@@ -277,12 +278,11 @@ body {
 	border-radius: 25%;
 	padding: 1px;
 	cursor: pointer;
-	transition: transform 0.3s ease, fill 0.3s ease;
+	transition: fill 0.3s ease;
 }
 
-/* Hover effect for the icon */
-.dot-icon:hover {
-	transform: rotate(90deg) scale(1.05);
+/* Click effect for the icon */
+.dot-icon:active {
 	fill: var(--darkerColor-blue);
 }
 
@@ -340,7 +340,6 @@ body {
 	display: grid;
 	gap: 10px;
 	padding: 20px 10px;
-	/* Adjusted padding to account for scrollbar */
 	background-color: var(--accentLightTint-blue);
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -350,16 +349,13 @@ body {
 	justify-items: center;
 	/* Center icons within each grid cell */
 	position: absolute;
-	/* Absolute positioning for dynamic alignment */
 	top: 85px;
-	/* Place below the dot icon */
-	right: 10px;
+	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
 	overflow-y: auto;
 	/* Add vertical scrollbar when needed */
 	box-sizing: border-box;
-	/* Ensure padding is included in width and height */
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
 
@@ -438,38 +434,29 @@ body {
 /* For Chrome, Edge, Safari */
 .icon-container::-webkit-scrollbar {
 	width: 5px;
-	/* Match the border width */
 }
 
 .icon-container::-webkit-scrollbar-track {
 	background-color: transparent;
-	border-radius: 30px;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 .icon-container::-webkit-scrollbar-thumb:hover {
 	background-color: var(--darkerColor-blue);
-	border-radius: 30px;
+	border-radius: 3px;
 }
 
 /* For Firefox */
-.icon-container {
-	scrollbar-width: thin;
-	/* Thin scrollbar */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Thumb color and track color */
-	overflow-x: hidden;
-	/* Hide horizontal scrollbar */
+@-moz-document url-prefix() {
+	.icon-container {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
-
-/* .icon-container:hover {
-    scrollbar-color: var(--darkerColor-blue) transparent; /* Change the thumb color on hover 
-} */
-
 /* ----------------- End of Google App Menu ----------------- */
 
 .centerDiv {
@@ -913,8 +900,12 @@ body {
 	padding: 3px;
 	box-sizing: border-box;
 	background-color: var(--whitishColor-blue);
-	transition: all 0.5s;
+	/* transition: all 0.5s; */
 	border: 2px solid transparent;
+}
+
+.theme-transition .micIcon {
+    transition: all 0.5s;
 }
 
 .micIcon::after {
@@ -968,7 +959,7 @@ body {
 	font-size: 1.1rem;
 	background-color: var(--darkColor-blue);
 	color: white;
-	transition: all 0.3s;
+	/* transition: all 0.3s; */
 }
 
 #enterBtn:hover {
@@ -979,6 +970,10 @@ body {
 
 #enterBtn:active {
 	transform: scale(0.9);
+}
+
+.theme-transition #enterBtn {
+    transition: all 0.3s;
 }
 
 /* ________________End of Searchbar______________________ */
@@ -1059,11 +1054,15 @@ body {
 	outline: none;
 	margin-right: 8px;
 	cursor: pointer;
-	transition: 0.2s;
+	/* transition: 0.2s; */
 }
 
 .search-engine input[type="radio"]:checked {
 	background-color: var(--darkColor-blue);
+}
+
+.theme-transition .search-engine input[type="radio"] {
+    transition: 0.2s;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1269,7 +1268,8 @@ body {
 	font-size: 1rem;
 	color: var(--textColorDark-blue);
 	cursor: pointer;
-	width: 61px;
+	width: fit-content;
+    	min-width: 61px; /* 61px is working fine for english lang */
 }
 
 .aiToolsCont .toolsCont {
@@ -1309,6 +1309,12 @@ body {
 	text-decoration: none;
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.aiToolsCont .toolsCont a:hover {
+	background-color: var(--bg-color-blue);
+	box-shadow: inset 0 0 0 1px var(--darkColor-blue);
 }
 
 .aiToolsCont .toolsCont .tIcon {
@@ -1472,7 +1478,7 @@ body {
 /* -----------Scrollbar for menu---------------- */
 /* For WebKit browsers (Chrome, Safari) */
 .menuCont .optCont::-webkit-scrollbar {
-	width: 2px;
+	width: 6px;
 	/* Width of the scrollbar */
 }
 
@@ -1486,16 +1492,22 @@ body {
 .menuCont .optCont::-webkit-scrollbar-thumb {
 	background: var(--darkColor-blue);
 	/* Color of the scrollbar handle */
-	border-radius: 2px;
+	border-radius: 3px;
 	/* Rounded corners for the scrollbar handle */
 }
 
+.menuCont .optCont::-webkit-scrollbar-thumb:hover {
+	background: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
 /* For Firefox */
-.menuCont .optCont {
-	scrollbar-width: thin;
-	/* Makes the scrollbar thin */
-	scrollbar-color: var(--darkColor-blue) transparent;
-	/* Handle color and track color */
+@-moz-document url-prefix() {
+	.menuCont .optCont {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+		/* Handle color and track color */
+	}
 }
 
 /* -------------End of Scrollbar for menu-------------- */
@@ -1517,6 +1529,11 @@ body {
 	display: flex;
 	align-items: center;
 	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.tilesCont .tiles:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .tilesCont .tiles .icon {
@@ -1653,6 +1670,11 @@ input:checked + .toggle:before {
 	text-decoration: none;
 	color: var(--darkColor-blue);
 	font-size: 1rem;
+	transition: color 0.3s ease;
+}
+
+.bottom a:hover {
+	color: var(--darkerColor-blue);
 }
 
 .bottom button {
@@ -1674,10 +1696,16 @@ input:checked + .toggle:before {
 	font-size: 1rem;
 	border-radius: 100px;
 	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.resetbtn:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .resetbtn:active {
-	background-color: var(--darkerColor-blue);
+	background-color: var(--bg-color-blue);
+	color: var(--darkerColor-blue);
 }
 
 .topBar {
@@ -1843,7 +1871,7 @@ input:checked + .toggle:before {
 }
 
 .themingStuff:hover:after{
-	content: "Reload the page after applying themes";
+	content: attr(data-lang);
 	position: absolute;
 	/* background-color: red; */
 	right: 0;
@@ -1888,6 +1916,11 @@ input:checked + .toggle:before {
 
 .languageButton.active {
 	border: 2px solid var(--darkColor-blue);
+	@-moz-document url-prefix() {
+		/* Scrollbar styles for Firefox */
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 .languageButton .selectedLanguage {
@@ -2089,12 +2122,13 @@ input:checked + .toggle:before {
 	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	padding: 10px 18px;
+	width: 65%;
+	padding: 10px 12px;
 	/*white-space: nowrap; */
 	border-radius: 23px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .randomButton {
@@ -2106,7 +2140,7 @@ input:checked + .toggle:before {
 	border-radius: 26px;
 	border: 2px solid transparent;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 	padding: 10px;
 }
 
@@ -2120,7 +2154,7 @@ input:checked + .toggle:before {
 	border: 2px solid transparent;
 	border-radius: 26px;
 	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 /* Hover Effects */
@@ -2210,6 +2244,10 @@ input:checked + .toggle:before {
     line-height: 35px;
 	cursor: pointer;
 	border: 2px solid transparent;
+	transition: background-color 0.3s ease;
+}
+.colorPickerLabel:hover{
+    background: var(--bg-color-blue);
 }
 /* <!-- ----End of Color Picker || ColorPicker---- --> */
 
@@ -2286,7 +2324,7 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton::after {
-	content: var(--hover-close-text, "Close");
+	content: attr(data-lang);
 	white-space: nowrap;
 	padding-right: 12px;
 	opacity: 0;
@@ -2296,7 +2334,7 @@ input:checked + .toggle:before {
 }
 
 #menuCloseButton:hover::after {
-	content: var(--hover-close-text, "Close");
+	content: attr(data-lang);
 	padding-right: 12px;
 	padding-left: 36px;
 	/* width: 32px; */
@@ -2304,6 +2342,7 @@ input:checked + .toggle:before {
 	animation: 0.6s menuCloseButtonHover forwards;
 	animation-delay: 0.1s;
 }
+
 
 @keyframes menuCloseButtonHover {
 	0% {
@@ -2321,11 +2360,13 @@ input:checked + .toggle:before {
 	0% {
 		opacity: 1;
 		transform: translateX(0);
+		visibility: hidden;
 	}
 
 	100% {
 		opacity: 0;
 		transform: translateX(-10px);
+		visibility: hidden;
 	}
 }
 
@@ -2350,7 +2391,7 @@ input:checked + .toggle:before {
 	transform: translateX(0) rotate(90deg);
 }
 
-/* Dropdown css */
+/* Search engines Dropdown css */
 .dropdown-item {
 	display: flex;
 	gap: 8px;
@@ -2375,7 +2416,7 @@ input:checked + .toggle:before {
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	top: 47px;
+	top: 50px;
 	left: -15px;
 	overflow: hidden;
 	max-height: 192px;
@@ -2406,8 +2447,8 @@ input:checked + .toggle:before {
 	left: 0;
 	right: 0;
 	bottom: 0px;
-	background-color: var(--darkerColor-blue);
-	opacity: 0.3;
+	background-color: var(--bg-color-blue);
+	opacity: 0.8;
 	z-index: -1;
 }
 
@@ -2426,4 +2467,12 @@ input:checked + .toggle:before {
 	padding: 2px;
 	background-color: var(--darkColor-blue);
 	border-radius: 100%;
+}
+
+.savebtn {
+	transition: background-color 0.3s ease;;
+}
+
+.savebtn:hover {
+	background-color: var(--darkerColor-blue);
 }

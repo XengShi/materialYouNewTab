@@ -35,33 +35,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-license">License</a>
 </p>
 
-<img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
-<table>
-  <tr>
-    <td><img src="https://i.ibb.co/f46wKwW/Material-You-New-Tab-windows-chrome.png" alt="Screenshot 2" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.ibb.co/7nV658Q/mtynt-hindi.png" alt="Screenshot 3" width="100%"></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td><img src="https://i.postimg.cc/PX0JZ829/material-you-newtab.webp" alt="Screenshot 4" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png" alt="Screenshot 6" width="100%" style="margin-right: 1%;"></td>
-
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td><img src="https://i.ibb.co/M7wtK9g/2024-11-08-10-31-22.png" alt="Screenshot 5" width="100%"></td>
-    <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 7" width="100%"></td>
-  </tr>
-</table>
-<table>
- <tr>
-    <td><img src="https://i.ibb.co/PC5Td8Q/Screenshot-from-2024-11-10-20-45-51.png" alt="Screenshot 5" width="100%"></td>
-    <td><img src="https://i.ibb.co/Y82qCMB/Screenshot-from-2024-11-10-20-58-20.png" alt="Screenshot 7" width="100%"></td>
-  </tr>
-</table>
+<img src="https://i.ibb.co/M1cJHcx/Material-You-New-Tab-Preview.jpg" alt="Screenshot 1" width="100%">
 
 #### 🔴 🟡 🟢 Test live : https://xengshi.github.io/materialYouNewTab/
 
@@ -94,7 +68,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |   it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
 | <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)         |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |   ko   | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/)                                                   |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)    |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          |  pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |   ru   | [giwi](https://github.com/giwih/)                                                      |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |  es-ES | [XengShi](https://github.com/XengShi/)                                                 |
@@ -233,7 +207,7 @@ If you encounter any bugs or issues, please [submit an issue](https://github.com
 
 ## 🔒 Privacy Policy
 
-For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY_POLICY.md).
+For information on how we handle privacy, please read our [Privacy Policy](https://xengshi.github.io/materialYouNewTab/privacy-policy.html).
 
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
