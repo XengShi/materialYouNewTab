@@ -523,8 +523,8 @@ function updatedigiClock() {
     // Split the hours and minutes from the localized time string
     let [hours, minutes] = timeString.split(':');
 
-    // Remove leading zero from hours for specific languages in 12-hour format only
-    if (hourformat && currentLanguage !== 'en') {
+    // Remove leading zero from hours in 12-hour format
+    if (hourformat) {
         hours = parseInt(hours, 10).toString(); // Remove leading zero
     }
 
