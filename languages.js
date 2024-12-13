@@ -578,6 +578,8 @@ const translations = {
         "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
         "micIconTitle": "Nascondi icona del microfono",
         "micIconInfo": "Se la digitazione vocale non funziona",
+        "hideSearchWith": "Noscondi motori di ricerca",
+        "hideSearchWithInfo": "Scegli tra i motori di ricerca cliccando l'icona",
         "search_suggestions_button": "Suggerimenti di Ricerca",
         "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
         // Proxy
@@ -629,6 +631,13 @@ const translations = {
             "afternoon": "Buon pomeriggio!",
             "evening": "Buona sera!"
         },
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "backupText": "Backup",
+        "restoreText": "Ripristina",
+        "rangColor": "Scegli colore",    // Keep it shorter
+        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
@@ -1663,6 +1672,131 @@ const translations = {
         "restorefailed": "पुनर्संचयित अयशस्वी: "
 
     },
+
+
+    // French
+    "fr": {
+        // Menu Items
+        "feedback": "Feedback",
+        "resetsettings": "Réinitialiser les paramètres",
+        "menuCloseText": "Fermer",
+        // Shortcuts
+        "shortcutsText": "Raccourcis",
+        "enableShortcutsText": "Afficher les raccourcis sauvegardés",
+        "editShortcutsText": "Modifier les raccourcis",
+        "shortcutsInfoText": "Choisir les raccourcis à afficher",
+        "editShortcutsList": "Raccourcis Sauvegardés",
+        'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
+        "adaptiveIconText": "Formes d'Icônes Adaptatives",
+        "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
+        "ai_tools_button": "Outils IA",
+        "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
+        "googleAppsMenuText": "Apps Google",
+        "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        // Digital Clock
+        "digitalclocktittle": "Horloge Numérique",
+        "digitalclockinfo": "Passer à l'horloge numérique",
+        "timeformattittle": "Format 12h",
+        "timeformatinfo": "Utiliser le format 12h",
+        "greetingtittle": "Salutation",
+        "greetinginfo": "Afficher la salutation sous le texte personnalisé",
+        // Misc
+        "userTextTitle": "Texte personnalisé",
+        "userTextInfo": "Afficher le texte personnalisé sous l'horloge",
+        "fahrenheitCelsiusCheckbox": "Passer à Fahrenheit",
+        "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
+        "micIconTitle": "Masquer l'Icône du Microphone",
+        "micIconInfo": "Si la saisie vocale ne fonctionne pas",
+        "hideSearchWith": "Masquer les Moteurs de Recherche",    // or "Hide Search Engine Selector"
+        "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
+        "search_suggestions_button": "Suggestions de Recherche",
+        "search_suggestions_text": "Activer les suggestions de recherche",
+        // Proxy
+        "useproxytitletext": "Contournement du Proxy",
+        "useproxyText": "Si les suggestions de recherche ne fonctionnent pas",
+        "ProxyText": "Proxy de contournement CORS",
+        "ProxySubtext": "Ajouter votre propre proxy de contournement CORS",
+        "HostproxyButton": "Hébergez votre propre proxy",
+        "saveproxy": "Enregistrer",
+        // Location
+        "UserLocText": "Saisissez votre localisation",
+        "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
+        "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
+        "InputOptionsButton": "Options de saisie",
+        "saveLoc": "Enregistrer",
+        // Weather
+        "WeatherApiText": "Entrez votre clé WeatherAPI",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiSubtext": "Si la fonctionnalité météo ne fonctionne pas",
+        "userAPI": "Your weatherAPI key",
+        "LearnMoreButton": "En savoir plus",
+        "saveAPI": "Enregistrer",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+        "months": ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Humidité",
+        "feelsLike": "Ressenti",
+        "location": "Terre",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Bonjour, comment allez-vous?",
+        "enterBtn": "Rechercher",
+        "searchPlaceholder": "Saisissez ici...",
+        "listenPlaceholder": "Écoute...",
+        "searchWithHint": "Rechercher avec",
+        "ai_tools": "Outils IA",
+        "userText": "Cliquez ici pour modifier",
+        "googleAppsHover": "Applications Google",    // Keep this untranslated if string width is much longer
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "Bonjour!",
+            "afternoon": "Bonsoir!",
+            "evening": "Bonne nuit!"
+        },
+
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck", // DuckDuckGo
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "metaAI" : "Meta AI",
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Uploader un fond d'ecran",    // Keep it shorter
+        "backupText": "Sauvegarder",
+        "restoreText": "Restaurer",
+        "rangColor": "Choisir la couleur",    // Keep it shorter
+        "reloadHint": "Actualiser la page après l'application des thèmes",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
+        "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
+        "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
+        "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
+        "confirmbackup": "Êtes-vous sûr de vouloir sauvegarder vos paramètres?",
+        "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
+        "endlink": "Il ne doit pas y avoir de / à la fin du lien.",
+        "onlylinks": "Seuls les liens (commençant par http:// ou https://) sont autorisés.",
+        "imagedimensions": "Attention: Les dimensions de l'image téléchargée ({largeur}x{hauteur}) dépassent 1920x1080 pixels.\n\nCela peut avoir un impact sur les performances ou l'image peut ne pas se charger correctement.",
+        "failedbackup": "Échec de la sauvegarde: ",
+        "restorecompleted": "Restauration terminée avec succès!",
+        "restorefailed": "Échec de la restauration: ",
+    }
 };
 
 // Define the width of the menu container for each language
@@ -1679,6 +1813,7 @@ const menuWidths = {
     it: '437px',
     idn: '415px',
     tr: '418px',
+    fr: '490px',
     // Add more languages and widths as needed
 };
 
@@ -1692,7 +1827,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr']; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
