@@ -1503,8 +1503,8 @@ const handleColorPickerChange = function (event) {
 };
 
 // Add listeners for color picker
-colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener('input', handleColorPickerChange);
+colorPicker.removeEventListener('change', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('change', handleColorPickerChange);
 // colorPicker.addEventListener('change', function () {
 //     // console.log('Final color applied:', colorPicker.value);
 //     location.reload();
