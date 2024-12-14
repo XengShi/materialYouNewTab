@@ -278,6 +278,93 @@ document.addEventListener("click", function (event) {
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+// ----------------------------------- To Do List ----------------------------------------
+
+const todoContainer = document.getElementById("todoContainer");
+const todoListCont = document.getElementById("todoListCont");
+const todoulList = document.getElementById("todoullist");
+const todoAdd = document.getElementById("todoAdd");
+const todoInput = document.getElementById("todoInput");
+
+todoAdd.addEventListener("click", addtodoItem);
+
+todoInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        addtodoItem();
+    }
+});
+
+function addtodoItem(){
+    if (todoInput.value===''){
+        alert("You Must Write Something");
+    } else {
+        let li = document.createElement('li');
+        li.innerText = todoInput.value;
+        span = document.createElement("span");
+        span.innerText = "\u00d7";
+        li.appendChild(span);
+        li.setAttribute("onclick","SetTaskCheckEvent()");
+        li.setAttribute("class","todolistitem");
+        todoulList.appendChild(li);
+        todoInput.value = '';
+        SaveData();
+    }
+}
+function SetTaskCheckEvent(){
+    if (event.target.tagName == "LI"){
+        event.target.classList.toggle("checked");
+        SaveData();
+    } else if (event.target.tagName == "SPAN"){
+        todoInput.focus();
+        event.target.parentElement.remove();
+        SaveData();
+    }
+}
+function SaveData(){
+    localStorage.setItem("todolist", todoulList.innerHTML)
+}
+function ShowToDoList(){
+    todoulList.innerHTML = localStorage.getItem("todolist")
+}
+todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
+let todoCurrentDate = new Date().toJSON().slice(0, 10);
+if (todoLastUpdateDate==todoCurrentDate){
+    ShowToDoList();
+} else {
+    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todolist","");
+    ShowToDoList();
+}
+
+// Toggle menu and tooltip visibility
+todoListCont.addEventListener("click", function (event) {
+    const isMenuVisible = todoContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    todoContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        todoListCont.classList.add('menu-open'); // Hide tooltip
+    } else {
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+    const isClickInside =
+        todoContainer.contains(event.target) || todoListCont.contains(event.target);
+
+    if (!isClickInside && todoContainer.style.display === 'grid') {
+        todoContainer.style.display = 'none'; // Hide menu
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+    
+    event.stopPropagation();
+});
+
+// ------------------------------- End of To Do List -------------------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();

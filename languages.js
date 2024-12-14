@@ -87,6 +87,7 @@ const translations = {
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
         "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
+        "todoListHover": "ToDo List",    // Keep this untranslated if string width is much longer
         // End of Body and New Tab Items
 
         // Greeting
@@ -1916,6 +1917,7 @@ function applyLanguage(lang) {
         { id: 'metaAI', key: 'metaAI'},
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'todoListHover', key: 'todoListHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
         { id: 'restoreText', key: 'restoreText' },
