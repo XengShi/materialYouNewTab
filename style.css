@@ -468,7 +468,6 @@ body {
 	top: var(--gap);
 	left: var(--gap);
 	font-size: 25px;
-	/* Set the size of the dots */
 	background: transparent;
 	border: none;
 	cursor: pointer;
@@ -476,27 +475,184 @@ body {
 	/* Set z-index */
 }
 
-
-/* Styling for the SVG icon */
-.dot-icon {
-	fill: var(--darkColor-blue);
-	/* Icon color */
-	background-color: var(--accentLightTint-blue);
-	border-radius: 25%;
-	padding: 1px;
-	cursor: pointer;
-	transition: fill 0.3s ease;
-}
-
-/* Click effect for the icon */
-.dot-icon:active {
-	fill: var(--darkerColor-blue);
-}
-
 /* Show tooltip on hover */
 .todoListCont:hover .tooltip-text {
 	visibility: visible;
 	opacity: 1;
+}
+
+
+.todo-container {
+	display: grid;
+	gap: 10px;
+	padding: 10px 5px;
+	background-color: var(--bg-color-blue);
+	border-radius: 30px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	border: 8px solid var(--bg-color-blue);
+	grid-template-columns: 300px;
+	justify-items: center;
+	position: absolute;
+	top: 85px;
+	left: 15px;
+	max-height: calc(40px * 3 + 10px * 2 + 290px);
+	overflow-y: auto;
+	box-sizing: border-box;
+	z-index: 3;
+}
+
+.todo-container::-webkit-scrollbar {
+	width: 5px;
+}
+
+.todo-container::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.todo-container::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+.todo-container::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+	.todo-container {
+		scrollbar-width: auto;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
+}
+
+#todoAdd {
+	height: 40px;
+	border-radius: 100px;
+	padding: 0 16px;
+	border: none;
+	font-size: 1.1rem;
+	background-color: var(--darkColor-blue);
+	color: white;
+	scale: 0.8;
+}
+
+#todoAdd:hover {
+	background-color: var(--darkColor-blue);
+	color: #fff;
+	cursor: pointer;
+}
+
+#todoAdd:active {
+	transform: scale(0.9);
+}
+
+.theme-transition #todoAdd {
+    transition: all 0.3s;
+}
+
+#todoInput {
+	flex-grow: 1;
+	height: 80%;
+	top: 0;
+	bottom: 0;
+	margin: auto auto auto 16px;
+	outline: none;
+	border: none;
+	background-color: #00000000;
+	padding: 0 2px;
+	font-size: 1rem;
+}
+
+.dark-theme #todoInput {
+	color: #FFF;
+}
+
+/* Default placeholder color */
+#todoInput::placeholder {
+	color: #757575;
+}
+
+.todo-container .searchbar-content {
+	background: var(--accentLightTint-blue);
+	padding: 0;
+	border-radius: 20px;
+	width: 100%;
+}
+
+.todolist{
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.todolistitem{
+	width: 100%;
+    display: flex;
+	background-color: var(--darkColor-blue);
+	color: #FFF;
+	border-radius: 8px;
+	padding: 8px 12px;
+	list-style-type: none;
+	font-size: 17px;
+	padding: 12px 32px;
+	user-select: none;
+	cursor: pointer;
+	position: relative;
+}
+.todolistitem::before{
+	content: '';
+	position: absolute;
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><g id="Complete"><g id="Circle"><circle cx="12" cy="12" data-name="Circle" fill="none" id="Circle-2" r="10" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></g></g></g></svg>');
+	background-size: cover;
+	background-position: center;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 8px;
+	transition: all 0.3s ease;
+	user-select: none;
+}
+.todolistitem.checked::before{
+	background-image: url('data:image/svg+xml,<svg fill="%23FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></g></g></svg>');;
+}
+.todolistitem.checked{
+	color: #CCC;
+	text-decoration: line-through;
+}
+
+.todolistitem span {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 24px;
+	height: 24px;
+	font-size: 22px;
+	line-height: 1.2;
+	color: #CCC;
+	text-align: center;
+	border-radius: 50%;
+	transition: all 0.3s ease;
+	user-select: none;
+}
+.todolistitem span:hover {
+	color: #FFF;
+}
+
+.todolistitem:first-child {
+	border-top-left-radius: 18px;
+	border-top-right-radius: 18px;
+}
+.todolistitem:last-child {
+	border-bottom-left-radius: 18px;
+	border-bottom-right-radius: 18px;
 }
 
 /* ---------------------------------------------------------- */
@@ -2465,182 +2621,4 @@ input:checked + .toggle:before {
 
 .savebtn:hover {
 	background-color: var(--darkerColor-blue);
-}
-
-.todo-container {
-	display: grid;
-	gap: 10px;
-	padding: 10px 5px;
-	background-color: var(--bg-color-blue);
-	border-radius: 30px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 300px;
-	/* 3 icons per row */
-	justify-items: center;
-	/* Center icons within each grid cell */
-	position: absolute;
-	top: 85px;
-	left: 15px;
-	max-height: calc(40px * 3 + 10px * 2 + 290px);
-	/* Limit to 12 icons (3 rows * icon size + gaps) */
-	overflow-y: auto;
-	/* Add vertical scrollbar when needed */
-	box-sizing: border-box;
-	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
-}
-
-.todo-container::-webkit-scrollbar {
-	width: 5px;
-}
-
-.todo-container::-webkit-scrollbar-track {
-	background-color: transparent;
-}
-
-.todo-container::-webkit-scrollbar-thumb {
-	background-color: var(--darkColor-blue);
-	border-radius: 3px;
-}
-
-.todo-container::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkerColor-blue);
-	border-radius: 3px;
-}
-
-/* For Firefox */
-@-moz-document url-prefix() {
-	.todo-container {
-		scrollbar-width: auto;
-		scrollbar-color: var(--darkColor-blue) transparent;
-	}
-}
-
-#todoAdd {
-	height: 40px;
-	border-radius: 100px;
-	padding: 0 16px;
-	border: none;
-	font-size: 1.1rem;
-	background-color: var(--darkColor-blue);
-	color: white;
-	scale: 0.8;
-	/* transition: all 0.3s; */
-}
-
-#todoAdd:hover {
-	background-color: var(--darkColor-blue);
-	color: #fff;
-	cursor: pointer;
-}
-
-#todoAdd:active {
-	transform: scale(0.9);
-}
-
-.theme-transition #todoAdd {
-    transition: all 0.3s;
-}
-
-#todoInput {
-	flex-grow: 1;
-	height: 80%;
-	top: 0;
-	bottom: 0;
-	margin: auto auto auto 16px;
-	outline: none;
-	border: none;
-	background-color: #00000000;
-	padding: 0 2px;
-	font-size: 1rem;
-}
-
-.dark-theme #todoInput {
-	color: #FFF;
-}
-
-/* Default placeholder color */
-#todoInput::placeholder {
-	color: #757575;
-}
-
-.todo-container .searchbar-content {
-	background: var(--accentLightTint-blue);
-	padding: 0;
-	border-radius: 20px;
-	width: 100%;
-}
-
-.todolist{
-	width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.todolistitem{
-	width: 100%;
-    display: flex;
-	background-color: var(--darkColor-blue);
-	color: #FFF;
-	border-radius: 8px;
-	padding: 8px 12px;
-	list-style-type: none;
-	font-size: 17px;
-	padding: 12px 32px;
-	user-select: none;
-	cursor: pointer;
-	position: relative;
-}
-.todolistitem::before{
-	content: '';
-	position: absolute;
-	height: 18px;
-	width: 18px;
-	border-radius: 50%;
-	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><g id="Complete"><g id="Circle"><circle cx="12" cy="12" data-name="Circle" fill="none" id="Circle-2" r="10" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></g></g></g></svg>');
-	background-size: cover;
-	background-position: center;
-	top: 50%;
-	transform: translateY(-50%);
-	left: 8px;
-	transition: all 0.3s ease;
-	user-select: none;
-}
-.todolistitem.checked::before{
-	background-image: url('data:image/svg+xml,<svg fill="%23FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></g></g></svg>');;
-}
-.todolistitem.checked{
-	color: #CCC;
-	text-decoration: line-through;
-}
-
-.todolistitem span {
-	position: absolute;
-	right: 10px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 24px;
-	height: 24px;
-	font-size: 22px;
-	line-height: 1.2;
-	color: #CCC;
-	text-align: center;
-	border-radius: 50%;
-	transition: all 0.3s ease;
-	user-select: none;
-}
-.todolistitem span:hover {
-	color: #FFF;
-}
-
-.todolistitem:first-child {
-	border-top-left-radius: 18px;
-	border-top-right-radius: 18px;
-}
-.todolistitem:last-child {
-	border-bottom-left-radius: 18px;
-	border-bottom-right-radius: 18px;
 }

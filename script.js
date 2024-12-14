@@ -2399,6 +2399,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
+    const todoListCheckbox = document.getElementById("todoListCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -3068,6 +3069,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    todoListCheckbox.addEventListener("change", function () {
+        saveCheckboxState("todoListCheckboxState", todoListCheckbox);
+        if (todoListCheckbox.checked) {
+            todoListCont.style.display = "flex";
+            saveDisplayStatus("todoListDisplayStatus", "flex");
+        } else {
+            todoListCont.style.display = "none";
+            saveDisplayStatus("todoListDisplayStatus", "none");
+        }
+    });
+
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
@@ -3143,9 +3155,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+    loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
+    loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
