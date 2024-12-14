@@ -212,7 +212,6 @@ const translations = {
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
         "googleAppsHover": "Apps do Google",
-        "todoListHover": "Lista de tarefas",
         // End of Body and New Tab Items
 
         // Greeting
@@ -232,8 +231,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "github": "GitHub",
-        "emptytodoinput": "Você deve escrever algo",
+        "github": "GitHub"
     },
 
 
@@ -327,8 +325,6 @@ const translations = {
         "duckEngine": "DuckDuckGo",
         "bingEngine": "必应",
         "googleAppsHover": "谷歌应用",
-        "todoListHover": "待办事项清单",
-        "emptytodoinput": "你必须写点东西",
     },
 
 
@@ -455,7 +451,6 @@ const translations = {
         "failedbackup": "बैकअप विफल: ",
         "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
         "restorefailed": "पुनर्स्थापना विफल: ",
-        "emptytodoinput": "आपको कुछ अवश्य लिखना चाहिए",
     },
 
 
@@ -538,7 +533,6 @@ const translations = {
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
         "googleAppsHover": "Google aplikace",
-        "todoListHover": "Seznam úkolů",
         // End of Body and New Tab Items
 
         // Greeting
@@ -552,7 +546,6 @@ const translations = {
         "uploadWallpaperText": "Nahrát tapetu",
         "backupText": "Zálohovat",
         "restoreText": "Obnovit",
-        "emptytodoinput": "Musíte něco napsat",
     },
 
 
@@ -661,8 +654,7 @@ const translations = {
         "imagedimensions": "Attenzione: Le dimensioni dell'immagine caricata ({width}x{height}) superano i 1920x1080 pixel. \n\nCiò potrebbe influire sulle prestazioni o l'immagine potrebbe non essere caricata correttamente.",
         "failedbackup": "Backup fallito: ",
         "restorecompleted": "Ripristino completato con successo!",
-        "restorefailed": "Ripristino fallito: ",
-        "emptytodoinput": "Devi scrivere qualcosa",
+        "restorefailed": "Ripristino fallito: "
     },
 
 
@@ -749,7 +741,6 @@ const translations = {
             "afternoon": "İyi öğleden sonra!",
             "evening": "İyi akşamlar!"
         },
-        "emptytodoinput": "Bir Şey Yazmalısın",
     },
 
 
@@ -837,7 +828,6 @@ const translations = {
         "ai_tools": "এআই টুলস",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         "googleAppsHover": "গুগল অ্যাপস",
-        "todoListHover": "তালিকা তৈরি",
 
         // Greeting
         greeting: {
@@ -879,7 +869,6 @@ const translations = {
         "failedbackup": "ব্যাকআপ ব্যর্থ: ",
         "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
         "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
-        "emptytodoinput": "ইউ মাস্ট রাইট সামথিং",
     },
 
 
@@ -966,7 +955,6 @@ const translations = {
             "afternoon": "Chào buổi chiều!",
             "evening": "Chào buổi tối!"
         },
-        "emptytodoinput": "Bạn phải viết một cái gì đó",
     },
 
 
@@ -1071,7 +1059,6 @@ const translations = {
         "firefly": "Adobe Firefly",
         "github": "GitHub",
         "googleAppsHover": "Гугл приложения",
-        "todoListHover": "Список дел",
 
         // Wallpaper and alerts
         "uploadWallpaperText": "Загрузить обои",
@@ -1093,7 +1080,6 @@ const translations = {
         "failedbackup": "Резервное копирование не удалось: ",
         "restorecompleted": "Восстановление настроек успешно завершено!",
         "restorefailed": "Восстановление настроек не удалось: ",
-        "emptytodoinput":"Вы должны что-то написать",
     },
 
 
@@ -1346,7 +1332,6 @@ const translations = {
         "ai_tools": "AIツール",
         "userText": "ここをクリックして編集",
         "googleAppsHover": "Googleアプリ",
-        "todoListHover": "やることリスト",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1368,7 +1353,6 @@ const translations = {
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
         "github": "GitHub",
-        "emptytodoinput":"何かを書かなければなりません",
     },
 
 
@@ -1469,8 +1453,6 @@ const translations = {
         "firefly": "어도비 파이어플라이",
         "github": "깃허브",
         "googleAppsHover": "구글 앱",
-        "todoListHover": "할 일 목록",
-        "emptytodoinput":"당신은 뭔가를 작성해야합니다",
     },
 
 
@@ -1648,7 +1630,6 @@ const translations = {
         "ai_tools": "AI साधने",
         "userText": "येथे आपला मजकूर लिहा",
         "googleAppsHover": "गुगल ॲप्स",
-        "todoListHover": "करण्याची यादी",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1691,8 +1672,8 @@ const translations = {
         "imagedimensions": "तयार केलेली इमेज ({width}x{height}) चे परिमाण 1920x1080 पिक्सल्सपेक्षा जास्त आहे. \n\nयामुळे कार्यक्षमता प्रभावित होऊ शकते किंवा इमेज नीट लोड होऊ नये.",
         "failedbackup": "बॅकअप अयशस्वी: ",
         "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
-        "restorefailed": "पुनर्संचयित अयशस्वी: ",
-        "emptytodoinput":"यू मस्ट रायट समथिंग",
+        "restorefailed": "पुनर्संचयित अयशस्वी: "
+
     },
 
 
@@ -1775,7 +1756,6 @@ const translations = {
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
         "googleAppsHover": "Applications Google",    // Keep this untranslated if string width is much longer
-        "todoListHover": "Liste de tâches",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1819,7 +1799,6 @@ const translations = {
         "failedbackup": "Échec de la sauvegarde: ",
         "restorecompleted": "Restauration terminée avec succès!",
         "restorefailed": "Échec de la restauration: ",
-        "emptytodoinput":"Vous devez écrire quelque chose",
     }
 };
 
