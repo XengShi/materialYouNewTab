@@ -321,12 +321,22 @@ var SetTaskCheckEvent = (event) => {
     }
 }
 function SaveData(){
-    localStorage.setItem("todolist", todoulList.innerHTML)
+    x = todoulList.textContent.slice(22);
+    localStorage.setItem("todolist", x);
 }
 function ShowToDoList(){
-    todoulList.innerHTML = localStorage.getItem("todolist");
-    for (let i of todoulList.children) {
-        i.addEventListener("click",SetTaskCheckEvent);
+    todolistitems = localStorage.getItem("todolist");
+    todolistitems = todolistitems.split("\u00d7");
+    for (let i = 0; i < todolistitems.length-1; i++) {
+        let li = document.createElement('li');
+        li.innerText = todolistitems[i];
+        span = document.createElement("span");
+        span.setAttribute("class","todoremovebtn")
+        span.innerText = "\u00d7";
+        li.appendChild(span);
+        li.addEventListener("click",SetTaskCheckEvent);
+        li.setAttribute("class","todolistitem");
+        todoulList.appendChild(li);
     }
 }
 todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
