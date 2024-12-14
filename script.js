@@ -296,7 +296,7 @@ todoInput.addEventListener("keypress", (event) => {
 
 function addtodoItem(){
     if (todoInput.value===''){
-        alert("You Must Write Something");
+        alert((translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput));
     } else {
         let li = document.createElement('li');
         li.innerText = todoInput.value;
