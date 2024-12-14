@@ -27,6 +27,8 @@ const translations = {
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        "todoListText": "To Do List",
+        "todoListInfo": "Show a Daily To Do List",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -347,6 +349,8 @@ const translations = {
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+        "todoListText": "कार्य सूची",
+        "todoListInfo": "अपनी दैनिक कार्य सूची देखें और व्यवस्थित रहें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -451,6 +455,7 @@ const translations = {
         "failedbackup": "बैकअप विफल: ",
         "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
         "restorefailed": "पुनर्स्थापना विफल: ",
+        "emptytodoinput": "आपको कुछ अवश्य लिखना चाहिए",
     },
 
 
@@ -1861,6 +1866,9 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
+        { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'todoListText', key: 'todoListText' },
+        { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
@@ -1896,6 +1904,7 @@ function applyLanguage(lang) {
         { id: 'conditionText', key: 'conditionText' },
         { id: 'enterBtn', key: 'enterBtn' },
         { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
+        { id: 'todoInput', key: 'searchPlaceholder', isPlaceholder: true },
         { id: 'searchWithHint', key: 'searchWithHint' },
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
