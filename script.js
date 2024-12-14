@@ -301,6 +301,7 @@ function addtodoItem(){
         let li = document.createElement('li');
         li.innerText = todoInput.value;
         span = document.createElement("span");
+        span.setAttribute("class","todoremovebtn")
         span.innerText = "\u00d7";
         li.appendChild(span);
         li.setAttribute("onclick","SetTaskCheckEvent()");
@@ -315,7 +316,6 @@ function SetTaskCheckEvent(){
         event.target.classList.toggle("checked");
         SaveData();
     } else if (event.target.tagName == "SPAN"){
-        todoInput.focus();
         event.target.parentElement.remove();
         SaveData();
     }
@@ -354,7 +354,7 @@ todoListCont.addEventListener("click", function (event) {
 // Close menu when clicking outside
 document.addEventListener("click", function (event) {
     const isClickInside =
-        todoContainer.contains(event.target) || todoListCont.contains(event.target);
+        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains('todoremovebtn');
 
     if (!isClickInside && todoContainer.style.display === 'grid') {
         todoContainer.style.display = 'none'; // Hide menu
