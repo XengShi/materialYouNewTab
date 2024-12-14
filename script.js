@@ -304,14 +304,14 @@ function addtodoItem(){
         span.setAttribute("class","todoremovebtn")
         span.innerText = "\u00d7";
         li.appendChild(span);
-        li.setAttribute("onclick","SetTaskCheckEvent()");
+        li.addEventListener("click",SetTaskCheckEvent);
         li.setAttribute("class","todolistitem");
         todoulList.appendChild(li);
         todoInput.value = '';
         SaveData();
     }
 }
-function SetTaskCheckEvent(){
+var SetTaskCheckEvent = (event) => {
     if (event.target.tagName == "LI"){
         event.target.classList.toggle("checked");
         SaveData();
@@ -324,10 +324,13 @@ function SaveData(){
     localStorage.setItem("todolist", todoulList.innerHTML)
 }
 function ShowToDoList(){
-    todoulList.innerHTML = localStorage.getItem("todolist")
+    todoulList.innerHTML = localStorage.getItem("todolist");
+    for (let i of todoulList.children) {
+        i.addEventListener("click",SetTaskCheckEvent);
+    }
 }
 todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
-let todoCurrentDate = new Date().toJSON().slice(0, 10);
+let todoCurrentDate = new Date().toLocaleString().slice(0, 10);
 if (todoLastUpdateDate==todoCurrentDate){
     ShowToDoList();
 } else {
