@@ -84,9 +84,9 @@ const translations = {
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Search",
         "searchPlaceholder": "Type here...",
-        "searchPlaceholder": "Type here...",
         "listenPlaceholder": "Listening...",
         "todoPlaceholder": "Add task...",
+        "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
         "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
