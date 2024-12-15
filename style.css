@@ -2208,10 +2208,11 @@ input:checked + .toggle:before {
 	height: 50px;
 	background-color: var(--accentLightTint-blue);
 	border-radius: 50%;
+	border: 4px solid var(--accentLightTint-blue);
 	box-shadow:
-		inset 0 0 0 6px var(--accentLightTint-blue),
-		inset 0 0 0 10px var(--darkColor-blue),
-		inset 0 0 0 15px var(--accentLightTint-blue),
+		/* inset 0 0 0 6px var(--accentLightTint-blue), */
+		inset 0 0 0 4px var(--darkColor-blue),
+		inset 0 0 0 9px var(--accentLightTint-blue),
 		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
 }
