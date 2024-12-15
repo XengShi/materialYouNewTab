@@ -1309,7 +1309,7 @@ const applySelectedTheme = (colorValue) => {
                 box-shadow:
                     /*inset 0 0 0 4px var(--accentLightTint-blue),*/
                     inset 0 0 0 4px #858585,
-                    inset 0 0 0 9px var(--accentLightTint-blue),
+                    inset 0 0 0 9.7px var(--accentLightTint-blue),
                     inset 0 0 0 40px #bfbfbf;
             }
 
