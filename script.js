@@ -1304,12 +1304,12 @@ const applySelectedTheme = (colorValue) => {
                 color: #c2c2c2;
             }
 
-            .dark-theme #menuButton::before{
-                background-color: #bfbfbf;
-            }
-            
-            .dark-theme #menuButton::after{
-                border: 4px solid #858585;
+            .dark-theme #menuButton{
+                box-shadow:
+                    inset 0 0 0 6px var(--accentLightTint-blue),
+                    inset 0 0 0 10px #858585,
+                    inset 0 0 0 15px var(--accentLightTint-blue),
+                    inset 0 0 0 40px #bfbfbf;
             }
 
             .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
