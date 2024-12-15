@@ -285,6 +285,7 @@ const todoListCont = document.getElementById("todoListCont");
 const todoulList = document.getElementById("todoullist");
 const todoAdd = document.getElementById("todoAdd");
 const todoInput = document.getElementById("todoInput");
+let todoList = {};
 
 todoAdd.addEventListener("click", addtodoItem);
 
@@ -295,57 +296,68 @@ todoInput.addEventListener("keypress", (event) => {
 });
 
 function addtodoItem(){
-    if (todoInput.value===''){
+    if (todoInput.value.trim()===''){
         alert((translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput));
     } else {
         let li = document.createElement('li');
-        li.innerText = todoInput.value;
+        li.innerText = todoInput.value.trim();
         span = document.createElement("span");
         span.setAttribute("class","todoremovebtn")
         span.innerText = "\u00d7";
         li.appendChild(span);
         li.addEventListener("click",SetTaskCheckEvent);
         li.setAttribute("class","todolistitem");
+        let t = new Date();
+        // Generate a Unique ID for the list items
+        t = "t"+(t.getHours().toString().length==1?"0":"")+t.getHours()+(t.getMinutes().toString().length==1?"0":"")+t.getMinutes()+(t.getSeconds().toString().length==1?"0":"")+t.getSeconds()+(t.getMilliseconds().toString().length==2?"0":"")+(t.getMilliseconds().toString().length==1?"00":"")+t.getMilliseconds().toString();
+        li.setAttribute("data-todoitem",t);
+        todoList[t]={"title":li.innerText.slice(0,-1), "status":`pending`};
         todoulList.appendChild(li);
         todoInput.value = '';
-        SaveData();
+        SaveToDoData();
     }
 }
 var SetTaskCheckEvent = (event) => {
     if (event.target.tagName == "LI"){
         event.target.classList.toggle("checked");
-        SaveData();
+        let id = event.target.dataset.todoitem;
+        todoList[id].status = ((todoList[id].status=="completed")?"pending":"completed");
+        SaveToDoData();
     } else if (event.target.tagName == "SPAN"){
+        let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove();
-        SaveData();
+        delete todoList[id];
+        SaveToDoData();
     }
 }
-function SaveData(){
-    x = todoulList.textContent.slice(22);
-    localStorage.setItem("todolist", x);
+function SaveToDoData(){
+    localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 function ShowToDoList(){
-    todolistitems = localStorage.getItem("todolist");
-    todolistitems = todolistitems.split("\u00d7");
-    for (let i = 0; i < todolistitems.length-1; i++) {
+    todoList = JSON.parse(localStorage.getItem("todoList"));
+    for (let i in todoList) {
         let li = document.createElement('li');
-        li.innerText = todolistitems[i];
+        li.innerText = todoList[i].title;
         span = document.createElement("span");
         span.setAttribute("class","todoremovebtn")
         span.innerText = "\u00d7";
         li.appendChild(span);
         li.addEventListener("click",SetTaskCheckEvent);
         li.setAttribute("class","todolistitem");
+        if (todoList[i].status === 'completed') {
+            li.classList.add("checked");
+        }
+        li.setAttribute("data-todoitem",i);
         todoulList.appendChild(li);
     }
 }
-todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
+let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
 let todoCurrentDate = new Date().toLocaleString().slice(0, 10);
 if (todoLastUpdateDate==todoCurrentDate){
     ShowToDoList();
 } else {
     localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
-    localStorage.setItem("todolist","");
+    localStorage.setItem("todoList",'{}');
     ShowToDoList();
 }
 
@@ -359,6 +371,7 @@ todoListCont.addEventListener("click", function (event) {
     // Add or remove the class to hide the tooltip
     if (!isMenuVisible) {
         todoListCont.classList.add('menu-open'); // Hide tooltip
+        todoInput.focus()
     } else {
         todoListCont.classList.remove('menu-open'); // Restore tooltip
     }
