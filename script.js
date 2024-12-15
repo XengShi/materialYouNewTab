@@ -280,15 +280,16 @@ document.addEventListener("click", function (event) {
 // ------------------------End of Google App Menu Setup-----------------------------------
 // ----------------------------------- To Do List ----------------------------------------
 
+// DOM Variables
 const todoContainer = document.getElementById("todoContainer");
 const todoListCont = document.getElementById("todoListCont");
 const todoulList = document.getElementById("todoullist");
 const todoAdd = document.getElementById("todoAdd");
 const todoInput = document.getElementById("todoInput");
-let todoList = {};
+let todoList = {}; // Initialize todoList JSON
 
+// Add event listeners for Add button click or Enter key press
 todoAdd.addEventListener("click", addtodoItem);
-
 todoInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         addtodoItem();
@@ -302,52 +303,55 @@ function sanitizeInput(input) {
     return div.innerHTML;
 }
 
+// Function to add items to the TODO list
 function addtodoItem() {
-    const inputText = todoInput.value.trim();
+    const inputText = todoInput.value.trim(); // Remove useless whitespaces
     if (inputText === '') {
         alert(translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput);
-        return;
+        return; // Return the function when the input is empty
     }
-    const t = "t" + Date.now();
+    const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = { title: rawText, status: "pending" };
-    createTodoItemDOM(t, rawText, "pending");
-    todoInput.value = '';
-    SaveToDoData();
+    todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
+    createTodoItemDOM(t, rawText, "pending"); // Create List items
+    todoInput.value = ''; // Clear Input
+    SaveToDoData(); // Save changes
 }
 
 function createTodoItemDOM(id, title, status) {
     let li = document.createElement('li');
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
-    const span = document.createElement("span");
+    const span = document.createElement("span"); // Create the Cross Icon
     span.setAttribute("class", "todoremovebtn");
     span.textContent = "\u00d7";
-    li.appendChild(span);
-    li.addEventListener("click", SetTaskCheckEvent);
+    li.appendChild(span); // Add the cross icon to the LI tag
+    li.addEventListener("click", SetTaskCheckEvent); // Add event listener for the item checking and unchecking
     li.setAttribute("class", "todolistitem");
     if (status === 'completed') {
         li.classList.add("checked");
     }
-    li.setAttribute("data-todoitem", id);
-    todoulList.appendChild(li);
+    li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
+    todoulList.appendChild(li); // Add li to the ul tag
 }
 
 var SetTaskCheckEvent = (event) => {
     if (event.target.tagName === "LI"){
-        event.target.classList.toggle("checked");
+        event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status==="completed")?"pending":"completed");
-        SaveToDoData();
+        todoList[id].status = ((todoList[id].status==="completed")?"pending":"completed"); // Update status
+        SaveToDoData(); // Save Changes
     } else if (event.target.tagName === "SPAN"){
         let id = event.target.parentElement.dataset.todoitem;
-        event.target.parentElement.remove();
-        delete todoList[id];
-        SaveToDoData();
+        event.target.parentElement.remove(); // Remove the clicked LI tag
+        delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
     }
 }
+// Save JSON to local Storage
 function SaveToDoData(){
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
+// Fetch saved JSON and create list items using it
 function ShowToDoList() {
     try {
         todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
@@ -360,11 +364,14 @@ function ShowToDoList() {
         localStorage.setItem("todoList", '{}'); // Reset corrupted data
     }
 }
-let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
-let todoCurrentDate = new Date().toLocaleDateString();
+
+// Code to reset the List on the Next Day
+let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
+let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
 if (todoLastUpdateDate===todoCurrentDate){
     ShowToDoList();
 } else {
+    // Reset the list when last update date and the current date does not match
     localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
     localStorage.setItem("todoList",'{}');
     ShowToDoList();
