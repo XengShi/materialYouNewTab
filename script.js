@@ -295,35 +295,50 @@ todoInput.addEventListener("keypress", (event) => {
     }
 });
 
-function addtodoItem(){
-    if (todoInput.value.trim()===''){
-        alert((translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput));
-    } else {
-        let li = document.createElement('li');
-        li.innerText = todoInput.value.trim();
-        span = document.createElement("span");
-        span.setAttribute("class","todoremovebtn")
-        span.innerText = "\u00d7";
-        li.appendChild(span);
-        li.addEventListener("click",SetTaskCheckEvent);
-        li.setAttribute("class","todolistitem");
-        let t = new Date();
-        // Generate a Unique ID for the list items
-        t = "t"+(t.getHours().toString().length==1?"0":"")+t.getHours()+(t.getMinutes().toString().length==1?"0":"")+t.getMinutes()+(t.getSeconds().toString().length==1?"0":"")+t.getSeconds()+(t.getMilliseconds().toString().length==2?"0":"")+(t.getMilliseconds().toString().length==1?"00":"")+t.getMilliseconds().toString();
-        li.setAttribute("data-todoitem",t);
-        todoList[t]={"title":li.innerText.slice(0,-1), "status":`pending`};
-        todoulList.appendChild(li);
-        todoInput.value = '';
-        SaveToDoData();
-    }
+// Utility function to sanitize input
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
 }
+
+function addtodoItem() {
+    const inputText = todoInput.value.trim();
+    if (inputText === '') {
+        alert(translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput);
+        return;
+    }
+    const t = "t" + Date.now();
+    const rawText = inputText;
+    todoList[t] = { title: rawText, status: "pending" };
+    createTodoItemDOM(t, rawText, "pending");
+    todoInput.value = '';
+    SaveToDoData();
+}
+
+function createTodoItemDOM(id, title, status) {
+    let li = document.createElement('li');
+    li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
+    const span = document.createElement("span");
+    span.setAttribute("class", "todoremovebtn");
+    span.textContent = "\u00d7";
+    li.appendChild(span);
+    li.addEventListener("click", SetTaskCheckEvent);
+    li.setAttribute("class", "todolistitem");
+    if (status === 'completed') {
+        li.classList.add("checked");
+    }
+    li.setAttribute("data-todoitem", id);
+    todoulList.appendChild(li);
+}
+
 var SetTaskCheckEvent = (event) => {
-    if (event.target.tagName == "LI"){
+    if (event.target.tagName === "LI"){
         event.target.classList.toggle("checked");
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status=="completed")?"pending":"completed");
+        todoList[id].status = ((todoList[id].status==="completed")?"pending":"completed");
         SaveToDoData();
-    } else if (event.target.tagName == "SPAN"){
+    } else if (event.target.tagName === "SPAN"){
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove();
         delete todoList[id];
@@ -333,31 +348,25 @@ var SetTaskCheckEvent = (event) => {
 function SaveToDoData(){
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
-function ShowToDoList(){
-    todoList = JSON.parse(localStorage.getItem("todoList"));
-    for (let i in todoList) {
-        let li = document.createElement('li');
-        li.innerText = todoList[i].title;
-        span = document.createElement("span");
-        span.setAttribute("class","todoremovebtn")
-        span.innerText = "\u00d7";
-        li.appendChild(span);
-        li.addEventListener("click",SetTaskCheckEvent);
-        li.setAttribute("class","todolistitem");
-        if (todoList[i].status === 'completed') {
-            li.classList.add("checked");
+function ShowToDoList() {
+    try {
+        todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
+        for (let id in todoList) {
+            const todo = todoList[id];
+            createTodoItemDOM(id, todo.title, todo.status);
         }
-        li.setAttribute("data-todoitem",i);
-        todoulList.appendChild(li);
+    } catch (error) {
+        console.error("Error loading from localStorage:", error);
+        localStorage.setItem("todoList", '{}'); // Reset corrupted data
     }
 }
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
-let todoCurrentDate = new Date().toLocaleString().slice(0, 10);
-if (todoLastUpdateDate!=todoCurrentDate||(JSON.parse(localStorage.getItem("todoList"))==null)){
-    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
-    localStorage.setItem("todoList",'{}');
+let todoCurrentDate = new Date().toLocaleDateString();
+if (todoLastUpdateDate===todoCurrentDate){
     ShowToDoList();
 } else {
+    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todoList",'{}');
     ShowToDoList();
 }
 
