@@ -353,11 +353,11 @@ function ShowToDoList(){
 }
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate");
 let todoCurrentDate = new Date().toLocaleString().slice(0, 10);
-if (todoLastUpdateDate==todoCurrentDate){
-    ShowToDoList();
-} else {
+if (todoLastUpdateDate!=todoCurrentDate||(JSON.parse(localStorage.getItem("todoList"))==null)){
     localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
     localStorage.setItem("todoList",'{}');
+    ShowToDoList();
+} else {
     ShowToDoList();
 }
 
