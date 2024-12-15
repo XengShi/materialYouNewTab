@@ -313,7 +313,8 @@ function addtodoItem() {
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
     todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
-    createTodoItemDOM(t, rawText, "pending"); // Create List items
+    const li = createTodoItemDOM(t, rawText, "pending"); // Create List item
+    todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ''; // Clear Input
     SaveToDoData(); // Save changes
 }
@@ -325,20 +326,20 @@ function createTodoItemDOM(id, title, status) {
     span.setAttribute("class", "todoremovebtn");
     span.textContent = "\u00d7";
     li.appendChild(span); // Add the cross icon to the LI tag
-    li.addEventListener("click", SetTaskCheckEvent); // Add event listener for the item checking and unchecking
     li.setAttribute("class", "todolistitem");
     if (status === 'completed') {
         li.classList.add("checked");
     }
     li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
-    todoulList.appendChild(li); // Add li to the ul tag
+    return li; // Return the created `li` element
 }
 
-var SetTaskCheckEvent = (event) => {
+// Event delegation for task check and remove
+todoulList.addEventListener("click", (event) => {
     if (event.target.tagName === "LI"){
         event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status==="completed")?"pending":"completed"); // Update status
+        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
     } else if (event.target.tagName === "SPAN"){
         let id = event.target.parentElement.dataset.todoitem;
@@ -346,7 +347,8 @@ var SetTaskCheckEvent = (event) => {
         delete todoList[id]; // Remove the deleted List item data
         SaveToDoData(); // Save Changes
     }
-}
+});
+
 // Save JSON to local Storage
 function SaveToDoData(){
     localStorage.setItem("todoList", JSON.stringify(todoList));
@@ -355,10 +357,13 @@ function SaveToDoData(){
 function ShowToDoList() {
     try {
         todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
+        const fragment = document.createDocumentFragment(); // Create a DocumentFragment
         for (let id in todoList) {
             const todo = todoList[id];
-            createTodoItemDOM(id, todo.title, todo.status);
+            const li = createTodoItemDOM(id, todo.title, todo.status); // Create `li` elements
+            fragment.appendChild(li); // Add `li` to the fragment
         }
+        todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
     } catch (error) {
         console.error("Error loading from localStorage:", error);
         localStorage.setItem("todoList", '{}'); // Reset corrupted data
@@ -387,7 +392,7 @@ todoListCont.addEventListener("click", function (event) {
     // Add or remove the class to hide the tooltip
     if (!isMenuVisible) {
         todoListCont.classList.add('menu-open'); // Hide tooltip
-        todoInput.focus()
+        todoInput.focus(); // Auto focus on input box
     } else {
         todoListCont.classList.remove('menu-open'); // Restore tooltip
     }
