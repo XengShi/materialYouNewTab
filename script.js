@@ -1305,7 +1305,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #menuButton{
-                border: 4px solid var(--accentLightTint-blue);
+                border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
                     /*inset 0 0 0 4px var(--accentLightTint-blue),*/
                     inset 0 0 0 4px #858585,
