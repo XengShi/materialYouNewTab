@@ -188,7 +188,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 7. **Wallpaper Management**:
    - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
-   - A **random image icon** lets users receive a new wallpaper daily. The wallpaper updates automatically every 24 hours or at the end of each day.
+   - The **Random Image feature** provides users with a new wallpaper every day, updating automatically at the start of each day. Images are sourced from [Lorem Picsum](https://picsum.photos).
 
 8. **Backup System**:
    - The menu settings include a backup system that allows users to save and restore their customized settings.
