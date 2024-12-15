@@ -2207,36 +2207,13 @@ input:checked + .toggle:before {
 	width: 50px;
 	height: 50px;
 	background-color: var(--accentLightTint-blue);
-	border-radius: 100%;
+	border-radius: 50%;
+	box-shadow:
+		inset 0 0 0 6px var(--accentLightTint-blue),
+		inset 0 0 0 10px var(--darkColor-blue),
+		inset 0 0 0 15px var(--accentLightTint-blue),
+		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
-}
-
-#menuButton::after {
-	position: absolute;
-	content: "";
-	width: 62%;
-	height: 62%;
-	border-radius: 100%;
-	border: 4px solid var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-}
-
-#menuButton::before {
-	position: absolute;
-	content: "";
-	width: 40%;
-	height: 40%;
-	border-radius: 100%;
-	background-color: var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
 }
 
 /* ---------------------- */
