@@ -134,7 +134,6 @@ const translations = {
         "failedbackup": "Backup failed: ",
         "restorecompleted": "Restore completed successfully!",
         "restorefailed": "Restore failed: ",
-        "emptytodoinput": "You Must Write Something",
     },
 
 
@@ -457,7 +456,6 @@ const translations = {
         "failedbackup": "बैकअप विफल: ",
         "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
         "restorefailed": "पुनर्स्थापना विफल: ",
-        "emptytodoinput": "आपको कुछ अवश्य लिखना चाहिए",
     },
 
 

@@ -307,7 +307,6 @@ function sanitizeInput(input) {
 function addtodoItem() {
     const inputText = todoInput.value.trim(); // Remove useless whitespaces
     if (inputText === '') {
-        alert(translations[currentLanguage]?.emptytodoinput || translations['en'].emptytodoinput);
         return; // Return the function when the input is empty
     }
     const t = "t" + Date.now(); // Generate a Unique ID
