@@ -1397,6 +1397,10 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
+	    
+	    .clearButton{
+                color: #d6d6d6;
+            }
 
             .dark-theme .clearButton:hover{
                 background-color: var(--whitishColor-dark);

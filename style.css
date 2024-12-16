@@ -441,6 +441,7 @@ body {
 
 .icon-container::-webkit-scrollbar-track {
 	background-color: transparent;
+	margin: 11px 0;
 }
 
 .icon-container::-webkit-scrollbar-thumb {
@@ -775,7 +776,7 @@ body {
 	/*Because search engines has margin-bottom 20px*/
 	bottom: 8px;
 	left: 10px;
-	/* text-align: center; */
+ 	/*text-align: center; */
 }
 
 #userText {
@@ -1898,6 +1899,7 @@ input:checked + .toggle:before {
 
 .resetbtn {
 	width: -webkit-fill-available;
+	width: -moz-available;
 	border: none;
 	color: #fff;
 	background-color: var(--darkColor-blue);
@@ -2278,7 +2280,8 @@ input:checked + .toggle:before {
 	gap: 9px; /* Space between SVG and text */
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
-	width: 65%;
+	width: -webkit-fill-available;
+	width: -moz-available;
 	padding: 10px 12px;
 	/*white-space: nowrap; */
 	border-radius: 23px;
