@@ -583,18 +583,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	background-color: var(--accentLightTint-blue);
-    padding: 2px 12px;
-    border-radius: 10px;
-
 }
 
 #date {
 	font-size: 1.4rem;
-	background-color: var(--accentLightTint-blue);
-    padding: 2px 12px;
-    border-radius: 10px;
-    width: fit-content;
 }
 
 .digidate {
@@ -1185,9 +1177,6 @@ body {
 	transition: all 0.3s;
 	font-size: 1rem;
 	white-space: nowrap;
-	background-color: var(--accentLightTint-blue);
-    padding: 0px 6px;
-    border-radius: 5px;
 }
 
 .shortcuts:hover .shortcut-name {
