@@ -27,6 +27,8 @@ const translations = {
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        "todoListText": "To Do List",
+        "todoListInfo": "Show a Daily To Do List",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -83,10 +85,12 @@ const translations = {
         "enterBtn": "Search",
         "searchPlaceholder": "Type here...",
         "listenPlaceholder": "Listening...",
+        "todoPlaceholder": "Add task...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
         "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
+        "todoListHover": "ToDo List",    // Keep this untranslated if string width is much longer
         // End of Body and New Tab Items
 
         // Greeting
@@ -345,6 +349,8 @@ const translations = {
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+        "todoListText": "कार्य सूची",
+        "todoListInfo": "अपनी दैनिक कार्य सूची देखें और व्यवस्थित रहें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -402,6 +408,7 @@ const translations = {
         "enterBtn": "खोजें",
         "searchPlaceholder": "यहाँ लिखें...",
         "listenPlaceholder": "सुन रहे हैं...",
+        "todoPlaceholder": "कार्य जोड़ें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
@@ -427,6 +434,7 @@ const translations = {
         "firefly": "एडोबी फायरफ्लाई",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
+        "todoListHover": "कार्य सूची",
 
         // Wallpaper and alerts
         "uploadWallpaperText": "वॉलपेपर अपलोड करें",
@@ -1858,6 +1866,9 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
+        { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'todoListText', key: 'todoListText' },
+        { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
@@ -1893,6 +1904,7 @@ function applyLanguage(lang) {
         { id: 'conditionText', key: 'conditionText' },
         { id: 'enterBtn', key: 'enterBtn' },
         { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
+        { id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true },
         { id: 'searchWithHint', key: 'searchWithHint' },
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
@@ -1916,6 +1928,7 @@ function applyLanguage(lang) {
         { id: 'metaAI', key: 'metaAI'},
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'todoListHover', key: 'todoListHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
         { id: 'restoreText', key: 'restoreText' },
