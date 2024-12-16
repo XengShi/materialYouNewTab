@@ -1244,13 +1244,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .digiclock {
                 fill: #909090;
             }
-	    
-	    .dark-theme #userText, .dark-theme #date, .dark-theme .shortcuts .shortcut-name {
-	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			          1px -1px 15px rgba(15, 15, 15, 0.9),
-       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
-            }
 
      	    .dark-theme .uploadButton,
             .dark-theme .randomButton {
