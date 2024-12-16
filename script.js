@@ -1618,7 +1618,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
                 saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextShadow(true))
+                    .then(() => updateTextBackground(true))
                     .catch(error => console.error(error));
             };
             image.src = e.target.result;
@@ -1639,23 +1639,46 @@ async function applyRandomImage(showConfirmation = true) {
         const imageUrl = response.url;
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
         await saveImageToIndexedDB(imageUrl, true);
-        updateTextShadow(true);
+        updateTextBackground(true);
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
 }
 
-// Function to update text-shadow styles with animation
-function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
-    elements.forEach(element => {
+// Function to update solid background behind userText, date, greeting and shortcut names
+function updateTextBackground(hasWallpaper) {
+    // Select elements
+    const userText = document.getElementById('userText');
+    const date = document.getElementById('date');
+    const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
+
+    // Update styles for userText and date
+    [userText, date].forEach(element => {
         if (hasWallpaper) {
-            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+            element.style.backgroundColor = 'var(--accentLightTint-blue)';
+            element.style.padding = '2px 12px';
+            element.style.width = 'fit-content';
+            element.style.borderRadius = '10px';
+            element.style.fontSize = '1.32rem';
         } else {
-            element.style.textShadow = 'none'; // Remove the text-shadow
+            element.style.backgroundColor = ''; // Reset to default
+            element.style.padding = '';
+            element.style.width = '';
+            element.style.borderRadius = '';
+            element.style.fontSize = '';
+        }
+    });
+
+    // Update styles for shortcuts
+    shortcuts.forEach(shortcut => {
+        if (hasWallpaper) {
+            shortcut.style.backgroundColor = 'var(--accentLightTint-blue)';
+            shortcut.style.padding = '0px 6px';
+            shortcut.style.borderRadius = '5px';
+        } else {
+            shortcut.style.backgroundColor = ''; // Reset to default
+            shortcut.style.padding = '';
+            shortcut.style.borderRadius = '';
         }
     });
 }
@@ -1669,13 +1692,13 @@ function checkAndUpdateImage() {
 
             // Case 1: No image found, disable text shadow and return.
             if (!savedImage) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
             // Case 2: Invalid or missing timestamp, disable text shadow and return.
             if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
@@ -1683,7 +1706,7 @@ function checkAndUpdateImage() {
             if (imageType === 'upload') {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 document.body.style.backgroundImage = `var(--bg-image)`;
-                updateTextShadow(true);
+                updateTextBackground(true);
                 return;
             }
 
@@ -1693,12 +1716,12 @@ function checkAndUpdateImage() {
             } else {
                 // Case 5: Same day random image, reapply saved image.
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                updateTextShadow(true);
+                updateTextBackground(true);
             }
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
-            updateTextShadow(false);
+            updateTextBackground(false);
         });
 }
 
@@ -1712,7 +1735,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
                     clearImageFromIndexedDB()
                         .then(() => {
                             document.body.style.removeProperty('--bg-image');
-                            updateTextShadow(false);
+                            updateTextBackground(false);
                         })
                         .catch((error) => console.error(error));
                 }
