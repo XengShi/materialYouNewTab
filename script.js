@@ -1662,7 +1662,7 @@ async function applyRandomImage(showConfirmation = true) {
 
 // Function to update text-shadow styles with animation
 function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts .shortcut-name')];
+    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
     elements.forEach(element => {
         if (hasWallpaper) {
             element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
