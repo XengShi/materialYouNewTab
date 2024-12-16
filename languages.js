@@ -1840,7 +1840,7 @@ function localizeNumbers(text, language) {
     return text;  // Return the localized text
 }
 
-// Function to apply the language to the page
+// Function to apply the selected language
 function applyLanguage(lang) {
     // Define an array of elements and their corresponding translation keys
     const translationMap = [
@@ -1959,38 +1959,44 @@ function applyLanguage(lang) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
     }
 
-    //Update hover text for .themingStuff
-    const themingElement = document.querySelector('.themingStuff');
-    if (themingElement) {
-        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
-        themingElement.setAttribute('data-lang', localizedText);
+        saveLanguageStatus('selectedLanguage', lang); // Save language in localStorage
+        document.querySelector('.selectedLanguage').innerText = document.querySelector(`.languageOption[data-value="${lang}"]`).innerText.trim(); // Update button text
     }
-
-    // Save the selected language in localStorage
-    saveLanguageStatus('selectedLanguage', lang);
-}
-
-// Detect language from navigator.language
-document.getElementById('languageSelector').addEventListener('change', (event) => {
-    applyLanguage(event.target.value);
-    location.reload();
-});
-
-// Function to apply the language when the page loads
-window.onload = function () {
-    const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
-    if (savedLanguage) {
-        document.getElementById("languageSelector").value = savedLanguage;
+    
+    // Event listener for clicking language options
+    document.querySelectorAll('.languageOption').forEach(option => {
+        option.addEventListener('click', (event) => {
+            const selectedLang = event.target.getAttribute('data-value');
+            applyLanguage(selectedLang);
+    
+            // Toggle selected class
+            document.querySelectorAll('.languageOption').forEach(opt => opt.classList.remove('selected'));
+            event.target.classList.add('selected');
+            location.reload(); 
+        });
+    });
+    
+    // Toggle dropdown visibility on button click
+    document.getElementById('languageButton').addEventListener('click', () => {
+        document.getElementById('languageDropdown').classList.toggle('visible');
+    });
+    
+    // Apply language on page load
+    window.onload = function () {
+        const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language
+        applyLanguage(savedLanguage);
+    
+        // Set selected class and button text
+        document.querySelector(`.languageOption[data-value="${savedLanguage}"]`).classList.add('selected');
+        document.querySelector('.selectedLanguage').innerText = document.querySelector(`.languageOption[data-value="${savedLanguage}"]`).innerText.trim();
+    };
+    
+    // Function to save the language status in localStorage
+    function saveLanguageStatus(key, languageStatus) {
+        localStorage.setItem(key, languageStatus);
     }
-    applyLanguage(savedLanguage);
-};
-
-// Function to save the language status in localStorage
-function saveLanguageStatus(key, languageStatus) {
-    localStorage.setItem(key, languageStatus);
-}
-
-// Function to get the language status from localStorage
-function getLanguageStatus(key) {
-    return localStorage.getItem(key);
-}
+    
+    // Function to get the language status from localStorage
+    function getLanguageStatus(key) {
+        return localStorage.getItem(key);
+    }

@@ -1123,32 +1123,48 @@
                                 </g>
                             </svg>
                         </div>
-
-                        <!-- Language selection button -->
-                        <select class="languageSelector" id="languageSelector">
-                            <option value="en">English</option>
-                            <option value="bn">বাংলা (Bangla)</option>
-                            <option value="zh">中文 (Simplified Chinese)</option>
-                            <option value="cs">Čeština (Czech)</option>
-                            <option value="fr">Français (French)</option>
-                            <option value="hi">हिन्दी (Hindi)</option>
-                            <option value="idn">Bahasa Indonesia (Indonesian)</option>
-                            <option value="it">Italiano (Italian)</option>
-                            <option value="ja">日本語 (Japanese)</option>
-                            <option value="ko">한국어 (Korean)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="pt">Português (Portuguese)</option>
-                            <option value="ru">Русский (Russian)</option>
-                            <option value="es">Español (Spanish)</option>
-                            <option value="tr">Türkçe (Turkish)</option>
-                            <option value="uz">O'zbek (Uzbek)</option>
-                            <option value="vi">Tiếng Việt (Vietnamese)</option>
-                            <!-- Place new language alphabetically -->
-                        </select>
-                        <!-- end of languageSelector -->
+                        <div class="languageSection">
+                            <button class="languageButton" id="languageButton">
+                                <span class="selectedLanguage">English</span>
+                            </button>
+                            <div class="languageDropdown" id="languageDropdown">
+                                <div class="languageOption" data-value="en">English</div>
+                                <hr>
+                                <div class="languageOption" data-value="bn">Bangla <span class="subtext">(বাংলা)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="zh">Simplified Chinese <span class="subtext">(中文)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="cs">Czech <span class="subtext">(Čeština)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="fr">French <span class="subtext">(Français)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="hi">Hindi <span class="subtext">(हिन्दी)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="idn">Indonesian <span class="subtext">(Bahasa Indonesia)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="it">Italian <span class="subtext">(Italiano)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="ja">Japanese <span class="subtext">(日本語)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="ko">Korean <span class="subtext">(한국어)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="mr">Marathi <span class="subtext">(मराठी)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="pt">Portuguese <span class="subtext">(Português)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="ru">Russian <span class="subtext">(Русский)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="es">Spanish <span class="subtext">(Español)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="tr">Turkish <span class="subtext">(Türkçe)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="uz">Uzbek <span class="subtext">(O'zbek)</span></div>
+                                <hr>
+                                <div class="languageOption" data-value="vi">Vietnamese <span class="subtext">(Tiếng Việt)</span></div>
+                            </div>
+                        </div>
                     </div>
                     <br>
-                
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">

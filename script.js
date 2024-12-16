@@ -277,7 +277,46 @@ document.addEventListener("click", function (event) {
         googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 });
-// ------------------------End of Google App Menu Setup-----------------------------------
+// ------------------------End of Google App Menu Setup------------------------
+
+// ------------------------Language Selector Setup------------------------
+document.addEventListener("DOMContentLoaded", function() {
+    const languageButton = document.getElementById("languageButton");
+    const languageDropdown = document.getElementById("languageDropdown");
+
+    languageButton.addEventListener("click", function() {
+        const isDropdownVisible = languageDropdown.classList.toggle("show");
+        languageButton.classList.toggle("active", isDropdownVisible);
+    });
+
+    const languageOptions = document.querySelectorAll(".languageOption");
+    languageOptions.forEach(option => {
+        option.addEventListener("click", function() {
+            // Remove selected class from all options
+            languageOptions.forEach(opt => opt.classList.remove("selected"));
+            // Add selected class to clicked option
+            this.classList.add("selected");
+            // Update button text with subtext
+            const mainText = this.childNodes[0].textContent.trim();
+            const subtext = this.querySelector(".subtext") ? this.querySelector(".subtext").outerHTML : "";
+            languageButton.querySelector(".selectedLanguage").innerHTML = mainText + " " + subtext;
+            // Update button's data-value attribute
+            languageButton.setAttribute("data-value", this.getAttribute("data-value"));
+            // Close dropdown
+            languageDropdown.classList.remove("show");
+            languageButton.classList.remove("active");
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+            languageDropdown.classList.remove("show");
+            languageButton.classList.remove("active");
+        }
+    });
+});
+// ------------------------End of Language Selector Setup------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
@@ -1150,13 +1189,15 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .languageIcon,
-            .dark-theme .languageSelector {
+            .dark-theme .languageButton {
                 background-color: #212121;
-                scrollbar-color: var(--darkerColor-blue) transparent;
             }
 
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
+            .dark-theme .languageDropdown {
+                background-color: #212121;
+            }
+            .dark-theme .languageDropdown::-webkit-scrollbar-thumb,
+            .dark-theme .languageDropdown::-webkit-scrollbar-thumb:hover {
                 background-color: var(--darkerColor-blue);
             }
 
