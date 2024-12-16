@@ -583,10 +583,18 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
+	background-color: var(--accentLightTint-blue);
+    padding: 2px 12px;
+    border-radius: 10px;
+
 }
 
 #date {
 	font-size: 1.4rem;
+	background-color: var(--accentLightTint-blue);
+    padding: 2px 12px;
+    border-radius: 10px;
+    width: fit-content;
 }
 
 .digidate {
@@ -1170,7 +1178,6 @@ body {
 	transform: translateX(-50%);
 	/* Center horizontally */
 	margin: auto;
-	/* background-color: #000000d7; */
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
@@ -1178,6 +1185,9 @@ body {
 	transition: all 0.3s;
 	font-size: 1rem;
 	white-space: nowrap;
+	background-color: var(--accentLightTint-blue);
+    padding: 0px 6px;
+    border-radius: 5px;
 }
 
 .shortcuts:hover .shortcut-name {
@@ -2197,36 +2207,14 @@ input:checked + .toggle:before {
 	width: 50px;
 	height: 50px;
 	background-color: var(--accentLightTint-blue);
-	border-radius: 100%;
+	border-radius: 50%;
+	border: 6px solid var(--accentLightTint-blue);
+	box-shadow:
+		/* inset 0 0 0 6px var(--accentLightTint-blue), */
+		inset 0 0 0 4px var(--darkColor-blue),
+		inset 0 0 0 9.7px var(--accentLightTint-blue),
+		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
-}
-
-#menuButton::after {
-	position: absolute;
-	content: "";
-	width: 62%;
-	height: 62%;
-	border-radius: 100%;
-	border: 4px solid var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-}
-
-#menuButton::before {
-	position: absolute;
-	content: "";
-	width: 40%;
-	height: 40%;
-	border-radius: 100%;
-	background-color: var(--darkColor-blue);
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
 }
 
 /* ---------------------- */
