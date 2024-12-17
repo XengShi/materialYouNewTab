@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e2f;
+                color: #e4e4eb;
+            }
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .container {
+                background-color: #2a2a3d;
+                border-color: #444;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .poem {
+            font-style: italic;
+            margin: 16px 0;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        code {
+            background-color: #eaeaea;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            code {
+                background-color: #444;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>This site can't be reached</h1>
+
+        <p class="poem">
+            Paths cross empty void<br>
+            Seeking what once existed<br>
+            Silence answers all.
+        </p>
+
+        <p>Check if there is a typo in the URL.</p>
+
+        <p class="note">
+            Note: Only <code>http://</code> or <code>https://</code> protocols' shortcuts are supported for now.<br>
+            The following are NOT supported: <code>ftp://</code>, <code>data:</code>, <code>chrome://</code>, and more.
+        </p>
+    </div>
+</body>
+
+</html>

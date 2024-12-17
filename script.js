@@ -7,6 +7,22 @@
  */
 
 
+// Check if alert has already been shown
+if (!localStorage.getItem('alertShown')) {
+    // Show the alert after 4 seconds
+    setTimeout(() => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const message = isMac
+            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
+            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
+
+        alert(message);
+
+        // Set a flag in localStorage so the alert is not shown again
+        localStorage.setItem('alertShown', 'true');
+    }, 4000);
+}
+
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -27,12 +43,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         const savedProxy = localStorage.getItem("proxy");
 
         // Pre-fill input fields with saved data
+        if (savedLocation) userLocInput.value = savedLocation;
         if (savedApiKey) userAPIInput.value = savedApiKey;
-        if (savedLocation) {
-            userLocInput.value = savedLocation;
-            //document.getElementById("location").textContent = savedLocation;
+
+        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+        if (savedProxy && savedProxy !== defaultProxyURL) {
+            userProxyInput.value = savedProxy;
         }
-        if (savedProxy) userProxyInput.value = savedProxy;
 
         // Function to simulate button click on Enter key press
         function handleEnterPress(event, buttonId) {
@@ -48,7 +65,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save API key to localStorage
         saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value;
+            const apiKey = userAPIInput.value.trim();
             localStorage.setItem("weatherApiKey", apiKey);
             userAPIInput.value = "";
             location.reload();
@@ -56,7 +73,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Save location to localStorage
         saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value;
+            const userLocation = userLocInput.value.trim();
             localStorage.setItem("weatherLocation", userLocation);
             userLocInput.value = "";
             location.reload();
@@ -64,41 +81,54 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Reset settings (clear localStorage)
         resetbtn.addEventListener("click", () => {
-            if (confirm("Are you sure you want to reset your settings? This action cannot be undone.")) {
+            if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
                 localStorage.clear();
                 location.reload();
             }
         });
 
+        // Save the proxy to localStorage
         saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value;
+            const proxyurl = userProxyInput.value.trim();
 
-            // Check if the input contains 'http://' or 'https://'
+            // If the input is empty, use the default proxy.
+            if (proxyurl === "") {
+                localStorage.setItem("proxy", defaultProxyURL);
+                userProxyInput.value = "";
+                location.reload();
+                return;
+            }
+
+            // Validate if input starts with 'http://' or 'https://'
             if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
                 if (!proxyurl.endsWith("/")) {
-                    // Save the proxy to localStorage
                     localStorage.setItem("proxy", proxyurl);
                     userProxyInput.value = "";
                     location.reload();
-                }
-                else {
-                    alert("There shouldn't be / at the end of the link");
+                } else {
+                    alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
                 }
             } else {
-                // Alert the user if it's not a valid link
-                alert("Only links (starting with http:// or https://) are allowed.");
+                alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
             }
         });
 
-        // Use the saved or default API key and proxy
-        const defaultApiKey = 'd36ce712613d4f21a6083436240910'; // Default Weather API key
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        // Check if the user has entered their own API key
-        const userApiKey = userAPIInput.value.trim();
-        const userproxyurl = userProxyInput.value.trim();
-        // Use the user's API key if available, otherwise use the default API key
-        const apiKey = userApiKey || defaultApiKey;
-        proxyurl = userproxyurl || defaultProxyURL;
+	// Default Weather API key
+        const weatherApiKeys = [
+            // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+            'db0392b338114f208ee135134240312',
+            'de5f7396db034fa2bf3140033240312',
+            'c64591e716064800992140217240312',
+            '9b3204c5201b4b4d8a2140330240312',
+            'eb8a315c15214422b60140503240312',
+            'cd148ebb1b784212b74140622240312',
+            '7ae67e219af54df2840140801240312'
+        ];
+        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
+
+        // Determine API key and proxy URL to use
+        const apiKey = savedApiKey || defaultApiKey;
+        proxyurl = savedProxy || defaultProxyURL;
 
         // Determine the location to use
         let currentUserLocation = savedLocation;
@@ -109,7 +139,14 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.city; // Update to user's city from IP
+
+                // If the country is India and the location is 'Delhi', update to 'New Delhi'
+                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
+                    currentUserLocation = "New Delhi";
+                } else {
+                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
+                }
+
                 localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
             } catch (error) {
                 currentUserLocation = "auto:ip"; // Fallback if fetching location fails
@@ -143,21 +180,37 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // Set humidity level
         const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").innerHTML = `${humidityLabel} ${localizedHumidity}%`;
+        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
         // Event Listener for the Fahrenheit toggle
         const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
         const updateTemperatureDisplay = () => {
             const tempElement = document.getElementById("temp");
+            const feelsLikeElement = document.getElementById("feelsLike");
             const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
             if (fahrenheitCheckbox.checked) {
-                tempElement.innerHTML = `${localizedTempFahrenheit}<span class="tempUnit">°F</span>`;
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';  // Add space for Czech in Fahrenheit
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                // Update temperature
+                tempElement.textContent = localizedTempFahrenheit;
+                const tempUnitF = document.createElement("span");
+                tempUnitF.className = "tempUnit";
+                tempUnitF.textContent = "°F";
+                tempElement.appendChild(tempUnitF);
+
+                // Update feels like
+                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
             } else {
-                tempElement.innerHTML = `${localizedTempCelsius}<span class="tempUnit">°C</span>`;
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';  // Add space for Czech in Celsius
-                document.getElementById("feelsLike").innerHTML = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                // Update temperature
+                tempElement.textContent = localizedTempCelsius;
+                const tempUnitC = document.createElement("span");
+                tempUnitC.className = "tempUnit";
+                tempUnitC.textContent = "°C";
+                tempElement.appendChild(tempUnitC);
+
+                // Update feels like
+                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
             }
         };
         updateTemperatureDisplay();
@@ -194,34 +247,170 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ---------------------------end of weather stuff--------------------
 
 // ------------------------Google App Menu-----------------------------------
-const iconContainer = document.getElementById("iconContainer"); // Menu to toggle visibility
-const tooltipText = googleAppsCont.querySelector(".tooltip-text"); // Tooltip text element
-// Toggle menu when clicking on googleAppsCont
+const iconContainer = document.getElementById("iconContainer");
+const googleAppsCont = document.getElementById("googleAppsCont");
+
+// Toggle menu and tooltip visibility
 googleAppsCont.addEventListener("click", function (event) {
-    tooltipText.style.display = "none"; // Hide the tooltip text
-    if (iconContainer.style.display === 'none' || iconContainer.style.display === '') {
-        iconContainer.style.display = 'grid'; // Show menu
+    const isMenuVisible = iconContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    iconContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        googleAppsCont.classList.add('menu-open'); // Hide tooltip
     } else {
-        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 
-    // Reset tooltip visibility after a delay
-    setTimeout(() => {
-        tooltipText.style.display = ""; // Restore default display
-    }, 1500);
-    event.stopPropagation(); // Prevent click propagation
+    event.stopPropagation();
 });
 
 // Close menu when clicking outside
 document.addEventListener("click", function (event) {
-    if (iconContainer.style.display === 'grid') {
-        const isClickInside = iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
-        if (!isClickInside) {
-            iconContainer.style.display = 'none'; // Hide menu
-        }
+    const isClickInside =
+        iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
+
+    if (!isClickInside && iconContainer.style.display === 'grid') {
+        iconContainer.style.display = 'none'; // Hide menu
+        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+// ----------------------------------- To Do List ----------------------------------------
+
+// DOM Variables
+const todoContainer = document.getElementById("todoContainer");
+const todoListCont = document.getElementById("todoListCont");
+const todoulList = document.getElementById("todoullist");
+const todoAdd = document.getElementById("todoAdd");
+const todoInput = document.getElementById("todoInput");
+let todoList = {}; // Initialize todoList JSON
+
+// Add event listeners for Add button click or Enter key press
+todoAdd.addEventListener("click", addtodoItem);
+todoInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        addtodoItem();
+    }
+});
+
+// Utility function to sanitize input
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+// Function to add items to the TODO list
+function addtodoItem() {
+    const inputText = todoInput.value.trim(); // Remove useless whitespaces
+    if (inputText === '') {
+        return; // Return the function when the input is empty
+    }
+    const t = "t" + Date.now(); // Generate a Unique ID
+    const rawText = inputText;
+    todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
+    const li = createTodoItemDOM(t, rawText, "pending"); // Create List item
+    todoulList.appendChild(li); // Append the new item to the DOM immediately
+    todoInput.value = ''; // Clear Input
+    SaveToDoData(); // Save changes
+}
+
+function createTodoItemDOM(id, title, status) {
+    let li = document.createElement('li');
+    li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
+    const span = document.createElement("span"); // Create the Cross Icon
+    span.setAttribute("class", "todoremovebtn");
+    span.textContent = "\u00d7";
+    li.appendChild(span); // Add the cross icon to the LI tag
+    li.setAttribute("class", "todolistitem");
+    if (status === 'completed') {
+        li.classList.add("checked");
+    }
+    li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
+    return li; // Return the created `li` element
+}
+
+// Event delegation for task check and remove
+todoulList.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI"){
+        event.target.classList.toggle("checked"); // Check the clicked LI tag
+        let id = event.target.dataset.todoitem;
+        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        SaveToDoData(); // Save Changes
+    } else if (event.target.tagName === "SPAN"){
+        let id = event.target.parentElement.dataset.todoitem;
+        event.target.parentElement.remove(); // Remove the clicked LI tag
+        delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
+    }
+});
+
+// Save JSON to local Storage
+function SaveToDoData(){
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+// Fetch saved JSON and create list items using it
+function ShowToDoList() {
+    try {
+        todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
+        const fragment = document.createDocumentFragment(); // Create a DocumentFragment
+        for (let id in todoList) {
+            const todo = todoList[id];
+            const li = createTodoItemDOM(id, todo.title, todo.status); // Create `li` elements
+            fragment.appendChild(li); // Add `li` to the fragment
+        }
+        todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
+    } catch (error) {
+        console.error("Error loading from localStorage:", error);
+        localStorage.setItem("todoList", '{}'); // Reset corrupted data
+    }
+}
+
+// Code to reset the List on the Next Day
+let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
+let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
+if (todoLastUpdateDate===todoCurrentDate){
+    ShowToDoList();
+} else {
+    // Reset the list when last update date and the current date does not match
+    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todoList",'{}');
+    ShowToDoList();
+}
+
+// Toggle menu and tooltip visibility
+todoListCont.addEventListener("click", function (event) {
+    const isMenuVisible = todoContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    todoContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        todoListCont.classList.add('menu-open'); // Hide tooltip
+        todoInput.focus(); // Auto focus on input box
+    } else {
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+    const isClickInside =
+        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains('todoremovebtn');
+
+    if (!isClickInside && todoContainer.style.display === 'grid') {
+        todoContainer.style.display = 'none'; // Hide menu
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+    
+    event.stopPropagation();
+});
+
+// ------------------------------- End of To Do List -------------------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
@@ -305,6 +494,7 @@ function updateDate() {
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
+            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -439,6 +629,7 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
+        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
         default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -623,20 +814,107 @@ document.addEventListener('click', function (event) {
     }
 });
 
-//search function
+// Search function
 document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector('.dropdown-content');
+
+    document.addEventListener('click', (event) => {
+        if (dropdown.style.display == "block") {
+            event.stopPropagation();
+            dropdown.style.display = 'none';
+        }
+    })
+
+    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+        const resultBox = document.getElementById('resultBox');
+        if(resultBox.classList.toString().includes('show')) return;
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
+    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+
+    const sortDropdown = () => {
+        // Change the elements to the array
+        const elements = Array.from(searchDropdowns);
+
+        // Sort the dropdown
+        const sortedDropdowns = elements.sort((a, b) => {
+            const engineA = parseInt(a.getAttribute('data-engine'), 10);
+            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+
+            return engineA - engineB;
+        })
+
+        // get the parent
+        const parent = sortedDropdowns[0]?.parentNode;
+
+        // Append the items. if parent exists.
+        if (parent) {
+            sortedDropdowns.forEach(item => parent.appendChild(item));
+        }
+    }
+
+    // This will add event listener for click in the search bar
+    searchDropdowns.forEach(element => {
+        element.addEventListener('click', () => {
+            const engine = element.getAttribute('data-engine');
+            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+            const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
+
+            // console.log(element, selector);
+            
+            radioButton.checked = true;
+
+            // Swap The dropdown. and sort them
+            swapDropdown(selector);
+            sortDropdown()
+
+            localStorage.setItem("selectedSearchEngine", radioButton.value);
+        });
+    });
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
         engineDiv.addEventListener("click", () => {
             const radioButton = engineDiv.querySelector('input[type="radio"]');
+
             radioButton.checked = true;
+
+            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+
+            const selector = `[data-engine="${radioButtonValue}"]`;
+
+            // Swap The dropdown.
+            swapDropdown(selector);
+            sortDropdown()
+
             localStorage.setItem("selectedSearchEngine", radioButton.value);
         });
     });
+
+    /**
+     * Swap attributes and contents between the default engine and a selected element.
+     * @param {HTMLElement} defaultEngine - The current default engine element.
+     * @param {HTMLElement} selectedElement - The clicked or selected element.
+     */
+    function swapDropdown(selectedElement) {
+        // Swap innerHTML
+        const element = document.querySelector(selectedElement);
+        const tempHTML = defaultEngine.innerHTML;
+        defaultEngine.innerHTML = element.innerHTML;
+        element.innerHTML = tempHTML;
+
+        // Swap attributes
+        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+            const tempAttr = defaultEngine.getAttribute(attr);
+            defaultEngine.setAttribute(attr, element.getAttribute(attr));
+            element.setAttribute(attr, tempAttr);
+        });
+    }
 
     // Function to perform search
     function performSearch() {
@@ -667,12 +945,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set selected search engine from local storage
     const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+
     if (storedSearchEngine) {
+        // Find Serial Number - SN with the help of charAt.
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+
+        // check if the default selected search engine is same as the stored one.
+        if (storedSearchEngineSN !== defaultDropdownSN) {
+            // The following line will find out the appropriate dropdown for the selected search engine.
+            const selector = `*[data-engine="${storedSearchEngineSN}"]`;
+
+            swapDropdown(selector);
+            sortDropdown();
+        }
+
         const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
         if (selectedRadioButton) {
             selectedRadioButton.checked = true;
         }
     }
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    let selectedIndex = -1;
+
+    // Function to update the selected item
+    function updateSelection() {
+        // let hasSelected = [];
+        dropdownItems.forEach((item, index) => {
+
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('selected');
+            })
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('selected');
+            })
+
+            if (index === selectedIndex) {
+                item.focus()
+                item.classList.add('selected');
+            } else {
+                item.focus()
+                item.classList.remove('selected');
+            }
+        });
+    }
+
+    // Event listener for keydown events to navigate up/down
+    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+        if (dropdown.style.display == "block") {
+            if (event.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+            } else if (event.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+            } else if (event.key === "Enter") {
+                const selector = '.dropdown-content .selected';
+                const engine = element.getAttribute('data-engine');
+                const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+
+                radioButton.checked = true;
+
+                // Swap The dropdown. and sort them
+                swapDropdown(selector);
+                sortDropdown()
+            }
+            updateSelection();
+        }
+    });
+
+    // Initial setup for highlighting
+    updateSelection();
 
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
@@ -691,6 +1033,10 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // it is necessary for some elements not to blink when the page is reloaded
+    setTimeout(() => {
+        document.documentElement.classList.add('theme-transition');
+    }, 25); // 
 });
 
 //  -----------Voice Search------------
@@ -828,6 +1174,11 @@ if (!micIconCheckbox.checked) {
 const radioButtons = document.querySelectorAll('.colorPlate');
 const themeStorageKey = 'selectedTheme';
 const storedTheme = localStorage.getItem(themeStorageKey);
+// const radioButtons = document.querySelectorAll('.colorPlate');
+// const themeStorageKey = 'selectedTheme'; // For predefined themes
+const customThemeStorageKey = 'customThemeColor'; // For color picker
+// const storedTheme = localStorage.getItem(themeStorageKey);
+const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
@@ -863,7 +1214,16 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ''; // Reset fill color
     });
+    // Reset the CSS variables to default (for non-dark themes)
+    document.documentElement.style.setProperty('--bg-color-blue', '#ffffff');
+    document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
+    document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
+    document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
+    document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
 };
+
+
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
@@ -872,24 +1232,24 @@ const applySelectedTheme = (colorValue) => {
 
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
-            // Special handling for blue theme
             document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
             document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
             document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
             document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
             document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
+            document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
         } else {
             document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty('--whitishColor-blue', `var(--whitishColor-${colorValue})`);
         }
     }
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-
         // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
@@ -938,7 +1298,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .ttcont input {
-                background-color: #212121;
+                background-color: #212121 !important;
             }
 
             .dark-theme input:checked + .toggle {
@@ -949,100 +1309,169 @@ const applySelectedTheme = (colorValue) => {
                 color: #e8e8e8;
             }
 
-            #searchQ{
+            .dark-theme .resetbtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .resetbtn:active {
+                background-color: #4e4e4e;
+            }
+
+            .dark-theme .savebtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .tiles:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .bottom a:hover {
+                color: var(--darkerColor-blue);
+            }
+
+            .dark-theme #searchQ{
             color: #fff;
             }
 
-            .searchbar.active {
+            .dark-theme .searchbar.active {
                 outline: 2px solid #696969;
             }
 
-            #searchIconDark {
+            .dark-theme #searchIconDark {
                 fill: #bbb !important;
             }
+	    
+	    .dark-theme .dropdown-item.selected:not(*[data-default]):before {
+                background-color: #707070;
+            }
 
-            .tilesContainer .tiles {
+            .dark-theme .tilesContainer .tiles {
                 background-color: #212121;
             }
 
-            #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon{
                 fill: #fff !important;
             }
 
-            .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine{
                 background-color: #aaaaaa;
             }
 
-            .search-engine .darkIconForDarkTheme, .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons{
                 fill: #bbbbbb !important;
             }
 
-            .divider{
+            .dark-theme .divider{
                 background-color: #cdcdcd;
             }
     
-            .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor{
                 fill: #3c3c3c !important;
             }
 
-            #darkLightTint{
+            .dark-theme #darkLightTint{
                 fill: #bfbfbf;
             }
 
-            .strokecolor {
+            .dark-theme .strokecolor {
 	            stroke: #3c3c3c;
             }
 
-            .shortcutsContainer .shortcuts .shortcutLogoContainer {
+            .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
             }
 
-            .digiclock {
+            .dark-theme .digiclock {
                 fill: #909090;
             }
-
-            #minute, #minute::after, #second::after {
-                background-color: #909090;
+	    
+	    .dark-theme #userText, .dark-theme #date, .dark-theme .shortcuts .shortcut-name {
+	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
+	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
+    			          1px -1px 15px rgba(15, 15, 15, 0.9),
+       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
             }
 
-            .dot-icon {
-                fill: #bfbfbf;
+     	    .dark-theme .uploadButton,
+            .dark-theme .randomButton{
+                background-color: var(--darkColor-blue);
+                color: var(--whitishColor-dark);
+            }
+	    
+	    .clearButton{
+                color: #d6d6d6;
             }
 
-            .menuicon{
-                color: #c2c2c2;
+            .dark-theme .clearButton:hover{
+                background-color: var(--whitishColor-dark);
             }
 
-            #menuButton::before{
-                background-color: #bfbfbf;
-            }
-            
-            #menuButton::after{
-                border: 4px solid #858585;
+            .dark-theme .clearButton:active{
+                color: #0e0e0e;
             }
 
-            #menuCloseButton, #menuCloseButton:hover {
+            .dark-theme .backupRestoreBtn {
                 background-color: var(--darkColor-dark);
             }
 
-            #menuCloseButton .icon{
+            .dark-theme .backupRestoreBtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+            
+            .uploadButton:active,
+            .randomButton:active,
+            .backupRestoreBtn:active,
+            .dark-theme. resetbtn:active {
+                background-color: #0e0e0e;
+            }
+
+     	    .dark-theme .micIcon{
+                background-color: var(--whitishColor-dark);
+            }
+
+            .dark-theme #minute, .dark-theme #minute::after, .dark-theme #second::after {
+                background-color: #909090;
+            }
+
+            .dark-theme .dot-icon {
+                fill: #bfbfbf;
+            }
+
+            .dark-theme .menuicon{
+                color: #c2c2c2;
+            }
+
+            .dark-theme #menuButton{
+                border: 6px solid var(--accentLightTint-blue);
+                box-shadow:
+                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
+                    inset 0 0 0 4px #858585,
+                    inset 0 0 0 9.7px var(--accentLightTint-blue),
+                    inset 0 0 0 40px #bfbfbf;
+            }
+
+            .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
+                background-color: var(--darkColor-dark);
+            }
+
+            .dark-theme #menuCloseButton .icon{
                 background-color: #cdcdcd;
             }
 
-            #closeBtnX{
+            .dark-theme #closeBtnX{
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            body{
-                background-color: #191919
+            .dark-theme body{
+                background-color: #000000;
             }
             
-            #HangNoAlive{
+            .dark-theme #HangNoAlive{
                 fill: #c2c2c2 !important;
             }
 
-            .tempUnit{
+            .dark-theme .tempUnit{
                 color: #dadada;
             }
 
@@ -1067,27 +1496,22 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
+
     // Change the extension icon based on the selected theme
-    const iconPaths = {
-        "blue": "./favicon/blue.png",
-        "yellow": "./favicon/yellow.png",
-        "red": "./favicon/red.png",
-        "green": "./favicon/green.png",
-        "cyan": "./favicon/cyan.png",
-        "orange": "./favicon/orange.png",
-        "purple": "./favicon/purple.png",
-        "pink": "./favicon/pink.png",
-        "dark": "./favicon/dark.png",
-    };
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+        .reduce((acc, color) => {
+            acc[color] = `./favicon/${color}.png`;
+            return acc;
+        }, {});
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof browser !== "undefined" && browser.browserAction) {
+        if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (typeof chrome !== "undefined" && chrome.action) {
+            // Chromium-based: Chrome, Edge, Brave
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
@@ -1102,27 +1526,502 @@ const applySelectedTheme = (colorValue) => {
     }
 };
 
-radioButtons.forEach(radioButton => {
-    radioButton.addEventListener('change', function () {
-        if (this.checked) {
-            const colorValue = this.value;
-            localStorage.setItem(themeStorageKey, colorValue);
-            applySelectedTheme(colorValue);
-        }
-    });
+// ----Color Picker || ColorPicker----
+function darkenHexColor(hex, factor = 0.6) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r * (1 - factor));
+    g = Math.floor(g * (1 - factor));
+    b = Math.floor(b * (1 - factor));
+    return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightenHexColor(hex, factor = 0.85) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function lightestColor(hex, factor = 0.95) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    r = Math.floor(r + (255 - r) * factor);
+    g = Math.floor(g + (255 - g) * factor);
+    b = Math.floor(b + (255 - b) * factor);
+    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+function isNearWhite(hex, threshold = 240) {
+    hex = hex.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+    return r > threshold && g > threshold && b > threshold;
+}
+
+// ---- Color Picker || ColorPicker----
+
+const applyCustomTheme = (color) => {
+
+    adjustedColor = color;
+    if (isNearWhite(color)) {
+        adjustedColor = '#696969'; // Light gray if near white
+    }
+    const darkerColorHex = darkenHexColor(adjustedColor);
+    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
+    const lightTin = lightestColor(adjustedColor, 0.95);
+
+    // resetDarkTheme();
+    document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
+    document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
+    document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
+    document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
+    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.getElementById("rangColor").style.borderColor = color;
+    document.getElementById('dfChecked').checked = false;
+};
+
+// Load theme on page reload// Load theme on page reload
+window.addEventListener('load', function () {
+    // console.log('Page loaded, stored theme:', storedTheme);
+    // console.log('Page loaded, stored custom color:', storedCustomColor);
+    if (storedTheme) {
+        applySelectedTheme(storedTheme);
+    } else if (storedCustomColor) {
+        applyCustomTheme(storedCustomColor);
+    }
 });
+
+// Handle radio button changes
+const handleThemeChange = function () {
+    if (this.checked) {
+        const colorValue = this.value;
+        // console.log('Radio button changed, selected theme:', colorValue);
+        localStorage.setItem(themeStorageKey, colorValue);
+        localStorage.removeItem(customThemeStorageKey); // Clear custom theme
+        applySelectedTheme(colorValue);
+    }
+};
+
+// Remove any previously attached listeners and add only one
+radioButtons.forEach(radioButton => {
+    radioButton.removeEventListener('change', handleThemeChange); // Remove if already attached
+    radioButton.addEventListener('change', handleThemeChange);    // Add fresh listener
+});
+
+// Handle color picker changes
+const handleColorPickerChange = function (event) {
+    const selectedColor = event.target.value;
+    // console.log('Color picker changed, selected color:', selectedColor);
+    resetDarkTheme(); // Clear dark theme if active
+    localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
+    localStorage.removeItem(themeStorageKey); // Clear predefined theme
+    applyCustomTheme(selectedColor);
+
+    // Uncheck all radio buttons
+    radioButtons.forEach(radio => {
+        radio.checked = false;
+    });
+};
+
+// Add listeners for color picker
+colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('input', handleColorPickerChange);
+// colorPicker.addEventListener('change', function () {
+//     // console.log('Final color applied:', colorPicker.value);
+//     location.reload();
+// });
+
+
+
 
 
 // end of Function to apply the selected theme
 
+// ------------ Wallpaper ---------------------------------
+// Constants for database and storage
+const dbName = 'ImageDB';
+const storeName = 'backgroundImages';
+const timestampKey = 'lastUpdateTime'; // Key to store last update time
+const imageTypeKey = 'imageType'; // Key to store the type of image ('random' or 'upload')
+
+// Open IndexedDB database
+function openDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(dbName, 1);
+        request.onupgradeneeded = function (event) {
+            const db = event.target.result;
+            db.createObjectStore(storeName);
+        };
+        request.onsuccess = function (event) {
+            resolve(event.target.result);
+        };
+        request.onerror = function (event) {
+            reject('Database error: ' + event.target.errorCode);
+        };
+    });
+}
+
+// Save image data, timestamp, and type to IndexedDB
+async function saveImageToIndexedDB(imageUrl, isRandom) {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+
+        store.put(imageUrl, 'backgroundImage');
+        store.put(new Date().toISOString(), timestampKey);
+        store.put(isRandom ? 'random' : 'upload', imageTypeKey);
+
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
+    });
+}
+
+// Load image, timestamp, and type from IndexedDB
+async function loadImageAndDetails() {
+    const db = await openDatabase();
+    return await Promise.all([
+        new Promise((resolve, reject) => {
+            const transaction = db.transaction(storeName, 'readonly');
+            const store = transaction.objectStore(storeName);
+            const request = store.get('backgroundImage');
+
+            request.onsuccess = (event) => resolve(request.result);
+            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        }),
+        new Promise((resolve_1, reject_1) => {
+            const transaction_1 = db.transaction(storeName, 'readonly');
+            const store_1 = transaction_1.objectStore(storeName);
+            const request_1 = store_1.get(timestampKey);
+
+            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
+            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
+        }),
+        new Promise((resolve_2, reject_2) => {
+            const transaction_2 = db.transaction(storeName, 'readonly');
+            const store_2 = transaction_2.objectStore(storeName);
+            const request_2 = store_2.get(imageTypeKey);
+
+            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
+            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
+        })
+    ]);
+}
+
+// Load only the background image
+async function loadImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const request = store.get('backgroundImage');
+
+        request.onsuccess = (event) => resolve(request.result);
+        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+    });
+}
+
+// Clear image data from IndexedDB
+async function clearImageFromIndexedDB() {
+    const db = await openDatabase();
+    return await new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.delete('backgroundImage');
+
+        request.onsuccess = () => resolve();
+        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
+    });
+}
+
+// Handle file input and save image as upload
+document.getElementById('imageUpload').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const image = new Image();
+            image.onload = function () {
+                const totalPixels = image.width * image.height;
+                if (totalPixels > 2073600) {
+                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
+                    .replace('{width}', image.width)
+                    .replace('{height}', image.height));
+                }
+                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
+                saveImageToIndexedDB(e.target.result, false)
+                    .then(() => updateTextShadow(true))
+                    .catch(error => console.error(error));
+            };
+            image.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Fetch and apply random image as background
+const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
+const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+async function applyRandomImage(showConfirmation = true) {
+    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations['en'].confirmWallpaper)) {
+        return;
+    }
+    try {
+        const response = await fetch(RANDOM_IMAGE_URL);
+        const imageUrl = response.url;
+        document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+        await saveImageToIndexedDB(imageUrl, true);
+        updateTextShadow(true);
+    } catch (error) {
+        console.error('Error fetching random image:', error);
+    }
+}
+
+// Function to update text-shadow styles with animation
+function updateTextShadow(hasWallpaper) {
+    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
+    elements.forEach(element => {
+        if (hasWallpaper) {
+            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
+                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+        } else {
+            element.style.textShadow = 'none'; // Remove the text-shadow
+        }
+    });
+}
+
+// Check and update image on page load
+function checkAndUpdateImage() {
+    loadImageAndDetails()
+        .then(([savedImage, savedTimestamp, imageType]) => {
+            const now = new Date();
+            const lastUpdate = new Date(savedTimestamp);
+
+            // Case 1: No image found, disable text shadow and return.
+            if (!savedImage) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 2: Invalid or missing timestamp, disable text shadow and return.
+            if (!savedTimestamp || isNaN(lastUpdate)) {
+                updateTextShadow(false);
+                return;
+            }
+
+            // Case 3: Uploaded image should always be applied.
+            if (imageType === 'upload') {
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                document.body.style.backgroundImage = `var(--bg-image)`;
+                updateTextShadow(true);
+                return;
+            }
+
+            // Case 4: Random image should be refreshed if it's a new day.
+            if (lastUpdate.toDateString() !== now.toDateString()) {
+                applyRandomImage(false); // Fetch new random image and apply it.
+            } else {
+                // Case 5: Same day random image, reapply saved image.
+                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                updateTextShadow(true);
+            }
+        })
+        .catch((error) => {
+            console.error('Error loading image details:', error);
+            updateTextShadow(false);
+        });
+}
+
+// Event listeners for buttons
+document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
+document.getElementById('clearImage').addEventListener('click', function () {
+    loadImageFromIndexedDB()
+        .then((savedImage) => {
+            if (savedImage) {
+                if (confirm(translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage)) {
+                    clearImageFromIndexedDB()
+                        .then(() => {
+                            document.body.style.removeProperty('--bg-image');
+                            updateTextShadow(false);
+                        })
+                        .catch((error) => console.error(error));
+                }
+            } else {
+                alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
+            }
+        })
+        .catch((error) => console.error(error));
+});
+document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
+
+// Start image check on page load
+checkAndUpdateImage();
+
+// ------- End of BG Image -------------------------------------------
+
+// -------- Backup-Restore Settings ----------------------------------
+document.getElementById("backupBtn").addEventListener("click", backupData);
+document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
+
+// Backup data from localStorage and IndexedDB
+async function backupData() {
+    if (!confirm(translations[currentLanguage]?.confirmbackup || translations['en'].confirmbackup)) return;
+
+    try {
+        const backup = { localStorage: {}, indexedDB: {} };
+
+        // Backup localStorage
+        for (let key in localStorage) {
+            if (localStorage.hasOwnProperty(key)) {
+                backup.localStorage[key] = localStorage.getItem(key);
+            }
+        }
+
+        // Backup IndexedDB (ImageDB)
+        backup.indexedDB = await backupIndexedDB();
+
+        // Generate filename with current date (format: DDMMYYYY)
+        const date = new Date();
+        const formattedDate = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${date.getFullYear()}`;
+        const fileName = `NewTab_Backup_${formattedDate}.json`;
+
+        // Create and download the backup file
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        console.log("Backup completed successfully!");
+    } catch (error) {
+        alert(translations[currentLanguage]?.failedbackup || translations['en'].failedbackup + error.message);
+    }
+}
+
+// Validate and restore data from a backup file
+async function validateAndRestoreData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const backup = JSON.parse(e.target.result);
+            await restoreData(backup);
+
+            alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
+            location.reload();
+        } catch (error) {
+            alert(translations[currentLanguage]?.restorefailed || translations['en'].restorefailed + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Backup IndexedDB: Extract data from ImageDB -> backgroundImages
+function backupIndexedDB() {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readonly");
+            const store = transaction.objectStore("backgroundImages");
+            const data = {};
+
+            store.getAllKeys().onsuccess = (keysEvent) => {
+                const keys = keysEvent.target.result;
+
+                if (!keys.length) {
+                    resolve({ backgroundImages: {} });
+                    return;
+                }
+
+                let pending = keys.length;
+                keys.forEach(key => {
+                    store.get(key).onsuccess = (getEvent) => {
+                        data[key] = getEvent.target.result;
+                        if (--pending === 0) resolve({ backgroundImages: data });
+                    };
+                });
+            };
+
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
+function restoreIndexedDB(data) {
+    return new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open("ImageDB");
+
+        openRequest.onsuccess = () => {
+            const db = openRequest.result;
+            const transaction = db.transaction("backgroundImages", "readwrite");
+            const store = transaction.objectStore("backgroundImages");
+
+            store.clear();
+            Object.entries(data).forEach(([key, value]) => {
+                store.put(value, key);
+            });
+
+            transaction.oncomplete = resolve;
+            transaction.onerror = () => reject(transaction.error);
+        };
+
+        openRequest.onerror = () => reject(openRequest.error);
+    });
+}
+
+// Restore data for both localStorage and IndexedDB
+async function restoreData(backup) {
+    // Clear localStorage before restoring
+    localStorage.clear();
+
+    // Restore localStorage from backup
+    if (backup.localStorage) {
+        Object.keys(backup.localStorage).forEach(key => {
+            localStorage.setItem(key, backup.localStorage[key]);
+        });
+    }
+
+    // Restore IndexedDB from backup
+    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
+        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    }
+}
+// -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts(event) {
-    // const element = document.getElementById("0NIHK");
-    // const shortcuts = document.getElementById("shortcuts");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
 
     if (shortcutsCheckbox.checked) {
@@ -1235,6 +2134,15 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         };
                         resultBox.appendChild(resultItem);
                     });
+
+                    // Check if the dropdown of search shortcut is open
+                    const dropdown = document.querySelector('.dropdown-content');
+                    
+                    if(dropdown.style.display == "block") {
+                        dropdown.style.display = "none";
+                    }
+                    
+
                     showResultBox();
                 }
             } catch (error) {
@@ -1519,7 +2427,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
         `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
 
-    const FAVICON_REQUEST_TIMEOUT = 5000;
+    // const FAVICON_REQUEST_TIMEOUT = 5000;
 
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
@@ -1542,6 +2450,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
+    const todoListCheckbox = document.getElementById("todoListCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -1598,16 +2507,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             element.classList.add("inactive");
         }
-    }
-
-    // Function to save style data
-    function saveIconStyle(key, CSS) {
-        localStorage.setItem(key, CSS);
-    }
-
-    // Function to load style data
-    function loadIconStyle(key, element) {
-        element.innerHTML = localStorage.getItem(key);
     }
 
 
@@ -1672,7 +2571,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
-        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
+        deleteButtonContainer.insertAdjacentHTML('beforeend', SHORTCUT_DELETE_BUTTON_HTML);
 
         const deleteButton = deleteButtonContainer.children[0];
         if (deleteInactive) deleteButton.className = "inactive";
@@ -1800,7 +2699,21 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
-        let url = shortcut.querySelector("input.URL").value;
+        let url = shortcut.querySelector("input.URL").value.trim();
+
+        // URL validation function
+        function isValidUrl(url) {
+            const pattern = /^(https:\/\/|http:\/\/)?(([a-zA-Z\d-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(\/[^\s]*)?$/i;
+            return pattern.test(url);
+        }
+
+        // Validate URL before normalizing
+        if (!isValidUrl(url)) {
+            // alert("Invalid URL. Please enter a valid URL with http or https protocol.");
+            url = "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html";
+        }
+
+        // Normalize URL if valid
         const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
 
         const i = shortcut._index;
@@ -1965,10 +2878,13 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
-
         const hostname = new URL(urlString).hostname;
+
         if (hostname === "github.com") {
             logo.src = "./shortcuts_icons/github-shortcut.svg";
+        } else if (urlString === "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html") {
+            // Special case for invalid URLs
+            logo.src = "./shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
@@ -1989,7 +2905,11 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function getCustomLogo(url) {
         const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
-        return html ? document.createRange().createContextualFragment(html).firstElementChild : null;
+        if (!html) return null;
+
+        const template = document.createElement("template");
+        template.innerHTML = html.trim();
+        return template.content.firstElementChild;
     }
 
     /* ------ Proxy ------ */
@@ -1998,12 +2918,59 @@ document.addEventListener("DOMContentLoaded", function () {
     * This function shows the proxy disclaimer.
     */
     function showProxyDisclaimer() {
-        const message = "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.";
+        const message = translations[currentLanguage]?.ProxyDisclaimer || translations['en'].ProxyDisclaimer;
 
         return confirm(message);
     }
 
     /* ------ Event Listeners ------ */
+    const searchIconContainer = document.querySelectorAll('.searchIcon');
+
+    const showEngineContainer = () => {
+        searchIconContainer[1].style.display = 'none';
+        searchIconContainer[0].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'visible';
+    }
+    
+    const hideEngineContainer = () => {
+        searchIconContainer[0].style.display = 'none';
+        searchIconContainer[1].style.display = 'block';
+        document.getElementById('search-with-container').style.visibility = 'hidden';
+    }
+
+    const initShortCutSwitch = (element) => {
+        if (element.checked) {
+            hideEngineContainer();
+            localStorage.setItem('showShortcutSwitch', true)
+        } else {
+            showEngineContainer();
+            localStorage.setItem('showShortcutSwitch', false)
+        }
+    }
+
+    // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
+    const element = document.getElementById('shortcut_switchcheckbox');
+    element.addEventListener('change', (e) => {
+        initShortCutSwitch(e.target);
+    })
+
+    // Intialize shortcut switch
+    if (localStorage.getItem('showShortcutSwitch')) {
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+
+        if (isShortCutSwitchEnabled) {
+            hideEngineContainer();
+        }
+        else if (!isShortCutSwitchEnabled) {
+            showEngineContainer()
+        }
+    }
+    else {
+        localStorage.setItem('showShortcutSwitch', false);
+    }
+
+    initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
@@ -2024,6 +2991,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("adaptiveIconField", "inactive");
         }
     });
+
     searchsuggestionscheckbox.addEventListener("change", function () {
         saveCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
         if (searchsuggestionscheckbox.checked) {
@@ -2072,6 +3040,7 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("greetingField", "inactive");
         }
     });
+
     hourcheckbox.addEventListener("change", function () {
         saveCheckboxState("hourcheckboxState", hourcheckbox);
         if (hourcheckbox.checked) {
@@ -2080,10 +3049,12 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("hourformat", "false");
         }
     });
+
     greetingCheckbox.addEventListener("change", () => {
         localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
         updatedigiClock();
     });
+
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -2104,16 +3075,22 @@ document.addEventListener("DOMContentLoaded", function () {
             saveActiveStatus("proxyinputField", "inactive");
         }
     });
+
+    // Load checkbox state
+    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+    // Apply CSS based on initial state
+    document.head.appendChild(iconStyle);
+    iconStyle.textContent = adaptiveIconToggle.checked ? ADAPTIVE_ICON_CSS : "";
+
+    // Add event listener for checkbox
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
-            iconStyle.innerHTML = ADAPTIVE_ICON_CSS;
+            iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
-            saveIconStyle("iconStyle", "");
-            iconStyle.innerHTML = "";
+            iconStyle.textContent = "";
         }
-    })
+    });
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -2135,6 +3112,17 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
+    todoListCheckbox.addEventListener("change", function () {
+        saveCheckboxState("todoListCheckboxState", todoListCheckbox);
+        if (todoListCheckbox.checked) {
+            todoListCont.style.display = "flex";
+            saveDisplayStatus("todoListDisplayStatus", "flex");
+        } else {
+            todoListCont.style.display = "none";
+            saveDisplayStatus("todoListDisplayStatus", "none");
         }
     });
 
@@ -2209,13 +3197,13 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-    loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+    loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
+    loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });

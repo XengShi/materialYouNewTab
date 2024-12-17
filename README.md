@@ -24,7 +24,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
   <a href="#-currently-supported-languages-16">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
@@ -35,33 +34,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-license">License</a>
 </p>
 
-<img src="https://i.postimg.cc/M6V8cBZc/Screenshot-from-2024-10-10-20-18-36.png" alt="Screenshot 1" width="100%">
-<table>
-  <tr>
-    <td><img src="https://i.ibb.co/f46wKwW/Material-You-New-Tab-windows-chrome.png" alt="Screenshot 2" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.ibb.co/7nV658Q/mtynt-hindi.png" alt="Screenshot 3" width="100%"></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td><img src="https://i.postimg.cc/PX0JZ829/material-you-newtab.webp" alt="Screenshot 4" width="100%" style="margin-right: 1%;"></td>
-    <td><img src="https://i.ibb.co/41dyDSM/material-You-New-Tab-settings-preview.png" alt="Screenshot 6" width="100%" style="margin-right: 1%;"></td>
-
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td><img src="https://i.ibb.co/M7wtK9g/2024-11-08-10-31-22.png" alt="Screenshot 5" width="100%"></td>
-    <td><img src="https://i.ibb.co/98wBjLt/material-You-New-Tab-settings-look.png" alt="Screenshot 7" width="100%"></td>
-  </tr>
-</table>
-<table>
- <tr>
-    <td><img src="https://i.ibb.co/PC5Td8Q/Screenshot-from-2024-11-10-20-45-51.png" alt="Screenshot 5" width="100%"></td>
-    <td><img src="https://i.ibb.co/Y82qCMB/Screenshot-from-2024-11-10-20-58-20.png" alt="Screenshot 7" width="100%"></td>
-  </tr>
-</table>
+<img src="https://i.ibb.co/M1cJHcx/Material-You-New-Tab-Preview.jpg" alt="Screenshot 1" width="100%">
 
 #### 🔴 🟡 🟢 Test live : https://xengshi.github.io/materialYouNewTab/
 
@@ -71,15 +44,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Personalized Greeting**: Add a custom message or your name, so you're greeted each time you open a new tab.
 - **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
 - **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
-
-## 🛠️ Additional Features
-
-- **Responsive and Modern Design**:
-  - The extension is built with a clean, modern interface inspired by Material You, offering a consistent aesthetic that’s pleasing to the eye.
-  - Elements are intuitively placed, ensuring ease of use and accessibility for users of all ages.
-
-- **Seamless Integration with Browsers**:
-  - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
 
 ## 🌐 Currently Supported Languages (16)
 
@@ -92,9 +56,9 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                     |   hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)           |
 | <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia   |  idn   | [Ayyas-RF](https://github.com/Ayyas-RF/)                                               |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano              |   it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                         |
-| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/)                                                 |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語                |   ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)         |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어                  |   ko   | [XengShi](https://github.com/XengShi/)                                                 |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/)                                                   |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी                  |   mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)    |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português          |  pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                 |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский               |   ru   | [giwi](https://github.com/giwih/)                                                      |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español               |  es-ES | [XengShi](https://github.com/XengShi/)                                                 |
@@ -158,11 +122,11 @@ Below are screenshots of the process to guide you through each step visually.
 #### ![Firefox](https://img.icons8.com/color/20/000000/firefox--v1.png) Firefox
 
 1. **Install from Mozilla Extensions Store**:
+
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
   <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-  
    **Or** follow the manual steps below:
 
 2. **Manual Installation**:
@@ -170,6 +134,7 @@ Below are screenshots of the process to guide you through each step visually.
    - **Prepare the Manifest**:
      - Delete the existing `manifest.json` file.
      - Rename `manifest(firefox).json` to `manifest.json`.
+
    - **Load Temporary Add-on**:
      - Go to `about:debugging#/runtime/this-firefox`, select **"This Firefox"**, then click **Load Temporary Add-on**.
      - Browse and select the updated `manifest.json`.
@@ -179,8 +144,10 @@ Below are screenshots of the process to guide you through each step visually.
 #### ![Safari](https://img.icons8.com/color/20/000000/safari--v1.png) Safari
 
 1. Clone the repository or download and extract the ZIP file.
+
 2. **Enable Developer Mode**:
    - Open **Safari**, go to **Preferences > Advanced** and enable **Show Develop menu in the menu bar**.
+
 3. **Install Extension**:
    - Go to **Develop > Show Extension Builder**, click the **"+"** button, and select your extension folder.
    - Click **Install**.
@@ -199,32 +166,56 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
 
 2. **Clock Widget**:
-   - A modern, animated clock is displayed prominently on the left side, keeping you aware of the current time without needing to check elsewhere.
+   - Two clock options are available: a modern **analog clock** (default) and a **digital clock**.
+   - Users can switch between these clock types in the **menu settings**, providing flexibility to choose their preferred style for displaying the current time.
 
 3. **Weather Information**:
    - Displays real-time weather information for your location, including temperature, weather condition (like "Sunny"), humidity, and "Feels like" temperature.
-   - Users can set their location (like "Dhaka" in the screenshot) to get accurate weather data. A visual icon represents the weather, and temperature is displayed in degrees Celsius.
+   - Users can set their location (like "Dhaka") to get accurate weather data. A visual icon represents the weather, and temperature is displayed in degrees Celsius by default. However, it can be switched to Fahrenheit in the menu settings.
 
 4. **Search Bar**:
    - The search bar allows you to enter queries directly from the new tab page. This makes it quick and easy to start searching without switching to a different page or window.
    - Below the search bar, there are search engine options that allow you to choose your preferred search engine: Google, DuckDuckGo, Bing, Brave, or YouTube.
+   - A **voice typing feature** is integrated, enabling hands-free searches for added convenience.
 
-5. **Quick Access Social Media Icons**:
+5. **Shortcuts**:
    - At the bottom, there are quick-access icons for popular platforms, including YouTube, Email, Telegram, WhatsApp, Twitter, and more.
    - Clicking on any of these icons will redirect you to the respective platform, allowing for easy access to your frequently used services.
+   - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-   - On the bottom left, an "AI Tools" button is available, which could provide access to AI-powered tools directly from the New Tab page. This feature can be helpful for quick, AI-driven assistance or tasks.
+   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
+
+7. **Wallpaper Management**:
+   - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
+   - The **Random Image feature** provides users with a new wallpaper every day, updating automatically at the start of each day. Images are sourced from [Lorem Picsum](https://picsum.photos).
+
+8. **Backup System**:
+   - The menu settings include a backup system that allows users to save and restore their customized settings.
+   - This feature is detailed with screenshots, showing how users can manage backups effectively.
+
+9. **Themes and Personalization**:
+   - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
+   - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking.
+
+10. **Google Apps Integration**:
+    - The extension includes a dedicated section for quick access to Google apps such as Drive, Docs, Sheets, Gmail, and more.
+    - This ensures seamless productivity for users who rely on Google services.
+
+11. **Language Selector**:
+    - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
+    - This feature supports multilingual customization, enhancing accessibility for users worldwide.
 
 ## 🤝 Contributing
 
 Contributions are welcome! If you’d like to contribute:
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m 'Add Your Feature'`.
-4. Push to the branch: `git push origin feature/YourFeature`.
-5. Open a pull request.
+1. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
+2. Fork the repository.
+3. Create a feature branch: `git checkout -b feature/YourFeature`.
+4. Commit your changes: `git commit -m 'Add Your Feature'`.
+5. Push to the branch: `git push origin feature/YourFeature`.
+6. Open a pull request.
 
 ## ❓ Issues and Support
 
@@ -232,13 +223,11 @@ If you encounter any bugs or issues, please [submit an issue](https://github.com
 
 ## 🔒 Privacy Policy
 
-For information on how we handle privacy, please read our [Privacy Policy](./PRIVACY_POLICY.md).
+For information on how we handle privacy, please read our [Privacy Policy](https://xengshi.github.io/materialYouNewTab/privacy-policy.html).
 
 ## 📜 License
 Copyright (C) 2023-2024 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
-> GitHub [@XengShi](https://github.com/XengShi) &nbsp;&middot;&nbsp;
-> Telegram [@xengshi](https://t.me/xengshi) &nbsp;&middot;&nbsp;
-> Email [xengshi@duck.com](mailto:xengshi@duck.com)
+[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
