@@ -58,7 +58,7 @@ const translations = {
         "UserLocText": "Enter your Location",
         "UserLocSubtext": "If the weather location isn't correct",
         "userLoc": "Your City or Coordinates (Latitude, Longitude)",
-        "InputOptionsButton": "Input options",
+        "useGPS": "Use GPS",
         "saveLoc": "Save",
         // Weather
         "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
@@ -183,7 +183,7 @@ const translations = {
         "UserLocText": "Digite sua Localização",
         "UserLocSubtext": "Se a localização do clima não estiver correta",
         "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
-        "InputOptionsButton": "Opções de entrada",
+        
         "saveLoc": "Salvar",
         // Weather
         "WeatherApiText": "Digite sua chave WeatherAPI",
@@ -283,7 +283,7 @@ const translations = {
         "UserLocText": "输入您的位置",
         "UserLocSubtext": "如果天气位置不正确",
         "userLoc": "您的城市或坐标（纬度，经度）",
-        "InputOptionsButton": "输入选项",
+        
         "saveLoc": "保存",
         // Weather
         "WeatherApiText": "输入您的 WeatherAPI 密钥",
@@ -380,7 +380,7 @@ const translations = {
         "UserLocText": "अपना स्थान दर्ज करें",
         "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
         "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
-        "InputOptionsButton": "इनपुट विकल्प",
+        "useGPS": "GPS का उपयोग करें",
         "saveLoc": "सहेजें",
         // Weather
         "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
@@ -507,7 +507,7 @@ const translations = {
         "UserLocText": "Zadejte svou polohu",
         "UserLocSubtext": "Pokud není správná poloha počasí",
         "userLoc": "Město nebo souřadnice (šířka, délka)",
-        "InputOptionsButton": "Co lze zadat",
+        
         "saveLoc": "Uložit",
         // Weather
         "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
@@ -601,7 +601,7 @@ const translations = {
         "UserLocText": "Inserisci la tua posizione",
         "UserLocSubtext": "Se la posizione meteo non è corretta",
         "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
-        "InputOptionsButton": "Opzioni di Inserimento",
+        
         "saveLoc": "Salva",
         // Weather
         "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
@@ -708,7 +708,7 @@ const translations = {
         "UserLocText": "Konumunuzu girin",
         "UserLocSubtext": "Hava durumu konumu doğru değilse",
         "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
-        "InputOptionsButton": "Girdi Seçenekleri",
+        
         "saveLoc": "Kaydet",
         // Weather
         "WeatherApiText": "Kendi WeatherAPI anahtarınızı girin",
@@ -802,7 +802,7 @@ const translations = {
         "UserLocText": "আপনার অবস্থান লিখুন",
         "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
         "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
-        "InputOptionsButton": "ইনপুট অপশন",
+        "useGPS": "জিপিএস ব্যবহার করুন",
         "saveLoc": "সংরক্ষণ করুন",
 
         // Weather
@@ -922,7 +922,7 @@ const translations = {
         "UserLocText": "Nhập vị trí của bạn",
         "UserLocSubtext": "Nếu vị trí thời tiết không chính xác",
         "userLoc": "Vị trí của bạn (Thành phố/Vĩ độ, Kinh độ)",
-        "InputOptionsButton": "Tùy chọn Nhập",
+        
         "saveLoc": "Lưu",
         // Weather
         "WeatherApiText": "Nhập khóa WeatherAPI của bạn",
@@ -1012,7 +1012,7 @@ const translations = {
         "UserLocText": "Введите ваше местоположение",
         "UserLocSubtext": "Если местоположение для погоды неверно",
         "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
-        "InputOptionsButton": "Опции ввода",
+        
         "saveLoc": "Сохранить",
         // Weather
         "WeatherApiText": "Введите свой ключ WeatherAPI",
@@ -1133,7 +1133,7 @@ const translations = {
         "UserLocText": "O'zingizning joylashganligingizni kiriting",
         "UserLocSubtext": "Agar havo joylashuvi noto'g'ri bo'lsa",
         "userLoc": "O'zingizning shahringiz yoki koordinatalaringiz (Kenglik, Uzunlik)",
-        "InputOptionsButton": "Kirish imkoniyatlari",
+        
         "saveLoc": "Saqlash",
         // Weather
         "WeatherApiText": "O'zingizning WeatherAPI kalitini kiriting",
@@ -1219,7 +1219,7 @@ const translations = {
         "UserLocText": "Ingresa tu ubicación",
         "UserLocSubtext": "Si la ubicación del clima es incorrecta",
         "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
-        "InputOptionsButton": "Opciones de entrada",
+        
         "saveLoc": "Guardar",
         // Weather
         "WeatherApiText": "Ingresa tu clave de WeatherAPI",
@@ -1306,7 +1306,7 @@ const translations = {
         "UserLocText": "場所を入力",
         "UserLocSubtext": "天気の地域が正しくない場合",
         "userLoc": "都市または座標（緯度、経度）",
-        "InputOptionsButton": "入力オプション",
+        
         "saveLoc": "保存",
         // Weather
         "WeatherApiText": "WeatherAPIキーを入力",
@@ -1406,7 +1406,7 @@ const translations = {
         "UserLocText": "위치 입력",
         "UserLocSubtext": "날씨 위치가 정확하지 않으면",
         "userLoc": "당신의 도시 또는 좌표 (위도, 경도)",
-        "InputOptionsButton": "입력 옵션",
+        
         "saveLoc": "저장",
         // Weather
         "WeatherApiText": "WeatherAPI 키 입력",
@@ -1509,7 +1509,7 @@ const translations = {
         "UserLocText": "Masukkan Lokasi Anda",
         "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
         "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
-        "InputOptionsButton": "Pilihan Input",
+        
         "saveLoc": "Simpan",
         // Weather
         "WeatherApiText": "Masukkan kunci WeatherAPI anda",
@@ -1603,7 +1603,7 @@ const translations = {
         "UserLocText": "आपले स्थान प्रविष्ट करा",
         "UserLocSubtext": "जर हवामानाचे स्थान बरोबर नसेल",
         "userLoc": "आपले शहर किंवा समन्वय (अक्षांश, रेखांश)",
-        "InputOptionsButton": "इनपुट पर्याय",
+        
         "saveLoc": "जतन करा",
         // Weather
         "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
@@ -1730,7 +1730,7 @@ const translations = {
         "UserLocText": "Saisissez votre localisation",
         "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
         "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-        "InputOptionsButton": "Options de saisie",
+        
         "saveLoc": "Enregistrer",
         // Weather
         "WeatherApiText": "Entrez votre clé WeatherAPI",    // For 'WeatherAPI' string, only transliterate it
@@ -1894,7 +1894,7 @@ function applyLanguage(lang) {
         { id: 'UserLocText', key: 'UserLocText' },
         { id: 'UserLocSubtext', key: 'UserLocSubtext' },
         { id: 'userLoc', key: 'userLoc', isPlaceholder: true },
-        { id: 'InputOptionsButton', key: 'InputOptionsButton' },
+        { id: 'useGPS', key: 'useGPS' },
         { id: 'saveLoc', key: 'saveLoc' },
         { id: 'WeatherApiText', key: 'WeatherApiText' },
         { id: 'WeatherApiSubtext', key: 'WeatherApiSubtext' },
