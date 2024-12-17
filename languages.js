@@ -350,7 +350,7 @@ const translations = {
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
         "todoListText": "कार्य सूची",
-        "todoListInfo": "अपनी दैनिक कार्य सूची देखें और व्यवस्थित रहें",
+        "todoListInfo": "दैनिक कार्यों की सूची दिखाएँ",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -777,6 +777,8 @@ const translations = {
         "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
+        "todoListText": "টু ডু লিস্ট",
+        "todoListInfo": "দৈনিক কাজের তালিকা দেখান",
 
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
@@ -829,10 +831,12 @@ const translations = {
         "enterBtn": "সার্চ করুন",
         "searchPlaceholder": "এখানে টাইপ করুন...",
         "listenPlaceholder": "শোনা হচ্ছে...",
+        "todoPlaceholder": "টাস্ক যোগ করুন...",
         "searchWithHint": "সার্চের মাধ্যম",
         "ai_tools": "এআই টুলস",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         "googleAppsHover": "গুগল অ্যাপস",
+        "todoListHover": "টু ডু লিস্ট",
 
         // Greeting
         greeting: {
