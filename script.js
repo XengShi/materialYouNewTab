@@ -1414,7 +1414,8 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme .backupRestoreBtn:hover {
+            .dark-theme .backupRestoreBtn:hover,
+	    .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
