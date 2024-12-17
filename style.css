@@ -640,7 +640,7 @@ body {
 	height: 24px;
 	font-size: 22px;
 	line-height: 1.2;
-	color: #CCC;
+	color: var(--bg-color-blue);
 	text-align: center;
 	border-radius: 50%;
 	transition: all 0.3s ease;
