@@ -511,6 +511,8 @@ body {
 
 .todo-container::-webkit-scrollbar-track {
 	background-color: transparent;
+	margin-top: 107px;
+	margin-bottom: 10px;
 }
 
 .todo-container::-webkit-scrollbar-thumb {
@@ -526,7 +528,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.todo-container {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
