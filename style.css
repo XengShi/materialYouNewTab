@@ -536,16 +536,16 @@ body {
 #todoAdd {
 	height: 40px;
 	border-radius: 100px;
-	padding: 0 16px;
+	padding: 1px 13px 0 13px;
 	border: none;
-	font-size: 1.1rem;
+	font-size: 1.5rem;
 	background-color: var(--darkColor-blue);
 	color: white;
-	scale: 0.8;
+	scale: 0.78;
 }
 
 #todoAdd:hover {
-	background-color: var(--darkColor-blue);
+	background-color: var(--darkerColor-blue);
 	color: #fff;
 	cursor: pointer;
 }
