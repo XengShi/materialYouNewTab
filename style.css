@@ -614,7 +614,7 @@ body {
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><g id="Complete"><g id="Circle"><circle cx="12" cy="12" data-name="Circle" fill="none" id="Circle-2" r="10" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></g></g></g></svg>');
+	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><circle cx="12" cy="12" r="10" fill="none" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></svg>');
 	background-size: cover;
 	background-position: center;
 	top: 50%;
