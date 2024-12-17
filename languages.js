@@ -28,7 +28,7 @@ const translations = {
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
-        "todoListInfo": "Show a Daily To Do List",
+        "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -43,7 +43,7 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
-        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Hide Search Engines",
         "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
@@ -61,7 +61,7 @@ const translations = {
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn more",
@@ -89,8 +89,8 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
-        "todoListHover": "ToDo List",    // Keep this untranslated if string width is much longer
+        "googleAppsHover": "Google Apps",    // Keep this shorter
+        "todoListHover": "ToDo List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -115,10 +115,10 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
         "backupText": "Backup",
         "restoreText": "Restore",
-        "rangColor": "Pick color",    // Keep it shorter
+        "rangColor": "Pick color",    // Keep this short
         "reloadHint": "Reload the page after applying themes",
 
         // Dialog boxes (alerts)
