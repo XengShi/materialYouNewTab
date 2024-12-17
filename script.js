@@ -1422,8 +1422,12 @@ const applySelectedTheme = (colorValue) => {
             .uploadButton:active,
             .randomButton:active,
             .backupRestoreBtn:active,
-            .dark-theme. resetbtn:active {
+            .dark-theme .resetbtn:active {
                 background-color: #0e0e0e;
+            }
+
+	    .dark-theme .todolistitem span {
+                color:#616161;
             }
 
      	    .dark-theme .micIcon{
