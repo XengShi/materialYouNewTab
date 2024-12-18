@@ -941,86 +941,87 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Set selected search engine from local storage
-    const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+    // // Set selected search engine from local storage
+    // const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
 
-    if (storedSearchEngine) {
-        // Find Serial Number - SN with the help of charAt.
-        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
-        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+    // if (storedSearchEngine) {
+    //     // Find Serial Number - SN with the help of charAt.
+    //     const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+    //     const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
 
-        // check if the default selected search engine is same as the stored one.
-        if (storedSearchEngineSN !== defaultDropdownSN) {
-            // The following line will find out the appropriate dropdown for the selected search engine.
-            const selector = `*[data-engine="${storedSearchEngineSN}"]`;
+    //     // check if the default selected search engine is same as the stored one.
+    //     if (storedSearchEngineSN !== defaultDropdownSN) {
+    //         // The following line will find out the appropriate dropdown for the selected search engine.
+    //         const storedSearchEngineDropdown = document.querySelector(`*[data-engine="${storedSearchEngineSN}"]`);
 
-            swapDropdown(selector);
-            sortDropdown();
-        }
+    //         swapDropdown(storedSearchEngineDropdown);
+    //         sortDropdown();
+    //     }
 
-        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
-        if (selectedRadioButton) {
-            selectedRadioButton.checked = true;
-        }
-    }
+    //     const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
+    //     if (selectedRadioButton) {
+    //         selectedRadioButton.checked = true;
+    //     }
+    // }
 
-    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
-    let selectedIndex = -1;
+    // const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    // let selectedIndex = -1;
 
-    // Function to update the selected item
-    function updateSelection() {
-        // let hasSelected = [];
-        dropdownItems.forEach((item, index) => {
+    // // Function to update the selected item
+    // function updateSelection() {
+    //     // let hasSelected = [];
+    //     dropdownItems.forEach((item, index) => {
 
-            item.addEventListener('mouseenter', () => {
-                item.classList.add('selected');
-            })
-            item.addEventListener('mouseleave', () => {
-                item.classList.remove('selected');
-            })
+    //         item.addEventListener('mouseenter', () => {
+    //             item.classList.add('selected');
+    //         })
+    //         item.addEventListener('mouseleave', () => {
+    //             item.classList.remove('selected');
+    //         })
 
-            if (index === selectedIndex) {
-                item.focus()
-                item.classList.add('selected');
-            } else {
-                item.focus()
-                item.classList.remove('selected');
-            }
-        });
-    }
+    //         if (index === selectedIndex) {
+    //             item.focus()
+    //             item.classList.add('selected');
+    //         } else {
+    //             item.focus()
+    //             item.classList.remove('selected');
+    //         }
+    //     });
+    // }
 
-    // Event listener for keydown events to navigate up/down
-    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
-        if (dropdown.style.display == "block") {
-            if (event.key === 'ArrowDown') {
-                selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
-            } else if (event.key === 'ArrowUp') {
-                selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
-            } else if (event.key === "Enter") {
-                const selector = '.dropdown-content .selected';
-                const engine = element.getAttribute('data-engine');
-                const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
+    // // Event listener for keydown events to navigate up/down
+    // document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+    //     if (dropdown.style.display == "block") {
+    //         if (event.key === 'ArrowDown') {
+    //             selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+    //         } else if (event.key === 'ArrowUp') {
+    //             selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+    //         } else if (event.key === "Enter") {
+    //             const element = document.querySelector('.dropdown-content .selected');
+    //             const engine = element.getAttribute('data-engine');
+    //             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
-                radioButton.checked = true;
+    //             radioButton.checked = true;
 
-                // Swap The dropdown. and sort them
-                swapDropdown(selector);
-                sortDropdown()
-            }
-            updateSelection();
-        }
-    });
+    //             // Swap The dropdown. and sort them
+    //             swapDropdown(element);
+    //             sortDropdown()
+    //         }
+    //         updateSelection();
+    //     }
+    // });
 
-    // Initial setup for highlighting
-    updateSelection();
+    // // Initial setup for highlighting
+    // updateSelection();
 
-    // Event listener for search engine radio buttons
-    searchEngineRadio.forEach((radio) => {
-        radio.addEventListener("change", () => {
-            const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-            localStorage.setItem("selectedSearchEngine", selectedOption);
-        });
-    });
+    // // Event listener for search engine radio buttons
+    // searchEngineRadio.forEach((radio) => {
+    //     radio.addEventListener("change", () => {
+    //         const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+    //         localStorage.setItem("selectedSearchEngine", selectedOption);
+    //     });
+    // });
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
