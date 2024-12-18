@@ -349,7 +349,7 @@ const translations = {
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
         "todoListText": "कार्य सूची",
-        "todoListInfo": "दैनिक कार्यों की सूची दिखाएँ",
+        "todoListInfo": "दैनिक कार्यों की सूची देखें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -776,7 +776,7 @@ const translations = {
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
         "todoListText": "টু ডু লিস্ট",
-        "todoListInfo": "দৈনিক কাজের তালিকা দেখান",
+        "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
 
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
