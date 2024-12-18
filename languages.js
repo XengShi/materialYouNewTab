@@ -554,6 +554,7 @@ const translations = {
         "uploadWallpaperText": "Nahrát tapetu",
         "backupText": "Zálohovat",
         "restoreText": "Obnovit",
+        "rangColor": "Vybrat barvu",
     },
 
 
