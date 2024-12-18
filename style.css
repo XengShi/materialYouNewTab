@@ -511,6 +511,8 @@ body {
 
 .todo-container::-webkit-scrollbar-track {
 	background-color: transparent;
+	margin-top: 107px;
+	margin-bottom: 10px;
 }
 
 .todo-container::-webkit-scrollbar-thumb {
@@ -526,7 +528,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.todo-container {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
@@ -534,16 +536,16 @@ body {
 #todoAdd {
 	height: 40px;
 	border-radius: 100px;
-	padding: 0 16px;
+	padding: 1px 13px 0 13px;
 	border: none;
-	font-size: 1.1rem;
+	font-size: 1.5rem;
 	background-color: var(--darkColor-blue);
 	color: white;
-	scale: 0.8;
+	scale: 0.78;
 }
 
 #todoAdd:hover {
-	background-color: var(--darkColor-blue);
+	background-color: var(--darkerColor-blue);
 	color: #fff;
 	cursor: pointer;
 }
@@ -613,7 +615,7 @@ body {
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><g id="Complete"><g id="Circle"><circle cx="12" cy="12" data-name="Circle" fill="none" id="Circle-2" r="10" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></g></g></g></svg>');
+	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><circle cx="12" cy="12" r="10" fill="none" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></svg>');
 	background-size: cover;
 	background-position: center;
 	top: 50%;
@@ -623,7 +625,7 @@ body {
 	user-select: none;
 }
 .todolistitem.checked::before{
-	background-image: url('data:image/svg+xml,<svg fill="%23FFFFFF" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></g></g></svg>');;
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%23FFFFFF" viewBox="0 0 40 40"><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></svg>');
 }
 .todolistitem.checked{
 	color: #CCC;
@@ -639,7 +641,7 @@ body {
 	height: 24px;
 	font-size: 22px;
 	line-height: 1.2;
-	color: #CCC;
+	color: var(--bg-color-blue);
 	text-align: center;
 	border-radius: 50%;
 	transition: all 0.3s ease;
