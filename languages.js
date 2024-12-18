@@ -1759,10 +1759,12 @@ const translations = {
         "enterBtn": "Rechercher",
         "searchPlaceholder": "Saisissez ici...",
         "listenPlaceholder": "Écoute...",
+        "todoPlaceholder": "Ajouter une tâche...",
         "searchWithHint": "Rechercher avec",
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
         "googleAppsHover": "Apps Google",
+        "todoListHover": "Liste To-Do",
         // End of Body and New Tab Items
 
         // Greeting
