@@ -237,7 +237,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             });
                         },
                         (error) => reject(error),
-                        //{ timeout: 4000 }
+                        { timeout: 4000 }
                     );
                 });
             };
