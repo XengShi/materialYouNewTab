@@ -555,6 +555,20 @@ const translations = {
         "backupText": "Zálohovat",
         "restoreText": "Obnovit",
         "rangColor": "Vybrat barvu",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Přejete si nastavit nový obrázek jako denní tapetu?",
+        "confirmRestore": "Opravdu si přejete resetovat nastavení? Tuto akci nelze zvrátit.",
+        "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
+        "clearbackgroundimage": "Opravdu si přejete smazat obrázek na pozadí?",
+        "confirmbackup": "Opravdu si přejete zálohovat nastavení?",
+        "ProxyDisclaimer": "Všechny funkce proxy jsou ve výchozím nastavení vypnuté.\n\nPokud zapnete našeptávání ve vyhledávání s proxy pro obcházení CORS, pro lepší zabezpečení vám důrazně doporučujeme hostovat si vlastní proxy.\n\nVe výchozím nastavení je proxy nastavena na https://mynt-proxy.rhythmcorehq.com, což znamená, že všechna vaše data procházejí skrz tuto službu. To může vyvolat obavy o soukromí.",
+        "endlink": "Na konci odkazu by nemělo být / (lomítko)",
+        "onlylinks": "Jsou povolené pouze odkazy (začínající na http:// nebo https://).",
+        "imagedimensions": "Varování: Rozměry nahraného obrázku ({width}x{height}) překračují 1920x1080 pixelů.\n\nTo může ovlivnit výkonnost nebo se obrázek nemusí správně načítat.",
+        "failedbackup": "Zálohování selhalo: ",
+        "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
+        "restorefailed": "Obnova ze zálohy selhala: ",
     },
 
 
