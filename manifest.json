@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
     "name": "Material You NewTab",
-    "version": "2.5",
+    "version": "2.6",
     "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-    "permissions": [],
+    "permissions": ["search"],
     "background": {
         "service_worker": "background.js"
     },
