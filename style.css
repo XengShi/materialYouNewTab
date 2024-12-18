@@ -605,6 +605,7 @@ body {
 	user-select: none;
 	cursor: pointer;
 	position: relative;
+	word-break: break-word;
 }
 .todolistitem::before{
 	content: '';
