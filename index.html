@@ -21,9 +21,16 @@
 
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
+    <script async>
+        // This needs to be Async because this color value needs to load from local storage before loading of Page
+        document.documentElement.style.setProperty('--Loading-Screen-Color',localStorage.getItem('LoadingScreenColor') || "#bbd6fd");
+    </script>
 </head>
 
 <body>
+    <!----------------------- Loading Screen Starting ----------------------->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/HD_transparent_picture.png/800px-HD_transparent_picture.png" id="LoadingScreen" fetchpriority="high"/>
+
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
