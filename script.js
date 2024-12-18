@@ -910,20 +910,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Function to perform search
+    // function performSearch() {
+    //     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+    //     var searchTerm = searchInput.value;
+    //     var searchEngines = {
+    //         engine1: 'https://www.google.com/search?q=',
+    //         engine2: 'https://duckduckgo.com/?q=',
+    //         engine3: 'https://bing.com/?q=',
+    //         engine4: 'https://search.brave.com/search?q=',
+    //         engine5: 'https://www.youtube.com/results?search_query='
+    //     };
+
+    //     if (searchTerm !== "") {
+    //         var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
+    //         window.location.href = searchUrl;
+    //     }
+    // }
+
+    // Function to perform search using Chrome Search API
     function performSearch() {
-        var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
-        var searchEngines = {
-            engine1: 'https://www.google.com/search?q=',
-            engine2: 'https://duckduckgo.com/?q=',
-            engine3: 'https://bing.com/?q=',
-            engine4: 'https://search.brave.com/search?q=',
-            engine5: 'https://www.youtube.com/results?search_query='
-        };
 
         if (searchTerm !== "") {
-            var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
-            window.location.href = searchUrl;
+            chrome.search.query({ text: searchTerm });
         }
     }
 
