@@ -809,105 +809,101 @@ document.addEventListener('click', function (event) {
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.querySelector('.dropdown-content');
+    // const dropdown = document.querySelector('.dropdown-content');
 
-    document.addEventListener('click', (event) => {
-        if (dropdown.style.display == "block") {
-            event.stopPropagation();
-            dropdown.style.display = 'none';
-        }
-    })
+    // document.addEventListener('click', (event) => {
+    //     if (dropdown.style.display == "block") {
+    //         event.stopPropagation();
+    //         dropdown.style.display = 'none';
+    //     }
+    // })
 
-    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
-        const resultBox = document.getElementById('resultBox');
-        if(resultBox.classList.toString().includes('show')) return;
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
+    // document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
+    //     const resultBox = document.getElementById('resultBox');
+    //     if (resultBox.classList.toString().includes('show')) return;
+    //     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    // });
 
     const enterBTN = document.getElementById("enterBtn");
     const searchInput = document.getElementById("searchQ");
-    const searchEngineRadio = document.getElementsByName("search-engine");
-    const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
-    const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
+    // const searchEngineRadio = document.getElementsByName("search-engine");
+    // const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
+    // const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
 
-    const sortDropdown = () => {
-        // Change the elements to the array
-        const elements = Array.from(searchDropdowns);
+    // const sortDropdown = () => {
+    //     // Change the elements to the array
+    //     const elements = Array.from(searchDropdowns);
 
-        // Sort the dropdown
-        const sortedDropdowns = elements.sort((a, b) => {
-            const engineA = parseInt(a.getAttribute('data-engine'), 10);
-            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+    //     // Sort the dropdown
+    //     const sortedDropdowns = elements.sort((a, b) => {
+    //         const engineA = parseInt(a.getAttribute('data-engine'), 10);
+    //         const engineB = parseInt(b.getAttribute('data-engine'), 10);
 
-            return engineA - engineB;
-        })
+    //         return engineA - engineB;
+    //     })
 
-        // get the parent
-        const parent = sortedDropdowns[0]?.parentNode;
+    //     // get the parent
+    //     const parent = sortedDropdowns[0]?.parentNode;
 
-        // Append the items. if parent exists.
-        if (parent) {
-            sortedDropdowns.forEach(item => parent.appendChild(item));
-        }
-    }
+    //     // Append the items. if parent exists.
+    //     if (parent) {
+    //         sortedDropdowns.forEach(item => parent.appendChild(item));
+    //     }
+    // }
 
-    // This will add event listener for click in the search bar
-    searchDropdowns.forEach(element => {
-        element.addEventListener('click', () => {
-            const engine = element.getAttribute('data-engine');
-            const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
-            const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
+    // // This will add event listener for click in the search bar
+    // searchDropdowns.forEach(element => {
+    //     element.addEventListener('click', () => {
+    //         const engine = element.getAttribute('data-engine');
+    //         const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
-            // console.log(element, selector);
-            
-            radioButton.checked = true;
+    //         radioButton.checked = true;
 
-            // Swap The dropdown. and sort them
-            swapDropdown(selector);
-            sortDropdown()
+    //         // Swap The dropdown. and sort them
+    //         swapDropdown(element);
+    //         sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
-        });
-    });
+    //         localStorage.setItem("selectedSearchEngine", radioButton.value);
+    //     });
+    // });
 
-    // Make entire search-engine div clickable
-    document.querySelectorAll(".search-engine").forEach((engineDiv) => {
-        engineDiv.addEventListener("click", () => {
-            const radioButton = engineDiv.querySelector('input[type="radio"]');
+    // // Make entire search-engine div clickable
+    // document.querySelectorAll(".search-engine").forEach((engineDiv) => {
+    //     engineDiv.addEventListener("click", () => {
+    //         const radioButton = engineDiv.querySelector('input[type="radio"]');
 
-            radioButton.checked = true;
+    //         radioButton.checked = true;
 
-            const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
+    //         const radioButtonValue = radioButton.value.charAt(radioButton.value.length - 1);
 
-            const selector = `[data-engine="${radioButtonValue}"]`;
+    //         const element = document.querySelector(`[data-engine="${radioButtonValue}"]`);
 
-            // Swap The dropdown.
-            swapDropdown(selector);
-            sortDropdown()
+    //         // Swap The dropdown.
+    //         swapDropdown(element);
+    //         sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
-        });
-    });
+    //         localStorage.setItem("selectedSearchEngine", radioButton.value);
+    //     });
+    // });
 
-    /**
-     * Swap attributes and contents between the default engine and a selected element.
-     * @param {HTMLElement} defaultEngine - The current default engine element.
-     * @param {HTMLElement} selectedElement - The clicked or selected element.
-     */
-    function swapDropdown(selectedElement) {
-        // Swap innerHTML
-        const element = document.querySelector(selectedElement);
-        const tempHTML = defaultEngine.innerHTML;
-        defaultEngine.innerHTML = element.innerHTML;
-        element.innerHTML = tempHTML;
+    // /**
+    //  * Swap attributes and contents between the default engine and a selected element.
+    //  * @param {HTMLElement} defaultEngine - The current default engine element.
+    //  * @param {HTMLElement} selectedElement - The clicked or selected element.
+    //  */
+    // function swapDropdown(selectedElement) {
+    //     // Swap innerHTML
+    //     const tempHTML = defaultEngine.innerHTML;
+    //     defaultEngine.innerHTML = selectedElement.innerHTML;
+    //     selectedElement.innerHTML = tempHTML;
 
-        // Swap attributes
-        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
-            const tempAttr = defaultEngine.getAttribute(attr);
-            defaultEngine.setAttribute(attr, element.getAttribute(attr));
-            element.setAttribute(attr, tempAttr);
-        });
-    }
+    //     // Swap attributes
+    //     ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+    //         const tempAttr = defaultEngine.getAttribute(attr);
+    //         defaultEngine.setAttribute(attr, selectedElement.getAttribute(attr));
+    //         selectedElement.setAttribute(attr, tempAttr);
+    //     });
+    // }
 
     // Function to perform search
     // function performSearch() {
