@@ -1340,7 +1340,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #searchQ {
-            color: #fff;
+                color: #fff;
             }
 
             .dark-theme .searchbar.active {
@@ -1351,7 +1351,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bbb !important;
             }
 	    
-	    .dark-theme .dropdown-item.selected:not(*[data-default]):before {
+            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
                 background-color: #707070;
             }
 
@@ -1401,7 +1401,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-	    .clearButton{
+            .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1420,7 +1420,7 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .backupRestoreBtn:hover,
             .dark-theme .uploadButton:hover,
             .dark-theme .randomButton:hover,
-	    .dark-theme #todoAdd:hover {
+            .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
@@ -1431,7 +1431,7 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #0e0e0e;
             }
 	    
-	    .dark-theme .todolistitem span {
+            .dark-theme .todolistitem .todoremovebtn {
                 color:#616161;
             }
 
