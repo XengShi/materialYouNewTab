@@ -27,134 +27,127 @@ let proxyurl;
 let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Cache DOM elements
-        const userAPIInput = document.getElementById("userAPI");
-        const userLocInput = document.getElementById("userLoc");
-        const userProxyInput = document.getElementById("userproxy");
-        const saveAPIButton = document.getElementById("saveAPI");
-        const saveLocButton = document.getElementById("saveLoc");
-        const resetbtn = document.getElementById("resetsettings");
-        const saveProxyButton = document.getElementById("saveproxy");
+    // Cache DOM elements
+    const userAPIInput = document.getElementById("userAPI");
+    const userLocInput = document.getElementById("userLoc");
+    const userProxyInput = document.getElementById("userproxy");
+    const saveAPIButton = document.getElementById("saveAPI");
+    const saveLocButton = document.getElementById("saveLoc");
+    const resetbtn = document.getElementById("resetsettings");
+    const saveProxyButton = document.getElementById("saveproxy");
 
-        // Load saved data from localStorage
-        const savedApiKey = localStorage.getItem("weatherApiKey");
-        const savedLocation = localStorage.getItem("weatherLocation");
-        const savedProxy = localStorage.getItem("proxy");
+    // Load saved data from localStorage
+    const savedApiKey = localStorage.getItem("weatherApiKey");
+    const savedLocation = localStorage.getItem("weatherLocation");
+    const savedProxy = localStorage.getItem("proxy");
 
-        // Pre-fill input fields with saved data
-        if (savedLocation) userLocInput.value = savedLocation;
-        if (savedApiKey) userAPIInput.value = savedApiKey;
+    // Pre-fill input fields with saved data
+    if (savedLocation) userLocInput.value = savedLocation;
+    if (savedApiKey) userAPIInput.value = savedApiKey;
 
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        if (savedProxy && savedProxy !== defaultProxyURL) {
-            userProxyInput.value = savedProxy;
+    const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+    if (savedProxy && savedProxy !== defaultProxyURL) {
+        userProxyInput.value = savedProxy;
+    }
+
+    // Function to simulate button click on Enter key press
+    function handleEnterPress(event, buttonId) {
+        if (event.key === 'Enter') {
+            document.getElementById(buttonId).click();
+        }
+    }
+
+    // Add event listeners for handling Enter key presses
+    userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
+    userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
+    userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
+
+    // Save API key to localStorage
+    saveAPIButton.addEventListener("click", () => {
+        const apiKey = userAPIInput.value.trim();
+        localStorage.setItem("weatherApiKey", apiKey);
+        userAPIInput.value = "";
+        location.reload();
+    });
+
+    // Save location to localStorage
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        userLocInput.value = "";
+        location.reload();
+    });
+
+    // Reset settings (clear localStorage)
+    resetbtn.addEventListener("click", () => {
+        if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
+            localStorage.clear();
+            location.reload();
+        }
+    });
+
+    // Save the proxy to localStorage
+    saveProxyButton.addEventListener("click", () => {
+        const proxyurl = userProxyInput.value.trim();
+
+        // If the input is empty, use the default proxy.
+        if (proxyurl === "") {
+            localStorage.setItem("proxy", defaultProxyURL);
+            userProxyInput.value = "";
+            location.reload();
+            return;
         }
 
-        // Function to simulate button click on Enter key press
-        function handleEnterPress(event, buttonId) {
-            if (event.key === 'Enter') {
-                document.getElementById(buttonId).click();
-            }
-        }
-
-        // Add event listeners for handling Enter key presses
-        userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
-        userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
-        userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
-
-        // Save API key to localStorage
-        saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value.trim();
-            localStorage.setItem("weatherApiKey", apiKey);
-            userAPIInput.value = "";
-            location.reload();
-        });
-
-        // Save location to localStorage
-        saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value.trim();
-            localStorage.setItem("weatherLocation", userLocation);
-            userLocInput.value = "";
-            location.reload();
-        });
-
-        // Reset settings (clear localStorage)
-        resetbtn.addEventListener("click", () => {
-            if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
-                localStorage.clear();
-                location.reload();
-            }
-        });
-
-        // Save the proxy to localStorage
-        saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value.trim();
-
-            // If the input is empty, use the default proxy.
-            if (proxyurl === "") {
-                localStorage.setItem("proxy", defaultProxyURL);
+        // Validate if input starts with 'http://' or 'https://'
+        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
+            if (!proxyurl.endsWith("/")) {
+                localStorage.setItem("proxy", proxyurl);
                 userProxyInput.value = "";
                 location.reload();
-                return;
-            }
-
-            // Validate if input starts with 'http://' or 'https://'
-            if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-                if (!proxyurl.endsWith("/")) {
-                    localStorage.setItem("proxy", proxyurl);
-                    userProxyInput.value = "";
-                    location.reload();
-                } else {
-                    alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-                }
             } else {
-                alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
+                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
             }
-        });
-
-	// Default Weather API key
-        const weatherApiKeys = [
-            // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-            'db0392b338114f208ee135134240312',
-            'de5f7396db034fa2bf3140033240312',
-            'c64591e716064800992140217240312',
-            '9b3204c5201b4b4d8a2140330240312',
-            'eb8a315c15214422b60140503240312',
-            'cd148ebb1b784212b74140622240312',
-            '7ae67e219af54df2840140801240312'
-        ];
-        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
-
-        // Determine API key and proxy URL to use
-        const apiKey = savedApiKey || defaultApiKey;
-        proxyurl = savedProxy || defaultProxyURL;
-
-        // Determine the location to use
-        let currentUserLocation = savedLocation;
-
-        // If no saved location, fetch the IP-based location
-        if (!currentUserLocation) {
-            try {
-                const geoLocation = 'https://ipinfo.io/json/';
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-
-                // If the country is India and the location is 'Delhi', update to 'New Delhi'
-                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
-                    currentUserLocation = "New Delhi";
-                } else {
-                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }
-
-                localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
-            } catch (error) {
-                currentUserLocation = "auto:ip"; // Fallback if fetching location fails
-            }
+        } else {
+            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
         }
+    });
 
-        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    // Default Weather API key
+    const weatherApiKeys = [
+        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312'
+    ];
+    const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
+    // Determine API key and proxy URL to use
+    const apiKey = savedApiKey || defaultApiKey;
+    proxyurl = savedProxy || defaultProxyURL;
+
+    // Determine the location to use
+    let currentUserLocation = savedLocation;
+
+    // If no saved location, fetch the IP-based location
+    if (!currentUserLocation) {
+        try {
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+
+            currentUserLocation = parsedLocation.loc;
+        } catch (error) {
+            currentUserLocation = "auto:ip"; // Fallback if fetching location fails
+        }
+    }
+
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    try {
         // Fetch weather data using Weather API
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         const data = await fetch(weatherApi);
@@ -656,8 +649,8 @@ function updatedigiClock() {
     // Split the hours and minutes from the localized time string
     let [hours, minutes] = timeString.split(':');
 
-    // Remove leading zero from hours for specific languages in 12-hour format only
-    if (hourformat && currentLanguage !== 'en') {
+    // Remove leading zero from hours in 12-hour format
+    if (hourformat) {
         hours = parseInt(hours, 10).toString(); // Remove leading zero
     }
 
@@ -1036,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
-    }, 25); // 
+    }, 25);
 });
 
 //  -----------Voice Search------------
@@ -1329,7 +1322,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--darkerColor-blue);
             }
 
-            .dark-theme #searchQ{
+            .dark-theme #searchQ {
             color: #fff;
             }
 
@@ -1349,27 +1342,27 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #212121;
             }
 
-            .dark-theme #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon {
                 fill: #fff !important;
             }
 
-            .dark-theme .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine {
                 background-color: #aaaaaa;
             }
 
-            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
                 fill: #bbbbbb !important;
             }
 
-            .dark-theme .divider{
+            .dark-theme .divider {
                 background-color: #cdcdcd;
             }
     
-            .dark-theme .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor {
                 fill: #3c3c3c !important;
             }
 
-            .dark-theme #darkLightTint{
+            .dark-theme #darkLightTint {
                 fill: #bfbfbf;
             }
 
@@ -1384,16 +1377,9 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .digiclock {
                 fill: #909090;
             }
-	    
-	    .dark-theme #userText, .dark-theme #date, .dark-theme .shortcuts .shortcut-name {
-	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			          1px -1px 15px rgba(15, 15, 15, 0.9),
-       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
-            }
 
      	    .dark-theme .uploadButton,
-            .dark-theme .randomButton{
+            .dark-theme .randomButton {
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
@@ -1402,11 +1388,11 @@ const applySelectedTheme = (colorValue) => {
                 color: #d6d6d6;
             }
 
-            .dark-theme .clearButton:hover{
+            .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
             }
 
-            .dark-theme .clearButton:active{
+            .dark-theme .clearButton:active {
                 color: #0e0e0e;
             }
 
@@ -1414,18 +1400,20 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme .backupRestoreBtn:hover {
+            .dark-theme .backupRestoreBtn:hover,
+            .dark-theme .uploadButton:hover,
+            .dark-theme .randomButton:hover {
                 background-color: var(--bg-color-dark);
             }
             
-            .uploadButton:active,
-            .randomButton:active,
-            .backupRestoreBtn:active,
+            .dark-theme .uploadButton:active,
+            .dark-theme .randomButton:active,
+            .dark-theme .backupRestoreBtn:active,
             .dark-theme. resetbtn:active {
                 background-color: #0e0e0e;
             }
 
-     	    .dark-theme .micIcon{
+     	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
 
@@ -1437,11 +1425,11 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bfbfbf;
             }
 
-            .dark-theme .menuicon{
+            .dark-theme .menuicon {
                 color: #c2c2c2;
             }
 
-            .dark-theme #menuButton{
+            .dark-theme #menuButton {
                 border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
                     /*inset 0 0 0 4px var(--accentLightTint-blue),*/
@@ -1454,24 +1442,24 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme #menuCloseButton .icon{
+            .dark-theme #menuCloseButton .icon {
                 background-color: #cdcdcd;
             }
 
-            .dark-theme #closeBtnX{
+            .dark-theme #closeBtnX {
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            .dark-theme body{
+            .dark-theme body {
                 background-color: #000000;
             }
             
-            .dark-theme #HangNoAlive{
+            .dark-theme #HangNoAlive {
                 fill: #c2c2c2 !important;
             }
 
-            .dark-theme .tempUnit{
+            .dark-theme .tempUnit {
                 color: #dadada;
             }
 
@@ -1480,7 +1468,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #b1b1b1;
             }
 
-            .resultItem.active {
+            .dark-theme .resultItem.active {
                 background-color: var(--darkColor-dark);;
             }
         `;
@@ -1767,7 +1755,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
                 saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextShadow(true))
+                    .then(() => updateTextBackground(true))
                     .catch(error => console.error(error));
             };
             image.src = e.target.result;
@@ -1788,23 +1776,46 @@ async function applyRandomImage(showConfirmation = true) {
         const imageUrl = response.url;
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
         await saveImageToIndexedDB(imageUrl, true);
-        updateTextShadow(true);
+        updateTextBackground(true);
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
 }
 
-// Function to update text-shadow styles with animation
-function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
-    elements.forEach(element => {
+// Function to update solid background behind userText, date, greeting and shortcut names
+function updateTextBackground(hasWallpaper) {
+    // Select elements
+    const userText = document.getElementById('userText');
+    const date = document.getElementById('date');
+    const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
+
+    // Update styles for userText and date
+    [userText, date].forEach(element => {
         if (hasWallpaper) {
-            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+            element.style.backgroundColor = 'var(--accentLightTint-blue)';
+            element.style.padding = '2px 12px';
+            element.style.width = 'fit-content';
+            element.style.borderRadius = '10px';
+            element.style.fontSize = '1.32rem';
         } else {
-            element.style.textShadow = 'none'; // Remove the text-shadow
+            element.style.backgroundColor = ''; // Reset to default
+            element.style.padding = '';
+            element.style.width = '';
+            element.style.borderRadius = '';
+            element.style.fontSize = '';
+        }
+    });
+
+    // Update styles for shortcuts
+    shortcuts.forEach(shortcut => {
+        if (hasWallpaper) {
+            shortcut.style.backgroundColor = 'var(--accentLightTint-blue)';
+            shortcut.style.padding = '0px 6px';
+            shortcut.style.borderRadius = '5px';
+        } else {
+            shortcut.style.backgroundColor = ''; // Reset to default
+            shortcut.style.padding = '';
+            shortcut.style.borderRadius = '';
         }
     });
 }
@@ -1818,13 +1829,13 @@ function checkAndUpdateImage() {
 
             // Case 1: No image found, disable text shadow and return.
             if (!savedImage) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
             // Case 2: Invalid or missing timestamp, disable text shadow and return.
             if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
@@ -1832,7 +1843,7 @@ function checkAndUpdateImage() {
             if (imageType === 'upload') {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 document.body.style.backgroundImage = `var(--bg-image)`;
-                updateTextShadow(true);
+                updateTextBackground(true);
                 return;
             }
 
@@ -1842,12 +1853,12 @@ function checkAndUpdateImage() {
             } else {
                 // Case 5: Same day random image, reapply saved image.
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                updateTextShadow(true);
+                updateTextBackground(true);
             }
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
-            updateTextShadow(false);
+            updateTextBackground(false);
         });
 }
 
@@ -1861,7 +1872,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
                     clearImageFromIndexedDB()
                         .then(() => {
                             document.body.style.removeProperty('--bg-image');
-                            updateTextShadow(false);
+                            updateTextBackground(false);
                         })
                         .catch((error) => console.error(error));
                 }

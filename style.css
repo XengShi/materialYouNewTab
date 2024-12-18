@@ -457,7 +457,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.icon-container {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
@@ -783,18 +783,10 @@ body {
 	font-family: "poppins", "Poppins", serif;
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	background-color: var(--accentLightTint-blue);
-    padding: 2px 12px;
-    border-radius: 10px;
-
 }
 
 #date {
 	font-size: 1.4rem;
-	background-color: var(--accentLightTint-blue);
-    padding: 2px 12px;
-    border-radius: 10px;
-    width: fit-content;
 }
 
 .digidate {
@@ -1385,9 +1377,6 @@ body {
 	transition: all 0.3s;
 	font-size: 1rem;
 	white-space: nowrap;
-	background-color: var(--accentLightTint-blue);
-    padding: 0px 6px;
-    border-radius: 5px;
 }
 
 .shortcuts:hover .shortcut-name {
@@ -1714,7 +1703,7 @@ body {
 /* For Firefox */
 @-moz-document url-prefix() {
 	.menuCont .optCont {
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 		/* Handle color and track color */
 	}
@@ -2072,23 +2061,13 @@ input:checked + .toggle:before {
 
 /* --------------Theming stuff------------------ */
 .themingStuff{
-	margin-top: 15px;
+	margin-top: 11px;
 	position: relative;
 	width: 100%;
 	height: 50px;
 	display: flex;
 	justify-content: space-between;
 	gap: var(--gap);
-}
-
-.themingStuff:hover:after{
-	content: attr(data-lang);
-	position: absolute;
-	/* background-color: red; */
-	right: 0;
-	margin-right: 6px;
-	margin-top: -20px;
-	font-size: 0.74rem;
 }
 
 .languageSection {
@@ -2129,7 +2108,7 @@ input:checked + .toggle:before {
 
 	@-moz-document url-prefix() {
 		/* Scrollbar styles for Firefox */
-		scrollbar-width: auto;
+		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
 }
@@ -2266,7 +2245,7 @@ input:checked + .toggle:before {
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
-	margin-top: 130px;
+	margin-top: 134px;
 	justify-content: space-between;
 	gap: 10px;
 }
@@ -2346,7 +2325,7 @@ input:checked + .toggle:before {
 .backupRestoreContainer {
 	width: 100%;
 	height: 38px;
-	margin-top: 30px;
+	margin-top: 33px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 15px;
@@ -2377,7 +2356,7 @@ input:checked + .toggle:before {
 }
 
 .spacer {
-	height: 20px;
+	height: 23px;
 	/* Adjust this value to create space */
 }
 
@@ -2608,9 +2587,13 @@ input:checked + .toggle:before {
 
 
 .savebtn {
-	transition: background-color 0.3s ease;;
+	transition: background-color 0.3s ease;
 }
 
 .savebtn:hover {
 	background-color: var(--darkerColor-blue);
+}
+
+.savebtn:active {
+	transform: scale(0.96);
 }
