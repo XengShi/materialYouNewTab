@@ -2971,28 +2971,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
-    const element = document.getElementById('shortcut_switchcheckbox');
-    element.addEventListener('change', (e) => {
-        initShortCutSwitch(e.target);
-    })
+    // const element = document.getElementById('shortcut_switchcheckbox');
+    // element.addEventListener('change', (e) => {
+    //     initShortCutSwitch(e.target);
+    // })
 
-    // Intialize shortcut switch
-    if (localStorage.getItem('showShortcutSwitch')) {
-        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
-        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+    // // Intialize shortcut switch
+    // if (localStorage.getItem('showShortcutSwitch')) {
+    //     const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+    //     document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
 
-        if (isShortCutSwitchEnabled) {
-            hideEngineContainer();
-        }
-        else if (!isShortCutSwitchEnabled) {
-            showEngineContainer()
-        }
-    }
-    else {
-        localStorage.setItem('showShortcutSwitch', false);
-    }
+    //     if (isShortCutSwitchEnabled) {
+    //         hideEngineContainer();
+    //     }
+    //     else if (!isShortCutSwitchEnabled) {
+    //         showEngineContainer()
+    //     }
+    // }
+    // else {
+    //     localStorage.setItem('showShortcutSwitch', false);
+    // }
 
-    initShortCutSwitch(element);
+    // initShortCutSwitch(element);
 
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
