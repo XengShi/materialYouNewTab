@@ -232,7 +232,27 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "github": "GitHub"
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Carregar papel de parede",
+        "backupText": "Backup",
+        "restoreText": "Restaurar",
+        "rangColor": "Escolher cor",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Você gostaria de definir uma nova imagem como seu papel de parede para hoje?",
+        "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
+        "Nobackgroundset": "Nenhuma imagem de fundo está definida atualmente.",
+        "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
+        "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
+        "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode representar preocupações de privacidade.",
+        "endlink": "Não deve haver / no final do link",
+        "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
+        "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels.\n\nIsso pode impactar o desempenho ou a imagem pode falhar ao carregar corretamente.",
+        "failedbackup": "Backup falhou: ",
+        "restorecompleted": "Restauração concluída com sucesso!",
+        "restorefailed": "Restauração falhou: ",
     },
 
 
