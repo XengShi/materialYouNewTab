@@ -1402,15 +1402,20 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .backupRestoreBtn:hover,
             .dark-theme .uploadButton:hover,
-            .dark-theme .randomButton:hover {
+            .dark-theme .randomButton:hover,
+	    .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
             .dark-theme .uploadButton:active,
             .dark-theme .randomButton:active,
             .dark-theme .backupRestoreBtn:active,
-            .dark-theme. resetbtn:active {
+            .dark-theme .resetbtn:active {
                 background-color: #0e0e0e;
+            }
+	    
+	    .dark-theme .todolistitem span {
+                color:#616161;
             }
 
      	    .dark-theme .micIcon {

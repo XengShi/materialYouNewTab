@@ -28,7 +28,7 @@ const translations = {
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
-        "todoListInfo": "Show a Daily To Do List",
+        "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -61,7 +61,7 @@ const translations = {
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn more",
@@ -89,8 +89,8 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
-        "todoListHover": "ToDo List",    // Keep this untranslated if string width is much longer
+        "googleAppsHover": "Google Apps",    // Keep this shorter
+        "todoListHover": "ToDo List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -115,7 +115,7 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
         "backupText": "Backup",
         "restoreText": "Restore",
         "rangColor": "Pick color",    // Keep it shorter
@@ -349,7 +349,7 @@ const translations = {
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
         "todoListText": "कार्य सूची",
-        "todoListInfo": "अपनी दैनिक कार्य सूची देखें और व्यवस्थित रहें",
+        "todoListInfo": "दैनिक कार्यों की सूची दिखाएँ",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -775,6 +775,8 @@ const translations = {
         "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
+        "todoListText": "টু ডু লিস্ট",
+        "todoListInfo": "দৈনিক কাজের তালিকা দেখান",
 
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
@@ -827,10 +829,12 @@ const translations = {
         "enterBtn": "সার্চ করুন",
         "searchPlaceholder": "এখানে টাইপ করুন...",
         "listenPlaceholder": "শোনা হচ্ছে...",
+        "todoPlaceholder": "টাস্ক যোগ করুন...",
         "searchWithHint": "সার্চের মাধ্যম",
         "ai_tools": "এআই টুলস",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         "googleAppsHover": "গুগল অ্যাপস",
+        "todoListHover": "টু ডু লিস্ট",
 
         // Greeting
         greeting: {
