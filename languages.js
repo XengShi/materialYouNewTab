@@ -477,6 +477,8 @@ const translations = {
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         "googleAppsMenuText": "Google aplikace",
         "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
+        "todoListText": "Seznam úkolů",
+        "todoListInfo": "Zobrazí denní seznam úkolů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Přepne hodiny na digitální",
@@ -533,10 +535,12 @@ const translations = {
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "listenPlaceholder": "Poslouchám...",
+        "todoPlaceholder": "Přidat úkol...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
         "googleAppsHover": "Google aplikace",
+        "todoListHover": "Seznam úkolů",
         // End of Body and New Tab Items
 
         // Greeting
