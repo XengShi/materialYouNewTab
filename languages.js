@@ -1701,6 +1701,8 @@ const translations = {
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        "todoListText": "Liste To-Do",
+        "todoListInfo": "Afficher une liste de tâches quotidiennes",
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
