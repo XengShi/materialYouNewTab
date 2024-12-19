@@ -1930,58 +1930,39 @@ hideResultBox();
 
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
-    if (searchsuggestionscheckbox.checked) {
-        var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-        var searchEngines = {
-            engine1: 'https://www.google.com/search?q=',
-            engine2: 'https://duckduckgo.com/?q=',
-            engine3: 'https://bing.com/?q=',
-            engine4: 'https://search.brave.com/search?q=',
-            engine5: 'https://www.youtube.com/results?search_query='
-        };
-        const query = this.value;
-        const resultBox = document.getElementById("resultBox");
+    const query = this.value;
+    const resultBox = document.getElementById("resultBox");
+    if (searchsuggestionscheckbox.checked && query.length > 0) {
+        try {
+            // Fetch autocomplete suggestions
+            const suggestions = await getAutocompleteSuggestions(query);
 
-        if (query.length > 0) {
-            try {
-                // Fetch autocomplete suggestions
-                const suggestions = await getAutocompleteSuggestions(query);
+            if (suggestions == "") {
+                hideResultBox();
+            } else {
+                // Clear the result box
+                resultBox.innerHTML = '';
 
-                if (suggestions == "") {
-                    hideResultBox();
-                } else {
-                    // Clear the result box
-                    resultBox.innerHTML = '';
+                // Add suggestions to the result box
+                suggestions.forEach((suggestion, index) => {
+                    const resultItem = document.createElement("div");
+                    resultItem.classList.add("resultItem");
+                    resultItem.textContent = suggestion;
+                    resultItem.setAttribute("data-index", index);
+                    resultItem.onclick = () => {
+                        chrome.search.query({ text: suggestion });
+                    };
+                    resultBox.appendChild(resultItem);
+                });
 
-                    // Add suggestions to the result box
-                    suggestions.forEach((suggestion, index) => {
-                        const resultItem = document.createElement("div");
-                        resultItem.classList.add("resultItem");
-                        resultItem.textContent = suggestion;
-                        resultItem.setAttribute("data-index", index);
-                        resultItem.onclick = () => {
-                            var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
-                            window.location.href = resultlink;
-                        };
-                        resultBox.appendChild(resultItem);
-                    });
-
-                    // Check if the dropdown of search shortcut is open
-                    const dropdown = document.querySelector('.dropdown-content');
-                    
-                    if(dropdown.style.display == "block") {
-                        dropdown.style.display = "none";
-                    }
-                    
-
-                    showResultBox();
-                }
-            } catch (error) {
-                // Handle the error (if needed)
+                showResultBox();
             }
-        } else {
-            hideResultBox();
+        } catch (error) {
+            // Handle the error (if needed)
         }
+    } else {
+        hideResultBox();
+
     }
 });
 
@@ -2037,58 +2018,19 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
     }
 });
 
-function getClientParam() {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    // Check for different browsers and return the corresponding client parameter
-    if (userAgent.includes("firefox")) {
-        return "firefox";
-    } else if (userAgent.includes("chrome") || userAgent.includes("crios")) {
-        return "chrome";
-    } else if (userAgent.includes("safari")) {
-        return "safari";
-    } else if (userAgent.includes("edge") || userAgent.includes("edg")) {
-        return "firefox";
-    } else if (userAgent.includes("opera") || userAgent.includes("opr")) {
-        return "opera";
-    } else {
-        return "firefox";  // Default to Firefox client if the browser is not recognized
-    }
-}
 
 async function getAutocompleteSuggestions(query) {
-    const clientParam = getClientParam(); // Get the browser client parameter dynamically
-    var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-    var searchEnginesapi = {
-        engine1: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
-        engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine3: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
-        engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
-    };
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
-    let apiUrl = searchEnginesapi[selectedOption];
+    let apiUrl = `https://www.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}`;
     if (useproxyCheckbox.checked) {
         apiUrl = `${proxyurl}/proxy?url=${encodeURIComponent(apiUrl)}`;
     }
-
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (selectedOption === 'engine4') {
-            const suggestions = data[1].map(item => {
-                if (item.is_entity) {
-                    return `${item.q} - ${item.name} (${item.category ? item.category : "No category"})`;
-                } else {
-                    return item.q;
-                }
-            });
-            return suggestions;
-        } else {
+        return data[1];
 
-            return data[1];
-        }
     } catch (error) {
         console.error('Error fetching autocomplete suggestions:', error);
         return [];
@@ -2098,7 +2040,6 @@ async function getAutocompleteSuggestions(query) {
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
-    // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
         hideResultBox();
