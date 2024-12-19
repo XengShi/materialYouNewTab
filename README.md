@@ -45,7 +45,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
 - **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
 
-## 🌐 Currently Supported Languages (17)
+## 🌐 Currently Supported Languages (18)
 
 | Language                                                                                 | Code  | Translator(s)                                                                         |
 | ---------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
