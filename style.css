@@ -1190,7 +1190,7 @@ body {
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
+	background-color: transparent;
 	width: 200px;
 	height: 100px;
 	display: flex;
@@ -1207,7 +1207,7 @@ body {
 	position: absolute;
 	width: 6px;
 	height: 100%;
-	background-color: var(--accentLightTint-blue);
+	background-color: transparent;
 	border-radius: 3px;
 	right: -20px;
 }
