@@ -600,7 +600,7 @@ body {
 	color: #FFF;
 	border-radius: 8px;
 	list-style-type: none;
-	font-size: 17px;
+	font-size: 1rem;
 	padding: 12px 56px 12px 32px;
 	user-select: none;
 	cursor: pointer;
