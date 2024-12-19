@@ -493,7 +493,7 @@ body {
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 300px;
+	grid-template-columns: 320px;
 	justify-items: center;
 	position: absolute;
 	top: 85px;
