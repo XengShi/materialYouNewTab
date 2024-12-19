@@ -24,6 +24,39 @@
 </head>
 
 <body>
+    <!----------------------- ToDo List Setup Starting ----------------------->
+    <!-- ToDo Icon -->
+    <div class="todoListCont" id="todoListCont">
+        <svg id="todoIcon" xmlns="http://www.w3.org/2000/svg" class="dot-icon" width="36" height="36"
+            viewBox="0 0 32 32">
+            <g style="transform: scale(0.85); transform-origin: center;">
+                <path d="M11,30H5c-1.7,0-3-1.3-3-3v-6c0-1.7,1.3-3,3-3h6c1.7,0,3,1.3,3,3v6C14,28.7,12.7,30,11,30z" />
+                <path d="M29,6H17c-0.6,0-1-0.4-1-1s0.4-1,1-1h12c0.6,0,1,0.4,1,1S29.6,6,29,6z" />
+                <path d="M24,10h-7c-0.6,0-1-0.4-1-1s0.4-1,1-1h7c0.6,0,1,0.4,1,1S24.6,10,24,10z" />
+                <path d="M29,22H17c-0.6,0-1-0.4-1-1s0.4-1,1-1h12c0.6,0,1,0.4,1,1S29.6,22,29,22z" />
+                <path d="M24,26h-7c-0.6,0-1-0.4-1-1s0.4-1,1-1h7c0.6,0,1,0.4,1,1S24.6,26,24,26z" />
+                <path
+                    d="M11,2H5C3.3,2,2,3.3,2,5v6c0,1.7,1.3,3,3,3h6c1.7,0,3-1.3,3-3V5C14,3.3,12.7,2,11,2z M11.7,6.7l-3,3C8.5,9.9,8.3,10,8,10 S7.5,9.9,7.3,9.7l-2-2c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0L8,7.6l2.3-2.3c0.4-0.4,1-0.4,1.4,0S12.1,6.3,11.7,6.7z" />
+            </g>
+        </svg>
+        <!-- Text to appear on hover -->
+        <span class="tooltip-text" id="todoListHover">ToDo List</span>
+    </div>
+
+    <!-- Centered Icon Container -->
+    <div id="todoContainer" class="todo-container" style="display: none;">
+        <h2 id="todoListHeading">To Do List</h2>
+        <div class="searchbar-content">
+            <input id="todoInput" placeholder="Add task..." type="text" autocomplete="off">
+            <div class="searchControls">
+                <!-- Add Button -->
+                <button id="todoAdd">+</button>
+            </div>
+        </div>
+        <ul class="todolist" id="todoullist">
+        </ul>
+    </div>
+
     <!----------------------- Google App Menu Setup Starting ----------------------->
     <!-- 9 Dot Icon -->
     <div class="googleAppsCont" id="googleAppsCont">
@@ -808,6 +841,7 @@
                 <div class="tLabel" id="firefly">Adobe Firefly</div>
             </a>
             <!-- ---------------- -->
+<<<<<<< HEAD
         <a href="https://www.meta.ai/">
           <div class="tIcon">
             <svg
@@ -836,6 +870,18 @@
           <div class="tLabel" id="metaAI">Meta AI</div>
         </a>
             <!-- ---------------- -->
+=======
+            <a href="https://www.meta.ai/">
+                <div class="tIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
+                        <rect class="accentColor aiDarkIcons" width="100%" height="100%" rx="50%" />
+                        <path class="bgLightTint" style="transform: scale(0.8); transform-origin: center;"
+                            d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a7 7 0 0 0 .265.86a5.3 5.3 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927c1.497 0 2.633-.671 3.965-2.444c.76-1.012 1.144-1.626 2.663-4.32l.756-1.339l.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314c1.046.987 1.992 1.22 3.06 1.22c1.075 0 1.876-.355 2.455-.843a3.7 3.7 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745c0-2.72-.681-5.357-2.084-7.45c-1.282-1.912-2.957-2.93-4.716-2.93c-1.047 0-2.088.467-3.053 1.308c-.652.57-1.257 1.29-1.82 2.05c-.69-.875-1.335-1.547-1.958-2.056c-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999c1.132 1.748 1.647 4.195 1.647 6.4c0 1.548-.368 2.9-1.839 2.9c-.58 0-1.027-.23-1.664-1.004c-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a45 45 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327c1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446c.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338c-1.191 1.649-1.81 1.817-2.486 1.817c-.524 0-1.038-.237-1.383-.794c-.263-.426-.464-1.13-.464-2.046c0-2.221.63-4.535 1.66-6.088c.454-.687.964-1.226 1.533-1.533a2.26 2.26 0 0 1 1.088-.285" />
+                    </svg>
+                </div>
+                <div class="tLabel" id="metaAI">Meta AI</div>
+            </a>
+>>>>>>> 0f21df9 (Merge pull request #1 from Thunder-Blaze/Feature/ThemeIntegration)
         </div>
     </div>
     <!-- -----------end of AI-Tools------------------ -->
@@ -950,6 +996,17 @@
                             </label>
                         </div>
 
+                        <div class="ttcont" id="firefoxAdaptiveField">
+                            <div class="texts">
+                                <div class="bigText" id="firefoxAdaptiveText">Enable Firefox Theme</div>
+                                <div class="infoText" id="firefoxAdaptiveInfoText">Experimental</div>
+                            </div>
+                            <label class="switch">
+                                <input id="firefoxAdaptiveToggle" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="googleAppsMenuText">Google Apps</div>
@@ -957,6 +1014,17 @@
                             </div>
                             <label class="switch">
                                 <input id="googleAppsCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="todoListText">To Do List</div>
+                                <div class="infoText" id="todoListInfo">Show a daily To Do list</div>
+                            </div>
+                            <label class="switch">
+                                <input id="todoListCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
