@@ -111,7 +111,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "metaAI" : "Meta AI",
+        "metaAI": "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -431,7 +431,7 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "एडोबी फायरफ्लाई",
-        "metaAI" : "मेटा AI",
+        "metaAI": "मेटा AI",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
         "todoListHover": "कार्य सूची",
@@ -746,6 +746,91 @@ const translations = {
         },
     },
 
+    // Azerbaijani
+    "az": {
+        // Menu Items
+        "feedback": "Əlaqə",
+        "resetsettings": "Parametrləri sıfırla",
+        "menuCloseText": "Bağla",
+        // Shortcuts
+        "shortcutsText": "Qısayollar",
+        "enableShortcutsText": "Yadda saxlanmış qısa yolları göstər",
+        "editShortcutsText": "Qısayolları redaktə et",
+        "editShortcutsList": "Saxlanmış Qısayollar",
+        "shortcutsInfoText": "Göstəriləcək qısayolları seçin",
+        "adaptiveIconText": "Adaptiv ikona formaları",
+        "adaptiveIconInfoText": "Qısayol nişanları dairəvi görünəcək",
+        "ai_tools_button": "AI Alətləri",
+        "enable_ai_tools": "AI Alətləri qısayollarını göstər",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Google Tətbiqləri üçün qısayolları göstər",
+        // Digital Clock
+        "digitalclocktittle": "Rəqəmsal saat",
+        "digitalclockinfo": "Rəqəmsal saata keç",
+        "timeformattittle": "12 Saat Format",
+        "timeformatinfo": "12 saatlıq vaxt formatından istifadə edin",
+        "greetingtittle": "Xoş gəlmisiniz",
+        "greetinginfo": "Fərdi mətnin altında salamlama mesajını göstər",
+        // Misc
+        "userTextTitle": "Fərdiləşdirilə bilən mətn",
+        "userTextInfo": "Saat altında fərdi mətni göstər",
+        "fahrenheitCelsiusCheckbox": "Fahrenheit rejiminə keç",
+        "fahrenheitCelsiusText": "Yeniləmələri görmək üçün səhifəni yeniləyin",
+        "micIconTitle": "Mikrofon nişanını gizlət",
+        "micIconInfo": "Səslə yazmaq işləmirsə",
+        "search_suggestions_button": "Təklifləri axtarın",
+        "search_suggestions_text": "Axtarış təkliflərini aktivləşdirin",
+        // Proxy
+        "useproxytitletext": "Proksidən keçmək",
+        "useproxyText": "Əgər axtarış təklifləri işləmirsə",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "Öz CORS Bypass Proxy əlavə et",
+        "HostproxyButton": "Öz Proxyinizi Host edin",
+        "saveproxy": "Saxla",
+        // Location
+        "UserLocText": "Məkanınızı daxil edin",
+        "UserLocSubtext": "Hava yeri düzgün deyilsə",
+        "userLoc": "Məkanınız (Şəhər/Enlem, Boylam)",
+        "InputOptionsButton": "Daxiletmə Seçimləri",
+        "saveLoc": "Saxla",
+        // Weather
+        "WeatherApiText": "Öz WeatherAPI açarınızı daxil edin",
+        "WeatherApiSubtext": "Hava funksiyası işləmirsə",
+        "userAPI": "Sizin WeatherAPI açarınız",
+        "LearnMoreButton": "Ətraflı məlumat",
+        "saveAPI": "Saxla",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'],
+        "months": ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'İyun', 'İyul', 'Avqust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Rütubət",
+        "feelsLike": "FeelsLike",
+        "location": "Dünya",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Salam! Bu gün necəsən?",
+        "enterBtn": "Axtar",
+        "searchPlaceholder": "Axtarışınız...",
+        "listenPlaceholder": "Dinlənir...",
+        "searchWithHint": "Bununla axtar",
+        "ai_tools": "AI Alətləri",
+        "userText": "Bura klikləməklə redaktə edin",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "Sabahınız xeyir!",
+            "afternoon": "Hər vaxtın xeyir!",
+            "evening": "Axşamın xeyir!"
+        },
+    },
+
 
     // Bengali
     "bn": {
@@ -854,7 +939,7 @@ const translations = {
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
         "firefly": "অ্যাডোবি ফায়ারফ্লাই",
-        "metaAI" : "মেটা এআই",
+        "metaAI": "মেটা এআই",
         "github": "গিটহাব",
 
         // Wallpaper and alerts
@@ -1674,11 +1759,11 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "अडोबी फायरफ्लाय",
-        "metaAI" : "मेटा AI",
+        "metaAI": "मेटा AI",
         "github": "गिटहब",
 
         // Wallpaper and alerts
-       "uploadWallpaperText": "वॉलपेपर सेट करा",
+        "uploadWallpaperText": "वॉलपेपर सेट करा",
         "backupText": "बॅकअप करा",
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
@@ -1803,7 +1888,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "metaAI" : "Meta AI",
+        "metaAI": "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -1946,7 +2031,7 @@ function applyLanguage(lang) {
         { id: 'copilot', key: 'copilot' },
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
-        { id: 'metaAI', key: 'metaAI'},
+        { id: 'metaAI', key: 'metaAI' },
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'todoListHover', key: 'todoListHover' },
