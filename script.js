@@ -2021,7 +2021,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
 async function getAutocompleteSuggestions(query) {
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
-    let apiUrl = `http://www.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}`;
+    let apiUrl = `https://www.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}`;
     if (useproxyCheckbox.checked) {
         apiUrl = `${proxyurl}/proxy?url=${encodeURIComponent(apiUrl)}`;
     }
