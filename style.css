@@ -649,6 +649,10 @@ body {
 	user-select: none;
 }
 
+.todolistitem .todoremovebtn {
+	scale: 1.05;
+}
+
 .todolistitem .todoremovebtn:hover {
 	color: #FFF;
 }
