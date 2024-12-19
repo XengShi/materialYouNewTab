@@ -1481,6 +1481,8 @@ const translations = {
         "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
+        "todoListText": "To-Do List",
+        "todoListInfo": "Tampilkan To-Do list harian",
         // Digital Clock
         "digitalclocktittle": "Jam Digital",
         "digitalclockinfo": "Ubah menjadi jam digital",
@@ -1537,9 +1539,11 @@ const translations = {
         "enterBtn": "Telusuri",
         "searchPlaceholder": "Ketik disini...",
         "listenPlaceholder": "Mendengarkan...",
+        "todoPlaceholder": "Tambah tugas...",
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
+        "todoListHover": "To-Do List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -1552,7 +1556,21 @@ const translations = {
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
-        "restoreText": "Mengembalikan",
+        "restoreText": "Pulihkan",
+        "rangColor": "Pilih warna",    // Keep it shorter
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
+        "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
+        "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
+        "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
+        "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
+        "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+        "endlink": "Seharusnya tidak ada / di akhir tautan",
+        "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
+        "failedbackup": "Pencadangan gagal: ",
+        "restorecompleted": "Pemulihan berhasil dengan sukses!",
+        "restorefailed": "Pemulihan gagal: ",
     },
 
 
