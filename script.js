@@ -1435,6 +1435,10 @@ const applySelectedTheme = (colorValue) => {
                 color:#616161;
             }
 
+	    .dark-theme .todolistitem .todoremovebtn:hover {
+                color:#888888;
+            }
+
      	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
