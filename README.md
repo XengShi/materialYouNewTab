@@ -24,8 +24,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#%EF%B8%8F-additional-features">Additional Features</a> •
-  <a href="#-currently-supported-languages-16">Currently Supported Languages</a> •
   <a href="#-currently-supported-languages-17">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
@@ -47,16 +45,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
 - **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
 
-## 🛠️ Additional Features
-
-- **Responsive and Modern Design**:
-  - The extension is built with a clean, modern interface inspired by Material You, offering a consistent aesthetic that’s pleasing to the eye.
-  - Elements are intuitively placed, ensuring ease of use and accessibility for users of all ages.
-
-- **Seamless Integration with Browsers**:
-  - The extension integrates smoothly with all major browsers, including Chrome, Edge, Brave, Firefox, and Safari, providing a cohesive experience across platforms.
-
-## 🌐 Currently Supported Languages (16)
+## 🌐 Currently Supported Languages (17)
 
 | Language                                                                                   |  Code  | Translator(s)                                                                          |
 |--------------------------------------------------------------------------------------------|:------:|----------------------------------------------------------------------------------------|
@@ -134,6 +123,7 @@ Below are screenshots of the process to guide you through each step visually.
 #### ![Firefox](https://img.icons8.com/color/20/000000/firefox--v1.png) Firefox
 
 1. **Install from Mozilla Extensions Store**:
+
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
   <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
@@ -145,6 +135,7 @@ Below are screenshots of the process to guide you through each step visually.
    - **Prepare the Manifest**:
      - Delete the existing `manifest.json` file.
      - Rename `manifest(firefox).json` to `manifest.json`.
+
    - **Load Temporary Add-on**:
      - Go to `about:debugging#/runtime/this-firefox`, select **"This Firefox"**, then click **Load Temporary Add-on**.
      - Browse and select the updated `manifest.json`.
