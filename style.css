@@ -2073,16 +2073,6 @@ input:checked + .toggle:before {
 	gap: var(--gap);
 }
 
-.themingStuff:hover:after{
-	content: attr(data-lang);
-	position: absolute;
-	/* background-color: red; */
-	right: 0;
-	margin-right: 6px;
-	margin-top: -20px;
-	font-size: 0.74rem;
-}
-
 .languageSection {
 	width: 100%;
 	height: 50px;
