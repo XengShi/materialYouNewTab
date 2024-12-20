@@ -349,7 +349,7 @@ const translations = {
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
         "todoListText": "कार्य सूची",
-        "todoListInfo": "दैनिक कार्यों की सूची दिखाएँ",
+        "todoListInfo": "दैनिक कार्यों की सूची देखें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -477,6 +477,8 @@ const translations = {
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         "googleAppsMenuText": "Google aplikace",
         "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
+        "todoListText": "Seznam úkolů",
+        "todoListInfo": "Zobrazí denní seznam úkolů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Přepne hodiny na digitální",
@@ -533,10 +535,12 @@ const translations = {
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "listenPlaceholder": "Poslouchám...",
+        "todoPlaceholder": "Přidat úkol...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
         "googleAppsHover": "Google aplikace",
+        "todoListHover": "Seznam úkolů",
         // End of Body and New Tab Items
 
         // Greeting
@@ -550,6 +554,21 @@ const translations = {
         "uploadWallpaperText": "Nahrát tapetu",
         "backupText": "Zálohovat",
         "restoreText": "Obnovit",
+        "rangColor": "Vybrat barvu",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Přejete si nastavit nový obrázek jako denní tapetu?",
+        "confirmRestore": "Opravdu si přejete resetovat nastavení? Tuto akci nelze zvrátit.",
+        "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
+        "clearbackgroundimage": "Opravdu si přejete smazat obrázek na pozadí?",
+        "confirmbackup": "Opravdu si přejete zálohovat nastavení?",
+        "ProxyDisclaimer": "Všechny funkce proxy jsou ve výchozím nastavení vypnuté.\n\nPokud zapnete našeptávání ve vyhledávání s proxy pro obcházení CORS, pro lepší zabezpečení vám důrazně doporučujeme hostovat si vlastní proxy.\n\nVe výchozím nastavení je proxy nastavena na https://mynt-proxy.rhythmcorehq.com, což znamená, že všechna vaše data procházejí skrz tuto službu. To může vyvolat obavy o soukromí.",
+        "endlink": "Na konci odkazu by nemělo být / (lomítko)",
+        "onlylinks": "Jsou povolené pouze odkazy (začínající na http:// nebo https://).",
+        "imagedimensions": "Varování: Rozměry nahraného obrázku ({width}x{height}) překračují 1920x1080 pixelů.\n\nTo může ovlivnit výkonnost nebo se obrázek nemusí správně načítat.",
+        "failedbackup": "Zálohování selhalo: ",
+        "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
+        "restorefailed": "Obnova ze zálohy selhala: ",
     },
 
 
@@ -776,7 +795,7 @@ const translations = {
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
         "todoListText": "টু ডু লিস্ট",
-        "todoListInfo": "দৈনিক কাজের তালিকা দেখান",
+        "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
 
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
@@ -1481,6 +1500,8 @@ const translations = {
         "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
+        "todoListText": "To-Do List",
+        "todoListInfo": "Tampilkan To-Do list harian",
         // Digital Clock
         "digitalclocktittle": "Jam Digital",
         "digitalclockinfo": "Ubah menjadi jam digital",
@@ -1537,9 +1558,11 @@ const translations = {
         "enterBtn": "Telusuri",
         "searchPlaceholder": "Ketik disini...",
         "listenPlaceholder": "Mendengarkan...",
+        "todoPlaceholder": "Tambah tugas...",
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
+        "todoListHover": "To-Do List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -1552,7 +1575,21 @@ const translations = {
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
-        "restoreText": "Mengembalikan",
+        "restoreText": "Pulihkan",
+        "rangColor": "Pilih warna",    // Keep it shorter
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
+        "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
+        "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
+        "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
+        "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
+        "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+        "endlink": "Seharusnya tidak ada / di akhir tautan",
+        "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
+        "failedbackup": "Pencadangan gagal: ",
+        "restorecompleted": "Pemulihan berhasil dengan sukses!",
+        "restorefailed": "Pemulihan gagal: ",
     },
 
 
@@ -1701,6 +1738,8 @@ const translations = {
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        "todoListText": "Liste To-Do",
+        "todoListInfo": "Afficher une liste de tâches quotidiennes",
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
@@ -1757,10 +1796,12 @@ const translations = {
         "enterBtn": "Rechercher",
         "searchPlaceholder": "Saisissez ici...",
         "listenPlaceholder": "Écoute...",
+        "todoPlaceholder": "Ajouter une tâche...",
         "searchWithHint": "Rechercher avec",
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
         "googleAppsHover": "Apps Google",
+        "todoListHover": "Liste To-Do",
         // End of Body and New Tab Items
 
         // Greeting

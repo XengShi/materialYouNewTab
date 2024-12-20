@@ -7,6 +7,12 @@
         "bookmarks",
         "favicon"
       ],
+    "host_permissions": [
+		"https://www.google.com/complete/search*",
+		"https://duckduckgo.com/ac/*",
+		"https://search.brave.com/api/suggest*"
+	],
+
     "icons": {
         "48": "icon.png"
     },
