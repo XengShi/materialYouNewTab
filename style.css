@@ -1189,6 +1189,43 @@ body {
 	font-size: 1rem;
 }
 
+.qoutesContainer{
+	position: absolute;
+    background-color: var(--accentLightTint-blue);
+    height: 100%;
+    width: 100%;
+    /* border-radius: var(--round); */
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 28px;
+}
+.autherName{
+	background: var(--bg-color-blue);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 6px 16px;
+	height: 40px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+.autherName .qtRounder{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: -20px;
+	transform: rotate(90deg);
+	bottom: 0;
+}
+.autherName .qtRounder2{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 0;
+	transform: rotate(90deg);
+	top: -20px;
+}
+
 .searchWithCont .hint {
 	background-color: transparent;
 	width: 200px;

@@ -21,6 +21,7 @@
 
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
+    <script defer src="qoutes.js"></script>
 </head>
 
 <body>
@@ -591,9 +592,43 @@
             <!-- ----------end of searchbar-------------- -->
 
             <!-- ----------search with------------------- -->
-            <div class="searchWithCont" style="visibility: hidden;" id="search-with-container">
+            <div class="searchWithCont" id="search-with-container">
 
                 <div class="hint bgLightTint"></div>
+                <div class="qoutesContainer">
+                    Think beyond horizon, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.
+                </div>
+                <div class="autherName">
+                    <div class="qtRounder">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="qtRounder2">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span>XengShi</span>
+                </div>
 
             </div>
             <!-- ----------end of search with------------- -->
@@ -978,7 +1013,8 @@
                             </div>
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
-                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html" id="LearnMoreButton" target="_blank">Learn more</a>
+                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html"
+                                    id="LearnMoreButton" target="_blank">Learn more</a>
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
                         </div>
@@ -1024,7 +1060,7 @@
                         <!-- end of languageSelector -->
                     </div>
                     <br>
-                
+
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">
@@ -1057,7 +1093,8 @@
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
                             <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
+                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
+                                color</label>
                             <input type="color" id="colorPicker" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
@@ -1118,7 +1155,7 @@
                     </div>
 
                     <input type="file" id="fileInput" accept=".json" style="display: none;">
-                     
+
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
                     <div id="menuCloseButton">
