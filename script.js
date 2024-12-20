@@ -361,32 +361,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to load bookmarks
     function loadBookmarks() {
-        chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-            bookmarkList.innerHTML = '';
-            // Extract the 'Bookmarks bar' and display its children
-            const bookmarksBar = bookmarkTreeNodes[0].children.find(node => node.title === 'Bookmarks bar');
-            if (bookmarksBar && bookmarksBar.children) {
-                bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
-            }
+        // Check if the chrome.bookmarks API is available
+        if (chrome.bookmarks && chrome.bookmarks.getTree) {
+            chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
+                // Clear the current list
+                bookmarkList.innerHTML = '';
 
-            // Extract the 'Other bookmarks' node and display it
-            const otherBookmarks = bookmarkTreeNodes[0].children.find(node => node.title === 'Other bookmarks');
-            if (otherBookmarks) {
-                bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
-            }
+                // Extract the 'Bookmarks bar' and display its children
+                const bookmarksBar = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Bookmarks bar');
+                if (bookmarksBar && bookmarksBar.children) {
+                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
+                }
 
-            // Display the "Recent Added" folder if enabled
-            if (recentAddedToggle.checked) {
-                chrome.bookmarks.getRecent(10, function(recentBookmarks) {
-                    const recentAddedFolder = {
-                        title: 'Recent Added',
-                        children: recentBookmarks
-                    };
-                    bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                });
-            }
-        });
+                // Extract the 'Other bookmarks' node and display it
+                const otherBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Other bookmarks');
+                if (otherBookmarks && otherBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
+                }
+
+                // Display the "Recent Added" folder if enabled
+                if (recentAddedToggle && recentAddedToggle.checked) {
+                    chrome.bookmarks.getRecent(10, function (recentBookmarks) {
+                        if (recentBookmarks.length > 0) {
+                            const recentAddedFolder = {
+                                title: 'Recent Added',
+                                children: recentBookmarks
+                            };
+                            bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                        }
+                    });
+                }
+            });
+        } else {
+            console.error("chrome.bookmarks API is unavailable. Please check permissions or context.");
+        }
     }
 
     function displayBookmarks(bookmarkNodes) {
