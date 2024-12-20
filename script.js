@@ -1585,7 +1585,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
     document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
     document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.documentElement.style.setProperty('--whitishColor-blue', lightTin);
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
 };
@@ -1672,13 +1672,13 @@ const applyBrowserTheme = async ({ theme }) => {
   } else applyCustomTheme(newColor);
 };
 
-const itsFirsfox = navigator.userAgent.includes("Firefox");
+const itsfirefox = navigator.userAgent.includes("Firefox");
 
 // Load theme on page reload// Load theme on page reload
 window.addEventListener('load', async function () {
     // console.log('Page loaded, stored theme:', storedTheme);
     // console.log('Page loaded, stored custom color:', storedCustomColor);
-    if (itsFirsfox&&(localStorage.getItem("firefoxAdaptiveToggleState")=='checked')){
+    if (itsfirefox&&(localStorage.getItem("firefoxAdaptiveToggleState")=='checked')){
         browser.theme.onUpdated.addListener(applyBrowserTheme);
         await applyBrowserTheme({ theme: await browser.theme.getCurrent() })
     } else {
@@ -3081,7 +3081,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initShortCutSwitch(element);
 
-    if (!itsFirsfox) {
+    if (!itsfirefox) {
         firefoxAdaptiveField.classList.add("inactive");
         saveActiveStatus("firefoxAdaptiveField", "inactive");
     } else {
