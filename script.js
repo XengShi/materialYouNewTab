@@ -27,134 +27,127 @@ let proxyurl;
 let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Cache DOM elements
-        const userAPIInput = document.getElementById("userAPI");
-        const userLocInput = document.getElementById("userLoc");
-        const userProxyInput = document.getElementById("userproxy");
-        const saveAPIButton = document.getElementById("saveAPI");
-        const saveLocButton = document.getElementById("saveLoc");
-        const resetbtn = document.getElementById("resetsettings");
-        const saveProxyButton = document.getElementById("saveproxy");
+    // Cache DOM elements
+    const userAPIInput = document.getElementById("userAPI");
+    const userLocInput = document.getElementById("userLoc");
+    const userProxyInput = document.getElementById("userproxy");
+    const saveAPIButton = document.getElementById("saveAPI");
+    const saveLocButton = document.getElementById("saveLoc");
+    const resetbtn = document.getElementById("resetsettings");
+    const saveProxyButton = document.getElementById("saveproxy");
 
-        // Load saved data from localStorage
-        const savedApiKey = localStorage.getItem("weatherApiKey");
-        const savedLocation = localStorage.getItem("weatherLocation");
-        const savedProxy = localStorage.getItem("proxy");
+    // Load saved data from localStorage
+    const savedApiKey = localStorage.getItem("weatherApiKey");
+    const savedLocation = localStorage.getItem("weatherLocation");
+    const savedProxy = localStorage.getItem("proxy");
 
-        // Pre-fill input fields with saved data
-        if (savedLocation) userLocInput.value = savedLocation;
-        if (savedApiKey) userAPIInput.value = savedApiKey;
+    // Pre-fill input fields with saved data
+    if (savedLocation) userLocInput.value = savedLocation;
+    if (savedApiKey) userAPIInput.value = savedApiKey;
 
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        if (savedProxy && savedProxy !== defaultProxyURL) {
-            userProxyInput.value = savedProxy;
+    const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+    if (savedProxy && savedProxy !== defaultProxyURL) {
+        userProxyInput.value = savedProxy;
+    }
+
+    // Function to simulate button click on Enter key press
+    function handleEnterPress(event, buttonId) {
+        if (event.key === 'Enter') {
+            document.getElementById(buttonId).click();
+        }
+    }
+
+    // Add event listeners for handling Enter key presses
+    userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
+    userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
+    userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
+
+    // Save API key to localStorage
+    saveAPIButton.addEventListener("click", () => {
+        const apiKey = userAPIInput.value.trim();
+        localStorage.setItem("weatherApiKey", apiKey);
+        userAPIInput.value = "";
+        location.reload();
+    });
+
+    // Save location to localStorage
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        userLocInput.value = "";
+        location.reload();
+    });
+
+    // Reset settings (clear localStorage)
+    resetbtn.addEventListener("click", () => {
+        if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
+            localStorage.clear();
+            location.reload();
+        }
+    });
+
+    // Save the proxy to localStorage
+    saveProxyButton.addEventListener("click", () => {
+        const proxyurl = userProxyInput.value.trim();
+
+        // If the input is empty, use the default proxy.
+        if (proxyurl === "") {
+            localStorage.setItem("proxy", defaultProxyURL);
+            userProxyInput.value = "";
+            location.reload();
+            return;
         }
 
-        // Function to simulate button click on Enter key press
-        function handleEnterPress(event, buttonId) {
-            if (event.key === 'Enter') {
-                document.getElementById(buttonId).click();
-            }
-        }
-
-        // Add event listeners for handling Enter key presses
-        userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
-        userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
-        userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
-
-        // Save API key to localStorage
-        saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value.trim();
-            localStorage.setItem("weatherApiKey", apiKey);
-            userAPIInput.value = "";
-            location.reload();
-        });
-
-        // Save location to localStorage
-        saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value.trim();
-            localStorage.setItem("weatherLocation", userLocation);
-            userLocInput.value = "";
-            location.reload();
-        });
-
-        // Reset settings (clear localStorage)
-        resetbtn.addEventListener("click", () => {
-            if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
-                localStorage.clear();
-                location.reload();
-            }
-        });
-
-        // Save the proxy to localStorage
-        saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value.trim();
-
-            // If the input is empty, use the default proxy.
-            if (proxyurl === "") {
-                localStorage.setItem("proxy", defaultProxyURL);
+        // Validate if input starts with 'http://' or 'https://'
+        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
+            if (!proxyurl.endsWith("/")) {
+                localStorage.setItem("proxy", proxyurl);
                 userProxyInput.value = "";
                 location.reload();
-                return;
-            }
-
-            // Validate if input starts with 'http://' or 'https://'
-            if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-                if (!proxyurl.endsWith("/")) {
-                    localStorage.setItem("proxy", proxyurl);
-                    userProxyInput.value = "";
-                    location.reload();
-                } else {
-                    alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-                }
             } else {
-                alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
+                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
             }
-        });
-
-	// Default Weather API key
-        const weatherApiKeys = [
-            // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-            'db0392b338114f208ee135134240312',
-            'de5f7396db034fa2bf3140033240312',
-            'c64591e716064800992140217240312',
-            '9b3204c5201b4b4d8a2140330240312',
-            'eb8a315c15214422b60140503240312',
-            'cd148ebb1b784212b74140622240312',
-            '7ae67e219af54df2840140801240312'
-        ];
-        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
-
-        // Determine API key and proxy URL to use
-        const apiKey = savedApiKey || defaultApiKey;
-        proxyurl = savedProxy || defaultProxyURL;
-
-        // Determine the location to use
-        let currentUserLocation = savedLocation;
-
-        // If no saved location, fetch the IP-based location
-        if (!currentUserLocation) {
-            try {
-                const geoLocation = 'https://ipinfo.io/json/';
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-
-                // If the country is India and the location is 'Delhi', update to 'New Delhi'
-                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
-                    currentUserLocation = "New Delhi";
-                } else {
-                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }
-
-                localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
-            } catch (error) {
-                currentUserLocation = "auto:ip"; // Fallback if fetching location fails
-            }
+        } else {
+            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
         }
+    });
 
-        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    // Default Weather API key
+    const weatherApiKeys = [
+        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312'
+    ];
+    const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
+    // Determine API key and proxy URL to use
+    const apiKey = savedApiKey || defaultApiKey;
+    proxyurl = savedProxy || defaultProxyURL;
+
+    // Determine the location to use
+    let currentUserLocation = savedLocation;
+
+    // If no saved location, fetch the IP-based location
+    if (!currentUserLocation) {
+        try {
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+
+            currentUserLocation = parsedLocation.loc;
+        } catch (error) {
+            currentUserLocation = "auto:ip"; // Fallback if fetching location fails
+        }
+    }
+
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    try {
         // Fetch weather data using Weather API
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         const data = await fetch(weatherApi);
@@ -278,6 +271,139 @@ document.addEventListener("click", function (event) {
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+// ----------------------------------- To Do List ----------------------------------------
+
+// DOM Variables
+const todoContainer = document.getElementById("todoContainer");
+const todoListCont = document.getElementById("todoListCont");
+const todoulList = document.getElementById("todoullist");
+const todoAdd = document.getElementById("todoAdd");
+const todoInput = document.getElementById("todoInput");
+let todoList = {}; // Initialize todoList JSON
+
+// Add event listeners for Add button click or Enter key press
+todoAdd.addEventListener("click", addtodoItem);
+todoInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        addtodoItem();
+    }
+});
+
+// Utility function to sanitize input
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+// Function to add items to the TODO list
+function addtodoItem() {
+    const inputText = todoInput.value.trim(); // Remove useless whitespaces
+    if (inputText === '') {
+        return; // Return the function when the input is empty
+    }
+    const t = "t" + Date.now(); // Generate a Unique ID
+    const rawText = inputText;
+    todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
+    const li = createTodoItemDOM(t, rawText, "pending"); // Create List item
+    todoulList.appendChild(li); // Append the new item to the DOM immediately
+    todoInput.value = ''; // Clear Input
+    SaveToDoData(); // Save changes
+}
+
+function createTodoItemDOM(id, title, status) {
+    let li = document.createElement('li');
+    li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
+    const span = document.createElement("span"); // Create the Cross Icon
+    span.setAttribute("class", "todoremovebtn");
+    span.textContent = "\u00d7";
+    li.appendChild(span); // Add the cross icon to the LI tag
+    li.setAttribute("class", "todolistitem");
+    if (status === 'completed') {
+        li.classList.add("checked");
+    }
+    li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
+    return li; // Return the created `li` element
+}
+
+// Event delegation for task check and remove
+todoulList.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI"){
+        event.target.classList.toggle("checked"); // Check the clicked LI tag
+        let id = event.target.dataset.todoitem;
+        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        SaveToDoData(); // Save Changes
+    } else if (event.target.tagName === "SPAN"){
+        let id = event.target.parentElement.dataset.todoitem;
+        event.target.parentElement.remove(); // Remove the clicked LI tag
+        delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
+    }
+});
+
+// Save JSON to local Storage
+function SaveToDoData(){
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+// Fetch saved JSON and create list items using it
+function ShowToDoList() {
+    try {
+        todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
+        const fragment = document.createDocumentFragment(); // Create a DocumentFragment
+        for (let id in todoList) {
+            const todo = todoList[id];
+            const li = createTodoItemDOM(id, todo.title, todo.status); // Create `li` elements
+            fragment.appendChild(li); // Add `li` to the fragment
+        }
+        todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
+    } catch (error) {
+        console.error("Error loading from localStorage:", error);
+        localStorage.setItem("todoList", '{}'); // Reset corrupted data
+    }
+}
+
+// Code to reset the List on the Next Day
+let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
+let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
+if (todoLastUpdateDate===todoCurrentDate){
+    ShowToDoList();
+} else {
+    // Reset the list when last update date and the current date does not match
+    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todoList",'{}');
+    ShowToDoList();
+}
+
+// Toggle menu and tooltip visibility
+todoListCont.addEventListener("click", function (event) {
+    const isMenuVisible = todoContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    todoContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        todoListCont.classList.add('menu-open'); // Hide tooltip
+        todoInput.focus(); // Auto focus on input box
+    } else {
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+    const isClickInside =
+        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains('todoremovebtn');
+
+    if (!isClickInside && todoContainer.style.display === 'grid') {
+        todoContainer.style.display = 'none'; // Hide menu
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+    
+    event.stopPropagation();
+});
+
+// ------------------------------- End of To Do List -------------------------------------
 
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
@@ -523,8 +649,8 @@ function updatedigiClock() {
     // Split the hours and minutes from the localized time string
     let [hours, minutes] = timeString.split(':');
 
-    // Remove leading zero from hours for specific languages in 12-hour format only
-    if (hourformat && currentLanguage !== 'en') {
+    // Remove leading zero from hours in 12-hour format
+    if (hourformat) {
         hours = parseInt(hours, 10).toString(); // Remove leading zero
     }
 
@@ -903,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
-    }, 25); // 
+    }, 25);
 });
 
 //  -----------Voice Search------------
@@ -1196,7 +1322,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--darkerColor-blue);
             }
 
-            .dark-theme #searchQ{
+            .dark-theme #searchQ {
             color: #fff;
             }
 
@@ -1216,27 +1342,27 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #212121;
             }
 
-            .dark-theme #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon {
                 fill: #fff !important;
             }
 
-            .dark-theme .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine {
                 background-color: #aaaaaa;
             }
 
-            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
                 fill: #bbbbbb !important;
             }
 
-            .dark-theme .divider{
+            .dark-theme .divider {
                 background-color: #cdcdcd;
             }
     
-            .dark-theme .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor {
                 fill: #3c3c3c !important;
             }
 
-            .dark-theme #darkLightTint{
+            .dark-theme #darkLightTint {
                 fill: #bfbfbf;
             }
 
@@ -1251,25 +1377,22 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .digiclock {
                 fill: #909090;
             }
-	    
-	    .dark-theme #userText, .dark-theme #date, .dark-theme .shortcuts .shortcut-name {
-	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			          1px -1px 15px rgba(15, 15, 15, 0.9),
-       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
-            }
 
      	    .dark-theme .uploadButton,
-            .dark-theme .randomButton{
+            .dark-theme .randomButton {
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
+	    
+	    .clearButton{
+                color: #d6d6d6;
+            }
 
-            .dark-theme .clearButton:hover{
+            .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
             }
 
-            .dark-theme .clearButton:active{
+            .dark-theme .clearButton:active {
                 color: #0e0e0e;
             }
 
@@ -1277,18 +1400,25 @@ const applySelectedTheme = (colorValue) => {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme .backupRestoreBtn:hover {
+            .dark-theme .backupRestoreBtn:hover,
+            .dark-theme .uploadButton:hover,
+            .dark-theme .randomButton:hover,
+	    .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
-            .uploadButton:active,
-            .randomButton:active,
-            .backupRestoreBtn:active,
-            .dark-theme. resetbtn:active {
+            .dark-theme .uploadButton:active,
+            .dark-theme .randomButton:active,
+            .dark-theme .backupRestoreBtn:active,
+            .dark-theme .resetbtn:active {
                 background-color: #0e0e0e;
             }
+	    
+	    .dark-theme .todolistitem span {
+                color:#616161;
+            }
 
-     	    .dark-theme .micIcon{
+     	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
 
@@ -1300,40 +1430,41 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bfbfbf;
             }
 
-            .dark-theme .menuicon{
+            .dark-theme .menuicon {
                 color: #c2c2c2;
             }
 
-            .dark-theme #menuButton::before{
-                background-color: #bfbfbf;
-            }
-            
-            .dark-theme #menuButton::after{
-                border: 4px solid #858585;
+            .dark-theme #menuButton {
+                border: 6px solid var(--accentLightTint-blue);
+                box-shadow:
+                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
+                    inset 0 0 0 4px #858585,
+                    inset 0 0 0 9.7px var(--accentLightTint-blue),
+                    inset 0 0 0 40px #bfbfbf;
             }
 
             .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
                 background-color: var(--darkColor-dark);
             }
 
-            .dark-theme #menuCloseButton .icon{
+            .dark-theme #menuCloseButton .icon {
                 background-color: #cdcdcd;
             }
 
-            .dark-theme #closeBtnX{
+            .dark-theme #closeBtnX {
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            .dark-theme body{
+            .dark-theme body {
                 background-color: #000000;
             }
             
-            .dark-theme #HangNoAlive{
+            .dark-theme #HangNoAlive {
                 fill: #c2c2c2 !important;
             }
 
-            .dark-theme .tempUnit{
+            .dark-theme .tempUnit {
                 color: #dadada;
             }
 
@@ -1342,7 +1473,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #b1b1b1;
             }
 
-            .resultItem.active {
+            .dark-theme .resultItem.active {
                 background-color: var(--darkColor-dark);;
             }
         `;
@@ -1454,19 +1585,108 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
     document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
     document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.documentElement.style.setProperty('--whitishColor-blue', lightTin);
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
 };
 
+const applyBrowserTheme = async ({ theme }) => {
+  const convertToHex = (colorValue) => {
+    
+    colorValue = colorValue.trim();
+
+    // If it's already a 6-character hex code, return it in uppercase
+    if (/^#[0-9A-Fa-f]{6}$/.test(colorValue)) {
+      return colorValue.toUpperCase();
+    }
+
+    // Convert RGB and RGBA
+    if (/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)$/.test(colorValue)) {
+      const rgbValues = colorValue
+        .replace(/rgba?\(|\)/g, "")
+        .split(",")
+        .map((val) => {
+          const num = parseInt(val.trim(), 10);
+          return num > 255 ? 255 : (num < 0 ? 0 : num);
+        });
+
+      return "#" + rgbValues
+        .map((val) => {
+          const hex = val.toString(16);
+          return hex.length === 1 ? "0" + hex : hex;
+        })
+        .join("")
+        .toUpperCase();
+    }
+
+    // Convert HSLA to RGB
+    if (
+      /^hsla?\((\d+),\s*(\d+)%,\s*(\d+)%(?:,\s*[\d.]+)?\)$/.test(colorValue)
+    ) {
+      const [h, s, l] = colorValue
+        .replace(/hsla?\(|\)/g, "")
+        .split(",")
+        .map((val) => parseFloat(val.trim()));
+
+      const hToRgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+
+      const hue = h / 360;
+      const sat = s / 100;
+      const light = l / 100;
+
+      let r, g, b;
+      if (sat === 0) {
+        r = g = b = light;
+      } else {
+        const q = light < 0.5 ? light * (1 + sat) : light + sat - light * sat;
+        const p = 2 * light - q;
+
+        r = hToRgb(p, q, hue + 1 / 3);
+        g = hToRgb(p, q, hue);
+        b = hToRgb(p, q, hue - 1 / 3);
+      }
+
+      return "#" + [r, g, b]
+        .map((val) => {
+          const hex = Math.round(val * 255).toString(16);
+          return hex.length === 1 ? "0" + hex : hex;
+        })
+        .join("")
+        .toUpperCase();
+    }
+    // converiosn failed
+  };
+
+  const newColor = convertToHex(theme.colors.frame);
+  if (!newColor) return;
+  if (newColor.length > 7) {
+    // remove alpha value
+    applyCustomTheme(newColor.slice(0, 7));
+  } else applyCustomTheme(newColor);
+};
+
+const itsfirefox = navigator.userAgent.includes("Firefox");
+
 // Load theme on page reload// Load theme on page reload
-window.addEventListener('load', function () {
+window.addEventListener('load', async function () {
     // console.log('Page loaded, stored theme:', storedTheme);
     // console.log('Page loaded, stored custom color:', storedCustomColor);
-    if (storedTheme) {
-        applySelectedTheme(storedTheme);
-    } else if (storedCustomColor) {
-        applyCustomTheme(storedCustomColor);
+    if (itsfirefox&&(localStorage.getItem("firefoxAdaptiveToggleState")=='checked')){
+        browser.theme.onUpdated.addListener(applyBrowserTheme);
+        await applyBrowserTheme({ theme: await browser.theme.getCurrent() })
+    } else {
+        if (storedTheme) {
+            applySelectedTheme(storedTheme);
+        } else if (storedCustomColor) {
+            applyCustomTheme(storedCustomColor);
+        };
     }
 });
 
@@ -1478,6 +1698,8 @@ const handleThemeChange = function () {
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
+        firefoxAdaptiveToggle.checked = false;
+        localStorage.setItem("firefoxAdaptiveToggleState", "unchecked");
     }
 };
 
@@ -1629,7 +1851,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
                 }
                 document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
                 saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextShadow(true))
+                    .then(() => updateTextBackground(true))
                     .catch(error => console.error(error));
             };
             image.src = e.target.result;
@@ -1650,23 +1872,46 @@ async function applyRandomImage(showConfirmation = true) {
         const imageUrl = response.url;
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
         await saveImageToIndexedDB(imageUrl, true);
-        updateTextShadow(true);
+        updateTextBackground(true);
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
 }
 
-// Function to update text-shadow styles with animation
-function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
-    elements.forEach(element => {
+// Function to update solid background behind userText, date, greeting and shortcut names
+function updateTextBackground(hasWallpaper) {
+    // Select elements
+    const userText = document.getElementById('userText');
+    const date = document.getElementById('date');
+    const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
+
+    // Update styles for userText and date
+    [userText, date].forEach(element => {
         if (hasWallpaper) {
-            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+            element.style.backgroundColor = 'var(--accentLightTint-blue)';
+            element.style.padding = '2px 12px';
+            element.style.width = 'fit-content';
+            element.style.borderRadius = '10px';
+            element.style.fontSize = '1.32rem';
         } else {
-            element.style.textShadow = 'none'; // Remove the text-shadow
+            element.style.backgroundColor = ''; // Reset to default
+            element.style.padding = '';
+            element.style.width = '';
+            element.style.borderRadius = '';
+            element.style.fontSize = '';
+        }
+    });
+
+    // Update styles for shortcuts
+    shortcuts.forEach(shortcut => {
+        if (hasWallpaper) {
+            shortcut.style.backgroundColor = 'var(--accentLightTint-blue)';
+            shortcut.style.padding = '0px 6px';
+            shortcut.style.borderRadius = '5px';
+        } else {
+            shortcut.style.backgroundColor = ''; // Reset to default
+            shortcut.style.padding = '';
+            shortcut.style.borderRadius = '';
         }
     });
 }
@@ -1680,13 +1925,13 @@ function checkAndUpdateImage() {
 
             // Case 1: No image found, disable text shadow and return.
             if (!savedImage) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
             // Case 2: Invalid or missing timestamp, disable text shadow and return.
             if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextShadow(false);
+                updateTextBackground(false);
                 return;
             }
 
@@ -1694,7 +1939,7 @@ function checkAndUpdateImage() {
             if (imageType === 'upload') {
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
                 document.body.style.backgroundImage = `var(--bg-image)`;
-                updateTextShadow(true);
+                updateTextBackground(true);
                 return;
             }
 
@@ -1704,12 +1949,12 @@ function checkAndUpdateImage() {
             } else {
                 // Case 5: Same day random image, reapply saved image.
                 document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                updateTextShadow(true);
+                updateTextBackground(true);
             }
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
-            updateTextShadow(false);
+            updateTextBackground(false);
         });
 }
 
@@ -1723,7 +1968,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
                     clearImageFromIndexedDB()
                         .then(() => {
                             document.body.style.removeProperty('--bg-image');
-                            updateTextShadow(false);
+                            updateTextBackground(false);
                         })
                         .catch((error) => console.error(error));
                 }
@@ -2091,11 +2336,11 @@ async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
     var searchEnginesapi = {
-        engine1: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine3: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
     };
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     let apiUrl = searchEnginesapi[selectedOption];
@@ -2231,7 +2476,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const SHORTCUT_URL_PLACEHOLDER = "Shortcut URL";
 
     const SHORTCUT_PRESET_NAMES = ["Youtube", "Gmail", "Telegram", "WhatsApp", "Instagram", "Twitter"];
-    const SHORTCUT_PRESET_URLS_AND_LOGOS = new Map([["youtube.com", `
+    const SHORTCUT_PRESET_URLS_AND_LOGOS = Object.freeze(new Map([["youtube.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                 <path class="accentColor shorcutDarkColor"
                     d="M11.6698 9.82604L9.33021 8.73437C9.12604 8.63958 8.95833 8.74583 8.95833 8.97187V11.0281C8.95833 11.2542 9.12604 11.3604 9.33021 11.2656L11.6688 10.174C11.874 10.0781 11.874 9.92188 11.6698 9.82604ZM10 0C4.47708 0 0 4.47708 0 10C0 15.5229 4.47708 20 10 20C15.5229 20 20 15.5229 20 10C20 4.47708 15.5229 0 10 0ZM10 14.0625C4.88125 14.0625 4.79167 13.601 4.79167 10C4.79167 6.39896 4.88125 5.9375 10 5.9375C15.1187 5.9375 15.2083 6.39896 15.2083 10C15.2083 13.601 15.1187 14.0625 10 14.0625Z"
@@ -2270,15 +2515,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M10 0C15.5286 0 20 4.47143 20 10C20 15.5286 15.5286 20 10 20C4.47143 20 0 15.5286 0 10C0 4.47143 4.47143 0 10 0ZM8.17143 15.2714C12.6 15.2714 15.0286 11.6 15.0286 8.41429V8.1C15.5 7.75714 15.9143 7.32857 16.2286 6.84286C15.8 7.02857 15.3286 7.15714 14.8429 7.22857C15.3429 6.92857 15.7286 6.45714 15.9 5.9C15.4286 6.17143 14.9143 6.37143 14.3714 6.48571C13.9286 6.01429 13.3 5.72857 12.6143 5.72857C11.2857 5.72857 10.2 6.81429 10.2 8.14286C10.2 8.32857 10.2143 8.51429 10.2714 8.68571C8.27143 8.58571 6.48571 7.62857 5.3 6.17143C5.1 6.52857 4.97143 6.94286 4.97143 7.38571C4.97143 8.21429 5.4 8.95714 6.04286 9.38571C5.64286 9.38571 5.27143 9.27143 4.95714 9.08571V9.11429C4.95714 10.2857 5.78571 11.2571 6.88571 11.4857C6.68571 11.5429 6.47143 11.5714 6.25714 11.5714C6.1 11.5714 5.95714 11.5571 5.8 11.5286C6.1 12.4857 7 13.1857 8.04286 13.2C7.21429 13.8429 6.17143 14.2286 5.04286 14.2286C4.84286 14.2286 4.65714 14.2286 4.47143 14.2C5.52857 14.8857 6.8 15.2857 8.15714 15.2857"
                     fill="#617859"/>
             </svg>
-            `]]);
+            `]]));
 
-    const SHORTCUT_DELETE_BUTTON_HTML = `
+    const SHORTCUT_DELETE_BUTTON_HTML = Object.freeze(`
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
                     <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-12q-15.3 0-25.65-10.29Q192-716.58 192-731.79t10.35-25.71Q212.7-768 228-768h156v-12q0-15.3 10.35-25.65Q404.7-816 420-816h120q15.3 0 25.65 10.35Q576-795.3 576-780v12h156q15.3 0 25.65 10.29Q768-747.42 768-732.21t-10.35 25.71Q747.3-696 732-696h-12v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM419.79-288q15.21 0 25.71-10.35T456-324v-264q0-15.3-10.29-25.65Q435.42-624 420.21-624t-25.71 10.35Q384-603.3 384-588v264q0 15.3 10.29 25.65Q404.58-288 419.79-288Zm120 0q15.21 0 25.71-10.35T576-324v-264q0-15.3-10.29-25.65Q555.42-624 540.21-624t-25.71 10.35Q504-603.3 504-588v264q0 15.3 10.29 25.65Q524.58-288 539.79-288ZM312-696v480-480Z"/>
                 </svg>
             </button>
-            `;
+            `);
 
     // const FAVICON_CANDIDATES = (hostname) => [
     //     `https://${hostname}/apple-touch-icon-180x180.png`,
@@ -2311,7 +2556,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+    const firefoxAdaptiveField = document.getElementById("firefoxAdaptiveField");
+    const firefoxAdaptiveToggle = document.getElementById("firefoxAdaptiveToggle");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
+    const todoListCheckbox = document.getElementById("todoListCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -2368,16 +2616,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             element.classList.add("inactive");
         }
-    }
-
-    // Function to save style data
-    function saveIconStyle(key, CSS) {
-        localStorage.setItem(key, CSS);
-    }
-
-    // Function to load style data
-    function loadIconStyle(key, element) {
-        element.textContent = localStorage.getItem(key);
     }
 
 
@@ -2442,7 +2680,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
-        deleteButtonContainer.insertAdjacentHTML('beforeend', SHORTCUT_DELETE_BUTTON_HTML);
+        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
 
         const deleteButton = deleteButtonContainer.children[0];
         if (deleteInactive) deleteButton.className = "inactive";
@@ -2843,6 +3081,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initShortCutSwitch(element);
 
+    if (!itsfirefox) {
+        firefoxAdaptiveField.classList.add("inactive");
+        saveActiveStatus("firefoxAdaptiveField", "inactive");
+    } else {
+        firefoxAdaptiveField.classList.remove("inactive");
+        saveActiveStatus("firefoxAdaptiveField", "active");
+    }
+
     // Add change event listeners for the checkboxes
     shortcutsCheckbox.addEventListener("change", function () {
         saveCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
@@ -2947,16 +3193,39 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Load checkbox state
+    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+    // Apply CSS based on initial state
+    document.head.appendChild(iconStyle);
+    iconStyle.textContent = adaptiveIconToggle.checked ? ADAPTIVE_ICON_CSS : "";
+
+    // Add event listener for checkbox
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
-            saveIconStyle("iconStyle", "");
             iconStyle.textContent = "";
         }
-    })
+    });
+
+    // Check if Firefox Theming is enabled or not
+    loadCheckboxState("firefoxAdaptiveToggleState", firefoxAdaptiveToggle);
+
+    firefoxAdaptiveToggle.addEventListener("change", async function () {
+        saveCheckboxState("firefoxAdaptiveToggleState", firefoxAdaptiveToggle);
+        if (firefoxAdaptiveToggle.checked) {
+            await applyBrowserTheme({ theme: await browser.theme.getCurrent() });
+            browser.theme.onUpdated.addListener(applyBrowserTheme);
+        } else {
+            if (storedTheme) {
+                applySelectedTheme(storedTheme);
+            } else if (storedCustomColor) {
+                applyCustomTheme(storedCustomColor);
+            };
+            browser.theme.onUpdated.removeListener(applyBrowserTheme);
+        }
+    });
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -2978,6 +3247,17 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
+    todoListCheckbox.addEventListener("change", function () {
+        saveCheckboxState("todoListCheckboxState", todoListCheckbox);
+        if (todoListCheckbox.checked) {
+            todoListCont.style.display = "flex";
+            saveDisplayStatus("todoListDisplayStatus", "flex");
+        } else {
+            todoListCont.style.display = "none";
+            saveDisplayStatus("todoListDisplayStatus", "none");
         }
     });
 
@@ -3044,6 +3324,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("shortcutsCheckboxState", shortcutsCheckbox);
     loadActiveStatus("shortcutEditField", shortcutEditField);
     loadActiveStatus("adaptiveIconField", adaptiveIconField);
+    loadActiveStatus("firefoxAdaptiveField", firefoxAdaptiveField);
     loadCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
     loadCheckboxState("digitalCheckboxState", digitalCheckbox);
@@ -3052,13 +3333,14 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-    loadIconStyle("iconStyle", iconStyle);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+    loadCheckboxState("firefoxAdaptiveToggleState", firefoxAdaptiveToggle);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+    loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
+    loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });

@@ -25,8 +25,12 @@ const translations = {
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Show shortcuts for AI tools",
+        "firefoxAdaptiveText": "Browser-based Theming",
+        "firefoxAdaptiveInfoText": "Colors will be adapted from browser",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        "todoListText": "To Do List",
+        "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -41,7 +45,7 @@ const translations = {
         "fahrenheitCelsiusText": "Refresh the page to apply changes",
         "micIconTitle": "Hide Microphone Icon",
         "micIconInfo": "If voice typing is not working",
-        "hideSearchWith": "Hide Search Engines",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Hide Search Engines",
         "hideSearchWithInfo": "Switch between search engines by clicking its icon",
         "search_suggestions_button": "Search Suggestions",
         "search_suggestions_text": "Enable search suggestions",
@@ -59,7 +63,7 @@ const translations = {
         "InputOptionsButton": "Input options",
         "saveLoc": "Save",
         // Weather
-        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
         "WeatherApiSubtext": "If the weather functionality isn't working",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "Learn more",
@@ -83,10 +87,12 @@ const translations = {
         "enterBtn": "Search",
         "searchPlaceholder": "Type here...",
         "listenPlaceholder": "Listening...",
+        "todoPlaceholder": "Add task...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",    // Keep this untranslated if string width is much longer
+        "googleAppsHover": "Google Apps",    // Keep this shorter
+        "todoListHover": "ToDo List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -111,11 +117,10 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Upload Wallpaper",    // Keep it shorter
+        "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
         "backupText": "Backup",
         "restoreText": "Restore",
         "rangColor": "Pick color",    // Keep it shorter
-        "reloadHint": "Reload the page after applying themes",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
@@ -336,7 +341,7 @@ const translations = {
         "shortcutsText": "शॉर्टकट्स",
         "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
         "editShortcutsText": "शॉर्टकट्स संपादित करें",
-        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट प्रदर्शित किए जाएँ",
+        "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाए जाएँ",
         "editShortcutsList": "सहेजे गए शॉर्टकट",
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
@@ -345,6 +350,8 @@ const translations = {
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+        "todoListText": "कार्य सूची",
+        "todoListInfo": "दैनिक कार्यों की सूची देखें",
         // Digital Clock
         "digitalclocktittle": "डिजिटल घड़ी",
         "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
@@ -359,7 +366,7 @@ const translations = {
         "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
         "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
         "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-        "hideSearchWith": "सर्च इंजन चयनकर्ता छिपाएं",
+        "hideSearchWith": "सर्च इंजन छिपाएं",
         "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
         "search_suggestions_button": "खोज सुझाव",
         "search_suggestions_text": "खोज सुझाव सक्षम करें",
@@ -372,13 +379,13 @@ const translations = {
         "saveproxy": "सहेजें",
         // Location
         "UserLocText": "अपना स्थान दर्ज करें",
-        "UserLocSubtext": "यदि मौसम स्थान सही नहीं है",
+        "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
         "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
         "InputOptionsButton": "इनपुट विकल्प",
         "saveLoc": "सहेजें",
         // Weather
         "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
-        "WeatherApiSubtext": "यदि मौसम सुविधा काम नहीं कर रही है",
+        "WeatherApiSubtext": "यदि मौसम की सुविधा काम नहीं कर रही है",
         "userAPI": "आपकी WeatherAPI कुंजी",
         "LearnMoreButton": "और जानें",
         "saveAPI": "सहेजें",
@@ -402,6 +409,7 @@ const translations = {
         "enterBtn": "खोजें",
         "searchPlaceholder": "यहाँ लिखें...",
         "listenPlaceholder": "सुन रहे हैं...",
+        "todoPlaceholder": "कार्य जोड़ें...",
         "searchWithHint": "खोज माध्यम",
         "ai_tools": "AI उपकरण",
         "userText": "यहाँ अपना टेक्स्ट लिखें",
@@ -425,22 +433,23 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "एडोबी फायरफ्लाई",
+        "metaAI" : "मेटा AI",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
+        "todoListHover": "कार्य सूची",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "वॉलपेपर अपलोड करें",
+        "uploadWallpaperText": "वॉलपेपर सेट करें",
         "backupText": "बैकअप करें",
         "restoreText": "रिस्टोर करें",
         "rangColor": "रंग चुनें",
-        "reloadHint": "थीम लागू करने के बाद पृष्ठ को पुनः लोड करें",
 
         // Dialog boxes (alerts)
-        "confirmWallpaper": "क्या आप आज के लिए एक यादृच्छिक छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
-        "confirmRestore": "क्या आप वाकई अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
+        "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
         "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
-        "clearbackgroundimage": "क्या आप वाकई बैकग्राउंड छवि को हटाना चाहते हैं?",
-        "confirmbackup": "क्या आप वाकई अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
+        "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
+        "confirmbackup": "क्या आप अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
         "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
         "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
         "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
@@ -633,11 +642,10 @@ const translations = {
         },
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Carica immagine",    // Keep it shorter
+        "uploadWallpaperText": "Carica immagine",
         "backupText": "Backup",
         "restoreText": "Ripristina",
-        "rangColor": "Scegli colore",    // Keep it shorter
-        "reloadHint": "Ricarica la pagina dopo aver selezionato i temi",
+        "rangColor": "Scegli colore",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
@@ -769,6 +777,8 @@ const translations = {
         "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
         "greetingtittle": "অভিবাদন",
         "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
+        "todoListText": "টু ডু লিস্ট",
+        "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
 
         // Misc
         "userTextTitle": "কাস্টমাইজেবল টেক্সট",
@@ -821,10 +831,12 @@ const translations = {
         "enterBtn": "সার্চ করুন",
         "searchPlaceholder": "এখানে টাইপ করুন...",
         "listenPlaceholder": "শোনা হচ্ছে...",
+        "todoPlaceholder": "টাস্ক যোগ করুন...",
         "searchWithHint": "সার্চের মাধ্যম",
         "ai_tools": "এআই টুলস",
         "userText": "এখানে আপনার টেক্সট লিখুন",
         "googleAppsHover": "গুগল অ্যাপস",
+        "todoListHover": "টু ডু লিস্ট",
 
         // Greeting
         greeting: {
@@ -844,6 +856,7 @@ const translations = {
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
         "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+        "metaAI" : "মেটা এআই",
         "github": "গিটহাব",
 
         // Wallpaper and alerts
@@ -851,7 +864,6 @@ const translations = {
         "backupText": "ব্যাকআপ করুন",
         "restoreText": "পুনরুদ্ধার করুন",
         "rangColor": "রঙ নির্বাচন করুন",
-        "reloadHint": "থিম প্রয়োগ করার পরে পেজ রিফ্রেশ করুন",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
@@ -1062,7 +1074,6 @@ const translations = {
         "backupText": "Экспорт настроек",
         "restoreText": "Восстановить",
         "rangColor": "Выбрать цвет",
-        "reloadHint": "Перезагрузите страницу для применения темы.",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
@@ -1472,6 +1483,8 @@ const translations = {
         "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
+        "todoListText": "To-Do List",
+        "todoListInfo": "Tampilkan To-Do list harian",
         // Digital Clock
         "digitalclocktittle": "Jam Digital",
         "digitalclockinfo": "Ubah menjadi jam digital",
@@ -1528,9 +1541,11 @@ const translations = {
         "enterBtn": "Telusuri",
         "searchPlaceholder": "Ketik disini...",
         "listenPlaceholder": "Mendengarkan...",
+        "todoPlaceholder": "Tambah tugas...",
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
+        "todoListHover": "To-Do List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -1543,7 +1558,21 @@ const translations = {
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
-        "restoreText": "Mengembalikan",
+        "restoreText": "Pulihkan",
+        "rangColor": "Pilih warna",    // Keep it shorter
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
+        "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
+        "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
+        "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
+        "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
+        "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+        "endlink": "Seharusnya tidak ada / di akhir tautan",
+        "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
+        "failedbackup": "Pencadangan gagal: ",
+        "restorecompleted": "Pemulihan berhasil dengan sukses!",
+        "restorefailed": "Pemulihan gagal: ",
     },
 
 
@@ -1655,7 +1684,6 @@ const translations = {
         "backupText": "बॅकअप करा",
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
-        "reloadHint": "थीम लागू केल्यानंतर पृष्ठ रीलोड करा",
 
         //Dialog boxes (alerts)
         "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
@@ -1693,6 +1721,8 @@ const translations = {
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        "todoListText": "Liste To-Do",
+        "todoListInfo": "Afficher une liste de tâches quotidiennes",
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
@@ -1707,7 +1737,7 @@ const translations = {
         "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
         "micIconTitle": "Masquer l'Icône du Microphone",
         "micIconInfo": "Si la saisie vocale ne fonctionne pas",
-        "hideSearchWith": "Masquer les Moteurs de Recherche",    // or "Hide Search Engine Selector"
+        "hideSearchWith": "Masquer les Moteurs de Recherche",
         "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
         "search_suggestions_button": "Suggestions de Recherche",
         "search_suggestions_text": "Activer les suggestions de recherche",
@@ -1725,7 +1755,7 @@ const translations = {
         "InputOptionsButton": "Options de saisie",
         "saveLoc": "Enregistrer",
         // Weather
-        "WeatherApiText": "Entrez votre clé WeatherAPI",    // For 'WeatherAPI' string, only transliterate it
+        "WeatherApiText": "Entrez votre clé WeatherAPI",
         "WeatherApiSubtext": "Si la fonctionnalité météo ne fonctionne pas",
         "userAPI": "Your weatherAPI key",
         "LearnMoreButton": "En savoir plus",
@@ -1749,10 +1779,12 @@ const translations = {
         "enterBtn": "Rechercher",
         "searchPlaceholder": "Saisissez ici...",
         "listenPlaceholder": "Écoute...",
+        "todoPlaceholder": "Ajouter une tâche...",
         "searchWithHint": "Rechercher avec",
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
-        "googleAppsHover": "Applications Google",    // Keep this untranslated if string width is much longer
+        "googleAppsHover": "Apps Google",
+        "todoListHover": "Liste To-Do",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1777,11 +1809,10 @@ const translations = {
         "github": "GitHub",
 
         // Wallpaper and alerts
-        "uploadWallpaperText": "Uploader un fond d'ecran",    // Keep it shorter
+        "uploadWallpaperText": "Uploader un fond d'ecran",
         "backupText": "Sauvegarder",
         "restoreText": "Restaurer",
-        "rangColor": "Choisir la couleur",    // Keep it shorter
-        "reloadHint": "Actualiser la page après l'application des thèmes",
+        "rangColor": "Choisir la couleur",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
@@ -1813,7 +1844,7 @@ const menuWidths = {
     it: '437px',
     idn: '415px',
     tr: '418px',
-    fr: '490px',
+    fr: '475px',
     // Add more languages and widths as needed
 };
 
@@ -1856,8 +1887,13 @@ function applyLanguage(lang) {
         { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
         { id: 'ai_tools_button', key: 'ai_tools_button' },
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
+        { id: 'firefoxAdaptiveText', key: 'firefoxAdaptiveText' },
+        { id: 'firefoxAdaptiveInfoText', key: 'firefoxAdaptiveInfoText' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
+        { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'todoListText', key: 'todoListText' },
+        { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
@@ -1893,6 +1929,7 @@ function applyLanguage(lang) {
         { id: 'conditionText', key: 'conditionText' },
         { id: 'enterBtn', key: 'enterBtn' },
         { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
+        { id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true },
         { id: 'searchWithHint', key: 'searchWithHint' },
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
@@ -1916,6 +1953,7 @@ function applyLanguage(lang) {
         { id: 'metaAI', key: 'metaAI'},
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
+        { id: 'todoListHover', key: 'todoListHover' },
         { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
         { id: 'backupText', key: 'backupText' },
         { id: 'restoreText', key: 'restoreText' },
@@ -1957,13 +1995,6 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
-    }
-
-    //Update hover text for .themingStuff
-    const themingElement = document.querySelector('.themingStuff');
-    if (themingElement) {
-        const localizedText = translations[lang]?.reloadHint || translations['en'].reloadHint;
-        themingElement.setAttribute('data-lang', localizedText);
     }
 
     // Save the selected language in localStorage
