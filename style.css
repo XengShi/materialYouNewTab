@@ -463,6 +463,197 @@ body {
 }
 /* ----------------- End of Google App Menu ----------------- */
 
+/* ----------------- Start of Bookmark System ----------------- */
+.right-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: transform 0.3s ease, right 0.3s ease;
+	z-index: 1000;
+}
+
+.sidebar {
+    width: 350px;
+    position: fixed;
+    right: -350px;
+    top: 0;
+    height: 100%;
+    background-color: #111;
+    color: white;
+    transition: right 0.3s ease;
+    padding-top: 20px;
+    overflow-y: auto;  /* Add vertical scrollbar */
+	z-index: 999;
+	display: block;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.sidebar.open {
+    right: 0;
+}
+
+.sidebar.open + .right-arrow {
+    right: 290px;
+}
+
+.right-arrow.rotate {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+h2 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    color: #fff;
+    flex-grow: 1;
+}
+
+#searchBarContainer {
+    position: relative;
+    width: 80%;
+    margin: 10px 10%;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333;
+    color: #fff;
+}
+
+#clearSearchButton {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+#bookmarkList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#bookmarkList ul {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+#bookmarkList li {
+    padding: 10px;
+    border: none;
+    position: relative;
+}
+
+#bookmarkList li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.folder {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.ui {
+    display: block;
+    pointer-events: none; /* Make ui class button unclickable */
+}
+
+.folder svg {
+    margin-right: 5px; /* Adjust this value for more or less space */
+    vertical-align: middle; /* Aligns the icon with the text */
+}
+
+.folder ul {
+    display: none;
+    padding-left: 20px;
+}
+
+.folder.open ul {
+    display: block;
+}
+
+.gear-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+.gear-button svg {
+    vertical-align: middle;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    width: 150px;
+}
+
+.dropdown-menu label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu label:hover {
+    background-color: #444;
+}
+
+.dropdown-menu input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    position: absolute;
+    right: 10px; /* Position it to the right */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ----------------- End of Bookmark System ----------------- */
+
 /* ------------------ To Do List Section -------------------- */
 
 .todoListCont {

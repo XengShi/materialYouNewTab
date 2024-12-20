@@ -6,23 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-// Check if alert has already been shown
-if (!localStorage.getItem('alertShown')) {
-    // Show the alert after 4 seconds
-    setTimeout(() => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const message = isMac
-            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
-            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
-
-        alert(message);
-
-        // Set a flag in localStorage so the alert is not shown again
-        localStorage.setItem('alertShown', 'true');
-    }, 4000);
-}
-
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -271,6 +254,225 @@ document.addEventListener("click", function (event) {
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+
+// ------------------------ Bookmark System -----------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+    const rightArrow = document.getElementById('rightArrow');
+    const sidebar = document.getElementById('sidebar');
+    const bookmarkList = document.getElementById('bookmarkList');
+    const searchBar = document.getElementById('searchBar');
+    const gearButton = document.getElementById('gearButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const recentAddedToggle = document.getElementById('recentAddedToggle');
+    const searchBarClearButton = document.getElementById('clearSearchButton');
+
+    // Store the state of "Recent Added" in local storage
+    const recentAddedState = JSON.parse(localStorage.getItem('recentAddedState')) || false;
+    recentAddedToggle.checked = recentAddedState;
+
+    rightArrow.addEventListener('click', function() {
+        chrome.permissions.contains({
+            permissions: ['bookmarks']
+        }, function(alreadyGranted) {
+            if (alreadyGranted) {
+                toggleSidebar();
+            } else {
+                chrome.permissions.request({
+                    permissions: ['bookmarks']
+                }, function(granted) {
+                    if (granted) {
+                        toggleSidebar();
+                    }
+                });
+            }
+        });
+    });
+
+    gearButton.addEventListener('click', function(event) {
+        dropdownMenu.classList.toggle('hidden');
+        event.stopPropagation(); // Prevent the dropdown menu from closing immediately
+    });
+
+    recentAddedToggle.addEventListener('change', function() {
+        const isChecked = recentAddedToggle.checked;
+        localStorage.setItem('recentAddedState', JSON.stringify(isChecked));
+        loadBookmarks(); // Reload bookmarks to reflect the change
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!sidebar.contains(event.target) && !rightArrow.contains(event.target) && sidebar.classList.contains('open')) {
+            toggleSidebar();
+        } else if (!gearButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden'); // Close the dropdown if clicking outside of it
+        }
+    });
+
+    searchBar.addEventListener('input', function() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const bookmarks = bookmarkList.getElementsByTagName('li');
+
+        Array.from(bookmarks).forEach(function(bookmark) {
+            const text = bookmark.textContent.toLowerCase();
+            const parentFolder = bookmark.closest('.folder');
+            if (text.includes(searchTerm)) {
+                bookmark.style.display = '';
+                if (parentFolder) {
+                    parentFolder.classList.add('open');
+                    const subList = parentFolder.querySelector('ul');
+                    if (subList) {
+                        subList.classList.remove('hidden');
+                    }
+                }
+            } else {
+                bookmark.style.display = 'none';
+            }
+        });
+
+        // Fold back all folders if the search bar is cleared
+        if (searchTerm === '') {
+            Array.from(bookmarkList.getElementsByClassName('folder')).forEach(function(folder) {
+                folder.classList.remove('open');
+                const subList = folder.querySelector('ul');
+                if (subList) {
+                    subList.classList.add('hidden');
+                }
+            });
+        }
+
+        // Show or hide the clear button based on the search term
+        searchBarClearButton.style.display = searchTerm ? 'inline' : 'none';
+    });
+
+    searchBarClearButton.addEventListener('click', function() {
+        searchBar.value = '';
+        searchBar.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    });
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        rightArrow.classList.toggle('rotate');
+
+        if (sidebar.classList.contains('open')) {
+            rightArrow.style.right = '340px';
+            loadBookmarks();
+        } else {
+            rightArrow.style.right = '0';
+        }
+    }
+
+    function loadBookmarks() {
+        chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+            bookmarkList.innerHTML = '';
+            // Extract the 'Bookmarks bar' and display its children
+            const bookmarksBar = bookmarkTreeNodes[0].children.find(node => node.title === 'Bookmarks bar');
+            if (bookmarksBar && bookmarksBar.children) {
+                bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
+            }
+
+            // Extract the 'Other bookmarks' node and display it
+            const otherBookmarks = bookmarkTreeNodes[0].children.find(node => node.title === 'Other bookmarks');
+            if (otherBookmarks) {
+                bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
+            }
+
+            // Display the "Recent Added" folder if enabled
+            if (recentAddedToggle.checked) {
+                chrome.bookmarks.getRecent(10, function(recentBookmarks) {
+                    const recentAddedFolder = {
+                        title: 'Recent Added',
+                        children: recentBookmarks
+                    };
+                    bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                });
+            }
+        });
+    }
+
+    function displayBookmarks(bookmarkNodes) {
+        let list = document.createElement('ul');
+
+        // Sort the bookmark nodes alphabetically by title
+        bookmarkNodes.sort((a, b) => a.title.localeCompare(b.title));
+
+        for (let node of bookmarkNodes) {
+            if (node.children && node.children.length > 0) {
+                let folderItem = document.createElement('li');
+
+                // Use the SVG icon from HTML
+                const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
+                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
+                folderItem.appendChild(folderIcon);
+
+                folderItem.appendChild(document.createTextNode(node.title));
+                folderItem.classList.add('folder');
+
+                // Add event listener for unfolding/folding
+                folderItem.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    folderItem.classList.toggle('open');
+                    const subList = folderItem.querySelector('ul');
+                    if (subList) {
+                        subList.classList.toggle('hidden');
+                    }
+                });
+
+                let subList = displayBookmarks(node.children);
+                subList.classList.add('hidden');
+                folderItem.appendChild(subList);
+
+                list.appendChild(folderItem);
+            } else if (node.url) {
+                let item = document.createElement('li');
+                let link = document.createElement('a');
+                link.href = node.url;
+                link.textContent = node.title;
+
+                let favicon = document.createElement('img');
+                favicon.src = `http://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+                favicon.classList.add('favicon');
+
+                // Create the delete button
+                let deleteButton = document.createElement('button');
+                deleteButton.textContent = '✖';
+                deleteButton.classList.add('delete-button');
+                deleteButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (confirm(`Are you sure you want to delete the bookmark "${node.title}"?`)) {
+                        chrome.bookmarks.remove(node.id, function() {
+                            item.remove(); // Remove the item from the DOM
+                        });
+                    }
+                });
+
+                item.appendChild(favicon);
+                item.appendChild(link);
+                item.appendChild(deleteButton); // Add delete button to the item
+
+                // Open links in the current tab
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    chrome.tabs.update({ url: node.url });
+                });
+
+                list.appendChild(item);
+            }
+        }
+
+        list.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        return list;
+    }
+
+    // Initial load of bookmarks
+    loadBookmarks();
+});
+
+// ------------------------ End of Bookmark System -----------------------------------
+
 // ----------------------------------- To Do List ----------------------------------------
 
 // DOM Variables
@@ -3222,4 +3424,14 @@ document.addEventListener("DOMContentLoaded", function () {
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight') {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) {
+            sidebar.style.display = 'block';
+            alert('Sidebar opened');
+        }
+    }
 });
