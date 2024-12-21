@@ -384,7 +384,11 @@ if (todoLastUpdateDate===todoCurrentDate){
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
     for(let id in todoList){
         if (todoList[id].pinned == false){
-            delete todoList[id]; // Remove the unpinned List item data
+            if (todoList[id].status == "completed") {
+                delete todoList[id]; // Remove the Unpinned and Completed list item data
+            }
+        } else {
+            todoList[id].status = "pending"; // Reset status of pinned items
         }
     }
     SaveToDoData();
