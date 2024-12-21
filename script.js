@@ -360,6 +360,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
                 }
 
+                // Extract the 'Mobile bookmarks' node and display it
+                const mobileBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Mobile bookmarks');
+                if (mobileBookmarks && mobileBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks([mobileBookmarks]));
+                }
+
                 // Display the "Recent Added" folder if enabled
                 chrome.bookmarks.getRecent(10, function (recentBookmarks) {
                     if (recentBookmarks.length > 0) {
