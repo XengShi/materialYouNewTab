@@ -6,7 +6,6 @@
      If not, see <https://www.gnu.org/licenses/>.
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +55,32 @@
         <ul class="todolist" id="todoullist">
         </ul>
     </div>
+
+    <!----------------------- Bookmark System ----------------------->
+    <div style="display: none;">
+        <svg id="folderIconTemplate" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6v10.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h11.606c1.118 0 1.677 0 2.104-.218c.377-.192.683-.498.875-.874C21 18.48 21 17.92 21 16.8V9.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C19.48 6 18.92 6 17.8 6H12M3 6h9M3 6a2 2 0 0 1 2-2h3.675c.489 0 .734 0 .964.055q.308.075.578.24c.202.124.375.297.72.643L12 6" />
+        </svg>
+    </div>
+    
+    <div class="bookmark-right-arrow" id="bookmarkRightArrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 17l5-5m0 0l-5-5" />
+        </svg>
+    </div>
+    <div id="bookmarksContainer">
+        <div id="bookmarkSidebar" class="bookmark-sidebar">
+            <div class="bookmark-sidebar-header">
+                <h2>Bookmarks</h2>
+            </div>
+            <div class="bookmark-search-container">
+                <input type="text" id="bookmarkSearch" placeholder="Search bookmarks..." />
+                <button id="clearSearchButton">✖</button>
+            </div>
+            <ul id="bookmarkList"></ul>
+        </div>
+    </div>
+    <!----------------------- End of Bookmark System ----------------------->
 
     <!----------------------- Google App Menu Setup Starting ----------------------->
     <!-- 9 Dot Icon -->
