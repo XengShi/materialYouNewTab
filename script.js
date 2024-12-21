@@ -472,6 +472,7 @@ function updateDate() {
         var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
         const dateDisplay = {
+            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
@@ -608,9 +609,10 @@ function updatedigiClock() {
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
+    
     // Determine the translated short date string based on language
     const dateFormats = {
+        az: `${dayName} ${dayOfMonth}`, //Mardi 11
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
