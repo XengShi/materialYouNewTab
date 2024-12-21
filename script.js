@@ -843,6 +843,8 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // Remove Loading Screen When the DOM and the Theme has Loaded
+    document.getElementById('LoadingScreen').style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
@@ -1334,6 +1336,7 @@ const applySelectedTheme = (colorValue) => {
     if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
     }
+    ApplyLoadingColor();
 };
 
 // ----Color Picker || ColorPicker----
@@ -1405,6 +1408,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
+    ApplyLoadingColor();
 };
 
 // Load theme on page reload// Load theme on page reload
@@ -2934,3 +2938,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
+
+//------------------------- LoadingScreen -----------------------//
+
+function ApplyLoadingColor(){
+    let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
+    localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+}
