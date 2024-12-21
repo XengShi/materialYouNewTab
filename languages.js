@@ -28,6 +28,7 @@ const translations = {
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
+        "todoListHeading": "To Do List",
         "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
@@ -155,6 +156,9 @@ const translations = {
         "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
+        "todoListText": "Lista de Tarefas",
+        "todoListHeading": "Lista de Tarefas",
+        "todoListInfo": "Mostrar uma Lista de Tarefas",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Mudar para o relógio digital",
@@ -169,6 +173,8 @@ const translations = {
         "fahrenheitCelsiusText": "Atualize a página para aplicar as mudanças",
         "micIconTitle": "Ocultar Ícone do Microfone",
         "micIconInfo": "Se o ditado por voz não estiver funcionando",
+        "hideSearchWith": "Ocultar o Motor de Busca",
+        "hideSearchWithInfo": "Alternar entre os motores de busca clicando no ícone",
         "search_suggestions_button": "Sugestões de Pesquisa",
         "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
@@ -209,6 +215,9 @@ const translations = {
         "enterBtn": "Pesquisar",
         "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
+        "todoPlaceholder": "Adicionar tarefa...",
+        "todoListHeading": "Lista de Tarefas",
+        "todoListHover": "Lista de Tarefas",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
@@ -232,7 +241,28 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "github": "GitHub"
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Enviar Papel de Parede",
+        "backupText": "Backup",
+        "restoreText": "Restaurar",
+        "rangColor": "Escolher cor",
+
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Você gostaria de definir uma nova imagem como seu papel de parede para o dia?",
+        "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
+        "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
+        "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
+        "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
+        "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
+        "endlink": "Não deve haver / no final do link",
+        "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
+        "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels. \n\nIsso pode impactar o desempenho ou a imagem pode não carregar corretamente.",
+        "failedbackup": "Falha no backup: ",
+        "restorecompleted": "Restauração concluída com sucesso!",
+        "restorefailed": "Restauração falhou: ",
     },
 
 
@@ -2026,7 +2056,7 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
-        { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'todoListHeading', key: 'todoListHeading' },
         { id: 'todoListText', key: 'todoListText' },
         { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
