@@ -28,7 +28,6 @@ const translations = {
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
-        "todoListHeading": "To Do List",
         "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
@@ -126,14 +125,13 @@ const translations = {
         "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
         "Nobackgroundset": "No background image is currently set.",
         "clearbackgroundimage": "Are you sure you want to clear the background image?",
-        "confirmbackup": "Are you sure you want to backup your settings?",
         "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
         "endlink": "There shouldn't be / at the end of the link",
         "onlylinks": "Only links (starting with http:// or https://) are allowed.",
-        "imagedimensions": "Warning: The uploaded image dimensions ({width}x{height}) exceed 1920x1080 pixels. \n\nThis may impact performance or image may fail to load properly.",
         "failedbackup": "Backup failed: ",
         "restorecompleted": "Restore completed successfully!",
         "restorefailed": "Restore failed: ",
+        "invalidBackup": "Invalid backup file"
     },
 
 
@@ -157,7 +155,6 @@ const translations = {
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
         "todoListText": "Lista de Tarefas",
-        "todoListHeading": "Lista de Tarefas",
         "todoListInfo": "Mostrar uma Lista de Tarefas",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
@@ -216,7 +213,6 @@ const translations = {
         "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
         "todoPlaceholder": "Adicionar tarefa...",
-        "todoListHeading": "Lista de Tarefas",
         "todoListHover": "Lista de Tarefas",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
@@ -255,11 +251,9 @@ const translations = {
         "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
         "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
         "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
-        "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
         "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
         "endlink": "Não deve haver / no final do link",
         "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
-        "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels. \n\nIsso pode impactar o desempenho ou a imagem pode não carregar corretamente.",
         "failedbackup": "Falha no backup: ",
         "restorecompleted": "Restauração concluída com sucesso!",
         "restorefailed": "Restauração falhou: ",
@@ -477,14 +471,13 @@ const translations = {
         "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
         "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
         "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
-        "confirmbackup": "क्या आप अपनी सेटिंग्स का बैकअप लेना चाहते हैं?",
         "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
         "endlink": "लिंक के अंत में / नहीं होना चाहिए।",
         "onlylinks": "केवल लिंक (http:// या https:// से शुरू होने वाले) ही अनुमत हैं।",
-        "imagedimensions": "चेतावनी: अपलोड की गई छवि का आकार ({width}x{height}) 1920x1080 पिक्सेल से अधिक है।\n\nयह प्रदर्शन को प्रभावित कर सकता है या छवि ठीक से लोड होने में विफल हो सकती है।",
         "failedbackup": "बैकअप विफल: ",
         "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
         "restorefailed": "पुनर्स्थापना विफल: ",
+        "invalidBackup": "अमान्य बैकअप फ़ाइल"
     },
 
 
@@ -591,11 +584,9 @@ const translations = {
         "confirmRestore": "Opravdu si přejete resetovat nastavení? Tuto akci nelze zvrátit.",
         "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
         "clearbackgroundimage": "Opravdu si přejete smazat obrázek na pozadí?",
-        "confirmbackup": "Opravdu si přejete zálohovat nastavení?",
         "ProxyDisclaimer": "Všechny funkce proxy jsou ve výchozím nastavení vypnuté.\n\nPokud zapnete našeptávání ve vyhledávání s proxy pro obcházení CORS, pro lepší zabezpečení vám důrazně doporučujeme hostovat si vlastní proxy.\n\nVe výchozím nastavení je proxy nastavena na https://mynt-proxy.rhythmcorehq.com, což znamená, že všechna vaše data procházejí skrz tuto službu. To může vyvolat obavy o soukromí.",
         "endlink": "Na konci odkazu by nemělo být / (lomítko)",
         "onlylinks": "Jsou povolené pouze odkazy (začínající na http:// nebo https://).",
-        "imagedimensions": "Varování: Rozměry nahraného obrázku ({width}x{height}) překračují 1920x1080 pixelů.\n\nTo může ovlivnit výkonnost nebo se obrázek nemusí správně načítat.",
         "failedbackup": "Zálohování selhalo: ",
         "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
         "restorefailed": "Obnova ze zálohy selhala: ",
@@ -699,11 +690,9 @@ const translations = {
         "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
         "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
         "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
-        "confirmbackup": "Sei sicuro di voler eseguire il backup delle tue impostazioni?",
         "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
         "endlink": "Non ci dovrebbe essere uno / alla fine del link",
         "onlylinks": "Solo link (che iniziano con http:// o https://) sono consentiti.",
-        "imagedimensions": "Attenzione: Le dimensioni dell'immagine caricata ({width}x{height}) superano i 1920x1080 pixel. \n\nCiò potrebbe influire sulle prestazioni o l'immagine potrebbe non essere caricata correttamente.",
         "failedbackup": "Backup fallito: ",
         "restorecompleted": "Ripristino completato con successo!",
         "restorefailed": "Ripristino fallito: "
@@ -919,14 +908,13 @@ const translations = {
         "confirmRestore": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।",
         "Nobackgroundset": "বর্তমানে কোন ব্যাকগ্রাউন্ড ইমেজ সেট করা হয়নি।",
         "clearbackgroundimage": "আপনি কি ব্যাকগ্রাউন্ড ইমেজ মুছে ফেলতে চান?",
-        "confirmbackup": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস ব্যাকআপ করতে চান?",
         "ProxyDisclaimer": "সমস্ত প্রক্সি ফিচার ডিফল্টভাবে বন্ধ থাকে।\n\nআপনি যদি সার্চ সাজেশন এবং CORS বাইপাস প্রক্সি সক্রিয় করেন, তাহলে উন্নত গোপনীয়তার জন্য আপনার নিজস্ব প্রক্সি হোস্ট করার পরামর্শ দেওয়া হয়।\n\nডিফল্টভাবে প্রক্সি https://mynt-proxy.rhythmcorehq.com এ সেট করা হবে, যার মানে আপনার সমস্ত ডেটা এই পরিষেবার মাধ্যমে যাবে, যা গোপনীয়তার ঝুঁকি তৈরি করতে পারে।",
         "endlink": "লিঙ্কের শেষে / থাকা উচিত নয়",
         "onlylinks": "শুধুমাত্র লিঙ্ক (http:// বা https:// দিয়ে শুরু) অনুমোদিত।",
-        "imagedimensions": "সতর্কতা: আপলোড করা ছবির মাত্রা ({width}x{height}) ১৯২০x১০৮০ পিক্সেলের বেশি। \n\nএটি কর্মক্ষমতায় প্রভাব ফেলতে পারে বা ছবি সঠিকভাবে লোড হতে ব্যর্থ হতে পারে।",
         "failedbackup": "ব্যাকআপ ব্যর্থ: ",
         "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
         "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
+        "invalidBackup": "অবৈধ ব্যাকআপ ফাইল"
     },
 
 
@@ -1129,11 +1117,9 @@ const translations = {
         "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
         "Nobackgroundset": "В настоящее время обои не установлены.",
         "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
-        "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
         "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
         "endlink": "В конце ссылки не должно быть /",
         "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
-        "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
         "failedbackup": "Резервное копирование не удалось: ",
         "restorecompleted": "Восстановление настроек успешно завершено!",
         "restorefailed": "Восстановление настроек не удалось: ",
@@ -1594,7 +1580,7 @@ const translations = {
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
-        "todoListHover": "To-Do List",    // Keep this short
+        "todoListHover": "To-Do List",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1608,14 +1594,13 @@ const translations = {
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
         "restoreText": "Pulihkan",
-        "rangColor": "Pilih warna",    // Keep it shorter
+        "rangColor": "Pilih warna",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
         "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
         "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
         "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
-        "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
         "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
         "endlink": "Seharusnya tidak ada / di akhir tautan",
         "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
@@ -1739,11 +1724,9 @@ const translations = {
         "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
         "Nobackgroundset": "सद्यस्थितीत कोणतीही पार्श्वभूमी सेट केलेली नाही.",
         "clearbackgroundimage": "तुम्हाला पार्श्वभूमी इमेज क्लिअर करायची आहे का?",
-        "confirmbackup": "तुम्हाला तुमचे सेटिंग्स बॅकअप करायचे आहेत का?",
         "ProxyDisclaimer": "सर्व प्रॉक्सी फीचर्स डिफॉल्टनुसार बंद असतात.\n\nजर तुम्ही सर्च सुजेशन्स आणि CORS बायपास प्रॉक्सी सक्षम केले, तर गोपनीयतेसाठी तुमची स्वतःची प्रॉक्सी होस्ट करणे अत्यंत शिफारसीय आहे.\n\nडिफॉल्टनुसार, प्रॉक्सी https://mynt-proxy.rhythmcorehq.com म्हणून सेट केले जाईल, म्हणजे तुमचे सर्व डेटा या सर्विसमधून जाईल, ज्यामुळे गोपनीयतेच्या संदर्भात धोका होऊ शकतो.",
         "endlink": "लिंकमध्ये / नसावा.",
         "onlylinks": "फक्त लिंक (http:// किंवा https:// ने सुरू होणाऱ्या) चालू आहेत.",
-        "imagedimensions": "तयार केलेली इमेज ({width}x{height}) चे परिमाण 1920x1080 पिक्सल्सपेक्षा जास्त आहे. \n\nयामुळे कार्यक्षमता प्रभावित होऊ शकते किंवा इमेज नीट लोड होऊ नये.",
         "failedbackup": "बॅकअप अयशस्वी: ",
         "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
         "restorefailed": "पुनर्संचयित अयशस्वी: "
@@ -1845,7 +1828,7 @@ const translations = {
 
         // Search Engines and rest
         "googleEngine": "Google",
-        "duckEngine": "Duck", // DuckDuckGo
+        "duckEngine": "Duck",
         "bingEngine": "Bing",
         "braveEngine": "Brave",
         "youtubeEngine": "YouTube",
@@ -1868,11 +1851,9 @@ const translations = {
         "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
         "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
         "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
-        "confirmbackup": "Êtes-vous sûr de vouloir sauvegarder vos paramètres?",
         "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
         "endlink": "Il ne doit pas y avoir de / à la fin du lien.",
         "onlylinks": "Seuls les liens (commençant par http:// ou https://) sont autorisés.",
-        "imagedimensions": "Attention: Les dimensions de l'image téléchargée ({largeur}x{hauteur}) dépassent 1920x1080 pixels.\n\nCela peut avoir un impact sur les performances ou l'image peut ne pas se charger correctement.",
         "failedbackup": "Échec de la sauvegarde: ",
         "restorecompleted": "Restauration terminée avec succès!",
         "restorefailed": "Échec de la restauration: ",
@@ -1985,11 +1966,9 @@ const translations = {
         "confirmRestore": "Parametrlərinizi sıfırlamaq istədiyinizə əminsiniz? Bu əməliyyatı geri qaytarmaq mümkün deyil.",
         "Nobackgroundset": "Hazırda heç bir fon şəkli qurulmayıb.",
         "clearbackgroundimage": "Arxa fon şəklini təmizləmək istədiyinizə əminsinizmi?",
-        "confirmbackup": "Parametrlərinizin ehtiyat nüsxəsini çıxarmaq istədiyinizə əminsiniz?",
         "ProxyDisclaimer": "Bütün proksi funksiyaları defolt olaraq deaktivdir.\n\nAxtarış təkliflərini və CORS proksisini yan keçmək imkanını aktiv etsəniz, təkmil məxfilik üçün öz proksinizi yerləşdirmək tövsiyə olunur.\n\nDefolt olaraq, proksi quraşdırılacaq. https://mynt-proxy.rhythmcorehq.com ünvanına, yəni bütün məlumatlarınız bu xidmətdən keçəcək və bu, məxfiliklə bağlı narahatlıq yarada bilər.",
         "endlink": "Linkin sonunda / olmamalıdır",
         "onlylinks": "Yalnız linklərə (http:// və ya https:// ilə başlayan) icazə verilir.",
-        "imagedimensions": "Xəbərdarlıq: Yüklənmiş şəkil ölçüləri ({en}x{height}) 1920x1080 pikseli keçir. \n\nBu, performansa təsir edə bilər və ya şəkil düzgün yüklənməyə bilər.",
         "failedbackup": "Yedəkləmə uğursuz oldu: ",
         "restorecompleted": "Bərpa uğurla tamamlandı!",
         "restorefailed": "Bərpa uğursuz oldu: ",
@@ -2056,7 +2035,7 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
-        { id: 'todoListHeading', key: 'todoListHeading' },
+        { id: 'todoListHeading', key: 'todoListText' },
         { id: 'todoListText', key: 'todoListText' },
         { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },

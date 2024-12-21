@@ -1673,12 +1673,9 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 
 
 
-
-
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper ---------------------------------
-// Constants for database and storage
+// -------------------------- Wallpaper -----------------------------
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
 const timestampKey = 'lastUpdateTime'; // Key to store last update time
@@ -1692,23 +1689,19 @@ function openDatabase() {
             const db = event.target.result;
             db.createObjectStore(storeName);
         };
-        request.onsuccess = function (event) {
-            resolve(event.target.result);
-        };
-        request.onerror = function (event) {
-            reject('Database error: ' + event.target.errorCode);
-        };
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject('Database error: ' + event.target.errorCode);
     });
 }
 
-// Save image data, timestamp, and type to IndexedDB
-async function saveImageToIndexedDB(imageUrl, isRandom) {
+// Save image Blob, timestamp, and type to IndexedDB
+async function saveImageToIndexedDB(imageBlob, isRandom) {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
 
-        store.put(imageUrl, 'backgroundImage');
+        store.put(imageBlob, 'backgroundImage'); // Save Blob
         store.put(new Date().toISOString(), timestampKey);
         store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
@@ -1717,60 +1710,38 @@ async function saveImageToIndexedDB(imageUrl, isRandom) {
     });
 }
 
-// Load image, timestamp, and type from IndexedDB
+// Load image Blob, timestamp, and type from IndexedDB
 async function loadImageAndDetails() {
     const db = await openDatabase();
-    return await Promise.all([
-        new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readonly');
-            const store = transaction.objectStore(storeName);
-            const request = store.get('backgroundImage');
-
-            request.onsuccess = (event) => resolve(request.result);
-            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
-        }),
-        new Promise((resolve_1, reject_1) => {
-            const transaction_1 = db.transaction(storeName, 'readonly');
-            const store_1 = transaction_1.objectStore(storeName);
-            const request_1 = store_1.get(timestampKey);
-
-            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
-            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
-        }),
-        new Promise((resolve_2, reject_2) => {
-            const transaction_2 = db.transaction(storeName, 'readonly');
-            const store_2 = transaction_2.objectStore(storeName);
-            const request_2 = store_2.get(imageTypeKey);
-
-            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
-            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
-        })
+    return Promise.all([
+        getFromStore(db, 'backgroundImage'),
+        getFromStore(db, timestampKey),
+        getFromStore(db, imageTypeKey)
     ]);
 }
-
-// Load only the background image
-async function loadImageFromIndexedDB() {
-    const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+function getFromStore(db, key) {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readonly');
         const store = transaction.objectStore(storeName);
-        const request = store.get('backgroundImage');
+        const request = store.get(key);
 
-        request.onsuccess = (event) => resolve(request.result);
-        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
 async function clearImageFromIndexedDB() {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
-        const request = store.delete('backgroundImage');
+        store.delete('backgroundImage');
+        store.delete(timestampKey);
+        store.delete(imageTypeKey);
 
-        request.onsuccess = () => resolve();
-        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
@@ -1778,24 +1749,20 @@ async function clearImageFromIndexedDB() {
 document.getElementById('imageUpload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const image = new Image();
-            image.onload = function () {
-                const totalPixels = image.width * image.height;
-                if (totalPixels > 2073600) {
-                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
-                    .replace('{width}', image.width)
-                    .replace('{height}', image.height));
-                }
-                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
-                saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextBackground(true))
-                    .catch(error => console.error(error));
-            };
-            image.src = e.target.result;
+        const imageUrl = URL.createObjectURL(file); // Create temporary Blob URL
+        const image = new Image();
+
+        image.onload = function () {
+            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            saveImageToIndexedDB(file, false)
+                .then(() => {
+                    updateTextBackground(true);
+                    URL.revokeObjectURL(imageUrl); // Clean up memory
+                })
+                .catch(error => console.error(error));
         };
-        reader.readAsDataURL(file);
+
+        image.src = imageUrl;
     }
 });
 
@@ -1808,10 +1775,13 @@ async function applyRandomImage(showConfirmation = true) {
     }
     try {
         const response = await fetch(RANDOM_IMAGE_URL);
-        const imageUrl = response.url;
+        const blob = await response.blob(); // Get Blob from response
+        const imageUrl = URL.createObjectURL(blob);
+
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-        await saveImageToIndexedDB(imageUrl, true);
+        await saveImageToIndexedDB(blob, true);
         updateTextBackground(true);
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
@@ -1819,7 +1789,6 @@ async function applyRandomImage(showConfirmation = true) {
 
 // Function to update solid background behind userText, date, greeting and shortcut names
 function updateTextBackground(hasWallpaper) {
-    // Select elements
     const userText = document.getElementById('userText');
     const date = document.getElementById('date');
     const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
@@ -1843,53 +1812,45 @@ function updateTextBackground(hasWallpaper) {
 
     // Update styles for shortcuts
     shortcuts.forEach(shortcut => {
-        if (hasWallpaper) {
-            shortcut.style.backgroundColor = 'var(--accentLightTint-blue)';
-            shortcut.style.padding = '0px 6px';
-            shortcut.style.borderRadius = '5px';
-        } else {
-            shortcut.style.backgroundColor = ''; // Reset to default
-            shortcut.style.padding = '';
-            shortcut.style.borderRadius = '';
-        }
+        shortcut.style.backgroundColor = hasWallpaper ? 'var(--accentLightTint-blue)' : '';
+        shortcut.style.padding = hasWallpaper ? '0px 6px' : '';
+        shortcut.style.borderRadius = hasWallpaper ? '5px' : '';
     });
 }
 
 // Check and update image on page load
 function checkAndUpdateImage() {
     loadImageAndDetails()
-        .then(([savedImage, savedTimestamp, imageType]) => {
+        .then(([blob, savedTimestamp, imageType]) => {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
-            // Case 1: No image found, disable text shadow and return.
-            if (!savedImage) {
+            // No image or invalid data
+            if (!blob || !savedTimestamp || isNaN(lastUpdate)) {
                 updateTextBackground(false);
                 return;
             }
 
-            // Case 2: Invalid or missing timestamp, disable text shadow and return.
-            if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextBackground(false);
-                return;
-            }
+            // Create a new Blob URL dynamically
+            const imageUrl = URL.createObjectURL(blob);
 
-            // Case 3: Uploaded image should always be applied.
             if (imageType === 'upload') {
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                document.body.style.backgroundImage = `var(--bg-image)`;
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
                 updateTextBackground(true);
                 return;
             }
 
-            // Case 4: Random image should be refreshed if it's a new day.
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage(false); // Fetch new random image and apply it.
+                // Refresh random image if a new day
+                applyRandomImage(false);
             } else {
-                // Case 5: Same day random image, reapply saved image.
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                // Reapply the saved random image
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
                 updateTextBackground(true);
             }
+
+            // Clean up the Blob URL after setting the background
+            setTimeout(() => URL.revokeObjectURL(imageUrl), 1500);
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
@@ -1900,19 +1861,20 @@ function checkAndUpdateImage() {
 // Event listeners for buttons
 document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
 document.getElementById('clearImage').addEventListener('click', function () {
-    loadImageFromIndexedDB()
-        .then((savedImage) => {
-            if (savedImage) {
-                if (confirm(translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage)) {
-                    clearImageFromIndexedDB()
-                        .then(() => {
-                            document.body.style.removeProperty('--bg-image');
-                            updateTextBackground(false);
-                        })
-                        .catch((error) => console.error(error));
-                }
-            } else {
+    loadImageAndDetails()
+        .then(([blob]) => {
+            if (!blob) {
                 alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
+                return;
+            }
+            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage;
+            if (confirm(confirmationMessage)) {
+                clearImageFromIndexedDB()
+                    .then(() => {
+                        document.body.style.removeProperty('--bg-image');
+                        updateTextBackground(false);
+                    })
+                    .catch((error) => console.error(error));
             }
         })
         .catch((error) => console.error(error));
@@ -1921,18 +1883,15 @@ document.getElementById('randomImageTrigger').addEventListener('click', applyRan
 
 // Start image check on page load
 checkAndUpdateImage();
+// ------------------------ End of BG Image --------------------------
 
-// ------- End of BG Image -------------------------------------------
-
-// -------- Backup-Restore Settings ----------------------------------
+// -------------------- Backup-Restore Settings ----------------------
 document.getElementById("backupBtn").addEventListener("click", backupData);
 document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
 document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
 
 // Backup data from localStorage and IndexedDB
 async function backupData() {
-    if (!confirm(translations[currentLanguage]?.confirmbackup || translations['en'].confirmbackup)) return;
-
     try {
         const backup = { localStorage: {}, indexedDB: {} };
 
@@ -1975,6 +1934,13 @@ async function validateAndRestoreData(event) {
     reader.onload = async (e) => {
         try {
             const backup = JSON.parse(e.target.result);
+
+            // Validate the structure of the JSON file
+            if (!isValidBackupFile(backup)) {
+                alert(translations[currentLanguage]?.invalidBackup || translations['en'].invalidBackup);
+                return;
+            }
+
             await restoreData(backup);
 
             alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
@@ -1986,61 +1952,83 @@ async function validateAndRestoreData(event) {
     reader.readAsText(file);
 }
 
+function isValidBackupFile(backup) {
+    // Check if localStorage and indexedDB exist and are objects
+    if (typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object") {
+        return false;
+    }
+    return true;
+}
+
 // Backup IndexedDB: Extract data from ImageDB -> backgroundImages
-function backupIndexedDB() {
+async function backupIndexedDB() {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readonly");
+        const store = transaction.objectStore(storeName);
+        const data = {};
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readonly");
-            const store = transaction.objectStore("backgroundImages");
-            const data = {};
+        store.getAllKeys().onsuccess = (keysEvent) => {
+            const keys = keysEvent.target.result;
 
-            store.getAllKeys().onsuccess = (keysEvent) => {
-                const keys = keysEvent.target.result;
+            if (!keys.length) {
+                resolve({});
+                return;
+            }
 
-                if (!keys.length) {
-                    resolve({ backgroundImages: {} });
-                    return;
-                }
-
-                let pending = keys.length;
-                keys.forEach(key => {
-                    store.get(key).onsuccess = (getEvent) => {
-                        data[key] = getEvent.target.result;
-                        if (--pending === 0) resolve({ backgroundImages: data });
-                    };
-                });
-            };
-
-            transaction.onerror = () => reject(transaction.error);
+            let pending = keys.length;
+            keys.forEach(key => {
+                store.get(key).onsuccess = (getEvent) => {
+                    const value = getEvent.target.result;
+                    if (value instanceof Blob) {
+                        // Convert Blob to Base64 for JSON compatibility
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            data[key] = { blob: reader.result, isBlob: true };
+                            if (--pending === 0) resolve(data);
+                        };
+                        reader.readAsDataURL(value);
+                    } else {
+                        data[key] = value;
+                        if (--pending === 0) resolve(data);
+                    }
+                };
+            });
         };
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
 // Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
-function restoreIndexedDB(data) {
+async function restoreIndexedDB(data) {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readwrite");
+        const store = transaction.objectStore(storeName);
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readwrite");
-            const store = transaction.objectStore("backgroundImages");
+        store.clear();
+        const entries = Object.entries(data);
+        let pending = entries.length;
 
-            store.clear();
-            Object.entries(data).forEach(([key, value]) => {
+        if (pending === 0) {
+            resolve(); // If no data to restore, resolve immediately
+            return;
+        }
+
+        entries.forEach(([key, value]) => {
+            if (value.isBlob) {
+                // Convert Base64 back to Blob
+                const blob = base64ToBlob(value.blob);
+                store.put(blob, key);
+            } else {
                 store.put(value, key);
-            });
+            }
 
-            transaction.oncomplete = resolve;
-            transaction.onerror = () => reject(transaction.error);
-        };
+            if (--pending === 0) resolve();
+        });
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
@@ -2057,9 +2045,21 @@ async function restoreData(backup) {
     }
 
     // Restore IndexedDB from backup
-    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
-        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    if (backup.indexedDB) {
+        await restoreIndexedDB(backup.indexedDB);
     }
+}
+
+// Helper: Convert Base64 string to Blob
+function base64ToBlob(base64) {
+    const [metadata, data] = base64.split(',');
+    const mime = metadata.match(/:(.*?);/)[1];
+    const binary = atob(data);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        array[i] = binary.charCodeAt(i);
+    }
+    return new Blob([array], { type: mime });
 }
 // -------------------End of Settings ------------------------------
 
