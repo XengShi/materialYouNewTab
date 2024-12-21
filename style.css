@@ -475,6 +475,7 @@ body {
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
+	z-index: 4;
 }
 
 #bookmarksContainer:has(.bookmark-sidebar.open) {
@@ -490,7 +491,7 @@ body {
     cursor: pointer;
 	color: var(--darkColor-blue);
     transition: transform 0.3s ease, right 0.3s ease;
-	z-index: 1;
+	z-index: 4;
 }
 
 .bookmark-sidebar {
@@ -502,13 +503,12 @@ body {
     background-color: var(--accentLightTint-blue);
     color: white;
     transition: right 0.3s ease;
-	z-index: 999;
+	z-index: 5;
 	display: block;
 	border-radius: var(--round) 0 0 var(--round);
 	box-sizing: border-box;
 	overflow: hidden;
 }
-
 
 .bookmark-sidebar-header {
     display: flex;
@@ -551,7 +551,7 @@ body {
 	margin-top: -30px;
 }
 
-#searchBar {
+#bookmarkSearch {
     width: 90%;
     padding: 10px 24px 10px 16px;
     border-radius: 10px;
@@ -562,7 +562,7 @@ body {
 	border: none !important;
 }
 
-#searchBar::placeholder {
+#bookmarkSearch::placeholder {
     color: var(--textColorDark-blue);
 	opacity: 0.7;
 }

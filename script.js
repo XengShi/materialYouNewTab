@@ -261,8 +261,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
     const bookmarkSidebar = document.getElementById('bookmarkSidebar');
     const bookmarkList = document.getElementById('bookmarkList');
-    const searchBar = document.getElementById('searchBar');
-    const searchBarClearButton = document.getElementById('clearSearchButton');
+    const bookmarkSearch = document.getElementById('bookmarkSearch');
+    const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 
     // Store the state of "Recent Added" in local storage
 
@@ -290,8 +290,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    searchBar.addEventListener('input', function() {
-        const searchTerm = searchBar.value.toLowerCase();
+    bookmarkSearch.addEventListener('input', function() {
+        const searchTerm = bookmarkSearch.value.toLowerCase();
         const bookmarks = bookmarkList.getElementsByTagName('li');
 
         Array.from(bookmarks).forEach(function(bookmark) {
@@ -323,12 +323,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Show or hide the clear button based on the search term
-        searchBarClearButton.style.display = searchTerm ? 'inline' : 'none';
+        bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
     });
 
-    searchBarClearButton.addEventListener('click', function() {
-        searchBar.value = '';
-        searchBar.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    bookmarkSearchClearButton.addEventListener('click', function() {
+        bookmarkSearch.value = '';
+        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
     });
 
     function toggleBookmarkSidebar() {
