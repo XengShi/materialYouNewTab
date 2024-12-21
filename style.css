@@ -1354,7 +1354,7 @@ body {
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	top: 0;
 	background-color: var(--accentLightTint-blue);
 	z-index: -1;
 	opacity: var(--always-show-dock-background);
