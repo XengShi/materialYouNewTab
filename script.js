@@ -264,6 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookmarkSearch = document.getElementById('bookmarkSearch');
     const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 
+    // Store the state of "Recent Added" in local storage
+
     bookmarkRightArrow.addEventListener('click', function() {
         chrome.permissions.contains({
             permissions: ['bookmarks']
@@ -309,6 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Fold back all folders if the search bar is cleared
         if (searchTerm === '') {
             Array.from(bookmarkList.getElementsByClassName('folder')).forEach(function(folder) {
                 folder.classList.remove('open');
@@ -319,12 +322,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        // Show or hide the clear button based on the search term
         bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
     });
 
     bookmarkSearchClearButton.addEventListener('click', function() {
         bookmarkSearch.value = '';
-        bookmarkSearch.dispatchEvent(new Event('input'));
+        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
     });
 
     function toggleBookmarkSidebar() {
@@ -336,26 +340,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to load bookmarks
     function loadBookmarks() {
+        // Check if the chrome.bookmarks API is available
         if (chrome.bookmarks && chrome.bookmarks.getTree) {
             chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
+                // Clear the current list
                 bookmarkList.innerHTML = '';
 
-                const bookmarksBar = bookmarkTreeNodes[0]?.children?.find(node => node.title === (navigator.brave ? 'Bookmarks' : 'Bookmarks bar'));
+                // Extract the 'Bookmarks bar' and display its children
+                const bookmarksBar = bookmarkTreeNodes[0]?.children?.find(node => node.title === (navigator.brave && navigator.brave.isBrave ? 'Bookmarks' : 'Bookmarks bar'));
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
 
+                // Extract the 'Other bookmarks' node and display it
                 const otherBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Other bookmarks');
                 if (otherBookmarks && otherBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
                 }
 
+                // Extract the 'Mobile bookmarks' node and display it
                 const mobileBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Mobile bookmarks');
                 if (mobileBookmarks && mobileBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks([mobileBookmarks]));
                 }
 
+                // Display the "Recent Added" folder if enabled
                 chrome.bookmarks.getRecent(10, function (recentBookmarks) {
                     if (recentBookmarks.length > 0) {
                         const recentAddedFolder = {
@@ -374,19 +385,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayBookmarks(bookmarkNodes) {
         let list = document.createElement('ul');
 
+        // Sort the bookmark nodes alphabetically by title
         bookmarkNodes.sort((a, b) => a.title.localeCompare(b.title));
 
         for (let node of bookmarkNodes) {
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
 
+                // Use the SVG icon from HTML
                 const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
-                folderIcon.removeAttribute('id');
+                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
                 folderItem.appendChild(folderIcon);
 
                 folderItem.appendChild(document.createTextNode(node.title));
                 folderItem.classList.add('folder');
 
+                // Add event listener for unfolding/folding
                 folderItem.addEventListener('click', function(event) {
                     event.stopPropagation();
                     folderItem.classList.toggle('open');
@@ -411,6 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 favicon.src = `http://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
                 favicon.classList.add('favicon');
 
+                // Create the delete button
                 let deleteButton = document.createElement('button');
                 deleteButton.textContent = '✖';
                 deleteButton.classList.add('bookmark-delete-button');
@@ -419,15 +434,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.stopPropagation();
                     if (confirm(`Are you sure you want to delete the bookmark "${node.title}"?`)) {
                         chrome.bookmarks.remove(node.id, function() {
-                            item.remove();
+                            item.remove(); // Remove the item from the DOM
                         });
                     }
                 });
 
                 item.appendChild(favicon);
                 item.appendChild(link);
-                item.appendChild(deleteButton);
+                item.appendChild(deleteButton); // Add delete button to the item
 
+                // Open links in the current tab
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
                     chrome.tabs.update({ url: node.url });
@@ -444,6 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return list;
     }
 
+    // Initial load of bookmarks
     loadBookmarks();
 });
 
