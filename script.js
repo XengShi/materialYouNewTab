@@ -258,8 +258,8 @@ document.addEventListener("click", function (event) {
 // ------------------------ Bookmark System -----------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    const rightArrow = document.getElementById('rightArrow');
-    const sidebar = document.getElementById('sidebar');
+    const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
+    const bookmarkSidebar = document.getElementById('bookmarkSidebar');
     const bookmarkList = document.getElementById('bookmarkList');
     const searchBar = document.getElementById('searchBar');
     const gearButton = document.getElementById('gearButton');
@@ -271,18 +271,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const recentAddedState = JSON.parse(localStorage.getItem('recentAddedState')) || false;
     recentAddedToggle.checked = recentAddedState;
 
-    rightArrow.addEventListener('click', function() {
+    bookmarkRightArrow.addEventListener('click', function() {
         chrome.permissions.contains({
             permissions: ['bookmarks']
         }, function(alreadyGranted) {
             if (alreadyGranted) {
-                toggleSidebar();
+                toggleBookmarkSidebar();
             } else {
                 chrome.permissions.request({
                     permissions: ['bookmarks']
                 }, function(granted) {
                     if (granted) {
-                        toggleSidebar();
+                        toggleBookmarkSidebar();
                     }
                 });
             }
@@ -301,8 +301,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('click', function(event) {
-        if (!sidebar.contains(event.target) && !rightArrow.contains(event.target) && sidebar.classList.contains('open')) {
-            toggleSidebar();
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+            toggleBookmarkSidebar();
         } else if (!gearButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.add('hidden'); // Close the dropdown if clicking outside of it
         }
@@ -349,15 +349,12 @@ document.addEventListener('DOMContentLoaded', function() {
         searchBar.dispatchEvent(new Event('input')); // Trigger input event to clear search results
     });
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-        rightArrow.classList.toggle('rotate');
+    function toggleBookmarkSidebar() {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkRightArrow.classList.toggle('rotate');
 
-        if (sidebar.classList.contains('open')) {
-            rightArrow.style.right = '340px';
+        if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
-        } else {
-            rightArrow.style.right = '0';
         }
     }
 
@@ -445,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create the delete button
                 let deleteButton = document.createElement('button');
                 deleteButton.textContent = '✖';
-                deleteButton.classList.add('delete-button');
+                deleteButton.classList.add('bookmark-delete-button');
                 deleteButton.addEventListener('click', function(event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -3438,10 +3435,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowRight') {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) {
-            sidebar.style.display = 'block';
-            alert('Sidebar opened');
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkRightArrow.classList.toggle('rotate');
+
+        if (bookmarkSidebar.classList.contains('open')) {
+            loadBookmarks();
         }
     }
 });
