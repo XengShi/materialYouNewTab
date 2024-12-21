@@ -28,7 +28,6 @@ const translations = {
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
-        "todoListHeading": "To Do List",
         "todoListInfo": "Show a daily To Do list",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
@@ -157,7 +156,6 @@ const translations = {
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
         "todoListText": "Lista de Tarefas",
-        "todoListHeading": "Lista de Tarefas",
         "todoListInfo": "Mostrar uma Lista de Tarefas",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
@@ -216,7 +214,6 @@ const translations = {
         "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
         "todoPlaceholder": "Adicionar tarefa...",
-        "todoListHeading": "Lista de Tarefas",
         "todoListHover": "Lista de Tarefas",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
@@ -2056,7 +2053,7 @@ function applyLanguage(lang) {
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
         { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
-        { id: 'todoListHeading', key: 'todoListHeading' },
+        { id: 'todoListHeading', key: 'todoListText' },
         { id: 'todoListText', key: 'todoListText' },
         { id: 'todoListInfo', key: 'todoListInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
