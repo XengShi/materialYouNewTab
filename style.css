@@ -484,25 +484,25 @@ body {
 }
 
 .bookmark-right-arrow {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
 	color: var(--darkColor-blue);
-    transition: transform 0.3s ease, right 0.3s ease;
+	transition: transform 0.3s ease, right 0.3s ease;
 	z-index: 4;
 }
 
 .bookmark-sidebar {
-    width: 350px;
-    position: fixed;
-    right: -350px;
-    top: 0;
-    height: 100%;
-    background-color: var(--accentLightTint-blue);
-    color: white;
-    transition: right 0.3s ease;
+	width: 350px;
+	position: fixed;
+	right: -350px;
+	top: 0;
+	height: 100%;
+	background-color: var(--accentLightTint-blue);
+	color: white;
+	transition: right 0.3s ease;
 	z-index: 5;
 	display: block;
 	border-radius: var(--round) 0 0 var(--round);
@@ -511,10 +511,10 @@ body {
 }
 
 .bookmark-sidebar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
 }
 
 .bookmark-sidebar.open {
@@ -522,7 +522,7 @@ body {
 }
 
 .bookmark-right-arrow.rotate {
-    transform: translateY(-50%) rotate(180deg);
+	transform: translateY(-50%) rotate(180deg);
 	color: var(--accentLightTint-blue);
 	right: 350px;
 }
@@ -533,15 +533,15 @@ body {
 }
 
 .bookmark-sidebar-header h2 {
-    color: var(--textColorDark-blue);
-    text-align: center;
+	color: var(--textColorDark-blue);
+	text-align: center;
 	font-size: 1.5rem;
-    flex-grow: 1;
+	flex-grow: 1;
 }
 
 .bookmark-search-container {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 	padding: 30px 10px 16px 10px;
 	border-radius: 30px;
 	display: flex;
@@ -552,40 +552,40 @@ body {
 }
 
 #bookmarkSearch {
-    width: 90%;
-    padding: 10px 24px 10px 16px;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: var(--bg-color-blue);
-    color: var(--textColorDark-blue);
+	width: 90%;
+	padding: 10px 24px 10px 16px;
+	border-radius: 10px;
+	font-size: 16px;
+	background-color: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
 	outline: none !important;
 	border: none !important;
 }
 
 #bookmarkSearch::placeholder {
-    color: var(--textColorDark-blue);
+	color: var(--textColorDark-blue);
 	opacity: 0.7;
 }
 
 #clearSearchButton {
-    position: absolute;
-    right: 10%;
-    top: calc(50% + 7px);
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--textColorDark-blue);
-    cursor: pointer;
-    display: none; /* Hidden by default */
+	position: absolute;
+	right: 10%;
+	top: calc(50% + 7px);
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: var(--textColorDark-blue);
+	cursor: pointer;
+	display: none; /* Hidden by default */
 }
 
 #bookmarkList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
 	height: calc(100% - 190px);
-    overflow-y: auto;  /* Add vertical scrollbar */
+	overflow-y: auto;  /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
 #bookmarkList::-webkit-scrollbar {
@@ -614,8 +614,8 @@ body {
 }
 
 #bookmarkList ul {
-    padding-left: 10px;
-    list-style-type: none;
+	padding-left: 10px;
+	list-style-type: none;
 	font-weight: normal;
 }
 
@@ -624,19 +624,19 @@ body {
 }
 
 #bookmarkList li {
-    padding: 10px;
-    border: none;
-    position: relative;
+	padding: 10px;
+	border: none;
+	position: relative;
 }
 
 #bookmarkList li:not(.folder) {
-    display: flex;
+	display: flex;
 	width: calc(100% - 10px);
 }
 
 #bookmarkList li a {
-    color: var(--textColorDark-blue);
-    text-decoration: none;
+	color: var(--textColorDark-blue);
+	text-decoration: none;
 	/* word-break: break-word; */
 	white-space: nowrap;
 	overflow: hidden;
@@ -644,50 +644,50 @@ body {
 }
 
 .favicon {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-    vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+	vertical-align: middle;
 }
 
 .folder {
-    cursor: pointer;
-    font-weight: bolder;
+	cursor: pointer;
+	font-weight: bolder;
 	color: var(--textColorDark-blue);
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .ui {
-    display: block;
-    pointer-events: none; /* Make ui class button unclickable */
+	display: block;
+	pointer-events: none; /* Make ui class button unclickable */
 }
 
 .folder svg {
-    margin-right: 5px; /* Adjust this value for more or less space */
-    vertical-align: middle; /* Aligns the icon with the text */
+	margin-right: 5px; /* Adjust this value for more or less space */
+	vertical-align: middle; /* Aligns the icon with the text */
 }
 
 .folder ul {
-    display: none;
-    padding-left: 20px;
+	display: none;
+	padding-left: 20px;
 }
 
 .folder.open ul {
-    display: block;
+	display: block;
 }
 
 .bookmark-delete-button {
-    background: none;
-    border: none;
-    color: red;
-    cursor: pointer;
-    position: absolute;
-    right: -6px; /* Position it to the right */
-    top: 50%;
-    transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: red;
+	cursor: pointer;
+	position: absolute;
+	right: -6px; /* Position it to the right */
+	top: 50%;
+	transform: translateY(-50%);
 	opacity: 0;
 	pointer-events: none;
 }
