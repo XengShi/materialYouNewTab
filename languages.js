@@ -251,11 +251,9 @@ const translations = {
         "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
         "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
         "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
-        "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
         "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
         "endlink": "Não deve haver / no final do link",
         "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
-        "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels. \n\nIsso pode impactar o desempenho ou a imagem pode não carregar corretamente.",
         "failedbackup": "Falha no backup: ",
         "restorecompleted": "Restauração concluída com sucesso!",
         "restorefailed": "Restauração falhou: ",
@@ -1582,7 +1580,7 @@ const translations = {
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
-        "todoListHover": "To-Do List",    // Keep this short
+        "todoListHover": "To-Do List",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1596,7 +1594,7 @@ const translations = {
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
         "restoreText": "Pulihkan",
-        "rangColor": "Pilih warna",    // Keep it shorter
+        "rangColor": "Pilih warna",
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
@@ -1830,7 +1828,7 @@ const translations = {
 
         // Search Engines and rest
         "googleEngine": "Google",
-        "duckEngine": "Duck", // DuckDuckGo
+        "duckEngine": "Duck",
         "bingEngine": "Bing",
         "braveEngine": "Brave",
         "youtubeEngine": "YouTube",
@@ -1968,11 +1966,9 @@ const translations = {
         "confirmRestore": "Parametrlərinizi sıfırlamaq istədiyinizə əminsiniz? Bu əməliyyatı geri qaytarmaq mümkün deyil.",
         "Nobackgroundset": "Hazırda heç bir fon şəkli qurulmayıb.",
         "clearbackgroundimage": "Arxa fon şəklini təmizləmək istədiyinizə əminsinizmi?",
-        "confirmbackup": "Parametrlərinizin ehtiyat nüsxəsini çıxarmaq istədiyinizə əminsiniz?",
         "ProxyDisclaimer": "Bütün proksi funksiyaları defolt olaraq deaktivdir.\n\nAxtarış təkliflərini və CORS proksisini yan keçmək imkanını aktiv etsəniz, təkmil məxfilik üçün öz proksinizi yerləşdirmək tövsiyə olunur.\n\nDefolt olaraq, proksi quraşdırılacaq. https://mynt-proxy.rhythmcorehq.com ünvanına, yəni bütün məlumatlarınız bu xidmətdən keçəcək və bu, məxfiliklə bağlı narahatlıq yarada bilər.",
         "endlink": "Linkin sonunda / olmamalıdır",
         "onlylinks": "Yalnız linklərə (http:// və ya https:// ilə başlayan) icazə verilir.",
-        "imagedimensions": "Xəbərdarlıq: Yüklənmiş şəkil ölçüləri ({en}x{height}) 1920x1080 pikseli keçir. \n\nBu, performansa təsir edə bilər və ya şəkil düzgün yüklənməyə bilər.",
         "failedbackup": "Yedəkləmə uğursuz oldu: ",
         "restorecompleted": "Bərpa uğurla tamamlandı!",
         "restorefailed": "Bərpa uğursuz oldu: ",
