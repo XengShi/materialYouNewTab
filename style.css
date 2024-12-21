@@ -518,7 +518,7 @@ body {
 }
 
 .bookmark-sidebar.open {
-    right: 0;
+	right: 0;
 }
 
 .bookmark-right-arrow.rotate {
@@ -589,9 +589,11 @@ body {
 	overflow-y: auto;  /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
+
 #bookmarkList::-webkit-scrollbar {
 	width: 5px;
 }
+
 #bookmarkList::-webkit-scrollbar-track {
 	background-color: transparent;
 }
