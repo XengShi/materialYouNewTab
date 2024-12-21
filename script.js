@@ -2242,6 +2242,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shortcuts = document.getElementById("shortcuts-section");
     const aiToolsCont = document.getElementById("aiToolsCont");
+    const motivationalQuotesCont = document.getElementById("motivationalQuotesCont");
+    const motivationalQuotesCheckbox = document.getElementById("motivationalQuotesCheckbox");
     const googleAppsCont = document.getElementById("googleAppsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const proxybypassField = document.getElementById("proxybypassField");
@@ -2294,6 +2296,14 @@ document.addEventListener("DOMContentLoaded", function () {
             element.style.display = "flex";
         } else {
             element.style.display = "none";
+        }
+        if (key==="motivationalQuotesDisplayStatus") {
+            element.style.display = "flex";
+            if (savedStatus === "flex") {
+                element.style.opacity = "1";
+            } else {
+                element.style.opacity = "0";
+            }
         }
     }
 
@@ -2882,6 +2892,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    motivationalQuotesCheckbox.addEventListener("change", function () {
+        saveCheckboxState("motivationalQuotesCheckboxState", motivationalQuotesCheckbox);
+        if (motivationalQuotesCheckbox.checked) {
+            motivationalQuotesCont.style.opacity = "1";
+            saveDisplayStatus("motivationalQuotesDisplayStatus", "flex");
+        } else {
+            motivationalQuotesCont.style.opacity = "0";
+            saveDisplayStatus("motivationalQuotesDisplayStatus", "none");
+        }
+    });
+
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
@@ -2960,6 +2981,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
+    loadDisplayStatus("motivationalQuotesDisplayStatus", motivationalQuotesCont);
+    loadDisplayStatus("motivationalQuotesCheckboxState", motivationalQuotesCheckbox);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadShortcuts();
 });
