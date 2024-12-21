@@ -258,53 +258,35 @@ document.addEventListener("click", function (event) {
 // ------------------------ Bookmark System -----------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    const rightArrow = document.getElementById('rightArrow');
-    const sidebar = document.getElementById('sidebar');
+    const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
+    const bookmarkSidebar = document.getElementById('bookmarkSidebar');
     const bookmarkList = document.getElementById('bookmarkList');
     const searchBar = document.getElementById('searchBar');
-    const gearButton = document.getElementById('gearButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    const recentAddedToggle = document.getElementById('recentAddedToggle');
     const searchBarClearButton = document.getElementById('clearSearchButton');
 
     // Store the state of "Recent Added" in local storage
-    const recentAddedState = JSON.parse(localStorage.getItem('recentAddedState')) || false;
-    recentAddedToggle.checked = recentAddedState;
 
-    rightArrow.addEventListener('click', function() {
+    bookmarkRightArrow.addEventListener('click', function() {
         chrome.permissions.contains({
             permissions: ['bookmarks']
         }, function(alreadyGranted) {
             if (alreadyGranted) {
-                toggleSidebar();
+                toggleBookmarkSidebar();
             } else {
                 chrome.permissions.request({
                     permissions: ['bookmarks']
                 }, function(granted) {
                     if (granted) {
-                        toggleSidebar();
+                        toggleBookmarkSidebar();
                     }
                 });
             }
         });
     });
 
-    gearButton.addEventListener('click', function(event) {
-        dropdownMenu.classList.toggle('hidden');
-        event.stopPropagation(); // Prevent the dropdown menu from closing immediately
-    });
-
-    recentAddedToggle.addEventListener('change', function() {
-        const isChecked = recentAddedToggle.checked;
-        localStorage.setItem('recentAddedState', JSON.stringify(isChecked));
-        loadBookmarks(); // Reload bookmarks to reflect the change
-    });
-
     document.addEventListener('click', function(event) {
-        if (!sidebar.contains(event.target) && !rightArrow.contains(event.target) && sidebar.classList.contains('open')) {
-            toggleSidebar();
-        } else if (!gearButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-            dropdownMenu.classList.add('hidden'); // Close the dropdown if clicking outside of it
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+            toggleBookmarkSidebar();
         }
     });
 
@@ -349,15 +331,12 @@ document.addEventListener('DOMContentLoaded', function() {
         searchBar.dispatchEvent(new Event('input')); // Trigger input event to clear search results
     });
 
-    function toggleSidebar() {
-        sidebar.classList.toggle('open');
-        rightArrow.classList.toggle('rotate');
+    function toggleBookmarkSidebar() {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkRightArrow.classList.toggle('rotate');
 
-        if (sidebar.classList.contains('open')) {
-            rightArrow.style.right = '340px';
+        if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
-        } else {
-            rightArrow.style.right = '0';
         }
     }
 
@@ -381,18 +360,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
                 }
 
-                // Display the "Recent Added" folder if enabled
-                if (recentAddedToggle && recentAddedToggle.checked) {
-                    chrome.bookmarks.getRecent(10, function (recentBookmarks) {
-                        if (recentBookmarks.length > 0) {
-                            const recentAddedFolder = {
-                                title: 'Recent Added',
-                                children: recentBookmarks
-                            };
-                            bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                        }
-                    });
+                // Extract the 'Mobile bookmarks' node and display it
+                const mobileBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Mobile bookmarks');
+                if (mobileBookmarks && mobileBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks([mobileBookmarks]));
                 }
+
+                // Display the "Recent Added" folder if enabled
+                chrome.bookmarks.getRecent(10, function (recentBookmarks) {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
             });
         } else {
             console.error("chrome.bookmarks API is unavailable. Please check permissions or context.");
@@ -445,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Create the delete button
                 let deleteButton = document.createElement('button');
                 deleteButton.textContent = '✖';
-                deleteButton.classList.add('delete-button');
+                deleteButton.classList.add('bookmark-delete-button');
                 deleteButton.addEventListener('click', function(event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -3437,11 +3420,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight') {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) {
-            sidebar.style.display = 'block';
-            alert('Sidebar opened');
-        }
+    if (event.key === 'ArrowRight'&&chrome.bookmarks) {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkRightArrow.classList.toggle('rotate');
     }
 });
