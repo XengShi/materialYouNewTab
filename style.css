@@ -525,6 +525,7 @@ body {
 	transform: translateY(-50%) rotate(180deg);
 	color: var(--accentLightTint-blue);
 	right: 350px;
+	z-index: 5;
 }
 
 .bookmark-sidebar-header {
