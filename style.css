@@ -502,37 +502,10 @@ body {
     background-color: var(--accentLightTint-blue);
     color: white;
     transition: right 0.3s ease;
-    overflow-y: auto;  /* Add vertical scrollbar */
 	z-index: 999;
 	display: block;
 	border-radius: var(--round) 0 0 var(--round);
 	box-sizing: border-box;
-}
-.bookmark-sidebar::-webkit-scrollbar {
-	width: 5px;
-}
-.bookmark-sidebar::-webkit-scrollbar-track {
-	background-color: transparent;
-	margin-top: 107px;
-	margin-bottom: 10px;
-}
-
-.bookmark-sidebar::-webkit-scrollbar-thumb {
-	background-color: var(--darkColor-blue);
-	border-radius: 3px;
-}
-
-.bookmark-sidebar::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkerColor-blue);
-	border-radius: 3px;
-}
-
-/* For Firefox */
-@-moz-document url-prefix() {
-	.bookmark-sidebar {
-		scrollbar-width: thin;
-		scrollbar-color: var(--darkColor-blue) transparent;
-	}
 }
 
 
@@ -568,7 +541,7 @@ body {
 .bookmark-search-container {
     position: relative;
     width: 100%;
-	padding: 30px 10px;
+	padding: 30px 10px 16px 10px;
 	border-radius: 30px;
 	display: flex;
 	align-items: center;
@@ -610,6 +583,33 @@ body {
     padding: 0;
     margin: 0;
     text-align: left;
+	height: calc(100% - 190px);
+    overflow-y: auto;  /* Add vertical scrollbar */
+	overflow-x: hidden;
+}
+#bookmarkList::-webkit-scrollbar {
+	width: 5px;
+}
+#bookmarkList::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+#bookmarkList::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+#bookmarkList::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+	#bookmarkList {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 #bookmarkList ul {
