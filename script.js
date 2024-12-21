@@ -262,14 +262,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const bookmarkSidebar = document.getElementById('bookmarkSidebar');
     const bookmarkList = document.getElementById('bookmarkList');
     const searchBar = document.getElementById('searchBar');
-    const gearButton = document.getElementById('gearButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    const recentAddedToggle = document.getElementById('recentAddedToggle');
     const searchBarClearButton = document.getElementById('clearSearchButton');
 
     // Store the state of "Recent Added" in local storage
-    const recentAddedState = JSON.parse(localStorage.getItem('recentAddedState')) || false;
-    recentAddedToggle.checked = recentAddedState;
 
     bookmarkRightArrow.addEventListener('click', function() {
         chrome.permissions.contains({
@@ -289,22 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    gearButton.addEventListener('click', function(event) {
-        dropdownMenu.classList.toggle('hidden');
-        event.stopPropagation(); // Prevent the dropdown menu from closing immediately
-    });
-
-    recentAddedToggle.addEventListener('change', function() {
-        const isChecked = recentAddedToggle.checked;
-        localStorage.setItem('recentAddedState', JSON.stringify(isChecked));
-        loadBookmarks(); // Reload bookmarks to reflect the change
-    });
-
     document.addEventListener('click', function(event) {
         if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
             toggleBookmarkSidebar();
-        } else if (!gearButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-            dropdownMenu.classList.add('hidden'); // Close the dropdown if clicking outside of it
         }
     });
 
@@ -379,17 +361,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Display the "Recent Added" folder if enabled
-                if (recentAddedToggle && recentAddedToggle.checked) {
-                    chrome.bookmarks.getRecent(10, function (recentBookmarks) {
-                        if (recentBookmarks.length > 0) {
-                            const recentAddedFolder = {
-                                title: 'Recent Added',
-                                children: recentBookmarks
-                            };
-                            bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                        }
-                    });
-                }
+                chrome.bookmarks.getRecent(10, function (recentBookmarks) {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
             });
         } else {
             console.error("chrome.bookmarks API is unavailable. Please check permissions or context.");

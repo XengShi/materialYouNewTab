@@ -477,7 +477,7 @@ body {
 	pointer-events: none;
 }
 
-#bookmarksContainer:has(.open) {
+#bookmarksContainer:has(.bookmark-sidebar.open) {
 	opacity: 1;
 	pointer-events: auto;
 }
@@ -579,7 +579,7 @@ body {
 
 #searchBar {
     width: 90%;
-    padding: 10px 16px;
+    padding: 10px 24px 10px 16px;
     border-radius: 10px;
     font-size: 16px;
     background-color: var(--bg-color-blue);
@@ -595,12 +595,12 @@ body {
 
 #clearSearchButton {
     position: absolute;
-    right: 5px;
+    right: 10%;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #aaa;
+    color: var(--textColorDark-blue);
     cursor: pointer;
     display: none; /* Hidden by default */
 }
@@ -613,22 +613,33 @@ body {
 }
 
 #bookmarkList ul {
-    padding-left: 20px;
+    padding-left: 10px;
     list-style-type: none;
 	font-weight: normal;
+}
+
+#bookmarkList .folder ul{
+	padding-top: 10px;
 }
 
 #bookmarkList li {
     padding: 10px;
     border: none;
     position: relative;
-	word-break: break-word;
+}
+
+#bookmarkList li:not(.folder) {
+    display: flex;
+	width: calc(100% - 10px);
 }
 
 #bookmarkList li a {
     color: var(--textColorDark-blue);
     text-decoration: none;
-	word-break: break-word;
+	/* word-break: break-word; */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .favicon {
@@ -667,55 +678,22 @@ body {
     display: block;
 }
 
-.gear-button {
-    background: none;
-    border: none;
-    color: var(--darkColor-blue);
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-}
-
-.gear-button svg {
-    vertical-align: middle;
-}
-
-.dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background-color: #333;
-    color: white;
-    border: 1px solid #444;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1000;
-    width: 150px;
-}
-
-.dropdown-menu label {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.dropdown-menu label:hover {
-    background-color: #444;
-}
-
-.dropdown-menu input[type="checkbox"] {
-    margin-right: 10px;
-}
-
 .bookmark-delete-button {
     background: none;
     border: none;
     color: red;
     cursor: pointer;
     position: absolute;
-    right: 0px; /* Position it to the right */
+    right: -6px; /* Position it to the right */
     top: 50%;
     transform: translateY(-50%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+:hover > .bookmark-delete-button {
+	opacity: 1;
+	pointer-events: auto;
 }
 
 /* ----------------- End of Bookmark System ----------------- */
