@@ -256,32 +256,17 @@ document.addEventListener("click", function (event) {
 // ------------------------End of Google App Menu Setup-----------------------------------
 
 // ------------------------ Bookmark System -----------------------------------
+// DOM Vairables
+const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
+const bookmarkSidebar = document.getElementById('bookmarkSidebar');
+const bookmarkList = document.getElementById('bookmarkList');
+const bookmarkSearch = document.getElementById('bookmarkSearch');
+const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
-    const bookmarkSidebar = document.getElementById('bookmarkSidebar');
-    const bookmarkList = document.getElementById('bookmarkList');
-    const bookmarkSearch = document.getElementById('bookmarkSearch');
-    const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
-
-    // Store the state of "Recent Added" in local storage
-
+    
     bookmarkRightArrow.addEventListener('click', function() {
-        chrome.permissions.contains({
-            permissions: ['bookmarks']
-        }, function(alreadyGranted) {
-            if (alreadyGranted) {
-                toggleBookmarkSidebar();
-            } else {
-                chrome.permissions.request({
-                    permissions: ['bookmarks']
-                }, function(granted) {
-                    if (granted) {
-                        toggleBookmarkSidebar();
-                    }
-                });
-            }
-        });
+        toggleBookmarkSidebar();
     });
 
     document.addEventListener('click', function(event) {
@@ -2659,6 +2644,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
+    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
@@ -3303,6 +3289,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    bookmarksCheckbox.addEventListener("change", function () {
+        if (bookmarksCheckbox.checked) {
+            chrome.permissions.contains({
+                permissions: ['bookmarks']
+            }, function(alreadyGranted) {
+                if (alreadyGranted) {
+                    bookmarkRightArrow.style.display = "flex";
+                    saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                } else {
+                    chrome.permissions.request({
+                        permissions: ['bookmarks']
+                    }, function(granted) {
+                        if (granted) {
+                            bookmarkRightArrow.style.display = "flex";
+                            saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        } else {
+                            bookmarksCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        } else {
+            bookmarkRightArrow.style.display = "none";
+            saveDisplayStatus("bookmarksDisplayStatus", "none");
+        }
+        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+    });
+
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
         if (aiToolsCheckbox.checked) {
@@ -3408,10 +3422,12 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
+    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkRightArrow);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
@@ -3420,8 +3436,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&chrome.bookmarks) {
-        bookmarkSidebar.classList.toggle('open');
-        bookmarkRightArrow.classList.toggle('rotate');
+    if (event.key === 'ArrowRight'&&chrome.bookmarks&&(bookmarksCheckbox.checked)) {
+        bookmarkRightArrow.dispatchEvent(new Event('click'));
     }
 });
