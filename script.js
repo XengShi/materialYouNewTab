@@ -3414,12 +3414,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight') {
+    if (event.key === 'ArrowRight'&&chrome.bookmarks) {
         bookmarkSidebar.classList.toggle('open');
         bookmarkRightArrow.classList.toggle('rotate');
-
-        if (bookmarkSidebar.classList.contains('open')) {
-            loadBookmarks();
-        }
     }
 });

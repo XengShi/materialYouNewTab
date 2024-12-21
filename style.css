@@ -506,6 +506,7 @@ body {
 	display: block;
 	border-radius: var(--round) 0 0 var(--round);
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 
@@ -569,7 +570,7 @@ body {
 #clearSearchButton {
     position: absolute;
     right: 10%;
-    top: 50%;
+    top: calc(50% + 7px);
     transform: translateY(-50%);
     background: none;
     border: none;
