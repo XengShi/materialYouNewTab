@@ -266,6 +266,9 @@ const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 
+const isFirefox = typeof browser !== 'undefined';
+var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
+
 document.addEventListener('DOMContentLoaded', function() {
     
     bookmarkRightArrow.addEventListener('click', function() {
@@ -357,11 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
         }
-    }
-
-    const isFirefox = typeof browser !== 'undefined';
-    const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
-
+    };
     // Function to load bookmarks
     function loadBookmarks() {
         if (!bookmarksAPI || !bookmarksAPI.getTree) {
@@ -1338,7 +1337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 function isSupportedBrowser() {
     const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
@@ -3424,6 +3423,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bookmarksPermission = browser.permissions;
         } else {
             console.error("Unsupported Browser.");
+            bookmarksCheckbox.checked = false;
             return;
         }
         if (bookmarksCheckbox.checked) {
@@ -3589,8 +3589,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&(bookmarksCheckbox.checked)) {
-        bookmarkRightArrow.dispatchEvent(new Event('click'));
+    if (event.key === 'ArrowRight') {
+        if(bookmarksCheckbox.checked){
+            bookmarkRightArrow.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
     }
 });
 //------------------------- LoadingScreen -----------------------//
