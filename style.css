@@ -685,7 +685,7 @@ body {
 .bookmark-delete-button {
 	background: none;
 	border: none;
-	color: red;
+	color: var(--darkColor-blue);
 	cursor: pointer;
 	position: absolute;
 	right: -6px; /* Position it to the right */
