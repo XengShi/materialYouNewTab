@@ -402,8 +402,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookmarkList.appendChild(displayBookmarks(otherNode.children));
                 }
             } else {
+                let default_folder = "Bookmarks bar";
+                if (isEdge){
+                    default_folder = "Favorites bar";
+                } else if (isBrave){
+                    default_folder = "Bookmarks";
+                }
                 // Extract the 'Main bookmarks' node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks bar");
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
 
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));

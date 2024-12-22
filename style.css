@@ -684,19 +684,10 @@ body {
 	width: calc(100% - 10px);
 }
 
-#bookmarkList:is(.grid-view) li:is(.folder) > ul:not(.hidden) {
+#bookmarkList:is(.grid-view) ul:not(.hidden), #bookmarkList:is(.grid-view) .folder.open > ul {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 
-	.folder {
-		grid-column: span 4;
-	}
-}
-
-#bookmarkList:is(.grid-view) > ul:not(:has(.folder)) {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-	
 	.folder {
 		grid-column: span 4;
 	}
@@ -801,14 +792,6 @@ body {
 	display: block;
 }
 
-#bookmarkList:is(.grid-view) > .folder.open ul {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-	
-	.folder {
-		grid-column: span 4;
-	}
-}
 #bookmarkList:is(.grid-view)  .bookmark-delete-button {
 	top: 12px;
 	right: 6px;
