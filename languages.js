@@ -385,10 +385,13 @@ const translations = {
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
+        "bookmarksText": "बुकमार्क्स",
+        "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+        // Todo List
         "todoListText": "कार्य सूची",
         "todoListInfo": "दैनिक कार्यों की सूची देखें",
         // Digital Clock
