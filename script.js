@@ -460,10 +460,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.appendChild(link);
                 item.appendChild(deleteButton); // Add delete button to the item
 
-                // Open links in the current tab
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    chrome.tabs.update({ url: node.url });
+                // Open links in the current tab or new tab if ctrl pressed
+                link.addEventListener('click', function (event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        event.preventDefault();
+                        chrome.tabs.create({ url: node.url });
+                    } else {
+                        chrome.tabs.update({ url: node.url });
+                    }
                 });
 
                 list.appendChild(item);
