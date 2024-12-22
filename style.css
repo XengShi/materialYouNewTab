@@ -550,19 +550,6 @@ body {
 	justify-content: center;
 	background-color: var(--accentLightTint-blue);
 	margin-top: -30px;
-	position: relative;
-}
-
-.bookmark-search-container::after {
-	content: '';
-	background: url('data:image/svg+xml,<svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="%23222222"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><style type="text/css"> .st0{fill:%23222222;} </style><g><path class="st0" d="M495.272,423.558c0,0-68.542-59.952-84.937-76.328c-24.063-23.938-33.69-35.466-25.195-54.931 c37.155-75.78,24.303-169.854-38.72-232.858c-79.235-79.254-207.739-79.254-286.984,0c-79.245,79.264-79.245,207.729,0,287.003 c62.985,62.985,157.088,75.837,232.839,38.691c19.466-8.485,31.022,1.142,54.951,25.215c16.384,16.385,76.308,84.937,76.308,84.937 c31.089,31.071,55.009,11.95,69.368-2.39C507.232,478.547,526.362,454.638,495.272,423.558z M286.017,286.012 c-45.9,45.871-120.288,45.871-166.169,0c-45.88-45.871-45.88-120.278,0-166.149c45.881-45.871,120.269-45.871,166.169,0 C331.898,165.734,331.898,240.141,286.017,286.012z"></path></g></g></svg>') no-repeat center / contain;
-	width: 16px;
-	height: 16px;
-	opacity: 0.5;
-	left: 10%;
-	top: calc(50% + 6px);
-	transform: translateY(-50%);
-	position: absolute;
 }
 
 #bookmarkSearch {
@@ -570,7 +557,7 @@ body {
 	padding: 10px 36px 10px 20px;
 	border-radius: var(--round);
 	font-size: 16px;
-	background-color: var(--whitishColor-blue);
+	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
 	outline: none !important;
 	border: none !important;
@@ -598,7 +585,7 @@ body {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	height: calc(100% - 230px);
+	height: calc(100% - 190px);
 	overflow-y: auto;  /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
@@ -629,34 +616,6 @@ body {
 	}
 }
 
-.bookmark-view-as-container {
-	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 32px;
-	& h3 {
-		font-size: 1.2rem;
-		color: var(--darkerColor-blue);
-	}
-}
-
-.bookmark-view-as-container .bookmark-view-as-button {
-	background: transparent;
-	border-radius: 20px;
-	border: 2px solid var(--darkColor-blue);
-	color: var(--darkColor-blue);
-	width: 60px;
-	font-size: 12px;
-	padding: 2px 0;
-	margin-left: 10px;
-}
-.bookmark-view-as-container .bookmark-view-as-button.active {
-	background: var(--darkColor-blue);
-	color: white;
-}
-
 #bookmarkList ul {
 	padding-left: 10px;
 	list-style-type: none;
@@ -668,12 +627,9 @@ body {
 }
 
 #bookmarkList li {
-	padding: 2px;
+	padding: 10px;
 	border: none;
 	position: relative;
-}
-#bookmarkList li:is(.folder) {
-	padding: 10px 0 10px 10px;
 }
 
 #bookmarkList li:not(.folder) {
@@ -681,85 +637,14 @@ body {
 	width: calc(100% - 10px);
 }
 
-#bookmarkList:is(.grid-view) li:is(.folder) > ul:not(.hidden) {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-
-	.folder {
-		grid-column: span 4;
-	}
-}
-
-#bookmarkList:is(.grid-view) > ul:not(.hidden):first-child {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-}
-
-#bookmarkList:is(.grid-view) li:not(.folder) {
-	width: 100%;
-	padding-bottom: 6px;
-}
-
-#bookmarkList:is(.grid-view) li a {
-	padding: 2px;
-    flex-direction: column;
-}
-#bookmarkList:is(.grid-view) li a .favicon {
-	margin: 16px auto;
-}
-#bookmarkList:is(.grid-view) li a:has(.favicon)::after {
-	content: '';
-    background: var(--darkColor-blue);
-    position: absolute;
-    width: 40px;
-    height: 40px;
-	z-index: -1;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.1;
-    top: 8px;
-	box-sizing: border-box;
-	border-radius: 32px;
-}
-#bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-	content: '';
-    background: var(--darkerColor-blue);
-    position: absolute;
-    width: 28px;
-    height: 28px;
-	z-index: -1;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.25;
-    top: 14px;
-	box-sizing: border-box;
-	border-radius: 32px;
-}
-
 #bookmarkList li a {
 	color: var(--textColorDark-blue);
 	text-decoration: none;
 	/* word-break: break-word; */
-	padding: 8px;
-	padding-right: 24px;
-	border-radius: 8px;
-	width: 100%;
-	display: flex;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
-#bookmarkList li a span {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-#bookmarkList:is(.grid-view) li a span {
-	text-align: center;
-}
-
 
 .favicon {
 	width: 16px;
@@ -797,21 +682,13 @@ body {
 	display: block;
 }
 
-#bookmarkList:is(.grid-view)  .folder.open ul {
-	display: none;
-}
-#bookmarkList:is(.grid-view)  .bookmark-delete-button {
-	top: 12px;
-	right: 6px;
-}
-
 .bookmark-delete-button {
 	background: none;
 	border: none;
-	color: var(--darkerColor-blue);
+	color: red;
 	cursor: pointer;
 	position: absolute;
-	right: 10px; /* Position it to the right */
+	right: -6px; /* Position it to the right */
 	top: 50%;
 	transform: translateY(-50%);
 	opacity: 0;
