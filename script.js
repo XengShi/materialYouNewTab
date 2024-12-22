@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`Are you sure you want to delete the bookmark "${node.title || node.url}"?`)) {
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -1717,8 +1717,28 @@ const applySelectedTheme = (colorValue) => {
                 color:#616161;
             }
 
-	    .dark-theme .todolistitem .todoremovebtn:hover {
+            .dark-theme .todolistitem .todoremovebtn:hover {
                 color:#888888;
+            }
+
+            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
+                color: var(--textColorDark-blue) !important;
+            }
+
+            .dark-theme #bookmarkSearch{
+                background-color: #212121 !important;
+            }
+
+            .dark-theme .bookmark-search-container::after {
+                filter: none;
+            }
+
+            .dark-theme .bookmark-right-arrow {
+                color: #858585;
+            }
+
+            .dark-theme .bookmark-right-arrow.rotate {
+                color: var(--textColorDark-blue);
             }
 
      	    .dark-theme .micIcon {
