@@ -275,39 +275,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    bookmarkSearch.addEventListener('input', function() {
+    bookmarkSearch.addEventListener('input', function () {
         const searchTerm = bookmarkSearch.value.toLowerCase();
-        const bookmarks = bookmarkList.getElementsByTagName('li');
+        const bookmarks = bookmarkList.querySelectorAll('li[data-url], li.folder'); // Include both bookmarks and folders
 
-        Array.from(bookmarks).forEach(function(bookmark) {
+        Array.from(bookmarks).forEach(function (bookmark) {
             const text = bookmark.textContent.toLowerCase();
-            const parentFolder = bookmark.closest('.folder');
-            if (text.includes(searchTerm)) {
-                bookmark.style.display = '';
-                if (parentFolder) {
-                    parentFolder.classList.add('open');
-                    const subList = parentFolder.querySelector('ul');
-                    if (subList) {
-                        subList.classList.remove('hidden');
+            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : '';
+            const isFolder = bookmark.classList.contains('folder');
+
+            // Show bookmarks if the search term matches either the name or the URL
+            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
+                bookmark.style.display = ''; // Show matching bookmarks
+            } else if (isFolder) {
+                // For folders, check if any child bookmarks match the search
+                const childBookmarks = bookmark.querySelectorAll('li[data-url]');
+                let hasVisibleChild = false;
+                Array.from(childBookmarks).forEach(function (childBookmark) {
+                    const childText = childBookmark.textContent.toLowerCase();
+                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : '';
+                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
+                        hasVisibleChild = true;
+                        childBookmark.style.display = ''; // Show matching child bookmarks
+                    } else {
+                        childBookmark.style.display = 'none'; // Hide non-matching child bookmarks
                     }
+                });
+
+                if (hasVisibleChild) {
+                    bookmark.style.display = ''; // Show folder if it has matching child bookmarks
+                    bookmark.classList.add('open'); // Open folder to show matching child bookmarks
+                } else {
+                    bookmark.style.display = 'none'; // Hide folder if no child matches
+                    bookmark.classList.remove('open');
                 }
             } else {
-                bookmark.style.display = 'none';
+                bookmark.style.display = 'none'; // Hide non-matching bookmarks
             }
         });
 
-        // Fold back all folders if the search bar is cleared
         if (searchTerm === '') {
-            Array.from(bookmarkList.getElementsByClassName('folder')).forEach(function(folder) {
-                folder.classList.remove('open');
-                const subList = folder.querySelector('ul');
-                if (subList) {
-                    subList.classList.add('hidden');
+            // Reset display for all bookmarks and folders
+            Array.from(bookmarks).forEach(function (bookmark) {
+                bookmark.style.display = '';
+                if (bookmark.classList.contains('folder')) {
+                    bookmark.classList.remove('open');
+                    const childList = bookmark.querySelector('ul');
+                    if (childList) {
+                        childList.classList.add('hidden');
+                    }
                 }
             });
         }
 
-        // Show or hide the clear button based on the search term
         bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
     });
 
@@ -412,6 +432,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 list.appendChild(folderItem);
             } else if (node.url) {
                 let item = document.createElement('li');
+		item.dataset.url = node.url; // Add URL as dataset for search functionality
                 let link = document.createElement('a');
                 link.href = node.url;
                 link.textContent = node.title;
