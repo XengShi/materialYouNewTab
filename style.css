@@ -495,9 +495,9 @@ body {
 }
 
 .bookmark-sidebar {
-	width: 350px;
+	width: 380px;
 	position: fixed;
-	right: -350px;
+	right: -380px;
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
@@ -524,7 +524,7 @@ body {
 .bookmark-right-arrow.rotate {
 	transform: translateY(-50%) rotate(180deg);
 	color: var(--accentLightTint-blue);
-	right: 350px;
+	right: 380px;
 	z-index: 5;
 }
 
@@ -544,7 +544,7 @@ body {
 	position: relative;
 	width: 100%;
 	padding: 30px 10px 16px 10px;
-	border-radius: 30px;
+	border-radius: var(--round);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -553,9 +553,9 @@ body {
 }
 
 #bookmarkSearch {
-	width: 90%;
-	padding: 10px 24px 10px 16px;
-	border-radius: 10px;
+	width: 95%;
+	padding: 10px 36px 10px 20px;
+	border-radius: var(--round);
 	font-size: 16px;
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
@@ -1785,7 +1785,7 @@ body {
 	}
 
 	.shortcutsContainer {
-		margin-top: 169px;
+		margin-top: 210px;
 	}
 
 	.centerDiv {
