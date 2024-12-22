@@ -467,13 +467,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Open links in the current tab or new tab if ctrl pressed
                 link.addEventListener('click', function (event) {
                     if (event.ctrlKey || event.metaKey) {
+                        // Open in a new tab
                         event.preventDefault();
-                        chrome.tabs.create({ url: node.url });
+                        if (isFirefox) {
+                            browser.tabs.create({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.create({ url: node.url });
+                        } else {
+                            window.open(node.url, '_blank');
+                        }
                     } else {
-                        chrome.tabs.update({ url: node.url });
+                        // Open in the current tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.update({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.update({ url: node.url }, function () {
+                            });
+                        } else {
+                            window.location.href = node.url;
+                        }
                     }
                 });
-
                 list.appendChild(item);
             }
         }
