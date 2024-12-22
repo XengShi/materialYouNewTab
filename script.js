@@ -360,6 +360,19 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear the current list
             bookmarkList.innerHTML = '';
 
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(8).then(recentBookmarks => {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
+            }
+
             // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
             if (isFirefox) {
                 const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
@@ -388,19 +401,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
-            }
-
-            // Display the "Recently Added" folder
-            if (bookmarksAPI.getRecent) {
-                bookmarksAPI.getRecent(10).then(recentBookmarks => {
-                    if (recentBookmarks.length > 0) {
-                        const recentAddedFolder = {
-                            title: 'Recently Added',
-                            children: recentBookmarks
-                        };
-                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                    }
-                });
             }
         }).catch(err => {
             console.error("Error loading bookmarks:", err);
