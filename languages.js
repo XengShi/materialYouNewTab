@@ -113,7 +113,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "metaAI" : "Meta AI",
+        "metaAI": "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -157,6 +157,8 @@ const translations = {
         "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
+        "todoListText": "Lista de Tarefas",
+        "todoListInfo": "Mostrar uma Lista de Tarefas",
         // Digital Clock
         "digitalclocktittle": "Relógio Digital",
         "digitalclockinfo": "Mudar para o relógio digital",
@@ -171,6 +173,8 @@ const translations = {
         "fahrenheitCelsiusText": "Atualize a página para aplicar as mudanças",
         "micIconTitle": "Ocultar Ícone do Microfone",
         "micIconInfo": "Se o ditado por voz não estiver funcionando",
+        "hideSearchWith": "Ocultar o Motor de Busca",
+        "hideSearchWithInfo": "Alternar entre os motores de busca clicando no ícone",
         "search_suggestions_button": "Sugestões de Pesquisa",
         "search_suggestions_text": "Ativar sugestões de pesquisa",
         // Proxy
@@ -211,6 +215,8 @@ const translations = {
         "enterBtn": "Pesquisar",
         "searchPlaceholder": "Digite aqui...",
         "listenPlaceholder": "Ouvindo...",
+        "todoPlaceholder": "Adicionar tarefa...",
+        "todoListHover": "Lista de Tarefas",
         "searchWithHint": "Pesquisar Com",
         "ai_tools": "Ferramentas de IA",
         "userText": "Clique aqui para editar",
@@ -234,7 +240,28 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "github": "GitHub"
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Enviar Papel de Parede",
+        "backupText": "Backup",
+        "restoreText": "Restaurar",
+        "rangColor": "Escolher cor",
+
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Você gostaria de definir uma nova imagem como seu papel de parede para o dia?",
+        "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
+        "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
+        "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
+        "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
+        "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
+        "endlink": "Não deve haver / no final do link",
+        "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
+        "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels. \n\nIsso pode impactar o desempenho ou a imagem pode não carregar corretamente.",
+        "failedbackup": "Falha no backup: ",
+        "restorecompleted": "Restauração concluída com sucesso!",
+        "restorefailed": "Restauração falhou: ",
     },
 
 
@@ -433,7 +460,7 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "एडोबी फायरफ्लाई",
-        "metaAI" : "मेटा AI",
+        "metaAI": "मेटा AI",
         "github": "गिटहब",
         "googleAppsHover": "गूगल ऐप्स",
         "todoListHover": "कार्य सूची",
@@ -479,6 +506,8 @@ const translations = {
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         "googleAppsMenuText": "Google aplikace",
         "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
+        "todoListText": "Seznam úkolů",
+        "todoListInfo": "Zobrazí denní seznam úkolů",
         // Digital Clock
         "digitalclocktittle": "Digitální hodiny",
         "digitalclockinfo": "Přepne hodiny na digitální",
@@ -535,10 +564,12 @@ const translations = {
         "enterBtn": "Vyhledat",
         "searchPlaceholder": "Zadejte hledaný výraz...",
         "listenPlaceholder": "Poslouchám...",
+        "todoPlaceholder": "Přidat úkol...",
         "searchWithHint": "Vyhledávat prostřednictvím",
         "ai_tools": "AI nástroje",
         "userText": "Upravíte po kliknutí",
         "googleAppsHover": "Google aplikace",
+        "todoListHover": "Seznam úkolů",
         // End of Body and New Tab Items
 
         // Greeting
@@ -552,6 +583,21 @@ const translations = {
         "uploadWallpaperText": "Nahrát tapetu",
         "backupText": "Zálohovat",
         "restoreText": "Obnovit",
+        "rangColor": "Vybrat barvu",
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Přejete si nastavit nový obrázek jako denní tapetu?",
+        "confirmRestore": "Opravdu si přejete resetovat nastavení? Tuto akci nelze zvrátit.",
+        "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
+        "clearbackgroundimage": "Opravdu si přejete smazat obrázek na pozadí?",
+        "confirmbackup": "Opravdu si přejete zálohovat nastavení?",
+        "ProxyDisclaimer": "Všechny funkce proxy jsou ve výchozím nastavení vypnuté.\n\nPokud zapnete našeptávání ve vyhledávání s proxy pro obcházení CORS, pro lepší zabezpečení vám důrazně doporučujeme hostovat si vlastní proxy.\n\nVe výchozím nastavení je proxy nastavena na https://mynt-proxy.rhythmcorehq.com, což znamená, že všechna vaše data procházejí skrz tuto službu. To může vyvolat obavy o soukromí.",
+        "endlink": "Na konci odkazu by nemělo být / (lomítko)",
+        "onlylinks": "Jsou povolené pouze odkazy (začínající na http:// nebo https://).",
+        "imagedimensions": "Varování: Rozměry nahraného obrázku ({width}x{height}) překračují 1920x1080 pixelů.\n\nTo může ovlivnit výkonnost nebo se obrázek nemusí správně načítat.",
+        "failedbackup": "Zálohování selhalo: ",
+        "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
+        "restorefailed": "Obnova ze zálohy selhala: ",
     },
 
 
@@ -749,6 +795,8 @@ const translations = {
     },
 
 
+
+
     // Bengali
     "bn": {
         // Menu Items
@@ -856,7 +904,7 @@ const translations = {
         "copilot": "কোপাইলট",
         "perplexity": "পারপ্লেক্সিটি",
         "firefly": "অ্যাডোবি ফায়ারফ্লাই",
-        "metaAI" : "মেটা এআই",
+        "metaAI": "মেটা এআই",
         "github": "গিটহাব",
 
         // Wallpaper and alerts
@@ -1483,6 +1531,8 @@ const translations = {
         "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
+        "todoListText": "To-Do List",
+        "todoListInfo": "Tampilkan To-Do list harian",
         // Digital Clock
         "digitalclocktittle": "Jam Digital",
         "digitalclockinfo": "Ubah menjadi jam digital",
@@ -1539,9 +1589,11 @@ const translations = {
         "enterBtn": "Telusuri",
         "searchPlaceholder": "Ketik disini...",
         "listenPlaceholder": "Mendengarkan...",
+        "todoPlaceholder": "Tambah tugas...",
         "searchWithHint": "Cari Dengan",
         "ai_tools": "Utilitas AI",
         "userText": "Klik disini untuk mengubah tulisan",
+        "todoListHover": "To-Do List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -1554,7 +1606,21 @@ const translations = {
         // Wallpaper and alerts
         "uploadWallpaperText": "Unggah Wallpaper",
         "backupText": "Cadangkan",
-        "restoreText": "Mengembalikan",
+        "restoreText": "Pulihkan",
+        "rangColor": "Pilih warna",    // Keep it shorter
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
+        "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
+        "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
+        "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
+        "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
+        "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+        "endlink": "Seharusnya tidak ada / di akhir tautan",
+        "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
+        "failedbackup": "Pencadangan gagal: ",
+        "restorecompleted": "Pemulihan berhasil dengan sukses!",
+        "restorefailed": "Pemulihan gagal: ",
     },
 
 
@@ -1658,11 +1724,11 @@ const translations = {
         "copilot": "कोपायलट",
         "perplexity": "पर्प्लेक्सिटी",
         "firefly": "अडोबी फायरफ्लाय",
-        "metaAI" : "मेटा AI",
+        "metaAI": "मेटा AI",
         "github": "गिटहब",
 
         // Wallpaper and alerts
-       "uploadWallpaperText": "वॉलपेपर सेट करा",
+        "uploadWallpaperText": "वॉलपेपर सेट करा",
         "backupText": "बॅकअप करा",
         "restoreText": "पुनर्संचयित करा",
         "rangColor": "रंग निवडा",
@@ -1703,6 +1769,8 @@ const translations = {
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
         "googleAppsMenuText": "Apps Google",
         "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+        "todoListText": "Liste To-Do",
+        "todoListInfo": "Afficher une liste de tâches quotidiennes",
         // Digital Clock
         "digitalclocktittle": "Horloge Numérique",
         "digitalclockinfo": "Passer à l'horloge numérique",
@@ -1759,10 +1827,12 @@ const translations = {
         "enterBtn": "Rechercher",
         "searchPlaceholder": "Saisissez ici...",
         "listenPlaceholder": "Écoute...",
+        "todoPlaceholder": "Ajouter une tâche...",
         "searchWithHint": "Rechercher avec",
         "ai_tools": "Outils IA",
         "userText": "Cliquez ici pour modifier",
         "googleAppsHover": "Apps Google",
+        "todoListHover": "Liste To-Do",
         // End of Body and New Tab Items
 
         // Greeting
@@ -1783,7 +1853,7 @@ const translations = {
         "copilot": "Copilot",
         "perplexity": "Perplexity",
         "firefly": "Adobe Firefly",
-        "metaAI" : "Meta AI",
+        "metaAI": "Meta AI",
         "github": "GitHub",
 
         // Wallpaper and alerts
@@ -1805,6 +1875,123 @@ const translations = {
         "failedbackup": "Échec de la sauvegarde: ",
         "restorecompleted": "Restauration terminée avec succès!",
         "restorefailed": "Échec de la restauration: ",
+    },
+    // Azerbaijani
+    "az": {
+        // Menu Items
+        "feedback": "Əlaqə",
+        "resetsettings": "Parametrləri sıfırla",
+        "menuCloseText": "Bağla",
+        // Shortcuts
+        "shortcutsText": "Qısayollar",
+        "enableShortcutsText": "Yadda saxlanmış qısa yolları göstər",
+        "editShortcutsText": "Qısayolları redaktə et",
+        "editShortcutsList": "Saxlanmış Qısayollar",
+        "shortcutsInfoText": "Göstəriləcək qısayolları seçin",
+        "adaptiveIconText": "Adaptiv ikona formaları",
+        "adaptiveIconInfoText": "Qısayol nişanları dairəvi görünəcək",
+        "ai_tools_button": "AI Alətləri",
+        "enable_ai_tools": "AI Alətləri qısayollarını göstər",
+        "googleAppsMenuText": "Google Apps",
+        "googleAppsMenuInfo": "Google Tətbiqləri üçün qısayolları göstər",
+        // Digital Clock
+        "digitalclocktittle": "Rəqəmsal saat",
+        "digitalclockinfo": "Rəqəmsal saata keç",
+        "timeformattittle": "12 Saat Format",
+        "timeformatinfo": "12 saatlıq vaxt formatından istifadə edin",
+        "greetingtittle": "Xoş gəlmisiniz",
+        "greetinginfo": "Fərdi mətnin altında salamlama mesajını göstər",
+        // Misc
+        "userTextTitle": "Fərdiləşdirilə bilən mətn",
+        "userTextInfo": "Saat altında fərdi mətni göstər",
+        "fahrenheitCelsiusCheckbox": "Fahrenheit rejiminə keç",
+        "fahrenheitCelsiusText": "Yeniləmələri görmək üçün səhifəni yeniləyin",
+        "micIconTitle": "Mikrofon nişanını gizlət",
+        "micIconInfo": "Səslə yazmaq işləmirsə",
+        "search_suggestions_button": "Təklifləri axtarın",
+        "search_suggestions_text": "Axtarış təkliflərini aktivləşdirin",
+        // Proxy
+        "useproxytitletext": "Proksidən keçmək",
+        "useproxyText": "Əgər axtarış təklifləri işləmirsə",
+        "ProxyText": "CORS Bypass Proxy",
+        "ProxySubtext": "Öz CORS Bypass Proxy əlavə et",
+        "HostproxyButton": "Öz Proxyinizi Host edin",
+        "saveproxy": "Saxla",
+        // Location
+        "UserLocText": "Məkanınızı daxil edin",
+        "UserLocSubtext": "Hava yeri düzgün deyilsə",
+        "userLoc": "Məkanınız (Şəhər/Enlem, Boylam)",
+        "InputOptionsButton": "Daxiletmə Seçimləri",
+        "saveLoc": "Saxla",
+        // Weather
+        "WeatherApiText": "Öz WeatherAPI açarınızı daxil edin",
+        "WeatherApiSubtext": "Hava funksiyası işləmirsə",
+        "userAPI": "Sizin WeatherAPI açarınız",
+        "LearnMoreButton": "Ətraflı məlumat",
+        "saveAPI": "Saxla",
+        // End of Menu Items
+
+        // Body Items
+        // Calendar
+        "days": ['Bazar', 'Bazar ertəsi', 'Çərşənbə axşamı', 'Çərşənbə', 'Cümə axşamı', 'Cümə', 'Şənbə'],
+        "months": ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'İyun', 'İyul', 'Avqust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'],
+        // End of Calendar
+
+        // Weather
+        "humidityLevel": "Rütubət",
+        "feelsLike": "FeelsLike",
+        "location": "Dünya",
+        // End of Weather
+
+        // New Tab Item
+        "conditionText": "Salam! Bu gün necəsən?",
+        "enterBtn": "Axtar",
+        "searchPlaceholder": "Axtarışınız...",
+        "listenPlaceholder": "Dinlənir...",
+        "searchWithHint": "Bununla axtar",
+        "ai_tools": "AI Alətləri",
+        "userText": "Bura klikləməklə redaktə edin",
+        // End of Body and New Tab Items
+
+        // Greeting
+        greeting: {
+            "morning": "Sabahınız xeyir!",
+            "afternoon": "Hər vaxtın xeyir!",
+            "evening": "Axşamın xeyir!"
+        },
+        // Search Engines and rest
+        "googleEngine": "Google",
+        "duckEngine": "Duck", // DuckDuckGo
+        "bingEngine": "Bing",
+        "braveEngine": "Brave",
+        "youtubeEngine": "YouTube",
+        "chatGPT": "ChatGPT",
+        "gemini": "Gemini",
+        "copilot": "Copilot",
+        "perplexity": "Perplexity",
+        "firefly": "Adobe Firefly",
+        "metaAI": "Meta AI",
+        "github": "GitHub",
+
+        // Wallpaper and alerts
+        "uploadWallpaperText": "Divar kağızı yükləyin", // Bunu qısa saxlayın
+        "backupText": "Yedək",
+        "restoreText": "Bərpa et",
+        "rangColor": "Rəng seçin", // Daha qısa saxlayın
+
+        // Dialog boxes (alerts)
+        "confirmWallpaper": "Gün üçün divar kağızı olaraq yeni bir şəkil təyin etmək istərdinizmi?",
+        "confirmRestore": "Parametrlərinizi sıfırlamaq istədiyinizə əminsiniz? Bu əməliyyatı geri qaytarmaq mümkün deyil.",
+        "Nobackgroundset": "Hazırda heç bir fon şəkli qurulmayıb.",
+        "clearbackgroundimage": "Arxa fon şəklini təmizləmək istədiyinizə əminsinizmi?",
+        "confirmbackup": "Parametrlərinizin ehtiyat nüsxəsini çıxarmaq istədiyinizə əminsiniz?",
+        "ProxyDisclaimer": "Bütün proksi funksiyaları defolt olaraq deaktivdir.\n\nAxtarış təkliflərini və CORS proksisini yan keçmək imkanını aktiv etsəniz, təkmil məxfilik üçün öz proksinizi yerləşdirmək tövsiyə olunur.\n\nDefolt olaraq, proksi quraşdırılacaq. https://mynt-proxy.rhythmcorehq.com ünvanına, yəni bütün məlumatlarınız bu xidmətdən keçəcək və bu, məxfiliklə bağlı narahatlıq yarada bilər.",
+        "endlink": "Linkin sonunda / olmamalıdır",
+        "onlylinks": "Yalnız linklərə (http:// və ya https:// ilə başlayan) icazə verilir.",
+        "imagedimensions": "Xəbərdarlıq: Yüklənmiş şəkil ölçüləri ({en}x{height}) 1920x1080 pikseli keçir. \n\nBu, performansa təsir edə bilər və ya şəkil düzgün yüklənməyə bilər.",
+        "failedbackup": "Yedəkləmə uğursuz oldu: ",
+        "restorecompleted": "Bərpa uğurla tamamlandı!",
+        "restorefailed": "Bərpa uğursuz oldu: ",
     }
 };
 
@@ -1823,6 +2010,7 @@ const menuWidths = {
     idn: '415px',
     tr: '418px',
     fr: '475px',
+    az: '418px',
     // Add more languages and widths as needed
 };
 
@@ -1836,7 +2024,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr','az' ]; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
@@ -1928,7 +2116,7 @@ function applyLanguage(lang) {
         { id: 'copilot', key: 'copilot' },
         { id: 'perplexity', key: 'perplexity' },
         { id: 'firefly', key: 'firefly' },
-        { id: 'metaAI', key: 'metaAI'},
+        { id: 'metaAI', key: 'metaAI' },
         { id: 'github', key: 'github' },
         { id: 'googleAppsHover', key: 'googleAppsHover' },
         { id: 'todoListHover', key: 'todoListHover' },
