@@ -26,7 +26,7 @@ const bn = {
     "greetingtittle": "অভিবাদন",
     "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
     "todoListText": "টু ডু লিস্ট",
-    "todoListInfo": "দৈনিক কাজের তালিকা দেখান",
+    "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
 
     // Misc
     "userTextTitle": "কাস্টমাইজেবল টেক্সট",

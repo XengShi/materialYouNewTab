@@ -17,7 +17,7 @@ const hi = {
     "googleAppsMenuText": "गूगल ऐप्स",
     "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
     "todoListText": "कार्य सूची",
-    "todoListInfo": "दैनिक कार्यों की सूची दिखाएँ",
+    "todoListInfo": "दैनिक कार्यों की सूची देखें",
     // Digital Clock
     "digitalclocktittle": "डिजिटल घड़ी",
     "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",

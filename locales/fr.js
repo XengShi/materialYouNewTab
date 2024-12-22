@@ -16,6 +16,8 @@ const fr = {
     "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
     "googleAppsMenuText": "Apps Google",
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+    "todoListText": "Liste To-Do",
+    "todoListInfo": "Afficher une liste de tâches quotidiennes",
     // Digital Clock
     "digitalclocktittle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
@@ -72,11 +74,14 @@ const fr = {
     "enterBtn": "Rechercher",
     "searchPlaceholder": "Saisissez ici...",
     "listenPlaceholder": "Écoute...",
+    "todoPlaceholder": "Ajouter une tâche...",
     "searchWithHint": "Rechercher avec",
     "ai_tools": "Outils IA",
     "userText": "Cliquez ici pour modifier",
     "googleAppsHover": "Apps Google",
+    "todoListHover": "Liste To-Do",
     // End of Body and New Tab Items
+
 
     // Greeting
     greeting: {
