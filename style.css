@@ -803,7 +803,7 @@ body {
 .bookmark-delete-button {
 	background: none;
 	border: none;
-	color: var(--darkerColor-blue);
+	color: var(--darkColor-blue);
 	cursor: pointer;
 	position: absolute;
 	right: 10px; /* Position it to the right */

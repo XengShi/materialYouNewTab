@@ -24,7 +24,7 @@ const translations = {
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
         "bookmarksText": "Bookmarks",
-        "bookmarksInfo": "Show a Bookmarks Sidebar",
+        "bookmarksInfo": "Show bookmarks sidebar",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
