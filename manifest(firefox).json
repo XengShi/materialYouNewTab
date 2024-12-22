@@ -4,6 +4,10 @@
     "version": "2.5",
     "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
     "permissions": [],
+    "optional_permissions": [
+        "bookmarks",
+        "favicon"
+    ],
     "background": {
         "scripts": ["background.js"],
         "persistent": true

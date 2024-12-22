@@ -328,31 +328,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to load bookmarks
     function loadBookmarks() {
         // Check if the chrome.bookmarks API is available
-        if (chrome.bookmarks && chrome.bookmarks.getTree) {
-            chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
+        if (isChrome || isEdge || isBrave) {
+            bookmarksAPI = chrome.bookmarks;
+        } else if (isFirefox) {
+            bookmarksAPI = browser.bookmarks;
+        } else {
+            console.error("Unsupported Browser.");
+            return;
+        }
+        if (isEdge){
+            default_folder = "Favorites bar";
+        } else if (isBrave){
+            default_folder = "Bookmarks";
+        } else if (isChrome){
+            default_folder = "Bookmarks bar";
+        }
+        if (bookmarksAPI && bookmarksAPI.getTree) {
+            bookmarksAPI.getTree(function (bookmarkTreeNodes) {
                 // Clear the current list
                 bookmarkList.innerHTML = '';
 
-                // Extract the 'Bookmarks bar' and display its children
-                const bookmarksBar = bookmarkTreeNodes[0]?.children?.find(node => node.title === (navigator.brave && navigator.brave.isBrave ? 'Bookmarks' : 'Bookmarks bar'));
+                // Extract the 'Main bookmarks' node and display its Children
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+                if (mainBookmarks && mainBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
+                }
+
+                // Extract the other 'Bookmarks' folders and display them
+                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
 
-                // Extract the 'Other bookmarks' node and display it
-                const otherBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Other bookmarks');
-                if (otherBookmarks && otherBookmarks.children) {
-                    bookmarkList.appendChild(displayBookmarks([otherBookmarks]));
-                }
-
-                // Extract the 'Mobile bookmarks' node and display it
-                const mobileBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === 'Mobile bookmarks');
-                if (mobileBookmarks && mobileBookmarks.children) {
-                    bookmarkList.appendChild(displayBookmarks([mobileBookmarks]));
-                }
-
                 // Display the "Recent Added" folder if enabled
-                chrome.bookmarks.getRecent(10, function (recentBookmarks) {
+                bookmarksAPI.getRecent(10, function (recentBookmarks) {
                     if (recentBookmarks.length > 0) {
                         const recentAddedFolder = {
                             title: 'Recently Added',
@@ -363,17 +372,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         } else {
-            console.error("chrome.bookmarks API is unavailable. Please check permissions or context.");
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
         }
     }
 
     function displayBookmarks(bookmarkNodes) {
         let list = document.createElement('ul');
-
+        
         // Sort the bookmark nodes alphabetically by title
         bookmarkNodes.sort((a, b) => a.title.localeCompare(b.title));
-
+        
         for (let node of bookmarkNodes) {
+            if (node.id === "1") {continue;}
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
 
@@ -418,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault();
                     event.stopPropagation();
                     if (confirm(`Are you sure you want to delete the bookmark "${node.title}"?`)) {
-                        chrome.bookmarks.remove(node.id, function() {
+                        bookmarksAPI.remove(node.id, function() {
                             item.remove(); // Remove the item from the DOM
                         });
                     }
@@ -1214,13 +1224,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 function isSupportedBrowser() {
-    const userAgent = navigator.userAgent;
-    const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
-    const isEdge = /Edg/.test(userAgent);
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
-    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-
+    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -3290,18 +3299,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     bookmarksCheckbox.addEventListener("change", function () {
+        let bookmarksPermission;
+        if (isChrome || isEdge || isBrave) {
+            bookmarksPermission = chrome.permissions;
+        } else {
+            console.error("Unsupported Browser.");
+            return;
+        }
         if (bookmarksCheckbox.checked) {
-            chrome.permissions.contains({
+            bookmarksPermission.contains({
                 permissions: ['bookmarks']
             }, function(alreadyGranted) {
                 if (alreadyGranted) {
                     bookmarkRightArrow.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
                 } else {
-                    chrome.permissions.request({
+                    bookmarksPermission.request({
                         permissions: ['bookmarks']
                     }, function(granted) {
                         if (granted) {
+                            bookmarksAPI = chrome.bookmarks;
                             bookmarkRightArrow.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
                         } else {
@@ -3436,7 +3453,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&chrome.bookmarks&&(bookmarksCheckbox.checked)) {
+    if (event.key === 'ArrowRight'&&bookmarksAPI&&(bookmarksCheckbox.checked)) {
         bookmarkRightArrow.dispatchEvent(new Event('click'));
     }
 });
