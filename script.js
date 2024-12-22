@@ -3589,7 +3589,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight') {
+    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
         if(bookmarksCheckbox.checked){
             bookmarkRightArrow.click();
         } else {
