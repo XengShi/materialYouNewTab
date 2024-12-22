@@ -66,7 +66,7 @@ const pt = {
     // Weather
     "humidityLevel": "Umidade",
     "feelsLike": "Sensação de",
-    "location": "Terra",
+    // "location": "Terra",
     // End of Weather
 
     // New Tab Item
