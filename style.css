@@ -495,9 +495,9 @@ body {
 }
 
 .bookmark-sidebar {
-	width: 350px;
+	width: 380px;
 	position: fixed;
-	right: -350px;
+	right: -380px;
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
@@ -524,7 +524,7 @@ body {
 .bookmark-right-arrow.rotate {
 	transform: translateY(-50%) rotate(180deg);
 	color: var(--accentLightTint-blue);
-	right: 350px;
+	right: 380px;
 	z-index: 5;
 }
 
@@ -544,7 +544,7 @@ body {
 	position: relative;
 	width: 100%;
 	padding: 30px 10px 16px 10px;
-	border-radius: 30px;
+	border-radius: var(--round);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -553,9 +553,9 @@ body {
 }
 
 #bookmarkSearch {
-	width: 90%;
-	padding: 10px 24px 10px 16px;
-	border-radius: 10px;
+	width: 95%;
+	padding: 10px 36px 10px 20px;
+	border-radius: var(--round);
 	font-size: 16px;
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
@@ -724,7 +724,6 @@ body {
 	opacity: 1;
 }
 
-
 .todo-container {
 	display: grid;
 	gap: 10px;
@@ -733,7 +732,7 @@ body {
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 300px;
+	grid-template-columns: 320px;
 	justify-items: center;
 	position: absolute;
 	top: 85px;
@@ -750,8 +749,8 @@ body {
 
 .todo-container::-webkit-scrollbar-track {
 	background-color: transparent;
-	margin-top: 107px;
-	margin-bottom: 10px;
+	margin-top: 108px;
+	margin-bottom: 11px;
 }
 
 .todo-container::-webkit-scrollbar-thumb {
@@ -826,54 +825,54 @@ body {
 
 .todolist{
 	width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
-    align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .todolistitem{
 	width: 100%;
-    display: flex;
+	display: flex;
 	background-color: var(--darkColor-blue);
 	color: #FFF;
 	border-radius: 8px;
-	padding: 8px 12px;
 	list-style-type: none;
-	font-size: 17px;
-	padding: 12px 32px;
+	font-size: 1rem;
+	padding: 12px 56px 12px 32px;
 	user-select: none;
 	cursor: pointer;
 	position: relative;
 	word-break: break-word;
 }
+
 .todolistitem::before{
 	content: '';
 	position: absolute;
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><circle cx="12" cy="12" r="10" fill="none" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></svg>');
-	background-size: cover;
-	background-position: center;
+	background: url('./svgs/todo-check-stroke.svg') no-repeat center center / contain;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 8px;
 	transition: all 0.3s ease;
 	user-select: none;
 }
+
 .todolistitem.checked::before{
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%23FFFFFF" viewBox="0 0 40 40"><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></svg>');
+	background-image: url('./svgs/todo-check-fill.svg');
 }
+
 .todolistitem.checked{
 	color: #CCC;
 	text-decoration: line-through;
 }
 
-.todolistitem span {
+.todolistitem .todoremovebtn, .todolistitem .todopinbtn {
 	position: absolute;
-	right: 10px;
+	right: 6px;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 24px;
@@ -886,8 +885,22 @@ body {
 	transition: all 0.3s ease;
 	user-select: none;
 }
-.todolistitem span:hover {
+
+.todolistitem .todoremovebtn {
+	scale: 1.05;
+}
+
+.todolistitem .todoremovebtn:hover {
 	color: #FFF;
+}
+
+.todolistitem .todopinbtn {
+	right: 28px;
+	background: url('./svgs/todo-pin-stroke.svg') no-repeat center center / contain;
+}
+
+.todolistitem.pinned .todopinbtn {
+	background-image: url('./svgs/todo-pin-fill.svg');
 }
 
 .todolistitem:first-child {
@@ -1785,7 +1798,7 @@ body {
 	}
 
 	.shortcutsContainer {
-		margin-top: 169px;
+		margin-top: 210px;
 	}
 
 	.centerDiv {
@@ -2838,4 +2851,16 @@ input:checked + .toggle:before {
 
 .savebtn:active {
 	transform: scale(0.96);
+}
+
+/* ---------------------- Loading Screen --------------------------- */
+#LoadingScreen {
+	background: var(--Loading-Screen-Color);
+	display: flex;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99999;
 }

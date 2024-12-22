@@ -18,11 +18,15 @@
     <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
     <style id="iconStyle"></style>
 
+    <script src="preload.js"></script>
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
 </head>
 
 <body>
+    <!----------------------- Loading Screen Starting ----------------------->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" id="LoadingScreen" fetchpriority="high"/>
+
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
@@ -1189,6 +1193,7 @@
                         <!-- Language selection button -->
                         <select class="languageSelector" id="languageSelector">
                             <option value="en">English</option>
+                            <option value="az">Azərbaycanca (Azerbaijani)</option>
                             <option value="bn">বাংলা (Bangla)</option>
                             <option value="zh">中文 (Simplified Chinese)</option>
                             <option value="cs">Čeština (Czech)</option>
