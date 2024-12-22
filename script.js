@@ -376,14 +376,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookmarkList.appendChild(displayBookmarks(otherNode.children));
                 }
             } else {
-                // For Chrome: Default folder like "Bookmarks Bar" or other default folders
-                const defaultFolder = "Bookmarks bar";
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === defaultFolder);
+                // Extract the 'Main bookmarks' node and display its Children
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks bar");
 
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
 
+                // Extract the other 'Bookmarks' folders and display them
                 const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
