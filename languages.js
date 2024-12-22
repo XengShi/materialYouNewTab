@@ -817,7 +817,7 @@ const translations = {
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
         "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
         "bookmarksText": "বুকমার্কস",
-        "bookmarksInfo": "একটি বুকমার্কস সাইডবার দেখুন",
+        "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
         "ai_tools_button": "এআই সরঞ্জাম",
         "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
         "googleAppsMenuText": "গুগল অ্যাপস",
