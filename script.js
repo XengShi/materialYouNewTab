@@ -368,6 +368,17 @@ document.addEventListener('DOMContentLoaded', function() {
             bookmarksAPI.getTree(function (bookmarkTreeNodes) {
                 // Clear the current list
                 bookmarkList.innerHTML = '';
+                
+                // Display the "Recent Added" folder if enabled
+                bookmarksAPI.getRecent(8, function (recentBookmarks) {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
 
                 // Extract the 'Main bookmarks' node and display its Children
                 const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
@@ -380,17 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
-
-                // Display the "Recent Added" folder if enabled
-                bookmarksAPI.getRecent(10, function (recentBookmarks) {
-                    if (recentBookmarks.length > 0) {
-                        const recentAddedFolder = {
-                            title: 'Recently Added',
-                            children: recentBookmarks
-                        };
-                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                    }
-                });
             });
         } else {
             console.error("Bookmarks API is unavailable. Please check permissions or context.");
@@ -436,7 +436,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		item.dataset.url = node.url; // Add URL as dataset for search functionality
                 let link = document.createElement('a');
                 link.href = node.url;
-                link.textContent = node.title;
+                let span = document.createElement('span');
+                span.textContent = node.title;
 
                 let favicon = document.createElement('img');
                 favicon.src = `http://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
@@ -456,7 +457,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                item.appendChild(favicon);
+                link.appendChild(favicon);
+                link.appendChild(span);
                 item.appendChild(link);
                 item.appendChild(deleteButton); // Add delete button to the item
 
