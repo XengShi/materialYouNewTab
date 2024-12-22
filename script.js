@@ -359,31 +359,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    const isFirefox = typeof browser !== 'undefined';
+    const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
+
     // Function to load bookmarks
     function loadBookmarks() {
-        // Check if the chrome.bookmarks API is available
-        if (isChrome || isEdge || isBrave) {
-            bookmarksAPI = chrome.bookmarks;
-        } else if (isFirefox) {
-            bookmarksAPI = browser.bookmarks;
-        } else {
-            console.error("Unsupported Browser.");
+        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
             return;
         }
-        if (isEdge){
-            default_folder = "Favorites bar";
-        } else if (isBrave){
-            default_folder = "Bookmarks";
-        } else if (isChrome){
-            default_folder = "Bookmarks bar";
-        }
-        if (bookmarksAPI && bookmarksAPI.getTree) {
-            bookmarksAPI.getTree(function (bookmarkTreeNodes) {
-                // Clear the current list
-                bookmarkList.innerHTML = '';
-                
-                // Display the "Recent Added" folder if enabled
-                bookmarksAPI.getRecent(8, function (recentBookmarks) {
+
+        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
+            // Clear the current list
+            bookmarkList.innerHTML = '';
+
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(8).then(recentBookmarks => {
                     if (recentBookmarks.length > 0) {
                         const recentAddedFolder = {
                             title: 'Recently Added',
@@ -392,9 +384,27 @@ document.addEventListener('DOMContentLoaded', function() {
                         bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
                     }
                 });
+            }
 
+            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
+            if (isFirefox) {
+                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
+                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
+                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
+
+                if (toolbarNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                }
+                if (menuNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                }
+                if (otherNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
+                }
+            } else {
                 // Extract the 'Main bookmarks' node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks bar");
+
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
@@ -404,10 +414,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
-            });
-        } else {
-            console.error("Bookmarks API is unavailable. Please check permissions or context.");
-        }
+            }
+        }).catch(err => {
+            console.error("Error loading bookmarks:", err);
+        });
     }
 
     function displayBookmarks(bookmarkNodes) {
@@ -455,18 +465,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 let favicon = document.createElement('img');
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
+                favicon.onerror = () => {
+                    favicon.src = "./shortcuts_icons/offline.svg";
+                };
 
                 // Create the delete button
                 let deleteButton = document.createElement('button');
                 deleteButton.textContent = '✖';
                 deleteButton.classList.add('bookmark-delete-button');
-                deleteButton.addEventListener('click', function(event) {
+
+                deleteButton.addEventListener('click', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
-                    if (confirm(`Are you sure you want to delete the bookmark "${node.title}"?`)) {
-                        bookmarksAPI.remove(node.id, function() {
-                            item.remove(); // Remove the item from the DOM
-                        });
+
+                    if (confirm(`Are you sure you want to delete the bookmark "${node.title || node.url}"?`)) {
+                        if (isFirefox) {
+                            // Firefox API (Promise-based)
+                            bookmarksAPI.remove(node.id).then(() => {
+                                item.remove(); // Remove the item from the DOM
+                            }).catch(err => {
+                                console.error("Error removing bookmark in Firefox:", err);
+                            });
+                        } else {
+                            // Chrome API (Callback-based)
+                            bookmarksAPI.remove(node.id, function () {
+                                item.remove(); // Remove the item from the DOM
+                            });
+                        }
                     }
                 });
 
@@ -478,13 +503,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Open links in the current tab or new tab if ctrl pressed
                 link.addEventListener('click', function (event) {
                     if (event.ctrlKey || event.metaKey) {
+                        // Open in a new tab
                         event.preventDefault();
-                        chrome.tabs.create({ url: node.url });
+                        if (isFirefox) {
+                            browser.tabs.create({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.create({ url: node.url });
+                        } else {
+                            window.open(node.url, '_blank');
+                        }
                     } else {
-                        chrome.tabs.update({ url: node.url });
+                        // Open in the current tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.update({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.update({ url: node.url }, function () {
+                            });
+                        } else {
+                            window.location.href = node.url;
+                        }
                     }
                 });
-
                 list.appendChild(item);
             }
         }
@@ -3374,6 +3414,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let bookmarksPermission;
         if (isChrome || isEdge || isBrave) {
             bookmarksPermission = chrome.permissions;
+        } else if (isFirefox) {
+            bookmarksPermission = browser.permissions;
         } else {
             console.error("Unsupported Browser.");
             return;
