@@ -33,6 +33,8 @@ const translations = {
         "todoListText": "To Do List",
         "todoListHeading": "To Do List",
         "todoListInfo": "Show a daily To Do list",
+        "todoListHover": "ToDo List",    // Keep this short
+        "todoPlaceholder": "Add task...",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -96,12 +98,10 @@ const translations = {
         "enterBtn": "Search",
         "searchPlaceholder": "Type here...",
         "listenPlaceholder": "Listening...",
-        "todoPlaceholder": "Add task...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
         "googleAppsHover": "Google Apps",    // Keep this shorter
-        "todoListHover": "ToDo List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -141,6 +141,7 @@ const translations = {
         "endlink": "There shouldn't be / at the end of the link",
         "onlylinks": "Only links (starting with http:// or https://) are allowed.",
         "imagedimensions": "Warning: The uploaded image dimensions ({width}x{height}) exceed 1920x1080 pixels. \n\nThis may impact performance or image may fail to load properly.",
+        "deleteBookmark": "Are you sure you want to delete the bookmark ",
         "failedbackup": "Backup failed: ",
         "restorecompleted": "Restore completed successfully!",
         "restorefailed": "Restore failed: ",

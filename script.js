@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`Are you sure you want to delete the bookmark "${node.title || node.url}"?`)) {
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
