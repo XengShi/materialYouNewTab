@@ -784,6 +784,8 @@ const translations = {
         "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
         "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+        "bookmarksText": "বুকমার্কস",
+        "bookmarksInfo": "একটি বুকমার্কস সাইডবার দেখুন",
         "ai_tools_button": "এআই সরঞ্জাম",
         "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
         "googleAppsMenuText": "গুগল অ্যাপস",
