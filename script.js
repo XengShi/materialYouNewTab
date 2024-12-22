@@ -496,8 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return list;
     }
 
-    // Initial load of bookmarks
-    loadBookmarks();
+    
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -3543,7 +3542,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&bookmarksAPI&&(bookmarksCheckbox.checked)) {
+    if (event.key === 'ArrowRight'&&(bookmarksCheckbox.checked)) {
         bookmarkRightArrow.dispatchEvent(new Event('click'));
     }
 });
