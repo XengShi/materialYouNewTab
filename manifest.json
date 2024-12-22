@@ -9,9 +9,6 @@
 		"https://duckduckgo.com/ac/*",
 		"https://search.brave.com/api/suggest*"
 	],
-    "background": {
-        "service_worker": "background.js"
-    },
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
