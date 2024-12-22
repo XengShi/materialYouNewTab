@@ -439,8 +439,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.textContent = node.title;
 
                 let favicon = document.createElement('img');
-                favicon.src = `http://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
                 favicon.classList.add('favicon');
+                favicon.onerror = () => {
+                    favicon.src = "./shortcuts_icons/offline.svg";
+                };
+
 
                 // Create the delete button
                 let deleteButton = document.createElement('button');
@@ -3359,6 +3363,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let bookmarksPermission;
         if (isChrome || isEdge || isBrave) {
             bookmarksPermission = chrome.permissions;
+        } else if (isFirefox) {
+            bookmarksPermission = browser.permissions;
         } else {
             console.error("Unsupported Browser.");
             return;
