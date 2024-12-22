@@ -266,10 +266,14 @@ const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 
+const isFirefox = typeof browser !== 'undefined';
+var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
+
 document.addEventListener('DOMContentLoaded', function() {
     
     bookmarkRightArrow.addEventListener('click', function() {
         toggleBookmarkSidebar();
+        bookmarkSearchClearButton.click();
     });
 
     bookmarkViewGrid.addEventListener('click', function() {
@@ -356,11 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
         }
-    }
-
-    const isFirefox = typeof browser !== 'undefined';
-    const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
-
+    };
     // Function to load bookmarks
     function loadBookmarks() {
         if (!bookmarksAPI || !bookmarksAPI.getTree) {
@@ -401,8 +401,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     bookmarkList.appendChild(displayBookmarks(otherNode.children));
                 }
             } else {
+                let default_folder = "Bookmarks bar";
+                if (isEdge){
+                    default_folder = "Favorites bar";
+                } else if (isBrave){
+                    default_folder = "Bookmarks";
+                }
                 // Extract the 'Main bookmarks' node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks bar");
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
 
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
@@ -462,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 span.textContent = node.title;
 
                 let favicon = document.createElement('img');
-                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
                 favicon.onerror = () => {
                     favicon.src = "./shortcuts_icons/offline.svg";
@@ -535,8 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return list;
     }
 
-    // Initial load of bookmarks
-    loadBookmarks();
+    
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -1332,7 +1337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 function isSupportedBrowser() {
     const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
@@ -3418,6 +3423,7 @@ document.addEventListener("DOMContentLoaded", function () {
             bookmarksPermission = browser.permissions;
         } else {
             console.error("Unsupported Browser.");
+            bookmarksCheckbox.checked = false;
             return;
         }
         if (bookmarksCheckbox.checked) {
@@ -3473,7 +3479,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarkGridCheckbox.addEventListener("change", function () {
         saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-        console.log(bookmarkGridCheckbox.checked);
         if (bookmarkGridCheckbox.checked) {
             bookmarkList.classList.add("grid-view");
         } else {
@@ -3584,8 +3589,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&bookmarksAPI&&(bookmarksCheckbox.checked)) {
-        bookmarkRightArrow.dispatchEvent(new Event('click'));
+    if (event.key === 'ArrowRight') {
+        if(bookmarksCheckbox.checked){
+            bookmarkRightArrow.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
     }
 });
 //------------------------- LoadingScreen -----------------------//

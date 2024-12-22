@@ -555,14 +555,15 @@ body {
 
 .bookmark-search-container::after {
 	content: '';
-	background: url('data:image/svg+xml,<svg height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="%23222222"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><style type="text/css"> .st0{fill:%23222222;} </style><g><path class="st0" d="M495.272,423.558c0,0-68.542-59.952-84.937-76.328c-24.063-23.938-33.69-35.466-25.195-54.931 c37.155-75.78,24.303-169.854-38.72-232.858c-79.235-79.254-207.739-79.254-286.984,0c-79.245,79.264-79.245,207.729,0,287.003 c62.985,62.985,157.088,75.837,232.839,38.691c19.466-8.485,31.022,1.142,54.951,25.215c16.384,16.385,76.308,84.937,76.308,84.937 c31.089,31.071,55.009,11.95,69.368-2.39C507.232,478.547,526.362,454.638,495.272,423.558z M286.017,286.012 c-45.9,45.871-120.288,45.871-166.169,0c-45.88-45.871-45.88-120.278,0-166.149c45.881-45.871,120.269-45.871,166.169,0 C331.898,165.734,331.898,240.141,286.017,286.012z"></path></g></g></svg>') no-repeat center / contain;
-	width: 16px;
-	height: 16px;
-	opacity: 0.5;
-	left: 10%;
-	top: calc(50% + 6px);
-	transform: translateY(-50%);
-	position: absolute;
+	background: url('./svgs/bookmarksSearch.svg') no-repeat center / contain;
+	width: 18px;
+    filter: invert(1);
+    height: 18px;
+    opacity: 0.5;
+    left: 9%;
+    top: calc(50% + 7px);
+    transform: translateY(-50%);
+    position: absolute;
 }
 
 #bookmarkSearch {
@@ -683,18 +684,13 @@ body {
 	width: calc(100% - 10px);
 }
 
-#bookmarkList:is(.grid-view) li:is(.folder) > ul:not(.hidden) {
+#bookmarkList:is(.grid-view) ul:not(.hidden), #bookmarkList:is(.grid-view) .folder.open > ul {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 
 	.folder {
 		grid-column: span 4;
 	}
-}
-
-#bookmarkList:is(.grid-view) > ul:not(:has(.folder)) {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
 }
 
 #bookmarkList:is(.grid-view) li:not(.folder) {
@@ -713,21 +709,21 @@ body {
 	content: '';
     background: var(--darkColor-blue);
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
 	z-index: -1;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.1;
+    opacity: 0.3;
     top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-    background: var(--darkerColor-blue);
-    width: 28px;
-    height: 28px;
-    opacity: 0.25;
+    background: var(--darkColor-blue);
+    width: 36px;
+    height: 36px;
+    opacity: 1;
     top: 18px;
 }
 
@@ -757,10 +753,15 @@ body {
 
 
 .favicon {
-	width: 16px;
-	height: 16px;
+	width: 18px;
+	height: 18px;
 	margin-right: 5px;
 	vertical-align: middle;
+}
+
+#bookmarkList:is(.grid-view) .favicon {
+	width: 24px;
+	height: 24px;
 }
 
 .folder {
@@ -784,17 +785,13 @@ body {
 }
 
 .folder ul {
-	display: none;
 	padding-left: 20px;
 }
 
-.folder.open ul {
+.folder.open > ul {
 	display: block;
 }
 
-#bookmarkList:is(.grid-view)  .folder.open ul {
-	display: none;
-}
 #bookmarkList:is(.grid-view)  .bookmark-delete-button {
 	top: 12px;
 	right: 6px;
