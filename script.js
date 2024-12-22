@@ -494,23 +494,29 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
-    const li = createTodoItemDOM(t, rawText, "pending"); // Create List item
+    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
+    const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ''; // Clear Input
     SaveToDoData(); // Save changes
 }
 
-function createTodoItemDOM(id, title, status) {
+function createTodoItemDOM(id, title, status, pinned) {
     let li = document.createElement('li');
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
-    const span = document.createElement("span"); // Create the Cross Icon
-    span.setAttribute("class", "todoremovebtn");
-    span.textContent = "\u00d7";
-    li.appendChild(span); // Add the cross icon to the LI tag
+    const removebtn = document.createElement("span"); // Create the Cross Icon
+    removebtn.setAttribute("class", "todoremovebtn");
+    removebtn.textContent = "\u00d7";
+    li.appendChild(removebtn); // Add the cross icon to the LI tag
     li.setAttribute("class", "todolistitem");
     if (status === 'completed') {
         li.classList.add("checked");
+    }
+    const pinbtn = document.createElement("span"); // Create the Cross Icon
+    pinbtn.setAttribute("class", "todopinbtn");
+    li.appendChild(pinbtn); // Add the cross icon to the LI tag
+    if (pinned) {
+        li.classList.add("pinned");
     }
     li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
     return li; // Return the created `li` element
@@ -523,10 +529,15 @@ todoulList.addEventListener("click", (event) => {
         let id = event.target.dataset.todoitem;
         todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.tagName === "SPAN"){
+    } else if (event.target.classList.contains('todoremovebtn')){
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
+    } else if (event.target.classList.contains('todopinbtn')){
+        event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
+        let id = event.target.parentElement.dataset.todoitem;
+        todoList[id].pinned = ((todoList[id].pinned === true)? false : true); // Update status
         SaveToDoData(); // Save Changes
     }
 });
@@ -542,7 +553,7 @@ function ShowToDoList() {
         const fragment = document.createDocumentFragment(); // Create a DocumentFragment
         for (let id in todoList) {
             const todo = todoList[id];
-            const li = createTodoItemDOM(id, todo.title, todo.status); // Create `li` elements
+            const li = createTodoItemDOM(id, todo.title, todo.status, todo.pinned); // Create `li` elements
             fragment.appendChild(li); // Add `li` to the fragment
         }
         todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
@@ -558,9 +569,19 @@ let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
 if (todoLastUpdateDate===todoCurrentDate){
     ShowToDoList();
 } else {
-    // Reset the list when last update date and the current date does not match
+    // Modify the list when last update date and the current date does not match
     localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
-    localStorage.setItem("todoList",'{}');
+    todoList = JSON.parse(localStorage.getItem("todoList")) || {};
+    for(let id in todoList){
+        if (todoList[id].pinned == false){
+            if (todoList[id].status == "completed") {
+                delete todoList[id]; // Remove the Unpinned and Completed list item data
+            }
+        } else {
+            todoList[id].status = "pending"; // Reset status of pinned items
+        }
+    }
+    SaveToDoData();
     ShowToDoList();
 }
 
@@ -678,6 +699,7 @@ function updateDate() {
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -798,9 +820,10 @@ function updatedigiClock() {
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
+    
     // Determine the translated short date string based on language
     const dateFormats = {
+        az: `${dayName} ${dayOfMonth}`, //Mardi 11
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -1216,6 +1239,8 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // Remove Loading Screen When the DOM and the Theme has Loaded
+    document.getElementById('LoadingScreen').style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
@@ -1512,7 +1537,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #searchQ {
-            color: #fff;
+                color: #fff;
             }
 
             .dark-theme .searchbar.active {
@@ -1523,7 +1548,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bbb !important;
             }
 	    
-	    .dark-theme .dropdown-item.selected:not(*[data-default]):before {
+            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
                 background-color: #707070;
             }
 
@@ -1573,7 +1598,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-	    .clearButton{
+            .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1592,7 +1617,7 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .backupRestoreBtn:hover,
             .dark-theme .uploadButton:hover,
             .dark-theme .randomButton:hover,
-	    .dark-theme #todoAdd:hover {
+            .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
@@ -1603,8 +1628,12 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #0e0e0e;
             }
 	    
-	    .dark-theme .todolistitem span {
+            .dark-theme .todolistitem .todoremovebtn {
                 color:#616161;
+            }
+
+	    .dark-theme .todolistitem .todoremovebtn:hover {
+                color:#888888;
             }
 
      	    .dark-theme .micIcon {
@@ -1706,6 +1735,7 @@ const applySelectedTheme = (colorValue) => {
     if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
     }
+    ApplyLoadingColor();
 };
 
 // ----Color Picker || ColorPicker----
@@ -1777,6 +1807,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
+    ApplyLoadingColor();
 };
 
 // Load theme on page reload// Load theme on page reload
@@ -3457,3 +3488,9 @@ document.addEventListener('keydown', function(event) {
         bookmarkRightArrow.dispatchEvent(new Event('click'));
     }
 });
+//------------------------- LoadingScreen -----------------------//
+
+function ApplyLoadingColor(){
+    let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
+    localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+}
