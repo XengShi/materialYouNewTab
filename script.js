@@ -348,41 +348,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to load bookmarks
     function loadBookmarks() {
-        // Check if the chrome.bookmarks API is available
-        if (isChrome || isEdge || isBrave) {
-            bookmarksAPI = chrome.bookmarks;
-        } else if (isFirefox) {
-            bookmarksAPI = browser.bookmarks;
-        } else {
-            console.error("Unsupported Browser.");
+        const isFirefox = typeof browser !== 'undefined';
+        const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
+
+        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
             return;
         }
-        if (isEdge){
-            default_folder = "Favorites bar";
-        } else if (isBrave){
-            default_folder = "Bookmarks";
-        } else if (isChrome){
-            default_folder = "Bookmarks bar";
-        }
-        if (bookmarksAPI && bookmarksAPI.getTree) {
-            bookmarksAPI.getTree(function (bookmarkTreeNodes) {
-                // Clear the current list
-                bookmarkList.innerHTML = '';
 
-                // Extract the 'Main bookmarks' node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
+            // Clear the current list
+            bookmarkList.innerHTML = '';
+
+            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
+            if (isFirefox) {
+                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
+                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
+                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
+
+                if (toolbarNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                }
+                if (menuNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                }
+                if (otherNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
+                }
+            } else {
+                // For Chrome: Default folder like "Bookmarks Bar" or other default folders
+                const defaultFolder = "Bookmarks bar";
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === defaultFolder);
+
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
 
-                // Extract the other 'Bookmarks' folders and display them
                 const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
                 }
+            }
 
-                // Display the "Recent Added" folder if enabled
-                bookmarksAPI.getRecent(10, function (recentBookmarks) {
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(10).then(recentBookmarks => {
                     if (recentBookmarks.length > 0) {
                         const recentAddedFolder = {
                             title: 'Recently Added',
@@ -391,10 +401,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
                     }
                 });
-            });
-        } else {
-            console.error("Bookmarks API is unavailable. Please check permissions or context.");
-        }
+            }
+        }).catch(err => {
+            console.error("Error loading bookmarks:", err);
+        });
     }
 
     function displayBookmarks(bookmarkNodes) {
