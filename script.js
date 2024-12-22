@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 span.textContent = node.title;
 
                 let favicon = document.createElement('img');
-                favicon.src = `http://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
 
                 // Create the delete button
