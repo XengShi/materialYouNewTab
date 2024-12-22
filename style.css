@@ -638,7 +638,7 @@ body {
 	align-items: center;
 	padding: 8px 32px;
 	& h3 {
-		font-size: 1.2rem;
+		font-size: 1rem;
 		color: var(--darkerColor-blue);
 	}
 }
@@ -757,6 +757,7 @@ body {
 	height: 18px;
 	margin-right: 5px;
 	vertical-align: middle;
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 }
 
 #bookmarkList:is(.grid-view) .favicon {

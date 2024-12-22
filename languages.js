@@ -29,6 +29,7 @@ const translations = {
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        // Todo List
         "todoListText": "To Do List",
         "todoListHeading": "To Do List",
         "todoListInfo": "Show a daily To Do list",
@@ -82,6 +83,13 @@ const translations = {
         "feelsLike": "Feels",
         "location": "Earth",
         // End of Weather
+
+        // Bookmarks
+        "bookmarksHeading": "Bookmarks",
+        "bookmarkViewAs" : "View as",
+        "bookmarkViewGrid" : "Grid",
+        "bookmarkViewList" : "List",
+        "bookmarkSearch": "Search Bookmarks",
 
         // New Tab Item
         "conditionText": "Hello! How are you today?",
@@ -2058,6 +2066,10 @@ function applyLanguage(lang) {
         { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
         { id: 'bookmarksText', key: 'bookmarksText' },
         { id: 'bookmarksInfo', key: 'bookmarksInfo' },
+        { id: 'bookmarksHeading', key: 'bookmarksHeading' },
+        { id: 'bookmarkViewAs', key: 'bookmarkViewAs' },
+        { id: 'bookmarkViewGrid', key: 'bookmarkViewGrid' },
+        { id: 'bookmarkViewList', key: 'bookmarkViewList' },
         { id: 'ai_tools_button', key: 'ai_tools_button' },
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
@@ -2101,6 +2113,7 @@ function applyLanguage(lang) {
         { id: 'enterBtn', key: 'enterBtn' },
         { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
         { id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true },
+        { id: 'bookmarkSearch', key: 'bookmarkSearch', isPlaceholder: true },
         { id: 'searchWithHint', key: 'searchWithHint' },
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },

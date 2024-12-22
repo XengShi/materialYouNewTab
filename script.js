@@ -1717,8 +1717,28 @@ const applySelectedTheme = (colorValue) => {
                 color:#616161;
             }
 
-	    .dark-theme .todolistitem .todoremovebtn:hover {
+            .dark-theme .todolistitem .todoremovebtn:hover {
                 color:#888888;
+            }
+
+            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
+                color: var(--textColorDark-blue) !important;
+            }
+
+            .dark-theme #bookmarkSearch{
+                background-color: #212121 !important;
+            }
+
+            .dark-theme .bookmark-search-container::after {
+                filter: none;
+            }
+
+            .dark-theme .bookmark-right-arrow {
+                color: #858585;
+            }
+
+            .dark-theme .bookmark-right-arrow.rotate {
+                color: var(--textColorDark-blue);
             }
 
      	    .dark-theme .micIcon {
