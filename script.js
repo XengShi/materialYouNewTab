@@ -328,6 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+	// Show or hide the clear button based on the search term
         bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
     });
 
