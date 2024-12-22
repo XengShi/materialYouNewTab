@@ -346,11 +346,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    const isFirefox = typeof browser !== 'undefined';
+    const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
+
     // Function to load bookmarks
     function loadBookmarks() {
-        const isFirefox = typeof browser !== 'undefined';
-        const bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks;
-
         if (!bookmarksAPI || !bookmarksAPI.getTree) {
             console.error("Bookmarks API is unavailable. Please check permissions or context.");
             return;
@@ -455,18 +455,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     favicon.src = "./shortcuts_icons/offline.svg";
                 };
 
-
                 // Create the delete button
                 let deleteButton = document.createElement('button');
                 deleteButton.textContent = '✖';
                 deleteButton.classList.add('bookmark-delete-button');
-                deleteButton.addEventListener('click', function(event) {
+
+                deleteButton.addEventListener('click', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
-                    if (confirm(`Are you sure you want to delete the bookmark "${node.title}"?`)) {
-                        bookmarksAPI.remove(node.id, function() {
-                            item.remove(); // Remove the item from the DOM
-                        });
+
+                    if (confirm(`Are you sure you want to delete the bookmark "${node.title || node.url}"?`)) {
+                        if (isFirefox) {
+                            // Firefox API (Promise-based)
+                            bookmarksAPI.remove(node.id).then(() => {
+                                item.remove(); // Remove the item from the DOM
+                            }).catch(err => {
+                                console.error("Error removing bookmark in Firefox:", err);
+                            });
+                        } else {
+                            // Chrome API (Callback-based)
+                            bookmarksAPI.remove(node.id, function () {
+                                item.remove(); // Remove the item from the DOM
+                            });
+                        }
                     }
                 });
 
