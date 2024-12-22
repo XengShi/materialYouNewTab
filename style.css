@@ -567,7 +567,7 @@ body {
 
 #bookmarkSearch {
 	width: 95%;
-	padding: 10px 36px 10px 20px;
+	padding: 10px 36px 10px 44px;
 	border-radius: var(--round);
 	font-size: 16px;
 	background-color: var(--whitishColor-blue);
@@ -651,8 +651,10 @@ body {
 	font-size: 12px;
 	padding: 2px 0;
 	margin-left: 10px;
+	cursor: pointer;
 }
-.bookmark-view-as-container .bookmark-view-as-button.active {
+.bookmark-view-as-container #bookmarkGridCheckbox:is(:checked) ~ #bookmarkViewGrid,
+.bookmark-view-as-container #bookmarkGridCheckbox:is(:not(:checked)) ~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -690,7 +692,7 @@ body {
 	}
 }
 
-#bookmarkList:is(.grid-view) > ul:not(.hidden):first-child {
+#bookmarkList:is(.grid-view) > ul:not(:has(.folder)) {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 }
@@ -705,9 +707,9 @@ body {
     flex-direction: column;
 }
 #bookmarkList:is(.grid-view) li a .favicon {
-	margin: 16px auto;
+	margin: 20px auto 24px auto;
 }
-#bookmarkList:is(.grid-view) li a:has(.favicon)::after {
+#bookmarkList:is(.grid-view) li a:has(.favicon)::after, #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	content: '';
     background: var(--darkColor-blue);
     position: absolute;
@@ -717,23 +719,16 @@ body {
     left: 50%;
     transform: translateX(-50%);
     opacity: 0.1;
-    top: 8px;
+    top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-	content: '';
     background: var(--darkerColor-blue);
-    position: absolute;
     width: 28px;
     height: 28px;
-	z-index: -1;
-    left: 50%;
-    transform: translateX(-50%);
     opacity: 0.25;
-    top: 14px;
-	box-sizing: border-box;
-	border-radius: 32px;
+    top: 18px;
 }
 
 #bookmarkList li a {

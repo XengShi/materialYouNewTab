@@ -262,11 +262,23 @@ const bookmarkSidebar = document.getElementById('bookmarkSidebar');
 const bookmarkList = document.getElementById('bookmarkList');
 const bookmarkSearch = document.getElementById('bookmarkSearch');
 const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
+const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
+const bookmarkViewList = document.getElementById('bookmarkViewList');
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
     bookmarkRightArrow.addEventListener('click', function() {
         toggleBookmarkSidebar();
+    });
+
+    bookmarkViewGrid.addEventListener('click', function() {
+        bookmarkGridCheckbox.click();
+    });
+    
+    bookmarkViewList.addEventListener('click', function() {
+        bookmarkGridCheckbox.click();
+        // bookmarkGridCheckbox.checked = false;
     });
 
     document.addEventListener('click', function(event) {
@@ -2716,6 +2728,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
+    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -3416,6 +3429,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    bookmarkGridCheckbox.addEventListener("change", function () {
+        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+        console.log(bookmarkGridCheckbox.checked);
+        if (bookmarkGridCheckbox.checked) {
+            bookmarkList.classList.add("grid-view");
+        } else {
+            bookmarkList.classList.remove("grid-view");
+        }
+    });
+
     todoListCheckbox.addEventListener("change", function () {
         saveCheckboxState("todoListCheckboxState", todoListCheckbox);
         if (todoListCheckbox.checked) {
@@ -3508,7 +3531,14 @@ document.addEventListener("DOMContentLoaded", function () {
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
+
+    if(bookmarkGridCheckbox.checked){
+        bookmarkList.classList.add("grid-view");
+    } else {
+        bookmarkList.classList.remove("grid-view");
+    }
 });
 
 document.addEventListener('keydown', function(event) {
