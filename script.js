@@ -428,10 +428,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayBookmarks(bookmarkNodes) {
         let list = document.createElement('ul');
         
-        // Sort the bookmark nodes alphabetically by title
-        bookmarkNodes.sort((a, b) => a.title.localeCompare(b.title));
-        
-        for (let node of bookmarkNodes) {
+        // Separate folders and bookmarks
+        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
+        const bookmarks = bookmarkNodes.filter(node => node.url);
+
+        // Sort folders and bookmarks separately
+        folders.sort((a, b) => a.title.localeCompare(b.title));
+        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+
+        // Sort folders and bookmarks separately by dateAdded
+        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+
+        // Combine folders and bookmarks, placing folders first
+        const sortedNodes = [...folders, ...bookmarks];
+
+        for (let node of sortedNodes) {
             if (node.id === "1") {continue;}
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
