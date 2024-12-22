@@ -78,7 +78,7 @@ const idn = {
     "searchWithHint": "Cari Dengan",
     "ai_tools": "Utilitas AI",
     "userText": "Klik disini untuk mengubah tulisan",
-    "todoListHover": "To-Do List",    // Keep this short
+    "todoListHover": "To-Do List",
     // End of Body and New Tab Items
 
     // Greeting
@@ -92,7 +92,7 @@ const idn = {
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",
     "restoreText": "Pulihkan",
-    "rangColor": "Pilih warna",    // Keep it shorter
+    "rangColor": "Pilih warna",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",

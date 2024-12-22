@@ -123,4 +123,5 @@ const en = {
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",
+    "invalidBackup": "Invalid backup file"
 };

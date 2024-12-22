@@ -122,4 +122,5 @@ const pt = {
     "failedbackup": "Falha no backup: ",
     "restorecompleted": "Restauração concluída com sucesso!",
     "restorefailed": "Restauração falhou: ",
+    "invalidBackup": "Arquivo de backup inválido"
 };

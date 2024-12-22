@@ -92,7 +92,7 @@ const fr = {
 
     // Search Engines and rest
     "googleEngine": "Google",
-    "duckEngine": "Duck", // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
