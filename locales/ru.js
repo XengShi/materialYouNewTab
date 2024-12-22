@@ -1,0 +1,121 @@
+const ru = {
+    // Menu Items
+    "feedback": "Обратная связь",
+    "resetsettings": "Сброс настроек",
+    "menuCloseText": "Закрыть",
+    // Shortcuts
+    "shortcutsText": "Ярлыки",
+    "enableShortcutsText": "Включить/Отключить ярлыки",
+    "editShortcutsText": "Редактировать ярлыки",
+    "editShortcutsList": "Редактировать ярлыки",
+    "shortcutsInfoText": "Выберите, какие ярлыки будут отображаться",
+    "editShortcutsList": "Сохранёные ярлыки",
+    'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
+    "adaptiveIconText": "Адаптивные формы значков",
+    "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
+    "ai_tools_button": "Инструменты ИИ",
+    "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
+    "googleAppsMenuText": "Приложения Google",
+    "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
+    // Digital Clock
+    "digitalclocktittle": "Цифровые часы",
+    "digitalclockinfo": "Включить/Отключить цифровые часы",
+    "timeformattittle": "12-часовой формат",
+    "timeformatinfo": "Использовать 12-часовой формат времени",
+    "greetingtittle": "Приветствие",
+    "greetinginfo": "Показать приветствие под вашим текстом",
+    // Misc
+    "userTextTitle": "Настраиваемый текст",
+    "userTextInfo": "Отображение текста под часами",
+    "fahrenheitCelsiusCheckbox": "Использовать Фаренгейт",
+    "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
+    "micIconTitle": "Скрыть значок микрофона",
+    "micIconInfo": "Если голосовой ввод не работает",
+    "hideSearchWith": "Скрыть поисковые системы",
+    "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
+    "search_suggestions_button": "Поисковые подсказки",
+    "search_suggestions_text": "Включить/Отключить поисковые подсказки",
+    // Proxy
+    "useproxytitletext": "Использовать прокси",
+    "useproxyText": "Если поисковые подсказки не работают",
+    "ProxyText": "CORS обход прокси",
+    "ProxySubtext": "Добавьте свой CORS-прокси",
+    "HostproxyButton": "Разместить свой прокси",
+    "saveproxy": "Сохранить",
+    // Location
+    "UserLocText": "Введите ваше местоположение",
+    "UserLocSubtext": "Если местоположение для погоды неверно",
+    "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
+    "InputOptionsButton": "Опции ввода",
+    "saveLoc": "Сохранить",
+    // Weather
+    "WeatherApiText": "Введите свой ключ WeatherAPI",
+    "WeatherApiSubtext": "Если функция погоды не работает",
+    "userAPI": "Ваш ключ WeatherAPI",
+    "LearnMoreButton": "Узнать больше",
+    "saveAPI": "Сохранить",
+    // End of Menu Items
+
+    // Body Items
+    // Calendar
+    "days": ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+    "months": ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    // End of Calendar
+
+    // Weather
+    "humidityLevel": "Влажность",
+    "feelsLike": "Ощущается",
+    "location": "Земля",
+    // End of Weather
+
+    // New Tab Item
+    "conditionText": "Привет! Как ты сегодня?",
+    "enterBtn": "Поиск",
+    "searchPlaceholder": "Ваш запрос...",
+    "listenPlaceholder": "Слушаю...",
+    "searchWithHint": "Искать с",
+    "ai_tools": "Нейросети",
+    "userText": "Нажмите здесь, чтобы редактировать",
+    // End of Body and New Tab Items
+
+    // Greeting
+    greeting: {
+        "morning": "Доброе утро!",
+        "afternoon": "Добрый день!",
+        "evening": "Добрый вечер!"
+    },
+
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "Duck",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ЧатGPT",
+    "gemini": "Gemini",
+    "copilot": "Копилот",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "github": "GitHub",
+    "googleAppsHover": "Гугл приложения",
+
+    // Wallpaper and alerts
+    "uploadWallpaperText": "Загрузить обои",
+    "backupText": "Экспорт настроек",
+    "restoreText": "Восстановить",
+    "rangColor": "Выбрать цвет",
+
+    //Dialog boxes (alerts)
+    "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
+    "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
+    "Nobackgroundset": "В настоящее время обои не установлены.",
+    "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
+    "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
+    "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
+    "endlink": "В конце ссылки не должно быть /",
+    "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
+    "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
+    "failedbackup": "Резервное копирование не удалось: ",
+    "restorecompleted": "Восстановление настроек успешно завершено!",
+    "restorefailed": "Восстановление настроек не удалось: ",
+}
