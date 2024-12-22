@@ -270,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     bookmarkRightArrow.addEventListener('click', function() {
         toggleBookmarkSidebar();
+        clearSearchButton.click();
     });
 
     bookmarkViewGrid.addEventListener('click', function() {

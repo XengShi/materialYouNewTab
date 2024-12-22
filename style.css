@@ -695,6 +695,10 @@ body {
 #bookmarkList:is(.grid-view) > ul:not(:has(.folder)) {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
+	
+	.folder {
+		grid-column: span 4;
+	}
 }
 
 #bookmarkList:is(.grid-view) li:not(.folder) {
@@ -784,16 +788,20 @@ body {
 }
 
 .folder ul {
-	display: none;
 	padding-left: 20px;
 }
 
-.folder.open ul:not(.hidden) {
+.folder.open ul {
 	display: block;
 }
 
 #bookmarkList:is(.grid-view)  .folder.open ul {
-	display: none;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+	
+	.folder {
+		grid-column: span 4;
+	}
 }
 #bookmarkList:is(.grid-view)  .bookmark-delete-button {
 	top: 12px;
