@@ -797,11 +797,11 @@ body {
 	padding-left: 20px;
 }
 
-.folder.open ul {
+.folder.open > ul {
 	display: block;
 }
 
-#bookmarkList:is(.grid-view)  .folder.open ul {
+#bookmarkList:is(.grid-view) > .folder.open ul {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 	

@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     bookmarkRightArrow.addEventListener('click', function() {
         toggleBookmarkSidebar();
-        clearSearchButton.click();
+        bookmarkSearchClearButton.click();
     });
 
     bookmarkViewGrid.addEventListener('click', function() {
@@ -3431,7 +3431,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarkGridCheckbox.addEventListener("change", function () {
         saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-        console.log(bookmarkGridCheckbox.checked);
         if (bookmarkGridCheckbox.checked) {
             bookmarkList.classList.add("grid-view");
         } else {
