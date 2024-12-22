@@ -19,12 +19,16 @@
     <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
     <style id="iconStyle"></style>
 
+    <script src="preload.js"></script>
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
     <script defer src="qoutes.js"></script>
 </head>
 
 <body>
+    <!----------------------- Loading Screen Starting ----------------------->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" id="LoadingScreen" fetchpriority="high"/>
+    
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
@@ -592,7 +596,7 @@
             <!-- ----------end of searchbar-------------- -->
 
             <!-- ----------search with------------------- -->
-            <div class="searchWithCont" id="search-with-container">
+            <div class="searchWithCont" id="motivationalQuotesCont">
 
                 <div class="hint bgLightTint"></div>
                 <div class="qoutesContainer">
@@ -947,6 +951,18 @@
                             </div>
                             <label class="switch">
                                 <input id="micIconCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="motivationalQuotesText">Motivational Quotes</div>
+                                <div class="infoText" id="motivationalQuotesInfo">Show quotes below the searchbar
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="motivationalQuotesCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>

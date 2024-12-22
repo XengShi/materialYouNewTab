@@ -29,6 +29,8 @@ const translations = {
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
         "todoListText": "To Do List",
         "todoListInfo": "Show a daily To Do list",
+        "motivationalQuotesText": "Motivational Quotes",
+        "motivationalQuotesInfo": "Show quotes below the searchbar",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -2056,6 +2058,8 @@ function applyLanguage(lang) {
         { id: 'todoListHeading', key: 'todoListText' },
         { id: 'todoListText', key: 'todoListText' },
         { id: 'todoListInfo', key: 'todoListInfo' },
+        { id: 'motivationalQuotesText', key: 'motivationalQuotesText' },
+        { id: 'motivationalQuotesInfo', key: 'motivationalQuotesInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
