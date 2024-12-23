@@ -12,10 +12,13 @@ const hi = {
     'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
     "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
     "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
+    "bookmarksText": "बुकमार्क्स",
+    "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
     "ai_tools_button": "AI-उपकरण",
     "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
     "googleAppsMenuText": "गूगल ऐप्स",
     "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+    // Todo List
     "todoListText": "कार्य सूची",
     "todoListInfo": "दैनिक कार्यों की सूची देखें",
     // Digital Clock
@@ -68,11 +71,17 @@ const hi = {
     "humidityLevel": "नमी",
     "feelsLike": "महसूस",
     "location": "पृथ्वी",
-    // End of Weather
+    
+    // Bookmarks
+    "bookmarksHeading": "बुकमार्क्स",
+    "bookmarkViewAs": "इस रूप में देखें",
+    "bookmarkViewGrid": "ग्रिड",
+    "bookmarkViewList": "लिस्ट",
+    "bookmarkSearch": "बुकमार्क खोजें",
 
     // New Tab Item
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
-    "enterBtn": "खोजें",
+    "enterBtn": "सर्च करें",
     "searchPlaceholder": "यहाँ लिखें...",
     "listenPlaceholder": "सुन रहे हैं...",
     "todoPlaceholder": "कार्य जोड़ें...",
@@ -123,4 +132,6 @@ const hi = {
     "failedbackup": "बैकअप विफल: ",
     "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
     "restorefailed": "पुनर्स्थापना विफल: ",
+    "invalidBackup": "अमान्य बैकअप फ़ाइल",
+    "deleteBookmark": "क्या आप बुकमार्क डिलीट करना चाहते हैं?",
 }

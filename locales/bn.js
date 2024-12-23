@@ -13,6 +13,8 @@ const bn = {
     "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
     "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
     "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+    "bookmarksText": "বুকমার্কস",
+    "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
     "ai_tools_button": "এআই সরঞ্জাম",
     "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
     "googleAppsMenuText": "গুগল অ্যাপস",
@@ -86,6 +88,13 @@ const bn = {
     "googleAppsHover": "গুগল অ্যাপস",
     "todoListHover": "টু ডু লিস্ট",
 
+    // Bookmarks
+    "bookmarksHeading": "বুকমার্কস",
+    "bookmarkViewAs": "এইভাবে দেখুন",
+    "bookmarkViewGrid": "গ্রিড",
+    "bookmarkViewList": "লিস্ট",
+    "bookmarkSearch": "বুকমার্ক সার্চ করুন",
+
     // Greeting
     greeting: {
         "morning": "শুভ সকাল!",
@@ -126,5 +135,6 @@ const bn = {
     "failedbackup": "ব্যাকআপ ব্যর্থ: ",
     "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
     "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
-    "invalidBackup": "অবৈধ ব্যাকআপ ফাইল"
+    "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
+    "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান?",
 }

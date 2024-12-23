@@ -12,10 +12,13 @@ const en = {
     'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.',
     "adaptiveIconText": "Adaptive Icon Shapes",
     "adaptiveIconInfoText": "Shortcut icons will appear smaller",
+    "bookmarksText": "Bookmarks",
+    "bookmarksInfo": "Show bookmarks sidebar",
     "ai_tools_button": "AI-Tools",
     "enable_ai_tools": "Show shortcuts for AI tools",
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+    "googleAppsHover": "Google Apps",    // Keep this shorter
     "todoListText": "To Do List",
     "todoListInfo": "Show a daily To Do list",
     // Digital Clock
@@ -68,6 +71,13 @@ const en = {
     "feelsLike": "Feels",
     "location": "Earth",
     // End of Weather
+
+    // Bookmarks
+    "bookmarksHeading": "Bookmarks",
+    "bookmarkViewAs" : "View as",
+    "bookmarkViewGrid" : "Grid",    // Keep this shorter
+    "bookmarkViewList" : "List",    // Keep this shorter
+    "bookmarkSearch": "Search bookmark",
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
@@ -122,5 +132,6 @@ const en = {
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",
-    "invalidBackup": "Invalid backup file"
+    "invalidBackup": "Invalid backup file",
+    "deleteBookmark": "Are you sure you want to delete the bookmark?",
 };
