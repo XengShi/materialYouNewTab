@@ -1781,6 +1781,8 @@ const translations = {
         'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
         "adaptiveIconText": "Formes d'Icônes Adaptatives",
         "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
+        "bookmarksText": "Favoris",
+        "bookmarksInfo": "Afficher la barre latérale des favoris",
         "ai_tools_button": "Outils IA",
         "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
         "googleAppsMenuText": "Apps Google",
@@ -1838,6 +1840,14 @@ const translations = {
         "location": "Terre",
         // End of Weather
 
+        // Bookmarks
+        "bookmarksHeading": "Favoris",
+        "bookmarkViewAs" : "Afficher en",
+        "bookmarkViewGrid" : "Grille",    // Keep this shorter
+        "bookmarkViewList" : "Liste",    // Keep this shorter
+        "bookmarkSearch": "Rechercher un favori",
+        // End of Bookmarks
+
         // New Tab Item
         "conditionText": "Bonjour, comment allez-vous?",
         "enterBtn": "Rechercher",
@@ -1889,6 +1899,8 @@ const translations = {
         "failedbackup": "Échec de la sauvegarde: ",
         "restorecompleted": "Restauration terminée avec succès!",
         "restorefailed": "Échec de la restauration: ",
+        "invalidBackup": "Fichier de sauvegarde invalide",
+        "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
     },
     // Azerbaijani
     "az": {
