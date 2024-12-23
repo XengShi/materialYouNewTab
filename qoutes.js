@@ -30,4 +30,6 @@ async function fetchAndDisplayQuote() {
     }
 }
 
-fetchAndDisplayQuote();
+if (localStorage.getItem("motivationalQuotesVisible") !== "false") {
+    fetchAndDisplayQuote();
+}
