@@ -35,6 +35,8 @@ const translations = {
         "todoListInfo": "Show a daily To Do list",
         "todoListHover": "ToDo List",    // Keep this short
         "todoPlaceholder": "Add task...",
+        "motivationalQuotesText": "Motivational Quotes",
+        "motivationalQuotesInfo": "Show quotes below the searchbar",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -2076,6 +2078,8 @@ function applyLanguage(lang) {
         { id: 'todoListHeading', key: 'todoListText' },
         { id: 'todoListText', key: 'todoListText' },
         { id: 'todoListInfo', key: 'todoListInfo' },
+        { id: 'motivationalQuotesText', key: 'motivationalQuotesText' },
+        { id: 'motivationalQuotesInfo', key: 'motivationalQuotesInfo' },
         { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
         { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
         { id: 'micIconTitle', key: 'micIconTitle' },
