@@ -133,14 +133,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     try {
         let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
         const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-
-        if (!parsedData || (Date.now() - weatherParsedTime) > 900000) {
+        const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+        
+        if (!parsedData || ((Date.now() - weatherParsedTime) > 900000) || weatherParsedLocation !== currentUserLocation) {
             // Fetch weather data using Weather API
             const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             const data = await fetch(weatherApi);
             parsedData = await data.json();
-            localStorage.setItem("weatherParsedData", JSON.stringify(parsedData)); // Save weather data to localStorage
-            localStorage.setItem("weatherParsedTime", Date.now()); // Save Time of last fetching
+            if (!parsedData.error) {
+                localStorage.setItem("weatherParsedData", JSON.stringify(parsedData)); // Save weather data to localStorage
+                localStorage.setItem("weatherParsedTime", Date.now()); // Save Time of last fetching
+                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save User Location of last fetched Weather
+            }
         }
 
         // Weather data
