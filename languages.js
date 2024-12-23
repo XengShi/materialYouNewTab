@@ -23,12 +23,17 @@ const translations = {
         'editShortcutsListInfo': 'You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.',
         "adaptiveIconText": "Adaptive Icon Shapes",
         "adaptiveIconInfoText": "Shortcut icons will appear smaller",
+        "bookmarksText": "Bookmarks",
+        "bookmarksInfo": "Show bookmarks sidebar",
         "ai_tools_button": "AI-Tools",
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        // Todo List
         "todoListText": "To Do List",
         "todoListInfo": "Show a daily To Do list",
+        "todoListHover": "ToDo List",    // Keep this short
+        "todoPlaceholder": "Add task...",
         // Digital Clock
         "digitalclocktittle": "Digital Clock",
         "digitalclockinfo": "Switch to the digital clock",
@@ -80,17 +85,22 @@ const translations = {
         "location": "Earth",
         // End of Weather
 
+        // Bookmarks
+        "bookmarksHeading": "Bookmarks",
+        "bookmarkViewAs" : "View as",
+        "bookmarkViewGrid" : "Grid",
+        "bookmarkViewList" : "List",
+        "bookmarkSearch": "Search Bookmarks",
+
         // New Tab Item
         "conditionText": "Hello! How are you today?",
         "enterBtn": "Search",
         "searchPlaceholder": "Type here...",
         "listenPlaceholder": "Listening...",
-        "todoPlaceholder": "Add task...",
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
         "googleAppsHover": "Google Apps",    // Keep this shorter
-        "todoListHover": "ToDo List",    // Keep this short
         // End of Body and New Tab Items
 
         // Greeting
@@ -128,6 +138,12 @@ const translations = {
         "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
         "endlink": "There shouldn't be / at the end of the link",
         "onlylinks": "Only links (starting with http:// or https://) are allowed.",
+
+
+
+        "deleteBookmark": "Are you sure you want to delete the bookmark ",
+
+
         "failedbackup": "Backup failed: ",
         "restorecompleted": "Restore completed successfully!",
         "restorefailed": "Restore failed: ",
@@ -368,10 +384,13 @@ const translations = {
         'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
         "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
         "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
+        "bookmarksText": "बुकमार्क्स",
+        "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
         "ai_tools_button": "AI-उपकरण",
         "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
         "googleAppsMenuText": "गूगल ऐप्स",
         "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
+        // Todo List
         "todoListText": "कार्य सूची",
         "todoListInfo": "दैनिक कार्यों की सूची देखें",
         // Digital Clock
@@ -803,6 +822,8 @@ const translations = {
         "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
         "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
         "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+        "bookmarksText": "বুকমার্কস",
+        "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
         "ai_tools_button": "এআই সরঞ্জাম",
         "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
         "googleAppsMenuText": "গুগল অ্যাপস",
@@ -2031,6 +2052,12 @@ function applyLanguage(lang) {
         { id: 'editShortcutsListInfo', key: 'editShortcutsListInfo' },
         { id: 'adaptiveIconText', key: 'adaptiveIconText' },
         { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
+        { id: 'bookmarksText', key: 'bookmarksText' },
+        { id: 'bookmarksInfo', key: 'bookmarksInfo' },
+        { id: 'bookmarksHeading', key: 'bookmarksHeading' },
+        { id: 'bookmarkViewAs', key: 'bookmarkViewAs' },
+        { id: 'bookmarkViewGrid', key: 'bookmarkViewGrid' },
+        { id: 'bookmarkViewList', key: 'bookmarkViewList' },
         { id: 'ai_tools_button', key: 'ai_tools_button' },
         { id: 'enable_ai_tools', key: 'enable_ai_tools' },
         { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
@@ -2074,6 +2101,7 @@ function applyLanguage(lang) {
         { id: 'enterBtn', key: 'enterBtn' },
         { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
         { id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true },
+        { id: 'bookmarkSearch', key: 'bookmarkSearch', isPlaceholder: true },
         { id: 'searchWithHint', key: 'searchWithHint' },
         { id: 'ai_tools', key: 'ai_tools' },
         { id: 'humidityLevel', key: 'humidityLevel' },
