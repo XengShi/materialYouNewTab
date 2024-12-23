@@ -140,7 +140,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             let data = await fetch(weatherApi);
             parsedData = await data.json();
-            console.log(parsedData);
             if (!parsedData.error) {
                 localStorage.setItem("weatherParsedData", JSON.stringify(parsedData)); // Save weather data to localStorage
                 localStorage.setItem("weatherParsedTime", Date.now()); // Save Time of last fetching
@@ -237,7 +236,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
-    console.log(document.getElementById("location").innerText);
 });
 // ---------------------------end of weather stuff--------------------
 
