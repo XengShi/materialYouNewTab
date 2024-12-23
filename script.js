@@ -796,6 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isVisible = motivationalQuotesCheckbox.checked;
         motivationalQuotesCont.style.opacity = isVisible ? "1" : "0";
         localStorage.setItem("motivationalQuotesVisible", isVisible);
+        fetchAndDisplayQuote();
     });
 
     // Set the default language to English if no language is saved
