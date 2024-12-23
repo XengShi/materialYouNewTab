@@ -568,7 +568,7 @@ body {
 
 #bookmarkSearch {
 	width: 95%;
-	padding: 10px 36px 10px 44px;
+	padding: 10px 36px 10px 43px;
 	border-radius: var(--round);
 	font-size: 16px;
 	background-color: var(--whitishColor-blue);
@@ -584,7 +584,7 @@ body {
 
 #clearSearchButton {
 	position: absolute;
-	right: 10%;
+	right: 9%;
 	top: calc(50% + 7px);
 	transform: translateY(-50%);
 	background: none;
