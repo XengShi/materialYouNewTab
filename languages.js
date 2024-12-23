@@ -29,6 +29,7 @@ const translations = {
         "enable_ai_tools": "Show shortcuts for AI tools",
         "googleAppsMenuText": "Google Apps",
         "googleAppsMenuInfo": "Show shortcuts for Google Apps",
+        "googleAppsHover": "Google Apps",    // Keep this shorter
         // Todo List
         "todoListText": "To Do List",
         "todoListInfo": "Show a daily To Do list",
@@ -88,9 +89,9 @@ const translations = {
         // Bookmarks
         "bookmarksHeading": "Bookmarks",
         "bookmarkViewAs" : "View as",
-        "bookmarkViewGrid" : "Grid",
-        "bookmarkViewList" : "List",
-        "bookmarkSearch": "Search Bookmarks",
+        "bookmarkViewGrid" : "Grid",    // Keep this shorter
+        "bookmarkViewList" : "List",    // Keep this shorter
+        "bookmarkSearch": "Search bookmark",
 
         // New Tab Item
         "conditionText": "Hello! How are you today?",
@@ -100,7 +101,6 @@ const translations = {
         "searchWithHint": "Search With",
         "ai_tools": "AI Tools",
         "userText": "Click here to edit",
-        "googleAppsHover": "Google Apps",    // Keep this shorter
         // End of Body and New Tab Items
 
         // Greeting
@@ -128,7 +128,7 @@ const translations = {
         "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
         "backupText": "Backup",
         "restoreText": "Restore",
-        "rangColor": "Pick color",    // Keep it shorter
+        "rangColor": "Pick color",    // Keep this short
 
         // Dialog boxes (alerts)
         "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
@@ -138,20 +138,15 @@ const translations = {
         "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
         "endlink": "There shouldn't be / at the end of the link",
         "onlylinks": "Only links (starting with http:// or https://) are allowed.",
-
-
-
-        "deleteBookmark": "Are you sure you want to delete the bookmark ",
-
-
         "failedbackup": "Backup failed: ",
         "restorecompleted": "Restore completed successfully!",
         "restorefailed": "Restore failed: ",
-        "invalidBackup": "Invalid backup file"
+        "invalidBackup": "Invalid backup file",
+        "deleteBookmark": "Are you sure you want to delete the bookmark?",
     },
 
 
-    // Portuguese
+    // Portuguese (Brazil)
     "pt": {
         // Menu Items
         "feedback": "Feedback",
@@ -445,9 +440,16 @@ const translations = {
         "location": "पृथ्वी",
         // End of Weather
 
+        // Bookmarks
+        "bookmarksHeading": "बुकमार्क्स",
+        "bookmarkViewAs" : "इस रूप में देखें",
+        "bookmarkViewGrid" : "ग्रिड",
+        "bookmarkViewList" : "लिस्ट",
+        "bookmarkSearch": "बुकमार्क खोजें",
+
         // New Tab Item
         "conditionText": "नमस्ते! आप आज कैसे हैं?",
-        "enterBtn": "खोजें",
+        "enterBtn": "सर्च करें",
         "searchPlaceholder": "यहाँ लिखें...",
         "listenPlaceholder": "सुन रहे हैं...",
         "todoPlaceholder": "कार्य जोड़ें...",
@@ -496,7 +498,8 @@ const translations = {
         "failedbackup": "बैकअप विफल: ",
         "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
         "restorefailed": "पुनर्स्थापना विफल: ",
-        "invalidBackup": "अमान्य बैकअप फ़ाइल"
+        "invalidBackup": "अमान्य बैकअप फ़ाइल",
+        "deleteBookmark": "क्या आप बुकमार्क डिलीट करना चाहते हैं?",
     },
 
 
@@ -897,6 +900,13 @@ const translations = {
         "googleAppsHover": "গুগল অ্যাপস",
         "todoListHover": "টু ডু লিস্ট",
 
+        // Bookmarks
+        "bookmarksHeading": "বুকমার্কস",
+        "bookmarkViewAs" : "এইভাবে দেখুন",
+        "bookmarkViewGrid" : "গ্রিড",
+        "bookmarkViewList" : "লিস্ট",
+        "bookmarkSearch": "বুকমার্ক সার্চ করুন",
+
         // Greeting
         greeting: {
             "morning": "শুভ সকাল!",
@@ -935,7 +945,8 @@ const translations = {
         "failedbackup": "ব্যাকআপ ব্যর্থ: ",
         "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
         "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
-        "invalidBackup": "অবৈধ ব্যাকআপ ফাইল"
+        "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
+        "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান?",
     },
 
 
