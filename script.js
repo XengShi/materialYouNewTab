@@ -151,7 +151,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
 
         function UpdateWeather() {
-            console.log("function ran")
             // Weather data
             const conditionText = parsedData.current.condition.text;
             const tempCelsius = Math.round(parsedData.current.temp_c);
