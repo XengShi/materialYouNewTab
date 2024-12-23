@@ -11,7 +11,7 @@
 
 @font-face {
 	font-family: "poppins";
-	src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+	src: url("./fonts/Poppins-Regular.ttf") format("truetype");
 }
 
 * {
@@ -463,6 +463,367 @@ body {
 }
 /* ----------------- End of Google App Menu ----------------- */
 
+/* ----------------- Start of Bookmark System ----------------- */
+
+#bookmarksContainer {
+	background-color: #0000004f;
+	backdrop-filter: blur(15px) saturate(160%);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	opacity: 0;
+	transition: all 0.5s;
+	pointer-events: none;
+	z-index: 4;
+}
+
+#bookmarksContainer:has(.bookmark-sidebar.open) {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.bookmark-right-arrow {
+	position: fixed;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: var(--darkColor-blue);
+	transition: transform 0.3s ease, right 0.3s ease;
+	z-index: 2;
+}
+
+.bookmark-sidebar {
+	width: 380px;
+	position: fixed;
+	right: -380px;
+	top: 0;
+	height: 100%;
+	background-color: var(--accentLightTint-blue);
+	color: white;
+	transition: right 0.3s ease;
+	z-index: 5;
+	display: block;
+	border-radius: 0 0 0 var(--round);
+	box-sizing: border-box;
+}
+
+.bookmark-sidebar .topOutRoundCorner{
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	left: -30px;
+}
+
+.bookmark-sidebar-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+}
+
+.bookmark-sidebar.open {
+	right: 0;
+}
+
+.bookmark-right-arrow.rotate {
+	transform: translateY(-50%) rotate(180deg);
+	color: var(--accentLightTint-blue);
+	right: 380px;
+	z-index: 5;
+}
+
+.bookmark-sidebar-header {
+	padding: 30px 20px 50px 20px;
+	background-color: var(--bg-color-blue);
+}
+
+.bookmark-sidebar-header h2 {
+	color: var(--textColorDark-blue);
+	text-align: center;
+	font-size: 1.5rem;
+	flex-grow: 1;
+}
+
+.bookmark-search-container {
+	position: relative;
+	width: 100%;
+	padding: 30px 10px 16px 10px;
+	border-radius: var(--round);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--accentLightTint-blue);
+	margin-top: -30px;
+	position: relative;
+}
+
+.bookmark-search-container::after {
+	content: '';
+	background: url('./svgs/bookmarksSearch.svg') no-repeat center / contain;
+	width: 18px;
+    filter: invert(1);
+    height: 18px;
+    opacity: 0.5;
+    left: 9%;
+    top: calc(50% + 7px);
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+#bookmarkSearch {
+	width: 95%;
+	padding: 10px 36px 10px 43px;
+	border-radius: var(--round);
+	font-size: 16px;
+	background-color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
+	outline: none !important;
+	border: none !important;
+}
+
+#bookmarkSearch::placeholder {
+	color: var(--textColorDark-blue);
+	opacity: 0.7;
+}
+
+#clearSearchButton {
+	position: absolute;
+	right: 9%;
+	top: calc(50% + 7px);
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	color: var(--textColorDark-blue);
+	cursor: pointer;
+	display: none; /* Hidden by default */
+}
+
+#bookmarkList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	height: calc(100% - 230px);
+	overflow-y: auto;  /* Add vertical scrollbar */
+	overflow-x: hidden;
+}
+
+#bookmarkList::-webkit-scrollbar {
+	width: 5px;
+}
+
+#bookmarkList::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+#bookmarkList::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+#bookmarkList::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+	#bookmarkList {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
+}
+
+.bookmark-view-as-container {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 32px;
+	& h3 {
+		font-size: 1rem;
+		color: var(--darkerColor-blue);
+	}
+}
+
+.bookmark-view-as-container .bookmark-view-as-button {
+	background: transparent;
+	border-radius: 20px;
+	border: 2px solid var(--darkColor-blue);
+	color: var(--darkColor-blue);
+	width: 60px;
+	font-size: 12px;
+	padding: 2px 0;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.bookmark-view-as-container #bookmarkGridCheckbox:is(:checked) ~ #bookmarkViewGrid,
+.bookmark-view-as-container #bookmarkGridCheckbox:is(:not(:checked)) ~ #bookmarkViewList {
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+#bookmarkList ul {
+	padding-left: 10px;
+	list-style-type: none;
+	font-weight: normal;
+}
+
+#bookmarkList .folder ul{
+	padding-top: 10px;
+}
+
+#bookmarkList li {
+	padding: 2px;
+	border: none;
+	position: relative;
+}
+#bookmarkList li:is(.folder) {
+	padding: 10px 0 10px 10px;
+}
+
+#bookmarkList li:not(.folder) {
+	display: flex;
+	width: calc(100% - 10px);
+}
+
+#bookmarkList:is(.grid-view) ul:not(.hidden), #bookmarkList:is(.grid-view) .folder.open > ul {
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+
+	.folder {
+		grid-column: span 4;
+	}
+}
+
+#bookmarkList:is(.grid-view) li:not(.folder) {
+	width: 100%;
+	padding-bottom: 6px;
+}
+
+#bookmarkList:is(.grid-view) li a {
+	padding: 2px;
+    flex-direction: column;
+}
+#bookmarkList:is(.grid-view) li a .favicon {
+	margin: 20px auto 24px auto;
+}
+#bookmarkList:is(.grid-view) li a:has(.favicon)::after, #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+	content: '';
+    background: var(--darkColor-blue);
+    position: absolute;
+    width: 48px;
+    height: 48px;
+	z-index: -1;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+    top: 12px;
+	box-sizing: border-box;
+	border-radius: 32px;
+}
+#bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+    background: var(--darkColor-blue);
+    width: 36px;
+    height: 36px;
+    opacity: 1;
+    top: 18px;
+}
+
+#bookmarkList li a {
+	color: var(--textColorDark-blue);
+	text-decoration: none;
+	/* word-break: break-word; */
+	padding: 8px;
+	padding-right: 24px;
+	border-radius: 8px;
+	width: 100%;
+	display: flex;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#bookmarkList li a span {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#bookmarkList:is(.grid-view) li a span {
+	text-align: center;
+}
+
+
+.favicon {
+	width: 18px;
+	height: 18px;
+	margin-right: 5px;
+	vertical-align: middle;
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+#bookmarkList:is(.grid-view) .favicon {
+	width: 24px;
+	height: 24px;
+}
+
+.folder {
+	cursor: pointer;
+	font-weight: bolder;
+	color: var(--textColorDark-blue);
+}
+
+.hidden {
+	display: none;
+}
+
+.ui {
+	display: block;
+	pointer-events: none; /* Make ui class button unclickable */
+}
+
+.folder svg {
+	margin-right: 5px; /* Adjust this value for more or less space */
+	vertical-align: middle; /* Aligns the icon with the text */
+}
+
+.folder ul {
+	padding-left: 20px;
+}
+
+.folder.open > ul {
+	display: block;
+}
+
+#bookmarkList:is(.grid-view)  .bookmark-delete-button {
+	top: 12px;
+	right: 6px;
+}
+
+.bookmark-delete-button {
+	background: none;
+	border: none;
+	color: var(--darkColor-blue);
+	cursor: pointer;
+	position: absolute;
+	right: 10px; /* Position it to the right */
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+:hover > .bookmark-delete-button {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* ----------------- End of Bookmark System ----------------- */
+
 /* ------------------ To Do List Section -------------------- */
 
 .todoListCont {
@@ -485,7 +846,6 @@ body {
 	opacity: 1;
 }
 
-
 .todo-container {
 	display: grid;
 	gap: 10px;
@@ -494,7 +854,7 @@ body {
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 300px;
+	grid-template-columns: 320px;
 	justify-items: center;
 	position: absolute;
 	top: 85px;
@@ -511,8 +871,8 @@ body {
 
 .todo-container::-webkit-scrollbar-track {
 	background-color: transparent;
-	margin-top: 107px;
-	margin-bottom: 10px;
+	margin-top: 108px;
+	margin-bottom: 11px;
 }
 
 .todo-container::-webkit-scrollbar-thumb {
@@ -587,54 +947,54 @@ body {
 
 .todolist{
 	width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
-    align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .todolistitem{
 	width: 100%;
-    display: flex;
+	display: flex;
 	background-color: var(--darkColor-blue);
 	color: #FFF;
 	border-radius: 8px;
-	padding: 8px 12px;
 	list-style-type: none;
-	font-size: 17px;
-	padding: 12px 32px;
+	font-size: 1rem;
+	padding: 12px 56px 12px 32px;
 	user-select: none;
 	cursor: pointer;
 	position: relative;
 	word-break: break-word;
 }
+
 .todolistitem::before{
 	content: '';
 	position: absolute;
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="%23000000"><circle cx="12" cy="12" r="10" fill="none" stroke="%23FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></svg>');
-	background-size: cover;
-	background-position: center;
+	background: url('./svgs/todo-check-stroke.svg') no-repeat center center / contain;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 8px;
 	transition: all 0.3s ease;
 	user-select: none;
 }
+
 .todolistitem.checked::before{
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%23FFFFFF" viewBox="0 0 40 40"><path d="M20,0C8.974,0,0,8.973,0,20c0,11.027,8.974,20,20,20c11.029,0,20-8.973,20-20C40,8.973,31.029,0,20,0z M28.818,17.875 l-8.562,8.564c-0.596,0.595-1.377,0.893-2.158,0.893c-0.779,0-1.561-0.298-2.156-0.893l-4.758-4.758 c-1.191-1.191-1.191-3.124,0-4.313c1.191-1.192,3.121-1.192,4.314,0l2.6,2.6l6.408-6.407c1.188-1.189,3.123-1.189,4.312,0 C30.01,14.752,30.01,16.684,28.818,17.875z"></path></svg>');
+	background-image: url('./svgs/todo-check-fill.svg');
 }
+
 .todolistitem.checked{
 	color: #CCC;
 	text-decoration: line-through;
 }
 
-.todolistitem span {
+.todolistitem .todoremovebtn, .todolistitem .todopinbtn {
 	position: absolute;
-	right: 10px;
+	right: 6px;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 24px;
@@ -647,8 +1007,22 @@ body {
 	transition: all 0.3s ease;
 	user-select: none;
 }
-.todolistitem span:hover {
+
+.todolistitem .todoremovebtn {
+	scale: 1.05;
+}
+
+.todolistitem .todoremovebtn:hover {
 	color: #FFF;
+}
+
+.todolistitem .todopinbtn {
+	right: 28px;
+	background: url('./svgs/todo-pin-stroke.svg') no-repeat center center / contain;
+}
+
+.todolistitem.pinned .todopinbtn {
+	background-image: url('./svgs/todo-pin-fill.svg');
 }
 
 .todolistitem:first-child {
@@ -1546,7 +1920,7 @@ body {
 	}
 
 	.shortcutsContainer {
-		margin-top: 169px;
+		margin-top: 210px;
 	}
 
 	.centerDiv {
@@ -2599,4 +2973,16 @@ input:checked + .toggle:before {
 
 .savebtn:active {
 	transform: scale(0.96);
+}
+
+/* ---------------------- Loading Screen --------------------------- */
+#LoadingScreen {
+	background: var(--Loading-Screen-Color);
+	display: flex;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99999;
 }

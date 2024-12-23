@@ -1,0 +1,1 @@
+document.documentElement.style.setProperty('--Loading-Screen-Color',localStorage.getItem('LoadingScreenColor') || "#bbd6fd");
