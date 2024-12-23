@@ -505,9 +505,15 @@ body {
 	transition: right 0.3s ease;
 	z-index: 5;
 	display: block;
-	border-radius: var(--round) 0 0 var(--round);
+	border-radius: 0 0 0 var(--round);
 	box-sizing: border-box;
-	overflow: hidden;
+}
+
+.bookmark-sidebar .topOutRoundCorner{
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	left: -30px;
 }
 
 .bookmark-sidebar-header {
