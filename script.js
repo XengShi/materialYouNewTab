@@ -258,7 +258,7 @@ document.addEventListener("click", function (event) {
 // ------------------------End of Google App Menu Setup-----------------------------------
 
 // ------------------------ Bookmark System -----------------------------------
-// DOM Vairables
+// DOM Variables
 const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
 const bookmarkSidebar = document.getElementById('bookmarkSidebar');
 const bookmarkList = document.getElementById('bookmarkList');
@@ -553,9 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         return list;
-    }
-
-    
+    }  
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -1591,12 +1589,12 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageIcon,
             .dark-theme .languageSelector {
                 background-color: #212121;
-                scrollbar-color: var(--darkerColor-blue) transparent;
+                scrollbar-color: var(--darkerColor-dark) transparent;
             }
 
             .dark-theme .languageSelector::-webkit-scrollbar-thumb,
             .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
-                background-color: var(--darkerColor-blue);
+                background-color: var(--darkerColor-dark);
             }
 
             .dark-theme .bottom a {
@@ -1632,7 +1630,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bottom a:hover {
-                color: var(--darkerColor-blue);
+                color: var(--darkerColor-dark);
             }
 
             .dark-theme #searchQ {
@@ -1693,7 +1691,7 @@ const applySelectedTheme = (colorValue) => {
 
      	    .dark-theme .uploadButton,
             .dark-theme .randomButton {
-                background-color: var(--darkColor-blue);
+                background-color: var(--darkColor-dark);
                 color: var(--whitishColor-dark);
             }
 	    
@@ -1736,7 +1734,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-                color: var(--textColorDark-blue) !important;
+                color: var(--textColorDark-dark) !important;
             }
 
             .dark-theme #bookmarkSearch{
@@ -1752,7 +1750,12 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bookmark-right-arrow.rotate {
-                color: var(--textColorDark-blue);
+                color: var(--textColorDark-dark);
+            }
+
+	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
+            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+                background: var(--darkColor-dark);
             }
 
      	    .dark-theme .micIcon {
@@ -1772,11 +1775,11 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #menuButton {
-                border: 6px solid var(--accentLightTint-blue);
+                border: 6px solid var(--accentLightTint-dark);
                 box-shadow:
-                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
+                    /*inset 0 0 0 4px var(--accentLightTint-dark),*/
                     inset 0 0 0 4px #858585,
-                    inset 0 0 0 9.7px var(--accentLightTint-blue),
+                    inset 0 0 0 9.7px var(--accentLightTint-dark),
                     inset 0 0 0 40px #bfbfbf;
             }
 
