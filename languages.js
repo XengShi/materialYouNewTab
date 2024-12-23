@@ -518,6 +518,8 @@ const translations = {
         "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
         "adaptiveIconText": "Adaptivní tvary ikon",
         "adaptiveIconInfoText": "Ikony zkratek se zmenší",
+        "bookmarksText": "Záložky",
+        "bookmarksInfo": "Zobrazí boční panel se záložkami",
         "ai_tools_button": "AI nástroje",
         "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
         "googleAppsMenuText": "Google aplikace",
@@ -575,6 +577,13 @@ const translations = {
         "location": "Země",
         // End of Weather
 
+        // Bookmarks
+        "bookmarksHeading": "Záložky",
+        "bookmarkViewAs" : "Způsob zobrazení",
+        "bookmarkViewGrid" : "Mřížka",
+        "bookmarkViewList" : "Seznam",
+        "bookmarkSearch": "Vyhledejte záložku",
+
         // New Tab Item
         "conditionText": "Dobrý den! Jak se máte?",
         "enterBtn": "Vyhledat",
@@ -612,6 +621,8 @@ const translations = {
         "failedbackup": "Zálohování selhalo: ",
         "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
         "restorefailed": "Obnova ze zálohy selhala: ",
+        "invalidBackup": "Neplatný soubor se zálohou",
+        "deleteBookmark": "Opravdu si přejete smazat tuto záložku?",
     },
 
 
