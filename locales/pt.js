@@ -12,6 +12,8 @@ const pt = {
     "editShortcutsListInfo": "Você pode adicionar novos atalhos clicando no ícone \"+\" ou editar os existentes clicando no nome ou URL do atalho",
     "adaptiveIconText": "Ícones Adaptativos",
     "adaptiveIconInfoText": "Os ícones de atalho aparecerão redondos",
+    "bookmarksText": "Favoritos",
+    "bookmarksInfo": "Mostrar barra lateral de favoritos",
     "ai_tools_button": "Ferramentas de IA",
     "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
     "googleAppsMenuText": "Apps Google",
@@ -66,8 +68,15 @@ const pt = {
     // Weather
     "humidityLevel": "Umidade",
     "feelsLike": "Sensação de",
-    // "location": "Terra",
+    "location": "Terra",
     // End of Weather
+
+    // Bookmarks
+    "bookmarksHeading": "Favoritos",
+    "bookmarkViewAs": "Visualizar como",
+    "bookmarkViewGrid": "Grade",    // Keep this shorter
+    "bookmarkViewList": "Lista",    // Keep this shorter
+    "bookmarkSearch": "Pesquisar favorito",
 
     // New Tab Item
     "conditionText": "Olá! Como você está hoje?",
@@ -89,6 +98,7 @@ const pt = {
         "afternoon": "Boa tarde!",
         "evening": "Boa noite!"
     },
+
     // Search Engines
     "googleEngine": "Google",
     "duckEngine": "Duck",
@@ -100,6 +110,7 @@ const pt = {
     "copilot": "Copilot",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
     "github": "GitHub",
 
     // Wallpaper and alerts
@@ -107,7 +118,6 @@ const pt = {
     "backupText": "Backup",
     "restoreText": "Restaurar",
     "rangColor": "Escolher cor",
-
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Você gostaria de definir uma nova imagem como seu papel de parede para o dia?",
@@ -122,5 +132,6 @@ const pt = {
     "failedbackup": "Falha no backup: ",
     "restorecompleted": "Restauração concluída com sucesso!",
     "restorefailed": "Restauração falhou: ",
-    "invalidBackup": "Arquivo de backup inválido"
+    "invalidBackup": "Arquivo de backup inválido",
+    "deleteBookmark": "Você tem certeza de que deseja excluir o favorito?",
 };
