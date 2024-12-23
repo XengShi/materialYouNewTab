@@ -145,7 +145,14 @@ function applyLanguage(lang) {
         'uploadWallpaperText',
         'backupText',
         'restoreText',
-        'rangColor'
+        'rangColor',
+        'bookmarkSearch',
+        'bookmarksText',
+        'bookmarksInfo',
+        'bookmarksHeading',
+        'bookmarkViewAs',
+        'bookmarkViewGrid',
+        'bookmarkViewList',
     ];
 
     // Specific mapping for placeholders with different IDs and keys
