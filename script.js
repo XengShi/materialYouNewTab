@@ -134,7 +134,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
         const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
 
-        if (!parsedData || (Date.now() - weatherParsedTime) > 90000) {
+        if (!parsedData || (Date.now() - weatherParsedTime) > 900000) {
             // Fetch weather data using Weather API
             const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             const data = await fetch(weatherApi);
