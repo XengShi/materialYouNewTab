@@ -75,7 +75,7 @@ const pt = {
     "searchPlaceholder": "Digite aqui...",
     "listenPlaceholder": "Ouvindo...",
     "todoPlaceholder": "Adicionar tarefa...",
-    "todoListHeading": "Lista de Tarefas",
+    "todoListText": "Lista de Tarefas",
     "todoListHover": "Lista de Tarefas",
     "searchWithHint": "Pesquisar Com",
     "ai_tools": "Ferramentas de IA",

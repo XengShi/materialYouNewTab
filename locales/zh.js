@@ -1,5 +1,5 @@
 // Chinese (Simplified)
-const zn = {
+const zh = {
     "feedback": "反馈",
     "resetsettings": "重置设置",
     "menuCloseText": "关闭",

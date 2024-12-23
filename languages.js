@@ -10,7 +10,7 @@
 const translations = {
     en: en, // English
     pt: pt, // Portuguese-BR
-    zn: zn, // Chinese (Simplified)
+    zh: zh, // Chinese (Simplified)
     hi: hi, // Hindi
     cs: cs, // Czech
     it: it, // Italian
@@ -89,7 +89,6 @@ function applyLanguage(lang) {
         'enable_ai_tools',
         'googleAppsMenuText',
         'googleAppsMenuInfo',
-        'todoListHeading',
         'todoListText',
         'todoListInfo',
         'fahrenheitCelsiusCheckbox',
@@ -134,11 +133,6 @@ function applyLanguage(lang) {
         'bingEngine',
         'braveEngine',
         'youtubeEngine',
-        'googleEngineDD',
-        'duckEngineDD',
-        'bingEngineDD',
-        'braveEngineDD',
-        'youtubeEngineDD',
         'chatGPT',
         'gemini',
         'copilot',
@@ -160,7 +154,17 @@ function applyLanguage(lang) {
         { id: 'userAPI', key: 'userAPI' },
         { id: 'searchQ', key: 'searchPlaceholder' },
         { id: 'todoInput', key: 'todoPlaceholder' }
-    ]; 
+    ];
+
+    // Mapping of elements and their different translation keys
+    const elementsMap = [
+        { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'googleEngineDD', key: 'googleEngine' },
+        { id: 'duckEngineDD', key: 'duckEngine' },
+        { id: 'bingEngineDD', key: 'bingEngine' },
+        { id: 'braveEngineDD', key: 'braveEngine' },
+        { id: 'youtubeEngineDD', key: 'youtubeEngine' },
+    ];
 
     // Function to apply translations
     function applyTranslations(items, isPlaceholder) {
@@ -171,7 +175,7 @@ function applyLanguage(lang) {
                 // Use 'key' if defined, otherwise use 'id' as the translation key
                 const key = item.key || item;
                 // Get the translation, fallback to English if not found in the current language
-                const translation = translations[lang]?.[key] || translations['en'][key];
+                const translation = translations[lang]?.[key] || translations['en']?.[key];
 
                 // Apply the translation to either placeholder or innerText
                 if (isPlaceholder) {
@@ -183,12 +187,10 @@ function applyLanguage(lang) {
         });
     }
 
-    // Apply text translations
-    applyTranslations(translationMap, false);
-
-    // Apply placeholder translations
-    applyTranslations(placeholderMap, true);
-
+    // Aplicar traduções
+    applyTranslations(placeholderMap, true); // Para placeholders
+    applyTranslations(elementsMap, false);  // Para textos internos
+    applyTranslations(translationMap, false);  // Para textos internos
 
     // userText
     const userTextDiv = document.getElementById('userText');
@@ -221,7 +223,6 @@ function applyLanguage(lang) {
 // Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
-    location.reload();
 });
 
 // Function to apply the language when the page loads

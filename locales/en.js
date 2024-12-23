@@ -17,7 +17,6 @@ const en = {
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "Show shortcuts for Google Apps",
     "todoListText": "To Do List",
-    "todoListHeading": "To Do List",
     "todoListInfo": "Show a daily To Do list",
     // Digital Clock
     "digitalclocktittle": "Digital Clock",
