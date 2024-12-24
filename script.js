@@ -268,8 +268,14 @@ const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 
-const isFirefox = typeof browser !== 'undefined';
-var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
+var bookmarksAPI;
+if (typeof browser !== 'undefined' && browser.bookmarks) {
+    bookmarksAPI = browser.bookmarks;
+} else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
+    bookmarksAPI = chrome.bookmarks;
+} else {
+    console.error('Bookmarks API not supported in this browser.');
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     
