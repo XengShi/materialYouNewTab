@@ -1,3 +1,4 @@
+// Korean
 const ko = {
     // Menu Items
     "feedback": "피드백",
