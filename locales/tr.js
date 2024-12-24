@@ -1,3 +1,4 @@
+// Turkish
 const tr = {
     // Menu Items
     "feedback": "Geri Bildirim",
@@ -80,4 +81,18 @@ const tr = {
         "afternoon": "İyi öğleden sonra!",
         "evening": "İyi akşamlar!"
     },
+
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "Duck",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
 }
