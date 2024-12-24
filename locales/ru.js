@@ -1,8 +1,8 @@
 // Russian
 const ru = {
     // Menu Items
-    "feedback": "Обратная связь",	
-    "resetsettings": "Сброс настроек",	
+    "feedback": "Обратная связь",
+    "resetsettings": "Сброс настроек",
     "menuCloseText": "Закрыть",
     // Shortcuts
     "shortcutsText": "Ярлыки",

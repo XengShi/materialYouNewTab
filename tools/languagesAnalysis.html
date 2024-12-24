@@ -128,6 +128,14 @@
             border-left-color: var(--md-sys-color-error-dark);
            background-color: var(--md-sys-color-error-container-dark);
        }
+        #results li.extra {
+            border-left-color: var(--md-sys-color-secondary);
+            background-color: var(--md-sys-color-secondary-container);
+        }
+        #results li.extra.dark-mode {
+            border-left-color: var(--md-sys-color-secondary-dark);
+            background-color: var(--md-sys-color-secondary-container-dark);
+        }
         #complete li {
             border-left-color: var(--md-sys-color-primary);
             background-color: var(--md-sys-color-primary-container);
@@ -247,7 +255,8 @@
            align-items: center;
              cursor: pointer;
             user-select: none;
-       }
+            justify-content: space-between; /* Alinha o texto à esquerda e o contador à direita */
+        }
         .language-group h3.dark-mode {
              color: var(--md-sys-color-on-surface-variant-dark);
         }
@@ -312,6 +321,22 @@
             color: var(--md-sys-color-on-error-dark);
             background-color: var(--md-sys-color-error-container-dark);
        }
+        #extra-keys-message {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.9rem;
+            font-style: italic;
+            background-color: var(--md-sys-color-secondary-container);
+            padding: 0.7rem;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        #extra-keys-message.dark-mode {
+            color: var(--md-sys-color-on-secondary-container-dark);
+            background-color: var(--md-sys-color-secondary-container-dark);
+        }
 
         @keyframes fadeIn {
              from {
@@ -320,6 +345,12 @@
             to {
                  opacity: 1;
            }
+        }
+        .key-count {
+            font-size: 0.8rem;
+            font-weight: normal;
+            margin-left: 1rem;
+            opacity: 0.7;
         }
     </style>
     <!-- SCRIPTS -->
@@ -354,11 +385,14 @@
         <div id="complete" class="light-mode"></div>
        <h2 class="light-mode">Language Key Analysis Results</h2>
         <p class="light-mode">
-            This page is a tool designed to analyze language keys in your project. English is used as the reference language for comparison. The tool identifies missing keys in other languages and highlights complete ones.
+            This page is a tool designed to analyze language keys in your project. English is used as the reference language for comparison. The tool identifies missing and extra keys in other languages and highlights complete ones.
         </p>
          <div id="incomplete-message" class="light-mode" style="display: none;">
-           The languages below are not fully translated. Please check the missing keys.
+           The languages below have missing translations compared to the reference language.
          </div>
+        <div id="extra-keys-message" class="light-mode" style="display: none;">
+            The languages below have extra keys not present in the reference language. Consider removing them for consistency.
+        </div>
         <div id="results" class="light-mode"></div>
     </main>
     <script>
@@ -370,56 +404,91 @@
          const h2 = document.querySelector('h2');
           const p = document.querySelector('p');
          const incompleteMessage = document.getElementById('incomplete-message');
+         const extraKeysMessage = document.getElementById('extra-keys-message');
 
         function compareLanguageKeys(referenceLang, languages) {
-           const missingKeys = {};
-             const completeKeys = [];
+           const analysis = {};
+
             for (const lang in languages) {
                  if (lang !== referenceLang) {
                     const refKeys = Object.keys(languages[referenceLang]);
                    const langKeys = Object.keys(languages[lang]);
+
                    const missing = refKeys.filter(key => !langKeys.includes(key));
-                    if (missing.length > 0) {
-                         missingKeys[lang] = missing;
-                    } else {
-                       completeKeys.push(lang);
-                    }
+                    const extra = langKeys.filter(key => !refKeys.includes(key));
+
+                    analysis[lang] = {
+                        missingKeys: missing,
+                        extraKeys: extra,
+                        isComplete: missing.length === 0 && extra.length === 0
+                    };
                 }
             }
-            return { missingKeys, completeKeys };
+            return analysis;
          }
-        const { missingKeys, completeKeys } = compareLanguageKeys('en', languages);
+        const languageAnalysis = compareLanguageKeys('en', languages);
          const ulResults = document.createElement('ul');
          const ulComplete = document.createElement('ul');
-       completeKeys.forEach(lang => {
-            const li = document.createElement('li');
-            li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-            li.innerHTML = `<strong>Congratulations!</strong> The language <strong>${lang}</strong> is complete!`;
-             ulComplete.appendChild(li);
-       });
-         const languageGroups = {};
-         for (const lang in missingKeys) {
-             languageGroups[lang] = document.createElement('div');
-             languageGroups[lang].classList.add('language-group', 'collapsed');
-            const h3 = document.createElement('h3');
-            h3.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-             h3.textContent = `Language: ${lang}`;
-            languageGroups[lang].appendChild(h3);
-            const ul = document.createElement('ul');
-            missingKeys[lang].forEach(key => {
-                 const li = document.createElement('li');
-                li.classList.add('missing');
-                 li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-                 li.innerHTML = `
-                    <input type="checkbox" id="checkbox-${lang}-${key}" data-lang="${lang}" data-key="${key}">
-                   <span>${key}</span>
-                `;
-                ul.appendChild(li);
-             });
-            languageGroups[lang].appendChild(ul);
-            ulResults.appendChild(languageGroups[lang]);
+
+       for (const lang in languageAnalysis) {
+            if (languageAnalysis[lang].isComplete) {
+                const li = document.createElement('li');
+                li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                li.innerHTML = `<strong>Congratulations!</strong> The language <strong>${lang}</strong> is complete!`;
+                ulComplete.appendChild(li);
+            }
         }
-        if (completeKeys.length > 0) {
+
+         const languageGroups = {};
+         let hasMissingKeys = false;
+         let hasExtraKeys = false;
+
+         for (const lang in languageAnalysis) {
+             const { missingKeys, extraKeys } = languageAnalysis[lang];
+             if (missingKeys.length > 0 || extraKeys.length > 0) {
+                hasMissingKeys = hasMissingKeys || missingKeys.length > 0;
+                hasExtraKeys = hasExtraKeys || extraKeys.length > 0;
+
+                 languageGroups[lang] = document.createElement('div');
+                languageGroups[lang].classList.add('language-group', 'collapsed');
+                const h3 = document.createElement('h3');
+                h3.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                h3.innerHTML = `Language: ${lang}
+                    <span class="key-count">Missing: ${missingKeys.length}</span>
+                    <span class="key-count">Extra: ${extraKeys.length}</span>
+                `;
+                languageGroups[lang].appendChild(h3);
+                languageGroups[lang].appendChild(document.createElement('ul'));
+
+                const ul = languageGroups[lang].querySelector('ul');
+                missingKeys.forEach(key => {
+                     const li = document.createElement('li');
+                    li.classList.add('missing');
+                     li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                     li.innerHTML = `
+                        <input type="checkbox" id="checkbox-missing-${lang}-${key}" data-lang="${lang}" data-key="${key}">
+                       <span>Missing: ${key}</span>
+                    `;
+                    ul.appendChild(li);
+                 });
+
+                extraKeys.forEach(key => {
+                     const li = document.createElement('li');
+                    li.classList.add('extra');
+                     li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
+                     li.innerHTML = `
+                        <span>Extra: ${key}</span>
+                    `;
+                    ul.appendChild(li);
+                 });
+             }
+        }
+
+        for (const langGroup in languageGroups) {
+            ulResults.appendChild(languageGroups[langGroup]);
+        }
+
+        if (Object.keys(languageAnalysis).filter(lang => languageAnalysis[lang].isComplete).length > 0) {
              completeDiv.appendChild(ulComplete);
         } else {
             const li = document.createElement('li');
@@ -428,8 +497,15 @@
            completeDiv.appendChild(ulComplete);
         }
 
-        if (Object.keys(missingKeys).length > 0) {
+        if (hasMissingKeys) {
             incompleteMessage.style.display = 'block';
+        }
+
+        if (hasExtraKeys) {
+            extraKeysMessage.style.display = 'block';
+        }
+
+        if (hasMissingKeys || hasExtraKeys) {
             resultsDiv.appendChild(ulResults);
         }
 
@@ -444,12 +520,14 @@
                 }
             }
         });
+
         resultsDiv.addEventListener('click', (event) => {
             if (event.target.closest('.language-group h3')) {
                  const group = event.target.closest('.language-group');
                 group.classList.toggle('collapsed');
             }
          });
+
         themeToggle.addEventListener('click', () => {
            body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
@@ -463,6 +541,8 @@
             p.classList.toggle('light-mode');
              incompleteMessage.classList.toggle('dark-mode');
             incompleteMessage.classList.toggle('light-mode');
+            extraKeysMessage.classList.toggle('dark-mode');
+            extraKeysMessage.classList.toggle('light-mode');
           document.querySelectorAll('#complete li').forEach(li => {
                  li.classList.toggle('dark-mode');
                li.classList.toggle('light-mode');
