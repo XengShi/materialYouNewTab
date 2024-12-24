@@ -1,23 +1,23 @@
 // Bengali
 const bn = {
     // Menu Items	
-    "feedback": "মতামত",	
-    "resetsettings": "সেটিংস পুনরায় সেট করুন",	
-    "menuCloseText": "বন্ধ করুন",	
+    "feedback": "মতামত",
+    "resetsettings": "সেটিংস পুনরায় সেট করুন",
+    "menuCloseText": "বন্ধ করুন",
 
     // Shortcuts	
-    "shortcutsText": "শর্টকাট",	
-    "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",	
-    "editShortcutsText": "শর্টকাট সম্পাদনা করুন",	
-    "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",	
-    "editShortcutsList": "সংরক্ষিত শর্টকাট",	
-    "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",	
-    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",	
-    "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",	
-    "bookmarksText": "বুকমার্কস",	
-    "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",	
-    "ai_tools_button": "এআই সরঞ্জাম",	
-    "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",	
+    "shortcutsText": "শর্টকাট",
+    "enableShortcutsText": "সংরক্ষিত শর্টকাটগুলি প্রদর্শন করুন",
+    "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
+    "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
+    "editShortcutsList": "সংরক্ষিত শর্টকাট",
+    "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
+    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
+    "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+    "bookmarksText": "বুকমার্কস",
+    "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
+    "ai_tools_button": "এআই সরঞ্জাম",
+    "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
     "googleAppsMenuText": "গুগল অ্যাপস",
     "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
 
