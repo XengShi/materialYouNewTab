@@ -74,8 +74,8 @@ const pt = {
     // Bookmarks
     "bookmarksHeading": "Favoritos",
     "bookmarkViewAs": "Visualizar como",
-    "bookmarkViewGrid": "Grade",    // Keep this shorter
-    "bookmarkViewList": "Lista",    // Keep this shorter
+    "bookmarkViewGrid": "Grade",
+    "bookmarkViewList": "Lista",
     "bookmarkSearch": "Pesquisar favorito",
 
     // New Tab Item
@@ -124,11 +124,7 @@ const pt = {
     "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
     "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
     "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
-    "confirmbackup": "Você tem certeza de que deseja fazer backup de suas configurações?",
     "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
-    "endlink": "Não deve haver / no final do link",
-    "onlylinks": "Apenas links (começando com http:// ou https://) são permitidos.",
-    "imagedimensions": "Aviso: As dimensões da imagem carregada ({width}x{height}) excedem 1920x1080 pixels. \n\nIsso pode impactar o desempenho ou a imagem pode não carregar corretamente.",
     "failedbackup": "Falha no backup: ",
     "restorecompleted": "Restauração concluída com sucesso!",
     "restorefailed": "Restauração falhou: ",
