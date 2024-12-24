@@ -138,16 +138,34 @@ window.addEventListener('DOMContentLoaded', async () => {
         const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
         const weatherParsedLang = localStorage.getItem("weatherParsedLang");
         
-        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || weatherParsedLocation !== currentUserLocation || weatherParsedLang !== currentLanguage) {
+        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
             // Fetch weather data using Weather API
             let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             let data = await fetch(weatherApi);
             parsedData = await data.json();
             if (!parsedData.error) {
-                localStorage.setItem("weatherParsedData", JSON.stringify(parsedData)); // Save weather data to localStorage
-                localStorage.setItem("weatherParsedTime", Date.now()); // Save Time of last fetching
-                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save User Location of last fetched Weather
-                localStorage.setItem("weatherParsedLang", currentLanguage); // Save User Location of last fetched Weather
+                // Extract only the necessary fields before saving
+                const filteredData = {
+                    location: {
+                        name: parsedData.location.name,
+                    },
+                    current: {
+                        condition: {
+                            text: parsedData.current.condition.text,
+                            icon: parsedData.current.condition.icon,
+                        },
+                        temp_c: parsedData.current.temp_c,
+                        temp_f: parsedData.current.temp_f,
+                        humidity: parsedData.current.humidity,
+                        feelslike_c: parsedData.current.feelslike_c,
+                        feelslike_f: parsedData.current.feelslike_f,
+                    },
+                };
+                // Save filtered weather data to localStorage
+                localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
+                localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
+                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
+                localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
             }
             UpdateWeather();
         } else {
