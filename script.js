@@ -3335,12 +3335,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadShortcuts();
 });
 
-    if(bookmarkGridCheckbox.checked){
-        bookmarkList.classList.add("grid-view");
-    } else {
-        bookmarkList.classList.remove("grid-view");
-    }
-});
+if(bookmarkGridCheckbox.checked){
+	bookmarkList.classList.add("grid-view");
+} else {
+	bookmarkList.classList.remove("grid-view");
+}
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
