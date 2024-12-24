@@ -1,17 +1,21 @@
 {
     "manifest_version": 3,
     "name": "Material You NewTab",
-    "version": "2.5",
+    "version": "2.6",
     "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-    "permissions": [],
-    "background": {
-        "service_worker": "background.js"
-    },
+    "optional_permissions": ["bookmarks"],
+    "host_permissions": [
+		"https://www.google.com/complete/search*",
+		"https://duckduckgo.com/ac/*",
+		"https://search.brave.com/api/suggest*"
+	],
     "icons": {
-        "48": "icon.png"
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
     },
     "action": {
-        "default_icon": "icon.png"
+        "default_icon": "icon48.png"
     },
     "chrome_url_overrides": {
         "newtab": "index.html"

@@ -6,155 +6,133 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-// Check if alert has already been shown
-if (!localStorage.getItem('alertShown')) {
-    // Show the alert after 4 seconds
-    setTimeout(() => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const message = isMac
-            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
-            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
-
-        alert(message);
-
-        // Set a flag in localStorage so the alert is not shown again
-        localStorage.setItem('alertShown', 'true');
-    }, 4000);
-}
-
 let proxyurl;
 let clocktype;
 let hourformat;
 window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Cache DOM elements
-        const userAPIInput = document.getElementById("userAPI");
-        const userLocInput = document.getElementById("userLoc");
-        const userProxyInput = document.getElementById("userproxy");
-        const saveAPIButton = document.getElementById("saveAPI");
-        const saveLocButton = document.getElementById("saveLoc");
-        const resetbtn = document.getElementById("resetsettings");
-        const saveProxyButton = document.getElementById("saveproxy");
+    // Cache DOM elements
+    const userAPIInput = document.getElementById("userAPI");
+    const userLocInput = document.getElementById("userLoc");
+    const userProxyInput = document.getElementById("userproxy");
+    const saveAPIButton = document.getElementById("saveAPI");
+    const saveLocButton = document.getElementById("saveLoc");
+    const resetbtn = document.getElementById("resetsettings");
+    const saveProxyButton = document.getElementById("saveproxy");
 
-        // Load saved data from localStorage
-        const savedApiKey = localStorage.getItem("weatherApiKey");
-        const savedLocation = localStorage.getItem("weatherLocation");
-        const savedProxy = localStorage.getItem("proxy");
+    // Load saved data from localStorage
+    const savedApiKey = localStorage.getItem("weatherApiKey");
+    const savedLocation = localStorage.getItem("weatherLocation");
+    const savedProxy = localStorage.getItem("proxy");
 
-        // Pre-fill input fields with saved data
-        if (savedLocation) userLocInput.value = savedLocation;
-        if (savedApiKey) userAPIInput.value = savedApiKey;
+    // Pre-fill input fields with saved data
+    if (savedLocation) userLocInput.value = savedLocation;
+    if (savedApiKey) userAPIInput.value = savedApiKey;
 
-        const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
-        if (savedProxy && savedProxy !== defaultProxyURL) {
-            userProxyInput.value = savedProxy;
+    const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+    if (savedProxy && savedProxy !== defaultProxyURL) {
+        userProxyInput.value = savedProxy;
+    }
+
+    // Function to simulate button click on Enter key press
+    function handleEnterPress(event, buttonId) {
+        if (event.key === 'Enter') {
+            document.getElementById(buttonId).click();
+        }
+    }
+
+    // Add event listeners for handling Enter key presses
+    userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
+    userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
+    userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
+
+    // Save API key to localStorage
+    saveAPIButton.addEventListener("click", () => {
+        const apiKey = userAPIInput.value.trim();
+        localStorage.setItem("weatherApiKey", apiKey);
+        userAPIInput.value = "";
+        location.reload();
+    });
+
+    // Save location to localStorage
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        userLocInput.value = "";
+        location.reload();
+    });
+
+    // Reset settings (clear localStorage)
+    resetbtn.addEventListener("click", () => {
+        if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
+            localStorage.clear();
+            location.reload();
+        }
+    });
+
+    // Save the proxy to localStorage
+    saveProxyButton.addEventListener("click", () => {
+        const proxyurl = userProxyInput.value.trim();
+
+        // If the input is empty, use the default proxy.
+        if (proxyurl === "") {
+            localStorage.setItem("proxy", defaultProxyURL);
+            userProxyInput.value = "";
+            location.reload();
+            return;
         }
 
-        // Function to simulate button click on Enter key press
-        function handleEnterPress(event, buttonId) {
-            if (event.key === 'Enter') {
-                document.getElementById(buttonId).click();
-            }
-        }
-
-        // Add event listeners for handling Enter key presses
-        userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
-        userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
-        userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
-
-        // Save API key to localStorage
-        saveAPIButton.addEventListener("click", () => {
-            const apiKey = userAPIInput.value.trim();
-            localStorage.setItem("weatherApiKey", apiKey);
-            userAPIInput.value = "";
-            location.reload();
-        });
-
-        // Save location to localStorage
-        saveLocButton.addEventListener("click", () => {
-            const userLocation = userLocInput.value.trim();
-            localStorage.setItem("weatherLocation", userLocation);
-            userLocInput.value = "";
-            location.reload();
-        });
-
-        // Reset settings (clear localStorage)
-        resetbtn.addEventListener("click", () => {
-            if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
-                localStorage.clear();
-                location.reload();
-            }
-        });
-
-        // Save the proxy to localStorage
-        saveProxyButton.addEventListener("click", () => {
-            const proxyurl = userProxyInput.value.trim();
-
-            // If the input is empty, use the default proxy.
-            if (proxyurl === "") {
-                localStorage.setItem("proxy", defaultProxyURL);
+        // Validate if input starts with 'http://' or 'https://'
+        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
+            if (!proxyurl.endsWith("/")) {
+                localStorage.setItem("proxy", proxyurl);
                 userProxyInput.value = "";
                 location.reload();
-                return;
-            }
-
-            // Validate if input starts with 'http://' or 'https://'
-            if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-                if (!proxyurl.endsWith("/")) {
-                    localStorage.setItem("proxy", proxyurl);
-                    userProxyInput.value = "";
-                    location.reload();
-                } else {
-                    alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-                }
             } else {
-                alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
+                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
             }
-        });
-
-	// Default Weather API key
-        const weatherApiKeys = [
-            // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-            'db0392b338114f208ee135134240312',
-            'de5f7396db034fa2bf3140033240312',
-            'c64591e716064800992140217240312',
-            '9b3204c5201b4b4d8a2140330240312',
-            'eb8a315c15214422b60140503240312',
-            'cd148ebb1b784212b74140622240312',
-            '7ae67e219af54df2840140801240312'
-        ];
-        const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
-
-        // Determine API key and proxy URL to use
-        const apiKey = savedApiKey || defaultApiKey;
-        proxyurl = savedProxy || defaultProxyURL;
-
-        // Determine the location to use
-        let currentUserLocation = savedLocation;
-
-        // If no saved location, fetch the IP-based location
-        if (!currentUserLocation) {
-            try {
-                const geoLocation = 'https://ipinfo.io/json/';
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-
-                // If the country is India and the location is 'Delhi', update to 'New Delhi'
-                if (parsedLocation.country === "IN" && parsedLocation.city === "Delhi") {
-                    currentUserLocation = "New Delhi";
-                } else {
-                    currentUserLocation = parsedLocation.city; // Update to user's city from IP
-                }
-
-                localStorage.setItem("weatherLocation", currentUserLocation); // Save and show the fetched location
-            } catch (error) {
-                currentUserLocation = "auto:ip"; // Fallback if fetching location fails
-            }
+        } else {
+            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
         }
+    });
 
-        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    // Default Weather API key
+    const weatherApiKeys = [
+        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+        // 'db0392b338114f208ee135134240312',
+        // 'de5f7396db034fa2bf3140033240312',
+        // 'c64591e716064800992140217240312',
+        // '9b3204c5201b4b4d8a2140330240312',
+        // 'eb8a315c15214422b60140503240312',
+        // 'cd148ebb1b784212b74140622240312',
+        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        '0a6bc8a404224c8d89953341241912',
+        'f59e58d7735d4739ae953115241912'
+    ];
+    const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
+    // Determine API key and proxy URL to use
+    const apiKey = savedApiKey || defaultApiKey;
+    proxyurl = savedProxy || defaultProxyURL;
+
+    // Determine the location to use
+    let currentUserLocation = savedLocation;
+
+    // If no saved location, fetch the IP-based location
+    if (!currentUserLocation) {
+        try {
+            const geoLocation = 'https://ipinfo.io/json/';
+            const locationData = await fetch(geoLocation);
+            const parsedLocation = await locationData.json();
+
+            currentUserLocation = parsedLocation.loc;
+        } catch (error) {
+            currentUserLocation = "auto:ip"; // Fallback if fetching location fails
+        }
+    }
+
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
+    try {
         // Fetch weather data using Weather API
         const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         const data = await fetch(weatherApi);
@@ -279,6 +257,464 @@ document.addEventListener("click", function (event) {
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
 
+// ------------------------ Bookmark System -----------------------------------
+// DOM Vairables
+const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
+const bookmarkSidebar = document.getElementById('bookmarkSidebar');
+const bookmarkList = document.getElementById('bookmarkList');
+const bookmarkSearch = document.getElementById('bookmarkSearch');
+const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
+const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
+const bookmarkViewList = document.getElementById('bookmarkViewList');
+
+
+const isFirefox = typeof browser !== 'undefined';
+var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    bookmarkRightArrow.addEventListener('click', function() {
+        toggleBookmarkSidebar();
+        bookmarkSearchClearButton.click();
+    });
+
+    bookmarkViewGrid.addEventListener('click', function() {
+        bookmarkGridCheckbox.click();
+    });
+    
+    bookmarkViewList.addEventListener('click', function() {
+        bookmarkGridCheckbox.click();
+        // bookmarkGridCheckbox.checked = false;
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+            toggleBookmarkSidebar();
+        }
+    });
+
+    bookmarkSearch.addEventListener('input', function () {
+        const searchTerm = bookmarkSearch.value.toLowerCase();
+        const bookmarks = bookmarkList.querySelectorAll('li[data-url], li.folder'); // Include both bookmarks and folders
+
+        Array.from(bookmarks).forEach(function (bookmark) {
+            const text = bookmark.textContent.toLowerCase();
+            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : '';
+            const isFolder = bookmark.classList.contains('folder');
+
+            // Show bookmarks if the search term matches either the name or the URL
+            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
+                bookmark.style.display = ''; // Show matching bookmarks
+            } else if (isFolder) {
+                // For folders, check if any child bookmarks match the search
+                const childBookmarks = bookmark.querySelectorAll('li[data-url]');
+                let hasVisibleChild = false;
+                Array.from(childBookmarks).forEach(function (childBookmark) {
+                    const childText = childBookmark.textContent.toLowerCase();
+                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : '';
+                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
+                        hasVisibleChild = true;
+                        childBookmark.style.display = ''; // Show matching child bookmarks
+                    } else {
+                        childBookmark.style.display = 'none'; // Hide non-matching child bookmarks
+                    }
+                });
+
+                if (hasVisibleChild) {
+                    bookmark.style.display = ''; // Show folder if it has matching child bookmarks
+                    bookmark.classList.add('open'); // Open folder to show matching child bookmarks
+                } else {
+                    bookmark.style.display = 'none'; // Hide folder if no child matches
+                    bookmark.classList.remove('open');
+                }
+            } else {
+                bookmark.style.display = 'none'; // Hide non-matching bookmarks
+            }
+        });
+
+        if (searchTerm === '') {
+            // Reset display for all bookmarks and folders
+            Array.from(bookmarks).forEach(function (bookmark) {
+                bookmark.style.display = '';
+                if (bookmark.classList.contains('folder')) {
+                    bookmark.classList.remove('open');
+                    const childList = bookmark.querySelector('ul');
+                    if (childList) {
+                        childList.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+	// Show or hide the clear button based on the search term
+        bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
+    });
+
+    bookmarkSearchClearButton.addEventListener('click', function() {
+        bookmarkSearch.value = '';
+        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    });
+
+    function toggleBookmarkSidebar() {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkRightArrow.classList.toggle('rotate');
+
+        if (bookmarkSidebar.classList.contains('open')) {
+            loadBookmarks();
+        }
+    };
+    // Function to load bookmarks
+    function loadBookmarks() {
+        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
+            return;
+        }
+
+        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
+            // Clear the current list
+            bookmarkList.innerHTML = '';
+
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(8).then(recentBookmarks => {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
+            }
+
+            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
+            if (isFirefox) {
+                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
+                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
+                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
+
+                if (toolbarNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                }
+                if (menuNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                }
+                if (otherNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
+                }
+            } else {
+                let default_folder = "Bookmarks bar";
+                if (isEdge){
+                    default_folder = "Favorites bar";
+                } else if (isBrave){
+                    default_folder = "Bookmarks";
+                }
+                // Extract the 'Main bookmarks' node and display its Children
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+
+                if (mainBookmarks && mainBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
+                }
+
+                // Extract the other 'Bookmarks' folders and display them
+                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
+                if (bookmarksBar && bookmarksBar.children) {
+                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
+                }
+            }
+        }).catch(err => {
+            console.error("Error loading bookmarks:", err);
+        });
+    }
+
+    function displayBookmarks(bookmarkNodes) {
+        let list = document.createElement('ul');
+        
+        // Separate folders and bookmarks
+        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
+        const bookmarks = bookmarkNodes.filter(node => node.url);
+
+        // Sort folders and bookmarks separately
+        folders.sort((a, b) => a.title.localeCompare(b.title));
+        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+
+        // Sort folders and bookmarks separately by dateAdded
+        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+
+        // Combine folders and bookmarks, placing folders first
+        const sortedNodes = [...folders, ...bookmarks];
+
+        for (let node of sortedNodes) {
+            if (node.id === "1") {continue;}
+            if (node.children && node.children.length > 0) {
+                let folderItem = document.createElement('li');
+
+                // Use the SVG icon from HTML
+                const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
+                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
+                folderItem.appendChild(folderIcon);
+
+                folderItem.appendChild(document.createTextNode(node.title));
+                folderItem.classList.add('folder');
+
+                // Add event listener for unfolding/folding
+                folderItem.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    folderItem.classList.toggle('open');
+                    const subList = folderItem.querySelector('ul');
+                    if (subList) {
+                        subList.classList.toggle('hidden');
+                    }
+                });
+
+                let subList = displayBookmarks(node.children);
+                subList.classList.add('hidden');
+                folderItem.appendChild(subList);
+
+                list.appendChild(folderItem);
+            } else if (node.url) {
+                let item = document.createElement('li');
+		item.dataset.url = node.url; // Add URL as dataset for search functionality
+                let link = document.createElement('a');
+                link.href = node.url;
+                let span = document.createElement('span');
+                span.textContent = node.title;
+
+                let favicon = document.createElement('img');
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
+                favicon.classList.add('favicon');
+                favicon.onerror = () => {
+                    favicon.src = "./shortcuts_icons/offline.svg";
+                };
+
+                // Create the delete button
+                let deleteButton = document.createElement('button');
+                deleteButton.textContent = '✖';
+                deleteButton.classList.add('bookmark-delete-button');
+
+                deleteButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
+                        if (isFirefox) {
+                            // Firefox API (Promise-based)
+                            bookmarksAPI.remove(node.id).then(() => {
+                                item.remove(); // Remove the item from the DOM
+                            }).catch(err => {
+                                console.error("Error removing bookmark in Firefox:", err);
+                            });
+                        } else {
+                            // Chrome API (Callback-based)
+                            bookmarksAPI.remove(node.id, function () {
+                                item.remove(); // Remove the item from the DOM
+                            });
+                        }
+                    }
+                });
+
+                link.appendChild(favicon);
+                link.appendChild(span);
+                item.appendChild(link);
+                item.appendChild(deleteButton); // Add delete button to the item
+
+                // Open links in the current tab or new tab if ctrl pressed
+                link.addEventListener('click', function (event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        // Open in a new tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.create({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.create({ url: node.url });
+                        } else {
+                            window.open(node.url, '_blank');
+                        }
+                    } else {
+                        // Open in the current tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.update({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.update({ url: node.url }, function () {
+                            });
+                        } else {
+                            window.location.href = node.url;
+                        }
+                    }
+                });
+                list.appendChild(item);
+            }
+        }
+
+        list.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        return list;
+    }
+
+    
+});
+
+// ------------------------ End of Bookmark System -----------------------------------
+
+// ----------------------------------- To Do List ----------------------------------------
+
+// DOM Variables
+const todoContainer = document.getElementById("todoContainer");
+const todoListCont = document.getElementById("todoListCont");
+const todoulList = document.getElementById("todoullist");
+const todoAdd = document.getElementById("todoAdd");
+const todoInput = document.getElementById("todoInput");
+let todoList = {}; // Initialize todoList JSON
+
+// Add event listeners for Add button click or Enter key press
+todoAdd.addEventListener("click", addtodoItem);
+todoInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        addtodoItem();
+    }
+});
+
+// Utility function to sanitize input
+function sanitizeInput(input) {
+    const div = document.createElement('div');
+    div.textContent = input;
+    return div.innerHTML;
+}
+
+// Function to add items to the TODO list
+function addtodoItem() {
+    const inputText = todoInput.value.trim(); // Remove useless whitespaces
+    if (inputText === '') {
+        return; // Return the function when the input is empty
+    }
+    const t = "t" + Date.now(); // Generate a Unique ID
+    const rawText = inputText;
+    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
+    const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
+    todoulList.appendChild(li); // Append the new item to the DOM immediately
+    todoInput.value = ''; // Clear Input
+    SaveToDoData(); // Save changes
+}
+
+function createTodoItemDOM(id, title, status, pinned) {
+    let li = document.createElement('li');
+    li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
+    const removebtn = document.createElement("span"); // Create the Cross Icon
+    removebtn.setAttribute("class", "todoremovebtn");
+    removebtn.textContent = "\u00d7";
+    li.appendChild(removebtn); // Add the cross icon to the LI tag
+    li.setAttribute("class", "todolistitem");
+    if (status === 'completed') {
+        li.classList.add("checked");
+    }
+    const pinbtn = document.createElement("span"); // Create the Cross Icon
+    pinbtn.setAttribute("class", "todopinbtn");
+    li.appendChild(pinbtn); // Add the cross icon to the LI tag
+    if (pinned) {
+        li.classList.add("pinned");
+    }
+    li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
+    return li; // Return the created `li` element
+}
+
+// Event delegation for task check and remove
+todoulList.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI"){
+        event.target.classList.toggle("checked"); // Check the clicked LI tag
+        let id = event.target.dataset.todoitem;
+        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        SaveToDoData(); // Save Changes
+    } else if (event.target.classList.contains('todoremovebtn')){
+        let id = event.target.parentElement.dataset.todoitem;
+        event.target.parentElement.remove(); // Remove the clicked LI tag
+        delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
+    } else if (event.target.classList.contains('todopinbtn')){
+        event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
+        let id = event.target.parentElement.dataset.todoitem;
+        todoList[id].pinned = ((todoList[id].pinned === true)? false : true); // Update status
+        SaveToDoData(); // Save Changes
+    }
+});
+
+// Save JSON to local Storage
+function SaveToDoData(){
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+}
+// Fetch saved JSON and create list items using it
+function ShowToDoList() {
+    try {
+        todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
+        const fragment = document.createDocumentFragment(); // Create a DocumentFragment
+        for (let id in todoList) {
+            const todo = todoList[id];
+            const li = createTodoItemDOM(id, todo.title, todo.status, todo.pinned); // Create `li` elements
+            fragment.appendChild(li); // Add `li` to the fragment
+        }
+        todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
+    } catch (error) {
+        console.error("Error loading from localStorage:", error);
+        localStorage.setItem("todoList", '{}'); // Reset corrupted data
+    }
+}
+
+// Code to reset the List on the Next Day
+let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
+let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
+if (todoLastUpdateDate===todoCurrentDate){
+    ShowToDoList();
+} else {
+    // Modify the list when last update date and the current date does not match
+    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    todoList = JSON.parse(localStorage.getItem("todoList")) || {};
+    for(let id in todoList){
+        if (todoList[id].pinned == false){
+            if (todoList[id].status == "completed") {
+                delete todoList[id]; // Remove the Unpinned and Completed list item data
+            }
+        } else {
+            todoList[id].status = "pending"; // Reset status of pinned items
+        }
+    }
+    SaveToDoData();
+    ShowToDoList();
+}
+
+// Toggle menu and tooltip visibility
+todoListCont.addEventListener("click", function (event) {
+    const isMenuVisible = todoContainer.style.display === 'grid';
+
+    // Toggle menu visibility
+    todoContainer.style.display = isMenuVisible ? 'none' : 'grid';
+
+    // Add or remove the class to hide the tooltip
+    if (!isMenuVisible) {
+        todoListCont.classList.add('menu-open'); // Hide tooltip
+        todoInput.focus(); // Auto focus on input box
+    } else {
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", function (event) {
+    const isClickInside =
+        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains('todoremovebtn');
+
+    if (!isClickInside && todoContainer.style.display === 'grid') {
+        todoContainer.style.display = 'none'; // Hide menu
+        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    }
+    
+    event.stopPropagation();
+});
+
+// ------------------------------- End of To Do List -------------------------------------
+
 // Retrieve current time and calculate initial angles
 var currentTime = new Date();
 var initialSeconds = currentTime.getSeconds();
@@ -361,6 +797,8 @@ function updateDate() {
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
+            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -481,9 +919,10 @@ function updatedigiClock() {
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
+    
     // Determine the translated short date string based on language
     const dateFormats = {
+        az: `${dayName} ${dayOfMonth}`, //Mardi 11
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -495,6 +934,7 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
+        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
         default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -521,8 +961,8 @@ function updatedigiClock() {
     // Split the hours and minutes from the localized time string
     let [hours, minutes] = timeString.split(':');
 
-    // Remove leading zero from hours for specific languages in 12-hour format only
-    if (hourformat && currentLanguage !== 'en') {
+    // Remove leading zero from hours in 12-hour format
+    if (hourformat) {
         hours = parseInt(hours, 10).toString(); // Remove leading zero
     }
 
@@ -898,17 +1338,22 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // Remove Loading Screen When the DOM and the Theme has Loaded
+    document.getElementById('LoadingScreen').style.display = "none";
+    // it is necessary for some elements not to blink when the page is reloaded
+    setTimeout(() => {
+        document.documentElement.classList.add('theme-transition');
+    }, 25);
 });
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 function isSupportedBrowser() {
-    const userAgent = navigator.userAgent;
-    const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
-    const isEdge = /Edg/.test(userAgent);
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
-    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-
+    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -1170,140 +1615,193 @@ const applySelectedTheme = (colorValue) => {
                 color: #e8e8e8;
             }
 
-            #searchQ{
-            color: #fff;
+            .dark-theme .resetbtn:hover {
+                background-color: var(--bg-color-dark);
             }
 
-            .searchbar.active {
+            .dark-theme .resetbtn:active {
+                background-color: #4e4e4e;
+            }
+
+            .dark-theme .savebtn:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .tiles:hover {
+                background-color: var(--bg-color-dark);
+            }
+
+            .dark-theme .bottom a:hover {
+                color: var(--darkerColor-blue);
+            }
+
+            .dark-theme #searchQ {
+                color: #fff;
+            }
+
+            .dark-theme .searchbar.active {
                 outline: 2px solid #696969;
             }
 
-            #searchIconDark {
+            .dark-theme #searchIconDark {
                 fill: #bbb !important;
             }
 	    
-	    .dropdown-item.selected:not(*[data-default]):before {
+            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
                 background-color: #707070;
             }
 
-            .tilesContainer .tiles {
+            .dark-theme .tilesContainer .tiles {
                 background-color: #212121;
             }
 
-            #darkFeelsLikeIcon{
+            .dark-theme #darkFeelsLikeIcon {
                 fill: #fff !important;
             }
 
-            .humidityBar .thinLine{
+            .dark-theme .humidityBar .thinLine {
                 background-color: #aaaaaa;
             }
 
-            .search-engine .darkIconForDarkTheme, .aiDarkIcons{
+            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
                 fill: #bbbbbb !important;
             }
 
-            .divider{
+            .dark-theme .divider {
                 background-color: #cdcdcd;
             }
     
-            .shorcutDarkColor{
+            .dark-theme .shorcutDarkColor {
                 fill: #3c3c3c !important;
             }
 
-            #darkLightTint{
+            .dark-theme #darkLightTint {
                 fill: #bfbfbf;
             }
 
-            .strokecolor {
+            .dark-theme .strokecolor {
 	            stroke: #3c3c3c;
             }
 
-            .shortcutsContainer .shortcuts .shortcutLogoContainer {
+            .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
             }
 
-            .digiclock {
+            .dark-theme .digiclock {
                 fill: #909090;
             }
-	    
-	    #userText, #date, .shortcuts .shortcut-name {
-	             text-shadow: 1px 1px 15px rgba(15, 15, 15, 0.9),
-	 		          -1px -1px 15px rgba(15, 15, 15, 0.9),
-    			          1px -1px 15px rgba(15, 15, 15, 0.9),
-       			          -1px 1px 15px rgba(15, 15, 15, 0.9) !important;
-            }
 
-     	    .uploadButton,
-            .randomButton{
+     	    .dark-theme .uploadButton,
+            .dark-theme .randomButton {
                 background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
+	    
+            .clearButton{
+                color: #d6d6d6;
+            }
 
-            .clearButton:hover{
+            .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
             }
 
-            .clearButton:active{
+            .dark-theme .clearButton:active {
                 color: #0e0e0e;
             }
 
-            .backupRestoreBtn {
-                background-color: #212121;
-            }
-            
-            .uploadButton:active,
-            .randomButton:active,
-            .backupRestoreBtn:active,
-            .resetbtn:active {
-                background-color: #0e0e0e;
-            }
-
-     	    .micIcon{
-                background-color: var(--whitishColor-dark);
-            }
-
-            #minute, #minute::after, #second::after {
-                background-color: #909090;
-            }
-
-            .dot-icon {
-                fill: #bfbfbf;
-            }
-
-            .menuicon{
-                color: #c2c2c2;
-            }
-
-            #menuButton::before{
-                background-color: #bfbfbf;
-            }
-            
-            #menuButton::after{
-                border: 4px solid #858585;
-            }
-
-            #menuCloseButton, #menuCloseButton:hover {
+            .dark-theme .backupRestoreBtn {
                 background-color: var(--darkColor-dark);
             }
 
-            #menuCloseButton .icon{
+            .dark-theme .backupRestoreBtn:hover,
+            .dark-theme .uploadButton:hover,
+            .dark-theme .randomButton:hover,
+            .dark-theme #todoAdd:hover {
+                background-color: var(--bg-color-dark);
+            }
+            
+            .dark-theme .uploadButton:active,
+            .dark-theme .randomButton:active,
+            .dark-theme .backupRestoreBtn:active,
+            .dark-theme .resetbtn:active {
+                background-color: #0e0e0e;
+            }
+	    
+            .dark-theme .todolistitem .todoremovebtn {
+                color:#616161;
+            }
+
+            .dark-theme .todolistitem .todoremovebtn:hover {
+                color:#888888;
+            }
+
+            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
+                color: var(--textColorDark-blue) !important;
+            }
+
+            .dark-theme #bookmarkSearch{
+                background-color: #212121 !important;
+            }
+
+            .dark-theme .bookmark-search-container::after {
+                filter: none;
+            }
+
+            .dark-theme .bookmark-right-arrow {
+                color: #858585;
+            }
+
+            .dark-theme .bookmark-right-arrow.rotate {
+                color: var(--textColorDark-blue);
+            }
+
+     	    .dark-theme .micIcon {
+                background-color: var(--whitishColor-dark);
+            }
+
+            .dark-theme #minute, .dark-theme #minute::after, .dark-theme #second::after {
+                background-color: #909090;
+            }
+
+            .dark-theme .dot-icon {
+                fill: #bfbfbf;
+            }
+
+            .dark-theme .menuicon {
+                color: #c2c2c2;
+            }
+
+            .dark-theme #menuButton {
+                border: 6px solid var(--accentLightTint-blue);
+                box-shadow:
+                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
+                    inset 0 0 0 4px #858585,
+                    inset 0 0 0 9.7px var(--accentLightTint-blue),
+                    inset 0 0 0 40px #bfbfbf;
+            }
+
+            .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
+                background-color: var(--darkColor-dark);
+            }
+
+            .dark-theme #menuCloseButton .icon {
                 background-color: #cdcdcd;
             }
 
-            #closeBtnX{
+            .dark-theme #closeBtnX {
                 border: 2px solid #bdbdbd;
                 border-radius: 100px;
             }
 
-            body{
+            .dark-theme body {
                 background-color: #000000;
             }
             
-            #HangNoAlive{
+            .dark-theme #HangNoAlive {
                 fill: #c2c2c2 !important;
             }
 
-            .tempUnit{
+            .dark-theme .tempUnit {
                 color: #dadada;
             }
 
@@ -1312,7 +1810,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #b1b1b1;
             }
 
-            .resultItem.active {
+            .dark-theme .resultItem.active {
                 background-color: var(--darkColor-dark);;
             }
         `;
@@ -1356,6 +1854,7 @@ const applySelectedTheme = (colorValue) => {
     if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
     }
+    ApplyLoadingColor();
 };
 
 // ----Color Picker || ColorPicker----
@@ -1427,6 +1926,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
+    ApplyLoadingColor();
 };
 
 // Load theme on page reload// Load theme on page reload
@@ -1482,12 +1982,9 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 
 
 
-
-
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper ---------------------------------
-// Constants for database and storage
+// -------------------------- Wallpaper -----------------------------
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
 const timestampKey = 'lastUpdateTime'; // Key to store last update time
@@ -1501,23 +1998,19 @@ function openDatabase() {
             const db = event.target.result;
             db.createObjectStore(storeName);
         };
-        request.onsuccess = function (event) {
-            resolve(event.target.result);
-        };
-        request.onerror = function (event) {
-            reject('Database error: ' + event.target.errorCode);
-        };
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject('Database error: ' + event.target.errorCode);
     });
 }
 
-// Save image data, timestamp, and type to IndexedDB
-async function saveImageToIndexedDB(imageUrl, isRandom) {
+// Save image Blob, timestamp, and type to IndexedDB
+async function saveImageToIndexedDB(imageBlob, isRandom) {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
 
-        store.put(imageUrl, 'backgroundImage');
+        store.put(imageBlob, 'backgroundImage'); // Save Blob
         store.put(new Date().toISOString(), timestampKey);
         store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
@@ -1526,60 +2019,38 @@ async function saveImageToIndexedDB(imageUrl, isRandom) {
     });
 }
 
-// Load image, timestamp, and type from IndexedDB
+// Load image Blob, timestamp, and type from IndexedDB
 async function loadImageAndDetails() {
     const db = await openDatabase();
-    return await Promise.all([
-        new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readonly');
-            const store = transaction.objectStore(storeName);
-            const request = store.get('backgroundImage');
-
-            request.onsuccess = (event) => resolve(request.result);
-            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
-        }),
-        new Promise((resolve_1, reject_1) => {
-            const transaction_1 = db.transaction(storeName, 'readonly');
-            const store_1 = transaction_1.objectStore(storeName);
-            const request_1 = store_1.get(timestampKey);
-
-            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
-            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
-        }),
-        new Promise((resolve_2, reject_2) => {
-            const transaction_2 = db.transaction(storeName, 'readonly');
-            const store_2 = transaction_2.objectStore(storeName);
-            const request_2 = store_2.get(imageTypeKey);
-
-            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
-            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
-        })
+    return Promise.all([
+        getFromStore(db, 'backgroundImage'),
+        getFromStore(db, timestampKey),
+        getFromStore(db, imageTypeKey)
     ]);
 }
-
-// Load only the background image
-async function loadImageFromIndexedDB() {
-    const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+function getFromStore(db, key) {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readonly');
         const store = transaction.objectStore(storeName);
-        const request = store.get('backgroundImage');
+        const request = store.get(key);
 
-        request.onsuccess = (event) => resolve(request.result);
-        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
 async function clearImageFromIndexedDB() {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
-        const request = store.delete('backgroundImage');
+        store.delete('backgroundImage');
+        store.delete(timestampKey);
+        store.delete(imageTypeKey);
 
-        request.onsuccess = () => resolve();
-        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
@@ -1587,24 +2058,20 @@ async function clearImageFromIndexedDB() {
 document.getElementById('imageUpload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const image = new Image();
-            image.onload = function () {
-                const totalPixels = image.width * image.height;
-                if (totalPixels > 2073600) {
-                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
-                    .replace('{width}', image.width)
-                    .replace('{height}', image.height));
-                }
-                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
-                saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextShadow(true))
-                    .catch(error => console.error(error));
-            };
-            image.src = e.target.result;
+        const imageUrl = URL.createObjectURL(file); // Create temporary Blob URL
+        const image = new Image();
+
+        image.onload = function () {
+            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            saveImageToIndexedDB(file, false)
+                .then(() => {
+                    updateTextBackground(true);
+                    URL.revokeObjectURL(imageUrl); // Clean up memory
+                })
+                .catch(error => console.error(error));
         };
-        reader.readAsDataURL(file);
+
+        image.src = imageUrl;
     }
 });
 
@@ -1617,88 +2084,106 @@ async function applyRandomImage(showConfirmation = true) {
     }
     try {
         const response = await fetch(RANDOM_IMAGE_URL);
-        const imageUrl = response.url;
+        const blob = await response.blob(); // Get Blob from response
+        const imageUrl = URL.createObjectURL(blob);
+
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-        await saveImageToIndexedDB(imageUrl, true);
-        updateTextShadow(true);
+        await saveImageToIndexedDB(blob, true);
+        updateTextBackground(true);
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
 }
 
-// Function to update text-shadow styles with animation
-function updateTextShadow(hasWallpaper) {
-    const elements = [document.getElementById('userText'), document.getElementById('date'), ...document.querySelectorAll('.shortcuts:hover .shortcut-name')];
-    elements.forEach(element => {
+// Function to update solid background behind userText, date, greeting and shortcut names
+function updateTextBackground(hasWallpaper) {
+    const userText = document.getElementById('userText');
+    const date = document.getElementById('date');
+    const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
+
+    // Update styles for userText and date
+    [userText, date].forEach(element => {
         if (hasWallpaper) {
-            element.style.textShadow = '1px 1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '1px -1px 15px rgba(255, 255, 255, 0.9), ' +
-                '-1px 1px 15px rgba(255, 255, 255, 0.9)';
+            element.style.backgroundColor = 'var(--accentLightTint-blue)';
+            element.style.padding = '2px 12px';
+            element.style.width = 'fit-content';
+            element.style.borderRadius = '10px';
+            element.style.fontSize = '1.32rem';
         } else {
-            element.style.textShadow = 'none'; // Remove the text-shadow
+            element.style.backgroundColor = ''; // Reset to default
+            element.style.padding = '';
+            element.style.width = '';
+            element.style.borderRadius = '';
+            element.style.fontSize = '';
         }
+    });
+
+    // Update styles for shortcuts
+    shortcuts.forEach(shortcut => {
+        shortcut.style.backgroundColor = hasWallpaper ? 'var(--accentLightTint-blue)' : '';
+        shortcut.style.padding = hasWallpaper ? '0px 6px' : '';
+        shortcut.style.borderRadius = hasWallpaper ? '5px' : '';
     });
 }
 
 // Check and update image on page load
 function checkAndUpdateImage() {
     loadImageAndDetails()
-        .then(([savedImage, savedTimestamp, imageType]) => {
+        .then(([blob, savedTimestamp, imageType]) => {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
-            // Case 1: No image found, disable text shadow and return.
-            if (!savedImage) {
-                updateTextShadow(false);
+            // No image or invalid data
+            if (!blob || !savedTimestamp || isNaN(lastUpdate)) {
+                updateTextBackground(false);
                 return;
             }
 
-            // Case 2: Invalid or missing timestamp, disable text shadow and return.
-            if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextShadow(false);
-                return;
-            }
+            // Create a new Blob URL dynamically
+            const imageUrl = URL.createObjectURL(blob);
 
-            // Case 3: Uploaded image should always be applied.
             if (imageType === 'upload') {
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                document.body.style.backgroundImage = `var(--bg-image)`;
-                updateTextShadow(true);
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+                updateTextBackground(true);
                 return;
             }
 
-            // Case 4: Random image should be refreshed if it's a new day.
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage(false); // Fetch new random image and apply it.
+                // Refresh random image if a new day
+                applyRandomImage(false);
             } else {
-                // Case 5: Same day random image, reapply saved image.
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                updateTextShadow(true);
+                // Reapply the saved random image
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+                updateTextBackground(true);
             }
+
+            // Clean up the Blob URL after setting the background
+            setTimeout(() => URL.revokeObjectURL(imageUrl), 1500);
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
-            updateTextShadow(false);
+            updateTextBackground(false);
         });
 }
 
 // Event listeners for buttons
 document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
 document.getElementById('clearImage').addEventListener('click', function () {
-    loadImageFromIndexedDB()
-        .then((savedImage) => {
-            if (savedImage) {
-                if (confirm(translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage)) {
-                    clearImageFromIndexedDB()
-                        .then(() => {
-                            document.body.style.removeProperty('--bg-image');
-                            updateTextShadow(false);
-                        })
-                        .catch((error) => console.error(error));
-                }
-            } else {
+    loadImageAndDetails()
+        .then(([blob]) => {
+            if (!blob) {
                 alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
+                return;
+            }
+            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage;
+            if (confirm(confirmationMessage)) {
+                clearImageFromIndexedDB()
+                    .then(() => {
+                        document.body.style.removeProperty('--bg-image');
+                        updateTextBackground(false);
+                    })
+                    .catch((error) => console.error(error));
             }
         })
         .catch((error) => console.error(error));
@@ -1707,18 +2192,15 @@ document.getElementById('randomImageTrigger').addEventListener('click', applyRan
 
 // Start image check on page load
 checkAndUpdateImage();
+// ------------------------ End of BG Image --------------------------
 
-// ------- End of BG Image -------------------------------------------
-
-// -------- Backup-Restore Settings ----------------------------------
+// -------------------- Backup-Restore Settings ----------------------
 document.getElementById("backupBtn").addEventListener("click", backupData);
 document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
 document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
 
 // Backup data from localStorage and IndexedDB
 async function backupData() {
-    if (!confirm(translations[currentLanguage]?.confirmbackup || translations['en'].confirmbackup)) return;
-
     try {
         const backup = { localStorage: {}, indexedDB: {} };
 
@@ -1761,6 +2243,13 @@ async function validateAndRestoreData(event) {
     reader.onload = async (e) => {
         try {
             const backup = JSON.parse(e.target.result);
+
+            // Validate the structure of the JSON file
+            if (!isValidBackupFile(backup)) {
+                alert(translations[currentLanguage]?.invalidBackup || translations['en'].invalidBackup);
+                return;
+            }
+
             await restoreData(backup);
 
             alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
@@ -1772,61 +2261,83 @@ async function validateAndRestoreData(event) {
     reader.readAsText(file);
 }
 
+function isValidBackupFile(backup) {
+    // Check if localStorage and indexedDB exist and are objects
+    if (typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object") {
+        return false;
+    }
+    return true;
+}
+
 // Backup IndexedDB: Extract data from ImageDB -> backgroundImages
-function backupIndexedDB() {
+async function backupIndexedDB() {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readonly");
+        const store = transaction.objectStore(storeName);
+        const data = {};
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readonly");
-            const store = transaction.objectStore("backgroundImages");
-            const data = {};
+        store.getAllKeys().onsuccess = (keysEvent) => {
+            const keys = keysEvent.target.result;
 
-            store.getAllKeys().onsuccess = (keysEvent) => {
-                const keys = keysEvent.target.result;
+            if (!keys.length) {
+                resolve({});
+                return;
+            }
 
-                if (!keys.length) {
-                    resolve({ backgroundImages: {} });
-                    return;
-                }
-
-                let pending = keys.length;
-                keys.forEach(key => {
-                    store.get(key).onsuccess = (getEvent) => {
-                        data[key] = getEvent.target.result;
-                        if (--pending === 0) resolve({ backgroundImages: data });
-                    };
-                });
-            };
-
-            transaction.onerror = () => reject(transaction.error);
+            let pending = keys.length;
+            keys.forEach(key => {
+                store.get(key).onsuccess = (getEvent) => {
+                    const value = getEvent.target.result;
+                    if (value instanceof Blob) {
+                        // Convert Blob to Base64 for JSON compatibility
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            data[key] = { blob: reader.result, isBlob: true };
+                            if (--pending === 0) resolve(data);
+                        };
+                        reader.readAsDataURL(value);
+                    } else {
+                        data[key] = value;
+                        if (--pending === 0) resolve(data);
+                    }
+                };
+            });
         };
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
 // Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
-function restoreIndexedDB(data) {
+async function restoreIndexedDB(data) {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readwrite");
+        const store = transaction.objectStore(storeName);
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readwrite");
-            const store = transaction.objectStore("backgroundImages");
+        store.clear();
+        const entries = Object.entries(data);
+        let pending = entries.length;
 
-            store.clear();
-            Object.entries(data).forEach(([key, value]) => {
+        if (pending === 0) {
+            resolve(); // If no data to restore, resolve immediately
+            return;
+        }
+
+        entries.forEach(([key, value]) => {
+            if (value.isBlob) {
+                // Convert Base64 back to Blob
+                const blob = base64ToBlob(value.blob);
+                store.put(blob, key);
+            } else {
                 store.put(value, key);
-            });
+            }
 
-            transaction.oncomplete = resolve;
-            transaction.onerror = () => reject(transaction.error);
-        };
+            if (--pending === 0) resolve();
+        });
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
@@ -1843,9 +2354,21 @@ async function restoreData(backup) {
     }
 
     // Restore IndexedDB from backup
-    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
-        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    if (backup.indexedDB) {
+        await restoreIndexedDB(backup.indexedDB);
     }
+}
+
+// Helper: Convert Base64 string to Blob
+function base64ToBlob(base64) {
+    const [metadata, data] = base64.split(',');
+    const mime = metadata.match(/:(.*?);/)[1];
+    const binary = atob(data);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        array[i] = binary.charCodeAt(i);
+    }
+    return new Blob([array], { type: mime });
 }
 // -------------------End of Settings ------------------------------
 
@@ -2061,11 +2584,11 @@ async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
     var searchEnginesapi = {
-        engine1: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine3: `http://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `http://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
     };
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     let apiUrl = searchEnginesapi[selectedOption];
@@ -2201,7 +2724,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const SHORTCUT_URL_PLACEHOLDER = "Shortcut URL";
 
     const SHORTCUT_PRESET_NAMES = ["Youtube", "Gmail", "Telegram", "WhatsApp", "Instagram", "Twitter"];
-    const SHORTCUT_PRESET_URLS_AND_LOGOS = new Map([["youtube.com", `
+    const SHORTCUT_PRESET_URLS_AND_LOGOS = Object.freeze(new Map([["youtube.com", `
             <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
                 <path class="accentColor shorcutDarkColor"
                     d="M11.6698 9.82604L9.33021 8.73437C9.12604 8.63958 8.95833 8.74583 8.95833 8.97187V11.0281C8.95833 11.2542 9.12604 11.3604 9.33021 11.2656L11.6688 10.174C11.874 10.0781 11.874 9.92188 11.6698 9.82604ZM10 0C4.47708 0 0 4.47708 0 10C0 15.5229 4.47708 20 10 20C15.5229 20 20 15.5229 20 10C20 4.47708 15.5229 0 10 0ZM10 14.0625C4.88125 14.0625 4.79167 13.601 4.79167 10C4.79167 6.39896 4.88125 5.9375 10 5.9375C15.1187 5.9375 15.2083 6.39896 15.2083 10C15.2083 13.601 15.1187 14.0625 10 14.0625Z"
@@ -2240,15 +2763,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M10 0C15.5286 0 20 4.47143 20 10C20 15.5286 15.5286 20 10 20C4.47143 20 0 15.5286 0 10C0 4.47143 4.47143 0 10 0ZM8.17143 15.2714C12.6 15.2714 15.0286 11.6 15.0286 8.41429V8.1C15.5 7.75714 15.9143 7.32857 16.2286 6.84286C15.8 7.02857 15.3286 7.15714 14.8429 7.22857C15.3429 6.92857 15.7286 6.45714 15.9 5.9C15.4286 6.17143 14.9143 6.37143 14.3714 6.48571C13.9286 6.01429 13.3 5.72857 12.6143 5.72857C11.2857 5.72857 10.2 6.81429 10.2 8.14286C10.2 8.32857 10.2143 8.51429 10.2714 8.68571C8.27143 8.58571 6.48571 7.62857 5.3 6.17143C5.1 6.52857 4.97143 6.94286 4.97143 7.38571C4.97143 8.21429 5.4 8.95714 6.04286 9.38571C5.64286 9.38571 5.27143 9.27143 4.95714 9.08571V9.11429C4.95714 10.2857 5.78571 11.2571 6.88571 11.4857C6.68571 11.5429 6.47143 11.5714 6.25714 11.5714C6.1 11.5714 5.95714 11.5571 5.8 11.5286C6.1 12.4857 7 13.1857 8.04286 13.2C7.21429 13.8429 6.17143 14.2286 5.04286 14.2286C4.84286 14.2286 4.65714 14.2286 4.47143 14.2C5.52857 14.8857 6.8 15.2857 8.15714 15.2857"
                     fill="#617859"/>
             </svg>
-            `]]);
+            `]]));
 
-    const SHORTCUT_DELETE_BUTTON_HTML = `
+    const SHORTCUT_DELETE_BUTTON_HTML = Object.freeze(`
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
                     <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-12q-15.3 0-25.65-10.29Q192-716.58 192-731.79t10.35-25.71Q212.7-768 228-768h156v-12q0-15.3 10.35-25.65Q404.7-816 420-816h120q15.3 0 25.65 10.35Q576-795.3 576-780v12h156q15.3 0 25.65 10.29Q768-747.42 768-732.21t-10.35 25.71Q747.3-696 732-696h-12v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM419.79-288q15.21 0 25.71-10.35T456-324v-264q0-15.3-10.29-25.65Q435.42-624 420.21-624t-25.71 10.35Q384-603.3 384-588v264q0 15.3 10.29 25.65Q404.58-288 419.79-288Zm120 0q15.21 0 25.71-10.35T576-324v-264q0-15.3-10.29-25.65Q555.42-624 540.21-624t-25.71 10.35Q504-603.3 504-588v264q0 15.3 10.29 25.65Q524.58-288 539.79-288ZM312-696v480-480Z"/>
                 </svg>
             </button>
-            `;
+            `);
 
     // const FAVICON_CANDIDATES = (hostname) => [
     //     `https://${hostname}/apple-touch-icon-180x180.png`,
@@ -2280,8 +2803,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
+    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
+    const todoListCheckbox = document.getElementById("todoListCheckbox");
+    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -2338,16 +2864,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             element.classList.add("inactive");
         }
-    }
-
-    // Function to save style data
-    function saveIconStyle(key, CSS) {
-        localStorage.setItem(key, CSS);
-    }
-
-    // Function to load style data
-    function loadIconStyle(key, element) {
-        element.textContent = localStorage.getItem(key);
     }
 
 
@@ -2412,7 +2928,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
-        deleteButtonContainer.insertAdjacentHTML('beforeend', SHORTCUT_DELETE_BUTTON_HTML);
+        deleteButtonContainer.innerHTML = SHORTCUT_DELETE_BUTTON_HTML;
 
         const deleteButton = deleteButtonContainer.children[0];
         if (deleteInactive) deleteButton.className = "inactive";
@@ -2917,16 +3433,60 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Load checkbox state
+    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
+    // Apply CSS based on initial state
+    document.head.appendChild(iconStyle);
+    iconStyle.textContent = adaptiveIconToggle.checked ? ADAPTIVE_ICON_CSS : "";
+
+    // Add event listener for checkbox
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
         if (adaptiveIconToggle.checked) {
-            saveIconStyle("iconStyle", ADAPTIVE_ICON_CSS);
             iconStyle.textContent = ADAPTIVE_ICON_CSS;
         } else {
-            saveIconStyle("iconStyle", "");
             iconStyle.textContent = "";
         }
-    })
+    });
+
+    bookmarksCheckbox.addEventListener("change", function () {
+        let bookmarksPermission;
+        if (isChrome || isEdge || isBrave) {
+            bookmarksPermission = chrome.permissions;
+        } else if (isFirefox) {
+            bookmarksPermission = browser.permissions;
+        } else {
+            console.error("Unsupported Browser.");
+            bookmarksCheckbox.checked = false;
+            return;
+        }
+        if (bookmarksCheckbox.checked) {
+            bookmarksPermission.contains({
+                permissions: ['bookmarks']
+            }, function(alreadyGranted) {
+                if (alreadyGranted) {
+                    bookmarkRightArrow.style.display = "flex";
+                    saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                } else {
+                    bookmarksPermission.request({
+                        permissions: ['bookmarks']
+                    }, function(granted) {
+                        if (granted) {
+                            bookmarksAPI = chrome.bookmarks;
+                            bookmarkRightArrow.style.display = "flex";
+                            saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        } else {
+                            bookmarksCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        } else {
+            bookmarkRightArrow.style.display = "none";
+            saveDisplayStatus("bookmarksDisplayStatus", "none");
+        }
+        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+    });
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -2948,6 +3508,26 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
+    bookmarkGridCheckbox.addEventListener("change", function () {
+        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+        if (bookmarkGridCheckbox.checked) {
+            bookmarkList.classList.add("grid-view");
+        } else {
+            bookmarkList.classList.remove("grid-view");
+        }
+    });
+
+    todoListCheckbox.addEventListener("change", function () {
+        saveCheckboxState("todoListCheckboxState", todoListCheckbox);
+        if (todoListCheckbox.checked) {
+            todoListCont.style.display = "flex";
+            saveDisplayStatus("todoListDisplayStatus", "flex");
+        } else {
+            todoListCont.style.display = "none";
+            saveDisplayStatus("todoListDisplayStatus", "none");
         }
     });
 
@@ -3022,13 +3602,38 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-    loadIconStyle("iconStyle", iconStyle);
+    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+    loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkRightArrow);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
+    loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
+
+    if(bookmarkGridCheckbox.checked){
+        bookmarkList.classList.add("grid-view");
+    } else {
+        bookmarkList.classList.remove("grid-view");
+    }
 });
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
+        if(bookmarksCheckbox.checked){
+            bookmarkRightArrow.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
+    }
+});
+//------------------------- LoadingScreen -----------------------//
+
+function ApplyLoadingColor(){
+    let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
+    localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+}
