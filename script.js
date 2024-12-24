@@ -271,23 +271,23 @@ const bookmarkViewList = document.getElementById('bookmarkViewList');
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    bookmarkRightArrow.addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+    bookmarkRightArrow.addEventListener('click', function () {
         toggleBookmarkSidebar();
         bookmarkSearchClearButton.click();
     });
 
-    bookmarkViewGrid.addEventListener('click', function() {
+    bookmarkViewGrid.addEventListener('click', function () {
         bookmarkGridCheckbox.click();
     });
-    
-    bookmarkViewList.addEventListener('click', function() {
+
+    bookmarkViewList.addEventListener('click', function () {
         bookmarkGridCheckbox.click();
         // bookmarkGridCheckbox.checked = false;
     });
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
             toggleBookmarkSidebar();
         }
@@ -346,11 +346,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-	// Show or hide the clear button based on the search term
+        // Show or hide the clear button based on the search term
         bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
     });
 
-    bookmarkSearchClearButton.addEventListener('click', function() {
+    bookmarkSearchClearButton.addEventListener('click', function () {
         bookmarkSearch.value = '';
         bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
     });
@@ -404,9 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 let default_folder = "Bookmarks bar";
-                if (isEdge){
+                if (isEdge) {
                     default_folder = "Favorites bar";
-                } else if (isBrave){
+                } else if (isBrave) {
                     default_folder = "Bookmarks";
                 }
                 // Extract the 'Main bookmarks' node and display its Children
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayBookmarks(bookmarkNodes) {
         let list = document.createElement('ul');
-        
+
         // Separate folders and bookmarks
         const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
         const bookmarks = bookmarkNodes.filter(node => node.url);
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const sortedNodes = [...folders, ...bookmarks];
 
         for (let node of sortedNodes) {
-            if (node.id === "1") {continue;}
+            if (node.id === "1") { continue; }
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
 
@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 folderItem.classList.add('folder');
 
                 // Add event listener for unfolding/folding
-                folderItem.addEventListener('click', function(event) {
+                folderItem.addEventListener('click', function (event) {
                     event.stopPropagation();
                     folderItem.classList.toggle('open');
                     const subList = folderItem.querySelector('ul');
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 list.appendChild(folderItem);
             } else if (node.url) {
                 let item = document.createElement('li');
-		item.dataset.url = node.url; // Add URL as dataset for search functionality
+                item.dataset.url = node.url; // Add URL as dataset for search functionality
                 let link = document.createElement('a');
                 link.href = node.url;
                 let span = document.createElement('span');
@@ -548,14 +548,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        list.addEventListener('click', function(event) {
+        list.addEventListener('click', function (event) {
             event.stopPropagation();
         });
 
         return list;
     }
 
-    
+
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -623,26 +623,26 @@ function createTodoItemDOM(id, title, status, pinned) {
 
 // Event delegation for task check and remove
 todoulList.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI"){
+    if (event.target.tagName === "LI") {
         event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todoremovebtn')){
+    } else if (event.target.classList.contains('todoremovebtn')) {
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todopinbtn')){
+    } else if (event.target.classList.contains('todopinbtn')) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned === true)? false : true); // Update status
+        todoList[id].pinned = ((todoList[id].pinned === true) ? false : true); // Update status
         SaveToDoData(); // Save Changes
     }
 });
 
 // Save JSON to local Storage
-function SaveToDoData(){
+function SaveToDoData() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 // Fetch saved JSON and create list items using it
@@ -665,14 +665,14 @@ function ShowToDoList() {
 // Code to reset the List on the Next Day
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
 let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
-if (todoLastUpdateDate===todoCurrentDate){
+if (todoLastUpdateDate === todoCurrentDate) {
     ShowToDoList();
 } else {
     // Modify the list when last update date and the current date does not match
-    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
-    for(let id in todoList){
-        if (todoList[id].pinned == false){
+    for (let id in todoList) {
+        if (todoList[id].pinned == false) {
             if (todoList[id].status == "completed") {
                 delete todoList[id]; // Remove the Unpinned and Completed list item data
             }
@@ -709,7 +709,7 @@ document.addEventListener("click", function (event) {
         todoContainer.style.display = 'none'; // Hide menu
         todoListCont.classList.remove('menu-open'); // Restore tooltip
     }
-    
+
     event.stopPropagation();
 });
 
@@ -919,7 +919,7 @@ function updatedigiClock() {
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-    
+
     // Determine the translated short date string based on language
     const dateFormats = {
         az: `${dayName} ${dayOfMonth}`, //Mardi 11
@@ -1132,7 +1132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
         const resultBox = document.getElementById('resultBox');
-        if(resultBox.classList.toString().includes('show')) return;
+        if (resultBox.classList.toString().includes('show')) return;
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
@@ -1171,7 +1171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
 
             // console.log(element, selector);
-            
+
             radioButton.checked = true;
 
             // Swap The dropdown. and sort them
@@ -2492,11 +2492,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
 
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
-                    
-                    if(dropdown.style.display == "block") {
+
+                    if (dropdown.style.display == "block") {
                         dropdown.style.display = "none";
                     }
-                    
+
 
                     showResultBox();
                 }
@@ -3288,7 +3288,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchIconContainer[0].style.display = 'block';
         document.getElementById('search-with-container').style.visibility = 'visible';
     }
-    
+
     const hideEngineContainer = () => {
         searchIconContainer[0].style.display = 'none';
         searchIconContainer[1].style.display = 'block';
@@ -3463,14 +3463,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (bookmarksCheckbox.checked) {
             bookmarksPermission.contains({
                 permissions: ['bookmarks']
-            }, function(alreadyGranted) {
+            }, function (alreadyGranted) {
                 if (alreadyGranted) {
                     bookmarkRightArrow.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
                 } else {
                     bookmarksPermission.request({
                         permissions: ['bookmarks']
-                    }, function(granted) {
+                    }, function (granted) {
                         if (granted) {
                             bookmarksAPI = chrome.bookmarks;
                             bookmarkRightArrow.style.display = "flex";
@@ -3615,16 +3615,16 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
 
-    if(bookmarkGridCheckbox.checked){
+    if (bookmarkGridCheckbox.checked) {
         bookmarkList.classList.add("grid-view");
     } else {
         bookmarkList.classList.remove("grid-view");
     }
 });
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
-        if(bookmarksCheckbox.checked){
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        if (bookmarksCheckbox.checked) {
             bookmarkRightArrow.click();
         } else {
             bookmarksCheckbox.click();
@@ -3633,7 +3633,7 @@ document.addEventListener('keydown', function(event) {
 });
 //------------------------- LoadingScreen -----------------------//
 
-function ApplyLoadingColor(){
+function ApplyLoadingColor() {
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
     localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
 }

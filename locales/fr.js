@@ -82,7 +82,6 @@ const fr = {
     "todoListHover": "Liste To-Do",
     // End of Body and New Tab Items
 
-
     // Greeting
     greeting: {
         "morning": "Bonjour!",
@@ -115,11 +114,9 @@ const fr = {
     "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
     "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
     "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
-    "confirmbackup": "Êtes-vous sûr de vouloir sauvegarder vos paramètres?",
     "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
     "endlink": "Il ne doit pas y avoir de / à la fin du lien.",
     "onlylinks": "Seuls les liens (commençant par http:// ou https://) sont autorisés.",
-    "imagedimensions": "Attention: Les dimensions de l'image téléchargée ({largeur}x{hauteur}) dépassent 1920x1080 pixels.\n\nCela peut avoir un impact sur les performances ou l'image peut ne pas se charger correctement.",
     "failedbackup": "Échec de la sauvegarde: ",
     "restorecompleted": "Restauration terminée avec succès!",
     "restorefailed": "Échec de la restauration: ",

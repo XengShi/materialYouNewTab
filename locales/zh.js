@@ -1,5 +1,6 @@
 // Chinese (Simplified)
 const zh = {
+    // Menu Items
     "feedback": "反馈",
     "resetsettings": "重置设置",
     "menuCloseText": "关闭",
@@ -87,5 +88,4 @@ const zh = {
     "duckEngine": "DuckDuckGo",
     "bingEngine": "必应",
     "googleAppsHover": "谷歌应用",
-
 }

@@ -121,13 +121,13 @@ function applyLanguage(lang) {
         'WeatherApiSubtext',
         'LearnMoreButton',
         'saveAPI',
-        'conditionText',
+        // 'conditionText',
         'enterBtn',
         'searchWithHint',
         'ai_tools',
-        'humidityLevel',
-        'feelsLike',
-        'location',
+        // 'humidityLevel',
+        // 'feelsLike',
+        // 'location',
         'googleEngine',
         'duckEngine',
         'bingEngine',
@@ -195,10 +195,10 @@ function applyLanguage(lang) {
     }
 
     // Aplicar traduções
-    applyTranslations(placeholderMap, true); // Para placeholders
-    applyTranslations(elementsMap, false);  // Para textos internos
-    applyTranslations(translationMap, false);  // Para textos internos
-
+    applyTranslations(placeholderMap, true); // Placeholders
+    applyTranslations(elementsMap, false);  // Internal texts
+    applyTranslations(translationMap, false);  // Internal texts
+    
     // userText
     const userTextDiv = document.getElementById('userText');
     if (translations[lang]) {
@@ -230,6 +230,8 @@ function applyLanguage(lang) {
 // Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
+    location.reload();
+
 });
 
 // Function to apply the language when the page loads
