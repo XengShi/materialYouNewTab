@@ -267,7 +267,7 @@ const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
-
+const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
 if (typeof browser !== 'undefined' && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
