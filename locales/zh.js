@@ -1,5 +1,6 @@
 // Chinese (Simplified)
 const zh = {
+    // Menu Items
     "feedback": "反馈",
     "resetsettings": "重置设置",
     "menuCloseText": "关闭",
@@ -16,6 +17,7 @@ const zh = {
     "enable_ai_tools": "显示 AI 工具快捷方式",
     "googleAppsMenuText": "谷歌应用",
     "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
+    "googleAppsHover": "谷歌应用",
     // Digital Clock
     "digitalclocktittle": "数字时钟",
     "digitalclockinfo": "切换到数字时钟",
@@ -83,9 +85,16 @@ const zh = {
     },
 
     // Search Engines and rest
-    "googleEngine": "谷歌",
-    "duckEngine": "DuckDuckGo",
-    "bingEngine": "必应",
-    "googleAppsHover": "谷歌应用",
-
+    "googleEngine": "Google",
+    "duckEngine": "Duck",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
 }
