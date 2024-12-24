@@ -1,3 +1,4 @@
+// Indonesian
 const idn = {
     // Menu Items
     "feedback": "Umpan Balik",
@@ -99,10 +100,7 @@ const idn = {
     "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
     "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
     "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
-    "confirmbackup": "Apakah anda yakin ingin mencadangkan setelan anda?",
     "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
-    "endlink": "Seharusnya tidak ada / di akhir tautan",
-    "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
     "failedbackup": "Pencadangan gagal: ",
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
