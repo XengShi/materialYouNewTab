@@ -1,3 +1,4 @@
+// Russian
 const ru = {
     // Menu Items
     "feedback": "Обратная связь",
@@ -91,11 +92,12 @@ const ru = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "chatGPT": "ЧатGPT",
+    "chatGPT": "ChatGPT",
     "gemini": "Gemini",
-    "copilot": "Копилот",
+    "copilot": "Copilot",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
     "github": "GitHub",
     "googleAppsHover": "Гугл приложения",
 
@@ -111,8 +113,6 @@ const ru = {
     "Nobackgroundset": "В настоящее время обои не установлены.",
     "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
     "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
-    "endlink": "В конце ссылки не должно быть /",
-    "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
     "failedbackup": "Резервное копирование не удалось: ",
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",

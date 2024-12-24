@@ -1,3 +1,4 @@
+// Italian
 const it = {
         // Menu Items
         "feedback": "Feedback",
@@ -83,21 +84,33 @@ const it = {
             "evening": "Buona sera!"
         },
 
-        // Wallpaper and alerts
-        "uploadWallpaperText": "Carica immagine",
-        "backupText": "Backup",
-        "restoreText": "Ripristina",
-        "rangColor": "Scegli colore",
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "Duck",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
 
-        // Dialog boxes (alerts)
-        "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
-        "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
-        "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
-        "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
-        "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
-        "endlink": "Non ci dovrebbe essere uno / alla fine del link",
-        "onlylinks": "Solo link (che iniziano con http:// o https://) sono consentiti.",
-        "failedbackup": "Backup fallito: ",
-        "restorecompleted": "Ripristino completato con successo!",
-        "restorefailed": "Ripristino fallito: "
-    }
+    // Wallpaper and alerts
+    "uploadWallpaperText": "Carica immagine",
+    "backupText": "Backup",
+    "restoreText": "Ripristina",
+    "rangColor": "Scegli colore",
+
+    // Dialog boxes (alerts)
+    "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
+    "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
+    "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
+    "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
+    "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
+    "failedbackup": "Backup fallito: ",
+    "restorecompleted": "Ripristino completato con successo!",
+    "restorefailed": "Ripristino fallito: "
+}

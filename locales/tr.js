@@ -1,3 +1,4 @@
+// Turkish
 const tr = {
         // Menu Items
         "feedback": "Geri Bildirim",
@@ -74,10 +75,24 @@ const tr = {
         "userText": "Buraya tıklayarak düzenleyin",
         // End of Body and New Tab Items
 
-        // Greeting
-        greeting: {
-            "morning": "Günaydın!",
-            "afternoon": "İyi öğleden sonra!",
-            "evening": "İyi akşamlar!"
-        },
-    }
+    // Greeting
+    greeting: {
+        "morning": "Günaydın!",
+        "afternoon": "İyi öğleden sonra!",
+        "evening": "İyi akşamlar!"
+    },
+
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "Duck",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
+}

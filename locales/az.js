@@ -1,3 +1,4 @@
+// Azerbaijani
 const az = {
     // Menu Items
     "feedback": "Əlaqə",
@@ -82,7 +83,7 @@ const az = {
     },
     // Search Engines and rest
     "googleEngine": "Google",
-    "duckEngine": "Duck", // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
@@ -106,8 +107,6 @@ const az = {
     "Nobackgroundset": "Hazırda heç bir fon şəkli qurulmayıb.",
     "clearbackgroundimage": "Arxa fon şəklini təmizləmək istədiyinizə əminsinizmi?",
     "ProxyDisclaimer": "Bütün proksi funksiyaları defolt olaraq deaktivdir.\n\nAxtarış təkliflərini və CORS proksisini yan keçmək imkanını aktiv etsəniz, təkmil məxfilik üçün öz proksinizi yerləşdirmək tövsiyə olunur.\n\nDefolt olaraq, proksi quraşdırılacaq. https://mynt-proxy.rhythmcorehq.com ünvanına, yəni bütün məlumatlarınız bu xidmətdən keçəcək və bu, məxfiliklə bağlı narahatlıq yarada bilər.",
-    "endlink": "Linkin sonunda / olmamalıdır",
-    "onlylinks": "Yalnız linklərə (http:// və ya https:// ilə başlayan) icazə verilir.",
     "failedbackup": "Yedəkləmə uğursuz oldu: ",
     "restorecompleted": "Bərpa uğurla tamamlandı!",
     "restorefailed": "Bərpa uğursuz oldu: ",

@@ -1,3 +1,4 @@
+// Uzbek
 const uz = {
     // Menu Items
     "feedback": "Fikr-mulohaza",
@@ -80,4 +81,18 @@ const uz = {
         "afternoon": "Xayrli tushlik!",
         "evening": "Xayrli kech!"
     },
+
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "DuckDuckGo",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
 }

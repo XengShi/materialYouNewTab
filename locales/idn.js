@@ -1,3 +1,4 @@
+// Indonesian
 const idn = {
     // Menu Items
     "feedback": "Umpan Balik",
@@ -88,6 +89,20 @@ const idn = {
         "evening": "Selamat Malam!"
     },
 
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "DuckDuckGo",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
+
     // Wallpaper and alerts
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",
@@ -100,8 +115,6 @@ const idn = {
     "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
     "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
     "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
-    "endlink": "Seharusnya tidak ada / di akhir tautan",
-    "onlylinks": "Hanya tautan (dimulai dengan http:// atau https://) yang diperbolehkan.",
     "failedbackup": "Pencadangan gagal: ",
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",

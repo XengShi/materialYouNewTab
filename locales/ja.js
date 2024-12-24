@@ -1,3 +1,4 @@
+// Japanese
 const ja = {
     // Menu Items
     "feedback": "フィードバック",
