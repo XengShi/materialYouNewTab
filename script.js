@@ -71,28 +71,28 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        const proxyurl = userProxyInput.value.trim();
+        let proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
-            localStorage.setItem("proxy", defaultProxyURL);
-            userProxyInput.value = "";
-            location.reload();
-            return;
+            proxyurl = defaultProxyURL;
+        } else {
+            // Validate if input starts with 'http://' or 'https://'
+            if (!(proxyurl.startsWith("http://") || proxyurl.startsWith("https://"))) {
+                // Automatically correct input by adding 'http://' if not present
+                proxyurl = "http://" + proxyurl;
+            }
+
+            // Remove trailing slash if exists
+            if (proxyurl.endsWith("/")) {
+                proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
+            }
         }
 
-        // Validate if input starts with 'http://' or 'https://'
-        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-            if (!proxyurl.endsWith("/")) {
-                localStorage.setItem("proxy", proxyurl);
-                userProxyInput.value = "";
-                location.reload();
-            } else {
-                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-            }
-        } else {
-            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
-        }
+        // Set the proxy in localStorage, clear the input, and reload the page
+        localStorage.setItem("proxy", proxyurl);
+        userProxyInput.value = "";
+        location.reload();
     });
 
     // Default Weather API key
