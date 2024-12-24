@@ -1,3 +1,4 @@
+// Vietnamese
 const vi = {
     // Menu Items
     "feedback": "Phản hồi",
@@ -80,4 +81,18 @@ const vi = {
         "afternoon": "Chào buổi chiều!",
         "evening": "Chào buổi tối!"
     },
+
+    // Search Engines and rest
+    "googleEngine": "Google",
+    "duckEngine": "DuckDuckGo",
+    "bingEngine": "Bing",
+    "braveEngine": "Brave",
+    "youtubeEngine": "YouTube",
+    "chatGPT": "ChatGPT",
+    "gemini": "Gemini",
+    "copilot": "Copilot",
+    "perplexity": "Perplexity",
+    "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
+    "github": "GitHub",
 }
