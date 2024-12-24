@@ -1,8 +1,5 @@
+// Russian
 const ru = {
-    // Menu Items
-    "feedback": "Обратная связь",
-    "resetsettings": "Сброс настроек",
-    "menuCloseText": "Закрыть",
     // Shortcuts
     "shortcutsText": "Ярлыки",
     "enableShortcutsText": "Включить/Отключить ярлыки",
@@ -91,11 +88,12 @@ const ru = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "chatGPT": "ЧатGPT",
+    "chatGPT": "ChatGPT",
     "gemini": "Gemini",
-    "copilot": "Копилот",
+    "copilot": "Copilot",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
+    "metaAI": "Meta AI",
     "github": "GitHub",
     "googleAppsHover": "Гугл приложения",
 
@@ -110,11 +108,7 @@ const ru = {
     "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить",
     "Nobackgroundset": "В настоящее время обои не установлены.",
     "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
-    "confirmbackup": "Вы уверены что хотите создать резервную копию настроек?",
     "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
-    "endlink": "В конце ссылки не должно быть /",
-    "onlylinks": "Разрешены только ссылки (начинаются с http:// or https://).",
-    "imagedimensions": "Предупреждение: Размеры загруженного изображения ({width}x{height}) превышают 1920x1080 пикселей. \n\nЭто может повлиять на производительность или изображение может не загрузиться должным образом.",
     "failedbackup": "Резервное копирование не удалось: ",
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",
