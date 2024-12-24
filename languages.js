@@ -26,7 +26,6 @@ const translations = {
     mr: mr, // Marathi
     fr: fr, // French
     az: az, // Azerbaijani
-    // Add more languages and translations as needed
 };
 
 // Define the width of the menu container for each language
@@ -41,7 +40,7 @@ const menuWidths = {
     ja: '444px',
     ru: '450px',
     it: '437px',
-    idn: '415px',
+    idn: '435px',
     tr: '418px',
     fr: '475px',
     az: '418px',
@@ -146,7 +145,6 @@ function applyLanguage(lang) {
         'backupText',
         'restoreText',
         'rangColor',
-        'bookmarkSearch',
         'bookmarksText',
         'bookmarksInfo',
         'bookmarksHeading',
@@ -155,12 +153,13 @@ function applyLanguage(lang) {
         'bookmarkViewList',
     ];
 
-    // Specific mapping for placeholders with different IDs and keys
+    // Specific mapping for placeholders
     const placeholderMap = [
         { id: 'userLoc', key: 'userLoc' },
         { id: 'userAPI', key: 'userAPI' },
         { id: 'searchQ', key: 'searchPlaceholder' },
-        { id: 'todoInput', key: 'todoPlaceholder' }
+        { id: 'todoInput', key: 'todoPlaceholder' },
+        { id: 'bookmarkSearch', key: 'bookmarkSearch' }
     ];
 
     // Mapping of elements and their different translation keys
@@ -194,12 +193,12 @@ function applyLanguage(lang) {
         });
     }
 
-    // Aplicar traduções
-    applyTranslations(placeholderMap, true); // Para placeholders
-    applyTranslations(elementsMap, false);  // Para textos internos
-    applyTranslations(translationMap, false);  // Para textos internos
+    // Apply translations
+    applyTranslations(placeholderMap, true); // For placeholders
+    applyTranslations(elementsMap, false);  // For innerTexts with different IDs and keys
+    applyTranslations(translationMap, false);  // For innerTexts with same ID and keys
 
-    // userText
+    // For userText
     const userTextDiv = document.getElementById('userText');
     if (translations[lang]) {
         const placeholder = translations[lang]?.userText || translations['en'].userText;
@@ -230,6 +229,7 @@ function applyLanguage(lang) {
 // Detect language from navigator.language
 document.getElementById('languageSelector').addEventListener('change', (event) => {
     applyLanguage(event.target.value);
+    location.reload();
 });
 
 // Function to apply the language when the page loads
