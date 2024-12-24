@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        let proxyurl = userProxyInput.value.trim();
+        const proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
