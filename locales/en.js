@@ -125,8 +125,6 @@ const en = {
     "Nobackgroundset": "No background image is currently set.",
     "clearbackgroundimage": "Are you sure you want to clear the background image?",
     "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
-    "endlink": "There shouldn't be / at the end of the link",
-    "onlylinks": "Only links (starting with http:// or https://) are allowed.",
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",
