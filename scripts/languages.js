@@ -88,9 +88,9 @@ const translations = {
 
         // Bookmarks
         "bookmarksHeading": "Bookmarks",
-        "bookmarkViewAs" : "View as",
-        "bookmarkViewGrid" : "Grid",    // Keep this shorter
-        "bookmarkViewList" : "List",    // Keep this shorter
+        "bookmarkViewAs": "View as",
+        "bookmarkViewGrid": "Grid",    // Keep this shorter
+        "bookmarkViewList": "List",    // Keep this shorter
         "bookmarkSearch": "Search bookmark",
 
         // New Tab Item
@@ -442,9 +442,9 @@ const translations = {
 
         // Bookmarks
         "bookmarksHeading": "बुकमार्क्स",
-        "bookmarkViewAs" : "इस रूप में देखें",
-        "bookmarkViewGrid" : "ग्रिड",
-        "bookmarkViewList" : "लिस्ट",
+        "bookmarkViewAs": "इस रूप में देखें",
+        "bookmarkViewGrid": "ग्रिड",
+        "bookmarkViewList": "लिस्ट",
         "bookmarkSearch": "बुकमार्क खोजें",
 
         // New Tab Item
@@ -807,8 +807,6 @@ const translations = {
     },
 
 
-
-
     // Bengali
     "bn": {
         // Menu Items
@@ -902,9 +900,9 @@ const translations = {
 
         // Bookmarks
         "bookmarksHeading": "বুকমার্কস",
-        "bookmarkViewAs" : "এইভাবে দেখুন",
-        "bookmarkViewGrid" : "গ্রিড",
-        "bookmarkViewList" : "লিস্ট",
+        "bookmarkViewAs": "এইভাবে দেখুন",
+        "bookmarkViewGrid": "গ্রিড",
+        "bookmarkViewList": "লিস্ট",
         "bookmarkSearch": "বুকমার্ক সার্চ করুন",
 
         // Greeting
@@ -2027,8 +2025,8 @@ const menuWidths = {
 };
 
 const numberMappings = {
-    "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
-    "mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
+    "bn": {'0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯'},
+    "mr": {'0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९'},
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 
@@ -2036,7 +2034,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr','az' ]; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr', 'az']; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
@@ -2053,99 +2051,99 @@ function localizeNumbers(text, language) {
 function applyLanguage(lang) {
     // Define an array of elements and their corresponding translation keys
     const translationMap = [
-        { id: 'feedback', key: 'feedback' },
-        { id: 'resetsettings', key: 'resetsettings' },
-        { id: 'shortcutsText', key: 'shortcutsText' },
-        { id: 'enableShortcutsText', key: 'enableShortcutsText' },
-        { id: 'editShortcutsText', key: 'editShortcutsText' },
-        { id: 'shortcutsInfoText', key: 'shortcutsInfoText' },
-        { id: 'editShortcutsList', key: 'editShortcutsList' },
-        { id: 'editShortcutsListInfo', key: 'editShortcutsListInfo' },
-        { id: 'adaptiveIconText', key: 'adaptiveIconText' },
-        { id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText' },
-        { id: 'bookmarksText', key: 'bookmarksText' },
-        { id: 'bookmarksInfo', key: 'bookmarksInfo' },
-        { id: 'bookmarksHeading', key: 'bookmarksHeading' },
-        { id: 'bookmarkViewAs', key: 'bookmarkViewAs' },
-        { id: 'bookmarkViewGrid', key: 'bookmarkViewGrid' },
-        { id: 'bookmarkViewList', key: 'bookmarkViewList' },
-        { id: 'ai_tools_button', key: 'ai_tools_button' },
-        { id: 'enable_ai_tools', key: 'enable_ai_tools' },
-        { id: 'googleAppsMenuText', key: 'googleAppsMenuText' },
-        { id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo' },
-        { id: 'todoListHeading', key: 'todoListText' },
-        { id: 'todoListText', key: 'todoListText' },
-        { id: 'todoListInfo', key: 'todoListInfo' },
-        { id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox' },
-        { id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText' },
-        { id: 'micIconTitle', key: 'micIconTitle' },
-        { id: 'micIconInfo', key: 'micIconInfo' },
-        { id: 'hideSearchWith', key: 'hideSearchWith' },
-        { id: 'hideSearchWithInfo', key: 'hideSearchWithInfo' },
-        { id: 'search_suggestions_button', key: 'search_suggestions_button' },
-        { id: 'search_suggestions_text', key: 'search_suggestions_text' },
-        { id: 'digitalclocktittle', key: 'digitalclocktittle' },
-        { id: 'digitalclockinfo', key: 'digitalclockinfo' },
-        { id: 'timeformattittle', key: 'timeformattittle' },
-        { id: 'timeformatinfo', key: 'timeformatinfo' },
-        { id: 'greetingtittle', key: 'greetingtittle' },
-        { id: 'greetinginfo', key: 'greetinginfo' },
-        { id: 'userTextTitle', key: 'userTextTitle' },
-        { id: 'userTextInfo', key: 'userTextInfo' },
-        { id: 'useproxytitletext', key: 'useproxytitletext' },
-        { id: 'useproxyText', key: 'useproxyText' },
-        { id: 'ProxyText', key: 'ProxyText' },
-        { id: 'ProxySubtext', key: 'ProxySubtext' },
-        { id: 'HostproxyButton', key: 'HostproxyButton' },
-        { id: 'saveproxy', key: 'saveproxy' },
-        { id: 'UserLocText', key: 'UserLocText' },
-        { id: 'UserLocSubtext', key: 'UserLocSubtext' },
-        { id: 'userLoc', key: 'userLoc', isPlaceholder: true },
-        { id: 'InputOptionsButton', key: 'InputOptionsButton' },
-        { id: 'saveLoc', key: 'saveLoc' },
-        { id: 'WeatherApiText', key: 'WeatherApiText' },
-        { id: 'WeatherApiSubtext', key: 'WeatherApiSubtext' },
-        { id: 'userAPI', key: 'userAPI', isPlaceholder: true },
-        { id: 'LearnMoreButton', key: 'LearnMoreButton' },
-        { id: 'saveAPI', key: 'saveAPI' },
-        { id: 'conditionText', key: 'conditionText' },
-        { id: 'enterBtn', key: 'enterBtn' },
-        { id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true },
-        { id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true },
-        { id: 'bookmarkSearch', key: 'bookmarkSearch', isPlaceholder: true },
-        { id: 'searchWithHint', key: 'searchWithHint' },
-        { id: 'ai_tools', key: 'ai_tools' },
-        { id: 'humidityLevel', key: 'humidityLevel' },
-        { id: 'feelsLike', key: 'feelsLike' },
-        { id: 'location', key: 'location' },
-        { id: 'googleEngine', key: 'googleEngine' },
-        { id: 'duckEngine', key: 'duckEngine' },
-        { id: 'bingEngine', key: 'bingEngine' },
-        { id: 'braveEngine', key: 'braveEngine' },
-        { id: 'youtubeEngine', key: 'youtubeEngine' },
-        { id: 'googleEngineDD', key: 'googleEngine' },
-        { id: 'duckEngineDD', key: 'duckEngine' },
-        { id: 'bingEngineDD', key: 'bingEngine' },
-        { id: 'braveEngineDD', key: 'braveEngine' },
-        { id: 'youtubeEngineDD', key: 'youtubeEngine' },
-        { id: 'chatGPT', key: 'chatGPT' },
-        { id: 'gemini', key: 'gemini' },
-        { id: 'copilot', key: 'copilot' },
-        { id: 'perplexity', key: 'perplexity' },
-        { id: 'firefly', key: 'firefly' },
-        { id: 'metaAI', key: 'metaAI' },
-        { id: 'github', key: 'github' },
-        { id: 'googleAppsHover', key: 'googleAppsHover' },
-        { id: 'todoListHover', key: 'todoListHover' },
-        { id: 'uploadWallpaperText', key: 'uploadWallpaperText' },
-        { id: 'backupText', key: 'backupText' },
-        { id: 'restoreText', key: 'restoreText' },
-        { id: 'rangColor', key: 'rangColor' }
+        {id: 'feedback', key: 'feedback'},
+        {id: 'resetsettings', key: 'resetsettings'},
+        {id: 'shortcutsText', key: 'shortcutsText'},
+        {id: 'enableShortcutsText', key: 'enableShortcutsText'},
+        {id: 'editShortcutsText', key: 'editShortcutsText'},
+        {id: 'shortcutsInfoText', key: 'shortcutsInfoText'},
+        {id: 'editShortcutsList', key: 'editShortcutsList'},
+        {id: 'editShortcutsListInfo', key: 'editShortcutsListInfo'},
+        {id: 'adaptiveIconText', key: 'adaptiveIconText'},
+        {id: 'adaptiveIconInfoText', key: 'adaptiveIconInfoText'},
+        {id: 'bookmarksText', key: 'bookmarksText'},
+        {id: 'bookmarksInfo', key: 'bookmarksInfo'},
+        {id: 'bookmarksHeading', key: 'bookmarksHeading'},
+        {id: 'bookmarkViewAs', key: 'bookmarkViewAs'},
+        {id: 'bookmarkViewGrid', key: 'bookmarkViewGrid'},
+        {id: 'bookmarkViewList', key: 'bookmarkViewList'},
+        {id: 'ai_tools_button', key: 'ai_tools_button'},
+        {id: 'enable_ai_tools', key: 'enable_ai_tools'},
+        {id: 'googleAppsMenuText', key: 'googleAppsMenuText'},
+        {id: 'googleAppsMenuInfo', key: 'googleAppsMenuInfo'},
+        {id: 'todoListHeading', key: 'todoListText'},
+        {id: 'todoListText', key: 'todoListText'},
+        {id: 'todoListInfo', key: 'todoListInfo'},
+        {id: 'fahrenheitCelsiusCheckbox', key: 'fahrenheitCelsiusCheckbox'},
+        {id: 'fahrenheitCelsiusText', key: 'fahrenheitCelsiusText'},
+        {id: 'micIconTitle', key: 'micIconTitle'},
+        {id: 'micIconInfo', key: 'micIconInfo'},
+        {id: 'hideSearchWith', key: 'hideSearchWith'},
+        {id: 'hideSearchWithInfo', key: 'hideSearchWithInfo'},
+        {id: 'search_suggestions_button', key: 'search_suggestions_button'},
+        {id: 'search_suggestions_text', key: 'search_suggestions_text'},
+        {id: 'digitalclocktittle', key: 'digitalclocktittle'},
+        {id: 'digitalclockinfo', key: 'digitalclockinfo'},
+        {id: 'timeformattittle', key: 'timeformattittle'},
+        {id: 'timeformatinfo', key: 'timeformatinfo'},
+        {id: 'greetingtittle', key: 'greetingtittle'},
+        {id: 'greetinginfo', key: 'greetinginfo'},
+        {id: 'userTextTitle', key: 'userTextTitle'},
+        {id: 'userTextInfo', key: 'userTextInfo'},
+        {id: 'useproxytitletext', key: 'useproxytitletext'},
+        {id: 'useproxyText', key: 'useproxyText'},
+        {id: 'ProxyText', key: 'ProxyText'},
+        {id: 'ProxySubtext', key: 'ProxySubtext'},
+        {id: 'HostproxyButton', key: 'HostproxyButton'},
+        {id: 'saveproxy', key: 'saveproxy'},
+        {id: 'UserLocText', key: 'UserLocText'},
+        {id: 'UserLocSubtext', key: 'UserLocSubtext'},
+        {id: 'userLoc', key: 'userLoc', isPlaceholder: true},
+        {id: 'InputOptionsButton', key: 'InputOptionsButton'},
+        {id: 'saveLoc', key: 'saveLoc'},
+        {id: 'WeatherApiText', key: 'WeatherApiText'},
+        {id: 'WeatherApiSubtext', key: 'WeatherApiSubtext'},
+        {id: 'userAPI', key: 'userAPI', isPlaceholder: true},
+        {id: 'LearnMoreButton', key: 'LearnMoreButton'},
+        {id: 'saveAPI', key: 'saveAPI'},
+        {id: 'conditionText', key: 'conditionText'},
+        {id: 'enterBtn', key: 'enterBtn'},
+        {id: 'searchQ', key: 'searchPlaceholder', isPlaceholder: true},
+        {id: 'todoInput', key: 'todoPlaceholder', isPlaceholder: true},
+        {id: 'bookmarkSearch', key: 'bookmarkSearch', isPlaceholder: true},
+        {id: 'searchWithHint', key: 'searchWithHint'},
+        {id: 'ai_tools', key: 'ai_tools'},
+        {id: 'humidityLevel', key: 'humidityLevel'},
+        {id: 'feelsLike', key: 'feelsLike'},
+        {id: 'location', key: 'location'},
+        {id: 'googleEngine', key: 'googleEngine'},
+        {id: 'duckEngine', key: 'duckEngine'},
+        {id: 'bingEngine', key: 'bingEngine'},
+        {id: 'braveEngine', key: 'braveEngine'},
+        {id: 'youtubeEngine', key: 'youtubeEngine'},
+        {id: 'googleEngineDD', key: 'googleEngine'},
+        {id: 'duckEngineDD', key: 'duckEngine'},
+        {id: 'bingEngineDD', key: 'bingEngine'},
+        {id: 'braveEngineDD', key: 'braveEngine'},
+        {id: 'youtubeEngineDD', key: 'youtubeEngine'},
+        {id: 'chatGPT', key: 'chatGPT'},
+        {id: 'gemini', key: 'gemini'},
+        {id: 'copilot', key: 'copilot'},
+        {id: 'perplexity', key: 'perplexity'},
+        {id: 'firefly', key: 'firefly'},
+        {id: 'metaAI', key: 'metaAI'},
+        {id: 'github', key: 'github'},
+        {id: 'googleAppsHover', key: 'googleAppsHover'},
+        {id: 'todoListHover', key: 'todoListHover'},
+        {id: 'uploadWallpaperText', key: 'uploadWallpaperText'},
+        {id: 'backupText', key: 'backupText'},
+        {id: 'restoreText', key: 'restoreText'},
+        {id: 'rangColor', key: 'rangColor'}
 
     ];
 
     // Loop through the translation map to apply translations
-    for (const { id, key, isPlaceholder } of translationMap) {
+    for (const {id, key, isPlaceholder} of translationMap) {
         const element = document.getElementById(id);
         if (element) {
             if (isPlaceholder) {
