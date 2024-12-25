@@ -3,7 +3,12 @@
     "name": "Material You NewTab",
     "version": "2.6",
     "description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-    "permissions": ["bookmarks"],
+    "permissions": [
+		"bookmarks",
+		"https://www.google.com/complete/search*",
+		"https://duckduckgo.com/ac/*",
+		"https://search.brave.com/api/suggest*"
+	],
     "background": {
         "scripts": ["background.js"],
         "persistent": true
