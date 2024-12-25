@@ -274,7 +274,7 @@ if (isFirefox && browser.permissions && isDesktop) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    alert("Bookmarks API not supported in this browser.");
+    console.error("Bookmarks API not supported in this browser.");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
