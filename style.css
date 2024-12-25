@@ -499,23 +499,9 @@ body {
 	transition: right 0.3s ease;
 }
 
-.bookmark-button:after {
-	position: absolute;
-	content: 'Bookmarks';
-	font-size: 0.8rem;
-	top: 120%;
-	left: 50%;
-	transform: translateX(-50%);
-	color: white;
-	padding: 5px 6px;
-	background-color: var(--darkColor-blue);
-	border-radius: 8px;
-	opacity: 0;
-	pointer-events: none;
-	transition: all 0.2s ease;
-}
-
-.bookmark-button:hover:after{
+/* Show tooltip on hover */
+.bookmark-button:hover .tooltip-text {
+	visibility: visible;
 	opacity: 1;
 }
 
