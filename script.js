@@ -269,12 +269,12 @@ const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
-if (typeof browser !== 'undefined' && browser.bookmarks) {
+if (isFirefox && browser.permissions && isDesktop) {
     bookmarksAPI = browser.bookmarks;
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.error('Bookmarks API not supported in this browser.');
+    alert("Bookmarks API not supported in this browser.");
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -3457,12 +3457,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isChrome || isEdge || isBrave) {
-            bookmarksPermission = chrome.permissions;
-        } else if (isFirefox) {
+        if (isFirefox && browser.permissions && isDesktop) {
             bookmarksPermission = browser.permissions;
+        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+            bookmarksPermission = chrome.permissions;
         } else {
-            console.error("Unsupported Browser.");
+            alert("Bookmarks are not supported in your browser.");
             bookmarksCheckbox.checked = false;
             return;
         }
