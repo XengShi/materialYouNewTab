@@ -1747,12 +1747,8 @@ const applySelectedTheme = (colorValue) => {
                 filter: none;
             }
 
-            .dark-theme .bookmark-right-arrow {
-                color: #858585;
-            }
-
-            .dark-theme .bookmark-right-arrow.rotate {
-                color: var(--textColorDark-blue);
+            .dark-theme .bookmark-button svg {
+                fill: var(--textColorDark-blue);
             }
 
      	    .dark-theme .micIcon {
