@@ -799,6 +799,7 @@ function updateDate() {
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
