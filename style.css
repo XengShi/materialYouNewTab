@@ -483,15 +483,45 @@ body {
 	pointer-events: auto;
 }
 
-.bookmark-right-arrow {
+.bookmark-button {
 	position: fixed;
-	right: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	color: var(--darkColor-blue);
-	transition: transform 0.3s ease, right 0.3s ease;
-	z-index: 2;
+    display: inline-block;
+    margin: 10px;
+    top: var(--gap);
+    right: calc(2 * var(--gap) + 36px);
+    font-size: 25px;
+	background-color: var(--accentLightTint-blue);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+	padding: 6px;
+	border-radius: 25%;
+	transition: right 0.3s ease;
+}
+
+.bookmark-button:after {
+	position: absolute;
+	content: 'Bookmarks';
+	font-size: 0.8rem;
+	top: 120%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	padding: 5px 6px;
+	background-color: var(--darkColor-blue);
+	border-radius: 8px;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.2s ease;
+}
+
+.bookmark-button:hover:after{
+	opacity: 1;
+}
+
+.bookmark-button svg {
+	fill: var(--darkColor-blue);
+	background-color: var(--accentLightTint-blue);
 }
 
 .bookmark-sidebar {
@@ -527,10 +557,9 @@ body {
 	right: 0;
 }
 
-.bookmark-right-arrow.rotate {
-	transform: translateY(-50%) rotate(180deg);
+.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
-	right: 380px;
+	right: 400px;
 	z-index: 5;
 }
 
