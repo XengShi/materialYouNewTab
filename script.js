@@ -3462,7 +3462,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
             bookmarksPermission = chrome.permissions;
         } else {
-            alert("Bookmarks are not supported in your browser.");
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             return;
         }
