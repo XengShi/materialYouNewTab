@@ -1758,6 +1758,10 @@ const applySelectedTheme = (colorValue) => {
                 background: var(--darkColor-dark);
             }
 
+	    .dark-theme .favicon {
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            }
+
      	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
