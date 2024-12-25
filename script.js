@@ -1589,12 +1589,12 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .languageIcon,
             .dark-theme .languageSelector {
                 background-color: #212121;
-                scrollbar-color: var(--darkerColor-dark) transparent;
+                scrollbar-color: var(--darkerColor-blue) transparent;
             }
 
             .dark-theme .languageSelector::-webkit-scrollbar-thumb,
             .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
-                background-color: var(--darkerColor-dark);
+                background-color: var(--darkerColor-blue);
             }
 
             .dark-theme .bottom a {
@@ -1630,7 +1630,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bottom a:hover {
-                color: var(--darkerColor-dark);
+                color: var(--darkerColor-blue);
             }
 
             .dark-theme #searchQ {
@@ -1691,7 +1691,7 @@ const applySelectedTheme = (colorValue) => {
 
      	    .dark-theme .uploadButton,
             .dark-theme .randomButton {
-                background-color: var(--darkColor-dark);
+                background-color: var(--darkColor-blue);
                 color: var(--whitishColor-dark);
             }
 	    
@@ -1734,7 +1734,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-                color: var(--textColorDark-dark) !important;
+                color: var(--textColorDark-blue) !important;
             }
 
             .dark-theme #bookmarkSearch{
@@ -1750,7 +1750,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .bookmark-right-arrow.rotate {
-                color: var(--textColorDark-dark);
+                color: var(--textColorDark-blue);
             }
 
 	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
@@ -1779,11 +1779,10 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #menuButton {
-                border: 6px solid var(--accentLightTint-dark);
+                border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
-                    /*inset 0 0 0 4px var(--accentLightTint-dark),*/
                     inset 0 0 0 4px #858585,
-                    inset 0 0 0 9.7px var(--accentLightTint-dark),
+                    inset 0 0 0 9.7px var(--accentLightTint-blue),
                     inset 0 0 0 40px #bfbfbf;
             }
 
