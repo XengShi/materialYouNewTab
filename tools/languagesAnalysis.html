@@ -1,357 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="shortcut icon" href="../favicon/icon.ico" type="image/x-icon">
     <title>Language Key Analysis</title>
     <style>
-        :root {
-           --md-sys-color-primary: #795548;
-            --md-sys-color-on-primary: #FFFFFF;
-            --md-sys-color-primary-container: #D7CCC8;
-            --md-sys-color-on-primary-container: #3E2723;
-            --md-sys-color-secondary: #5D4037;
-           --md-sys-color-on-secondary: #FFFFFF;
-            --md-sys-color-secondary-container: #EFEBE9;
-            --md-sys-color-on-secondary-container: #211A16;
-           --md-sys-color-tertiary: #9E9E9E;
-            --md-sys-color-on-tertiary: #000000;
-             --md-sys-color-tertiary-container: #F5F5F5;
-            --md-sys-color-on-tertiary-container: #343434;
-            --md-sys-color-error: #D32F2F;
-           --md-sys-color-on-error: #FFFFFF;
-             --md-sys-color-error-container: #FFCDD2;
-           --md-sys-color-on-error-container: #490000;
-            --md-sys-color-outline: #757575;
-            --md-sys-color-background: #FAFAFA;
-             --md-sys-color-on-background: #212121;
-           --md-sys-color-surface: #FFFFFF;
-           --md-sys-color-on-surface: #212121;
-            --md-sys-color-surface-variant: #EEEEEE;
-            --md-sys-color-on-surface-variant: #424242;
-            --md-sys-color-inverse-surface: #424242;
-            --md-sys-color-inverse-on-surface: #FAFAFA;
-            --md-sys-color-inverse-primary: #A1887F;
-            --md-sys-color-shadow: #000000;
-            --md-sys-color-surface-tint: #795548;
-             --md-sys-color-outline-variant: #C0B2A5;
-             --md-sys-color-scrim: #000000;
+      :root {
+        --md-sys-color-primary: #1b3041;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #c7e4c7;
+        --md-sys-color-secondary: #5d4037;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #efebe9;
+        --md-sys-color-on-secondary-container: #211a16;
+        --md-sys-color-error: #860000;
+        --md-sys-color-error-container: #ffcdd2;
+        --md-sys-color-outline: #757575;
+        --md-sys-color-background: #fafafa;
+        --md-sys-color-on-background: #004d43;
+        --md-sys-color-surface: #ffffff;
+        --md-sys-color-on-surface: #212121;
+        --md-sys-color-on-surface-variant: #424242;
+        --md-sys-color-outline-variant: #c0b2a5;
+      }
+      :root .dark-mode {
+        --md-sys-color-primary: #3c3c4c;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #004d4377;
+        --md-sys-color-secondary: #8d6e63;
+        --md-sys-color-on-secondary: #322926;
+        --md-sys-color-secondary-container: #594a44;
+        --md-sys-color-on-secondary-container: #ebe1dd;
+        --md-sys-color-error: #ef9a9a;
+        --md-sys-color-error-container: #86000077;
+        --md-sys-color-outline: #bdbdbd;
+        --md-sys-color-background: #151627;
+        --md-sys-color-on-background: #c7e4c7;
+        --md-sys-color-surface: #212131;
+        --md-sys-color-on-surface: #e0e0e0;
+        --md-sys-color-on-surface-variant: #bdbdbd;
+        --md-sys-color-outline-variant: #3c3c4c;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: var(--md-sys-color-background);
+        color: var(--md-sys-color-on-background);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex: 1;
+        padding: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      #results,
+      #complete {
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+        transition: background-color 0.3s, border-color 0.3s;
+        background-color: var(--md-sys-color-surface);
+        border: 1px solid var(--md-sys-color-outline-variant);
+      }
+      #results ul,
+      #complete ul {
+        list-style: none;
+        padding: 0;
+      }
+      #results li,
+      #complete li {
+        margin: 0.6rem 0;
+        padding: 0.6rem;
+        border-left: 4px solid;
+        border-radius: 6px;
+        transition: background-color 0.3s;
+        line-height: 1.4;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      #results li.missing {
+        border-left-color: var(--md-sys-color-error);
+        background-color: var(--md-sys-color-error-container);
+        color: var(--md-sys-color-error);
+      }
+      #results li.extra {
+        border-left-color: var(--md-sys-color-secondary);
+        background-color: var(--md-sys-color-secondary-container);
+      }
+      #complete li {
+        border-left-color: var(--md-sys-color-on-background);
+        background-color: var(--md-sys-color-primary-container);
+      }
+      h2 {
+        text-align: center;
+        color: var(--md-sys-color-on-surface);
+        transition: color 0.3s;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+      .material-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .material-banner strong {
+        margin-left: 0.5rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.05rem;
+      }
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+      nav button {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--md-sys-color-on-primary);
+        font-weight: bold;
+        padding: 0.6rem 1rem;
+        background-color: var(--md-sys-color-secondary);
+        border-radius: 6px;
+        border: none;
+        transition: background-color 0.3s;
+        font-size: 0.9rem;
+      }
+      nav button:hover {
+        background-color: var(--md-sys-color-secondary-container);
+        color: var(--md-sys-color-on-secondary-container);
+      }
+      p {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--md-sys-color-on-surface-variant);
+        line-height: 1.4;
+        font-size: 0.9rem;
+      }
+      /* Estilos para o checkbox */
+      input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--md-sys-color-error);
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+      input[type="checkbox"]:checked {
+        background-color: var(--md-sys-color-error);
+        border-color: var(--md-sys-color-error);
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      li.checked {
+        opacity: 0.7;
+      }
+      li.checked span {
+        text-decoration: line-through;
+      }
+      .language-group {
+        margin-bottom: 1rem;
+      }
+      .language-group h3 {
+        margin-bottom: 0.5rem;
+        color: var(--md-sys-color-on-surface-variant);
+        padding-left: 0.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        justify-content: space-between; /* Alinha o texto à esquerda e o contador à direita */
+      }
+      .language-group h3::before {
+        content: "▶";
+        display: inline-block;
+        margin-right: 0.5rem;
+        transition: transform 0.2s;
+        transform: rotate(90deg);
+      }
+      .language-group.collapsed h3::before {
+        transform: none;
+      }
+      .language-group ul {
+        padding-left: 1rem;
+      }
+      .language-group.collapsed ul {
+        display: none;
+      }
+      #theme-toggle {
+        position: relative;
+        width: 40px;
+        height: 20px;
+        border-radius: 15px;
+        background-color: #ccc;
+        border: none;
+        transition: background-color 0.3s;
+      }
+      #theme-toggle::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background-color: var(--md-sys-color-primary);
+        border-radius: 50%;
+        transition: left 0.3s ease;
+      }
+      body.dark-mode #theme-toggle::before {
+        left: 22px;
+      }
+      /* Animação suave */
+      .material-banner,
+      nav button,
+      #results,
+      #complete,
+      #results li,
+      #complete li,
+      input[type="checkbox"],
+      #theme-toggle {
+        transition: all 0.2s ease;
+      }
+      #incomplete-message {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.9rem;
+        font-style: italic;
+        background-color: var(--md-sys-color-error-container);
+        padding: 0.7rem;
+        border-radius: 8px;
+        display: block;
+        animation: fadeIn 0.3s ease-in-out; /* Adicionando animação */
+      }
+      #extra-keys-message {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.9rem;
+        font-style: italic;
+        background-color: var(--md-sys-color-secondary-container);
+        padding: 0.7rem;
+        border-radius: 8px;
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
 
-            --md-sys-color-primary-dark: #A1887F;
-            --md-sys-color-on-primary-dark: #4E342E;
-             --md-sys-color-primary-container-dark: #6D4C41;
-            --md-sys-color-on-primary-container-dark: #E1D8D5;
-            --md-sys-color-secondary-dark: #8D6E63;
-            --md-sys-color-on-secondary-dark: #322926;
-            --md-sys-color-secondary-container-dark: #594A44;
-            --md-sys-color-on-secondary-container-dark: #EBE1DD;
-             --md-sys-color-tertiary-dark: #BDBDBD;
-            --md-sys-color-on-tertiary-dark: #000000;
-            --md-sys-color-tertiary-container-dark: #424242;
-            --md-sys-color-on-tertiary-container-dark: #EEEEEE;
-            --md-sys-color-error-dark: #EF9A9A;
-             --md-sys-color-on-error-dark: #210000;
-           --md-sys-color-error-container-dark: #B71C1C;
-             --md-sys-color-on-error-container-dark: #FFCDD2;
-             --md-sys-color-outline-dark: #BDBDBD;
-            --md-sys-color-background-dark: #303030;
-           --md-sys-color-on-background-dark: #E0E0E0;
-           --md-sys-color-surface-dark: #424242;
-             --md-sys-color-on-surface-dark: #E0E0E0;
-            --md-sys-color-surface-variant-dark: #616161;
-            --md-sys-color-on-surface-variant-dark: #BDBDBD;
-             --md-sys-color-inverse-surface-dark: #E0E0E0;
-            --md-sys-color-inverse-on-surface-dark: #303030;
-            --md-sys-color-inverse-primary-dark: #795548;
-            --md-sys-color-shadow-dark: #000000;
-           --md-sys-color-surface-tint-dark: #A1887F;
-             --md-sys-color-outline-variant-dark: #616161;
-             --md-sys-color-scrim-dark: #000000;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-             margin: 0;
-            padding: 0;
-           transition: background-color 0.3s, color 0.3s;
-            background-color: var(--md-sys-color-background);
-             color: var(--md-sys-color-on-background);
-            display: flex;
-            flex-direction: column;
-             min-height: 100vh;
-       }
-        body.dark-mode {
-            background-color: var(--md-sys-color-background-dark);
-           color: var(--md-sys-color-on-background-dark);
+        to {
+          opacity: 1;
         }
-         main {
-           flex: 1;
-            padding: 1rem;
-           max-width: 800px;
-            margin: 0 auto;
-            overflow-y: auto;
-           -webkit-overflow-scrolling: touch;
-        }
-        #results, #complete {
-             border-radius: 12px;
-            padding: 1rem;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-             margin-bottom: 1rem;
-            transition: background-color 0.3s, border-color 0.3s;
-            background-color: var(--md-sys-color-surface);
-             border: 1px solid var(--md-sys-color-outline-variant);
-        }
-        #results.dark-mode, #complete.dark-mode {
-           background-color: var(--md-sys-color-surface-dark);
-           border: 1px solid var(--md-sys-color-outline-variant-dark);
-         }
-       #results ul, #complete ul {
-           list-style: none;
-             padding: 0;
-       }
-        #results li, #complete li {
-            margin: 0.6rem 0;
-            padding: 0.6rem;
-            border-left: 4px solid;
-            border-radius: 6px;
-           transition: background-color 0.3s;
-           line-height: 1.4;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        #results li.missing {
-             border-left-color: var(--md-sys-color-error);
-             background-color: var(--md-sys-color-error-container);
-        }
-       #results li.missing.dark-mode {
-            border-left-color: var(--md-sys-color-error-dark);
-           background-color: var(--md-sys-color-error-container-dark);
-       }
-        #results li.extra {
-            border-left-color: var(--md-sys-color-secondary);
-            background-color: var(--md-sys-color-secondary-container);
-        }
-        #results li.extra.dark-mode {
-            border-left-color: var(--md-sys-color-secondary-dark);
-            background-color: var(--md-sys-color-secondary-container-dark);
-        }
-        #complete li {
-            border-left-color: var(--md-sys-color-primary);
-            background-color: var(--md-sys-color-primary-container);
-        }
-        #complete li.dark-mode {
-             border-left-color: var(--md-sys-color-primary-dark);
-            background-color: var(--md-sys-color-primary-container-dark);
-       }
-       h2 {
-           text-align: center;
-            color: var(--md-sys-color-on-surface);
-            transition: color 0.3s;
-             margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        h2.dark-mode {
-            color: var(--md-sys-color-on-surface-dark);
-         }
-       .material-banner {
-            display: flex;
-            align-items: center;
-           justify-content: space-between;
-           background-color: var(--md-sys-color-primary);
-             color: var(--md-sys-color-on-primary);
-             padding: 1rem 1.5rem;
-             border-radius: 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            position: sticky;
-           top: 0;
-            z-index: 10;
-         }
-         .material-banner strong {
-           margin-left: 0.5rem;
-             font-size: 1.1rem;
-        }
-        nav {
-            display: flex;
-             justify-content: flex-end;
-           gap: 0.5rem;
-        }
-       nav button {
-             cursor: pointer;
-            text-decoration: none;
-            color: var(--md-sys-color-on-primary);
-            font-weight: bold;
-             padding: 0.6rem 1rem;
-             background-color: var(--md-sys-color-secondary);
-             border-radius: 6px;
-            border: none;
-           transition: background-color 0.3s;
-            font-size: 0.9rem;
-        }
-        nav button:hover {
-             background-color: var(--md-sys-color-secondary-container);
-           color: var(--md-sys-color-on-secondary-container);
-         }
-        nav button.dark-mode {
-           background-color: var(--md-sys-color-secondary-dark);
-            color: var(--md-sys-color-on-secondary-dark);
-        }
-       nav button.dark-mode:hover {
-             background-color: var(--md-sys-color-secondary-container-dark);
-           color: var(--md-sys-color-on-secondary-container-dark);
-        }
-       p {
-           text-align: center;
-            margin-bottom: 1.5rem;
-             color: var(--md-sys-color-on-surface-variant);
-            line-height: 1.4;
-            font-size: 0.9rem;
-       }
-         p.dark-mode {
-            color: var(--md-sys-color-on-surface-variant-dark);
-        }
-       /* Estilos para o checkbox */
-        input[type="checkbox"] {
-           appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-             width: 18px;
-            height: 18px;
-             border: 2px solid var(--md-sys-color-outline);
-            border-radius: 4px;
-            outline: none;
-            cursor: pointer;
-           transition: background-color 0.2s, border-color 0.2s;
-         }
-        input[type="checkbox"]:checked {
-            background-color: var(--md-sys-color-primary);
-             border-color: var(--md-sys-color-primary);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>');
-           background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .dark-mode input[type="checkbox"] {
-           border-color: var(--md-sys-color-outline-dark);
-         }
-         .dark-mode input[type="checkbox"]:checked {
-            background-color: var(--md-sys-color-primary-dark);
-           border-color: var(--md-sys-color-primary-dark);
-        }
-         li.checked {
-           opacity: 0.7;
-        }
-         li.checked span {
-             text-decoration: line-through;
-        }
-        .language-group {
-           margin-bottom: 1rem;
-        }
-        .language-group h3 {
-             margin-bottom: 0.5rem;
-            color: var(--md-sys-color-on-surface-variant);
-            padding-left: 0.5rem;
-             display: flex;
-           align-items: center;
-             cursor: pointer;
-            user-select: none;
-            justify-content: space-between; /* Alinha o texto à esquerda e o contador à direita */
-        }
-        .language-group h3.dark-mode {
-             color: var(--md-sys-color-on-surface-variant-dark);
-        }
-         .language-group h3::before {
-            content: '▶';
-            display: inline-block;
-             margin-right: 0.5rem;
-             transition: transform 0.2s;
-         }
-       .language-group.collapsed h3::before {
-             transform: rotate(90deg);
-        }
-        .language-group ul {
-            padding-left: 1rem;
-        }
-        .language-group.collapsed ul {
-             display: none;
-         }
-        #theme-toggle {
-           position: relative;
-            width: 40px;
-            height: 20px;
-            border-radius: 15px;
-            background-color: #ccc;
-           border: none;
-             transition: background-color 0.3s;
-        }
-       #theme-toggle::before {
-           content: '';
-            position: absolute;
-           top: 2px;
-            left: 2px;
-           width: 16px;
-             height: 16px;
-           background-color: #fff;
-           border-radius: 50%;
-            transition: left 0.3s ease;
-        }
-         body.dark-mode #theme-toggle {
-             background-color: #444;
-       }
-         body.dark-mode #theme-toggle::before {
-             left: 22px;
-        }
-         /* Animação suave */
-        .material-banner, nav button, #results, #complete, #results li, #complete li, input[type="checkbox"] , #theme-toggle {
-            transition: all 0.2s ease;
-       }
-        #incomplete-message {
-           text-align: center;
-            margin-bottom: 1rem;
-             color: var(--md-sys-color-on-surface-variant);
-             font-size: 0.9rem;
-            font-style: italic;
-            background-color: var(--md-sys-color-error-container);
-            padding: 0.7rem;
-           border-radius: 8px;
-            display: block;
-           animation: fadeIn 0.3s ease-in-out; /* Adicionando animação */
-         }
-       #incomplete-message.dark-mode {
-            color: var(--md-sys-color-on-error-dark);
-            background-color: var(--md-sys-color-error-container-dark);
-       }
-        #extra-keys-message {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--md-sys-color-on-surface-variant);
-            font-size: 0.9rem;
-            font-style: italic;
-            background-color: var(--md-sys-color-secondary-container);
-            padding: 0.7rem;
-            border-radius: 8px;
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        #extra-keys-message.dark-mode {
-            color: var(--md-sys-color-on-secondary-container-dark);
-            background-color: var(--md-sys-color-secondary-container-dark);
-        }
-
-        @keyframes fadeIn {
-             from {
-                opacity: 0;
-             }
-            to {
-                 opacity: 1;
-           }
-        }
-        .key-count {
-            font-size: 0.8rem;
-            font-weight: normal;
-            margin-left: 1rem;
-            opacity: 0.7;
-        }
+      }
+      .key-count {
+        font-size: 0.8rem;
+        font-weight: normal;
+        margin-left: 1rem;
+        opacity: 0.7;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--md-sys-color-on-surface-variant);
+        border-radius: 3px;
+      }
     </style>
     <!-- SCRIPTS -->
     <script src="../locales/pt.js"></script>
@@ -376,187 +321,164 @@
 </head>
 <body class="light-mode">
     <div class="material-banner">
-        <span>🌟</span>
-        <strong>Language Key Analysis Tool</strong>
-        <nav>
-           <button id="theme-toggle"></button>
-        </nav>
+      <span>🌟</span>
+      <strong>Language Key Analysis Tool</strong>
+      <nav>
+        <button id="theme-toggle"></button>
+      </nav>
     </div>
     <main>
-        <div id="complete" class="light-mode"></div>
-       <h2 class="light-mode">Language Key Analysis Results</h2>
-        <p class="light-mode">
-            This page is a tool designed to analyze language keys in your project. English is used as the reference language for comparison. The tool identifies missing and extra keys in other languages and highlights complete ones.
-        </p>
-         <div id="incomplete-message" class="light-mode" style="display: none;">
-           The languages below have missing translations compared to the reference language.
-         </div>
-        <div id="extra-keys-message" class="light-mode" style="display: none;">
-            The languages below have extra keys not present in the reference language. Consider removing them for consistency.
-        </div>
-        <div id="results" class="light-mode"></div>
+      <div id="complete"></div>
+      <h2>Language Key Analysis Results</h2>
+      <p>
+        This page is a tool designed to analyze language keys in your project.
+        English is used as the reference language for comparison. The tool
+        identifies missing and extra keys in other languages and highlights
+        complete ones.
+      </p>
+      <div id="incomplete-message" style="display: none">
+        The languages below have missing translations compared to the reference
+        language.
+      </div>
+      <div id="extra-keys-message" style="display: none">
+        The languages below have extra keys not present in the reference
+        language. Consider removing them for consistency.
+      </div>
+      <div id="results"></div>
     </main>
     <script>
-         const languages = { az, bn, cs, en, es, fr, hi, idn, it, ja, ko, mr, pt, ru, tr, uz, vi, zh };
-        const body = document.body;
-         const resultsDiv = document.getElementById('results');
-         const completeDiv = document.getElementById('complete');
-         const themeToggle = document.getElementById('theme-toggle');
-         const h2 = document.querySelector('h2');
-          const p = document.querySelector('p');
-         const incompleteMessage = document.getElementById('incomplete-message');
-         const extraKeysMessage = document.getElementById('extra-keys-message');
+      const languages = { az, bn, cs, en, es, fr, hi, idn, it, ja, ko, mr, pt, ru, tr, uz, vi, zh };
+      const resultsDiv = document.getElementById("results");
+      const completeDiv = document.getElementById("complete");
+      const themeToggle = document.getElementById("theme-toggle");
+      const incompleteMessage = document.getElementById("incomplete-message");
+      const extraKeysMessage = document.getElementById("extra-keys-message");
 
-        function compareLanguageKeys(referenceLang, languages) {
-           const analysis = {};
+      function compareLanguageKeys(referenceLang, languages) {
+        const analysis = {};
 
-            for (const lang in languages) {
-                 if (lang !== referenceLang) {
-                    const refKeys = Object.keys(languages[referenceLang]);
-                   const langKeys = Object.keys(languages[lang]);
+        for (const lang in languages) {
+          if (lang !== referenceLang) {
+            const refKeys = Object.keys(languages[referenceLang]);
+            const langKeys = Object.keys(languages[lang]);
 
-                   const missing = refKeys.filter(key => !langKeys.includes(key));
-                    const extra = langKeys.filter(key => !refKeys.includes(key));
+            const missing = refKeys.filter((key) => !langKeys.includes(key));
+            const extra = langKeys.filter((key) => !refKeys.includes(key));
 
-                    analysis[lang] = {
-                        missingKeys: missing,
-                        extraKeys: extra,
-                        isComplete: missing.length === 0 && extra.length === 0
-                    };
-                }
-            }
-            return analysis;
-         }
-        const languageAnalysis = compareLanguageKeys('en', languages);
-         const ulResults = document.createElement('ul');
-         const ulComplete = document.createElement('ul');
-
-       for (const lang in languageAnalysis) {
-            if (languageAnalysis[lang].isComplete) {
-                const li = document.createElement('li');
-                li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-                li.innerHTML = `<strong>Congratulations!</strong> The language <strong>${lang}</strong> is complete!`;
-                ulComplete.appendChild(li);
-            }
+            analysis[lang] = {
+              missingKeys: missing,
+              extraKeys: extra,
+              isComplete: missing.length === 0 && extra.length === 0,
+            };
+          }
         }
+        return analysis;
+      }
+      const languageAnalysis = compareLanguageKeys("en", languages);
+      const ulResults = document.createElement("ul");
+      const ulComplete = document.createElement("ul");
 
-         const languageGroups = {};
-         let hasMissingKeys = false;
-         let hasExtraKeys = false;
+      for (const lang in languageAnalysis) {
+        if (languageAnalysis[lang].isComplete) {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>Congratulations!</strong> The language <strong>${lang}</strong> is complete!`;
+          ulComplete.appendChild(li);
+        }
+      }
 
-         for (const lang in languageAnalysis) {
-             const { missingKeys, extraKeys } = languageAnalysis[lang];
-             if (missingKeys.length > 0 || extraKeys.length > 0) {
-                hasMissingKeys = hasMissingKeys || missingKeys.length > 0;
-                hasExtraKeys = hasExtraKeys || extraKeys.length > 0;
+      const languageGroups = {};
+      let hasMissingKeys = false;
+      let hasExtraKeys = false;
 
-                 languageGroups[lang] = document.createElement('div');
-                languageGroups[lang].classList.add('language-group', 'collapsed');
-                const h3 = document.createElement('h3');
-                h3.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-                h3.innerHTML = `Language: ${lang}
+      for (const lang in languageAnalysis) {
+        const { missingKeys, extraKeys } = languageAnalysis[lang];
+        if (missingKeys.length > 0 || extraKeys.length > 0) {
+          hasMissingKeys = hasMissingKeys || missingKeys.length > 0;
+          hasExtraKeys = hasExtraKeys || extraKeys.length > 0;
+
+          languageGroups[lang] = document.createElement("div");
+          languageGroups[lang].classList.add("language-group", "collapsed");
+          const h3 = document.createElement("h3");
+          h3.innerHTML = `Language: ${lang}
                     <span class="key-count">Missing: ${missingKeys.length}</span>
                     <span class="key-count">Extra: ${extraKeys.length}</span>
                 `;
-                languageGroups[lang].appendChild(h3);
-                languageGroups[lang].appendChild(document.createElement('ul'));
+          languageGroups[lang].appendChild(h3);
+          languageGroups[lang].appendChild(document.createElement("ul"));
 
-                const ul = languageGroups[lang].querySelector('ul');
-                missingKeys.forEach(key => {
-                     const li = document.createElement('li');
-                    li.classList.add('missing');
-                     li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-                     li.innerHTML = `
+          const ul = languageGroups[lang].querySelector("ul");
+          missingKeys.forEach((key) => {
+            const li = document.createElement("li");
+            li.classList.add("missing");
+            li.innerHTML = `
                         <input type="checkbox" id="checkbox-missing-${lang}-${key}" data-lang="${lang}" data-key="${key}">
                        <span>Missing: ${key}</span>
                     `;
-                    ul.appendChild(li);
-                 });
+            ul.appendChild(li);
+          });
 
-                extraKeys.forEach(key => {
-                     const li = document.createElement('li');
-                    li.classList.add('extra');
-                     li.classList.add(body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode');
-                     li.innerHTML = `
+          extraKeys.forEach((key) => {
+            const li = document.createElement("li");
+            li.classList.add("extra");
+            li.innerHTML = `
                         <span>Extra: ${key}</span>
                     `;
-                    ul.appendChild(li);
-                 });
-             }
+            ul.appendChild(li);
+          });
         }
+      }
 
-        for (const langGroup in languageGroups) {
-            ulResults.appendChild(languageGroups[langGroup]);
+      for (const langGroup in languageGroups) {
+        ulResults.appendChild(languageGroups[langGroup]);
+      }
+
+      if (
+        Object.keys(languageAnalysis).filter(
+          (lang) => languageAnalysis[lang].isComplete
+        ).length > 0
+      ) {
+        completeDiv.appendChild(ulComplete);
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "No languages are complete.";
+        ulComplete.appendChild(li);
+        completeDiv.appendChild(ulComplete);
+      }
+
+      if (hasMissingKeys) {
+        incompleteMessage.style.display = "block";
+      }
+
+      if (hasExtraKeys) {
+        extraKeysMessage.style.display = "block";
+      }
+
+      if (hasMissingKeys || hasExtraKeys) {
+        resultsDiv.appendChild(ulResults);
+      }
+
+      resultsDiv.addEventListener("change", (event) => {
+        if (event.target.type === "checkbox") {
+          const checkbox = event.target;
+          const listItem = checkbox.closest("li");
+          if (checkbox.checked) {
+            listItem.classList.add("checked");
+          } else {
+            listItem.classList.remove("checked");
+          }
         }
+      });
 
-        if (Object.keys(languageAnalysis).filter(lang => languageAnalysis[lang].isComplete).length > 0) {
-             completeDiv.appendChild(ulComplete);
-        } else {
-            const li = document.createElement('li');
-            li.textContent = 'No languages are complete.';
-             ulComplete.appendChild(li);
-           completeDiv.appendChild(ulComplete);
+      resultsDiv.addEventListener("click", (event) => {
+        if (event.target.closest(".language-group h3")) {
+          const group = event.target.closest(".language-group");
+          group.classList.toggle("collapsed");
         }
+      });
 
-        if (hasMissingKeys) {
-            incompleteMessage.style.display = 'block';
-        }
-
-        if (hasExtraKeys) {
-            extraKeysMessage.style.display = 'block';
-        }
-
-        if (hasMissingKeys || hasExtraKeys) {
-            resultsDiv.appendChild(ulResults);
-        }
-
-        resultsDiv.addEventListener('change', (event) => {
-           if (event.target.type === 'checkbox') {
-                 const checkbox = event.target;
-               const listItem = checkbox.closest('li');
-               if (checkbox.checked) {
-                    listItem.classList.add('checked');
-                } else {
-                   listItem.classList.remove('checked');
-                }
-            }
-        });
-
-        resultsDiv.addEventListener('click', (event) => {
-            if (event.target.closest('.language-group h3')) {
-                 const group = event.target.closest('.language-group');
-                group.classList.toggle('collapsed');
-            }
-         });
-
-        themeToggle.addEventListener('click', () => {
-           body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-           resultsDiv.classList.toggle('dark-mode');
-            resultsDiv.classList.toggle('light-mode');
-           completeDiv.classList.toggle('dark-mode');
-             completeDiv.classList.toggle('light-mode');
-            h2.classList.toggle('dark-mode');
-            h2.classList.toggle('light-mode');
-            p.classList.toggle('dark-mode');
-            p.classList.toggle('light-mode');
-             incompleteMessage.classList.toggle('dark-mode');
-            incompleteMessage.classList.toggle('light-mode');
-            extraKeysMessage.classList.toggle('dark-mode');
-            extraKeysMessage.classList.toggle('light-mode');
-          document.querySelectorAll('#complete li').forEach(li => {
-                 li.classList.toggle('dark-mode');
-               li.classList.toggle('light-mode');
-             });
-           document.querySelectorAll('#results li').forEach(li => {
-                li.classList.toggle('dark-mode');
-                li.classList.toggle('light-mode');
-            });
-           document.querySelectorAll('.language-group h3').forEach(h3 => {
-                 h3.classList.toggle('dark-mode');
-                h3.classList.toggle('light-mode');
-            });
-        });
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
     </script>
-</body>
+  </body>
 </html>
