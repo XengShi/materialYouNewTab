@@ -10,7 +10,7 @@ const en = {
     "editShortcutsText": "Edit Shortcuts",
     "shortcutsInfoText": "Choose which shortcuts get shown",
     "editShortcutsList": "Saved Shortcuts",
-    'editShortcutsListInfo': "You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.",
+    "editShortcutsListInfo": "You can add new shortcuts by clicking the "+" icon or edit existing ones by clicking on the shortcut name or URL.",
     "adaptiveIconText": "Adaptive Icon Shapes",
     "adaptiveIconInfoText": "Shortcut icons will appear smaller",
     "bookmarksText": "Bookmarks",
