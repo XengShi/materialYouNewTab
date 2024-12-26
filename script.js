@@ -801,10 +801,10 @@ function updateDate() {
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
-            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
@@ -927,7 +927,7 @@ function updatedigiClock() {
 
     // Determine the translated short date string based on language
     const dateFormats = {
-        az: `${dayName} ${dayOfMonth}`, //Mardi 11
+        az: `${dayName} ${dayOfMonth}`,
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -939,8 +939,8 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
-        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
-        default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
+        fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
