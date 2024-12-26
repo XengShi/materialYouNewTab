@@ -6,23 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-// Check if alert has already been shown
-if (!localStorage.getItem('alertShown')) {
-    // Show the alert after 4 seconds
-    setTimeout(() => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const message = isMac
-            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
-            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
-
-        alert(message);
-
-        // Set a flag in localStorage so the alert is not shown again
-        localStorage.setItem('alertShown', 'true');
-    }, 4000);
-}
-
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -39,6 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
     const savedLocation = localStorage.getItem("weatherLocation");
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
     const savedProxy = localStorage.getItem("proxy");
 
     // Pre-fill input fields with saved data
@@ -92,36 +76,38 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
-            localStorage.setItem("proxy", defaultProxyURL);
-            userProxyInput.value = "";
-            location.reload();
-            return;
+            proxyurl = defaultProxyURL;
+        } else {
+            // Validate if input starts with 'http://' or 'https://'
+            if (!(proxyurl.startsWith("http://") || proxyurl.startsWith("https://"))) {
+                // Automatically correct input by adding 'http://' if not present
+                proxyurl = "http://" + proxyurl;
+            }
+
+            // Remove trailing slash if exists
+            if (proxyurl.endsWith("/")) {
+                proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
+            }
         }
 
-        // Validate if input starts with 'http://' or 'https://'
-        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-            if (!proxyurl.endsWith("/")) {
-                localStorage.setItem("proxy", proxyurl);
-                userProxyInput.value = "";
-                location.reload();
-            } else {
-                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-            }
-        } else {
-            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
-        }
+        // Set the proxy in localStorage, clear the input, and reload the page
+        localStorage.setItem("proxy", proxyurl);
+        userProxyInput.value = "";
+        location.reload();
     });
 
     // Default Weather API key
     const weatherApiKeys = [
         // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-        'db0392b338114f208ee135134240312',
-        'de5f7396db034fa2bf3140033240312',
-        'c64591e716064800992140217240312',
-        '9b3204c5201b4b4d8a2140330240312',
-        'eb8a315c15214422b60140503240312',
-        'cd148ebb1b784212b74140622240312',
-        '7ae67e219af54df2840140801240312'
+        // 'db0392b338114f208ee135134240312',
+        // 'de5f7396db034fa2bf3140033240312',
+        // 'c64591e716064800992140217240312',
+        // '9b3204c5201b4b4d8a2140330240312',
+        // 'eb8a315c15214422b60140503240312',
+        // 'cd148ebb1b784212b74140622240312',
+        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        '0a6bc8a404224c8d89953341241912',
+        'f59e58d7735d4739ae953115241912'
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
@@ -144,8 +130,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             currentUserLocation = "auto:ip"; // Fallback if fetching location fails
         }
     }
-
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
     try {
         // Fetch weather data using Weather API
@@ -271,6 +255,316 @@ document.addEventListener("click", function (event) {
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+
+// ------------------------ Bookmark System -----------------------------------
+// DOM Vairables
+const bookmarkButton = document.getElementById('bookmarkButton');
+const bookmarkSidebar = document.getElementById('bookmarkSidebar');
+const bookmarkList = document.getElementById('bookmarkList');
+const bookmarkSearch = document.getElementById('bookmarkSearch');
+const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
+const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
+const bookmarkViewList = document.getElementById('bookmarkViewList');
+
+const isFirefox = typeof browser !== 'undefined';
+var bookmarksAPI;
+if (isFirefox && browser.permissions) {
+    bookmarksAPI = browser.bookmarks;
+} else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
+    bookmarksAPI = chrome.bookmarks;
+} else {
+    console.error("Bookmarks API not supported in this browser.");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    bookmarkButton.addEventListener('click', function () {
+        toggleBookmarkSidebar();
+        bookmarkSearchClearButton.click();
+    });
+
+    bookmarkViewGrid.addEventListener('click', function () {
+        bookmarkGridCheckbox.click();
+    });
+
+    bookmarkViewList.addEventListener('click', function () {
+        bookmarkGridCheckbox.click();
+        // bookmarkGridCheckbox.checked = false;
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+            toggleBookmarkSidebar();
+        }
+    });
+
+    bookmarkSearch.addEventListener('input', function () {
+        const searchTerm = bookmarkSearch.value.toLowerCase();
+        const bookmarks = bookmarkList.querySelectorAll('li[data-url], li.folder'); // Include both bookmarks and folders
+
+        Array.from(bookmarks).forEach(function (bookmark) {
+            const text = bookmark.textContent.toLowerCase();
+            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : '';
+            const isFolder = bookmark.classList.contains('folder');
+
+            // Show bookmarks if the search term matches either the name or the URL
+            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
+                bookmark.style.display = ''; // Show matching bookmarks
+            } else if (isFolder) {
+                // For folders, check if any child bookmarks match the search
+                const childBookmarks = bookmark.querySelectorAll('li[data-url]');
+                let hasVisibleChild = false;
+                Array.from(childBookmarks).forEach(function (childBookmark) {
+                    const childText = childBookmark.textContent.toLowerCase();
+                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : '';
+                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
+                        hasVisibleChild = true;
+                        childBookmark.style.display = ''; // Show matching child bookmarks
+                    } else {
+                        childBookmark.style.display = 'none'; // Hide non-matching child bookmarks
+                    }
+                });
+
+                if (hasVisibleChild) {
+                    bookmark.style.display = ''; // Show folder if it has matching child bookmarks
+                    bookmark.classList.add('open'); // Open folder to show matching child bookmarks
+                } else {
+                    bookmark.style.display = 'none'; // Hide folder if no child matches
+                    bookmark.classList.remove('open');
+                }
+            } else {
+                bookmark.style.display = 'none'; // Hide non-matching bookmarks
+            }
+        });
+
+        if (searchTerm === '') {
+            // Reset display for all bookmarks and folders
+            Array.from(bookmarks).forEach(function (bookmark) {
+                bookmark.style.display = '';
+                if (bookmark.classList.contains('folder')) {
+                    bookmark.classList.remove('open');
+                    const childList = bookmark.querySelector('ul');
+                    if (childList) {
+                        childList.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Show or hide the clear button based on the search term
+        bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
+    });
+
+    bookmarkSearchClearButton.addEventListener('click', function () {
+        bookmarkSearch.value = '';
+        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    });
+
+    function toggleBookmarkSidebar() {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkButton.classList.toggle('rotate');
+
+        if (bookmarkSidebar.classList.contains('open')) {
+            loadBookmarks();
+        }
+    };
+    // Function to load bookmarks
+    function loadBookmarks() {
+        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
+            return;
+        }
+
+        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
+            // Clear the current list
+            bookmarkList.innerHTML = '';
+
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(8).then(recentBookmarks => {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
+            }
+
+            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
+            if (isFirefox) {
+                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
+                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
+                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
+
+                if (toolbarNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                }
+                if (menuNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                }
+                if (otherNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
+                }
+            } else {
+                let default_folder = "Bookmarks bar";
+                if (isEdge) {
+                    default_folder = "Favorites bar";
+                } else if (isBrave) {
+                    default_folder = "Bookmarks";
+                }
+                // Extract the 'Main bookmarks' node and display its Children
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+
+                if (mainBookmarks && mainBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
+                }
+
+                // Extract the other 'Bookmarks' folders and display them
+                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
+                if (bookmarksBar && bookmarksBar.children) {
+                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
+                }
+            }
+        }).catch(err => {
+            console.error("Error loading bookmarks:", err);
+        });
+    }
+
+    function displayBookmarks(bookmarkNodes) {
+        let list = document.createElement('ul');
+
+        // Separate folders and bookmarks
+        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
+        const bookmarks = bookmarkNodes.filter(node => node.url);
+
+        // Sort folders and bookmarks separately
+        folders.sort((a, b) => a.title.localeCompare(b.title));
+        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+
+        // Sort folders and bookmarks separately by dateAdded
+        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+
+        // Combine folders and bookmarks, placing folders first
+        const sortedNodes = [...folders, ...bookmarks];
+
+        for (let node of sortedNodes) {
+            if (node.id === "1") { continue; }
+            if (node.children && node.children.length > 0) {
+                let folderItem = document.createElement('li');
+
+                // Use the SVG icon from HTML
+                const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
+                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
+                folderItem.appendChild(folderIcon);
+
+                folderItem.appendChild(document.createTextNode(node.title));
+                folderItem.classList.add('folder');
+
+                // Add event listener for unfolding/folding
+                folderItem.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    folderItem.classList.toggle('open');
+                    const subList = folderItem.querySelector('ul');
+                    if (subList) {
+                        subList.classList.toggle('hidden');
+                    }
+                });
+
+                let subList = displayBookmarks(node.children);
+                subList.classList.add('hidden');
+                folderItem.appendChild(subList);
+
+                list.appendChild(folderItem);
+            } else if (node.url) {
+                let item = document.createElement('li');
+                item.dataset.url = node.url; // Add URL as dataset for search functionality
+                let link = document.createElement('a');
+                link.href = node.url;
+                let span = document.createElement('span');
+                span.textContent = node.title;
+
+                let favicon = document.createElement('img');
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
+                favicon.classList.add('favicon');
+                favicon.onerror = () => {
+                    favicon.src = "./shortcuts_icons/offline.svg";
+                };
+
+                // Create the delete button
+                let deleteButton = document.createElement('button');
+                deleteButton.textContent = '✖';
+                deleteButton.classList.add('bookmark-delete-button');
+
+                deleteButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
+                        if (isFirefox) {
+                            // Firefox API (Promise-based)
+                            bookmarksAPI.remove(node.id).then(() => {
+                                item.remove(); // Remove the item from the DOM
+                            }).catch(err => {
+                                console.error("Error removing bookmark in Firefox:", err);
+                            });
+                        } else {
+                            // Chrome API (Callback-based)
+                            bookmarksAPI.remove(node.id, function () {
+                                item.remove(); // Remove the item from the DOM
+                            });
+                        }
+                    }
+                });
+
+                link.appendChild(favicon);
+                link.appendChild(span);
+                item.appendChild(link);
+                item.appendChild(deleteButton); // Add delete button to the item
+
+                // Open links in the current tab or new tab if ctrl pressed
+                link.addEventListener('click', function (event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        // Open in a new tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.create({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.create({ url: node.url });
+                        } else {
+                            window.open(node.url, '_blank');
+                        }
+                    } else {
+                        // Open in the current tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.update({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.update({ url: node.url }, function () {
+                            });
+                        } else {
+                            window.location.href = node.url;
+                        }
+                    }
+                });
+                list.appendChild(item);
+            }
+        }
+
+        list.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        return list;
+    }
+
+
+});
+
+// ------------------------ End of Bookmark System -----------------------------------
+
 // ----------------------------------- To Do List ----------------------------------------
 
 // DOM Variables
@@ -304,23 +598,29 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = { title: rawText, status: "pending" }; // Add data to the JSON variable
-    const li = createTodoItemDOM(t, rawText, "pending"); // Create List item
+    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
+    const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ''; // Clear Input
     SaveToDoData(); // Save changes
 }
 
-function createTodoItemDOM(id, title, status) {
+function createTodoItemDOM(id, title, status, pinned) {
     let li = document.createElement('li');
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
-    const span = document.createElement("span"); // Create the Cross Icon
-    span.setAttribute("class", "todoremovebtn");
-    span.textContent = "\u00d7";
-    li.appendChild(span); // Add the cross icon to the LI tag
+    const removebtn = document.createElement("span"); // Create the Cross Icon
+    removebtn.setAttribute("class", "todoremovebtn");
+    removebtn.textContent = "\u00d7";
+    li.appendChild(removebtn); // Add the cross icon to the LI tag
     li.setAttribute("class", "todolistitem");
     if (status === 'completed') {
         li.classList.add("checked");
+    }
+    const pinbtn = document.createElement("span"); // Create the Cross Icon
+    pinbtn.setAttribute("class", "todopinbtn");
+    li.appendChild(pinbtn); // Add the cross icon to the LI tag
+    if (pinned) {
+        li.classList.add("pinned");
     }
     li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
     return li; // Return the created `li` element
@@ -328,21 +628,26 @@ function createTodoItemDOM(id, title, status) {
 
 // Event delegation for task check and remove
 todoulList.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI"){
+    if (event.target.tagName === "LI") {
         event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.tagName === "SPAN"){
+    } else if (event.target.classList.contains('todoremovebtn')) {
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
+        SaveToDoData(); // Save Changes
+    } else if (event.target.classList.contains('todopinbtn')) {
+        event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
+        let id = event.target.parentElement.dataset.todoitem;
+        todoList[id].pinned = ((todoList[id].pinned === true) ? false : true); // Update status
         SaveToDoData(); // Save Changes
     }
 });
 
 // Save JSON to local Storage
-function SaveToDoData(){
+function SaveToDoData() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 // Fetch saved JSON and create list items using it
@@ -352,7 +657,7 @@ function ShowToDoList() {
         const fragment = document.createDocumentFragment(); // Create a DocumentFragment
         for (let id in todoList) {
             const todo = todoList[id];
-            const li = createTodoItemDOM(id, todo.title, todo.status); // Create `li` elements
+            const li = createTodoItemDOM(id, todo.title, todo.status, todo.pinned); // Create `li` elements
             fragment.appendChild(li); // Add `li` to the fragment
         }
         todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
@@ -365,12 +670,22 @@ function ShowToDoList() {
 // Code to reset the List on the Next Day
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
 let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
-if (todoLastUpdateDate===todoCurrentDate){
+if (todoLastUpdateDate === todoCurrentDate) {
     ShowToDoList();
 } else {
-    // Reset the list when last update date and the current date does not match
-    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
-    localStorage.setItem("todoList",'{}');
+    // Modify the list when last update date and the current date does not match
+    localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
+    todoList = JSON.parse(localStorage.getItem("todoList")) || {};
+    for (let id in todoList) {
+        if (todoList[id].pinned == false) {
+            if (todoList[id].status == "completed") {
+                delete todoList[id]; // Remove the Unpinned and Completed list item data
+            }
+        } else {
+            todoList[id].status = "pending"; // Reset status of pinned items
+        }
+    }
+    SaveToDoData();
     ShowToDoList();
 }
 
@@ -399,7 +714,7 @@ document.addEventListener("click", function (event) {
         todoContainer.style.display = 'none'; // Hide menu
         todoListCont.classList.remove('menu-open'); // Restore tooltip
     }
-    
+
     event.stopPropagation();
 });
 
@@ -442,7 +757,7 @@ function updateDate() {
         var month = currentTime.getMonth();
 
         // Define the current language
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
         // Get the translated name of the day
         var dayName;
@@ -488,6 +803,8 @@ function updateDate() {
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
+            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -592,8 +909,6 @@ function updatedigiClock() {
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
     const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
 
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-
     // Get translated day name
     let dayName;
     if (
@@ -611,6 +926,7 @@ function updatedigiClock() {
 
     // Determine the translated short date string based on language
     const dateFormats = {
+        az: `${dayName} ${dayOfMonth}`, //Mardi 11
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -820,7 +1136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
         const resultBox = document.getElementById('resultBox');
-        if(resultBox.classList.toString().includes('show')) return;
+        if (resultBox.classList.toString().includes('show')) return;
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
@@ -859,7 +1175,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
 
             // console.log(element, selector);
-            
+
             radioButton.checked = true;
 
             // Swap The dropdown. and sort them
@@ -1026,6 +1342,8 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+    // Remove Loading Screen When the DOM and the Theme has Loaded
+    document.getElementById('LoadingScreen').style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add('theme-transition');
@@ -1034,13 +1352,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 function isSupportedBrowser() {
-    const userAgent = navigator.userAgent;
-    const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
-    const isEdge = /Edg/.test(userAgent);
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
-    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-
+    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -1323,7 +1640,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #searchQ {
-            color: #fff;
+                color: #fff;
             }
 
             .dark-theme .searchbar.active {
@@ -1334,7 +1651,7 @@ const applySelectedTheme = (colorValue) => {
                 fill: #bbb !important;
             }
 	    
-	    .dark-theme .dropdown-item.selected:not(*[data-default]):before {
+            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
                 background-color: #707070;
             }
 
@@ -1384,7 +1701,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-	    .clearButton{
+            .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1403,7 +1720,7 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .backupRestoreBtn:hover,
             .dark-theme .uploadButton:hover,
             .dark-theme .randomButton:hover,
-	    .dark-theme #todoAdd:hover {
+            .dark-theme #todoAdd:hover {
                 background-color: var(--bg-color-dark);
             }
             
@@ -1414,8 +1731,28 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #0e0e0e;
             }
 	    
-	    .dark-theme .todolistitem span {
+            .dark-theme .todolistitem .todoremovebtn {
                 color:#616161;
+            }
+
+            .dark-theme .todolistitem .todoremovebtn:hover {
+                color:#888888;
+            }
+
+            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
+                color: var(--textColorDark-blue) !important;
+            }
+
+            .dark-theme #bookmarkSearch{
+                background-color: #212121 !important;
+            }
+
+            .dark-theme .bookmark-search-container::after {
+                filter: none;
+            }
+
+            .dark-theme .bookmark-button svg {
+                fill: var(--textColorDark-blue);
             }
 
      	    .dark-theme .micIcon {
@@ -1517,6 +1854,7 @@ const applySelectedTheme = (colorValue) => {
     if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
     }
+    ApplyLoadingColor();
 };
 
 // ----Color Picker || ColorPicker----
@@ -1588,6 +1926,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--whitishColor-blue', lightTin);
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
+    ApplyLoadingColor();
 };
 
 const applyBrowserTheme = async ({ theme }) => {
@@ -1734,12 +2073,9 @@ colorPicker.addEventListener('change', handleColorPickerChange);
 
 
 
-
-
 // end of Function to apply the selected theme
 
-// ------------ Wallpaper ---------------------------------
-// Constants for database and storage
+// -------------------------- Wallpaper -----------------------------
 const dbName = 'ImageDB';
 const storeName = 'backgroundImages';
 const timestampKey = 'lastUpdateTime'; // Key to store last update time
@@ -1753,23 +2089,19 @@ function openDatabase() {
             const db = event.target.result;
             db.createObjectStore(storeName);
         };
-        request.onsuccess = function (event) {
-            resolve(event.target.result);
-        };
-        request.onerror = function (event) {
-            reject('Database error: ' + event.target.errorCode);
-        };
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject('Database error: ' + event.target.errorCode);
     });
 }
 
-// Save image data, timestamp, and type to IndexedDB
-async function saveImageToIndexedDB(imageUrl, isRandom) {
+// Save image Blob, timestamp, and type to IndexedDB
+async function saveImageToIndexedDB(imageBlob, isRandom) {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
 
-        store.put(imageUrl, 'backgroundImage');
+        store.put(imageBlob, 'backgroundImage'); // Save Blob
         store.put(new Date().toISOString(), timestampKey);
         store.put(isRandom ? 'random' : 'upload', imageTypeKey);
 
@@ -1778,60 +2110,38 @@ async function saveImageToIndexedDB(imageUrl, isRandom) {
     });
 }
 
-// Load image, timestamp, and type from IndexedDB
+// Load image Blob, timestamp, and type from IndexedDB
 async function loadImageAndDetails() {
     const db = await openDatabase();
-    return await Promise.all([
-        new Promise((resolve, reject) => {
-            const transaction = db.transaction(storeName, 'readonly');
-            const store = transaction.objectStore(storeName);
-            const request = store.get('backgroundImage');
-
-            request.onsuccess = (event) => resolve(request.result);
-            request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
-        }),
-        new Promise((resolve_1, reject_1) => {
-            const transaction_1 = db.transaction(storeName, 'readonly');
-            const store_1 = transaction_1.objectStore(storeName);
-            const request_1 = store_1.get(timestampKey);
-
-            request_1.onsuccess = (event_2) => resolve_1(request_1.result);
-            request_1.onerror = (event_3) => reject_1('Request error: ' + event_3.target.errorCode);
-        }),
-        new Promise((resolve_2, reject_2) => {
-            const transaction_2 = db.transaction(storeName, 'readonly');
-            const store_2 = transaction_2.objectStore(storeName);
-            const request_2 = store_2.get(imageTypeKey);
-
-            request_2.onsuccess = (event_4) => resolve_2(request_2.result);
-            request_2.onerror = (event_5) => reject_2('Request error: ' + event_5.target.errorCode);
-        })
+    return Promise.all([
+        getFromStore(db, 'backgroundImage'),
+        getFromStore(db, timestampKey),
+        getFromStore(db, imageTypeKey)
     ]);
 }
-
-// Load only the background image
-async function loadImageFromIndexedDB() {
-    const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+function getFromStore(db, key) {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readonly');
         const store = transaction.objectStore(storeName);
-        const request = store.get('backgroundImage');
+        const request = store.get(key);
 
-        request.onsuccess = (event) => resolve(request.result);
-        request.onerror = (event_1) => reject('Request error: ' + event_1.target.errorCode);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
     });
 }
 
 // Clear image data from IndexedDB
 async function clearImageFromIndexedDB() {
     const db = await openDatabase();
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
-        const request = store.delete('backgroundImage');
+        store.delete('backgroundImage');
+        store.delete(timestampKey);
+        store.delete(imageTypeKey);
 
-        request.onsuccess = () => resolve();
-        request.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
     });
 }
 
@@ -1839,24 +2149,20 @@ async function clearImageFromIndexedDB() {
 document.getElementById('imageUpload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const image = new Image();
-            image.onload = function () {
-                const totalPixels = image.width * image.height;
-                if (totalPixels > 2073600) {
-                    alert((translations[currentLanguage]?.imagedimensions || translations['en'].imagedimensions)
-                    .replace('{width}', image.width)
-                    .replace('{height}', image.height));
-                }
-                document.body.style.setProperty('--bg-image', `url(${e.target.result})`);
-                saveImageToIndexedDB(e.target.result, false)
-                    .then(() => updateTextBackground(true))
-                    .catch(error => console.error(error));
-            };
-            image.src = e.target.result;
+        const imageUrl = URL.createObjectURL(file); // Create temporary Blob URL
+        const image = new Image();
+
+        image.onload = function () {
+            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            saveImageToIndexedDB(file, false)
+                .then(() => {
+                    updateTextBackground(true);
+                    URL.revokeObjectURL(imageUrl); // Clean up memory
+                })
+                .catch(error => console.error(error));
         };
-        reader.readAsDataURL(file);
+
+        image.src = imageUrl;
     }
 });
 
@@ -1869,10 +2175,13 @@ async function applyRandomImage(showConfirmation = true) {
     }
     try {
         const response = await fetch(RANDOM_IMAGE_URL);
-        const imageUrl = response.url;
+        const blob = await response.blob(); // Get Blob from response
+        const imageUrl = URL.createObjectURL(blob);
+
         document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
-        await saveImageToIndexedDB(imageUrl, true);
+        await saveImageToIndexedDB(blob, true);
         updateTextBackground(true);
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
@@ -1880,7 +2189,6 @@ async function applyRandomImage(showConfirmation = true) {
 
 // Function to update solid background behind userText, date, greeting and shortcut names
 function updateTextBackground(hasWallpaper) {
-    // Select elements
     const userText = document.getElementById('userText');
     const date = document.getElementById('date');
     const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
@@ -1904,53 +2212,45 @@ function updateTextBackground(hasWallpaper) {
 
     // Update styles for shortcuts
     shortcuts.forEach(shortcut => {
-        if (hasWallpaper) {
-            shortcut.style.backgroundColor = 'var(--accentLightTint-blue)';
-            shortcut.style.padding = '0px 6px';
-            shortcut.style.borderRadius = '5px';
-        } else {
-            shortcut.style.backgroundColor = ''; // Reset to default
-            shortcut.style.padding = '';
-            shortcut.style.borderRadius = '';
-        }
+        shortcut.style.backgroundColor = hasWallpaper ? 'var(--accentLightTint-blue)' : '';
+        shortcut.style.padding = hasWallpaper ? '0px 6px' : '';
+        shortcut.style.borderRadius = hasWallpaper ? '5px' : '';
     });
 }
 
 // Check and update image on page load
 function checkAndUpdateImage() {
     loadImageAndDetails()
-        .then(([savedImage, savedTimestamp, imageType]) => {
+        .then(([blob, savedTimestamp, imageType]) => {
             const now = new Date();
             const lastUpdate = new Date(savedTimestamp);
 
-            // Case 1: No image found, disable text shadow and return.
-            if (!savedImage) {
+            // No image or invalid data
+            if (!blob || !savedTimestamp || isNaN(lastUpdate)) {
                 updateTextBackground(false);
                 return;
             }
 
-            // Case 2: Invalid or missing timestamp, disable text shadow and return.
-            if (!savedTimestamp || isNaN(lastUpdate)) {
-                updateTextBackground(false);
-                return;
-            }
+            // Create a new Blob URL dynamically
+            const imageUrl = URL.createObjectURL(blob);
 
-            // Case 3: Uploaded image should always be applied.
             if (imageType === 'upload') {
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
-                document.body.style.backgroundImage = `var(--bg-image)`;
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
                 updateTextBackground(true);
                 return;
             }
 
-            // Case 4: Random image should be refreshed if it's a new day.
             if (lastUpdate.toDateString() !== now.toDateString()) {
-                applyRandomImage(false); // Fetch new random image and apply it.
+                // Refresh random image if a new day
+                applyRandomImage(false);
             } else {
-                // Case 5: Same day random image, reapply saved image.
-                document.body.style.setProperty('--bg-image', `url(${savedImage})`);
+                // Reapply the saved random image
+                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
                 updateTextBackground(true);
             }
+
+            // Clean up the Blob URL after setting the background
+            setTimeout(() => URL.revokeObjectURL(imageUrl), 1500);
         })
         .catch((error) => {
             console.error('Error loading image details:', error);
@@ -1961,19 +2261,20 @@ function checkAndUpdateImage() {
 // Event listeners for buttons
 document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
 document.getElementById('clearImage').addEventListener('click', function () {
-    loadImageFromIndexedDB()
-        .then((savedImage) => {
-            if (savedImage) {
-                if (confirm(translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage)) {
-                    clearImageFromIndexedDB()
-                        .then(() => {
-                            document.body.style.removeProperty('--bg-image');
-                            updateTextBackground(false);
-                        })
-                        .catch((error) => console.error(error));
-                }
-            } else {
+    loadImageAndDetails()
+        .then(([blob]) => {
+            if (!blob) {
                 alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
+                return;
+            }
+            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage;
+            if (confirm(confirmationMessage)) {
+                clearImageFromIndexedDB()
+                    .then(() => {
+                        document.body.style.removeProperty('--bg-image');
+                        updateTextBackground(false);
+                    })
+                    .catch((error) => console.error(error));
             }
         })
         .catch((error) => console.error(error));
@@ -1982,18 +2283,15 @@ document.getElementById('randomImageTrigger').addEventListener('click', applyRan
 
 // Start image check on page load
 checkAndUpdateImage();
+// ------------------------ End of BG Image --------------------------
 
-// ------- End of BG Image -------------------------------------------
-
-// -------- Backup-Restore Settings ----------------------------------
+// -------------------- Backup-Restore Settings ----------------------
 document.getElementById("backupBtn").addEventListener("click", backupData);
 document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
 document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
 
 // Backup data from localStorage and IndexedDB
 async function backupData() {
-    if (!confirm(translations[currentLanguage]?.confirmbackup || translations['en'].confirmbackup)) return;
-
     try {
         const backup = { localStorage: {}, indexedDB: {} };
 
@@ -2036,6 +2334,13 @@ async function validateAndRestoreData(event) {
     reader.onload = async (e) => {
         try {
             const backup = JSON.parse(e.target.result);
+
+            // Validate the structure of the JSON file
+            if (!isValidBackupFile(backup)) {
+                alert(translations[currentLanguage]?.invalidBackup || translations['en'].invalidBackup);
+                return;
+            }
+
             await restoreData(backup);
 
             alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
@@ -2047,61 +2352,83 @@ async function validateAndRestoreData(event) {
     reader.readAsText(file);
 }
 
+function isValidBackupFile(backup) {
+    // Check if localStorage and indexedDB exist and are objects
+    if (typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object") {
+        return false;
+    }
+    return true;
+}
+
 // Backup IndexedDB: Extract data from ImageDB -> backgroundImages
-function backupIndexedDB() {
+async function backupIndexedDB() {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readonly");
+        const store = transaction.objectStore(storeName);
+        const data = {};
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readonly");
-            const store = transaction.objectStore("backgroundImages");
-            const data = {};
+        store.getAllKeys().onsuccess = (keysEvent) => {
+            const keys = keysEvent.target.result;
 
-            store.getAllKeys().onsuccess = (keysEvent) => {
-                const keys = keysEvent.target.result;
+            if (!keys.length) {
+                resolve({});
+                return;
+            }
 
-                if (!keys.length) {
-                    resolve({ backgroundImages: {} });
-                    return;
-                }
-
-                let pending = keys.length;
-                keys.forEach(key => {
-                    store.get(key).onsuccess = (getEvent) => {
-                        data[key] = getEvent.target.result;
-                        if (--pending === 0) resolve({ backgroundImages: data });
-                    };
-                });
-            };
-
-            transaction.onerror = () => reject(transaction.error);
+            let pending = keys.length;
+            keys.forEach(key => {
+                store.get(key).onsuccess = (getEvent) => {
+                    const value = getEvent.target.result;
+                    if (value instanceof Blob) {
+                        // Convert Blob to Base64 for JSON compatibility
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            data[key] = { blob: reader.result, isBlob: true };
+                            if (--pending === 0) resolve(data);
+                        };
+                        reader.readAsDataURL(value);
+                    } else {
+                        data[key] = value;
+                        if (--pending === 0) resolve(data);
+                    }
+                };
+            });
         };
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
 // Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
-function restoreIndexedDB(data) {
+async function restoreIndexedDB(data) {
+    const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const openRequest = indexedDB.open("ImageDB");
+        const transaction = db.transaction(storeName, "readwrite");
+        const store = transaction.objectStore(storeName);
 
-        openRequest.onsuccess = () => {
-            const db = openRequest.result;
-            const transaction = db.transaction("backgroundImages", "readwrite");
-            const store = transaction.objectStore("backgroundImages");
+        store.clear();
+        const entries = Object.entries(data);
+        let pending = entries.length;
 
-            store.clear();
-            Object.entries(data).forEach(([key, value]) => {
+        if (pending === 0) {
+            resolve(); // If no data to restore, resolve immediately
+            return;
+        }
+
+        entries.forEach(([key, value]) => {
+            if (value.isBlob) {
+                // Convert Base64 back to Blob
+                const blob = base64ToBlob(value.blob);
+                store.put(blob, key);
+            } else {
                 store.put(value, key);
-            });
+            }
 
-            transaction.oncomplete = resolve;
-            transaction.onerror = () => reject(transaction.error);
-        };
+            if (--pending === 0) resolve();
+        });
 
-        openRequest.onerror = () => reject(openRequest.error);
+        transaction.onerror = () => reject(transaction.error);
     });
 }
 
@@ -2118,9 +2445,21 @@ async function restoreData(backup) {
     }
 
     // Restore IndexedDB from backup
-    if (backup.indexedDB && backup.indexedDB.backgroundImages) {
-        await restoreIndexedDB(backup.indexedDB.backgroundImages);
+    if (backup.indexedDB) {
+        await restoreIndexedDB(backup.indexedDB);
     }
+}
+
+// Helper: Convert Base64 string to Blob
+function base64ToBlob(base64) {
+    const [metadata, data] = base64.split(',');
+    const mime = metadata.match(/:(.*?);/)[1];
+    const binary = atob(data);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        array[i] = binary.charCodeAt(i);
+    }
+    return new Blob([array], { type: mime });
 }
 // -------------------End of Settings ------------------------------
 
@@ -2244,11 +2583,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
 
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
-                    
-                    if(dropdown.style.display == "block") {
+
+                    if (dropdown.style.display == "block") {
                         dropdown.style.display = "none";
                     }
-                    
+
 
                     showResultBox();
                 }
@@ -2555,11 +2894,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
+    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const firefoxAdaptiveField = document.getElementById("firefoxAdaptiveField");
     const firefoxAdaptiveToggle = document.getElementById("firefoxAdaptiveToggle");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
+    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -3040,7 +3381,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchIconContainer[0].style.display = 'block';
         document.getElementById('search-with-container').style.visibility = 'visible';
     }
-    
+
     const hideEngineContainer = () => {
         searchIconContainer[0].style.display = 'none';
         searchIconContainer[1].style.display = 'block';
@@ -3226,6 +3567,45 @@ document.addEventListener("DOMContentLoaded", function () {
             browser.theme.onUpdated.removeListener(applyBrowserTheme);
         }
     });
+    
+    bookmarksCheckbox.addEventListener("change", function () {
+        let bookmarksPermission;
+        if (isFirefox && browser.permissions) {
+            bookmarksPermission = browser.permissions;
+        } else if (isChrome || isEdge || isBrave && chrome.permissions) {
+            bookmarksPermission = chrome.permissions;
+        } else {
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            bookmarksCheckbox.checked = false;
+            return;
+        }
+        if (bookmarksCheckbox.checked) {
+            bookmarksPermission.contains({
+                permissions: ['bookmarks']
+            }, function (alreadyGranted) {
+                if (alreadyGranted) {
+                    bookmarkButton.style.display = "flex";
+                    saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                } else {
+                    bookmarksPermission.request({
+                        permissions: ['bookmarks']
+                    }, function (granted) {
+                        if (granted) {
+                            bookmarksAPI = chrome.bookmarks;
+                            bookmarkButton.style.display = "flex";
+                            saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        } else {
+                            bookmarksCheckbox.checked = false;
+                        }
+                    });
+                }
+            });
+        } else {
+            bookmarkButton.style.display = "none";
+            saveDisplayStatus("bookmarksDisplayStatus", "none");
+        }
+        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+    });
 
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
@@ -3247,6 +3627,15 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
+    bookmarkGridCheckbox.addEventListener("change", function () {
+        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+        if (bookmarkGridCheckbox.checked) {
+            bookmarkList.classList.add("grid-view");
+        } else {
+            bookmarkList.classList.remove("grid-view");
         }
     });
 
@@ -3333,14 +3722,39 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
+    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("firefoxAdaptiveToggleState", firefoxAdaptiveToggle);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
+
+    if (bookmarkGridCheckbox.checked) {
+        bookmarkList.classList.add("grid-view");
+    } else {
+        bookmarkList.classList.remove("grid-view");
+    }
 });
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        if (bookmarksCheckbox.checked) {
+            bookmarkButton.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
+    }
+});
+//------------------------- LoadingScreen -----------------------//
+
+function ApplyLoadingColor() {
+    let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
+    localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+}
