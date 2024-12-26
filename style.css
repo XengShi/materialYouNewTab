@@ -488,7 +488,7 @@ body {
     display: inline-block;
     margin: 10px;
     top: var(--gap);
-    right: calc(2 * var(--gap) + 36px);
+    right: var(--gap);
     font-size: 25px;
 	background-color: var(--accentLightTint-blue);
     border: none;
@@ -497,6 +497,10 @@ body {
 	padding: 6px;
 	border-radius: 25%;
 	transition: right 0.3s ease;
+}
+
+.bookmark-button:has(~ .googleAppsCont[style="display: flex;"]) {
+    right: calc(2 * var(--gap) + 36px);
 }
 
 /* Show tooltip on hover */
