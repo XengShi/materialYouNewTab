@@ -1,11 +1,7 @@
 // Russian
 const ru = {
     // Menu Items
-<<<<<<< HEAD
-    "feedback": "Обратная связь",
-=======
     "feedback": "Отзывы",
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
     "resetsettings": "Сброс настроек",
     "menuCloseText": "Закрыть",
     // Shortcuts
@@ -18,23 +14,17 @@ const ru = {
     'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
     "adaptiveIconText": "Адаптивные формы значков",
     "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
-<<<<<<< HEAD
-=======
     "bookmarksText": "Закладки",
     "bookmarksInfo": "Показать боковую панель закладок",
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
     "ai_tools_button": "Инструменты ИИ",
     "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
     "googleAppsMenuText": "Приложения Google",
     "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
-<<<<<<< HEAD
-=======
     // Todo List
     "todoListText": "To-do лист",
     "todoListInfo": "Показать ежедневный список дел",
     "todoListHover": "To-do лист",
     "todoPlaceholder": "Добавить задачу...",
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
     // Digital Clock
     "digitalclocktittle": "Цифровые часы",
     "digitalclockinfo": "Включить/Отключить цифровые часы",
@@ -86,8 +76,6 @@ const ru = {
     "location": "Земля",
     // End of Weather
 
-<<<<<<< HEAD
-=======
     // Bookmarks
     "bookmarksHeading": "Закладки",
     "bookmarkViewAs": "Отображение",
@@ -95,7 +83,6 @@ const ru = {
     "bookmarkViewList": "Лист",
     "bookmarkSearch": "Поиск закладки",
 
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
     // New Tab Item
     "conditionText": "Привет! Как ты сегодня?",
     "enterBtn": "Поиск",
@@ -130,11 +117,7 @@ const ru = {
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Загрузить обои",
-<<<<<<< HEAD
-    "backupText": "Экспорт настроек",
-=======
     "backupText": "Экспорт",
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
     "restoreText": "Восстановить",
     "rangColor": "Выбрать цвет",
 
@@ -147,10 +130,7 @@ const ru = {
     "failedbackup": "Резервное копирование не удалось: ",
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",
-<<<<<<< HEAD
-=======
     "invalidBackup": "Недопустимый файл резервной копии.",
     "deleteBookmark": "Вы уверены, что хотите удалить эту закладку?",
     "UnsupportedBrowser": "Закладки не поддерживаются в вашем браузере.",
->>>>>>> fbd2ca67f3d3c86dcedfb2135b5ca49574fcbdb2
 }
