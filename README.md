@@ -63,6 +63,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी               |  mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)   |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português        | pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский             |  ru   | [giwi](https://github.com/giwih/)                                                     |
+| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       |  sl-SI   | [Linux-Alex](https://github.com/Linux-Alex/)                                       |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español             | es-ES | [XengShi](https://github.com/XengShi/)                                                |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe              |  tr   | [Nobody](https://github.com/Nobody9512/)                                              |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
