@@ -76,7 +76,6 @@ const en = {
     // End of Weather
 
     // Bookmarks
-    "bookmarksHover": "Bookmarks",
     "bookmarksHeading": "Bookmarks",
     "bookmarkViewAs": "View as",
     "bookmarkViewGrid": "Grid",    // Keep this shorter

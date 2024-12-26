@@ -258,7 +258,7 @@ document.addEventListener("click", function (event) {
 // ------------------------End of Google App Menu Setup-----------------------------------
 
 // ------------------------ Bookmark System -----------------------------------
-// DOM Vairables
+// DOM Variables
 const bookmarkButton = document.getElementById('bookmarkButton');
 const bookmarkSidebar = document.getElementById('bookmarkSidebar');
 const bookmarkList = document.getElementById('bookmarkList');
@@ -269,7 +269,7 @@ const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
-if (isFirefox && browser.permissions && isDesktop) {
+if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
@@ -531,9 +531,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({ url: node.url });
+                            browser.tabs.create({ url: node.url, active: false });
                         } else if (isChrome) {
-                            chrome.tabs.create({ url: node.url });
+                            chrome.tabs.create({ url: node.url, active: false });
                         } else {
                             window.open(node.url, '_blank');
                         }
@@ -559,9 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         return list;
-    }
-
-
+    }  
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -803,10 +801,10 @@ function updateDate() {
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
-            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
@@ -929,7 +927,7 @@ function updatedigiClock() {
 
     // Determine the translated short date string based on language
     const dateFormats = {
-        az: `${dayName} ${dayOfMonth}`, //Mardi 11
+        az: `${dayName} ${dayOfMonth}`,
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -941,8 +939,8 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
-        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
-        default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
+        fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
@@ -1704,7 +1702,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-            .clearButton{
+            .dark-theme .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1758,6 +1756,15 @@ const applySelectedTheme = (colorValue) => {
                 fill: var(--textColorDark-blue);
             }
 
+	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
+            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+                background: var(--darkColor-dark);
+            }
+
+	    .dark-theme .favicon {
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            }
+
      	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
@@ -1777,7 +1784,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #menuButton {
                 border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
-                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
                     inset 0 0 0 4px #858585,
                     inset 0 0 0 9.7px var(--accentLightTint-blue),
                     inset 0 0 0 40px #bfbfbf;
