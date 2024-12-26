@@ -2649,9 +2649,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
-        if (key === "bookmarkGridCheckboxState"&&savedState===undefined) {
-            checkbox.checked = true;
-            localStorage.setItem(key, "checked");
+        if (key === "bookmarkGridCheckboxState") {
+            if (savedState === undefined) {
+                bookmarkGridCheckbox.click();
+            } else {
+                bookmarkGridCheckbox.click();
+                bookmarkGridCheckbox.click();
+            }
         }
     }
 
