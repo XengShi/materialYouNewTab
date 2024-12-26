@@ -531,9 +531,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({ url: node.url });
+                            browser.tabs.create({ url: node.url, active: false });
                         } else if (isChrome) {
-                            chrome.tabs.create({ url: node.url });
+                            chrome.tabs.create({ url: node.url, active: false });
                         } else {
                             window.open(node.url, '_blank');
                         }
