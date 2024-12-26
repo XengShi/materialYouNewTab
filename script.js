@@ -1702,7 +1702,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-            .clearButton{
+            .dark-theme .clearButton{
                 color: #d6d6d6;
             }
 
