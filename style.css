@@ -547,9 +547,9 @@ body {
 	right: 0;
 }
 
-.bookmark-button.rotate {
+body #bookmarkButton.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
-	right: 400px;
+	right: 412px;
 	z-index: 5;
 }
 
