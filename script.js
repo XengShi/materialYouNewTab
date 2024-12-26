@@ -323,12 +323,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     bookmarkViewGrid.addEventListener('click', function() {
-        bookmarkGridCheckbox.click();
+        if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
     bookmarkViewList.addEventListener('click', function() {
-        bookmarkGridCheckbox.click();
-        // bookmarkGridCheckbox.checked = false;
+        if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
     document.addEventListener('click', function(event) {
@@ -2650,6 +2649,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
+        if (key === "bookmarkGridCheckboxState"&&savedState===undefined) {
+            checkbox.checked = true;
+            localStorage.setItem(key, "checked");
+        }
     }
 
     // Function to save display status to localStorage
