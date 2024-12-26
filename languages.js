@@ -149,7 +149,6 @@ function applyLanguage(lang) {
         'rangColor',
         'bookmarksText',
         'bookmarksInfo',
-        'bookmarksHover',
         'bookmarksHeading',
         'bookmarkViewAs',
         'bookmarkViewGrid',
@@ -173,6 +172,7 @@ function applyLanguage(lang) {
         { id: 'bingEngineDD', key: 'bingEngine' },
         { id: 'braveEngineDD', key: 'braveEngine' },
         { id: 'youtubeEngineDD', key: 'youtubeEngine' },
+        { id: 'bookmarksHover', key: 'bookmarksHeading' },
     ];
 
     // Function to apply translations
@@ -196,7 +196,7 @@ function applyLanguage(lang) {
         });
     }
 
-    // Apply translations
+    // Apply the translations
     applyTranslations(placeholderMap, true); // For placeholders
     applyTranslations(elementsMap, false);  // For innerTexts with different IDs and keys
     applyTranslations(translationMap, false);  // For innerTexts with same ID and keys
