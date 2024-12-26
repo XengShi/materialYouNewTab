@@ -26,6 +26,7 @@ const translations = {
     mr: mr, // Marathi
     fr: fr, // French
     az: az, // Azerbaijani
+    sl: sl, // Slovenian
 };
 
 // Define the width of the menu container for each language
@@ -44,6 +45,7 @@ const menuWidths = {
     tr: '418px',
     fr: '475px',
     az: '418px',
+    sl: '470px',
     // Add more languages and widths as needed
 };
 
@@ -57,7 +59,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr', 'az']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr', 'az', 'sl']; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
