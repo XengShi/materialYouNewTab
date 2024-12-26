@@ -134,4 +134,5 @@ const bn = {
     "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
     "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
     "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান?",
+    "UnsupportedBrowser": "আপনার ব্রাউজারে বুকমার্ক সমর্থিত নয়",
 }
