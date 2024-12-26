@@ -269,7 +269,7 @@ const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
-if (isFirefox && browser.permissions && isDesktop) {
+if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
