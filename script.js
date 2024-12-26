@@ -98,14 +98,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Default Weather API key
     const weatherApiKeys = [
-        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-        // 'db0392b338114f208ee135134240312',
-        // 'de5f7396db034fa2bf3140033240312',
-        // 'c64591e716064800992140217240312',
-        // '9b3204c5201b4b4d8a2140330240312',
-        // 'eb8a315c15214422b60140503240312',
-        // 'cd148ebb1b784212b74140622240312',
-        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        'd36ce712613d4f21a6083436240910',
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312',
         '0a6bc8a404224c8d89953341241912',
         'f59e58d7735d4739ae953115241912'
     ];
@@ -2064,15 +2064,8 @@ const handleColorPickerChange = function (event) {
 };
 
 // Add listeners for color picker
-colorPicker.removeEventListener('change', handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener('change', handleColorPickerChange);
-// colorPicker.addEventListener('change', function () {
-//     // console.log('Final color applied:', colorPicker.value);
-//     location.reload();
-// });
-
-
-
+colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener('input', handleColorPickerChange);
 // end of Function to apply the selected theme
 
 // -------------------------- Wallpaper -----------------------------
