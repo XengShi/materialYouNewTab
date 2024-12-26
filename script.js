@@ -296,7 +296,7 @@ document.addEventListener("click", function (event) {
 
 // ------------------------ Bookmark System -----------------------------------
 // DOM Variables
-const bookmarkRightArrow = document.getElementById('bookmarkRightArrow');
+const bookmarkButton = document.getElementById('bookmarkButton');
 const bookmarkSidebar = document.getElementById('bookmarkSidebar');
 const bookmarkList = document.getElementById('bookmarkList');
 const bookmarkSearch = document.getElementById('bookmarkSearch');
@@ -317,7 +317,7 @@ if (isFirefox && browser.bookmarks) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    bookmarkRightArrow.addEventListener('click', function() {
+    bookmarkButton.addEventListener('click', function() {
         toggleBookmarkSidebar();
         bookmarkSearchClearButton.click();
     });
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('click', function(event) {
-        if (!bookmarkSidebar.contains(event.target) && !bookmarkRightArrow.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
             toggleBookmarkSidebar();
         }
     });
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleBookmarkSidebar() {
         bookmarkSidebar.classList.toggle('open');
-        bookmarkRightArrow.classList.toggle('rotate');
+        bookmarkButton.classList.toggle('rotate');
 
         if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
@@ -1618,11 +1618,9 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme .bookmark-search-container::after {
                 filter: none;
             }
-            .dark-theme .bookmark-right-arrow {
-                color: #858585;
-            }
-            .dark-theme .bookmark-right-arrow.rotate {
-                color: var(--textColorDark-blue);
+
+	    .dark-theme .bookmark-button svg {
+                fill: var(--textColorDark-blue);
             }
 
 	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
@@ -3236,7 +3234,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 permissions: ['bookmarks']
             }, function(alreadyGranted) {
                 if (alreadyGranted) {
-                    bookmarkRightArrow.style.display = "flex";
+                    bookmarkButton.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
                 } else {
                     bookmarksPermission.request({
@@ -3244,7 +3242,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }, function(granted) {
                         if (granted) {
                             bookmarksAPI = chrome.bookmarks;
-                            bookmarkRightArrow.style.display = "flex";
+                            bookmarkButton.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
                         } else {
                             bookmarksCheckbox.checked = false;
@@ -3253,7 +3251,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         } else {
-            bookmarkRightArrow.style.display = "none";
+            bookmarkButton.style.display = "none";
             saveDisplayStatus("bookmarksDisplayStatus", "none");
         }
         saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
@@ -3378,7 +3376,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadDisplayStatus("bookmarksDisplayStatus", bookmarkRightArrow);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
@@ -3396,7 +3394,7 @@ if(bookmarkGridCheckbox.checked){
 document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
         if(bookmarksCheckbox.checked){
-            bookmarkRightArrow.click();
+            bookmarkButton.click();
         } else {
             bookmarksCheckbox.click();
         }
