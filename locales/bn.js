@@ -64,7 +64,7 @@ const bn = {
     "saveLoc": "সংরক্ষণ করুন",
 
     // Weather
-    "WeatherApiText": "আপনার WeatherAPI কী লিখুন", 
+    "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
     "WeatherApiSubtext": "যদি আবহাওয়ার ফাংশন কাজ না করে",
     "userAPI": "আপনার WeatherAPI কী",
     "LearnMoreButton": "আরও জানুন",
