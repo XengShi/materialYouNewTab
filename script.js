@@ -312,7 +312,7 @@ if (isFirefox && browser.bookmarks) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.error("Bookmarks API not supported in this browser.");
+    console.log("Bookmarks API not supported in this browser.");
 }
 
 document.addEventListener('DOMContentLoaded', function() {
