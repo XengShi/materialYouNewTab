@@ -306,7 +306,14 @@ const bookmarkViewList = document.getElementById('bookmarkViewList');
 
 
 const isFirefox = typeof browser !== 'undefined';
-var bookmarksAPI = isFirefox ? browser.bookmarks : chrome.bookmarks
+var bookmarksAPI;
+if (isFirefox && browser.bookmarks) {
+    bookmarksAPI = browser.bookmarks;
+} else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
+    bookmarksAPI = chrome.bookmarks;
+} else {
+    console.error("Bookmarks API not supported in this browser.");
+}
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -834,7 +841,8 @@ function updateDate() {
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
+            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}` // Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
@@ -970,7 +978,7 @@ function updatedigiClock() {
         idn: `${dayOfMonth} ${dayName}`,
         fr: `${dayName} ${dayOfMonth}`, //Mardi 11
         az: `${dayName} ${dayOfMonth}`,
-        default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
+        default: `${dayOfMonth} ${dayName.substring(0, 3)}`, // 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
@@ -1563,7 +1571,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-	        .clearButton{
+	    .dark-theme .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1593,7 +1601,7 @@ const applySelectedTheme = (colorValue) => {
                 background-color: #0e0e0e;
             }
 	    
-	        .dark-theme .todolistitem .todoremovebtn {
+	    .dark-theme .todolistitem .todoremovebtn {
                 color:#616161;
             }
 
@@ -1617,6 +1625,15 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--textColorDark-blue);
             }
 
+	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
+            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+                background: var(--darkColor-dark);
+            }
+
+	    .dark-theme .favicon {
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+            }
+
      	    .dark-theme .micIcon {
                 background-color: var(--whitishColor-dark);
             }
@@ -1636,7 +1653,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #menuButton {
                 border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
-                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
                     inset 0 0 0 4px #858585,
                     inset 0 0 0 9.7px var(--accentLightTint-blue),
                     inset 0 0 0 40px #bfbfbf;
@@ -3206,12 +3222,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isChrome || isEdge || isBrave) {
-            bookmarksPermission = chrome.permissions;
-        } else if (isFirefox) {
+        if (isFirefox && browser.permissions && isDesktop) {
             bookmarksPermission = browser.permissions;
+        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+            bookmarksPermission = chrome.permissions;
         } else {
-            console.error("Unsupported Browser.");
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             return;
         }
