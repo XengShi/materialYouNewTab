@@ -1,4 +1,4 @@
-// Bengali
+// Bengali -> bn
 const bn = {
     // Menu Items
     "feedback": "মতামত",
@@ -83,7 +83,6 @@ const bn = {
     "location": "পৃথিবী",
 
     // Bookmarks
-    "bookmarksHover": "বুকমার্কস",
     "bookmarksHeading": "বুকমার্কস",
     "bookmarkViewAs": "এইভাবে দেখুন",
     "bookmarkViewGrid": "গ্রিড",

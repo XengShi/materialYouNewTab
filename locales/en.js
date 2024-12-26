@@ -1,3 +1,4 @@
+// English -> en
 const en = {
     // Menu Items
     "feedback": "Feedback",
@@ -80,7 +81,6 @@ const en = {
     "location": "Earth",
 
     // Bookmarks
-    "bookmarksHover": "Bookmarks",
     "bookmarksHeading": "Bookmarks",
     "bookmarkViewAs": "View as",
     "bookmarkViewGrid": "Grid",    // Keep this shorter
