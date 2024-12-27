@@ -312,7 +312,7 @@ if (isFirefox && browser.bookmarks) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.log("Bookmarks API not supported in this browser.");
+    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1308,6 +1308,8 @@ function initializeSpeechRecognition() {
             }
             // Display the interim result in the search input
             searchInput.value = transcript;
+            // Trigger the input event manually to update suggestions
+            searchInput.dispatchEvent(new Event("input"));
             // If the result is final, hide the result box
             if (event.results[event.results.length - 1].isFinal) {
                 resultBox.style.display = 'none'; // Hide result box after final input
@@ -3234,25 +3236,29 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
         if (bookmarksCheckbox.checked) {
             bookmarksPermission.contains({
                 permissions: ['bookmarks']
-            }, function(alreadyGranted) {
+            }, function (alreadyGranted) {
                 if (alreadyGranted) {
                     bookmarkButton.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                 } else {
                     bookmarksPermission.request({
                         permissions: ['bookmarks']
-                    }, function(granted) {
+                    }, function (granted) {
                         if (granted) {
                             bookmarksAPI = chrome.bookmarks;
                             bookmarkButton.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         } else {
                             bookmarksCheckbox.checked = false;
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         }
                     });
                 }
@@ -3260,8 +3266,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             bookmarkButton.style.display = "none";
             saveDisplayStatus("bookmarksDisplayStatus", "none");
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
         }
-        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     });
 
     aiToolsCheckbox.addEventListener("change", function () {
