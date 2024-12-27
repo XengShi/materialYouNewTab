@@ -3236,25 +3236,29 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
         if (bookmarksCheckbox.checked) {
             bookmarksPermission.contains({
                 permissions: ['bookmarks']
-            }, function(alreadyGranted) {
+            }, function (alreadyGranted) {
                 if (alreadyGranted) {
                     bookmarkButton.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                 } else {
                     bookmarksPermission.request({
                         permissions: ['bookmarks']
-                    }, function(granted) {
+                    }, function (granted) {
                         if (granted) {
                             bookmarksAPI = chrome.bookmarks;
                             bookmarkButton.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         } else {
                             bookmarksCheckbox.checked = false;
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         }
                     });
                 }
@@ -3262,8 +3266,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             bookmarkButton.style.display = "none";
             saveDisplayStatus("bookmarksDisplayStatus", "none");
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
         }
-        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     });
 
     aiToolsCheckbox.addEventListener("change", function () {
