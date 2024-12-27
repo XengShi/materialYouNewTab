@@ -13,6 +13,8 @@ const idn = {
     "shortcutsInfoText": "Pilih pintasan apa yang akan ditampilkan",
     "adaptiveIconText": "Penyesuaian Bentuk Ikon",
     "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
+    "bookmarksText": "Markah Buku",
+    "bookmarksInfo": "Tampilkan sisi markah buku",
     "ai_tools_button": "Utilitas AI",
     "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
     "googleAppsMenuText": "Google Apps",
@@ -69,6 +71,13 @@ const idn = {
     "feelsLike": "Terasa",
     "location": "Bumi",
     // End of Weather
+    
+    // Bookmarks
+    "bookmarksHeading": "Markah Buku",
+    "bookmarkViewAs": "Lihat sebagai",
+    "bookmarkViewGrid": "Kisi-kisi",    // Keep this shorter
+    "bookmarkViewList": "Daftar",    // Keep this shorter
+    "bookmarkSearch": "Cari markah buku",
 
     // New Tab Item
     "conditionText": "Halo! Bagaimana kabarmu hari ini?",
@@ -118,4 +127,6 @@ const idn = {
     "failedbackup": "Pencadangan gagal: ",
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
+    "invalidBackup": "File cadangan tidak valid",
+    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku?",
 }
