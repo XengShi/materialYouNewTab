@@ -1,3 +1,4 @@
+// Hindi
 const hi = {
     // Menu Items
     "feedback": "प्रतिक्रिया",
@@ -131,4 +132,5 @@ const hi = {
     "restorefailed": "पुनर्स्थापना विफल: ",
     "invalidBackup": "अमान्य बैकअप फ़ाइल",
     "deleteBookmark": "क्या आप बुकमार्क डिलीट करना चाहते हैं?",
+    "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं",
 }
