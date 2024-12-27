@@ -1392,8 +1392,8 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
