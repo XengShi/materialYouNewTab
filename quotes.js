@@ -1,5 +1,5 @@
 const apiUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://zenquotes.io/api/quotes/");
-const quotesContainer = document.querySelector('.qoutesContainer');
+const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.autherName span');
 
 async function fetchAndDisplayQuote() {
@@ -25,7 +25,7 @@ async function fetchAndDisplayQuote() {
 
     } catch (error) {
         console.error("Error fetching quotes:", error);
-        quotesContainer.textContent = "Something went wrong while fetching quotes. Please refresh the page or check the developer console for more details.";
+        quotesContainer.textContent = "Discover possibilities, spark creativity, and embrace the joy of browsing with every new tab you open!";
         authorName.textContent = "XengShi";
     }
 }

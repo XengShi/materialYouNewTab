@@ -1590,7 +1590,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: 1rem;
 }
 
-.qoutesContainer {
+.quotesContainer {
 	position: absolute;
 	background-color: var(--accentLightTint-blue);
 	height: 100%;
