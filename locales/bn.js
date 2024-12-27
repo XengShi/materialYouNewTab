@@ -1,4 +1,4 @@
-// Bengali
+// Bengali -> bn
 const bn = {
     // Menu Items
     "feedback": "মতামত",
@@ -11,7 +11,7 @@ const bn = {
     "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
     "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
     "editShortcutsList": "সংরক্ষিত শর্টকাট",
-    "editShortcutsListInfo": "'+' আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
+    "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
     "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
     "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
     "bookmarksText": "বুকমার্কস",
@@ -20,6 +20,13 @@ const bn = {
     "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
     "googleAppsMenuText": "গুগল অ্যাপস",
     "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
+    "googleAppsHover": "গুগল অ্যাপস",
+
+    // Todo List
+    "todoListText": "টু ডু লিস্ট",
+    "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
+    "todoListHover": "টু ডু লিস্ট",
+    "todoPlaceholder": "টাস্ক যোগ করুন...",
 
     // Digital Clock
     "digitalclocktittle": "ডিজিটাল ঘড়ি",
@@ -28,8 +35,6 @@ const bn = {
     "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
     "greetingtittle": "অভিবাদন",
     "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
-    "todoListText": "টু ডু লিস্ট",
-    "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
 
     // Misc
     "userTextTitle": "কাস্টমাইজেবল টেক্সট",
@@ -77,24 +82,20 @@ const bn = {
     "feelsLike": "অনুভূতি হয়",
     "location": "পৃথিবী",
 
-    // New Tab Item
-    "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
-    "enterBtn": "সার্চ করুন",
-    "searchPlaceholder": "এখানে টাইপ করুন...",
-    "listenPlaceholder": "শোনা হচ্ছে...",
-    "todoPlaceholder": "টাস্ক যোগ করুন...",
-    "searchWithHint": "সার্চের মাধ্যম",
-    "ai_tools": "এআই টুলস",
-    "userText": "এখানে আপনার টেক্সট লিখুন",
-    "googleAppsHover": "গুগল অ্যাপস",
-    "todoListHover": "টু ডু লিস্ট",
-
     // Bookmarks
     "bookmarksHeading": "বুকমার্কস",
     "bookmarkViewAs": "এইভাবে দেখুন",
     "bookmarkViewGrid": "গ্রিড",
     "bookmarkViewList": "লিস্ট",
     "bookmarkSearch": "বুকমার্ক সার্চ করুন",
+
+    // New Tab Item
+    "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
+    "enterBtn": "সার্চ করুন",
+    "searchPlaceholder": "এখানে টাইপ করুন...",
+    "listenPlaceholder": "শোনা হচ্ছে...",
+    "searchWithHint": "সার্চের মাধ্যম",
+    "userText": "এখানে আপনার টেক্সট লিখুন",
 
     // Greeting
     greeting: {
@@ -109,6 +110,9 @@ const bn = {
     "bingEngine": "বিং",
     "braveEngine": "ব্রেভ",
     "youtubeEngine": "ইউটিউব",
+
+    // AI Tools
+    "ai_tools": "এআই টুলস",
     "chatGPT": "চ্যাটজিপিটি",
     "gemini": "জেমিনি",
     "copilot": "কোপাইলট",
@@ -118,7 +122,7 @@ const bn = {
     "github": "গিটহাব",
 
     // Wallpaper and alerts
-    "uploadWallpaperText": "ওয়ালপেপার দিন", //"ওয়ালপেপার আপলোড করুন"
+    "uploadWallpaperText": "ওয়ালপেপার দিন",
     "backupText": "ব্যাকআপ করুন",
     "restoreText": "পুনরুদ্ধার করুন",
     "rangColor": "রঙ নির্বাচন করুন",
@@ -135,4 +139,4 @@ const bn = {
     "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
     "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান?",
     "UnsupportedBrowser": "আপনার ব্রাউজারে বুকমার্ক সমর্থিত নয়",
-}
+};
