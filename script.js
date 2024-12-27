@@ -3603,6 +3603,8 @@ document.addEventListener("DOMContentLoaded", function () {
             await applyBrowserTheme({ theme: await browser.theme.getCurrent() });
             browser.theme.onUpdated.addListener(applyBrowserTheme);
         } else {
+            const storedTheme = localStorage.getItem(themeStorageKey);
+            const storedCustomColor = localStorage.getItem(customThemeStorageKey);
             if (storedTheme) {
                 applySelectedTheme(storedTheme);
             } else if (storedCustomColor) {
