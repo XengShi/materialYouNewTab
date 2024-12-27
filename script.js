@@ -310,7 +310,7 @@ if (isFirefox && browser.bookmarks) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.error("Bookmarks API not supported in this browser.");
+    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -3508,6 +3508,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
         if (bookmarksCheckbox.checked) {
@@ -3517,6 +3518,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (alreadyGranted) {
                     bookmarkButton.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                 } else {
                     bookmarksPermission.request({
                         permissions: ['bookmarks']
@@ -3525,8 +3527,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             bookmarksAPI = chrome.bookmarks;
                             bookmarkButton.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         } else {
                             bookmarksCheckbox.checked = false;
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         }
                     });
                 }
@@ -3534,8 +3538,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             bookmarkButton.style.display = "none";
             saveDisplayStatus("bookmarksDisplayStatus", "none");
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
         }
-        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     });
 
     aiToolsCheckbox.addEventListener("change", function () {
