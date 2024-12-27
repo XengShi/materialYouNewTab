@@ -2880,9 +2880,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
-        if (key === "bookmarkGridCheckboxState"&&savedState===undefined) {
-            checkbox.checked = true;
-            localStorage.setItem(key, "checked");
+        if (key === "bookmarkGridCheckboxState") {
+            if (!savedState) {
+                bookmarkGridCheckbox.click();
+            } else {
+                bookmarkGridCheckbox.click();
+                bookmarkGridCheckbox.click();
+            }
         }
     }
 
@@ -3668,12 +3672,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
-
-    if (bookmarkGridCheckbox.checked) {
-        bookmarkList.classList.add("grid-view");
-    } else {
-        bookmarkList.classList.remove("grid-view");
-    }
 });
 
 document.addEventListener('keydown', function (event) {
