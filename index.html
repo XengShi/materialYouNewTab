@@ -6,7 +6,6 @@
      If not, see <https://www.gnu.org/licenses/>.
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +18,37 @@
     <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
     <style id="iconStyle"></style>
 
+    <!-- SCRIPTS -->
+    <script src="preload.js"></script>
+    <script src="locales/pt.js"></script>
+    <script src="locales/en.js"></script>
+    <script src="locales/es.js"></script>
+    <script src="locales/hi.js"></script>
+    <script src="locales/zh.js"></script>
+    <script src="locales/cs.js"></script>
+    <script src="locales/it.js"></script>
+    <script src="locales/tr.js"></script>
+    <script src="locales/bn.js"></script>
+    <script src="locales/vi.js"></script>
+    <script src="locales/ru.js"></script>
+    <script src="locales/uz.js"></script>
+    <script src="locales/ja.js"></script>
+    <script src="locales/ko.js"></script>
+    <script src="locales/idn.js"></script>
+    <script src="locales/mr.js"></script>
+    <script src="locales/fr.js"></script>
+    <script src="locales/az.js"></script>
+    <script src="locales/sl.js"></script>
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
+    <!-- <script defer src="languagesAnalysis.js"></script> -->
+
 </head>
 
 <body>
+    <!----------------------- Loading Screen Starting ----------------------->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" id="LoadingScreen" fetchpriority="high"/>
+
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
@@ -56,6 +81,57 @@
         <ul class="todolist" id="todoullist">
         </ul>
     </div>
+
+    <!----------------------- Bookmark System ----------------------->
+    <div style="display: none;">
+        <svg id="folderIconTemplate" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6v10.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h11.606c1.118 0 1.677 0 2.104-.218c.377-.192.683-.498.875-.874C21 18.48 21 17.92 21 16.8V9.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C19.48 6 18.92 6 17.8 6H12M3 6h9M3 6a2 2 0 0 1 2-2h3.675c.489 0 .734 0 .964.055q.308.075.578.24c.202.124.375.297.72.643L12 6" />
+        </svg>
+    </div>
+    
+    <div class="bookmark-button" id="bookmarkButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M7 2a3 3 0 0 0-3 3v15.138a1.5 1.5 0 0 0 2.244 1.303l5.26-3.006a1 1 0 0 1 .992 0l5.26 3.006A1.5 1.5 0 0 0 20 20.138V5a3 3 0 0 0-3-3z" clip-rule="evenodd"/>
+        </svg>
+        <!-- Text to appear on hover -->
+        <span class="tooltip-text" id="bookmarksHover">ToDo List</span>
+    </div>
+    <div id="bookmarksContainer">
+        <div id="bookmarkSidebar" class="bookmark-sidebar">
+
+ <div class="topOutRoundCorner">
+                <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_208_15)">
+                        <path class="lessDark" clip-rule="evenodd" d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z"
+                            fill="#FF429D" fill-rule="evenodd" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_208_15">
+                            <rect fill="white" height="30" width="30" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="bookmark-sidebar-header">
+                <h2 id="bookmarksHeading">Bookmarks</h2>
+            </div>
+            <div class="bookmark-search-container">
+                <input type="text" id="bookmarkSearch" placeholder="Search bookmark" />
+                <button id="clearSearchButton">✖</button>
+            </div>
+            <div class="bookmark-view-as-container">
+                <h3 id="bookmarkViewAs">View as</h3>
+                <div>
+                    <input type="checkbox" id="bookmarkGridCheckbox" checked hidden/>
+                    <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
+                    <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
+                </div>
+            </div>
+            <ul id="bookmarkList"></ul>
+        </div>
+    </div>
+    <!----------------------- End of Bookmark System ----------------------->
 
     <!----------------------- Google App Menu Setup Starting ----------------------->
     <!-- 9 Dot Icon -->
@@ -956,6 +1032,17 @@
 
                         <div class="ttcont">
                             <div class="texts">
+                                <div class="bigText" id="bookmarksText">Bookmarks</div>
+                                <div class="infoText" id="bookmarksInfo">Show bookmarks sidebar</div>
+                            </div>
+                            <label class="switch">
+                                <input id="bookmarksCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont">
+                            <div class="texts">
                                 <div class="bigText" id="ai_tools_button">AI-Tools</div>
                                 <div class="infoText" id="enable_ai_tools">Show shortcuts for AI tools</div>
                             </div>
@@ -1068,7 +1155,8 @@
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="hideSearchWith">Hide Search Engines</div>
-                                <div class="infoText" id="hideSearchWithInfo">Switch between search engines by clicking its icon
+                                <div class="infoText" id="hideSearchWithInfo">Switch between search engines by clicking
+                                    its icon
                                 </div>
                             </div>
                             <label class="switch">
@@ -1139,7 +1227,8 @@
                             </div>
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
-                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html" id="LearnMoreButton" target="_blank">Learn more</a>
+                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html"
+                                    id="LearnMoreButton" target="_blank">Learn more</a>
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
                         </div>
@@ -1164,6 +1253,7 @@
                         <!-- Language selection button -->
                         <select class="languageSelector" id="languageSelector">
                             <option value="en">English</option>
+                            <option value="az">Azərbaycanca (Azerbaijani)</option>
                             <option value="bn">বাংলা (Bangla)</option>
                             <option value="zh">中文 (Simplified Chinese)</option>
                             <option value="cs">Čeština (Czech)</option>
@@ -1176,6 +1266,7 @@
                             <option value="mr">मराठी (Marathi)</option>
                             <option value="pt">Português (Portuguese)</option>
                             <option value="ru">Русский (Russian)</option>
+                            <option value="sl">Slovenščina (Slovenian)</option>
                             <option value="es">Español (Spanish)</option>
                             <option value="tr">Türkçe (Turkish)</option>
                             <option value="uz">O'zbek (Uzbek)</option>
@@ -1185,7 +1276,7 @@
                         <!-- end of languageSelector -->
                     </div>
                     <br>
-                
+
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">
@@ -1219,7 +1310,7 @@
 
                             <!-- ----Color Picker || ColorPicker---- -->
                             <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
-                            <input type="color" id="colorPicker" value="#EA1010" />
+                            <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
 
@@ -1279,7 +1370,7 @@
                     </div>
 
                     <input type="file" id="fileInput" accept=".json" style="display: none;">
-                     
+
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
                     <div id="menuCloseButton">
@@ -1332,6 +1423,8 @@
     <!-- ------end of Menu-bar----------- -->
     <div id="menuButton"></div>
     <!-- ending-of-body -->
+
+
 </body>
 
 </html>
