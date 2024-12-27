@@ -1440,6 +1440,8 @@ function initializeSpeechRecognition() {
             }
             // Display the interim result in the search input
             searchInput.value = transcript;
+            // Trigger the input event manually to update suggestions
+            searchInput.dispatchEvent(new Event("input"));
             // If the result is final, hide the result box
             if (event.results[event.results.length - 1].isFinal) {
                 resultBox.style.display = 'none'; // Hide result box after final input
