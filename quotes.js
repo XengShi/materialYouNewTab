@@ -1,5 +1,5 @@
 const apiUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://zenquotes.io/api/quotes/");
-const quotesContainer = document.querySelector('.qoutesContainer');
+const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.autherName span');
 
 async function fetchAndDisplayQuote() {
