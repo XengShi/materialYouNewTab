@@ -3683,6 +3683,16 @@ document.addEventListener('keydown', function (event) {
         }
     }
 });
+
+document.addEventListener('keydown', function (event) {
+    const searchInput = document.getElementById('searchQ');
+    const searchBar = document.querySelector('.searchbar');
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        event.preventDefault();
+        searchInput.focus();
+        searchBar.classList.add('active');
+    }
+});
 //------------------------- LoadingScreen -----------------------//
 
 function ApplyLoadingColor() {
