@@ -3515,34 +3515,36 @@ document.addEventListener("DOMContentLoaded", function () {
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
-        if (bookmarksCheckbox.checked) {
-            bookmarksPermission.contains({
-                permissions: ['bookmarks']
-            }, function (alreadyGranted) {
-                if (alreadyGranted) {
-                    bookmarkButton.style.display = "flex";
-                    saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                } else {
-                    bookmarksPermission.request({
-                        permissions: ['bookmarks']
-                    }, function (granted) {
-                        if (granted) {
-                            bookmarksAPI = chrome.bookmarks;
-                            bookmarkButton.style.display = "flex";
-                            saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                        } else {
-                            bookmarksCheckbox.checked = false;
-                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                        }
-                    });
-                }
-            });
-        } else {
-            bookmarkButton.style.display = "none";
-            saveDisplayStatus("bookmarksDisplayStatus", "none");
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+        if (bookmarksPermission !== undefined) {
+            if (bookmarksCheckbox.checked) {
+                bookmarksPermission.contains({
+                    permissions: ['bookmarks']
+                }, function (alreadyGranted) {
+                    if (alreadyGranted) {
+                        bookmarkButton.style.display = "flex";
+                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                    } else {
+                        bookmarksPermission.request({
+                            permissions: ['bookmarks']
+                        }, function (granted) {
+                            if (granted) {
+                                bookmarksAPI = chrome.bookmarks;
+                                bookmarkButton.style.display = "flex";
+                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            } else {
+                                bookmarksCheckbox.checked = false;
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            }
+                        });
+                    }
+                });
+            } else {
+                bookmarkButton.style.display = "none";
+                saveDisplayStatus("bookmarksDisplayStatus", "none");
+                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            }
         }
     });
 
