@@ -6,22 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Check if alert has already been shown
-if (!localStorage.getItem('alertShown')) {
-    // Show the alert after 4 seconds
-    setTimeout(() => {
-        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const message = isMac
-            ? 'Press Cmd + Shift + B to show the bookmarks bar.'
-            : 'Press Ctrl + Shift + B to show the bookmarks bar.';
-
-        alert(message);
-
-        // Set a flag in localStorage so the alert is not shown again
-        localStorage.setItem('alertShown', 'true');
-    }, 4000);
-}
-
 let proxyurl;
 let clocktype;
 let hourformat;
@@ -84,36 +68,38 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
-            localStorage.setItem("proxy", defaultProxyURL);
-            userProxyInput.value = "";
-            location.reload();
-            return;
+            proxyurl = defaultProxyURL;
+        } else {
+            // Validate if input starts with 'http://' or 'https://'
+            if (!(proxyurl.startsWith("http://") || proxyurl.startsWith("https://"))) {
+                // Automatically correct input by adding 'http://' if not present
+                proxyurl = "http://" + proxyurl;
+            }
+
+            // Remove trailing slash if exists
+            if (proxyurl.endsWith("/")) {
+                proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
+            }
         }
 
-        // Validate if input starts with 'http://' or 'https://'
-        if (proxyurl.startsWith("http://") || proxyurl.startsWith("https://")) {
-            if (!proxyurl.endsWith("/")) {
-                localStorage.setItem("proxy", proxyurl);
-                userProxyInput.value = "";
-                location.reload();
-            } else {
-                alert(translations[currentLanguage]?.endlink || translations['en'].endlink);
-            }
-        } else {
-            alert(translations[currentLanguage]?.onlylinks || translations['en'].onlylinks);
-        }
+        // Set the proxy in localStorage, clear the input, and reload the page
+        localStorage.setItem("proxy", proxyurl);
+        userProxyInput.value = "";
+        location.reload();
     });
 
     // Default Weather API key
     const weatherApiKeys = [
-        // 'd36ce712613d4f21a6083436240910',    limit resets on  Jan 25
-        'db0392b338114f208ee135134240312',
-        'de5f7396db034fa2bf3140033240312',
-        'c64591e716064800992140217240312',
-        '9b3204c5201b4b4d8a2140330240312',
-        'eb8a315c15214422b60140503240312',
-        'cd148ebb1b784212b74140622240312',
-        '7ae67e219af54df2840140801240312'
+        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
+        // 'db0392b338114f208ee135134240312',
+        // 'de5f7396db034fa2bf3140033240312',
+        // 'c64591e716064800992140217240312',
+        // '9b3204c5201b4b4d8a2140330240312',
+        // 'eb8a315c15214422b60140503240312',
+        // 'cd148ebb1b784212b74140622240312',
+        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        '0a6bc8a404224c8d89953341241912',
+        'f59e58d7735d4739ae953115241912'
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
@@ -132,92 +118,129 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Fetch weather data based on a location
     async function fetchWeather(location) {
         const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
         try {
-            const data = await fetch(weatherApi);
-            const parsedData = await data.json();
+            let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
+            const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
+            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+            const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-            // Weather data
-            const conditionText = parsedData.current.condition.text;
-            const tempCelsius = Math.round(parsedData.current.temp_c);
-            const tempFahrenheit = Math.round(parsedData.current.temp_f);
-            const humidity = parsedData.current.humidity;
-            const feelsLikeCelsius = parsedData.current.feelslike_c;
-            const feelsLikeFahrenheit = parsedData.current.feelslike_f;
+            if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || weatherParsedLocation !== currentUserLocation || weatherParsedLang !== currentLanguage) {
+                // Fetch weather data using Weather API
+                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+                let data = await fetch(weatherApi);
+                parsedData = await data.json();
+                if (!parsedData.error) {
+                    // Extract only the necessary fields before saving
+                    const filteredData = {
+                        location: {
+                            name: parsedData.location.name,
+                        },
+                        current: {
+                            condition: {
+                                text: parsedData.current.condition.text,
+                                icon: parsedData.current.condition.icon,
+                            },
+                            temp_c: parsedData.current.temp_c,
+                            temp_f: parsedData.current.temp_f,
+                            humidity: parsedData.current.humidity,
+                            feelslike_c: parsedData.current.feelslike_c,
+                            feelslike_f: parsedData.current.feelslike_f,
+                        },
+                    };
 
-            // Update DOM elements with the weather data
-            document.getElementById("conditionText").textContent = conditionText;
-
-            // Localize and display temperature and humidity
-            const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-            const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-            const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-            const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-            const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-            // Set humidity level
-            const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-            document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-            // Event Listener for the Fahrenheit toggle
-            const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-            const updateTemperatureDisplay = () => {
-                const tempElement = document.getElementById("temp");
-                const feelsLikeElement = document.getElementById("feelsLike");
-                const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-
-                if (fahrenheitCheckbox.checked) {
-                    // Update temperature
-                    tempElement.textContent = localizedTempFahrenheit;
-                    const tempUnitF = document.createElement("span");
-                    tempUnitF.className = "tempUnit";
-                    tempUnitF.textContent = "°F";
-                    tempElement.appendChild(tempUnitF);
-
-                    // Update feels like
-                    const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                } else {
-                    // Update temperature
-                    tempElement.textContent = localizedTempCelsius;
-                    const tempUnitC = document.createElement("span");
-                    tempUnitC.className = "tempUnit";
-                    tempUnitC.textContent = "°C";
-                    tempElement.appendChild(tempUnitC);
-
-                    // Update feels like
-                    const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    // Save filtered weather data to localStorage
+                    localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
+                    localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
+                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
+                    localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-            };
-
-            updateTemperatureDisplay();
-
-            // Setting weather Icon
-            const newWIcon = parsedData.current.condition.icon;
-            const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-            document.getElementById("wIcon").src = weatherIcon;
-
-            // Define minimum width for the slider based on the language
-            const humidityMinWidth = {
-                idn: '47%',
-                en: '42%', // Default for English and others
-            };
-            const slider = document.getElementById("slider");
-            slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
-
-            // Set slider width based on humidity
-            if (humidity > 40) {
-                slider.style.width = `calc(${humidity}% - 60px)`;
+                UpdateWeather();
+            } else {
+                setTimeout(UpdateWeather, 25);
             }
 
-            // Update location
-            var city = parsedData.location.name;
-            // var city = "Thiruvananthapuram";
-            var maxLength = 10;
-            var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-            document.getElementById("location").textContent = limitedText;
+            function UpdateWeather() {
+                // Weather data
+                const conditionText = parsedData.current.condition.text;
+                const tempCelsius = Math.round(parsedData.current.temp_c);
+                const tempFahrenheit = Math.round(parsedData.current.temp_f);
+                const humidity = parsedData.current.humidity;
+                const feelsLikeCelsius = parsedData.current.feelslike_c;
+                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
+                // Update DOM elements with the weather data
+                document.getElementById("conditionText").textContent = conditionText;
+
+                // Localize and display temperature and humidity
+                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+                // Set humidity level
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+
+                // Event Listener for the Fahrenheit toggle
+                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+                const updateTemperatureDisplay = () => {
+                    const tempElement = document.getElementById("temp");
+                    const feelsLikeElement = document.getElementById("feelsLike");
+                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
+                    if (fahrenheitCheckbox.checked) {
+                        // Update temperature
+                        tempElement.textContent = localizedTempFahrenheit;
+                        const tempUnitF = document.createElement("span");
+                        tempUnitF.className = "tempUnit";
+                        tempUnitF.textContent = "°F";
+                        tempElement.appendChild(tempUnitF);
+
+                        // Update feels like
+                        const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                    } else {
+                        // Update temperature
+                        tempElement.textContent = localizedTempCelsius;
+                        const tempUnitC = document.createElement("span");
+                        tempUnitC.className = "tempUnit";
+                        tempUnitC.textContent = "°C";
+                        tempElement.appendChild(tempUnitC);
+
+                        // Update feels like
+                        const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    }
+                };
+                updateTemperatureDisplay();
+
+                // Setting weather Icon
+                const newWIcon = parsedData.current.condition.icon;
+                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                document.getElementById("wIcon").src = weatherIcon;
+
+                // Define minimum width for the slider based on the language
+                const humidityMinWidth = {
+                    idn: '47%',
+                    en: '42%', // Default for English and others
+                };
+                const slider = document.getElementById("slider");
+                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
+
+                // Set slider width based on humidity
+                if (humidity > 40) {
+                    slider.style.width = `calc(${humidity}% - 60px)`;
+                }
+
+                // Update location
+                var city = parsedData.location.name;
+                // var city = "Thiruvananthapuram";
+                var maxLength = 10;
+                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+                document.getElementById("location").textContent = limitedText;
+
+            }
         } catch (error) {
             console.error("Error fetching weather data:", error);
         }
@@ -277,7 +300,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Set the flag to use GPS dynamically and remove manual location
         localStorage.setItem("useGPS", true);
         localStorage.removeItem("weatherLocation");
-        location.reload(); // Reload the page to apply changes
+        location.reload();
     });
 
     // Handle manual location input
@@ -324,6 +347,313 @@ document.addEventListener("click", function (event) {
     }
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
+
+// ------------------------ Bookmark System -----------------------------------
+// DOM Variables
+const bookmarkButton = document.getElementById('bookmarkButton');
+const bookmarkSidebar = document.getElementById('bookmarkSidebar');
+const bookmarkList = document.getElementById('bookmarkList');
+const bookmarkSearch = document.getElementById('bookmarkSearch');
+const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
+const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
+const bookmarkViewList = document.getElementById('bookmarkViewList');
+
+const isFirefox = typeof browser !== 'undefined';
+var bookmarksAPI;
+if (isFirefox && browser.bookmarks) {
+    bookmarksAPI = browser.bookmarks;
+} else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
+    bookmarksAPI = chrome.bookmarks;
+} else {
+    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    bookmarkButton.addEventListener('click', function () {
+        toggleBookmarkSidebar();
+        bookmarkSearchClearButton.click();
+    });
+
+    bookmarkViewGrid.addEventListener('click', function () {
+        if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
+    });
+
+    bookmarkViewList.addEventListener('click', function () {
+        if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+            toggleBookmarkSidebar();
+        }
+    });
+
+    bookmarkSearch.addEventListener('input', function () {
+        const searchTerm = bookmarkSearch.value.toLowerCase();
+        const bookmarks = bookmarkList.querySelectorAll('li[data-url], li.folder'); // Include both bookmarks and folders
+
+        Array.from(bookmarks).forEach(function (bookmark) {
+            const text = bookmark.textContent.toLowerCase();
+            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : '';
+            const isFolder = bookmark.classList.contains('folder');
+
+            // Show bookmarks if the search term matches either the name or the URL
+            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
+                bookmark.style.display = ''; // Show matching bookmarks
+            } else if (isFolder) {
+                // For folders, check if any child bookmarks match the search
+                const childBookmarks = bookmark.querySelectorAll('li[data-url]');
+                let hasVisibleChild = false;
+                Array.from(childBookmarks).forEach(function (childBookmark) {
+                    const childText = childBookmark.textContent.toLowerCase();
+                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : '';
+                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
+                        hasVisibleChild = true;
+                        childBookmark.style.display = ''; // Show matching child bookmarks
+                    } else {
+                        childBookmark.style.display = 'none'; // Hide non-matching child bookmarks
+                    }
+                });
+
+                if (hasVisibleChild) {
+                    bookmark.style.display = ''; // Show folder if it has matching child bookmarks
+                    bookmark.classList.add('open'); // Open folder to show matching child bookmarks
+                } else {
+                    bookmark.style.display = 'none'; // Hide folder if no child matches
+                    bookmark.classList.remove('open');
+                }
+            } else {
+                bookmark.style.display = 'none'; // Hide non-matching bookmarks
+            }
+        });
+
+        if (searchTerm === '') {
+            // Reset display for all bookmarks and folders
+            Array.from(bookmarks).forEach(function (bookmark) {
+                bookmark.style.display = '';
+                if (bookmark.classList.contains('folder')) {
+                    bookmark.classList.remove('open');
+                    const childList = bookmark.querySelector('ul');
+                    if (childList) {
+                        childList.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Show or hide the clear button based on the search term
+        bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
+    });
+
+    bookmarkSearchClearButton.addEventListener('click', function () {
+        bookmarkSearch.value = '';
+        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    });
+
+    function toggleBookmarkSidebar() {
+        bookmarkSidebar.classList.toggle('open');
+        bookmarkButton.classList.toggle('rotate');
+
+        if (bookmarkSidebar.classList.contains('open')) {
+            loadBookmarks();
+        }
+    };
+    // Function to load bookmarks
+    function loadBookmarks() {
+        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+            console.error("Bookmarks API is unavailable. Please check permissions or context.");
+            return;
+        }
+
+        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
+            // Clear the current list
+            bookmarkList.innerHTML = '';
+
+            // Display the "Recently Added" folder
+            if (bookmarksAPI.getRecent) {
+                bookmarksAPI.getRecent(8).then(recentBookmarks => {
+                    if (recentBookmarks.length > 0) {
+                        const recentAddedFolder = {
+                            title: 'Recently Added',
+                            children: recentBookmarks
+                        };
+                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
+                    }
+                });
+            }
+
+            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
+            if (isFirefox) {
+                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
+                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
+                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
+
+                if (toolbarNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                }
+                if (menuNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                }
+                if (otherNode?.children) {
+                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
+                }
+            } else {
+                let default_folder = "Bookmarks bar";
+                if (isEdge) {
+                    default_folder = "Favorites bar";
+                } else if (isBrave) {
+                    default_folder = "Bookmarks";
+                }
+                // Extract the 'Main bookmarks' node and display its Children
+                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+
+                if (mainBookmarks && mainBookmarks.children) {
+                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
+                }
+
+                // Extract the other 'Bookmarks' folders and display them
+                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
+                if (bookmarksBar && bookmarksBar.children) {
+                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
+                }
+            }
+        }).catch(err => {
+            console.error("Error loading bookmarks:", err);
+        });
+    }
+
+    function displayBookmarks(bookmarkNodes) {
+        let list = document.createElement('ul');
+
+        // Separate folders and bookmarks
+        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
+        const bookmarks = bookmarkNodes.filter(node => node.url);
+
+        // Sort folders and bookmarks separately
+        folders.sort((a, b) => a.title.localeCompare(b.title));
+        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+
+        // Sort folders and bookmarks separately by dateAdded
+        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+
+        // Combine folders and bookmarks, placing folders first
+        const sortedNodes = [...folders, ...bookmarks];
+
+        for (let node of sortedNodes) {
+            if (node.id === "1") { continue; }
+            if (node.children && node.children.length > 0) {
+                let folderItem = document.createElement('li');
+
+                // Use the SVG icon from HTML
+                const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
+                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
+                folderItem.appendChild(folderIcon);
+
+                folderItem.appendChild(document.createTextNode(node.title));
+                folderItem.classList.add('folder');
+
+                // Add event listener for unfolding/folding
+                folderItem.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    folderItem.classList.toggle('open');
+                    const subList = folderItem.querySelector('ul');
+                    if (subList) {
+                        subList.classList.toggle('hidden');
+                    }
+                });
+
+                let subList = displayBookmarks(node.children);
+                subList.classList.add('hidden');
+                folderItem.appendChild(subList);
+
+                list.appendChild(folderItem);
+            } else if (node.url) {
+                let item = document.createElement('li');
+                item.dataset.url = node.url; // Add URL as dataset for search functionality
+                let link = document.createElement('a');
+                link.href = node.url;
+                let span = document.createElement('span');
+                span.textContent = node.title;
+
+                let favicon = document.createElement('img');
+                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
+                favicon.classList.add('favicon');
+                favicon.onerror = () => {
+                    favicon.src = "./shortcuts_icons/offline.svg";
+                };
+
+                // Create the delete button
+                let deleteButton = document.createElement('button');
+                deleteButton.textContent = '✖';
+                deleteButton.classList.add('bookmark-delete-button');
+
+                deleteButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
+                        if (isFirefox) {
+                            // Firefox API (Promise-based)
+                            bookmarksAPI.remove(node.id).then(() => {
+                                item.remove(); // Remove the item from the DOM
+                            }).catch(err => {
+                                console.error("Error removing bookmark in Firefox:", err);
+                            });
+                        } else {
+                            // Chrome API (Callback-based)
+                            bookmarksAPI.remove(node.id, function () {
+                                item.remove(); // Remove the item from the DOM
+                            });
+                        }
+                    }
+                });
+
+                link.appendChild(favicon);
+                link.appendChild(span);
+                item.appendChild(link);
+                item.appendChild(deleteButton); // Add delete button to the item
+
+                // Open links in the current tab or new tab if ctrl pressed
+                link.addEventListener('click', function (event) {
+                    if (event.ctrlKey || event.metaKey) {
+                        // Open in a new tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.create({ url: node.url, active: false });
+                        } else if (isChrome) {
+                            chrome.tabs.create({ url: node.url, active: false });
+                        } else {
+                            window.open(node.url, '_blank');
+                        }
+                    } else {
+                        // Open in the current tab
+                        event.preventDefault();
+                        if (isFirefox) {
+                            browser.tabs.update({ url: node.url });
+                        } else if (isChrome) {
+                            chrome.tabs.update({ url: node.url }, function () {
+                            });
+                        } else {
+                            window.location.href = node.url;
+                        }
+                    }
+                });
+                list.appendChild(item);
+            }
+        }
+
+        list.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        return list;
+    }  
+});
+
+// ------------------------ End of Bookmark System -----------------------------------
+
 // ----------------------------------- To Do List ----------------------------------------
 
 // DOM Variables
@@ -387,26 +717,26 @@ function createTodoItemDOM(id, title, status, pinned) {
 
 // Event delegation for task check and remove
 todoulList.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI"){
+    if (event.target.tagName === "LI") {
         event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status === "completed")? "pending" : "completed"); // Update status
+        todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todoremovebtn')){
+    } else if (event.target.classList.contains('todoremovebtn')) {
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todopinbtn')){
+    } else if (event.target.classList.contains('todopinbtn')) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned === true)? false : true); // Update status
+        todoList[id].pinned = ((todoList[id].pinned === true) ? false : true); // Update status
         SaveToDoData(); // Save Changes
     }
 });
 
 // Save JSON to local Storage
-function SaveToDoData(){
+function SaveToDoData() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
 // Fetch saved JSON and create list items using it
@@ -429,14 +759,14 @@ function ShowToDoList() {
 // Code to reset the List on the Next Day
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
 let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
-if (todoLastUpdateDate===todoCurrentDate){
+if (todoLastUpdateDate === todoCurrentDate) {
     ShowToDoList();
 } else {
     // Modify the list when last update date and the current date does not match
-    localStorage.setItem("todoLastUpdateDate",todoCurrentDate);
+    localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
-    for(let id in todoList){
-        if (todoList[id].pinned == false){
+    for (let id in todoList) {
+        if (todoList[id].pinned == false) {
             if (todoList[id].status == "completed") {
                 delete todoList[id]; // Remove the Unpinned and Completed list item data
             }
@@ -473,7 +803,7 @@ document.addEventListener("click", function (event) {
         todoContainer.style.display = 'none'; // Hide menu
         todoListCont.classList.remove('menu-open'); // Restore tooltip
     }
-    
+
     event.stopPropagation();
 });
 
@@ -561,9 +891,10 @@ function updateDate() {
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
             vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
-            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, //Jeudi, 5 avril
+            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${localizedDayOfMonth}`
+            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
+            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
     }
@@ -575,12 +906,10 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-
     // Initialize cumulative rotations
-
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
     if (secondreset) {
         document.getElementById("second").style.transition = "none";
         document.getElementById("second").style.transform = `rotate(0deg)`;
@@ -607,6 +936,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
+
     if (cumulativeMinuteRotation == 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
@@ -614,13 +944,14 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    } if (cumulativeHourRotation == 0) {
+    }
 
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(361deg)`;
+    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
+        document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
     } else if (hourreset != true) {
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
     // Update date immediately
@@ -683,10 +1014,10 @@ function updatedigiClock() {
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-    
+
     // Determine the translated short date string based on language
     const dateFormats = {
-        az: `${dayName} ${dayOfMonth}`, //Mardi 11
+        az: `${dayName} ${dayOfMonth}`,
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
@@ -698,8 +1029,8 @@ function updatedigiClock() {
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
-        fr: `${dayName} ${dayOfMonth}`, //Mardi 11
-        default: `${localizedDayOfMonth} ${dayName.substring(0, 3)}`, // e.g., "24 Thu"
+        fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
@@ -896,7 +1227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
         const resultBox = document.getElementById('resultBox');
-        if(resultBox.classList.toString().includes('show')) return;
+        if (resultBox.classList.toString().includes('show')) return;
         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     });
 
@@ -935,7 +1266,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
 
             // console.log(element, selector);
-            
+
             radioButton.checked = true;
 
             // Swap The dropdown. and sort them
@@ -1112,13 +1443,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //  -----------Voice Search------------
 // Function to detect Chrome and Edge on desktop
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
-    const userAgent = navigator.userAgent;
-    const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
-    const isEdge = /Edg/.test(userAgent);
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(userAgent); // Check if the device is not mobile
-    const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -1200,6 +1530,8 @@ function initializeSpeechRecognition() {
             }
             // Display the interim result in the search input
             searchInput.value = transcript;
+            // Trigger the input event manually to update suggestions
+            searchInput.dispatchEvent(new Event("input"));
             // If the result is final, hide the result box
             if (event.results[event.results.length - 1].isFinal) {
                 resultBox.style.display = 'none'; // Hide result box after final input
@@ -1462,7 +1794,7 @@ const applySelectedTheme = (colorValue) => {
                 color: var(--whitishColor-dark);
             }
 	    
-            .clearButton{
+            .dark-theme .clearButton{
                 color: #d6d6d6;
             }
 
@@ -1496,8 +1828,33 @@ const applySelectedTheme = (colorValue) => {
                 color:#616161;
             }
 
-	    .dark-theme .todolistitem .todoremovebtn:hover {
+            .dark-theme .todolistitem .todoremovebtn:hover {
                 color:#888888;
+            }
+
+            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
+                color: var(--textColorDark-blue) !important;
+            }
+
+            .dark-theme #bookmarkSearch{
+                background-color: #212121 !important;
+            }
+
+            .dark-theme .bookmark-search-container::after {
+                filter: none;
+            }
+
+            .dark-theme .bookmark-button svg {
+                fill: var(--textColorDark-blue);
+            }
+
+	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
+            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+                background: var(--darkColor-dark);
+            }
+
+	    .dark-theme .favicon {
+                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
             }
 
      	    .dark-theme .micIcon {
@@ -1519,7 +1876,6 @@ const applySelectedTheme = (colorValue) => {
             .dark-theme #menuButton {
                 border: 6px solid var(--accentLightTint-blue);
                 box-shadow:
-                    /*inset 0 0 0 4px var(--accentLightTint-blue),*/
                     inset 0 0 0 4px #858585,
                     inset 0 0 0 9.7px var(--accentLightTint-blue),
                     inset 0 0 0 40px #bfbfbf;
@@ -2237,11 +2593,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
 
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
-                    
-                    if(dropdown.style.display == "block") {
+
+                    if (dropdown.style.display == "block") {
                         dropdown.style.display = "none";
                     }
-                    
+
 
                     showResultBox();
                 }
@@ -2548,9 +2904,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
+    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
+    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -2577,6 +2935,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
+        if (key === "bookmarkGridCheckboxState") {
+            if (!savedState) {
+                bookmarkGridCheckbox.click();
+            } else {
+                bookmarkGridCheckbox.click();
+                bookmarkGridCheckbox.click();
+            }
+        }
     }
 
     // Function to save display status to localStorage
@@ -3031,7 +3397,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchIconContainer[0].style.display = 'block';
         document.getElementById('search-with-container').style.visibility = 'visible';
     }
-    
+
     const hideEngineContainer = () => {
         searchIconContainer[0].style.display = 'none';
         searchIconContainer[1].style.display = 'block';
@@ -3192,6 +3558,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    bookmarksCheckbox.addEventListener("change", function () {
+        let bookmarksPermission;
+        if (isFirefox && browser.permissions && isDesktop) {
+            bookmarksPermission = browser.permissions;
+        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+            bookmarksPermission = chrome.permissions;
+        } else {
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            return;
+        }
+        if (bookmarksPermission !== undefined) {
+            if (bookmarksCheckbox.checked) {
+                bookmarksPermission.contains({
+                    permissions: ['bookmarks']
+                }, function (alreadyGranted) {
+                    if (alreadyGranted) {
+                        bookmarkButton.style.display = "flex";
+                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                    } else {
+                        bookmarksPermission.request({
+                            permissions: ['bookmarks']
+                        }, function (granted) {
+                            if (granted) {
+                                bookmarksAPI = chrome.bookmarks;
+                                bookmarkButton.style.display = "flex";
+                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            } else {
+                                bookmarksCheckbox.checked = false;
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            }
+                        });
+                    }
+                });
+            } else {
+                bookmarkButton.style.display = "none";
+                saveDisplayStatus("bookmarksDisplayStatus", "none");
+                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            }
+        }
+    });
+
     aiToolsCheckbox.addEventListener("change", function () {
         saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
         if (aiToolsCheckbox.checked) {
@@ -3212,6 +3623,15 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             googleAppsCont.style.display = "none";
             saveDisplayStatus("googleAppsDisplayStatus", "none");
+        }
+    });
+
+    bookmarkGridCheckbox.addEventListener("change", function () {
+        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+        if (bookmarkGridCheckbox.checked) {
+            bookmarkList.classList.add("grid-view");
+        } else {
+            bookmarkList.classList.remove("grid-view");
         }
     });
 
@@ -3297,20 +3717,42 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
+    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
 });
 
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        if (bookmarksCheckbox.checked) {
+            bookmarkButton.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    const searchInput = document.getElementById('searchQ');
+    const searchBar = document.querySelector('.searchbar');
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        event.preventDefault();
+        searchInput.focus();
+        searchBar.classList.add('active');
+    }
+});
 //------------------------- LoadingScreen -----------------------//
 
-function ApplyLoadingColor(){
+function ApplyLoadingColor() {
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
     localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
 }

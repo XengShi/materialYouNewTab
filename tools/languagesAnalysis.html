@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="shortcut icon" href="../favicon/icon.ico" type="image/x-icon">
+    <title>Language Key Analysis</title>
+    <style>
+      :root {
+        --md-sys-color-primary: #1b3041;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #c7e4c7;
+        --md-sys-color-secondary: #5d4037;
+        --md-sys-color-on-secondary: #ffffff;
+        --md-sys-color-secondary-container: #efebe9;
+        --md-sys-color-on-secondary-container: #211a16;
+        --md-sys-color-error: #860000;
+        --md-sys-color-error-container: #ffcdd2;
+        --md-sys-color-outline: #757575;
+        --md-sys-color-background: #fafafa;
+        --md-sys-color-on-background: #004d43;
+        --md-sys-color-surface: #ffffff;
+        --md-sys-color-on-surface: #212121;
+        --md-sys-color-on-surface-variant: #424242;
+        --md-sys-color-outline-variant: #c0b2a5;
+      }
+      :root .dark-mode {
+        --md-sys-color-primary: #3c3c4c;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #004d4377;
+        --md-sys-color-secondary: #8d6e63;
+        --md-sys-color-on-secondary: #322926;
+        --md-sys-color-secondary-container: #594a44;
+        --md-sys-color-on-secondary-container: #ebe1dd;
+        --md-sys-color-error: #ef9a9a;
+        --md-sys-color-error-container: #86000077;
+        --md-sys-color-outline: #bdbdbd;
+        --md-sys-color-background: #151627;
+        --md-sys-color-on-background: #c7e4c7;
+        --md-sys-color-surface: #212131;
+        --md-sys-color-on-surface: #e0e0e0;
+        --md-sys-color-on-surface-variant: #bdbdbd;
+        --md-sys-color-outline-variant: #3c3c4c;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: var(--md-sys-color-background);
+        color: var(--md-sys-color-on-background);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex: 1;
+        padding: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      #results,
+      #complete {
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+        transition: background-color 0.3s, border-color 0.3s;
+        background-color: var(--md-sys-color-surface);
+        border: 1px solid var(--md-sys-color-outline-variant);
+      }
+      #results ul,
+      #complete ul {
+        list-style: none;
+        padding: 0;
+      }
+      #results li,
+      #complete li {
+        margin: 0.6rem 0;
+        padding: 0.6rem;
+        border-left: 4px solid;
+        border-radius: 6px;
+        transition: background-color 0.3s;
+        line-height: 1.4;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      #results li.missing {
+        border-left-color: var(--md-sys-color-error);
+        background-color: var(--md-sys-color-error-container);
+        color: var(--md-sys-color-error);
+      }
+      #results li.extra {
+        border-left-color: var(--md-sys-color-secondary);
+        background-color: var(--md-sys-color-secondary-container);
+      }
+      #complete li {
+        border-left-color: var(--md-sys-color-on-background);
+        background-color: var(--md-sys-color-primary-container);
+      }
+      h2 {
+        text-align: center;
+        color: var(--md-sys-color-on-surface);
+        transition: color 0.3s;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+      .material-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .material-banner strong {
+        margin-left: 0.5rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.05rem;
+      }
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+      nav button {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--md-sys-color-on-primary);
+        font-weight: bold;
+        padding: 0.6rem 1rem;
+        background-color: var(--md-sys-color-secondary);
+        border-radius: 6px;
+        border: none;
+        transition: background-color 0.3s;
+        font-size: 0.9rem;
+      }
+      nav button:hover {
+        background-color: var(--md-sys-color-secondary-container);
+        color: var(--md-sys-color-on-secondary-container);
+      }
+      p {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: var(--md-sys-color-on-surface-variant);
+        line-height: 1.4;
+        font-size: 0.9rem;
+      }
+      /* Estilos para o checkbox */
+      input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--md-sys-color-error);
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+      input[type="checkbox"]:checked {
+        background-color: var(--md-sys-color-error);
+        border-color: var(--md-sys-color-error);
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      li.checked {
+        opacity: 0.7;
+      }
+      li.checked span {
+        text-decoration: line-through;
+      }
+      .language-group {
+        margin-bottom: 1rem;
+      }
+      .language-group h3 {
+        margin-bottom: 0.5rem;
+        color: var(--md-sys-color-on-surface-variant);
+        padding-left: 0.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        justify-content: space-between; /* Alinha o texto à esquerda e o contador à direita */
+      }
+      .language-group h3::before {
+        content: "▶";
+        display: inline-block;
+        margin-right: 0.5rem;
+        transition: transform 0.2s;
+        transform: rotate(90deg);
+      }
+      .language-group.collapsed h3::before {
+        transform: none;
+      }
+      .language-group ul {
+        padding-left: 1rem;
+      }
+      .language-group.collapsed ul {
+        display: none;
+      }
+      #theme-toggle {
+        position: relative;
+        width: 40px;
+        height: 20px;
+        border-radius: 15px;
+        background-color: #ccc;
+        border: none;
+        transition: background-color 0.3s;
+      }
+      #theme-toggle::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        background-color: var(--md-sys-color-primary);
+        border-radius: 50%;
+        transition: left 0.3s ease;
+      }
+      body.dark-mode #theme-toggle::before {
+        left: 22px;
+      }
+      /* Animação suave */
+      .material-banner,
+      nav button,
+      #results,
+      #complete,
+      #results li,
+      #complete li,
+      input[type="checkbox"],
+      #theme-toggle {
+        transition: all 0.2s ease;
+      }
+      #incomplete-message {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.9rem;
+        font-style: italic;
+        background-color: var(--md-sys-color-error-container);
+        padding: 0.7rem;
+        border-radius: 8px;
+        display: block;
+        animation: fadeIn 0.3s ease-in-out; /* Adicionando animação */
+      }
+      #extra-keys-message {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--md-sys-color-on-surface-variant);
+        font-size: 0.9rem;
+        font-style: italic;
+        background-color: var(--md-sys-color-secondary-container);
+        padding: 0.7rem;
+        border-radius: 8px;
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .key-count {
+        font-size: 0.8rem;
+        font-weight: normal;
+        margin-left: 1rem;
+        opacity: 0.7;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--md-sys-color-on-surface-variant);
+        border-radius: 3px;
+      }
+    </style>
+    <!-- SCRIPTS -->
+    <script src="../locales/pt.js"></script>
+    <script src="../locales/en.js"></script>
+    <script src="../locales/es.js"></script>
+    <script src="../locales/hi.js"></script>
+    <script src="../locales/zh.js"></script>
+    <script src="../locales/cs.js"></script>
+    <script src="../locales/it.js"></script>
+    <script src="../locales/tr.js"></script>
+    <script src="../locales/bn.js"></script>
+    <script src="../locales/vi.js"></script>
+    <script src="../locales/ru.js"></script>
+    <script src="../locales/uz.js"></script>
+    <script src="../locales/ja.js"></script>
+    <script src="../locales/ko.js"></script>
+    <script src="../locales/idn.js"></script>
+    <script src="../locales/mr.js"></script>
+    <script src="../locales/fr.js"></script>
+    <script src="../locales/az.js"></script>
+    <script src="../locales/sl.js"></script>
+</head>
+<body class="light-mode">
+    <div class="material-banner">
+      <span>🌟</span>
+      <strong>Language Key Analysis Tool</strong>
+      <nav>
+        <button id="theme-toggle"></button>
+      </nav>
+    </div>
+    <main>
+      <div id="complete"></div>
+      <h2>Language Key Analysis Results</h2>
+      <p>
+      This page is a tool designed to analyze language keys in the project. English serves as the reference language for
+      comparison. The tool identifies missing or extra keys in other languages and highlights the complete ones.
+      </p>
+      <div id="incomplete-message" style="display: none">
+        The following languages have missing translations compared to English.
+      </div>
+      <div id="extra-keys-message" style="display: none">
+        Some of the following languages have extra keys not present in English. Consider removing them for consistency.
+      </div>
+      <div id="results"></div>
+    </main>
+    <script>
+      const languages = { az, bn, cs, en, es, fr, hi, idn, it, ja, ko, mr, pt, ru, sl, tr, uz, vi, zh };
+      const resultsDiv = document.getElementById("results");
+      const completeDiv = document.getElementById("complete");
+      const themeToggle = document.getElementById("theme-toggle");
+      const incompleteMessage = document.getElementById("incomplete-message");
+      const extraKeysMessage = document.getElementById("extra-keys-message");
+
+      function compareLanguageKeys(referenceLang, languages) {
+        const analysis = {};
+
+        for (const lang in languages) {
+          if (lang !== referenceLang) {
+            const refKeys = Object.keys(languages[referenceLang]);
+            const langKeys = Object.keys(languages[lang]);
+
+            const missing = refKeys.filter((key) => !langKeys.includes(key));
+            const extra = langKeys.filter((key) => !refKeys.includes(key));
+
+            analysis[lang] = {
+              missingKeys: missing,
+              extraKeys: extra,
+              isComplete: missing.length === 0 && extra.length === 0,
+            };
+          }
+        }
+        return analysis;
+      }
+      const languageAnalysis = compareLanguageKeys("en", languages);
+      const ulResults = document.createElement("ul");
+      const ulComplete = document.createElement("ul");
+
+      for (const lang in languageAnalysis) {
+        if (languageAnalysis[lang].isComplete) {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>Congratulations!</strong> The language <strong>${lang}</strong> is complete!`;
+          ulComplete.appendChild(li);
+        }
+      }
+
+      const languageGroups = {};
+      let hasMissingKeys = false;
+      let hasExtraKeys = false;
+
+      for (const lang in languageAnalysis) {
+        const { missingKeys, extraKeys } = languageAnalysis[lang];
+        if (missingKeys.length > 0 || extraKeys.length > 0) {
+          hasMissingKeys = hasMissingKeys || missingKeys.length > 0;
+          hasExtraKeys = hasExtraKeys || extraKeys.length > 0;
+
+          languageGroups[lang] = document.createElement("div");
+          languageGroups[lang].classList.add("language-group", "collapsed");
+          const h3 = document.createElement("h3");
+          h3.innerHTML = `Language: ${lang}
+                    <span class="key-count">Missing: ${missingKeys.length}</span>
+                    <span class="key-count">Extra: ${extraKeys.length}</span>
+                `;
+          languageGroups[lang].appendChild(h3);
+          languageGroups[lang].appendChild(document.createElement("ul"));
+
+          const ul = languageGroups[lang].querySelector("ul");
+          missingKeys.forEach((key) => {
+            const li = document.createElement("li");
+            li.classList.add("missing");
+            li.innerHTML = `
+                        <input type="checkbox" id="checkbox-missing-${lang}-${key}" data-lang="${lang}" data-key="${key}">
+                       <span>Missing: ${key}</span>
+                    `;
+            ul.appendChild(li);
+          });
+
+          extraKeys.forEach((key) => {
+            const li = document.createElement("li");
+            li.classList.add("extra");
+            li.innerHTML = `
+                        <span>Extra: ${key}</span>
+                    `;
+            ul.appendChild(li);
+          });
+        }
+      }
+
+      for (const langGroup in languageGroups) {
+        ulResults.appendChild(languageGroups[langGroup]);
+      }
+
+      if (
+        Object.keys(languageAnalysis).filter(
+          (lang) => languageAnalysis[lang].isComplete
+        ).length > 0
+      ) {
+        completeDiv.appendChild(ulComplete);
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "No languages are complete.";
+        ulComplete.appendChild(li);
+        completeDiv.appendChild(ulComplete);
+      }
+
+      if (hasMissingKeys) {
+        incompleteMessage.style.display = "block";
+      }
+
+      if (hasExtraKeys) {
+        extraKeysMessage.style.display = "block";
+      }
+
+      if (hasMissingKeys || hasExtraKeys) {
+        resultsDiv.appendChild(ulResults);
+      }
+
+      resultsDiv.addEventListener("change", (event) => {
+        if (event.target.type === "checkbox") {
+          const checkbox = event.target;
+          const listItem = checkbox.closest("li");
+          if (checkbox.checked) {
+            listItem.classList.add("checked");
+          } else {
+            listItem.classList.remove("checked");
+          }
+        }
+      });
+
+      resultsDiv.addEventListener("click", (event) => {
+        if (event.target.closest(".language-group h3")) {
+          const group = event.target.closest(".language-group");
+          group.classList.toggle("collapsed");
+        }
+      });
+
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+    </script>
+  </body>
+</html>
