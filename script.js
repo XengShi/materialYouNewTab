@@ -310,7 +310,7 @@ if (isFirefox && browser.bookmarks) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.error("Bookmarks API not supported in this browser.");
+    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1392,8 +1392,8 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -2880,9 +2880,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
-        if (key === "bookmarkGridCheckboxState"&&savedState===undefined) {
-            checkbox.checked = true;
-            localStorage.setItem(key, "checked");
+        if (key === "bookmarkGridCheckboxState") {
+            if (!savedState) {
+                bookmarkGridCheckbox.click();
+            } else {
+                bookmarkGridCheckbox.click();
+                bookmarkGridCheckbox.click();
+            }
         }
     }
 
@@ -3508,6 +3512,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
         if (bookmarksCheckbox.checked) {
@@ -3517,6 +3522,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (alreadyGranted) {
                     bookmarkButton.style.display = "flex";
                     saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                 } else {
                     bookmarksPermission.request({
                         permissions: ['bookmarks']
@@ -3525,8 +3531,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             bookmarksAPI = chrome.bookmarks;
                             bookmarkButton.style.display = "flex";
                             saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         } else {
                             bookmarksCheckbox.checked = false;
+                            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                         }
                     });
                 }
@@ -3534,8 +3542,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             bookmarkButton.style.display = "none";
             saveDisplayStatus("bookmarksDisplayStatus", "none");
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
         }
-        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     });
 
     aiToolsCheckbox.addEventListener("change", function () {
@@ -3664,12 +3672,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
-
-    if (bookmarkGridCheckbox.checked) {
-        bookmarkList.classList.add("grid-view");
-    } else {
-        bookmarkList.classList.remove("grid-view");
-    }
 });
 
 document.addEventListener('keydown', function (event) {
