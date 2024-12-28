@@ -630,7 +630,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #bookmarkList::-webkit-scrollbar {
-	width: 5px;
+	width: 6px;
 }
 
 #bookmarkList::-webkit-scrollbar-track {
@@ -732,20 +732,20 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::after, #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	content: '';
-    background: var(--darkColor-blue);
+    background: var(--bg-color-blue);
     position: absolute;
     width: 48px;
     height: 48px;
 	z-index: -1;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.3;
+    opacity: 0.35;
     top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-    background: var(--darkColor-blue);
+    background: var(--bg-color-blue);
     width: 36px;
     height: 36px;
     opacity: 1;
@@ -782,7 +782,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 18px;
 	margin-right: 5px;
 	vertical-align: middle;
-	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
 }
 
 #bookmarkList:is(.grid-view) .favicon {
