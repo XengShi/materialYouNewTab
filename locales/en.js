@@ -60,7 +60,7 @@ const en = {
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
-    "InputOptionsButton": "Input options",
+    "useGPS": "Use GPS",
     "saveLoc": "Save",
 
     // Weather

@@ -51,7 +51,7 @@ const hi = {
     "UserLocText": "अपना स्थान दर्ज करें",
     "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
     "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
-    "InputOptionsButton": "इनपुट विकल्प",
+    "useGPS": "GPS का उपयोग करें",
     "saveLoc": "सहेजें",
     // Weather
     "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",

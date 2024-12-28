@@ -60,7 +60,7 @@ const bn = {
     "UserLocText": "আপনার অবস্থান লিখুন",
     "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
     "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
-    "InputOptionsButton": "ইনপুট অপশন",
+    "useGPS": "জিপিএস ব্যবহার করুন",
     "saveLoc": "সংরক্ষণ করুন",
 
     // Weather
