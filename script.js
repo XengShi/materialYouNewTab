@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
             const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-            if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || weatherParsedLocation !== currentUserLocation || weatherParsedLang !== currentLanguage) {
+            if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
                 let data = await fetch(weatherApi);
