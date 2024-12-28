@@ -1,6 +1,7 @@
 // Bengali -> bn
 const bn = {
     // Menu Items
+    "github": "গিটহাব",
     "feedback": "মতামত",
     "resetsettings": "সেটিংস পুনরায় সেট করুন",
     "menuCloseText": "বন্ধ করুন",
@@ -77,11 +78,6 @@ const bn = {
     "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
     // "months": ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
 
-    // Weather
-    "humidityLevel": "আর্দ্রতা",
-    "feelsLike": "অনুভূতি হয়",
-    "location": "পৃথিবী",
-
     // Bookmarks
     "bookmarksHeading": "বুকমার্কস",
     "bookmarkViewAs": "এইভাবে দেখুন",
@@ -91,6 +87,9 @@ const bn = {
 
     // New Tab Item
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
+    "humidityLevel": "আর্দ্রতা",
+    "feelsLike": "অনুভূতি হয়",
+    "location": "পৃথিবী",
     "enterBtn": "সার্চ করুন",
     "searchPlaceholder": "এখানে টাইপ করুন...",
     "listenPlaceholder": "শোনা হচ্ছে...",
@@ -104,7 +103,7 @@ const bn = {
         "evening": "শুভ সন্ধ্যা!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "গুগল",
     "duckEngine": "ডাকডাকগো",
     "bingEngine": "বিং",
@@ -119,7 +118,6 @@ const bn = {
     "perplexity": "পারপ্লেক্সিটি",
     "firefly": "অ্যাডোবি ফায়ারফ্লাই",
     "metaAI": "মেটা এআই",
-    "github": "গিটহাব",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "ওয়ালপেপার দিন",

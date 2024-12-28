@@ -1,6 +1,7 @@
 // English -> en
 const en = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "Feedback",
     "resetsettings": "Reset Settings",
     "menuCloseText": "Close",
@@ -75,11 +76,6 @@ const en = {
     "days": ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     "months": ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
-    // Weather
-    "humidityLevel": "Humidity",
-    "feelsLike": "Feels",
-    "location": "Earth",
-
     // Bookmarks
     "bookmarksHeading": "Bookmarks",
     "bookmarkViewAs": "View as",
@@ -89,6 +85,9 @@ const en = {
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
+    "humidityLevel": "Humidity",
+    "feelsLike": "Feels",
+    "location": "Earth",
     "enterBtn": "Search",
     "searchPlaceholder": "Type here...",
     "listenPlaceholder": "Listening...",
@@ -102,7 +101,7 @@ const en = {
         "evening": "Good Evening!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
@@ -117,7 +116,6 @@ const en = {
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
