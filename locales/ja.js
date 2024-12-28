@@ -1,22 +1,34 @@
-// Japanese
+// Japanese -> ja
 const ja = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "フィードバック",
     "resetsettings": "設定をリセット",
     "menuCloseText": "閉じる",
+
     // Shortcuts
     "shortcutsText": "ショートカット",
     "enableShortcutsText": "保存されたショートカットを表示",
     "editShortcutsText": "ショートカットを編集",
-    "editShortcutsList": "保存されたショートカット",
     "shortcutsInfoText": "表示するショートカットを選択",
-    'editShortcutsListInfo': '"+" アイコンをクリックして新しいショートカットを追加したり、ショートカット名またはURLをクリックして既存のショートカットを編集したりできます',
+    "editShortcutsList": "保存されたショートカット",
+    "editShortcutsListInfo": "\"+\" アイコンをクリックして新しいショートカットを追加したり、ショートカット名またはURLをクリックして既存のショートカットを編集したりできます",
     "adaptiveIconText": "アダプティブアイコン",
     "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
+    // "bookmarksText": "Bookmarks",
+    // "bookmarksInfo": "Show bookmarks sidebar",
     "ai_tools_button": "AIツール",
     "enable_ai_tools": "AIツールのショートカットを表示",
     "googleAppsMenuText": "Googleアプリ",
     "googleAppsMenuInfo": "Googleアプリのショートカットを表示",
+    "googleAppsHover": "Googleアプリ",
+
+    // Todo List
+    // "todoListText": "To Do List",
+    // "todoListInfo": "Show a daily To Do list",
+    // "todoListHover": "ToDo List",   // Keep this short
+    // "todoPlaceholder": "Add task...",
+
     // Digital Clock
     "digitalclocktittle": "デジタル時計",
     "digitalclockinfo": "デジタル時計に変更",
@@ -24,6 +36,7 @@ const ja = {
     "timeformatinfo": "12時間形式を使用",
     "greetingtittle": "あいさつ",
     "greetinginfo": "カスタムテキストの下にあいさつを表示",
+
     // Misc
     "userTextTitle": "カスタムテキスト",
     "userTextInfo": "時計の下にカスタムテキストを表示",
@@ -31,8 +44,11 @@ const ja = {
     "fahrenheitCelsiusText": "変更を適用するにはページを再読み込み",
     "micIconTitle": "マイクアイコンを非表示",
     "micIconInfo": "音声入力が動作しない場合",
+    // "hideSearchWith": "Hide Search Engines",
+    // "hideSearchWithInfo": "Switch between search engines by clicking its icon",
     "search_suggestions_button": "検索候補",
     "search_suggestions_text": "検索候補を有効にする",
+
     // Proxy
     "useproxytitletext": "プロキシ使用",
     "useproxyText": "検索候補が機能しない場合",
@@ -40,42 +56,43 @@ const ja = {
     "ProxySubtext": "独自のCORSプロキシを追加",
     "HostproxyButton": "独自のプロキシをホスト",
     "saveproxy": "保存",
+
     // Location
     "UserLocText": "場所を入力",
     "UserLocSubtext": "天気の地域が正しくない場合",
     "userLoc": "都市または座標（緯度、経度）",
     "InputOptionsButton": "入力オプション",
     "saveLoc": "保存",
+
     // Weather
     "WeatherApiText": "WeatherAPIキーを入力",
     "WeatherApiSubtext": "天気機能が動作しない場合",
     "userAPI": "WeatherAPIキー",
     "LearnMoreButton": "詳細情報",
     "saveAPI": "保存",
-    // End of Menu Items
 
     // Body Items
     // Calendar
     "days": ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
     "months": ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    // End of Calendar
 
-    // Weather
-    "humidityLevel": "湿度",
-    "feelsLike": "体感温度",
-    "location": "場所",
-    // End of Weather
+    // Bookmarks
+    "bookmarksHeading": "Bookmarks",
+    "bookmarkViewAs": "View as",
+    "bookmarkViewAsGrid": "Grid",   // Keep this shorter
+    "bookmarkViewAsList": "List",   // Keep this shorter
+    "bookmarkSearch": "Search bookmark",
 
     // New Tab Item
     "conditionText": "こんにちは！本日の調子はいかがですか？",
+    "humidityLevel": "湿度",
+    "feelsLike": "体感温度",
+    "location": "場所",
     "enterBtn": "検索",
     "searchPlaceholder": "検索キーワードを入力...",
     "listenPlaceholder": "聴き取り中...",
     "searchWithHint": "次で検索",
-    "ai_tools": "AIツール",
     "userText": "ここをクリックして編集",
-    "googleAppsHover": "Googleアプリ",
-    // End of Body and New Tab Items
 
     // Greeting
     greeting: {
@@ -84,16 +101,38 @@ const ja = {
         "evening": "こんばんは！"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
     "duckEngine": "DuckDuckGo",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+
+    // AI Tools
+    "ai_tools": "AIツール",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
-    "github": "GitHub",
-}
+    // "metaAI": "Meta AI",
+
+    // Wallpaper and alerts
+    // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
+    // "backupText": "Backup",
+    // "restoreText": "Restore",
+    // "rangColor": "Pick color",    // Keep this short
+
+    // Dialog boxes (alerts)
+    // "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
+    // "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
+    // "Nobackgroundset": "No background image is currently set.",
+    // "clearbackgroundimage": "Are you sure you want to clear the background image?",
+    // "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+    // "failedbackup": "Backup failed: ",
+    // "restorecompleted": "Restore completed successfully!",
+    // "restorefailed": "Restore failed: ",
+    // "invalidBackup": "Invalid backup file",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+};
