@@ -115,7 +115,7 @@ const ko = {
     "copilot": "코파일럿",
     "perplexity": "퍼플렉시티",
     "firefly": "어도비 파이어플라이",
-    "metaAI": "Meta AI",
+    // "metaAI": "Meta AI",
 
     // Wallpaper and alerts
     // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short

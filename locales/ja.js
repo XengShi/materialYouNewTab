@@ -77,11 +77,11 @@ const ja = {
     "months": ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 
     // Bookmarks
-    "bookmarksHeading": "Bookmarks",
-    "bookmarkViewAs": "View as",
-    "bookmarkViewAsGrid": "Grid",   // Keep this shorter
-    "bookmarkViewAsList": "List",   // Keep this shorter
-    "bookmarkSearch": "Search bookmark",
+    // "bookmarksHeading": "Bookmarks",
+    // "bookmarkViewAs": "View as",
+    // "bookmarkViewAsGrid": "Grid",   // Keep this shorter
+    // "bookmarkViewAsList": "List",   // Keep this shorter
+    // "bookmarkSearch": "Search bookmark",
 
     // New Tab Item
     "conditionText": "こんにちは！本日の調子はいかがですか？",

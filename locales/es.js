@@ -15,8 +15,8 @@ const es = {
     // "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
     "adaptiveIconText": "Iconos adaptativos",
     "adaptiveIconInfoText": "Los iconos de accesos directos serán más pequeños",
-    "bookmarksText": "Marcadores",
-    "bookmarksInfo": "Mostrar barra lateral de marcadores",
+    // "bookmarksText": "Bookmarks",
+    // "bookmarksInfo": "Show bookmarks sidebar",
     "ai_tools_button": "Herramientas de IA",
     "enable_ai_tools": "Mostrar accesos directos de herramientas de IA",
     "googleAppsMenuText": "Aplicaciones de Google",
@@ -118,20 +118,20 @@ const es = {
     "metaAI": "Meta AI",
 
     // Wallpaper and alerts
-    "uploadWallpaperText": "Subir fondo de pantalla",
-    "backupText": "Copia de seguridad",
-    "restoreText": "Restaurar",
-    "rangColor": "Seleccionar color",
+    // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
+    // "backupText": "Backup",
+    // "restoreText": "Restore",
+    // "rangColor": "Pick color",    // Keep this short
 
     // Dialog boxes (alerts)
-    "confirmWallpaper": "¿Te gustaría establecer una nueva imagen como fondo de pantalla del día?",
-    "confirmRestore": "¿Estás seguro de que deseas restablecer tus configuraciones? Esta acción no se puede deshacer.",
-    "Nobackgroundset": "No hay una imagen de fondo establecida actualmente.",
-    "clearbackgroundimage": "¿Estás seguro de que deseas eliminar la imagen de fondo?",
-    "ProxyDisclaimer": "Todas las funciones de proxy están desactivadas por defecto.\n\nSi habilitas las sugerencias de búsqueda y el proxy de omisión de CORS, se recomienda encarecidamente alojar tu propio proxy para mejorar la privacidad.\n\nPor defecto, el proxy se configurará en https://mynt-proxy.rhythmcorehq.com, lo que significa que todos tus datos pasarán por este servicio, lo que puede plantear preocupaciones de privacidad.",
-    "failedbackup": "Copia de seguridad fallida: ",
-    "restorecompleted": "¡Restauración completada con éxito!",
-    "restorefailed": "Restauración fallida: ",
+    // "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
+    // "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
+    // "Nobackgroundset": "No background image is currently set.",
+    // "clearbackgroundimage": "Are you sure you want to clear the background image?",
+    // "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+    // "failedbackup": "Backup failed: ",
+    // "restorecompleted": "Restore completed successfully!",
+    // "restorefailed": "Restore failed: ",
     // "invalidBackup": "Invalid backup file",
     // "deleteBookmark": "Are you sure you want to delete the bookmark?",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
