@@ -18,14 +18,36 @@
     <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
     <style id="iconStyle"></style>
 
+    <!-- SCRIPTS -->
     <script src="preload.js"></script>
+    <script src="locales/pt.js"></script>
+    <script src="locales/en.js"></script>
+    <script src="locales/es.js"></script>
+    <script src="locales/hi.js"></script>
+    <script src="locales/zh.js"></script>
+    <script src="locales/cs.js"></script>
+    <script src="locales/it.js"></script>
+    <script src="locales/tr.js"></script>
+    <script src="locales/bn.js"></script>
+    <script src="locales/vi.js"></script>
+    <script src="locales/ru.js"></script>
+    <script src="locales/uz.js"></script>
+    <script src="locales/ja.js"></script>
+    <script src="locales/ko.js"></script>
+    <script src="locales/idn.js"></script>
+    <script src="locales/mr.js"></script>
+    <script src="locales/fr.js"></script>
+    <script src="locales/az.js"></script>
+    <script src="locales/sl.js"></script>
     <script defer src="languages.js"></script>
     <script defer src="script.js"></script>
+    <!-- <script defer src="languagesAnalysis.js"></script> -->
+
 </head>
 
 <body>
     <!----------------------- Loading Screen Starting ----------------------->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" id="LoadingScreen" fetchpriority="high"/>
+    <img src="./shortcuts_icons/Loading.png" id="LoadingScreen" fetchpriority="high"/>
 
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
@@ -67,10 +89,12 @@
         </svg>
     </div>
     
-    <div class="bookmark-right-arrow" id="bookmarkRightArrow" style="scale: 0.88; transform-origin: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 17l5-5m0 0l-5-5" />
+    <div class="bookmark-button" id="bookmarkButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M7 2a3 3 0 0 0-3 3v15.138a1.5 1.5 0 0 0 2.244 1.303l5.26-3.006a1 1 0 0 1 .992 0l5.26 3.006A1.5 1.5 0 0 0 20 20.138V5a3 3 0 0 0-3-3z" clip-rule="evenodd"/>
         </svg>
+        <!-- Text to appear on hover -->
+        <span class="tooltip-text" id="bookmarksHover">Bookmarks</span>
     </div>
     <div id="bookmarksContainer">
         <div id="bookmarkSidebar" class="bookmark-sidebar">
@@ -99,7 +123,7 @@
             <div class="bookmark-view-as-container">
                 <h3 id="bookmarkViewAs">View as</h3>
                 <div>
-                    <input type="checkbox" id="bookmarkGridCheckbox" checked hidden/>
+                    <input type="checkbox" id="bookmarkGridCheckbox" hidden/>
                     <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
                     <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
                 </div>
@@ -1120,7 +1144,8 @@
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="hideSearchWith">Hide Search Engines</div>
-                                <div class="infoText" id="hideSearchWithInfo">Switch between search engines by clicking its icon
+                                <div class="infoText" id="hideSearchWithInfo">Switch between search engines by clicking
+                                    its icon
                                 </div>
                             </div>
                             <label class="switch">
@@ -1191,7 +1216,8 @@
                             </div>
                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
-                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html" id="LearnMoreButton" target="_blank">Learn more</a>
+                                <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html"
+                                    id="LearnMoreButton" target="_blank">Learn more</a>
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
                         </div>
@@ -1229,6 +1255,7 @@
                             <option value="mr">मराठी (Marathi)</option>
                             <option value="pt">Português (Portuguese)</option>
                             <option value="ru">Русский (Russian)</option>
+                            <option value="sl">Slovenščina (Slovenian)</option>
                             <option value="es">Español (Spanish)</option>
                             <option value="tr">Türkçe (Turkish)</option>
                             <option value="uz">O'zbek (Uzbek)</option>
@@ -1238,7 +1265,7 @@
                         <!-- end of languageSelector -->
                     </div>
                     <br>
-                
+
                     <div class="themingStuff">
                         <!-- ⚫🟣🔵🔴🟡🟢🟠⚪ -->
                         <div class="btn" id="themeButton">
@@ -1272,7 +1299,7 @@
 
                             <!-- ----Color Picker || ColorPicker---- -->
                             <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
-                            <input type="color" id="colorPicker" value="#EA1010" />
+                            <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
 
@@ -1332,7 +1359,7 @@
                     </div>
 
                     <input type="file" id="fileInput" accept=".json" style="display: none;">
-                     
+
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
                     <div id="menuCloseButton">
@@ -1385,6 +1412,8 @@
     <!-- ------end of Menu-bar----------- -->
     <div id="menuButton"></div>
     <!-- ending-of-body -->
+
+
 </body>
 
 </html>

@@ -483,15 +483,35 @@ body {
 	pointer-events: auto;
 }
 
-.bookmark-right-arrow {
+.bookmark-button {
 	position: fixed;
-	right: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	color: var(--darkColor-blue);
-	transition: transform 0.3s ease, right 0.3s ease;
-	z-index: 2;
+    display: inline-block;
+    margin: 10px;
+    top: var(--gap);
+    right: var(--gap);
+    font-size: 25px;
+	background-color: var(--accentLightTint-blue);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+	padding: 6px;
+	border-radius: 25%;
+	transition: right 0.3s ease;
+}
+
+.bookmark-button:has(~ .googleAppsCont[style="display: flex;"]) {
+    right: calc(2 * var(--gap) + 36px);
+}
+
+/* Show tooltip on hover */
+.bookmark-button:hover .tooltip-text {
+	visibility: visible;
+	opacity: 1;
+}
+
+.bookmark-button svg {
+	fill: var(--darkColor-blue);
+	background-color: var(--accentLightTint-blue);
 }
 
 .bookmark-sidebar {
@@ -527,10 +547,9 @@ body {
 	right: 0;
 }
 
-.bookmark-right-arrow.rotate {
-	transform: translateY(-50%) rotate(180deg);
+body #bookmarkButton.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
-	right: 380px;
+	right: 412px;
 	z-index: 5;
 }
 
@@ -611,7 +630,7 @@ body {
 }
 
 #bookmarkList::-webkit-scrollbar {
-	width: 5px;
+	width: 6px;
 }
 
 #bookmarkList::-webkit-scrollbar-track {
@@ -713,20 +732,20 @@ body {
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::after, #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	content: '';
-    background: var(--darkColor-blue);
+    background: var(--bg-color-blue);
     position: absolute;
     width: 48px;
     height: 48px;
 	z-index: -1;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.3;
+    opacity: 0.35;
     top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-    background: var(--darkColor-blue);
+    background: var(--bg-color-blue);
     width: 36px;
     height: 36px;
     opacity: 1;
@@ -763,7 +782,7 @@ body {
 	height: 18px;
 	margin-right: 5px;
 	vertical-align: middle;
-	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
 }
 
 #bookmarkList:is(.grid-view) .favicon {
