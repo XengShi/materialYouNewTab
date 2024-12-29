@@ -1921,64 +1921,6 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* -----------End of Ai-Tools---------- */
 
-/* -------media query ------------------- */
-
-@media screen and (max-width: 1400px) {
-	.leftDiv {
-		transform: translateX(-50px);
-	}
-
-	.rightDiv {
-		transform: translateX(50px);
-	}
-}
-
-@media screen and (max-width: 1200px) {
-	body {
-		display: block;
-	}
-
-	.shortcutsContainer {
-		margin-top: 210px;
-	}
-
-	.centerDiv {
-		/* display: grid; */
-		grid-template-columns: auto;
-		/* width: fit-content; */
-		/* height: 500px; */
-		/* background-color: orange; */
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: var(--gap) auto auto;
-	}
-
-	.leftDiv {
-		transform: translateX(0px);
-		/* background-color: green; */
-		margin-bottom: var(--gap);
-	}
-
-	.rightDiv {
-		/* position: relative;
-        width: 640px; */
-		transform: translateX(0px);
-		/* background-color: rgba(0, 0, 255, 0.159); */
-	}
-
-	.ttteexxtt {
-		/* background-color: yellow; */
-		height: fit-content;
-		width: fit-content;
-		bottom: 0;
-		top: 0;
-		left: 300px;
-		/*Because Clock width is 300px*/
-		margin: auto auto auto var(--gap);
-	}
-}
-
 /* ---------------Menu-bar-css---------------- */
 .menuBar {
 	background-color: #0000004f;
@@ -3004,4 +2946,85 @@ input:checked + .toggle:before {
 	top: 0;
 	left: 0;
 	z-index: 99999;
+}
+
+/* -------media query ------------------- */
+
+@media screen and (max-width: 1400px) {
+	.leftDiv {
+		transform: translateX(-50px);
+	}
+
+	.rightDiv {
+		transform: translateX(50px);
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	body {
+		display: block;
+	}
+
+	.shortcutsContainer {
+		margin-top: 210px;
+	}
+
+	.centerDiv {
+		/* display: grid; */
+		grid-template-columns: auto;
+		/* width: fit-content; */
+		/* height: 500px; */
+		/* background-color: orange; */
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: var(--gap) auto auto;
+	}
+
+	.leftDiv {
+		transform: translateX(0px);
+		/* background-color: green; */
+		margin-bottom: var(--gap);
+	}
+
+	.rightDiv {
+		/* position: relative;
+        width: 640px; */
+		transform: translateX(0px);
+		/* background-color: rgba(0, 0, 255, 0.159); */
+	}
+
+	.ttteexxtt {
+		/* background-color: yellow; */
+		height: fit-content;
+		width: fit-content;
+		bottom: 0;
+		top: 0;
+		left: 300px;
+		/*Because Clock width is 300px*/
+		margin: auto auto auto var(--gap);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	:root {
+		--gap: 1rem;
+	}
+	.centerDiv {
+		width: calc(100% - var(--gap) * 2);
+		/* padding: var(--gap); */
+		/* align-self: center; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.leftDiv {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.ttteexxtt {
+		display: none;
+	}
 }
