@@ -2,6 +2,9 @@ const apiUrl = "https://dummyjson.com/quotes/random";
 const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.autherName span');
 
+// Set a maximum character limit for quotes
+const MAX_QUOTE_LENGTH = 120;
+
 async function fetchAndDisplayQuote() {
     try {
         // Fetch the response from the DummyJSON API
@@ -11,8 +14,13 @@ async function fetchAndDisplayQuote() {
         // Parse the JSON data
         const data = await response.json();
 
+        // Truncate the quote if it exceeds the max length
+        const displayedQuote = data.quote.length > MAX_QUOTE_LENGTH
+            ? data.quote.slice(0, MAX_QUOTE_LENGTH) + "..."
+            : data.quote;
+
         // Update the HTML content
-        quotesContainer.textContent = `"${data.quote}"`;
+        quotesContainer.textContent = `"${displayedQuote}"`;
         authorName.textContent = data.author;
 
     } catch (error) {
