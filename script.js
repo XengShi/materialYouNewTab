@@ -133,90 +133,126 @@ window.addEventListener('DOMContentLoaded', async () => {
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
     try {
-        // Fetch weather data using Weather API
-        const weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
-        const data = await fetch(weatherApi);
-        const parsedData = await data.json();
-
-        // Weather data
-        const conditionText = parsedData.current.condition.text;
-        const tempCelsius = Math.round(parsedData.current.temp_c);
-        const tempFahrenheit = Math.round(parsedData.current.temp_f);
-        const humidity = parsedData.current.humidity;
-        const feelsLikeCelsius = parsedData.current.feelslike_c;
-        const feelsLikeFahrenheit = parsedData.current.feelslike_f;
-
-        // Update DOM elements with the weather data
-        document.getElementById("conditionText").textContent = conditionText;
-
-        // Localize and display temperature and humidity
-        const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-        const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-        const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-        const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-        const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-        // Set humidity level
-        const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-        document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-        // Event Listener for the Fahrenheit toggle
-        const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-        const updateTemperatureDisplay = () => {
-            const tempElement = document.getElementById("temp");
-            const feelsLikeElement = document.getElementById("feelsLike");
-            const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-
-            if (fahrenheitCheckbox.checked) {
-                // Update temperature
-                tempElement.textContent = localizedTempFahrenheit;
-                const tempUnitF = document.createElement("span");
-                tempUnitF.className = "tempUnit";
-                tempUnitF.textContent = "°F";
-                tempElement.appendChild(tempUnitF);
-
-                // Update feels like
-                const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-            } else {
-                // Update temperature
-                tempElement.textContent = localizedTempCelsius;
-                const tempUnitC = document.createElement("span");
-                tempUnitC.className = "tempUnit";
-                tempUnitC.textContent = "°C";
-                tempElement.appendChild(tempUnitC);
-
-                // Update feels like
-                const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+        let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
+        const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
+        const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+        const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+        
+        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+            // Fetch weather data using Weather API
+            let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+            let data = await fetch(weatherApi);
+            parsedData = await data.json();
+            if (!parsedData.error) {
+                // Extract only the necessary fields before saving
+                const filteredData = {
+                    location: {
+                        name: parsedData.location.name,
+                    },
+                    current: {
+                        condition: {
+                            text: parsedData.current.condition.text,
+                            icon: parsedData.current.condition.icon,
+                        },
+                        temp_c: parsedData.current.temp_c,
+                        temp_f: parsedData.current.temp_f,
+                        humidity: parsedData.current.humidity,
+                        feelslike_c: parsedData.current.feelslike_c,
+                        feelslike_f: parsedData.current.feelslike_f,
+                    },
+                };
+                // Save filtered weather data to localStorage
+                localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
+                localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
+                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
+                localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
             }
-        };
-        updateTemperatureDisplay();
-
-        // Setting weather Icon
-        const newWIcon = parsedData.current.condition.icon;
-        const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-        document.getElementById("wIcon").src = weatherIcon;
-
-        // Define minimum width for the slider based on the language
-        const humidityMinWidth = {
-            idn: '47%',
-            en: '42%', // Default for English and others
-        };
-        const slider = document.getElementById("slider");
-        slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
-
-        // Set slider width based on humidity
-        if (humidity > 40) {
-            slider.style.width = `calc(${humidity}% - 60px)`;
+            UpdateWeather();
+        } else {
+            setTimeout(UpdateWeather, 25);
         }
 
-        // Update location
-        var city = parsedData.location.name;
-        // var city = "Thiruvananthapuram";
-        var maxLength = 10;
-        var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-        document.getElementById("location").textContent = limitedText;
+        function UpdateWeather() {
+            // Weather data
+            const conditionText = parsedData.current.condition.text;
+            const tempCelsius = Math.round(parsedData.current.temp_c);
+            const tempFahrenheit = Math.round(parsedData.current.temp_f);
+            const humidity = parsedData.current.humidity;
+            const feelsLikeCelsius = parsedData.current.feelslike_c;
+            const feelsLikeFahrenheit = parsedData.current.feelslike_f;
+
+            // Update DOM elements with the weather data
+            document.getElementById("conditionText").textContent = conditionText;
+
+            // Localize and display temperature and humidity
+            const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+            const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+            const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+            const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+            const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+            // Set humidity level
+            const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+            document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+
+            // Event Listener for the Fahrenheit toggle
+            const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+            const updateTemperatureDisplay = () => {
+                const tempElement = document.getElementById("temp");
+                const feelsLikeElement = document.getElementById("feelsLike");
+                const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
+                if (fahrenheitCheckbox.checked) {
+                    // Update temperature
+                    tempElement.textContent = localizedTempFahrenheit;
+                    const tempUnitF = document.createElement("span");
+                    tempUnitF.className = "tempUnit";
+                    tempUnitF.textContent = "°F";
+                    tempElement.appendChild(tempUnitF);
+
+                    // Update feels like
+                    const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                } else {
+                    // Update temperature
+                    tempElement.textContent = localizedTempCelsius;
+                    const tempUnitC = document.createElement("span");
+                    tempUnitC.className = "tempUnit";
+                    tempUnitC.textContent = "°C";
+                    tempElement.appendChild(tempUnitC);
+
+                    // Update feels like
+                    const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                }
+            };
+            updateTemperatureDisplay();
+
+            // Setting weather Icon
+            const newWIcon = parsedData.current.condition.icon;
+            const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+            document.getElementById("wIcon").src = weatherIcon;
+
+            // Define minimum width for the slider based on the language
+            const humidityMinWidth = {
+                idn: '47%',
+                en: '42%', // Default for English and others
+            };
+            const slider = document.getElementById("slider");
+            slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
+
+            // Set slider width based on humidity
+            if (humidity > 40) {
+                slider.style.width = `calc(${humidity}% - 60px)`;
+            }
+
+            // Update location
+            var city = parsedData.location.name;
+            // var city = "Thiruvananthapuram";
+            var maxLength = 10;
+            var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+            document.getElementById("location").textContent = limitedText;
+        }
 
     } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -274,7 +310,7 @@ if (isFirefox && browser.bookmarks) {
 } else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
-    console.error("Bookmarks API not supported in this browser.");
+    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -285,12 +321,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     bookmarkViewGrid.addEventListener('click', function () {
-        bookmarkGridCheckbox.click();
+        if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
     bookmarkViewList.addEventListener('click', function () {
-        bookmarkGridCheckbox.click();
-        // bookmarkGridCheckbox.checked = false;
+        if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
     document.addEventListener('click', function (event) {
@@ -816,12 +851,10 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-
     // Initialize cumulative rotations
-
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
     if (secondreset) {
         document.getElementById("second").style.transition = "none";
         document.getElementById("second").style.transform = `rotate(0deg)`;
@@ -848,6 +881,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
+
     if (cumulativeMinuteRotation == 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
@@ -855,13 +889,14 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    } if (cumulativeHourRotation == 0) {
+    }
 
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(361deg)`;
+    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
+        document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
     } else if (hourreset != true) {
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
     // Update date immediately
@@ -1357,8 +1392,8 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -1440,6 +1475,8 @@ function initializeSpeechRecognition() {
             }
             // Display the interim result in the search input
             searchInput.value = transcript;
+            // Trigger the input event manually to update suggestions
+            searchInput.dispatchEvent(new Event("input"));
             // If the result is final, hide the result box
             if (event.results[event.results.length - 1].isFinal) {
                 resultBox.style.display = 'none'; // Hide result box after final input
@@ -2843,6 +2880,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCheckboxState(key, checkbox) {
         const savedState = localStorage.getItem(key);
         checkbox.checked = savedState === "checked";
+        if (key === "bookmarkGridCheckboxState") {
+            if (!savedState) {
+                bookmarkGridCheckbox.click();
+            } else {
+                bookmarkGridCheckbox.click();
+                bookmarkGridCheckbox.click();
+            }
+        }
     }
 
     // Function to save display status to localStorage
@@ -3467,34 +3512,40 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
         }
-        if (bookmarksCheckbox.checked) {
-            bookmarksPermission.contains({
-                permissions: ['bookmarks']
-            }, function (alreadyGranted) {
-                if (alreadyGranted) {
-                    bookmarkButton.style.display = "flex";
-                    saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                } else {
-                    bookmarksPermission.request({
-                        permissions: ['bookmarks']
-                    }, function (granted) {
-                        if (granted) {
-                            bookmarksAPI = chrome.bookmarks;
-                            bookmarkButton.style.display = "flex";
-                            saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                        } else {
-                            bookmarksCheckbox.checked = false;
-                        }
-                    });
-                }
-            });
-        } else {
-            bookmarkButton.style.display = "none";
-            saveDisplayStatus("bookmarksDisplayStatus", "none");
+        if (bookmarksPermission !== undefined) {
+            if (bookmarksCheckbox.checked) {
+                bookmarksPermission.contains({
+                    permissions: ['bookmarks']
+                }, function (alreadyGranted) {
+                    if (alreadyGranted) {
+                        bookmarkButton.style.display = "flex";
+                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                    } else {
+                        bookmarksPermission.request({
+                            permissions: ['bookmarks']
+                        }, function (granted) {
+                            if (granted) {
+                                bookmarksAPI = chrome.bookmarks;
+                                bookmarkButton.style.display = "flex";
+                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            } else {
+                                bookmarksCheckbox.checked = false;
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            }
+                        });
+                    }
+                });
+            } else {
+                bookmarkButton.style.display = "none";
+                saveDisplayStatus("bookmarksDisplayStatus", "none");
+                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            }
         }
-        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     });
 
     aiToolsCheckbox.addEventListener("change", function () {
@@ -3623,12 +3674,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
-
-    if (bookmarkGridCheckbox.checked) {
-        bookmarkList.classList.add("grid-view");
-    } else {
-        bookmarkList.classList.remove("grid-view");
-    }
 });
 
 document.addEventListener('keydown', function (event) {
@@ -3638,6 +3683,16 @@ document.addEventListener('keydown', function (event) {
         } else {
             bookmarksCheckbox.click();
         }
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    const searchInput = document.getElementById('searchQ');
+    const searchBar = document.querySelector('.searchbar');
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+        event.preventDefault();
+        searchInput.focus();
+        searchBar.classList.add('active');
     }
 });
 //------------------------- LoadingScreen -----------------------//

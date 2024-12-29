@@ -1,7 +1,7 @@
 // Russian
 const ru = {
     // Menu Items
-    "feedback": "Обратная связь",
+    "feedback": "Отзывы",
     "resetsettings": "Сброс настроек",
     "menuCloseText": "Закрыть",
     // Shortcuts
@@ -14,10 +14,17 @@ const ru = {
     'editShortcutsListInfo': 'Вы можете добавить новые ярлыки нажав на "+" или отредактировать существующие, щёлкнув на ярлык или URL.',
     "adaptiveIconText": "Адаптивные формы значков",
     "adaptiveIconInfoText": "Ярлыки всегда будут круглыми",
+    "bookmarksText": "Закладки",
+    "bookmarksInfo": "Показать боковую панель закладок",
     "ai_tools_button": "Инструменты ИИ",
     "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
     "googleAppsMenuText": "Приложения Google",
     "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
+    // Todo List
+    "todoListText": "To-do лист",
+    "todoListInfo": "Показать ежедневный список дел",
+    "todoListHover": "To-do лист",   // Keep this short
+    "todoPlaceholder": "Добавить задачу...",
     // Digital Clock
     "digitalclocktittle": "Цифровые часы",
     "digitalclockinfo": "Включить/Отключить цифровые часы",
@@ -69,6 +76,14 @@ const ru = {
     "location": "Земля",
     // End of Weather
 
+    // Bookmarks
+    "bookmarksHover": "Закладки",
+    "bookmarksHeading": "Закладки",
+    "bookmarkViewAs": "Отображение",
+    "bookmarkViewGrid": "Сетка",    // Keep this shorter
+    "bookmarkViewList": "Лист",    // Keep this shorter
+    "bookmarkSearch": "Поиск закладки",
+
     // New Tab Item
     "conditionText": "Привет! Как ты сегодня?",
     "enterBtn": "Поиск",
@@ -103,7 +118,7 @@ const ru = {
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Загрузить обои",
-    "backupText": "Экспорт настроек",
+    "backupText": "Экспорт",
     "restoreText": "Восстановить",
     "rangColor": "Выбрать цвет",
 
@@ -116,4 +131,7 @@ const ru = {
     "failedbackup": "Резервное копирование не удалось: ",
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",
+    "invalidBackup": "Недопустимый файл резервной копии.",
+    "deleteBookmark": "Вы уверены, что хотите удалить эту закладку?",
+    "UnsupportedBrowser": "Закладки не поддерживаются в вашем браузере.",
 }
