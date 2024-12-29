@@ -942,6 +942,8 @@ function updatedigiClock() {
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
     const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
 
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
     // Get translated day name
     let dayName;
     if (
