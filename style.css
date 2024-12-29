@@ -204,20 +204,28 @@ body {
 
 /* Search suggestions box */
 .resultBox {
-	max-height: 180px;
+	max-height: 222px;
 	overflow-y: auto;
 	position: absolute;
-	bottom: -60px;
+	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
 	padding: 5px 10px;
 	scrollbar-width: none;
+	/* Initially hidden */
 	opacity: 0;
 	z-index: -1000;
 	transform: translateY(-70px);
 	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
 	pointer-events: none;
+}
+
+@media screen and (max-height: 867px) {
+	.resultBox {
+		max-height: 180px;
+		bottom: -60px;
+	}
 }
 
 .resultBox::-webkit-scrollbar {
