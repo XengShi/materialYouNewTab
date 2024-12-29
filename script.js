@@ -304,7 +304,6 @@ const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
-
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
 if (isFirefox && browser.bookmarks) {
@@ -1224,9 +1223,9 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
