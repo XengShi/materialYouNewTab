@@ -304,7 +304,6 @@ const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
-
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
 if (isFirefox && browser.bookmarks) {
@@ -853,12 +852,10 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-
     // Initialize cumulative rotations
-
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
     if (secondreset) {
         document.getElementById("second").style.transition = "none";
         document.getElementById("second").style.transform = `rotate(0deg)`;
@@ -885,6 +882,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
+
     if (cumulativeMinuteRotation == 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
@@ -892,13 +890,14 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    } if (cumulativeHourRotation == 0) {
+    }
 
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(361deg)`;
+    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
+        document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
     } else if (hourreset != true) {
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
     // Update date immediately
@@ -1224,9 +1223,9 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
