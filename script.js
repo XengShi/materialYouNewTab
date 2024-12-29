@@ -853,12 +853,10 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-
     // Initialize cumulative rotations
-
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
     if (secondreset) {
         document.getElementById("second").style.transition = "none";
         document.getElementById("second").style.transform = `rotate(0deg)`;
@@ -885,6 +883,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
+
     if (cumulativeMinuteRotation == 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
@@ -892,13 +891,14 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    } if (cumulativeHourRotation == 0) {
+    }
 
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(361deg)`;
+    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
+        document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
     } else if (hourreset != true) {
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
     // Update date immediately
