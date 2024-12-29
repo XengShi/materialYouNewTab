@@ -204,20 +204,15 @@ body {
 
 /* Search suggestions box */
 .resultBox {
-	max-height: 222px;
+	max-height: 180px;
 	overflow-y: auto;
-
 	position: absolute;
-	bottom: -100px;
+	bottom: -60px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
-
 	padding: 5px 10px;
 	scrollbar-width: none;
-	/* For Firefox */
-
-	/* Initially hidden */
 	opacity: 0;
 	z-index: -1000;
 	transform: translateY(-70px);
