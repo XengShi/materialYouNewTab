@@ -170,7 +170,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
             UpdateWeather();
         } else {
-            setTimeout(UpdateWeather, 25);
+            setTimeout(UpdateWeather, 50);
         }
 
         function UpdateWeather() {
