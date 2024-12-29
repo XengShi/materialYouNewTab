@@ -1,35 +1,29 @@
-const apiUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://zenquotes.io/api/quotes/");
+const apiUrl = "https://dummyjson.com/quotes/random";
 const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.autherName span');
 
 async function fetchAndDisplayQuote() {
     try {
+        // Fetch the response from the DummyJSON API
         const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        // Parse the JSON data
         const data = await response.json();
-        const quotes = JSON.parse(data.contents);
-
-        // Filter quotes
-        const filteredQuotes = quotes.filter(quote => {
-            const charCount = quote.q.length;
-            return charCount > 70 && charCount < 125;
-        });
-
-        // Select a quote: filtered quote or fallback
-        const selectedQuote = filteredQuotes.length > 0 
-            ? filteredQuotes[0] 
-            : quotes[0];
 
         // Update the HTML content
-        quotesContainer.textContent = selectedQuote.q;
-        authorName.textContent = selectedQuote.a;
+        quotesContainer.textContent = `"${data.quote}"`;
+        authorName.textContent = data.author;
 
     } catch (error) {
+        // Fallback for error scenarios
         console.error("Error fetching quotes:", error);
         quotesContainer.textContent = "Discover possibilities, spark creativity, and embrace the joy of browsing with every new tab you open!";
         authorName.textContent = "XengShi";
     }
 }
 
+// Check localStorage and fetch a quote if allowed
 if (localStorage.getItem("motivationalQuotesVisible") !== "false") {
     fetchAndDisplayQuote();
 }
