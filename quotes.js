@@ -11,12 +11,12 @@ const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000;; // 10 minutes in milliseconds
 const defaultQuotes = [
     { quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
     { quote: "What lies behind us and what lies before us are tiny matters compared to what lies within us.", author: "Ralph Waldo Emerson" },
-    { quote: "Keep your face always toward the sunshine and shadows will fall behind you.", author: "Walt Whitman" }
+    { quote: "Keep your face always toward the sunshine and shadows will fall behind you.", author: "Walt Whitman" },
+    { quote: "Since light travels faster than sound, some people appear bright until you hear them speak.", author: "Alan Dundes" }
 ];
 
 // Cache variables
 let cachedQuotes = [];
-let quoteIndex = 0;
 
 async function fetchAndStoreQuotes() {
     try {
@@ -33,14 +33,12 @@ async function fetchAndStoreQuotes() {
         if (filteredQuotes.length > 0) {
             localStorage.setItem("allQuotes", JSON.stringify(filteredQuotes));
             cachedQuotes = filteredQuotes; // Update cache
-            quoteIndex = 0; // Reset index in cache
         }
     } catch (error) {
         console.error("Error fetching quotes:", error);
         // Use default quotes in case of an error
         localStorage.setItem("allQuotes", JSON.stringify(defaultQuotes));
         cachedQuotes = defaultQuotes; // Update cache
-        quoteIndex = 0; // Reset index in cache
     }
 
     // After fetching, ensure lastQuoteUpdate is set
@@ -50,15 +48,17 @@ async function fetchAndStoreQuotes() {
 function displayQuote(quote) {
     if (!quote || !quote.quote || !quote.author) {
         const fallback = defaultQuotes[0];
-        quotesContainer.textContent = `"${fallback.quote}"`;
+        quotesContainer.textContent = `${fallback.quote}`;
         authorName.textContent = fallback.author;
         return;
     }
-    quotesContainer.textContent = `"${quote.quote}"`;
+    quotesContainer.textContent = `${quote.quote}`;
     authorName.textContent = quote.author;
 }
 
 function displayNextQuote() {
+    const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate")) || 0;
+    const now = Date.now();
     // If cache is empty, populate it from localStorage
     if (cachedQuotes.length === 0) {
         cachedQuotes = JSON.parse(localStorage.getItem("allQuotes") || "[]");
@@ -71,17 +71,23 @@ function displayNextQuote() {
     }
 
     // Display the current quote
-    const quoteToShow = cachedQuotes[quoteIndex]; // Use the correct index
+    const quoteToShow = cachedQuotes[0]; // Use the correct index
     if (quoteToShow) {
         displayQuote(quoteToShow);
     }
 
-    // Remove the displayed quote from the list
-    cachedQuotes.splice(quoteIndex, 1); // Remove the current quote
-    localStorage.setItem("allQuotes", JSON.stringify(cachedQuotes)); // Update localStorage
-
-    // Update the index
-    quoteIndex = Math.max(quoteIndex, cachedQuotes.length); // Prevent index overflow
+    // Remove the displayed quote from the list when refresh interval is reached
+    if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
+        cachedQuotes.splice(0, 1); // Remove the current quote
+        const quoteToShow = cachedQuotes[0]; // Use the correct index
+        if (quoteToShow) {
+            displayQuote(quoteToShow);
+        }
+        localStorage.setItem("allQuotes", JSON.stringify(cachedQuotes)); // Update localStorage
+        // After removing, ensure lastQuoteUpdate is set
+        localStorage.setItem("lastQuoteUpdate", Date.now().toString());
+    }
+    console.log(cachedQuotes);
 
     // Fetch new quotes if none are left
     if (cachedQuotes.length === 0) {
@@ -90,12 +96,11 @@ function displayNextQuote() {
 }
 
 function refreshQuoteIfNeeded() {
-    const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate") || "0", 10);
+    const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate")) || 0;
     const now = Date.now();
 
-    if (now - lastUpdated >= QUOTE_REFRESH_INTERVAL) {
+    if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
         displayNextQuote();
-        localStorage.setItem("lastQuoteUpdate", now.toString()); // Update the timestamp immediately
     }
 }
 
