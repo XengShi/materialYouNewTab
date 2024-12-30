@@ -3,9 +3,9 @@ const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.authorName span');
 
 // Set character limits for quotes
-const MIN_QUOTE_LENGTH = 100;
-const MAX_QUOTE_LENGTH = 160;
-const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000;; // 10 minutes in milliseconds
+const MIN_QUOTE_LENGTH = 90;
+const MAX_QUOTE_LENGTH = 145;
+const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 minutes in milliseconds
 
 // Default quotes for offline or error scenarios
 const defaultQuotes = [
