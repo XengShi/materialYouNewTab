@@ -221,7 +221,7 @@ body {
 	pointer-events: none;
 }
 
-@media screen and (max-height: 867px) {
+@media screen and (max-height: 700px) {
 	.resultBox {
 		max-height: 180px;
 		bottom: -60px;
