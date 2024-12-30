@@ -87,7 +87,6 @@ function displayNextQuote() {
         // After removing, ensure lastQuoteUpdate is set
         localStorage.setItem("lastQuoteUpdate", Date.now().toString());
     }
-    console.log(cachedQuotes);
 
     // Fetch new quotes if none are left
     if (cachedQuotes.length === 0) {
