@@ -3,8 +3,8 @@ const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.authorName span');
 
 // Set character limits for quotes
-const MIN_QUOTE_LENGTH = 75;
-const MAX_QUOTE_LENGTH = 125;
+const MIN_QUOTE_LENGTH = 100;
+const MAX_QUOTE_LENGTH = 160;
 const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000;; // 10 minutes in milliseconds
 
 // Default quotes for offline or error scenarios
@@ -27,7 +27,7 @@ async function fetchAndStoreQuotes() {
 
         // Extract and filter quotes from the response
         const filteredQuotes = data.quotes.filter(quote =>
-            quote.quote.length >= MIN_QUOTE_LENGTH && quote.quote.length <= MAX_QUOTE_LENGTH
+            (quote.quote.length+quote.author.length >= MIN_QUOTE_LENGTH) && (quote.quote.length+quote.author.length <= MAX_QUOTE_LENGTH)
         );
 
         if (filteredQuotes.length > 0) {
