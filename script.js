@@ -3677,7 +3677,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
@@ -3689,7 +3689,7 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
