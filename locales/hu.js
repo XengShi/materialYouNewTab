@@ -1,5 +1,5 @@
-// English -> en
-const en = {
+// Hungarian -> hu
+const hu = {
     // Menu Items
     "feedback": "Visszajelzés",
     "resetsettings": "Beállítások visszaállítása",
