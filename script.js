@@ -1688,7 +1688,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -3404,9 +3404,9 @@ if(bookmarkGridCheckbox.checked){
 	bookmarkList.classList.remove("grid-view");
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
-        if(bookmarksCheckbox.checked){
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+        if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
             bookmarksCheckbox.click();
@@ -3417,7 +3417,7 @@ document.addEventListener('keydown', function(event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
