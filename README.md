@@ -253,7 +253,7 @@ For information on how we handle privacy, please read our [Privacy Policy](https
 
 ## 📜 License
 
-Copyright (C) 2023-2024 XengShi
+Copyright (C) 2023-2025 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
