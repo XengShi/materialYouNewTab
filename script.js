@@ -237,6 +237,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             const humidityMinWidth = {
                 idn: '47%',
                 en: '42%', // Default for English and others
+		hu: '48%',
             };
             const slider = document.getElementById("slider");
             slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
