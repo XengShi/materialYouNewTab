@@ -114,6 +114,7 @@ const en = {
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",

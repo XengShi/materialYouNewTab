@@ -116,6 +116,7 @@ const bn = {
     "chatGPT": "চ্যাটজিপিটি",
     "gemini": "জেমিনি",
     "copilot": "কোপাইলট",
+    "claude": "ক্লড",
     "perplexity": "পারপ্লেক্সিটি",
     "firefly": "অ্যাডোবি ফায়ারফ্লাই",
     "metaAI": "মেটা এআই",

@@ -137,6 +137,7 @@ function applyLanguage(lang) {
         'chatGPT',
         'gemini',
         'copilot',
+        'claude',
         'perplexity',
         'firefly',
         'metaAI',
