@@ -108,6 +108,7 @@ const hi = {
     "chatGPT": "चैटGPT",
     "gemini": "जेमिनी",
     "copilot": "कोपायलट",
+    "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
     "firefly": "एडोबी फायरफ्लाई",
     "metaAI": "मेटा AI",
