@@ -39,7 +39,7 @@ const menuWidths = {
     cs: '452px',
     es: '446px',
     hi: '408px',
-    en: '400px',
+    hu: '400px',
     ja: '444px',
     ru: '400px',
     it: '437px',
