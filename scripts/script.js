@@ -1,14 +1,17 @@
 /* 
  * Material You NewTab
- * Copyright (c) 2023-2024 XengShi
+ * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
  * You should have received a copy of the GNU General Public License along with this program. 
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+const isFirefox = typeof browser !== 'undefined';
+
 let proxyurl;
 let clocktype;
 let hourformat;
+
 window.addEventListener('DOMContentLoaded', async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
@@ -71,7 +74,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        const proxyurl = userProxyInput.value.trim();
+        let proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
@@ -137,7 +140,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
         const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
         const weatherParsedLang = localStorage.getItem("weatherParsedLang");
-        
+
         if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
             // Fetch weather data using Weather API
             let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
@@ -303,7 +306,6 @@ const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
-const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
 if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
@@ -404,6 +406,7 @@ document.addEventListener('DOMContentLoaded', function () {
             loadBookmarks();
         }
     };
+
     // Function to load bookmarks
     function loadBookmarks() {
         if (!bookmarksAPI || !bookmarksAPI.getTree) {
@@ -487,7 +490,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const sortedNodes = [...folders, ...bookmarks];
 
         for (let node of sortedNodes) {
-            if (node.id === "1") { continue; }
+            if (node.id === "1") {
+                continue;
+            }
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
 
@@ -566,9 +571,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({ url: node.url, active: false });
+                            browser.tabs.create({url: node.url, active: false});
                         } else if (isChrome) {
-                            chrome.tabs.create({ url: node.url, active: false });
+                            chrome.tabs.create({url: node.url, active: false});
                         } else {
                             window.open(node.url, '_blank');
                         }
@@ -576,9 +581,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in the current tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.update({ url: node.url });
+                            browser.tabs.update({url: node.url});
                         } else if (isChrome) {
-                            chrome.tabs.update({ url: node.url }, function () {
+                            chrome.tabs.update({url: node.url}, function () {
                             });
                         } else {
                             window.location.href = node.url;
@@ -594,7 +599,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         return list;
-    }  
+    }
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -632,7 +637,7 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
+    todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ''; // Clear Input
@@ -684,6 +689,7 @@ todoulList.addEventListener("click", (event) => {
 function SaveToDoData() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
+
 // Fetch saved JSON and create list items using it
 function ShowToDoList() {
     try {
@@ -780,6 +786,7 @@ function initializeClockType() {
     clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
     localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
 }
+
 // Call this function to initialize the clock type
 initializeClockType();
 
@@ -989,7 +996,7 @@ function updatedigiClock() {
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+    const timeOptions = {hour: '2-digit', minute: '2-digit', hour12: hourformat};
     const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? 'en-US' : currentLanguage;
     timeString = now.toLocaleTimeString(locale, timeOptions);
 
@@ -1572,7 +1579,6 @@ const resetDarkTheme = () => {
 };
 
 
-
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
@@ -1884,13 +1890,13 @@ const applySelectedTheme = (colorValue) => {
     const updateExtensionIcon = (colorValue) => {
         if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+            browser.browserAction.setIcon({path: iconPaths[colorValue]});
         } else if (typeof chrome !== "undefined" && chrome.action) {
             // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
+            chrome.action.setIcon({path: iconPaths[colorValue]});
         } else if (typeof safari !== "undefined") {
             // Safari
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
+            safari.extension.setToolbarIcon({path: iconPaths[colorValue]});
         }
     };
     updateExtensionIcon(colorValue);
@@ -2027,7 +2033,6 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 // });
 
 
-
 // end of Function to apply the selected theme
 
 // -------------------------- Wallpaper -----------------------------
@@ -2074,6 +2079,7 @@ async function loadImageAndDetails() {
         getFromStore(db, imageTypeKey)
     ]);
 }
+
 function getFromStore(db, key) {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readonly');
@@ -2124,6 +2130,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
 const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
 async function applyRandomImage(showConfirmation = true) {
     if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations['en'].confirmWallpaper)) {
         return;
@@ -2248,7 +2255,7 @@ document.getElementById("fileInput").addEventListener("change", validateAndResto
 // Backup data from localStorage and IndexedDB
 async function backupData() {
     try {
-        const backup = { localStorage: {}, indexedDB: {} };
+        const backup = {localStorage: {}, indexedDB: {}};
 
         // Backup localStorage
         for (let key in localStorage) {
@@ -2266,7 +2273,7 @@ async function backupData() {
         const fileName = `NewTab_Backup_${formattedDate}.json`;
 
         // Create and download the backup file
-        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const blob = new Blob([JSON.stringify(backup, null, 2)], {type: "application/json"});
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = fileName;
@@ -2339,7 +2346,7 @@ async function backupIndexedDB() {
                         // Convert Blob to Base64 for JSON compatibility
                         const reader = new FileReader();
                         reader.onload = () => {
-                            data[key] = { blob: reader.result, isBlob: true };
+                            data[key] = {blob: reader.result, isBlob: true};
                             if (--pending === 0) resolve(data);
                         };
                         reader.readAsDataURL(value);
@@ -2414,8 +2421,9 @@ function base64ToBlob(base64) {
     for (let i = 0; i < binary.length; i++) {
         array[i] = binary.charCodeAt(i);
     }
-    return new Blob([array], { type: mime });
+    return new Blob([array], {type: mime});
 }
+
 // -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
@@ -2588,7 +2596,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({block: "nearest"});
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -2599,7 +2607,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({block: "nearest"});
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
@@ -2924,13 +2932,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Loading shortcuts ------ */
 
     /**
-    * Function to load and apply all shortcut names and URLs from localStorage
-    *
-    * Iterates through the stored shortcuts and replaces the settings entry for the preset shortcuts with the
-    * stored ones.
-    * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
-    * container.
-    */
+     * Function to load and apply all shortcut names and URLs from localStorage
+     *
+     * Iterates through the stored shortcuts and replaces the settings entry for the preset shortcuts with the
+     * stored ones.
+     * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
+     * container.
+     */
 
     function loadShortcuts() {
         let amount = localStorage.getItem("shortcutAmount");
@@ -2971,14 +2979,14 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Creating shortcut elements ------ */
 
     /**
-    * Function that creates a div to be used in the shortcut edit panel of the settings.
-    *
-    * @param name The name of the shortcut
-    * @param url The URL of the shortcut
-    * @param deleteInactive Whether the delete button should be active
-    * @param i The index of the shortcut
-    * @returns {HTMLDivElement} The div to be used in the settings
-    */
+     * Function that creates a div to be used in the shortcut edit panel of the settings.
+     *
+     * @param name The name of the shortcut
+     * @param url The URL of the shortcut
+     * @param deleteInactive Whether the delete button should be active
+     * @param i The index of the shortcut
+     * @returns {HTMLDivElement} The div to be used in the settings
+     */
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
@@ -3015,12 +3023,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function creates a shortcut to be used for the shortcut container on the main page.
-    *
-    * @param shortcutName The name of the shortcut
-    * @param shortcutUrl The url of the shortcut
-    * @param i The index of the shortcut
-    */
+     * This function creates a shortcut to be used for the shortcut container on the main page.
+     *
+     * @param shortcutName The name of the shortcut
+     * @param shortcutUrl The url of the shortcut
+     * @param i The index of the shortcut
+     */
     function createShortcutElement(shortcutName, shortcutUrl, i) {
         const shortcut = document.createElement("a");
         shortcut.href = shortcutUrl;
@@ -3054,16 +3062,16 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Attaching event listeners to shortcut settings ------ */
 
     /**
-    * Function to attach all required event listeners to the shortcut edit inputs in the settings.
-    *
-    * It adds three event listeners to each of the two inputs:
-    * 1. Blur, to save changes to the shortcut automatically.
-    * 2. Focus, to select all text in the input field when it is selected.
-    * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
-    * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
-    *
-    * @param inputs a list of the two inputs these listeners should be applied to.
-    */
+     * Function to attach all required event listeners to the shortcut edit inputs in the settings.
+     *
+     * It adds three event listeners to each of the two inputs:
+     * 1. Blur, to save changes to the shortcut automatically.
+     * 2. Focus, to select all text in the input field when it is selected.
+     * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
+     * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
+     *
+     * @param inputs a list of the two inputs these listeners should be applied to.
+     */
     function attachEventListenersToInputs(inputs) {
         inputs.forEach(input => {
             // save and apply when done
@@ -3091,10 +3099,10 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Saving and applying changes to shortcuts ------ */
 
     /**
-    * This function stores a shortcut by saving its values in the settings panel to the local storage.
-    *
-    * @param shortcut The shortcut to be saved
-    */
+     * This function stores a shortcut by saving its values in the settings panel to the local storage.
+     *
+     * @param shortcut The shortcut to be saved
+     */
     function saveShortcut(shortcut) {
         const name = shortcut.querySelector("input.shortcutName").value;
         const url = shortcut.querySelector("input.URL").value;
@@ -3104,10 +3112,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function applies a change that has been made in the settings panel to the real shortcut in the container
-    *
-    * @param shortcut The shortcut to be applied.
-    */
+     * This function applies a change that has been made in the settings panel to the real shortcut in the container
+     *
+     * @param shortcut The shortcut to be applied.
+     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
         let url = shortcut.querySelector("input.URL").value.trim();
@@ -3141,8 +3149,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Adding, deleting, and resetting shortcuts ------ */
 
     /**
-    * This function creates a new shortcut in the settings panel, then saves and applies it.
-    */
+     * This function creates a new shortcut in the settings panel, then saves and applies it.
+     */
     function newShortcut() {
         const currentAmount = parseInt(localStorage.getItem("shortcutAmount"));
         const newAmount = currentAmount + 1;
@@ -3173,10 +3181,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function deletes a shortcut and shifts all indices of the following shortcuts back by one.
-    *
-    * @param shortcut The shortcut to be deleted.
-    */
+     * This function deletes a shortcut and shifts all indices of the following shortcuts back by one.
+     *
+     * @param shortcut The shortcut to be deleted.
+     */
     function deleteShortcut(shortcut) {
         const newAmount = (localStorage.getItem("shortcutAmount") || 0) - 1;
         if (newAmount < MIN_SHORTCUTS_ALLOWED) return;
@@ -3212,10 +3220,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function resets shortcuts to their original state, namely the presets.
-    *
-    * It does this by deleting all shortcut-related data, then reloading the shortcuts.
-    */
+     * This function resets shortcuts to their original state, namely the presets.
+     *
+     * It does this by deleting all shortcut-related data, then reloading the shortcuts.
+     */
     function resetShortcuts() {
         for (let i = 0; i < (localStorage.getItem("shortcutAmount") || 0); i++) {
             localStorage.removeItem("shortcutName" + i);
@@ -3231,13 +3239,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Shortcut favicon handling ------ */
 
     /**
-    * This function verifies whether a URL for a favicon is valid.
-    *
-    * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
-    *
-    * @param urls the array of potential URLs of favicons
-    * @returns {Promise<unknown>}
-    */
+     * This function verifies whether a URL for a favicon is valid.
+     *
+     * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
+     *
+     * @param urls the array of potential URLs of favicons
+     * @returns {Promise<unknown>}
+     */
     // function filterFavicon(urls) {
     //     return new Promise((resolve, reject) => {
     //         let found = false;
@@ -3265,11 +3273,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     /**
-    * This function returns the url to the favicon of a website, given a URL.
-    *
-    * @param urlString The url of the website for which the favicon is requested
-    * @return {Promise<String>} Potentially the favicon url
-    */
+     * This function returns the url to the favicon of a website, given a URL.
+     *
+     * @param urlString The url of the website for which the favicon is requested
+     * @return {Promise<String>} Potentially the favicon url
+     */
     // async function getBestIconUrl(urlString) {
     //     const hostname = new URL(urlString).hostname;
     //     try {
@@ -3281,12 +3289,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     /**
-    * This function uses Google's API to immediately get a favicon,
-    * to be used while loading the real one and as a fallback.
-    *
-    * @param urlString the url of the website for which the favicon is requested
-    * @returns {HTMLImageElement} The img element representing the favicon
-    */
+     * This function uses Google's API to immediately get a favicon,
+     * to be used while loading the real one and as a fallback.
+     *
+     * @param urlString the url of the website for which the favicon is requested
+     * @returns {HTMLImageElement} The img element representing the favicon
+     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
         const hostname = new URL(urlString).hostname;
@@ -3309,11 +3317,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function returns the custom logo for the url associated with a preset shortcut.
-    *
-    * @param url The url of the shortcut.
-    * @returns {Element|null} The logo if it was found, otherwise null.
-    */
+     * This function returns the custom logo for the url associated with a preset shortcut.
+     *
+     * @param url The url of the shortcut.
+     * @returns {Element|null} The logo if it was found, otherwise null.
+     */
     function getCustomLogo(url) {
         const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
         if (!html) return null;
@@ -3326,8 +3334,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Proxy ------ */
 
     /**
-    * This function shows the proxy disclaimer.
-    */
+     * This function shows the proxy disclaimer.
+     */
     function showProxyDisclaimer() {
         const message = translations[currentLanguage]?.ProxyDisclaimer || translations['en'].ProxyDisclaimer;
 
@@ -3372,12 +3380,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (isShortCutSwitchEnabled) {
             hideEngineContainer();
-        }
-        else if (!isShortCutSwitchEnabled) {
+        } else if (!isShortCutSwitchEnabled) {
             showEngineContainer()
         }
-    }
-    else {
+    } else {
         localStorage.setItem('showShortcutSwitch', false);
     }
 
@@ -3695,6 +3701,7 @@ document.addEventListener('keydown', function (event) {
         searchBar.classList.add('active');
     }
 });
+
 //------------------------- LoadingScreen -----------------------//
 
 function ApplyLoadingColor() {
