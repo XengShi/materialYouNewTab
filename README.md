@@ -8,7 +8,7 @@ Material You NewTab
 </h1>
 <div align="center">
 
-Material You NewTab is a versatile browser extension that personalizes your New Tab page with customizable themes and a welcoming message, all while integrating seamlessly with your preferred search engine.
+Material You NewTab is a versatile browser extension that personalizes your New Tab page with customizable themes, a welcoming message, and various handy tools, all while integrating seamlessly with your preferred search engine.
 
 </div>
 
@@ -69,7 +69,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt       |  vn   | [Diep](https://github.com/diepdo1810/)                                                |
 
-[Translation Status](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html)
+Check the latest translation updates on our [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html).
 
 ## 📥 Installation Guide
 
@@ -179,56 +179,60 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 ## 📖 Usage
 
 1. **Welcome Greeting**:
-
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
 
 2. **Clock Widget**:
-
    - Two clock options are available: a modern **analog clock** (default) and a **digital clock**.
    - Users can switch between these clock types in the **menu settings**, providing flexibility to choose their preferred style for displaying the current time.
 
 3. **Weather Information**:
-
    - Displays real-time weather information for your location, including temperature, weather condition (like "Sunny"), humidity, and "Feels like" temperature.
    - Users can set their location (like "Dhaka") to get accurate weather data. A visual icon represents the weather, and temperature is displayed in degrees Celsius by default. However, it can be switched to Fahrenheit in the menu settings.
 
 4. **Search Bar**:
-
    - The search bar allows you to enter queries directly from the new tab page. This makes it quick and easy to start searching without switching to a different page or window.
    - Below the search bar, there are search engine options that allow you to choose your preferred search engine: Google, DuckDuckGo, Bing, Brave, or YouTube.
    - A **voice typing feature** is integrated, enabling hands-free searches for added convenience.
 
 5. **Shortcuts**:
-
    - At the bottom, there are quick-access icons for popular platforms, including YouTube, Email, Telegram, WhatsApp, Twitter, and more.
    - Clicking on any of these icons will redirect you to the respective platform, allowing for easy access to your frequently used services.
    - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-
    - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
 
 7. **Wallpaper Management**:
-
    - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
    - The **Random Image feature** provides users with a new wallpaper every day, updating automatically at the start of each day. Images are sourced from [Lorem Picsum](https://picsum.photos).
 
 8. **Backup System**:
-
    - The menu settings include a backup system that allows users to save and restore their customized settings.
    - This feature is detailed with screenshots, showing how users can manage backups effectively.
 
-9. **Themes and Personalization**:
+9. **Bookmarks**:
+   - The extension allows users to manage their bookmarks directly.
+   - Users can delete any bookmarks they no longer need, ensuring a clean and organized space.
+   - A **view as selector** lets users toggle between a **grid** and **list layout**, allowing them to display their bookmarks as they prefer.
 
-   - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
-   - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking.
+10. **To-Do List**:
+    - The extension features a **to-do list** to help users remember important tasks.
+    - Users can pin specific tasks using the **pin button**, ensuring those tasks remain at the top until the pin is removed or the task is deleted. This feature makes it easy to keep essential items front and center.
 
-10. **Google Apps Integration**:
+11. **Reset Settings**:
+    - If users want to completely reset all data and settings, they can use the **Reset Settings** button available in the menu section.
+    - This feature clears all customizations and restores the extension to its default state.
 
+12. **Themes and Personalization**:
+    - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
+    - Includes a **pick color button** in the theme selector menu, enabling users to choose their preferred color using **RGB**, **HSL**, or **hex color codes**.
+    - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking.
+
+13. **Google Apps Integration**:
     - The extension includes a dedicated section for quick access to Google apps such as Drive, Docs, Sheets, Gmail, and more.
     - This ensures seamless productivity for users who rely on Google services.
 
-11. **Language Selector**:
+14. **Language Selector**:
     - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
     - This feature supports multilingual customization, enhancing accessibility for users worldwide.
 
@@ -245,16 +249,17 @@ Contributions are welcome! If you’d like to contribute:
 
 ## ❓ Issues and Support
 
-If you encounter any bugs or issues, please [submit an issue](https://github.com/XengShi/materialYouNewTab/issues) on the GitHub repository.
+- If you encounter any issues or bugs, feel free to open an issue on [GitHub](https://github.com/XengShi/materialYouNewTab/issues).
+- For general questions or support, you can contact the repository maintainers through the **Telegram group**: [Join here](https://t.me/+i-ekvlM7yoU1Yjc1).
 
-## 🔒 Privacy Policy
+## 🛡 Privacy Policy
 
-For information on how we handle privacy, please read our [Privacy Policy](https://xengshi.github.io/materialYouNewTab/privacy-policy.html).
+Material You NewTab respects your privacy. For more details, read our [Privacy Policy](https://github.com/XengShi/materialYouNewTab/privacy-policy).
 
 ## 📜 License
 
-Copyright (C) 2023-2024 XengShi
+Copyright (C) 2023-2025 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
-[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
+[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/+i-ekvlM7yoU1Yjc1) &nbsp; [Email](mailto:xengshi@outlook.com)
