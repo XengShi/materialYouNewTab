@@ -27,7 +27,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-currently-supported-languages-19">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
-  <a href="#--usage">Usage</a> •
+  <a href="#-usage">Usage</a> •
   <a href="#-contributing">Contributing</a> •
   <a href="#-issues-and-support">Issues and Support</a> •
   <a href="#-privacy-policy">Privacy Policy</a> •
@@ -75,18 +75,27 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 ### Download
 
-1. **Clone the Repository**:
+1. **Development Version**
 
-   ```bash
-   git clone https://github.com/XengShi/materialYouNewTab.git
-   ```
+    - **Clone the Repository**:
+      Use the following command to clone the repository:
+     ```bash
+     git clone https://github.com/XengShi/materialYouNewTab.git
+     ```
 
-   - Alternatively, download the latest version as a ZIP file by clicking the **Download ZIP** button below:
+    - Alternatively, download the latest version as a ZIP file by clicking below:
 
-   [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/releases)
+      [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue.svg)](https://github.com/XengShi/materialYouNewTab/archive/refs/heads/main.zip)
 
-2. **Direct Download**:
-   - On the repository page, click the **Code** button, then select **Download ZIP** from the dropdown.
+    - You can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
+
+2. **Stable Release**
+
+    - [![Download](https://img.shields.io/badge/Github-Material%20You%20NewTab-blue.svg)](https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip)
+
+    - [![Download](https://img.shields.io/badge/Chromium-Download%20From%20Chrome%20Web%20Store%20-red.svg)](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn)
+
+    - [![Download](https://img.shields.io/badge/Firefox-Download%20From%20Mozilla%20Addons%20-yellow.svg)](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
 ---
 
