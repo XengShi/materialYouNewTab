@@ -47,7 +47,7 @@
 
 <body>
     <!----------------------- Loading Screen Starting ----------------------->
-    <img src="./shortcuts_icons/Loading.png" id="LoadingScreen" fetchpriority="high"/>
+    <img src="./docs/Loading.png" id="LoadingScreen" fetchpriority="high" />
 
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
@@ -85,13 +85,16 @@
     <!----------------------- Bookmark System ----------------------->
     <div style="display: none;">
         <svg id="folderIconTemplate" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6v10.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h11.606c1.118 0 1.677 0 2.104-.218c.377-.192.683-.498.875-.874C21 18.48 21 17.92 21 16.8V9.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C19.48 6 18.92 6 17.8 6H12M3 6h9M3 6a2 2 0 0 1 2-2h3.675c.489 0 .734 0 .964.055q.308.075.578.24c.202.124.375.297.72.643L12 6" />
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 6v10.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h11.606c1.118 0 1.677 0 2.104-.218c.377-.192.683-.498.875-.874C21 18.48 21 17.92 21 16.8V9.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C19.48 6 18.92 6 17.8 6H12M3 6h9M3 6a2 2 0 0 1 2-2h3.675c.489 0 .734 0 .964.055q.308.075.578.24c.202.124.375.297.72.643L12 6" />
         </svg>
     </div>
-    
+
     <div class="bookmark-button" id="bookmarkButton">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M7 2a3 3 0 0 0-3 3v15.138a1.5 1.5 0 0 0 2.244 1.303l5.26-3.006a1 1 0 0 1 .992 0l5.26 3.006A1.5 1.5 0 0 0 20 20.138V5a3 3 0 0 0-3-3z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd"
+                d="M7 2a3 3 0 0 0-3 3v15.138a1.5 1.5 0 0 0 2.244 1.303l5.26-3.006a1 1 0 0 1 .992 0l5.26 3.006A1.5 1.5 0 0 0 20 20.138V5a3 3 0 0 0-3-3z"
+                clip-rule="evenodd" />
         </svg>
         <!-- Text to appear on hover -->
         <span class="tooltip-text" id="bookmarksHover">Bookmarks</span>
@@ -99,7 +102,7 @@
     <div id="bookmarksContainer">
         <div id="bookmarkSidebar" class="bookmark-sidebar">
 
- <div class="topOutRoundCorner">
+            <div class="topOutRoundCorner">
                 <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_208_15)">
                         <path class="lessDark" clip-rule="evenodd" d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z"
@@ -123,7 +126,7 @@
             <div class="bookmark-view-as-container">
                 <h3 id="bookmarkViewAs">View as</h3>
                 <div>
-                    <input type="checkbox" id="bookmarkGridCheckbox" hidden/>
+                    <input type="checkbox" id="bookmarkGridCheckbox" hidden />
                     <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
                     <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
                 </div>
@@ -846,7 +849,6 @@
             <!-- ---------------- -->
             <a href="https://chatgpt.com/">
                 <div class="tIcon">
-                    <!-- <img src="./shortcuts_icons/chatgpt.svg" alt=""> -->
                     <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
                         <rect class="accentColor aiDarkIcons" height="32" rx="16" width="32" />
                         <path class="bgLightTint"
@@ -859,7 +861,6 @@
             <!-- ---------------- -->
             <a href="https://gemini.google.com/app">
                 <div class="tIcon">
-                    <!-- <img src="./shortcuts_icons/bard.svg" alt=""> -->
                     <svg height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
                         <rect class="accentColor aiDarkIcons" height="100%" rx="50%" width="100%" />
                         <path class="bgLightTint" style="transform: scale(0.95); transform-origin: center;"
@@ -906,7 +907,6 @@
             <!-- ---------------- -->
             <a href="https://firefly.adobe.com/">
                 <div class="tIcon">
-                    <!-- <img src="./shortcuts_icons/adobe-firefly.svg" alt=""> -->
                     <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
                         <rect class="accentColor aiDarkIcons" fill="#FF4545" height="32" rx="16" width="32" />
                         <path class="bgLightTint"
@@ -959,7 +959,6 @@
                         <!-- ----tiles----------- -->
                         <a class="tiles" href="https://github.com/XengShi/materialYouNewTab">
                             <div class="icon">
-                                <!-- <img src="./shortcuts_icons/github.svg" alt=""> -->
                                 <svg fill="none" height="100%" viewBox="0 0 20 20" width="100%"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="githab" class="bgLightTint"
@@ -974,7 +973,6 @@
                         <!-- ----tiles----------- -->
                         <a class="tiles" href="https://xengshi.github.io/materialYouNewTab/docs/feedback.html">
                             <div class="icon">
-                                <!-- <img src="./shortcuts_icons/feedback.svg" alt=""> -->
                                 <svg fill="none" height="100%" viewBox="0 0 18 17" width="100%"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path id="sujhaw" class="bgLightTint" clip-rule="evenodd"
@@ -1298,7 +1296,8 @@
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
                             <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick color</label>
+                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
+                                color</label>
                             <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
