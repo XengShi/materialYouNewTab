@@ -254,7 +254,7 @@ Contributions are welcome! If you’d like to contribute:
 
 ## 🛡 Privacy Policy
 
-Material You NewTab respects your privacy. For more details, read our [Privacy Policy](https://github.com/XengShi/materialYouNewTab/privacy-policy).
+Material You NewTab respects your privacy. For more details, read our [Privacy Policy](https://xengshi.github.io/materialYouNewTab/privacy-policy.html).
 
 ## 📜 License
 
