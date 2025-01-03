@@ -1,4 +1,4 @@
-<!-- Initialized : Sun 20 Aug 2023 03∶41∶08 PM IST  -->
+<!-- Initialized : Sun 20 Aug 2023 03:41:08 PM IST -->
 <h1 align="center">
 
 <a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="50"></a>
@@ -27,7 +27,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-currently-supported-languages-19">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
-  <a href="#--usage">Usage</a> •
+  <a href="#-usage">Usage</a> •
   <a href="#-contributing">Contributing</a> •
   <a href="#-issues-and-support">Issues and Support</a> •
   <a href="#-privacy-policy">Privacy Policy</a> •
@@ -36,7 +36,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <img src="https://i.ibb.co/M1cJHcx/Material-You-New-Tab-Preview.jpg" alt="Screenshot 1" width="100%">
 
-#### 🔴 🟡 🟢 Test live : https://xengshi.github.io/materialYouNewTab/
+#### 🔴 🟡 🟢 Test live: [https://xengshi.github.io/materialYouNewTab/](https://xengshi.github.io/materialYouNewTab/)
 
 ## ✨ Features
 
@@ -63,7 +63,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी               |  mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)   |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português        | pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский             |  ru   | [giwi](https://github.com/giwih/)                                                     |
-| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       |  sl-SI   | [Linux-Alex](https://github.com/Linux-Alex/)                                       |
+| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                           |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español             | es-ES | [XengShi](https://github.com/XengShi/)                                                |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe              |  tr   | [Nobody](https://github.com/Nobody9512/)                                              |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
@@ -107,7 +107,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
      - Ensure you’ve cloned the repository or downloaded the ZIP file and extracted it.
 
    - **Open Extensions Page**:
-     Open your preferred browser and enter the following text in the address bar
+     Open your preferred browser and enter the following text in the address bar:
 
      - ![Chrome](https://img.icons8.com/color/20/000000/chrome--v1.png) Chrome: `chrome://extensions`
 
@@ -138,7 +138,7 @@ Below are screenshots of the process to guide you through each step visually.
 
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
-  <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
+   <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
 **Or** follow the manual steps below:
 
