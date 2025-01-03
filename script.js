@@ -2248,6 +2248,35 @@ function base64ToBlob(base64) {
 }
 // -------------------End of Settings ------------------------------
 
+// ------- Zooming in out function-----------
+const slider = document.getElementById('zoom-slider');
+const body = document.body;
+function applyZoom(value, min, max) {
+    const percentage = (value / max) * 100;
+    const sliderValue = percentage - 8;
+    slider.style.borderRadius = "100px";
+    slider.style.background = `linear-gradient(to right, var(--darkColor-blue) ${sliderValue}%, #00000000 ${sliderValue}%)`;
+    const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
+    body.style.zoom = zoomLevel;
+    localStorage.setItem('zoomLevel', value);
+}
+slider.addEventListener('input', function () {
+    const value = this.value;
+    const max = this.max;
+    const min = this.min;
+    applyZoom(value, min, max);
+});
+window.addEventListener('load', function () {
+    const savedZoomLevel = localStorage.getItem('zoomLevel');
+    if (savedZoomLevel) {
+        slider.value = savedZoomLevel;
+        const max = slider.max;
+        const min = slider.min;
+        applyZoom(savedZoomLevel, min, max);
+    }
+});
+// ------- End of Zooming in out function-----------
+
 // when User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
