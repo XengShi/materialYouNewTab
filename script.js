@@ -3509,7 +3509,7 @@ if (!localStorage.getItem('alertShown')) {
 
         // Add the "Don't show again" button
         const button = document.createElement('button');
-        button.textContent = "Don't show again";
+        button.textContent = "Got it, don’t show this again";
         button.style.marginTop = '30px';
         button.style.padding = '8px 15px';
         button.style.border = 'none';
