@@ -262,4 +262,4 @@ Copyright (C) 2023-2025 XengShi
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](https://github.com/XengShi/materialYouNewTab/blob/main/LICENSE) file for details.
 
-[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/+i-ekvlM7yoU1Yjc1) &nbsp; [Email](mailto:xengshi@outlook.com)
+[GitHub](https://github.com/XengShi) &nbsp; [Telegram](https://t.me/xengshi) &nbsp; [Email](mailto:xengshi@outlook.com)
