@@ -115,8 +115,6 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
 
      - ![Brave](https://img.icons8.com/color/20/000000/brave-web-browser.png) Brave: `brave://extensions`
 
-     - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera: `opera://extensions`
-
    - **Enable Developer Mode**:
 
      - Turn on **Developer Mode** in the extensions page.
@@ -129,6 +127,52 @@ Below are screenshots of the process to guide you through each step visually.
 <img src="https://i.postimg.cc/w6JYypvc/chrome.png" alt="Screenshot 1" width="569">
 <img src="https://i.postimg.cc/0ksR7BKg/edge.png" alt="Screenshot 2" width="569">
 <img src="https://i.postimg.cc/MqPSg5NR/brave.png" alt="Screenshot 3" width="569">
+
+---
+
+#### ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX
+
+1. **Install from Chrome Web Store**:
+
+   - [Chrome Web Store link](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn)
+
+   **Additional Steps**:
+
+   - Go to the settings of Opera or Opera GX.
+   - Scroll to the **On startup** section.
+   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+   - Add the following to the **Site URL**:
+     ```text
+     chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+     ```
+
+2. **Manual Installation**:
+
+   - **Prepare the Extension Folder**:
+
+     - Ensure you’ve cloned the repository or downloaded the ZIP file and extracted it.
+
+   - **Open Extensions Page**:
+     Open Opera or Opera GX and enter the following text in the address bar
+
+     - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX: `opera://extensions`
+
+   - **Enable Developer Mode**:
+
+     - Turn on **Developer Mode** in the extensions page.
+
+   - **Load Unpacked Extension**:
+     - Click on **Load unpacked** and select your extracted extension folder.
+
+   **Additional Steps**:
+
+   - Go to the settings of Opera or Opera GX.
+   - Scroll to the **On startup** section.
+   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+   - Add the following to the **Site URL**:
+     ```text
+     chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+     ```
 
 ---
 
