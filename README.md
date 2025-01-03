@@ -69,7 +69,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt       |  vn   | [Diep](https://github.com/diepdo1810/)                                                |
 
-Check the latest translation updates on our [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html).
+Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
 
 ## 📥 Installation Guide
 
