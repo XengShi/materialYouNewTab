@@ -216,15 +216,16 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
    - A **view as selector** lets users toggle between a **grid** and **list layout**, allowing them to display their bookmarks as they prefer.
 
 10. **To-Do List**:
-    - The extension features a **to-do list** to help users remember important tasks.
-    - Users can pin specific tasks using the **pin button**, ensuring those tasks remain at the top until the pin is removed or the task is deleted. This feature makes it easy to keep essential items front and center.
+    - The extension features a **to-do list** to help users track and remember important tasks.
+    - Users can pin specific tasks using the **pin button**, ensuring those tasks stay at the top for easy access.
+    - At the start of each new day, all completed tasks are automatically deleted. However, pinned tasks are not deleted—their status simply resets to **pending**, allowing users to continue tracking them.
 
 11. **Reset Settings**:
     - If users want to completely reset all data and settings, they can use the **Reset Settings** button available in the menu section.
     - This feature clears all customizations and restores the extension to its default state.
 
 12. **Themes and Personalization**:
-    - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, backgrounds, and fonts.
+    - Offers a dynamic theme system inspired by Material You, allowing users to customize colors, and backgrounds.
     - Includes a **pick color button** in the theme selector menu, enabling users to choose their preferred color using **RGB**, **HSL**, or **hex color codes**.
     - Personalization options are accessible in the settings, enabling users to tailor the look and feel to their liking.
 
