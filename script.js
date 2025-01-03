@@ -10,6 +10,18 @@
 if (!localStorage.getItem('alertShown')) {
     // Show the toast after 4 seconds
     setTimeout(() => {
+        // Create the wrapper for the background to blur
+        const blurWrapper = document.createElement('div');
+        blurWrapper.style.position = 'fixed';
+        blurWrapper.style.top = '0';
+        blurWrapper.style.left = '0';
+        blurWrapper.style.width = '100%';
+        blurWrapper.style.height = '100%';
+        blurWrapper.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        blurWrapper.style.zIndex = '999'; // Below the toast
+        blurWrapper.style.pointerEvents = 'none'; // Prevent interaction with the blurred background
+        document.body.appendChild(blurWrapper);
+
         // Create the toast container
         const toast = document.createElement('div');
         toast.style.position = 'fixed';
@@ -56,8 +68,9 @@ if (!localStorage.getItem('alertShown')) {
         button.addEventListener('click', () => {
             // Set a flag in localStorage so the toast is not shown again
             localStorage.setItem('alertShown', 'true');
-            // Remove the toast
+            // Remove the toast and the blur effect
             document.body.removeChild(toast);
+            document.body.removeChild(blurWrapper);
         });
 
         // Append the button to the toast
