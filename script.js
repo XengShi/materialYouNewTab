@@ -6,6 +6,67 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Check if alert has already been shown
+if (!localStorage.getItem('alertShown')) {
+    // Show the toast after 4 seconds
+    setTimeout(() => {
+        // Create the toast container
+        const toast = document.createElement('div');
+        toast.style.position = 'fixed';
+        toast.style.top = '50%';
+        toast.style.left = '50%';
+        toast.style.transform = 'translate(-50%, -50%)';
+        toast.style.backgroundColor = 'var(--bg-color-blue)';
+        toast.style.color = 'var(--text-color-blue)';
+        toast.style.padding = '30px';
+        toast.style.borderRadius = '30px';
+        toast.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        toast.style.zIndex = '1000';
+        toast.style.fontFamily = 'Arial, sans-serif';
+        toast.style.fontSize = '1rem';
+        toast.style.textAlign = 'center';
+        toast.style.maxWidth = '600px';
+        toast.style.lineHeight = '1.8';
+
+        // Create the message part 1 (important part in bold)
+        const messagePart1 = document.createElement('p');
+        messagePart1.textContent = 'We have had to remove the "Search with" feature, which allowed quick switching between search engines, because of Chrome Web Store policies. ';
+        messagePart1.style.fontWeight = 'bold';
+
+        // Create the message part 2 (polite closure)
+        const messagePart2 = document.createElement('p');
+        messagePart2.textContent = 'This was not a voluntary choice but something we had to do to comply. Thank you for your understanding.';
+
+        // Add both message parts to the toast
+        toast.appendChild(messagePart1);
+        toast.appendChild(messagePart2);
+
+        // Add the "Don't show again" button
+        const button = document.createElement('button');
+        button.textContent = "Don't show again";
+        button.style.marginTop = '30px';
+        button.style.padding = '8px 15px';
+        button.style.border = 'none';
+        button.style.backgroundColor = 'var(--darkColor-blue)';
+        button.style.color = '#fff';
+        button.style.borderRadius = '17px';
+        button.style.cursor = 'pointer';
+
+        // Button click handler
+        button.addEventListener('click', () => {
+            // Set a flag in localStorage so the toast is not shown again
+            localStorage.setItem('alertShown', 'true');
+            // Remove the toast
+            document.body.removeChild(toast);
+        });
+
+        // Append the button to the toast
+        toast.appendChild(button);
+
+        // Append the toast to the body
+        document.body.appendChild(toast);
+    }, 4000);
+}
 
 let proxyurl;
 let clocktype;
