@@ -138,8 +138,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
         const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
         const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+
+        const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
         
-        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+        if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
             // Fetch weather data using Weather API
             let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             let data = await fetch(weatherApi);
@@ -1688,7 +1690,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -3404,9 +3406,9 @@ if(bookmarkGridCheckbox.checked){
 	bookmarkList.classList.remove("grid-view");
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
-        if(bookmarksCheckbox.checked){
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+        if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
             bookmarksCheckbox.click();
@@ -3417,7 +3419,7 @@ document.addEventListener('keydown', function(event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
