@@ -45,32 +45,6 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
 - **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
 
-## 🌐 Currently Supported Languages (19)
-
-| Language                                                                                 | Code  | Translator(s)                                                                         |
-| ---------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
-| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                       |  en   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
-| <img src='https://flagcdn.com/az.svg' width=20> &nbsp; **Azerbaijani** - Azərbaycanca    |  az   | [Hasan Bakhtiar](https://github.com/hasanbakhtiar/)                                   |
-| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                 |  bn   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)      |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文   | zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0) |
-| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština               |  cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                          |
-| <img src='https://flagcdn.com/fr.svg' width=20> &nbsp; **French** - Français             |  fr   | [422.io](https://github.com/iamwinner422)                                             |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                   |  hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
-| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia |  idn  | [Ayyas-RF](https://github.com/Ayyas-RF/)                                              |
-| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano            |  it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                        |
-| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語             |  ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)        |
-| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어               |  ko   | [XengShi](https://github.com/XengShi/)                                                |
-| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी               |  mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)   |
-| <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português        | pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                |
-| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский             |  ru   | [giwi](https://github.com/giwih/)                                                     |
-| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                           |
-| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español             | es-ES | [XengShi](https://github.com/XengShi/)                                                |
-| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe              |  tr   | [Nobody](https://github.com/Nobody9512/)                                              |
-| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
-| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt       |  vn   | [Diep](https://github.com/diepdo1810/)                                                |
-
-Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
-
 ## 📥 Installation Guide
 
 ### Download
@@ -114,6 +88,8 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
      - ![Edge](https://img.icons8.com/?size=20&id=dGm9KIZPpukc&format=png&color=000000) Edge: `edge://extensions`
 
      - ![Brave](https://img.icons8.com/color/20/000000/brave-web-browser.png) Brave: `brave://extensions`
+    
+     - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera: `opera://extensions`
 
    - **Enable Developer Mode**:
 
@@ -121,58 +97,22 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
 
    - **Load Unpacked Extension**:
      - Click on **Load unpacked** and select your extracted extension folder.
+
+3. **Additional Steps ONLY for  ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
+
+     - Go to the **Settings** of Opera or Opera GX.
+     - Scroll to the **On startup** section.
+     - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+     - Add the following to the **Site URL**:
+       ```text
+       chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+       ```
 
 Below are screenshots of the process to guide you through each step visually.
 
 <img src="https://i.postimg.cc/w6JYypvc/chrome.png" alt="Screenshot 1" width="569">
 <img src="https://i.postimg.cc/0ksR7BKg/edge.png" alt="Screenshot 2" width="569">
 <img src="https://i.postimg.cc/MqPSg5NR/brave.png" alt="Screenshot 3" width="569">
-
----
-
-#### ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX
-
-1. **Install from Chrome Web Store**:
-
-   - [Chrome Web Store link](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn)
-
-   **Additional Steps**:
-
-   - Go to the settings of Opera or Opera GX.
-   - Scroll to the **On startup** section.
-   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-   - Add the following to the **Site URL**:
-     ```text
-     chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
-     ```
-
-2. **Manual Installation**:
-
-   - **Prepare the Extension Folder**:
-
-     - Ensure you’ve cloned the repository or downloaded the ZIP file and extracted it.
-
-   - **Open Extensions Page**:
-     Open Opera or Opera GX and enter the following text in the address bar
-
-     - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX: `opera://extensions`
-
-   - **Enable Developer Mode**:
-
-     - Turn on **Developer Mode** in the extensions page.
-
-   - **Load Unpacked Extension**:
-     - Click on **Load unpacked** and select your extracted extension folder.
-
-   **Additional Steps**:
-
-   - Go to the settings of Opera or Opera GX.
-   - Scroll to the **On startup** section.
-   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-   - Add the following to the **Site URL**:
-     ```text
-     chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
-     ```
 
 ---
 
@@ -219,6 +159,32 @@ Below are screenshots of the process to guide you through each step visually.
 For a step-by-step walkthrough, watch this [installation guide video](https://youtu.be/P4ryQPixfw8).
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
+
+## 🌐 Currently Supported Languages (19)
+
+| Language                                                                                 | Code  | Translator(s)                                                                         |
+| ---------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
+| <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                       |  en   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
+| <img src='https://flagcdn.com/az.svg' width=20> &nbsp; **Azerbaijani** - Azərbaycanca    |  az   | [Hasan Bakhtiar](https://github.com/hasanbakhtiar/)                                   |
+| <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                 |  bn   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)      |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 中文   | zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0) |
+| <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština               |  cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                          |
+| <img src='https://flagcdn.com/fr.svg' width=20> &nbsp; **French** - Français             |  fr   | [422.io](https://github.com/iamwinner422)                                             |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                   |  hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
+| <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia |  idn  | [Ayyas-RF](https://github.com/Ayyas-RF/)                                              |
+| <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano            |  it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                        |
+| <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語             |  ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)        |
+| <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어               |  ko   | [XengShi](https://github.com/XengShi/)                                                |
+| <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी               |  mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)   |
+| <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português        | pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                |
+| <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский             |  ru   | [giwi](https://github.com/giwih/)                                                     |
+| <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
+| <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español             | es-ES | [XengShi](https://github.com/XengShi/)                                                |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe              |  tr   | [Nobody](https://github.com/Nobody9512/)                                              |
+| <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt       |  vn   | [Diep](https://github.com/diepdo1810/)                                                |
+
+Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
 
 ## 📖 Usage
 
