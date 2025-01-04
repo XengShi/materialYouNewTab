@@ -122,6 +122,7 @@ Below are screenshots of the process to guide you through each step visually.
 
    - [Mozilla Add-ons link](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
 
+   
    <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
 **Or** follow the manual steps below:
