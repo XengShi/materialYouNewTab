@@ -1813,6 +1813,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 100%;
 	width: 100%;
 	border-radius: 100%;
+	filter: grayscale(1) contrast(1.4);
+	mix-blend-mode: lighten;
 }
 
 /* ----------end of Shortcuts----------------- */
