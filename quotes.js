@@ -1,4 +1,4 @@
-const apiUrl = "https://dummyjson.com/quotes?limit=50";
+const apiUrl = "https://quotes-api-self.vercel.app/quote/";
 const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.authorName span');
 
