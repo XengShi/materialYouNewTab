@@ -123,7 +123,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
             const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-            if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
+          
+            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
                 let data = await fetch(weatherApi);
@@ -581,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
                 favicon.onerror = () => {
-                    favicon.src = "./shortcuts_icons/offline.svg";
+                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
                 };
 
                 // Create the delete button
@@ -649,7 +651,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         return list;
-    }  
+    }
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -3354,16 +3356,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const hostname = new URL(urlString).hostname;
 
         if (hostname === "github.com") {
-            logo.src = "./shortcuts_icons/github-shortcut.svg";
+            logo.src = "./svgs/shortcuts_icons/github-shortcut.svg";
         } else if (urlString === "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html") {
             // Special case for invalid URLs
-            logo.src = "./shortcuts_icons/invalid-url.svg";
+            logo.src = "./svgs/shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
             // Handle image loading error on offline scenario
             logo.onerror = () => {
-                logo.src = "./shortcuts_icons/offline.svg";
+                logo.src = "./svgs/shortcuts_icons/offline.svg";
             };
         }
 
