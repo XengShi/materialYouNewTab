@@ -2250,14 +2250,13 @@ function base64ToBlob(base64) {
 
 // ------- Zooming in out function-----------
 const slider = document.getElementById('zoom-slider');
-const body = document.body;
 function applyZoom(value, min, max) {
-    const percentage = (value / max) * 100;
-    const sliderValue = percentage - 8;
+    const percentage = (value - 25) / 75 * 100;
+    const sliderValue = 25 - percentage / 100 * 50;
     slider.style.borderRadius = "100px";
-    slider.style.background = `linear-gradient(to right, var(--darkColor-blue) ${sliderValue}%, #00000000 ${sliderValue}%)`;
+    slider.style.background = `linear-gradient(to right, var(--darkColor-blue) calc(${percentage}% + ${sliderValue}px), #00000000 calc(${percentage}% + ${sliderValue}px))`;
     const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
-    body.style.zoom = zoomLevel;
+    document.documentElement.style.zoom = zoomLevel;
     localStorage.setItem('zoomLevel', value);
 }
 slider.addEventListener('input', function () {

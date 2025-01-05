@@ -280,8 +280,8 @@ body {
 	border-radius: 100px;
 	background: linear-gradient(
 		to right,
-		var(--darkColor-blue) 81%,
-		#00000000 81%
+		var(--darkColor-blue) 90%,
+		#00000000 90%
 	);
 	outline: none;
 	appearance: none;
@@ -294,15 +294,19 @@ body {
 	border-radius: 100px;
 	background-color: var(--darkColor-blue);
 	cursor: pointer;
+	border: none !important;
+	outline: none !important;
 }
-/* Firefox styles */
-/* #zoom-slider::-moz-range-thumb {
+#zoom-slider::-moz-range-thumb {
 	width: 50px;
 	height: 50px;
 	border-radius: 100px;
 	background-color: var(--darkColor-blue);
 	cursor: pointer;
-} */
+	border: none !important;
+	outline: none !important;
+}
+
 /* ----End Zooming page------- */
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
@@ -1665,18 +1669,18 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	left: -20px;
+	left: -19px;
 	transform: rotate(90deg);
-	bottom: 0;
+	bottom: -1px;
 }
 
 .autherName .qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	right: 0;
+	right: -1px;
 	transform: rotate(90deg);
-	top: -20px;
+	top: -19px;
 }
 
 .searchWithCont .hint {
