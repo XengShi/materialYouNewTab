@@ -116,7 +116,7 @@ function applyLanguage(lang) {
         'saveproxy',
         'UserLocText',
         'UserLocSubtext',
-        'InputOptionsButton',
+        'useGPS',
         'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
