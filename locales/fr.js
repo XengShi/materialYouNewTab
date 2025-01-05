@@ -1,9 +1,11 @@
-// French
+// French -> fr
 const fr = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "Feedback",
     "resetsettings": "Réinitialiser les paramètres",
     "menuCloseText": "Fermer",
+
     // Shortcuts
     "shortcutsText": "Raccourcis",
     "enableShortcutsText": "Afficher les raccourcis sauvegardés",
@@ -19,8 +21,14 @@ const fr = {
     "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
     "googleAppsMenuText": "Apps Google",
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
+    "googleAppsHover": "Apps Google",
+
+    // Todo List
     "todoListText": "Liste To-Do",
     "todoListInfo": "Afficher une liste de tâches quotidiennes",
+    "todoListHover": "Liste To-Do",
+    "todoPlaceholder": "Ajouter une tâche...",
+
     // Digital Clock
     "digitalclocktittle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
@@ -28,6 +36,7 @@ const fr = {
     "timeformatinfo": "Utiliser le format 12h",
     "greetingtittle": "Salutation",
     "greetinginfo": "Afficher la salutation sous le texte personnalisé",
+
     // Misc
     "userTextTitle": "Texte personnalisé",
     "userTextInfo": "Afficher le texte personnalisé sous l'horloge",
@@ -39,6 +48,7 @@ const fr = {
     "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
     "search_suggestions_button": "Suggestions de Recherche",
     "search_suggestions_text": "Activer les suggestions de recherche",
+
     // Proxy
     "useproxytitletext": "Contournement du Proxy",
     "useproxyText": "Si les suggestions de recherche ne fonctionnent pas",
@@ -46,52 +56,43 @@ const fr = {
     "ProxySubtext": "Ajouter votre propre proxy de contournement CORS",
     "HostproxyButton": "Hébergez votre propre proxy",
     "saveproxy": "Enregistrer",
+
     // Location
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
     "InputOptionsButton": "Options de saisie",
     "saveLoc": "Enregistrer",
+
     // Weather
     "WeatherApiText": "Entrez votre clé WeatherAPI",
     "WeatherApiSubtext": "Si la fonctionnalité météo ne fonctionne pas",
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "En savoir plus",
     "saveAPI": "Enregistrer",
-    // End of Menu Items
 
     // Body Items
     // Calendar
     "days": ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
     "months": ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    // End of Calendar
-
-    // Weather
-    "humidityLevel": "Humidité",
-    "feelsLike": "Ressenti",
-    "location": "Terre",
-    // End of Weather
 
     // Bookmarks
     "bookmarksHeading": "Favoris",
     "bookmarkViewAs": "Afficher en",
-    "bookmarkViewGrid": "Grille",    // Keep this shorter
-    "bookmarkViewList": "Liste",    // Keep this shorter
+    "bookmarkViewGrid": "Grille",
+    "bookmarkViewList": "Liste",
     "bookmarkSearch": "Rechercher un favori",
-    // End of Bookmark
 
     // New Tab Item
     "conditionText": "Bonjour, comment allez-vous?",
+    "humidityLevel": "Humidité",
+    "feelsLike": "Ressenti",
+    "location": "Terre",
     "enterBtn": "Rechercher",
     "searchPlaceholder": "Saisissez ici...",
     "listenPlaceholder": "Écoute...",
-    "todoPlaceholder": "Ajouter une tâche...",
     "searchWithHint": "Rechercher avec",
-    "ai_tools": "Outils IA",
     "userText": "Cliquez ici pour modifier",
-    "googleAppsHover": "Apps Google",
-    "todoListHover": "Liste To-Do",
-    // End of Body and New Tab Items
 
     // Greeting
     greeting: {
@@ -100,19 +101,22 @@ const fr = {
         "evening": "Bonne nuit!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+
+    // AI Tools
+    "ai_tools": "Outils IA",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Uploader un fond d'ecran",
@@ -131,4 +135,5 @@ const fr = {
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
-}
+    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+};

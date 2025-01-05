@@ -1,8 +1,8 @@
-/* 
+/*
  * Material You NewTab
  * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
- * You should have received a copy of the GNU General Public License along with this program. 
+ * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -19,8 +19,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const userProxyInput = document.getElementById("userproxy");
     const saveAPIButton = document.getElementById("saveAPI");
     const saveLocButton = document.getElementById("saveLoc");
-    const resetbtn = document.getElementById("resetsettings");
+    const useGPSButton = document.getElementById("useGPS");
     const saveProxyButton = document.getElementById("saveproxy");
+    const resetbtn = document.getElementById("resetsettings");
 
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -56,14 +57,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         location.reload();
     });
 
-    // Save location to localStorage
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        userLocInput.value = "";
-        location.reload();
-    });
-
     // Reset settings (clear localStorage)
     resetbtn.addEventListener("click", () => {
         if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
@@ -91,7 +84,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
             }
         }
-
         // Set the proxy in localStorage, clear the input, and reload the page
         localStorage.setItem("proxy", proxyurl);
         userProxyInput.value = "";
@@ -100,14 +92,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Default Weather API key
     const weatherApiKeys = [
-        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-        // 'db0392b338114f208ee135134240312',
-        // 'de5f7396db034fa2bf3140033240312',
-        // 'c64591e716064800992140217240312',
-        // '9b3204c5201b4b4d8a2140330240312',
-        // 'eb8a315c15214422b60140503240312',
-        // 'cd148ebb1b784212b74140622240312',
-        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        'd36ce712613d4f21a6083436240910',
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312',
         '0a6bc8a404224c8d89953341241912',
         'f59e58d7735d4739ae953115241912'
     ];
@@ -120,146 +112,211 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Determine the location to use
     let currentUserLocation = savedLocation;
 
-    // If no saved location, fetch the IP-based location
-    if (!currentUserLocation) {
-        try {
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-
-            currentUserLocation = parsedLocation.loc;
-        } catch (error) {
-            currentUserLocation = "auto:ip"; // Fallback if fetching location fails
-        }
-    }
+    // Flag indicating whether to use GPS
+    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
 
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-    try {
-        let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
-        const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-        const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
-        const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+    // Fetch weather data based on a location
+    async function fetchWeather(location) {
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        try {
+            let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
+            const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
+            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+            const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
-            // Fetch weather data using Weather API
-            let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
-            let data = await fetch(weatherApi);
-            parsedData = await data.json();
-            if (!parsedData.error) {
-                // Extract only the necessary fields before saving
-                const filteredData = {
-                    location: {
-                        name: parsedData.location.name,
-                    },
-                    current: {
-                        condition: {
-                            text: parsedData.current.condition.text,
-                            icon: parsedData.current.condition.icon,
+            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
+
+            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+                // Fetch weather data using Weather API
+                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+                let data = await fetch(weatherApi);
+                parsedData = await data.json();
+                if (!parsedData.error) {
+                    // Extract only the necessary fields before saving
+                    const filteredData = {
+                        location: {
+                            name: parsedData.location.name,
                         },
-                        temp_c: parsedData.current.temp_c,
-                        temp_f: parsedData.current.temp_f,
-                        humidity: parsedData.current.humidity,
-                        feelslike_c: parsedData.current.feelslike_c,
-                        feelslike_f: parsedData.current.feelslike_f,
-                    },
-                };
-                // Save filtered weather data to localStorage
-                localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
-                localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
-                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
-                localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
-            }
-            UpdateWeather();
-        } else {
-            setTimeout(UpdateWeather, 25);
-        }
+                        current: {
+                            condition: {
+                                text: parsedData.current.condition.text,
+                                icon: parsedData.current.condition.icon,
+                            },
+                            temp_c: parsedData.current.temp_c,
+                            temp_f: parsedData.current.temp_f,
+                            humidity: parsedData.current.humidity,
+                            feelslike_c: parsedData.current.feelslike_c,
+                            feelslike_f: parsedData.current.feelslike_f,
+                        },
+                    };
 
-        function UpdateWeather() {
-            // Weather data
-            const conditionText = parsedData.current.condition.text;
-            const tempCelsius = Math.round(parsedData.current.temp_c);
-            const tempFahrenheit = Math.round(parsedData.current.temp_f);
-            const humidity = parsedData.current.humidity;
-            const feelsLikeCelsius = parsedData.current.feelslike_c;
-            const feelsLikeFahrenheit = parsedData.current.feelslike_f;
-
-            // Update DOM elements with the weather data
-            document.getElementById("conditionText").textContent = conditionText;
-
-            // Localize and display temperature and humidity
-            const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-            const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-            const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-            const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-            const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-            // Set humidity level
-            const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-            document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-            // Event Listener for the Fahrenheit toggle
-            const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-            const updateTemperatureDisplay = () => {
-                const tempElement = document.getElementById("temp");
-                const feelsLikeElement = document.getElementById("feelsLike");
-                const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-
-                if (fahrenheitCheckbox.checked) {
-                    // Update temperature
-                    tempElement.textContent = localizedTempFahrenheit;
-                    const tempUnitF = document.createElement("span");
-                    tempUnitF.className = "tempUnit";
-                    tempUnitF.textContent = "°F";
-                    tempElement.appendChild(tempUnitF);
-
-                    // Update feels like
-                    const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                } else {
-                    // Update temperature
-                    tempElement.textContent = localizedTempCelsius;
-                    const tempUnitC = document.createElement("span");
-                    tempUnitC.className = "tempUnit";
-                    tempUnitC.textContent = "°C";
-                    tempElement.appendChild(tempUnitC);
-
-                    // Update feels like
-                    const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    // Save filtered weather data to localStorage
+                    localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
+                    localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
+                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
+                    localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-            };
-            updateTemperatureDisplay();
-
-            // Setting weather Icon
-            const newWIcon = parsedData.current.condition.icon;
-            const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-            document.getElementById("wIcon").src = weatherIcon;
-
-            // Define minimum width for the slider based on the language
-            const humidityMinWidth = {
-                idn: '47%',
-                en: '42%', // Default for English and others
-            };
-            const slider = document.getElementById("slider");
-            slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
-
-            // Set slider width based on humidity
-            if (humidity > 40) {
-                slider.style.width = `calc(${humidity}% - 60px)`;
+                UpdateWeather();
+            } else {
+                setTimeout(UpdateWeather, 25);
             }
 
-            // Update location
-            var city = parsedData.location.name;
-            // var city = "Thiruvananthapuram";
-            var maxLength = 10;
-            var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-            document.getElementById("location").textContent = limitedText;
-        }
+            function UpdateWeather() {
+                // Weather data
+                const conditionText = parsedData.current.condition.text;
+                const tempCelsius = Math.round(parsedData.current.temp_c);
+                const tempFahrenheit = Math.round(parsedData.current.temp_f);
+                const humidity = parsedData.current.humidity;
+                const feelsLikeCelsius = parsedData.current.feelslike_c;
+                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-    } catch (error) {
-        console.error("Error fetching weather data:", error);
+                // Update DOM elements with the weather data
+                document.getElementById("conditionText").textContent = conditionText;
+
+                // Localize and display temperature and humidity
+                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+                // Set humidity level
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+
+                // Event Listener for the Fahrenheit toggle
+                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+                const updateTemperatureDisplay = () => {
+                    const tempElement = document.getElementById("temp");
+                    const feelsLikeElement = document.getElementById("feelsLike");
+                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
+                    if (fahrenheitCheckbox.checked) {
+                        // Update temperature
+                        tempElement.textContent = localizedTempFahrenheit;
+                        const tempUnitF = document.createElement("span");
+                        tempUnitF.className = "tempUnit";
+                        tempUnitF.textContent = "°F";
+                        tempElement.appendChild(tempUnitF);
+
+                        // Update feels like
+                        const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                    } else {
+                        // Update temperature
+                        tempElement.textContent = localizedTempCelsius;
+                        const tempUnitC = document.createElement("span");
+                        tempUnitC.className = "tempUnit";
+                        tempUnitC.textContent = "°C";
+                        tempElement.appendChild(tempUnitC);
+
+                        // Update feels like
+                        const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    }
+                };
+                updateTemperatureDisplay();
+
+                // Setting weather Icon
+                const newWIcon = parsedData.current.condition.icon;
+                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                document.getElementById("wIcon").src = weatherIcon;
+
+                // Define minimum width for the slider based on the language
+                const humidityMinWidth = {
+                    idn: '47%',
+                    hu: '48%',
+                    en: '42%', // Default for English and others
+                };
+                const slider = document.getElementById("slider");
+                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
+
+                // Set slider width based on humidity
+                if (humidity > 40) {
+                    slider.style.width = `calc(${humidity}% - 60px)`;
+                }
+
+                // Update location
+                var city = parsedData.location.name;
+                // var city = "Thiruvananthapuram";
+                var maxLength = 10;
+                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+                document.getElementById("location").textContent = limitedText;
+
+            }
+        } catch (error) {
+            console.error("Error fetching weather data:", error);
+        }
     }
+
+    // Function to fetch GPS-based location
+    async function fetchGPSLocation() {
+        try {
+            const getLocationFromGPS = () => {
+                return new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            resolve({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                            });
+                        },
+                        (error) => reject(error),
+                        {timeout: 4000}
+                    );
+                });
+            };
+
+            const {latitude, longitude} = await getLocationFromGPS();
+            return `${latitude},${longitude}`;
+        } catch (error) {
+            console.error("GPS Location retrieval failed: ", error);
+            throw new Error("Failed to retrieve GPS location");
+        }
+    }
+
+    // Fetch location dynamically based on user preference
+    await (async function initializeLocation() {
+        try {
+            if (useGPS) {
+                // Use GPS for dynamic location
+                currentUserLocation = await fetchGPSLocation();
+            } else if (!currentUserLocation) {
+                // Fallback to IP-based location if no manual input
+                const geoLocation = 'https://ipinfo.io/json/';
+                const locationData = await fetch(geoLocation);
+                const parsedLocation = await locationData.json();
+                currentUserLocation = parsedLocation.loc;
+            }
+
+            // Fetch weather data
+            fetchWeather(currentUserLocation);
+        } catch (error) {
+            console.error("Failed to determine location:", error);
+            currentUserLocation = "auto:ip";
+            fetchWeather(currentUserLocation);
+        }
+    })();
+
+    // Handle "Use GPS" button click
+    useGPSButton.addEventListener("click", () => {
+        // Set the flag to use GPS dynamically and remove manual location
+        localStorage.setItem("useGPS", true);
+        localStorage.removeItem("weatherLocation");
+        location.reload();
+    });
+
+    // Handle manual location input
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        localStorage.setItem("useGPS", false);
+        userLocInput.value = "";
+        fetchWeather(userLocation);
+        location.reload();
+    });
 });
 // ---------------------------end of weather stuff--------------------
 
@@ -405,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
         }
-    };
+    }
 
     // Function to load bookmarks
     function loadBookmarks() {
@@ -531,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
                 favicon.onerror = () => {
-                    favicon.src = "./shortcuts_icons/offline.svg";
+                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
                 };
 
                 // Create the delete button
@@ -680,7 +737,7 @@ todoulList.addEventListener("click", (event) => {
     } else if (event.target.classList.contains('todopinbtn')) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned === true) ? false : true); // Update status
+        todoList[id].pinned = ((todoList[id].pinned !== true)); // Update status
         SaveToDoData(); // Save Changes
     }
 });
@@ -717,8 +774,8 @@ if (todoLastUpdateDate === todoCurrentDate) {
     localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
     for (let id in todoList) {
-        if (todoList[id].pinned == false) {
-            if (todoList[id].status == "completed") {
+        if (todoList[id].pinned === false) {
+            if (todoList[id].status === "completed") {
                 delete todoList[id]; // Remove the Unpinned and Completed list item data
             }
         } else {
@@ -846,6 +903,7 @@ function updateDate() {
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
+            hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -880,29 +938,29 @@ function updateanalogclock() {
         hourreset = false;
         return;
     }
-    if (cumulativeSecondRotation == 0) {
+    if (cumulativeSecondRotation === 0) {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(361deg)`;
         secondreset = true;
-    } else if (secondreset != true) {
+    } else if (secondreset !== true) {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
 
-    if (cumulativeMinuteRotation == 0) {
+    if (cumulativeMinuteRotation === 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
         minreset = true;
-    } else if (minreset != true) {
+    } else if (minreset !== true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     }
 
-    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+    if (cumulativeHourRotation === 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
         document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
         document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
-    } else if (hourreset != true) {
+    } else if (hourreset !== true) {
         document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
@@ -982,6 +1040,7 @@ function updatedigiClock() {
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
         fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        hu: `${dayName} ${dayOfMonth}`, // Kedd 11
         default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -991,7 +1050,7 @@ function updatedigiClock() {
     let period = ''; // For storing AM/PM equivalent
 
     // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
+    const specialLanguages = ['tr', 'zh', 'ja', 'ko', 'hu']; // Languages with NaN in locale time format
     const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
@@ -1171,7 +1230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector('.dropdown-content');
 
     document.addEventListener('click', (event) => {
-        if (dropdown.style.display == "block") {
+        if (dropdown.style.display === "block") {
             event.stopPropagation();
             dropdown.style.display = 'none';
         }
@@ -1345,7 +1404,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event listener for keydown events to navigate up/down
     document.querySelector('.dropdown').addEventListener('keydown', function (event) {
-        if (dropdown.style.display == "block") {
+        if (dropdown.style.display === "block") {
             if (event.key === 'ArrowDown') {
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
             } else if (event.key === 'ArrowUp') {
@@ -1733,6 +1792,9 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+                &:not(:has(svg)){
+                    background: var(--accentLightTint-blue);
+                }
             }
 
             .dark-theme .digiclock {
@@ -1863,7 +1925,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -2316,10 +2378,7 @@ async function validateAndRestoreData(event) {
 
 function isValidBackupFile(backup) {
     // Check if localStorage and indexedDB exist and are objects
-    if (typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object") {
-        return false;
-    }
-    return true;
+    return !(typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object");
 }
 
 // Backup IndexedDB: Extract data from ImageDB -> backgroundImages
@@ -2525,7 +2584,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                 // Fetch autocomplete suggestions
                 const suggestions = await getAutocompleteSuggestions(query);
 
-                if (suggestions == "") {
+                if (suggestions === "") {
                     hideResultBox();
                 } else {
                     // Clear the result box
@@ -2547,7 +2606,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
 
-                    if (dropdown.style.display == "block") {
+                    if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
                     }
 
@@ -2841,6 +2900,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
+                filter: grayscale(1) contrast(1.4);
+                mix-blend-mode: lighten;
                 }`;
 
 
@@ -3300,16 +3361,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const hostname = new URL(urlString).hostname;
 
         if (hostname === "github.com") {
-            logo.src = "./shortcuts_icons/github-shortcut.svg";
+            logo.src = "./svgs/shortcuts_icons/github-shortcut.svg";
         } else if (urlString === "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html") {
             // Special case for invalid URLs
-            logo.src = "./shortcuts_icons/invalid-url.svg";
+            logo.src = "./svgs/shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
             // Handle image loading error on offline scenario
             logo.onerror = () => {
-                logo.src = "./shortcuts_icons/offline.svg";
+                logo.src = "./svgs/shortcuts_icons/offline.svg";
             };
         }
 
@@ -3375,7 +3436,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Intialize shortcut switch
     if (localStorage.getItem('showShortcutSwitch')) {
-        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() === 'true';
         document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
 
         if (isShortCutSwitchEnabled) {
@@ -3683,7 +3744,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
@@ -3695,7 +3756,7 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
