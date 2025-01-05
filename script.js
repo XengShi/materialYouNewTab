@@ -2887,8 +2887,21 @@ document.addEventListener("DOMContentLoaded", function () {
     //     `https://${hostname}/apple-touch-icon.png`
     // ];
 
-    const GOOGLE_FAVICON_API_FALLBACK = (hostname) =>
-        `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
+    async function GOOGLE_FAVICON_API_FALLBACK (hostname, logo) {
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const targetUrl = `https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256`;
+        let fetchedURL = './shortcuts_icons/offline.svg';
+        try {
+            await fetch(proxyUrl + targetUrl)
+                .then((response) => {
+                    if (response.status == 200) {
+                        fetchedURL = targetUrl;
+                    }
+                })
+        } finally {
+            logo.src = fetchedURL;
+        }
+    }
 
     // const FAVICON_REQUEST_TIMEOUT = 5000;
 
@@ -3361,7 +3374,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Special case for invalid URLs
             logo.src = "./svgs/shortcuts_icons/invalid-url.svg";
         } else {
-            logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+            logo.src = "./shortcuts_icons/offline.svg";
+            GOOGLE_FAVICON_API_FALLBACK(hostname, logo);
 
             // Handle image loading error on offline scenario
             logo.onerror = () => {
