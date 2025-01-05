@@ -1,6 +1,6 @@
 /* 
  * Material You NewTab
- * Copyright (c) 2023-2024 XengShi
+ * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
  * You should have received a copy of the GNU General Public License along with this program. 
  * If not, see <https://www.gnu.org/licenses/>.
@@ -90,14 +90,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Default Weather API key
     const weatherApiKeys = [
-        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-        // 'db0392b338114f208ee135134240312',
-        // 'de5f7396db034fa2bf3140033240312',
-        // 'c64591e716064800992140217240312',
-        // '9b3204c5201b4b4d8a2140330240312',
-        // 'eb8a315c15214422b60140503240312',
-        // 'cd148ebb1b784212b74140622240312',
-        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        'd36ce712613d4f21a6083436240910',
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312',
         '0a6bc8a404224c8d89953341241912',
         'f59e58d7735d4739ae953115241912'
     ];
@@ -1912,7 +1912,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -3732,7 +3732,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
@@ -3744,7 +3744,7 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
