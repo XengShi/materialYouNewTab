@@ -81,7 +81,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
             }
         }
-
         // Set the proxy in localStorage, clear the input, and reload the page
         localStorage.setItem("proxy", proxyurl);
         userProxyInput.value = "";
@@ -223,6 +222,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 // Define minimum width for the slider based on the language
                 const humidityMinWidth = {
                     idn: '47%',
+                    hu: '48%',
                     en: '42%', // Default for English and others
                 };
                 const slider = document.getElementById("slider");
@@ -894,6 +894,7 @@ function updateDate() {
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
+            hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -1030,6 +1031,7 @@ function updatedigiClock() {
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
         fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        hu: `${dayName} ${dayOfMonth}`, // Kedd 11
         default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -1039,7 +1041,7 @@ function updatedigiClock() {
     let period = ''; // For storing AM/PM equivalent
 
     // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
+    const specialLanguages = ['tr', 'zh', 'ja', 'ko', 'hu']; // Languages with NaN in locale time format
     const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 

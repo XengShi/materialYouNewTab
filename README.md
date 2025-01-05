@@ -24,7 +24,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#-currently-supported-languages-19">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-20">Currently Supported Languages</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
   <a href="#-usage">Usage</a> •
@@ -160,7 +160,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
 
-## 🌐 Currently Supported Languages (19)
+## 🌐 Currently Supported Languages (20)
 
 | Language                                                                                 | Code  | Translator(s)                                                                         |
 | ---------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
@@ -171,6 +171,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština               |  cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                          |
 | <img src='https://flagcdn.com/fr.svg' width=20> &nbsp; **French** - Français             |  fr   | [422.io](https://github.com/iamwinner422)                                             |
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Hindi** - हिंदी                   |  hi   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
+| <img src='https://flagcdn.com/hu.svg' width=20> &nbsp; **Hungarian** - Magyar            |  hu   | [Zan1456](https://github.com/Zan1456/)                                                |
 | <img src='https://flagcdn.com/id.svg' width=20> &nbsp; **Indonesian** - Bahasa Indonesia |  idn  | [Ayyas-RF](https://github.com/Ayyas-RF/)                                              |
 | <img src='https://flagcdn.com/it.svg' width=20> &nbsp; **Italian** - Italiano            |  it   | [Claudio Di Maio](https://github.com/ZiClaud/)                                        |
 | <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語             |  ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)        |
