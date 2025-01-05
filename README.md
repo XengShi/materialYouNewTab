@@ -160,7 +160,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
 
-## 🌐 Currently Supported Languages (19)
+## 🌐 Currently Supported Languages (20)
 
 | Language                                                                                 | Code  | Translator(s)                                                                         |
 | ---------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
