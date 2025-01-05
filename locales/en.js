@@ -1,6 +1,7 @@
 // English -> en
 const en = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "Feedback",
     "resetsettings": "Reset Settings",
     "menuCloseText": "Close",
@@ -13,7 +14,7 @@ const en = {
     "editShortcutsList": "Saved Shortcuts",
     "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
     "adaptiveIconText": "Adaptive Icon Shapes",
-    "adaptiveIconInfoText": "Shortcut icons will appear smaller",
+    "adaptiveIconInfoText": "Shortcut icons will match the theme color and appear smaller",
     "bookmarksText": "Bookmarks",
     "bookmarksInfo": "Show bookmarks sidebar",
     "ai_tools_button": "AI-Tools",
@@ -60,7 +61,7 @@ const en = {
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
-    "InputOptionsButton": "Input options",
+    "useGPS": "Use GPS",
     "saveLoc": "Save",
 
     // Weather
@@ -75,11 +76,6 @@ const en = {
     "days": ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     "months": ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
-    // Weather
-    "humidityLevel": "Humidity",
-    "feelsLike": "Feels",
-    "location": "Earth",
-
     // Bookmarks
     "bookmarksHeading": "Bookmarks",
     "bookmarkViewAs": "View as",
@@ -89,6 +85,9 @@ const en = {
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
+    "humidityLevel": "Humidity",
+    "feelsLike": "Feels",
+    "location": "Earth",
     "enterBtn": "Search",
     "searchPlaceholder": "Type here...",
     "listenPlaceholder": "Listening...",
@@ -102,7 +101,7 @@ const en = {
         "evening": "Good Evening!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
@@ -114,10 +113,10 @@ const en = {
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
