@@ -114,6 +114,7 @@ const mr = {
     "chatGPT": "चॅटGPT",
     "gemini": "जेमिनी",
     "copilot": "कोपायलट",
+    "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
     "firefly": "अडोबी फायरफ्लाय",
     "metaAI": "मेटा AI",
