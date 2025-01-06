@@ -73,9 +73,9 @@ window.addEventListener("DOMContentLoaded", async () => {
         if (proxyurl === "") {
             proxyurl = defaultProxyURL;
         } else {
-            // Validate if input starts with ""http://"" or ""https://""
+            // Validate if input starts with "http://" or "https://"
             if (!(proxyurl.startsWith("http://") || proxyurl.startsWith("https://"))) {
-                // Automatically correct input by adding ""http://"" if not present
+                // Automatically correct input by adding "http:/"" if not present
                 proxyurl = "http://" + proxyurl;
             }
 
@@ -480,14 +480,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (isBrave) {
                     default_folder = "Bookmarks";
                 }
-                // Extract the ""Main bookmarks"" node and display its Children
+                // Extract the "Main bookmarks" node and display its Children
                 const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
 
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
 
-                // Extract the other ""Bookmarks"" folders and display them
+                // Extract the other "Bookmarks" folders and display them
                 const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
@@ -811,7 +811,7 @@ let minreset = false;
 function initializeClockType() {
     const savedClockType = localStorage.getItem("clocktype");
     clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
-    localStorage.setItem("clocktype", clocktype); // Ensure it""s set in local storage
+    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
 }
 
 // Call this function to initialize the clock type
@@ -951,7 +951,7 @@ function getGreeting() {
         greetingKey = "evening";
     }
 
-    // Get the user""s language setting
+    // Get the user's language setting
     const userLang = getLanguageStatus("selectedLanguage") || "en"; // Default to English
 
     // Check if the greeting is available for the selected language
@@ -1019,10 +1019,10 @@ function updatedigiClock() {
     let timeString;
     let period = ""; // For storing AM/PM equivalent
 
-    // Array of languages to use ""en-US"" format
+    // Array of languages to use "en-US" format
     const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
     const localizedLanguages = ["bn", "mr"];
-    // Force the ""en-US"" format for Bengali, otherwise, it will be localized twice, resulting in NaN
+    // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
     const timeOptions = {hour: "2-digit", minute: "2-digit", hour12: hourformat};
@@ -1427,7 +1427,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-// const isFirefox = navigator.userAgent.toLowerCase().indexOf(""firefox"") > -1;
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
 const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
     return (isChrome || isEdge) && isDesktop && !isBrave;
@@ -1437,7 +1437,7 @@ function isSupportedBrowser() {
 const micIcon = document.getElementById("micIcon");
 const micIconCheckbox = document.getElementById("micIconCheckbox");
 
-// Check if there""s a saved state in localStorage
+// Check if there's a saved state in localStorage
 const savedState = localStorage.getItem("micIconVisible");
 let isMicIconVisible;
 
@@ -1496,7 +1496,7 @@ function initializeSpeechRecognition() {
             const selectedRadio = document.querySelector(".colorPlate:checked");
             if (selectedRadio.value !== "dark") {
                 micIcon.style.color = "var(--darkerColor-blue)";
-                // micIcon.style.transform = ""scale(1.05)"";
+                // micIcon.style.transform = "scale(1.05)";
             }
             searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations["en"].listenPlaceholder}`;
             micIcon.classList.add("micActive");
@@ -1529,7 +1529,7 @@ function initializeSpeechRecognition() {
         recognition.onend = () => {
             isRecognizing = false; // Reset the flag to indicate recognition has stopped
             micIcon.style.color = "var(--darkColor-blue)"; // Reset mic color
-            // micIcon.style.transform = ""scale(1)""; // Reset scaling
+            // micIcon.style.transform = "scale(1)"; // Reset scaling
             micIcon.classList.remove("micActive");
             searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations["en"].searchPlaceholder}`;
         };
@@ -1537,9 +1537,9 @@ function initializeSpeechRecognition() {
         // Start speech recognition when mic icon is clicked
         micIcon.addEventListener("click", () => {
             if (isRecognizing) {
-                recognition.stop(); // Stop recognition if it""s already listening
+                recognition.stop(); // Stop recognition if it's already listening
             } else {
-                recognition.start(); // Start recognition if it""s not already listening
+                recognition.start(); // Start recognition if it's not already listening
             }
         });
     } else {
@@ -1558,8 +1558,8 @@ if (!micIconCheckbox.checked) {
 const radioButtons = document.querySelectorAll(".colorPlate");
 const themeStorageKey = "selectedTheme";
 const storedTheme = localStorage.getItem(themeStorageKey);
-// const radioButtons = document.querySelectorAll("".colorPlate"");
-// const themeStorageKey = ""selectedTheme""; // For predefined themes
+// const radioButtons = document.querySelectorAll(".colorPlate");
+// const themeStorageKey = "selectedTheme"; // For predefined themes
 const customThemeStorageKey = "customThemeColor"; // For color picker
 // const storedTheme = localStorage.getItem(themeStorageKey);
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
@@ -2015,8 +2015,8 @@ const applyCustomTheme = (color) => {
 
 // Load theme on page reload// Load theme on page reload
 window.addEventListener("load", function () {
-    // console.log(""Page loaded, stored theme:"", storedTheme);
-    // console.log(""Page loaded, stored custom color:"", storedCustomColor);
+    // console.log("Page loaded, stored theme:", storedTheme);
+    // console.log("Page loaded, stored custom color:", storedCustomColor);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -2028,7 +2028,7 @@ window.addEventListener("load", function () {
 const handleThemeChange = function () {
     if (this.checked) {
         const colorValue = this.value;
-        // console.log(""Radio button changed, selected theme:"", colorValue);
+        // console.log("Radio button changed, selected theme:", colorValue);
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
@@ -2044,7 +2044,7 @@ radioButtons.forEach(radioButton => {
 // Handle color picker changes
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
-    // console.log(""Color picker changed, selected color:"", selectedColor);
+    // console.log("Color picker changed, selected color:", selectedColor);
     resetDarkTheme(); // Clear dark theme if active
     localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
     localStorage.removeItem(themeStorageKey); // Clear predefined theme
@@ -2059,8 +2059,8 @@ const handleColorPickerChange = function (event) {
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
 colorPicker.addEventListener("input", handleColorPickerChange);
-// colorPicker.addEventListener(""change"", function () {
-//     // console.log(""Final color applied:"", colorPicker.value);
+// colorPicker.addEventListener("change", function () {
+//     // console.log("Final color applied:", colorPicker.value);
 //     location.reload();
 // });
 
@@ -2071,7 +2071,7 @@ colorPicker.addEventListener("input", handleColorPickerChange);
 const dbName = "ImageDB";
 const storeName = "backgroundImages";
 const timestampKey = "lastUpdateTime"; // Key to store last update time
-const imageTypeKey = "imageType"; // Key to store the type of image (""random"" or ""upload"")
+const imageTypeKey = "imageType"; // Key to store the type of image ("random" or "upload")
 
 // Open IndexedDB database
 function openDatabase() {
@@ -2981,8 +2981,8 @@ document.addEventListener("DOMContentLoaded", function () {
      * It adds three event listeners to each of the two inputs:
      * 1. Blur, to save changes to the shortcut automatically.
      * 2. Focus, to select all text in the input field when it is selected.
-     * 3. Keydown, which moves the focus to the URL field when the user presses ""Enter"" in the name field,
-     * and removes all focus to save the changes when the user presses ""Enter"" in the URL field.
+     * 3. Keydown, which moves the focus to the URL field when the user presses "Enter" in the name field,
+     * and removes all focus to save the changes when the user presses "Enter" in the URL field.
      *
      * @param inputs a list of the two inputs these listeners should be applied to.
      */
@@ -3166,7 +3166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //         for (const url of urls) {
     //             const img = new Image();
-    //             img.referrerPolicy = "no-referrer"; // Don""t send referrer data
+    //             img.referrerPolicy = "no-referrer"; // Don't send referrer data
     //             img.src = url;
 
     //             img.onload = () => {
@@ -3203,7 +3203,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     /**
-     * This function uses Google""s API to immediately get a favicon,
+     * This function uses Google's API to immediately get a favicon,
      * to be used while loading the real one and as a fallback.
      *
      * @param urlString the url of the website for which the favicon is requested
@@ -3388,7 +3388,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
-            // Show the disclaimer and check the user""s choice
+            // Show the disclaimer and check the user's choice
             const userConfirmed = showProxyDisclaimer();
             if (userConfirmed) {
                 // Only enable the proxy if the user confirmed
