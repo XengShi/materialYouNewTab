@@ -67,7 +67,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 2. **Stable Release** (v3.0)
 
 <p align="center">
-    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/​-GitHub-blue?style=for-the-badge&logo=github" alt="Download from GitHub" height="47" /></a>
+    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github" alt="Download from GitHub" height="47" /></a>
     <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn"><img src="https://github.com/user-attachments/assets/20a6e44b-fd46-4e6c-8ea6-aad436035753" alt="Download from Chrome Web Store" height="48" /></a>
     <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://github.com/user-attachments/assets/c0e99e6b-97cf-4af2-9737-099db7d3538b" alt="Download from Mozilla Add-ons" height="48" /></a>
     <!-- <a href="https://microsoftedge.microsoft.com/addons/detail/glloabhodjfmeoccmdngmhkpmdlakfbn"><img height="48" src="https://github.com/user-attachments/assets/204157eb-4cae-4c0e-b2cb-db514419fd9e" alt="Download from the Edge Add-ons" /></a> -->
