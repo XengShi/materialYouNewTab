@@ -69,3 +69,26 @@ document.addEventListener("click", (event) => {
 });
 
 document.getElementById("0NIHK").onclick = toggleShortcuts;
+
+//
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const aiToolsCont = document.getElementById("aiToolsCont");
+    const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
+
+    aiToolsCheckbox.addEventListener("change", function () {
+        saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+        if (aiToolsCheckbox.checked) {
+            aiToolsCont.style.display = "flex";
+            saveDisplayStatus("aiToolsDisplayStatus", "flex");
+        } else {
+            aiToolsCont.style.display = "none";
+            saveDisplayStatus("aiToolsDisplayStatus", "none");
+            toggleShortcuts()
+        }
+    });
+
+    loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
+    loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
+});

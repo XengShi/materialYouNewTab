@@ -2816,7 +2816,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Element selectors ------ */
 
     const shortcuts = document.getElementById("shortcuts-section");
-    const aiToolsCont = document.getElementById("aiToolsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const proxybypassField = document.getElementById("proxybypassField");
     const proxyinputField = document.getElementById("proxyField");
@@ -2826,7 +2825,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
@@ -2843,57 +2841,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
-
-    /* ------ Helper functions for saving and loading states ------ */
-
-    // Function to save checkbox state to localStorage
-    function saveCheckboxState(key, checkbox) {
-        localStorage.setItem(key, checkbox.checked ? "checked" : "unchecked");
-    }
-
-    // Function to load and apply checkbox state from localStorage
-    function loadCheckboxState(key, checkbox) {
-        const savedState = localStorage.getItem(key);
-        checkbox.checked = savedState === "checked";
-        if (key === "bookmarkGridCheckboxState") {
-            if (!savedState) {
-                bookmarkGridCheckbox.click();
-            } else {
-                bookmarkGridCheckbox.click();
-                bookmarkGridCheckbox.click();
-            }
-        }
-    }
-
-    // Function to save display status to localStorage
-    function saveDisplayStatus(key, displayStatus) {
-        localStorage.setItem(key, displayStatus);
-    }
-
-    // Function to load and apply display status from localStorage
-    function loadDisplayStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "flex") {
-            element.style.display = "flex";
-        } else {
-            element.style.display = "none";
-        }
-    }
-
-    // Function to save activeness status to localStorage
-    function saveActiveStatus(key, activeStatus) {
-        localStorage.setItem(key, activeStatus)
-    }
-
-    // Function to load and apply activeness status from localStorage
-    function loadActiveStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "active") {
-            element.classList.remove("inactive");
-        } else {
-            element.classList.add("inactive");
-        }
-    }
 
 
     /* ------ Loading shortcuts ------ */
@@ -3521,17 +3468,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    aiToolsCheckbox.addEventListener("change", function () {
-        saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
-        if (aiToolsCheckbox.checked) {
-            aiToolsCont.style.display = "flex";
-            saveDisplayStatus("aiToolsDisplayStatus", "flex");
-        } else {
-            aiToolsCont.style.display = "none";
-            saveDisplayStatus("aiToolsDisplayStatus", "none");
-            toggleShortcuts()
-        }
-    });
 
     bookmarkGridCheckbox.addEventListener("change", function () {
         saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
@@ -3625,12 +3561,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-    loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
-    loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
