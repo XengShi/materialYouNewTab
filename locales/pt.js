@@ -1,4 +1,4 @@
-// Portuguese -> pt
+// Portuguese (Brazil)
 const pt = {
     // Menu Items
     "github": "GitHub",
@@ -61,7 +61,7 @@ const pt = {
     "UserLocText": "Digite sua Localização",
     "UserLocSubtext": "Se a localização do clima não estiver correta",
     "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
-    "InputOptionsButton": "Opções de entrada",
+    "useGPS": "Usar GPS",
     "saveLoc": "Salvar",
 
     // Weather
