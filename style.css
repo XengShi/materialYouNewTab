@@ -1792,6 +1792,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .shortcutsContainer .shortcuts {
 	position: relative;
 	transition: all 0.3s;
+	isolation: isolate;
 }
 
 .shortcutsContainer .shortcuts:hover {
