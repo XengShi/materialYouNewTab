@@ -2455,68 +2455,6 @@ function base64ToBlob(base64) {
 
 // -------------------End of Settings ------------------------------
 
-// when User click on "AI-Tools"
-const element = document.getElementById("toolsCont");
-const shortcuts = document.getElementById("shortcutsContainer");
-
-function toggleShortcuts(event) {
-    const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
-
-    if (shortcutsCheckbox.checked) {
-        if (element.style.display === "flex") {
-            shortcuts.style.display = "flex";
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
-
-            setTimeout(() => {
-                element.style.display = "none";
-                shortcuts.style.display = "flex";
-            }, 500);
-        } else {
-            shortcuts.style.display = "none";
-            element.style.display = "flex";
-            setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                element.style.gap = "12px";
-            }, 300);
-        }
-    } else {
-        if (element.style.display === "flex") {
-            shortcuts.style.display = "none";
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                element.style.display = "none";
-            }, 500);
-        } else {
-            shortcuts.style.display = "none";
-            element.style.display = "flex";
-            setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                element.style.gap = "12px";
-            }, 300);
-        }
-    }
-    // Prevent outside click handler from triggering
-    if (event) event.stopPropagation();
-}
-
-// Collapse when clicking outside toolsCont
-document.addEventListener("click", (event) => {
-    if (!element.contains(event.target) && element.style.display === "flex") {
-        toggleShortcuts();
-    }
-});
-
-document.getElementById("0NIHK").onclick = toggleShortcuts;
 
 // ------------Search Suggestions---------------
 
