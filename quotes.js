@@ -3,7 +3,7 @@ const quotesContainer = document.querySelector('.quotesContainer');
 const authorName = document.querySelector('.authorName span');
 
 // Set character limits for quotes
-const MIN_QUOTE_LENGTH = 90;
+const MIN_QUOTE_LENGTH = 60;
 const MAX_QUOTE_LENGTH = 140;
 const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 minutes in milliseconds
 
@@ -15,106 +15,81 @@ const defaultQuotes = [
     { quote: "Since light travels faster than sound, some people appear bright until you hear them speak.", author: "Alan Dundes" }
 ];
 
-// Cache variables
-let cachedQuotes = [];
+// Sanitize quote text
+function sanitizeQuote(quote) {
+    // Remove trailing ” if there is no matching opening “
+    if (quote.endsWith("”") && !quote.includes("“")) {
+        quote = quote.slice(0, -1);
+    }
+    return quote;
+}
 
-async function fetchAndStoreQuotes() {
+// Fetch and display a quote
+async function fetchAndDisplayQuote() {
     try {
-        const randnum = Math.floor(Math.random() * 28) * 50;
-        const response = await fetch(`${apiUrl}&skip=${randnum}`);
+        const response = await fetch(apiUrl);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
         const data = await response.json();
+        const { quote, author } = data;
 
-        // Extract and filter quotes from the response
-        const filteredQuotes = data.quotes.filter(quote =>
-            (quote.quote.length+quote.author.length >= MIN_QUOTE_LENGTH) && (quote.quote.length+quote.author.length <= MAX_QUOTE_LENGTH)
-        );
+        // Sanitize the quote
+        quote = sanitizeQuote(quote);
 
-        if (filteredQuotes.length > 0) {
-            localStorage.setItem("allQuotes", JSON.stringify(filteredQuotes));
-            cachedQuotes = filteredQuotes; // Update cache
+        // Check if the quote length meets the criteria
+        if (quote.length + author.length >= MIN_QUOTE_LENGTH && quote.length + author.length <= MAX_QUOTE_LENGTH) {
+            const quoteData = { quote, author };
+
+            // Store in local storage
+            localStorage.setItem("currentQuote", JSON.stringify(quoteData));
+            localStorage.setItem("lastQuoteUpdate", Date.now().toString());
+
+            // Display the quote
+            displayQuote(quoteData);
+        } else {
+            // Fetch again if the quote does not meet character length requirements
+            fetchAndDisplayQuote();
         }
     } catch (error) {
-        console.error("Error fetching quotes:", error);
-        // Use default quotes in case of an error
-        localStorage.setItem("allQuotes", JSON.stringify(defaultQuotes));
-        cachedQuotes = defaultQuotes; // Update cache
+        console.error("Error fetching quote:", error);
+        useDefaultQuote();
     }
+}
 
-    // After fetching, ensure lastQuoteUpdate is set
+// Display a quote on the page
+function displayQuote(quoteData) {
+    const { quote, author } = quoteData || defaultQuotes[0];
+    quotesContainer.textContent = quote;
+    authorName.textContent = author;
+}
+
+// Use a default quote in case of errors
+function useDefaultQuote() {
+    const fallback = defaultQuotes[0];
+    localStorage.setItem("currentQuote", JSON.stringify(fallback));
     localStorage.setItem("lastQuoteUpdate", Date.now().toString());
+    displayQuote(fallback);
 }
 
-function displayQuote(quote) {
-    if (!quote || !quote.quote || !quote.author) {
-        const fallback = defaultQuotes[0];
-        quotesContainer.textContent = `${fallback.quote}`;
-        authorName.textContent = fallback.author;
-        return;
-    }
-    quotesContainer.textContent = `${quote.quote}`;
-    authorName.textContent = quote.author;
-}
-
-function displayNextQuote() {
-    const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate")) || 0;
-    const now = Date.now();
-    // If cache is empty, populate it from localStorage
-    if (cachedQuotes.length === 0) {
-        cachedQuotes = JSON.parse(localStorage.getItem("allQuotes") || "[]");
-    }
-
-    // Check if we need to fetch new quotes
-    if (cachedQuotes.length === 0) {
-        fetchAndStoreQuotes().then(() => displayNextQuote());
-        return;
-    }
-
-    // Display the current quote
-    const quoteToShow = cachedQuotes[0]; // Use the correct index
-    if (quoteToShow) {
-        displayQuote(quoteToShow);
-    }
-
-    // Remove the displayed quote from the list when refresh interval is reached
-    if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
-        cachedQuotes.splice(0, 1); // Remove the current quote
-        const quoteToShow = cachedQuotes[0]; // Use the correct index
-        if (quoteToShow) {
-            displayQuote(quoteToShow);
-        }
-        localStorage.setItem("allQuotes", JSON.stringify(cachedQuotes)); // Update localStorage
-        // After removing, ensure lastQuoteUpdate is set
-        localStorage.setItem("lastQuoteUpdate", Date.now().toString());
-    }
-
-    // Fetch new quotes if none are left
-    if (cachedQuotes.length === 0) {
-        fetchAndStoreQuotes();
-    }
-}
-
+// Refresh the quote if needed
 function refreshQuoteIfNeeded() {
     const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate")) || 0;
     const now = Date.now();
 
     if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
-        displayNextQuote();
+        fetchAndDisplayQuote();
+    } else {
+        const currentQuote = JSON.parse(localStorage.getItem("currentQuote") || "null");
+        if (currentQuote) {
+            displayQuote(currentQuote);
+        } else {
+            fetchAndDisplayQuote();
+        }
     }
 }
 
 // Initial load
 if (localStorage.getItem("motivationalQuotesVisible") !== "false") {
-    cachedQuotes = JSON.parse(localStorage.getItem("allQuotes") || "[]"); // Populate cache from localStorage
-
-    if (cachedQuotes.length === 0) {
-        fetchAndStoreQuotes().then(() => {
-            displayNextQuote(); // Display immediately after fetching
-        });
-    } else {
-        displayNextQuote(); // Display the first quote
-        refreshQuoteIfNeeded(); // Check for 10-minute refresh immediately
-    }
-
+    refreshQuoteIfNeeded(); // Display a quote immediately if possible
     setInterval(refreshQuoteIfNeeded, 60 * 1000); // Check every minute
 }
