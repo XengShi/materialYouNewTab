@@ -34,6 +34,7 @@ const translations = {
 const menuWidths = {
     en: '400px',
     pt: '470px',
+    bn: '416px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
