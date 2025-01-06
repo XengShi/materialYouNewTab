@@ -65,9 +65,15 @@ function displayQuote(quoteData) {
 
 // Use a default quote in case of errors
 function useDefaultQuote() {
-    const fallback = defaultQuotes[0];
+    let defaultQuoteIndex = parseInt(localStorage.getItem("defaultQuoteIndex")) || 0;
+    const fallback = defaultQuotes[defaultQuoteIndex];
+
+    defaultQuoteIndex = (defaultQuoteIndex + 1) % defaultQuotes.length;
+
+    localStorage.setItem("defaultQuoteIndex", defaultQuoteIndex.toString());
     localStorage.setItem("currentQuote", JSON.stringify(fallback));
     localStorage.setItem("lastQuoteUpdate", Date.now().toString());
+
     displayQuote(fallback);
 }
 
