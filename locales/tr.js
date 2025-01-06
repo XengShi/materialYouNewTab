@@ -1,4 +1,4 @@
-// Turkish -> tr
+// Turkish
 const tr = {
     // Menu Items
     "github": "GitHub",
@@ -113,7 +113,7 @@ const tr = {
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
-        "claude": "Claude",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
