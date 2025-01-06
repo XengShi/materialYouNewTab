@@ -891,7 +891,7 @@ function updateDate() {
             es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
-            vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
+            vi: `${dayName}, ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
