@@ -1603,7 +1603,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	line-height: 28px;
 }
 
-.autherName {
+.authorName {
 	background: var(--bg-color-blue);
 	position: absolute;
 	bottom: 0;
@@ -1614,7 +1614,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-bottom-right-radius: 20px;
 }
 
-.autherName .qtRounder {
+.authorName .qtRounder {
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -1623,7 +1623,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	bottom: 0;
 }
 
-.autherName .qtRounder2 {
+.authorName .qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
