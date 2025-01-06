@@ -31,7 +31,7 @@ async function fetchAndDisplayQuote() {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
-        const { quote, author } = data;
+        let { quote, author } = data;
 
         // Sanitize the quote
         quote = sanitizeQuote(quote);
@@ -83,13 +83,19 @@ function refreshQuoteIfNeeded() {
     const now = Date.now();
 
     if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
-        fetchAndDisplayQuote();
+        fetchAndDisplayQuote()
+            .catch(() => {
+                useDefaultQuote();
+            });
     } else {
         const currentQuote = JSON.parse(localStorage.getItem("currentQuote") || "null");
         if (currentQuote) {
             displayQuote(currentQuote);
         } else {
-            fetchAndDisplayQuote();
+            fetchAndDisplayQuote()
+                .catch(() => {
+                    useDefaultQuote();
+                });
         }
     }
 }
