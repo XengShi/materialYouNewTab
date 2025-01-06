@@ -6,7 +6,13 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Function to detect which browser is being used
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 const isFirefox = typeof browser !== "undefined";
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 let proxyurl;
 let clocktype;
@@ -1423,12 +1429,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //  -----------Voice Search------------
-// Function to detect Chrome and Edge on desktop
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-const isEdge = /Edg/.test(navigator.userAgent);
-const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
