@@ -31,7 +31,7 @@ async function fetchAndDisplayQuote() {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
-        const { quote, author } = data;
+        let { quote, author } = data;
 
         // Sanitize the quote
         quote = sanitizeQuote(quote);
@@ -65,9 +65,15 @@ function displayQuote(quoteData) {
 
 // Use a default quote in case of errors
 function useDefaultQuote() {
-    const fallback = defaultQuotes[0];
+    let defaultQuoteIndex = parseInt(localStorage.getItem("defaultQuoteIndex")) || 0;
+    const fallback = defaultQuotes[defaultQuoteIndex];
+
+    defaultQuoteIndex = (defaultQuoteIndex + 1) % defaultQuotes.length;
+
+    localStorage.setItem("defaultQuoteIndex", defaultQuoteIndex.toString());
     localStorage.setItem("currentQuote", JSON.stringify(fallback));
     localStorage.setItem("lastQuoteUpdate", Date.now().toString());
+
     displayQuote(fallback);
 }
 
@@ -77,13 +83,19 @@ function refreshQuoteIfNeeded() {
     const now = Date.now();
 
     if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
-        fetchAndDisplayQuote();
+        fetchAndDisplayQuote()
+            .catch(() => {
+                useDefaultQuote();
+            });
     } else {
         const currentQuote = JSON.parse(localStorage.getItem("currentQuote") || "null");
         if (currentQuote) {
             displayQuote(currentQuote);
         } else {
-            fetchAndDisplayQuote();
+            fetchAndDisplayQuote()
+                .catch(() => {
+                    useDefaultQuote();
+                });
         }
     }
 }

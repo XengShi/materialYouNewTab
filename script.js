@@ -1561,6 +1561,9 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+		&:not(:has(svg)){
+                    background: var(--accentLightTint-blue);
+                }
             }
 
             .dark-theme .digiclock {
@@ -2605,6 +2608,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
+		filter: grayscale(1) contrast(1.4);
+                mix-blend-mode: lighten;
                 }`;
 
 
