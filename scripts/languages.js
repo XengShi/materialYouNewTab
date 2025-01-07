@@ -227,6 +227,13 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+        let widthh = window.innerWidth / parseInt(menuWidths[lang] || menuWidths['en']);
+        if (window.innerWidth < 470) {
+            menuCont.style.scale = widthh;
+            menuCont.style.height = (100 / widthh).toString() + "%";
+            menuCont.style.marginTop = "-" + (100 / widthh - 100).toString() + "%";
+            menuCont.style.transformOrigin = "right";
+        }
     }
 
     // Save the selected language in localStorage

@@ -1868,7 +1868,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: fit-content;
-    	min-width: 61px; /* 61px is working fine for english lang */
+	text-wrap-mode: nowrap;
 }
 
 .aiToolsCont .toolsCont {
@@ -1893,9 +1893,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 6px;
 	left: -18px;
 }
-#firefly{
-	width: 103px;
-}
 
 .aiToolsCont .toolsCont a {
 	background-color: var(--accentLightTint-blue);
@@ -1909,6 +1906,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
 	transition: all 0.3s ease;
+	& div {
+		text-wrap-mode: nowrap;
+	}
 }
 
 .aiToolsCont .toolsCont a:hover {
@@ -2976,6 +2976,7 @@ input:checked + .toggle:before {
 	.centerDiv {
 		/* display: grid; */
 		grid-template-columns: auto;
+		padding-bottom: 0;
 		/* width: fit-content; */
 		/* height: 500px; */
 		/* background-color: orange; */
@@ -3016,8 +3017,8 @@ input:checked + .toggle:before {
 	}
 	.centerDiv {
 		width: calc(100% - var(--gap) * 2);
-		/* padding: var(--gap); */
-		/* align-self: center; */
+		padding-bottom: 0;
+		align-self: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -3028,7 +3029,73 @@ input:checked + .toggle:before {
 		align-items: center;
 		justify-content: center;
 	}
+	.rightDiv {
+		scale: 0.75;
+	}
 	.ttteexxtt {
 		display: none;
+	}
+}
+
+@media screen and (max-width: 420px) {
+	body {
+		display: flex;
+		flex-direction: column;
+	}
+	.searchbar {
+		width: 320px;
+		transform-origin: top left;
+		scale: 2;
+		margin-top: 2rem;
+	}
+	#enterBtn {
+		display: none;
+	}
+	#shortcuts-section {
+		height: auto;
+		position: relative;
+	}
+	.shortcutsContainer {
+		margin: 0;
+		flex-wrap: wrap;
+		width: 100%;
+		max-width: none;
+	}
+	.todoListCont {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.todo-container {
+		transform-origin: top left;
+		scale: 0.9;
+	}
+	.googleAppsCont {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.icon-container {
+		transform-origin: top right;
+		scale: 0.9;
+	}
+	#menuButton {
+		transform-origin: bottom right;
+		scale: 0.8;
+	}
+	.aiToolsCont {
+		transform-origin: bottom left;
+		scale: 0.8;
+		max-width: calc(100% - 30px);
+	}
+	.leftDiv {
+		scale: 0.7;
+		transform-origin: center;
+	}
+	.rightDiv {
+		scale: 0.5;
+		margin-top: -35%;
+		margin-bottom: -65%;
+	}
+	.centerDiv {
+		position: relative;
 	}
 }
