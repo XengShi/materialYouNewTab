@@ -234,7 +234,7 @@ function applyLanguage(lang) {
             menuStyle.innerHTML = `
                 .menuCont {
                     scale: ${widthh} !important;
-                    height: ${(100 / widthh).toString()}% !important;
+                    height: ${(100 / widthh).toString()}lvh !important;
                     transform-origin: top right !important;
                 }
             `
