@@ -3018,8 +3018,11 @@ input:checked + .toggle:before {
 	:root {
 		--gap: 1rem;
 	}
+	.menuBar {
+		--gap: 30px;
+	}
 	.centerDiv {
-		width: calc(100% - var(--gap) * 2);
+		width: calc(100% - 4rem);
 		padding-bottom: 0;
 		align-self: center;
 		display: flex;
@@ -3050,14 +3053,19 @@ input:checked + .toggle:before {
 		transform-origin: top left;
 		scale: 2;
 		margin-top: 2rem;
+		& #searchQ {
+			min-width: 0px;
+		}
 	}
 	#enterBtn {
 		display: none;
 	}
 	#shortcuts-section {
-		z-index: -1;
 		height: auto;
 		position: relative;
+	}
+	.centerDiv:has(.resultBox.show) + #shortcuts-section {
+		z-index: -1;
 	}
 	.shortcutsContainer {
 		margin: 0;

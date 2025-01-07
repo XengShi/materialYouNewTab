@@ -229,10 +229,16 @@ function applyLanguage(lang) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
         let widthh = window.innerWidth / parseInt(menuWidths[lang] || menuWidths['en']);
         if (window.innerWidth < 470) {
-            menuCont.style.scale = widthh;
-            menuCont.style.height = (100 / widthh).toString() + "%";
-            menuCont.style.marginTop = "-" + (100 / widthh - 100).toString() + "%";
-            menuCont.style.transformOrigin = "right";
+            let menuStyle = document.getElementById('menuStyle') || document.createElement('style');
+            menuStyle.id = "menuStyle";
+            menuStyle.innerHTML = `
+                .menuCont {
+                    scale: ${widthh} !important;
+                    height: ${(100 / widthh).toString()}% !important;
+                    transform-origin: top right !important;
+                }
+            `
+            document.head.append(menuStyle)
         }
     }
 
