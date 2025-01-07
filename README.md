@@ -200,7 +200,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
 ## 📖 Usage
 
 1. **Welcome Greeting**:
-   - The extension greets you with a personalized message, like "Hello! It’s RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
+   - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
 
 2. **Clock Widget**:
    - Two clock options are available: a modern **analog clock** (default) and a **digital clock**.
