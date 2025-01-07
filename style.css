@@ -3052,6 +3052,7 @@ input:checked + .toggle:before {
 		display: none;
 	}
 	#shortcuts-section {
+		z-index: -1;
 		height: auto;
 		position: relative;
 	}
@@ -3097,5 +3098,14 @@ input:checked + .toggle:before {
 	}
 	.centerDiv {
 		position: relative;
+	}
+	.resultBox {
+		scale: 1.5;
+		width: 427px;
+		bottom: -300px;
+		transform-origin: top left;
+	}
+	.searchWithCont {
+		display: none;
 	}
 }
