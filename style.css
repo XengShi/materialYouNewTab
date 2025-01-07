@@ -3056,7 +3056,8 @@ input:checked + .toggle:before {
 		width: 320px;
 		transform-origin: top left;
 		scale: 2;
-		margin-top: 2rem;
+		margin-top: 0rem;
+		margin-bottom: 2rem;
 		& #searchQ {
 			min-width: 0px;
 		}
@@ -3113,6 +3114,13 @@ input:checked + .toggle:before {
 		scale: 0.5;
 		margin-top: -64px;
         margin-bottom: -32px;
+		display: flex;
+		flex-direction: column-reverse;
+
+		& .topDiv{
+			top: 64px;
+			position: relative;
+		}
 	}
 	.centerDiv {
 		position: relative;
@@ -3121,7 +3129,7 @@ input:checked + .toggle:before {
 	.resultBox {
 		scale: 1.5;
 		width: 427px;
-		bottom: -300px;
+		bottom: -75px;
 		transform-origin: top left;
 	}
 	.searchWithCont {
