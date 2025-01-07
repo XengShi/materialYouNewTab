@@ -43,14 +43,14 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 - **Customizable Themes**: Choose from a selection of themes to match your style.
 - **Personalized Greeting**: Add a custom message or your name, so you're greeted each time you open a new tab.
-- **Integrated Search**: Search directly from the New Tab using your preferred search engine—Google, DuckDuckGo, Bing, or YouTube.
-- **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Safari.
+- **Integrated Search**: Search directly from the New Tab using your preferred search engine — Google, DuckDuckGo, Bing, Brave Search or YouTube.
+- **Browser Compatibility**: Supports major browsers like Chrome, Edge, Firefox, Brave, and Opera.
 
 ## 📥 Installation Guide
 
 ### Download
 
-1. **Development Version**
+1. **Development Version** (v3.0.*)
 
     - **Clone the Repository**:
       Use the following command to clone the repository:
@@ -64,13 +64,14 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
     - You can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
 
-2. **Stable Release**
+2. **Stable Release** (v3.0)
 
-    - [![Download](https://img.shields.io/badge/Github-Material%20You%20NewTab-blue.svg)](https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip)
-
-    - [![Download](https://img.shields.io/badge/Chromium-Download%20from%20Chrome%20Web%20Store%20-red.svg)](https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn)
-
-    - [![Download](https://img.shields.io/badge/Firefox-Download%20from%20Mozilla%20Addons%20-yellow.svg)](https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/)
+<p align="center">
+    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
+    <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn"><img src="https://github.com/user-attachments/assets/20a6e44b-fd46-4e6c-8ea6-aad436035753" alt="Download from Chrome Web Store" height="48" /></a>
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://github.com/user-attachments/assets/c0e99e6b-97cf-4af2-9737-099db7d3538b" alt="Download from Mozilla Add-ons" height="48" /></a>
+    <!-- <a href="https://microsoftedge.microsoft.com/addons/detail/glloabhodjfmeoccmdngmhkpmdlakfbn"><img height="48" src="https://github.com/user-attachments/assets/204157eb-4cae-4c0e-b2cb-db514419fd9e" alt="Download from the Edge Add-ons" /></a> -->
+</p>
 
 ---
 
@@ -98,7 +99,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
      - ![Edge](https://img.icons8.com/?size=20&id=dGm9KIZPpukc&format=png&color=000000) Edge: `edge://extensions`
 
      - ![Brave](https://img.icons8.com/color/20/000000/brave-web-browser.png) Brave: `brave://extensions`
-    
+
      - ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera: `opera://extensions`
 
    - **Enable Developer Mode**:
@@ -150,19 +151,7 @@ Below are screenshots of the process to guide you through each step visually.
 
 ---
 
-#### ![Safari](https://img.icons8.com/color/20/000000/safari--v1.png) Safari
-
-1. Clone the repository or download and extract the ZIP file.
-
-2. **Enable Developer Mode**:
-
-   - Open **Safari**, go to **Preferences > Advanced** and enable **Show Develop menu in the menu bar**.
-
-3. **Install Extension**:
-   - Go to **Develop > Show Extension Builder**, click the **"+"** button, and select your extension folder.
-   - Click **Install**.
-
----
+<!-- #### ![Safari](https://img.icons8.com/color/20/000000/safari--v1.png) Safari -->
 
 ### Installation Video
 

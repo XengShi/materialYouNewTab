@@ -1,4 +1,4 @@
-// Bengali -> bn
+// Bengali
 const bn = {
     // Menu Items
     "github": "গিটহাব",
@@ -13,8 +13,8 @@ const bn = {
     "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
     "editShortcutsList": "সংরক্ষিত শর্টকাট",
     "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
-    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
-    "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন",
+    "adaptiveIconInfoText": "শর্টকাট আইকন থিম রঙের সাথে মিলে ছোট আকারে প্রদর্শিত হবে",
     "bookmarksText": "বুকমার্কস",
     "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
     "ai_tools_button": "এআই সরঞ্জাম",

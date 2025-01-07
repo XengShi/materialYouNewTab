@@ -1,4 +1,4 @@
-// Hindi -> hi
+// Hindi
 const hi = {
     // Menu Items
     "github": "गिटहब",
@@ -10,11 +10,11 @@ const hi = {
     "shortcutsText": "शॉर्टकट्स",
     "enableShortcutsText": "सहेजे गए शॉर्टकट प्रदर्शित करें",
     "editShortcutsText": "शॉर्टकट्स संपादित करें",
-    "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखाए जाएँ",
+    "shortcutsInfoText": "निर्धारित करें कि कौन से शॉर्टकट दिखेंगे",
     "editShortcutsList": "सहेजे गए शॉर्टकट",
-    'editShortcutsListInfo': 'आप "+" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।',
-    "adaptiveIconText": "अनुकूल आइकन आकृतियाँ",
-    "adaptiveIconInfoText": "शॉर्टकट आइकन छोटे आकार में प्रदर्शित करें",
+    "editShortcutsListInfo": "आप \"+\" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।",
+    "adaptiveIconText": "अनुकूलनीय आइकन",
+    "adaptiveIconInfoText": "शॉर्टकट आइकन थीम रंग से मेल खाते हुए छोटे आकार में दिखेंगे",
     "bookmarksText": "बुकमार्क्स",
     "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
     "ai_tools_button": "AI-उपकरण",
