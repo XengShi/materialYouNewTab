@@ -3049,6 +3049,9 @@ input:checked + .toggle:before {
 		min-height: fit-content;
 		flex-direction: column;
 	}
+	.menuBar {
+		top: 0;
+	}
 	.searchbar {
 		width: 320px;
 		transform-origin: top left;
@@ -3071,6 +3074,7 @@ input:checked + .toggle:before {
 	}
 	.shortcutsContainer {
 		margin: 0;
+		padding-bottom: 90px;
 		flex-wrap: wrap;
 		width: 100%;
 		max-width: none;
@@ -3122,5 +3126,18 @@ input:checked + .toggle:before {
 	}
 	.searchWithCont {
 		display: none;
+	}
+	.shortcutsContainer[style="display: none;"] {
+		display: flex !important;
+	}
+	.hangno:has(+ :is(.toolsCont[style="display: flex; opacity: 1; transform: translateX(0px); gap: 12px;"], .toolsCont[style="display: flex; opacity: 0; transform: translateX(-100%); gap: 0px;"])) {
+		& .icon {
+			margin: 0
+		}
+		& .label {
+			width: 0;
+			opacity: 0;
+			pointer-events: none;
+		}
 	}
 }
