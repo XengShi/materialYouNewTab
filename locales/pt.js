@@ -1,8 +1,11 @@
+// Portuguese (Brazil)
 const pt = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "Feedback",
     "resetsettings": "Redefinir Configurações",
     "menuCloseText": "Fechar",
+
     // Shortcuts
     "shortcutsText": "Atalhos",
     "enableShortcutsText": "Mostrar atalhos salvos",
@@ -18,8 +21,14 @@ const pt = {
     "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
     "googleAppsMenuText": "Apps Google",
     "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
+    "googleAppsHover": "Apps do Google",
+
+    // Todo List
     "todoListText": "Lista de Tarefas",
     "todoListInfo": "Mostrar uma Lista de Tarefas",
+    "todoListHover": "Lista de Tarefas",
+    "todoPlaceholder": "Adicionar tarefa...",
+
     // Digital Clock
     "digitalclocktittle": "Relógio Digital",
     "digitalclockinfo": "Mudar para o relógio digital",
@@ -27,6 +36,7 @@ const pt = {
     "timeformatinfo": "Usar formato de 12 horas",
     "greetingtittle": "Saudação",
     "greetinginfo": "Mostrar saudação abaixo do texto personalizado",
+
     // Misc
     "userTextTitle": "Texto Personalizável",
     "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
@@ -38,6 +48,7 @@ const pt = {
     "hideSearchWithInfo": "Alternar entre os motores de busca clicando no ícone",
     "search_suggestions_button": "Sugestões de Pesquisa",
     "search_suggestions_text": "Ativar sugestões de pesquisa",
+
     // Proxy
     "useproxytitletext": "Bypass de Proxy",
     "useproxyText": "Se as sugestões de pesquisa não estiverem funcionando",
@@ -45,31 +56,25 @@ const pt = {
     "ProxySubtext": "Adicione seu próprio proxy de bypass CORS",
     "HostproxyButton": "Hospede seu próprio proxy",
     "saveproxy": "Salvar",
+
     // Location
     "UserLocText": "Digite sua Localização",
     "UserLocSubtext": "Se a localização do clima não estiver correta",
     "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
-    "InputOptionsButton": "Opções de entrada",
+    "useGPS": "Usar GPS",
     "saveLoc": "Salvar",
+
     // Weather
     "WeatherApiText": "Digite sua chave WeatherAPI",
     "WeatherApiSubtext": "Se a funcionalidade do clima não estiver funcionando",
     "userAPI": "Sua chave weatherAPI",
     "LearnMoreButton": "Saiba mais",
     "saveAPI": "Salvar",
-    // End of Menu Items
 
     // Body Items
     // Calendar
     "days": ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
     "months": ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-    // End of Calendar
-
-    // Weather
-    "humidityLevel": "Umidade",
-    "feelsLike": "Sensação de",
-    "location": "Terra",
-    // End of Weather
 
     // Bookmarks
     "bookmarksHeading": "Favoritos",
@@ -80,17 +85,14 @@ const pt = {
 
     // New Tab Item
     "conditionText": "Olá! Como você está hoje?",
+    "humidityLevel": "Umidade",
+    "feelsLike": "Sensação de",
+    "location": "Terra",
     "enterBtn": "Pesquisar",
     "searchPlaceholder": "Digite aqui...",
     "listenPlaceholder": "Ouvindo...",
-    "todoPlaceholder": "Adicionar tarefa...",
-    "todoListText": "Lista de Tarefas",
-    "todoListHover": "Lista de Tarefas",
     "searchWithHint": "Pesquisar Com",
-    "ai_tools": "Ferramentas de IA",
     "userText": "Clique aqui para editar",
-    "googleAppsHover": "Apps do Google",
-    // End of Body and New Tab Items
 
     // Greeting
     greeting: {
@@ -105,13 +107,16 @@ const pt = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+
+    // AI Tools
+    "ai_tools": "Ferramentas de IA",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Enviar Papel de Parede",
@@ -130,4 +135,5 @@ const pt = {
     "restorefailed": "Restauração falhou: ",
     "invalidBackup": "Arquivo de backup inválido",
     "deleteBookmark": "Você tem certeza de que deseja excluir o favorito?",
+    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

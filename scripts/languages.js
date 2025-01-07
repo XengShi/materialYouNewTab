@@ -1,6 +1,6 @@
 /* 
  * Material You NewTab
- * Copyright (c) 2023-2024 XengShi
+ * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
  * You should have received a copy of the GNU General Public License along with this program. 
  * If not, see <https://www.gnu.org/licenses/>.
@@ -12,6 +12,7 @@ const translations = {
     pt: pt, // Portuguese-BR
     zh: zh, // Chinese (Simplified)
     hi: hi, // Hindi
+    hu: hu, // Hungarian
     cs: cs, // Czech
     it: it, // Italian
     tr: tr, // Turkish
@@ -33,11 +34,13 @@ const translations = {
 const menuWidths = {
     en: '400px',
     pt: '470px',
+    bn: '416px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
     es: '446px',
     hi: '408px',
+    hu: '445px',
     ja: '444px',
     ru: '400px',
     it: '437px',
@@ -59,7 +62,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr', 'az', 'sl']; // Add more languages here as needed
+    const specialDecimalLanguages = ['cs', 'it', 'pt', 'ru', 'tr', 'vi', 'uz', 'es', 'ko', 'idn', 'fr', 'az', 'sl', 'hu']; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
@@ -116,7 +119,7 @@ function applyLanguage(lang) {
         'saveproxy',
         'UserLocText',
         'UserLocSubtext',
-        'InputOptionsButton',
+        'useGPS',
         'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
@@ -137,6 +140,7 @@ function applyLanguage(lang) {
         'chatGPT',
         'gemini',
         'copilot',
+        'claude',
         'perplexity',
         'firefly',
         'metaAI',

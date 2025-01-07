@@ -1,6 +1,7 @@
-// Bengali -> bn
+// Bengali
 const bn = {
     // Menu Items
+    "github": "গিটহাব",
     "feedback": "মতামত",
     "resetsettings": "সেটিংস পুনরায় সেট করুন",
     "menuCloseText": "বন্ধ করুন",
@@ -12,8 +13,8 @@ const bn = {
     "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
     "editShortcutsList": "সংরক্ষিত শর্টকাট",
     "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
-    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন আকৃতি",
-    "adaptiveIconInfoText": "শর্টকাট আইকনগুলো ছোট আকারে প্রদর্শন হবে",
+    "adaptiveIconText": "অ্যাডাপ্টিভ আইকন",
+    "adaptiveIconInfoText": "শর্টকাট আইকন থিম রঙের সাথে মিলে ছোট আকারে প্রদর্শিত হবে",
     "bookmarksText": "বুকমার্কস",
     "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
     "ai_tools_button": "এআই সরঞ্জাম",
@@ -60,7 +61,7 @@ const bn = {
     "UserLocText": "আপনার অবস্থান লিখুন",
     "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
     "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
-    "InputOptionsButton": "ইনপুট অপশন",
+    "useGPS": "জিপিএস ব্যবহার করুন",
     "saveLoc": "সংরক্ষণ করুন",
 
     // Weather
@@ -77,11 +78,6 @@ const bn = {
     "months": ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
     // "months": ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রি', 'মে', 'জুন', 'জুলাই', 'আগ', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'],   // Truncated
 
-    // Weather
-    "humidityLevel": "আর্দ্রতা",
-    "feelsLike": "অনুভূতি হয়",
-    "location": "পৃথিবী",
-
     // Bookmarks
     "bookmarksHeading": "বুকমার্কস",
     "bookmarkViewAs": "এইভাবে দেখুন",
@@ -91,6 +87,9 @@ const bn = {
 
     // New Tab Item
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
+    "humidityLevel": "আর্দ্রতা",
+    "feelsLike": "অনুভূতি হয়",
+    "location": "পৃথিবী",
     "enterBtn": "সার্চ করুন",
     "searchPlaceholder": "এখানে টাইপ করুন...",
     "listenPlaceholder": "শোনা হচ্ছে...",
@@ -104,7 +103,7 @@ const bn = {
         "evening": "শুভ সন্ধ্যা!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "গুগল",
     "duckEngine": "ডাকডাকগো",
     "bingEngine": "বিং",
@@ -116,10 +115,10 @@ const bn = {
     "chatGPT": "চ্যাটজিপিটি",
     "gemini": "জেমিনি",
     "copilot": "কোপাইলট",
+    "claude": "ক্লড",
     "perplexity": "পারপ্লেক্সিটি",
     "firefly": "অ্যাডোবি ফায়ারফ্লাই",
     "metaAI": "মেটা এআই",
-    "github": "গিটহাব",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "ওয়ালপেপার দিন",

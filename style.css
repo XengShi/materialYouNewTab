@@ -1,6 +1,6 @@
 /* 
  * Material You NewTab
- * Copyright (c) 2023-2024 XengShi
+ * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
  * You should have received a copy of the GNU General Public License along with this program. 
  * If not, see <https://www.gnu.org/licenses/>.
@@ -206,23 +206,26 @@ body {
 .resultBox {
 	max-height: 222px;
 	overflow-y: auto;
-
 	position: absolute;
 	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
-
 	padding: 5px 10px;
 	scrollbar-width: none;
-	/* For Firefox */
-
 	/* Initially hidden */
 	opacity: 0;
 	z-index: -1000;
 	transform: translateY(-70px);
 	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
 	pointer-events: none;
+}
+
+@media screen and (max-height: 700px) {
+	.resultBox {
+		max-height: 180px;
+		bottom: -60px;
+	}
 }
 
 .resultBox::-webkit-scrollbar {
@@ -1749,6 +1752,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .shortcutsContainer .shortcuts {
 	position: relative;
 	transition: all 0.3s;
+	isolation: isolate;
 }
 
 .shortcutsContainer .shortcuts:hover {

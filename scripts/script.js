@@ -1,14 +1,17 @@
-/* 
+/*
  * Material You NewTab
- * Copyright (c) 2023-2024 XengShi
+ * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
- * You should have received a copy of the GNU General Public License along with this program. 
+ * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
+
+const isFirefox = typeof browser !== 'undefined';
 
 let proxyurl;
 let clocktype;
 let hourformat;
+
 window.addEventListener('DOMContentLoaded', async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
@@ -16,8 +19,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const userProxyInput = document.getElementById("userproxy");
     const saveAPIButton = document.getElementById("saveAPI");
     const saveLocButton = document.getElementById("saveLoc");
-    const resetbtn = document.getElementById("resetsettings");
+    const useGPSButton = document.getElementById("useGPS");
     const saveProxyButton = document.getElementById("saveproxy");
+    const resetbtn = document.getElementById("resetsettings");
 
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -53,14 +57,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         location.reload();
     });
 
-    // Save location to localStorage
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        userLocInput.value = "";
-        location.reload();
-    });
-
     // Reset settings (clear localStorage)
     resetbtn.addEventListener("click", () => {
         if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
@@ -71,7 +67,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        const proxyurl = userProxyInput.value.trim();
+        let proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
@@ -88,7 +84,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 proxyurl = proxyurl.slice(0, -1);  // Remove the last character ("/")
             }
         }
-
         // Set the proxy in localStorage, clear the input, and reload the page
         localStorage.setItem("proxy", proxyurl);
         userProxyInput.value = "";
@@ -97,14 +92,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Default Weather API key
     const weatherApiKeys = [
-        // 'd36ce712613d4f21a6083436240910', hit call limit for Dec 2024, uncomment it in Jan 2025
-        // 'db0392b338114f208ee135134240312',
-        // 'de5f7396db034fa2bf3140033240312',
-        // 'c64591e716064800992140217240312',
-        // '9b3204c5201b4b4d8a2140330240312',
-        // 'eb8a315c15214422b60140503240312',
-        // 'cd148ebb1b784212b74140622240312',
-        // '7ae67e219af54df2840140801240312',	UNCOMMENT ALL ON JAN 01
+        'd36ce712613d4f21a6083436240910',
+        'db0392b338114f208ee135134240312',
+        'de5f7396db034fa2bf3140033240312',
+        'c64591e716064800992140217240312',
+        '9b3204c5201b4b4d8a2140330240312',
+        'eb8a315c15214422b60140503240312',
+        'cd148ebb1b784212b74140622240312',
+        '7ae67e219af54df2840140801240312',
         '0a6bc8a404224c8d89953341241912',
         'f59e58d7735d4739ae953115241912'
     ];
@@ -117,146 +112,211 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Determine the location to use
     let currentUserLocation = savedLocation;
 
-    // If no saved location, fetch the IP-based location
-    if (!currentUserLocation) {
-        try {
-            const geoLocation = 'https://ipinfo.io/json/';
-            const locationData = await fetch(geoLocation);
-            const parsedLocation = await locationData.json();
-
-            currentUserLocation = parsedLocation.loc;
-        } catch (error) {
-            currentUserLocation = "auto:ip"; // Fallback if fetching location fails
-        }
-    }
+    // Flag indicating whether to use GPS
+    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
 
     const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
-    try {
-        let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
-        const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-        const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
-        const weatherParsedLang = localStorage.getItem("weatherParsedLang");
-        
-        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
-            // Fetch weather data using Weather API
-            let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
-            let data = await fetch(weatherApi);
-            parsedData = await data.json();
-            if (!parsedData.error) {
-                // Extract only the necessary fields before saving
-                const filteredData = {
-                    location: {
-                        name: parsedData.location.name,
-                    },
-                    current: {
-                        condition: {
-                            text: parsedData.current.condition.text,
-                            icon: parsedData.current.condition.icon,
+    // Fetch weather data based on a location
+    async function fetchWeather(location) {
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        try {
+            let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
+            const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
+            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+            const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+
+            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
+
+            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+                // Fetch weather data using Weather API
+                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+                let data = await fetch(weatherApi);
+                parsedData = await data.json();
+                if (!parsedData.error) {
+                    // Extract only the necessary fields before saving
+                    const filteredData = {
+                        location: {
+                            name: parsedData.location.name,
                         },
-                        temp_c: parsedData.current.temp_c,
-                        temp_f: parsedData.current.temp_f,
-                        humidity: parsedData.current.humidity,
-                        feelslike_c: parsedData.current.feelslike_c,
-                        feelslike_f: parsedData.current.feelslike_f,
-                    },
-                };
-                // Save filtered weather data to localStorage
-                localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
-                localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
-                localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
-                localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
-            }
-            UpdateWeather();
-        } else {
-            setTimeout(UpdateWeather, 25);
-        }
+                        current: {
+                            condition: {
+                                text: parsedData.current.condition.text,
+                                icon: parsedData.current.condition.icon,
+                            },
+                            temp_c: parsedData.current.temp_c,
+                            temp_f: parsedData.current.temp_f,
+                            humidity: parsedData.current.humidity,
+                            feelslike_c: parsedData.current.feelslike_c,
+                            feelslike_f: parsedData.current.feelslike_f,
+                        },
+                    };
 
-        function UpdateWeather() {
-            // Weather data
-            const conditionText = parsedData.current.condition.text;
-            const tempCelsius = Math.round(parsedData.current.temp_c);
-            const tempFahrenheit = Math.round(parsedData.current.temp_f);
-            const humidity = parsedData.current.humidity;
-            const feelsLikeCelsius = parsedData.current.feelslike_c;
-            const feelsLikeFahrenheit = parsedData.current.feelslike_f;
-
-            // Update DOM elements with the weather data
-            document.getElementById("conditionText").textContent = conditionText;
-
-            // Localize and display temperature and humidity
-            const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-            const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-            const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-            const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-            const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-            // Set humidity level
-            const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
-            document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-            // Event Listener for the Fahrenheit toggle
-            const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-            const updateTemperatureDisplay = () => {
-                const tempElement = document.getElementById("temp");
-                const feelsLikeElement = document.getElementById("feelsLike");
-                const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
-
-                if (fahrenheitCheckbox.checked) {
-                    // Update temperature
-                    tempElement.textContent = localizedTempFahrenheit;
-                    const tempUnitF = document.createElement("span");
-                    tempUnitF.className = "tempUnit";
-                    tempUnitF.textContent = "°F";
-                    tempElement.appendChild(tempUnitF);
-
-                    // Update feels like
-                    const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                } else {
-                    // Update temperature
-                    tempElement.textContent = localizedTempCelsius;
-                    const tempUnitC = document.createElement("span");
-                    tempUnitC.className = "tempUnit";
-                    tempUnitC.textContent = "°C";
-                    tempElement.appendChild(tempUnitC);
-
-                    // Update feels like
-                    const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                    feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    // Save filtered weather data to localStorage
+                    localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
+                    localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
+                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
+                    localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-            };
-            updateTemperatureDisplay();
-
-            // Setting weather Icon
-            const newWIcon = parsedData.current.condition.icon;
-            const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-            document.getElementById("wIcon").src = weatherIcon;
-
-            // Define minimum width for the slider based on the language
-            const humidityMinWidth = {
-                idn: '47%',
-                en: '42%', // Default for English and others
-            };
-            const slider = document.getElementById("slider");
-            slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
-
-            // Set slider width based on humidity
-            if (humidity > 40) {
-                slider.style.width = `calc(${humidity}% - 60px)`;
+                UpdateWeather();
+            } else {
+                setTimeout(UpdateWeather, 25);
             }
 
-            // Update location
-            var city = parsedData.location.name;
-            // var city = "Thiruvananthapuram";
-            var maxLength = 10;
-            var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-            document.getElementById("location").textContent = limitedText;
-        }
+            function UpdateWeather() {
+                // Weather data
+                const conditionText = parsedData.current.condition.text;
+                const tempCelsius = Math.round(parsedData.current.temp_c);
+                const tempFahrenheit = Math.round(parsedData.current.temp_f);
+                const humidity = parsedData.current.humidity;
+                const feelsLikeCelsius = parsedData.current.feelslike_c;
+                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-    } catch (error) {
-        console.error("Error fetching weather data:", error);
+                // Update DOM elements with the weather data
+                document.getElementById("conditionText").textContent = conditionText;
+
+                // Localize and display temperature and humidity
+                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+
+                // Set humidity level
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+
+                // Event Listener for the Fahrenheit toggle
+                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+                const updateTemperatureDisplay = () => {
+                    const tempElement = document.getElementById("temp");
+                    const feelsLikeElement = document.getElementById("feelsLike");
+                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+
+                    if (fahrenheitCheckbox.checked) {
+                        // Update temperature
+                        tempElement.textContent = localizedTempFahrenheit;
+                        const tempUnitF = document.createElement("span");
+                        tempUnitF.className = "tempUnit";
+                        tempUnitF.textContent = "°F";
+                        tempElement.appendChild(tempUnitF);
+
+                        // Update feels like
+                        const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                    } else {
+                        // Update temperature
+                        tempElement.textContent = localizedTempCelsius;
+                        const tempUnitC = document.createElement("span");
+                        tempUnitC.className = "tempUnit";
+                        tempUnitC.textContent = "°C";
+                        tempElement.appendChild(tempUnitC);
+
+                        // Update feels like
+                        const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
+                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                    }
+                };
+                updateTemperatureDisplay();
+
+                // Setting weather Icon
+                const newWIcon = parsedData.current.condition.icon;
+                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                document.getElementById("wIcon").src = weatherIcon;
+
+                // Define minimum width for the slider based on the language
+                const humidityMinWidth = {
+                    idn: '47%',
+                    hu: '48%',
+                    en: '42%', // Default for English and others
+                };
+                const slider = document.getElementById("slider");
+                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
+
+                // Set slider width based on humidity
+                if (humidity > 40) {
+                    slider.style.width = `calc(${humidity}% - 60px)`;
+                }
+
+                // Update location
+                var city = parsedData.location.name;
+                // var city = "Thiruvananthapuram";
+                var maxLength = 10;
+                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+                document.getElementById("location").textContent = limitedText;
+
+            }
+        } catch (error) {
+            console.error("Error fetching weather data:", error);
+        }
     }
+
+    // Function to fetch GPS-based location
+    async function fetchGPSLocation() {
+        try {
+            const getLocationFromGPS = () => {
+                return new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            resolve({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                            });
+                        },
+                        (error) => reject(error),
+                        {timeout: 4000}
+                    );
+                });
+            };
+
+            const {latitude, longitude} = await getLocationFromGPS();
+            return `${latitude},${longitude}`;
+        } catch (error) {
+            console.error("GPS Location retrieval failed: ", error);
+            throw new Error("Failed to retrieve GPS location");
+        }
+    }
+
+    // Fetch location dynamically based on user preference
+    await (async function initializeLocation() {
+        try {
+            if (useGPS) {
+                // Use GPS for dynamic location
+                currentUserLocation = await fetchGPSLocation();
+            } else if (!currentUserLocation) {
+                // Fallback to IP-based location if no manual input
+                const geoLocation = 'https://ipinfo.io/json/';
+                const locationData = await fetch(geoLocation);
+                const parsedLocation = await locationData.json();
+                currentUserLocation = parsedLocation.loc;
+            }
+
+            // Fetch weather data
+            fetchWeather(currentUserLocation);
+        } catch (error) {
+            console.error("Failed to determine location:", error);
+            currentUserLocation = "auto:ip";
+            fetchWeather(currentUserLocation);
+        }
+    })();
+
+    // Handle "Use GPS" button click
+    useGPSButton.addEventListener("click", () => {
+        // Set the flag to use GPS dynamically and remove manual location
+        localStorage.setItem("useGPS", true);
+        localStorage.removeItem("weatherLocation");
+        location.reload();
+    });
+
+    // Handle manual location input
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        localStorage.setItem("useGPS", false);
+        userLocInput.value = "";
+        fetchWeather(userLocation);
+        location.reload();
+    });
 });
 // ---------------------------end of weather stuff--------------------
 
@@ -303,7 +363,6 @@ const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
 
-const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
 if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
@@ -403,7 +462,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (bookmarkSidebar.classList.contains('open')) {
             loadBookmarks();
         }
-    };
+    }
+
     // Function to load bookmarks
     function loadBookmarks() {
         if (!bookmarksAPI || !bookmarksAPI.getTree) {
@@ -487,7 +547,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const sortedNodes = [...folders, ...bookmarks];
 
         for (let node of sortedNodes) {
-            if (node.id === "1") { continue; }
+            if (node.id === "1") {
+                continue;
+            }
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement('li');
 
@@ -526,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add('favicon');
                 favicon.onerror = () => {
-                    favicon.src = "./shortcuts_icons/offline.svg";
+                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
                 };
 
                 // Create the delete button
@@ -566,9 +628,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({ url: node.url, active: false });
+                            browser.tabs.create({url: node.url, active: false});
                         } else if (isChrome) {
-                            chrome.tabs.create({ url: node.url, active: false });
+                            chrome.tabs.create({url: node.url, active: false});
                         } else {
                             window.open(node.url, '_blank');
                         }
@@ -576,9 +638,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Open in the current tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.update({ url: node.url });
+                            browser.tabs.update({url: node.url});
                         } else if (isChrome) {
-                            chrome.tabs.update({ url: node.url }, function () {
+                            chrome.tabs.update({url: node.url}, function () {
                             });
                         } else {
                             window.location.href = node.url;
@@ -594,7 +656,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         return list;
-    }  
+    }
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -632,7 +694,7 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
+    todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ''; // Clear Input
@@ -675,7 +737,7 @@ todoulList.addEventListener("click", (event) => {
     } else if (event.target.classList.contains('todopinbtn')) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned === true) ? false : true); // Update status
+        todoList[id].pinned = ((todoList[id].pinned !== true)); // Update status
         SaveToDoData(); // Save Changes
     }
 });
@@ -684,6 +746,7 @@ todoulList.addEventListener("click", (event) => {
 function SaveToDoData() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
+
 // Fetch saved JSON and create list items using it
 function ShowToDoList() {
     try {
@@ -711,8 +774,8 @@ if (todoLastUpdateDate === todoCurrentDate) {
     localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
     for (let id in todoList) {
-        if (todoList[id].pinned == false) {
-            if (todoList[id].status == "completed") {
+        if (todoList[id].pinned === false) {
+            if (todoList[id].status === "completed") {
                 delete todoList[id]; // Remove the Unpinned and Completed list item data
             }
         } else {
@@ -780,6 +843,7 @@ function initializeClockType() {
     clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
     localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
 }
+
 // Call this function to initialize the clock type
 initializeClockType();
 
@@ -839,6 +903,7 @@ function updateDate() {
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
+            hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -873,29 +938,29 @@ function updateanalogclock() {
         hourreset = false;
         return;
     }
-    if (cumulativeSecondRotation == 0) {
+    if (cumulativeSecondRotation === 0) {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(361deg)`;
         secondreset = true;
-    } else if (secondreset != true) {
+    } else if (secondreset !== true) {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
 
-    if (cumulativeMinuteRotation == 0) {
+    if (cumulativeMinuteRotation === 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
         minreset = true;
-    } else if (minreset != true) {
+    } else if (minreset !== true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     }
 
-    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+    if (cumulativeHourRotation === 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
         document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
         document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
-    } else if (hourreset != true) {
+    } else if (hourreset !== true) {
         document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
@@ -975,6 +1040,7 @@ function updatedigiClock() {
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
         fr: `${dayName} ${dayOfMonth}`, // Mardi 11
+        hu: `${dayName} ${dayOfMonth}`, // Kedd 11
         default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -984,12 +1050,12 @@ function updatedigiClock() {
     let period = ''; // For storing AM/PM equivalent
 
     // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh', 'ja', 'ko']; // Languages with NaN in locale time format
+    const specialLanguages = ['tr', 'zh', 'ja', 'ko', 'hu']; // Languages with NaN in locale time format
     const localizedLanguages = ['bn', 'mr'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: hourformat };
+    const timeOptions = {hour: '2-digit', minute: '2-digit', hour12: hourformat};
     const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? 'en-US' : currentLanguage;
     timeString = now.toLocaleTimeString(locale, timeOptions);
 
@@ -1164,7 +1230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector('.dropdown-content');
 
     document.addEventListener('click', (event) => {
-        if (dropdown.style.display == "block") {
+        if (dropdown.style.display === "block") {
             event.stopPropagation();
             dropdown.style.display = 'none';
         }
@@ -1338,7 +1404,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event listener for keydown events to navigate up/down
     document.querySelector('.dropdown').addEventListener('keydown', function (event) {
-        if (dropdown.style.display == "block") {
+        if (dropdown.style.display === "block") {
             if (event.key === 'ArrowDown') {
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
             } else if (event.key === 'ArrowUp') {
@@ -1572,7 +1638,6 @@ const resetDarkTheme = () => {
 };
 
 
-
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
@@ -1727,6 +1792,9 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+                &:not(:has(svg)){
+                    background: var(--accentLightTint-blue);
+                }
             }
 
             .dark-theme .digiclock {
@@ -1857,7 +1925,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -1884,13 +1952,13 @@ const applySelectedTheme = (colorValue) => {
     const updateExtensionIcon = (colorValue) => {
         if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+            browser.browserAction.setIcon({path: iconPaths[colorValue]});
         } else if (typeof chrome !== "undefined" && chrome.action) {
             // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
+            chrome.action.setIcon({path: iconPaths[colorValue]});
         } else if (typeof safari !== "undefined") {
             // Safari
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
+            safari.extension.setToolbarIcon({path: iconPaths[colorValue]});
         }
     };
     updateExtensionIcon(colorValue);
@@ -2027,7 +2095,6 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 // });
 
 
-
 // end of Function to apply the selected theme
 
 // -------------------------- Wallpaper -----------------------------
@@ -2074,6 +2141,7 @@ async function loadImageAndDetails() {
         getFromStore(db, imageTypeKey)
     ]);
 }
+
 function getFromStore(db, key) {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, 'readonly');
@@ -2124,6 +2192,7 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
 const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+
 async function applyRandomImage(showConfirmation = true) {
     if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations['en'].confirmWallpaper)) {
         return;
@@ -2248,7 +2317,7 @@ document.getElementById("fileInput").addEventListener("change", validateAndResto
 // Backup data from localStorage and IndexedDB
 async function backupData() {
     try {
-        const backup = { localStorage: {}, indexedDB: {} };
+        const backup = {localStorage: {}, indexedDB: {}};
 
         // Backup localStorage
         for (let key in localStorage) {
@@ -2266,7 +2335,7 @@ async function backupData() {
         const fileName = `NewTab_Backup_${formattedDate}.json`;
 
         // Create and download the backup file
-        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+        const blob = new Blob([JSON.stringify(backup, null, 2)], {type: "application/json"});
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = fileName;
@@ -2309,10 +2378,7 @@ async function validateAndRestoreData(event) {
 
 function isValidBackupFile(backup) {
     // Check if localStorage and indexedDB exist and are objects
-    if (typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object") {
-        return false;
-    }
-    return true;
+    return !(typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object");
 }
 
 // Backup IndexedDB: Extract data from ImageDB -> backgroundImages
@@ -2339,7 +2405,7 @@ async function backupIndexedDB() {
                         // Convert Blob to Base64 for JSON compatibility
                         const reader = new FileReader();
                         reader.onload = () => {
-                            data[key] = { blob: reader.result, isBlob: true };
+                            data[key] = {blob: reader.result, isBlob: true};
                             if (--pending === 0) resolve(data);
                         };
                         reader.readAsDataURL(value);
@@ -2414,8 +2480,9 @@ function base64ToBlob(base64) {
     for (let i = 0; i < binary.length; i++) {
         array[i] = binary.charCodeAt(i);
     }
-    return new Blob([array], { type: mime });
+    return new Blob([array], {type: mime});
 }
+
 // -------------------End of Settings ------------------------------
 
 // when User click on "AI-Tools"
@@ -2517,7 +2584,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                 // Fetch autocomplete suggestions
                 const suggestions = await getAutocompleteSuggestions(query);
 
-                if (suggestions == "") {
+                if (suggestions === "") {
                     hideResultBox();
                 } else {
                     // Clear the result box
@@ -2539,7 +2606,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     // Check if the dropdown of search shortcut is open
                     const dropdown = document.querySelector('.dropdown-content');
 
-                    if (dropdown.style.display == "block") {
+                    if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
                     }
 
@@ -2588,7 +2655,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({block: "nearest"});
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -2599,7 +2666,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({block: "nearest"});
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
@@ -2833,6 +2900,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
+                filter: grayscale(1) contrast(1.4);
+                mix-blend-mode: lighten;
                 }`;
 
 
@@ -2924,13 +2993,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Loading shortcuts ------ */
 
     /**
-    * Function to load and apply all shortcut names and URLs from localStorage
-    *
-    * Iterates through the stored shortcuts and replaces the settings entry for the preset shortcuts with the
-    * stored ones.
-    * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
-    * container.
-    */
+     * Function to load and apply all shortcut names and URLs from localStorage
+     *
+     * Iterates through the stored shortcuts and replaces the settings entry for the preset shortcuts with the
+     * stored ones.
+     * It then calls apply for all the shortcuts, to synchronize the changes settings entries with the actual shortcut
+     * container.
+     */
 
     function loadShortcuts() {
         let amount = localStorage.getItem("shortcutAmount");
@@ -2971,14 +3040,14 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Creating shortcut elements ------ */
 
     /**
-    * Function that creates a div to be used in the shortcut edit panel of the settings.
-    *
-    * @param name The name of the shortcut
-    * @param url The URL of the shortcut
-    * @param deleteInactive Whether the delete button should be active
-    * @param i The index of the shortcut
-    * @returns {HTMLDivElement} The div to be used in the settings
-    */
+     * Function that creates a div to be used in the shortcut edit panel of the settings.
+     *
+     * @param name The name of the shortcut
+     * @param url The URL of the shortcut
+     * @param deleteInactive Whether the delete button should be active
+     * @param i The index of the shortcut
+     * @returns {HTMLDivElement} The div to be used in the settings
+     */
     function createShortcutSettingsEntry(name, url, deleteInactive, i) {
         const deleteButtonContainer = document.createElement("div");
         deleteButtonContainer.className = "delete";
@@ -3015,12 +3084,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function creates a shortcut to be used for the shortcut container on the main page.
-    *
-    * @param shortcutName The name of the shortcut
-    * @param shortcutUrl The url of the shortcut
-    * @param i The index of the shortcut
-    */
+     * This function creates a shortcut to be used for the shortcut container on the main page.
+     *
+     * @param shortcutName The name of the shortcut
+     * @param shortcutUrl The url of the shortcut
+     * @param i The index of the shortcut
+     */
     function createShortcutElement(shortcutName, shortcutUrl, i) {
         const shortcut = document.createElement("a");
         shortcut.href = shortcutUrl;
@@ -3054,16 +3123,16 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Attaching event listeners to shortcut settings ------ */
 
     /**
-    * Function to attach all required event listeners to the shortcut edit inputs in the settings.
-    *
-    * It adds three event listeners to each of the two inputs:
-    * 1. Blur, to save changes to the shortcut automatically.
-    * 2. Focus, to select all text in the input field when it is selected.
-    * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
-    * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
-    *
-    * @param inputs a list of the two inputs these listeners should be applied to.
-    */
+     * Function to attach all required event listeners to the shortcut edit inputs in the settings.
+     *
+     * It adds three event listeners to each of the two inputs:
+     * 1. Blur, to save changes to the shortcut automatically.
+     * 2. Focus, to select all text in the input field when it is selected.
+     * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
+     * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
+     *
+     * @param inputs a list of the two inputs these listeners should be applied to.
+     */
     function attachEventListenersToInputs(inputs) {
         inputs.forEach(input => {
             // save and apply when done
@@ -3091,10 +3160,10 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Saving and applying changes to shortcuts ------ */
 
     /**
-    * This function stores a shortcut by saving its values in the settings panel to the local storage.
-    *
-    * @param shortcut The shortcut to be saved
-    */
+     * This function stores a shortcut by saving its values in the settings panel to the local storage.
+     *
+     * @param shortcut The shortcut to be saved
+     */
     function saveShortcut(shortcut) {
         const name = shortcut.querySelector("input.shortcutName").value;
         const url = shortcut.querySelector("input.URL").value;
@@ -3104,10 +3173,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function applies a change that has been made in the settings panel to the real shortcut in the container
-    *
-    * @param shortcut The shortcut to be applied.
-    */
+     * This function applies a change that has been made in the settings panel to the real shortcut in the container
+     *
+     * @param shortcut The shortcut to be applied.
+     */
     function applyShortcut(shortcut) {
         const shortcutName = shortcut.querySelector("input.shortcutName").value;
         let url = shortcut.querySelector("input.URL").value.trim();
@@ -3141,8 +3210,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Adding, deleting, and resetting shortcuts ------ */
 
     /**
-    * This function creates a new shortcut in the settings panel, then saves and applies it.
-    */
+     * This function creates a new shortcut in the settings panel, then saves and applies it.
+     */
     function newShortcut() {
         const currentAmount = parseInt(localStorage.getItem("shortcutAmount"));
         const newAmount = currentAmount + 1;
@@ -3173,10 +3242,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function deletes a shortcut and shifts all indices of the following shortcuts back by one.
-    *
-    * @param shortcut The shortcut to be deleted.
-    */
+     * This function deletes a shortcut and shifts all indices of the following shortcuts back by one.
+     *
+     * @param shortcut The shortcut to be deleted.
+     */
     function deleteShortcut(shortcut) {
         const newAmount = (localStorage.getItem("shortcutAmount") || 0) - 1;
         if (newAmount < MIN_SHORTCUTS_ALLOWED) return;
@@ -3212,10 +3281,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function resets shortcuts to their original state, namely the presets.
-    *
-    * It does this by deleting all shortcut-related data, then reloading the shortcuts.
-    */
+     * This function resets shortcuts to their original state, namely the presets.
+     *
+     * It does this by deleting all shortcut-related data, then reloading the shortcuts.
+     */
     function resetShortcuts() {
         for (let i = 0; i < (localStorage.getItem("shortcutAmount") || 0); i++) {
             localStorage.removeItem("shortcutName" + i);
@@ -3231,13 +3300,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Shortcut favicon handling ------ */
 
     /**
-    * This function verifies whether a URL for a favicon is valid.
-    *
-    * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
-    *
-    * @param urls the array of potential URLs of favicons
-    * @returns {Promise<unknown>}
-    */
+     * This function verifies whether a URL for a favicon is valid.
+     *
+     * It does this by creating an image and setting the URL as the src, as fetch would be blocked by CORS.
+     *
+     * @param urls the array of potential URLs of favicons
+     * @returns {Promise<unknown>}
+     */
     // function filterFavicon(urls) {
     //     return new Promise((resolve, reject) => {
     //         let found = false;
@@ -3265,11 +3334,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     /**
-    * This function returns the url to the favicon of a website, given a URL.
-    *
-    * @param urlString The url of the website for which the favicon is requested
-    * @return {Promise<String>} Potentially the favicon url
-    */
+     * This function returns the url to the favicon of a website, given a URL.
+     *
+     * @param urlString The url of the website for which the favicon is requested
+     * @return {Promise<String>} Potentially the favicon url
+     */
     // async function getBestIconUrl(urlString) {
     //     const hostname = new URL(urlString).hostname;
     //     try {
@@ -3281,27 +3350,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     /**
-    * This function uses Google's API to immediately get a favicon,
-    * to be used while loading the real one and as a fallback.
-    *
-    * @param urlString the url of the website for which the favicon is requested
-    * @returns {HTMLImageElement} The img element representing the favicon
-    */
+     * This function uses Google's API to immediately get a favicon,
+     * to be used while loading the real one and as a fallback.
+     *
+     * @param urlString the url of the website for which the favicon is requested
+     * @returns {HTMLImageElement} The img element representing the favicon
+     */
     function getFallbackFavicon(urlString) {
         const logo = document.createElement("img");
         const hostname = new URL(urlString).hostname;
 
         if (hostname === "github.com") {
-            logo.src = "./shortcuts_icons/github-shortcut.svg";
+            logo.src = "./svgs/shortcuts_icons/github-shortcut.svg";
         } else if (urlString === "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html") {
             // Special case for invalid URLs
-            logo.src = "./shortcuts_icons/invalid-url.svg";
+            logo.src = "./svgs/shortcuts_icons/invalid-url.svg";
         } else {
             logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
             // Handle image loading error on offline scenario
             logo.onerror = () => {
-                logo.src = "./shortcuts_icons/offline.svg";
+                logo.src = "./svgs/shortcuts_icons/offline.svg";
             };
         }
 
@@ -3309,11 +3378,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /**
-    * This function returns the custom logo for the url associated with a preset shortcut.
-    *
-    * @param url The url of the shortcut.
-    * @returns {Element|null} The logo if it was found, otherwise null.
-    */
+     * This function returns the custom logo for the url associated with a preset shortcut.
+     *
+     * @param url The url of the shortcut.
+     * @returns {Element|null} The logo if it was found, otherwise null.
+     */
     function getCustomLogo(url) {
         const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
         if (!html) return null;
@@ -3326,8 +3395,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Proxy ------ */
 
     /**
-    * This function shows the proxy disclaimer.
-    */
+     * This function shows the proxy disclaimer.
+     */
     function showProxyDisclaimer() {
         const message = translations[currentLanguage]?.ProxyDisclaimer || translations['en'].ProxyDisclaimer;
 
@@ -3367,17 +3436,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Intialize shortcut switch
     if (localStorage.getItem('showShortcutSwitch')) {
-        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() == 'true';
+        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() === 'true';
         document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
 
         if (isShortCutSwitchEnabled) {
             hideEngineContainer();
-        }
-        else if (!isShortCutSwitchEnabled) {
+        } else if (!isShortCutSwitchEnabled) {
             showEngineContainer()
         }
-    }
-    else {
+    } else {
         localStorage.setItem('showShortcutSwitch', false);
     }
 
@@ -3677,7 +3744,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
@@ -3689,12 +3756,13 @@ document.addEventListener('keydown', function (event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
     }
 });
+
 //------------------------- LoadingScreen -----------------------//
 
 function ApplyLoadingColor() {

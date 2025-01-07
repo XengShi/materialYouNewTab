@@ -1,29 +1,34 @@
+// Slovenian -> sl
 const sl = {
     // Menu Items
+    "github": "GitHub",
     "feedback": "Povratne informacije",
     "resetsettings": "Ponastavi nastavitve",
-    "menuCloseText": "Zapri ",
+    "menuCloseText": "Zapri",
+
     // Shortcuts
-    "shortcutsText": "Bljižnice",
-    "enableShortcutsText": "Prikaži shranjene bljižnice",
+    "shortcutsText": "Bližnjice",
+    "enableShortcutsText": "Prikaži shranjene bližnjice",
     "editShortcutsText": "Uredi bližnjice",
-    "shortcutsInfoText": "Izberite, katere bljižnice bodo prikazane",
-    "editShortcutsList": "Shranjene bljižnice",
+    "shortcutsInfoText": "Izberite, katere bližnjice bodo prikazane",
+    "editShortcutsList": "Shranjene bližnjice",
     'editShortcutsListInfo': 'Dodate lahko nove bližnjice s klikom na ikono "+" ali uredite obstoječe s klikom na ime bližnjice ali URL.',
     "adaptiveIconText": "Prilagodljive oblike ikon",
     "adaptiveIconInfoText": "Ikone bodo videti manjše",
     "bookmarksText": "Zaznamki",
     "bookmarksInfo": "Prikaži stransko vrstico z zaznamki",
     "ai_tools_button": "AI-orodja",
-    "enable_ai_tools": "Prikaži bljižnice za AI orodja",
+    "enable_ai_tools": "Prikaži bližnjice za AI orodja",
     "googleAppsMenuText": "Google Aplikacije",
-    "googleAppsMenuInfo": "Prikaži bljižnice za Google aplikacije",
-    "googleAppsHover": "Google Aplikacije",    // Keep this shorter
+    "googleAppsMenuInfo": "Prikaži bližnjice za Google aplikacije",
+    "googleAppsHover": "Google Aplikacije",
+
     // Todo List
     "todoListText": "Seznam opravil",
     "todoListInfo": "Prikaži dnevni seznam opravil",
-    "todoListHover": "Seznam opravil",    // Keep this short
+    "todoListHover": "Seznam opravil",
     "todoPlaceholder": "Dodaj nalogo...",
+
     // Digital Clock
     "digitalclocktittle": "Digitalna ura",
     "digitalclockinfo": "Preklopi na digitalno uro",
@@ -31,6 +36,7 @@ const sl = {
     "timeformatinfo": "Uporabi 12-urni časovni format",
     "greetingtittle": "Pozdrav",
     "greetinginfo": "Prikaži pozdrav pod prilagojenim besedilom",
+
     // Misc
     "userTextTitle": "Uporabniško prilagodljivo besedilo",
     "userTextInfo": "Prikaži uporabniško prilagodljivo besedilo pod uro",
@@ -42,6 +48,7 @@ const sl = {
     "hideSearchWithInfo": "Preklapljajte med iskalniki s klikom na ikono",
     "search_suggestions_button": "Predlogi za iskanje",
     "search_suggestions_text": "Omogoči predloge za iskanje",
+
     // Proxy
     "useproxytitletext": "Proxy obid",
     "useproxyText": "Če predlogi za iskanje ne delujejo",
@@ -49,48 +56,43 @@ const sl = {
     "ProxySubtext": "Dodajte svoj proxy obid za CORS",
     "HostproxyButton": "Gostite svoj proxy",
     "saveproxy": "Shrani",
+
     // Location
     "UserLocText": "Vnesite svojo lokacijo",
     "UserLocSubtext": "Če lokacija vremena ni pravilna",
     "userLoc": "Vaše mesto ali koordinate (geografska širina, dolžina)",
     "InputOptionsButton": "Možnosti vnosa",
     "saveLoc": "Shrani",
+
     // Weather
-    "WeatherApiText": "Vnesite svoj WeatherAPI ključ",    // For 'WeatherAPI' string, only transliterate
+    "WeatherApiText": "Vnesite svoj WeatherAPI ključ",
     "WeatherApiSubtext": "Če vremenska funkcionalnost ne deluje",
     "userAPI": "Vaš WeatherAPI ključ",
     "LearnMoreButton": "Izvedite več",
     "saveAPI": "Shrani",
-    // End of Menu Items
 
     // Body Items
     // Calendar
     "days": ['nedelja', 'ponedeljek', 'torek', 'sreda', 'četrtek', 'petek', 'sobota'],
     "months": ['januar', 'februar', 'marec', 'april', 'maj', 'junij', 'julij', 'avgust', 'september', 'oktober', 'november', 'december'],
-    // End of Calendar
-
-    // Weather
-    "humidityLevel": "Vlažnost",
-    "feelsLike": "Občutek",
-    "location": "Zemlja",
-    // End of Weather
 
     // Bookmarks
     "bookmarksHeading": "Zaznamki",
-    "bookmarkViewAs" : "Prikaži kot",
-    "bookmarkViewGrid" : "Mreža",    // Keep this shorter
-    "bookmarkViewList" : "Seznam",    // Keep this shorter
+    "bookmarkViewAs": "Prikaži kot",
+    "bookmarkViewGrid": "Mreža",
+    "bookmarkViewList": "Seznam",
     "bookmarkSearch": "Išči zaznamek",
 
     // New Tab Item
     "conditionText": "Živijo! Kako ste danes?",
+    "humidityLevel": "Vlažnost",
+    "feelsLike": "Občutek",
+    "location": "Zemlja",
     "enterBtn": "Išči",
     "searchPlaceholder": "Vnesite tukaj...",
     "listenPlaceholder": "Poslušam...",
     "searchWithHint": "Išči z",
-    "ai_tools": "AI orodja",
     "userText": "Kliknite tukaj za urejanje",
-    // End of Body and New Tab Items
 
     // Greeting
     greeting: {
@@ -99,29 +101,32 @@ const sl = {
         "evening": "Dober večer!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "Duck", // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+
+    // AI Tools
+    "ai_tools": "AI orodja",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
-    "uploadWallpaperText": "Naloži ozadje",    // Keep this short
+    "uploadWallpaperText": "Naloži ozadje",
     "backupText": "Varnostna kopija",
     "restoreText": "Obnovi",
-    "rangColor": "Izberi barvo",    // Keep this short
+    "rangColor": "Izberi barvo",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Ali želite nastaviti novo sliko kot ozadje danes?",
-    "confirmRestore": "Ali ste prepričani, da želite ponastaviti nastavitve? To dejanje ni mogoče razvejaviti.",
+    "confirmRestore": "Ali ste prepričani, da želite ponastaviti nastavitve? To dejanje ni mogoče razveljaviti.",
     "Nobackgroundset": "Trenutno ni nastavljena nobena slika za ozadje.",
     "clearbackgroundimage": "Ali ste prepričani, da želite odstraniti sliko ozadja?",
     "ProxyDisclaimer": "Vse funkcije proxyja so privzeto izklopljene.\n\nČe omogočite predloge za iskanje in proxy za obvoz CORS, je močno priporočljivo, da gostite svoj proxy za boljšo zasebnost.\n\nPrivzeto bo proxy nastavljen na https://mynt-proxy.rhythmcorehq.com, kar pomeni, da bodo vsi vaši podatki šli skozi to storitev, kar lahko predstavlja tveganje za zasebnost.",
@@ -130,4 +135,5 @@ const sl = {
     "restorefailed": "Obnovitev ni uspela: ",
     "invalidBackup": "Neveljavna datoteka za varnostno kopijo",
     "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek?",
+    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

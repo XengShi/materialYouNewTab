@@ -1,7 +1,7 @@
-// Czech
+// Czech -> cs
 const cs = {
-    /* MENU ITEMS */
-    // General
+    // Menu Items
+    "github": "GitHub",
     "feedback": "Zpětná vazba",
     "resetsettings": "Resetovat nastavení",
     "menuCloseText": "Zavřít",
@@ -10,9 +10,9 @@ const cs = {
     "shortcutsText": "Zkratky",
     "enableShortcutsText": "Zobrazí zkratky",
     "editShortcutsText": "Upravit zkratky",
+    "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
     "editShortcutsList": "Uložené zkratky",
     "editShortcutsListInfo": "Nové zkratky můžete přidat klepnutím na ikonku „+“. Upravit existující můžete klepnutím na název nebo URL adresu zkratky.",
-    "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
     "adaptiveIconText": "Adaptivní tvary ikon",
     "adaptiveIconInfoText": "Ikony zkratek se zmenší",
     "bookmarksText": "Záložky",
@@ -21,8 +21,13 @@ const cs = {
     "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
     "googleAppsMenuText": "Google aplikace",
     "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
+    "googleAppsHover": "Google aplikace",
+
+    // Todo List
     "todoListText": "Seznam úkolů",
     "todoListInfo": "Zobrazí denní seznam úkolů",
+    "todoListHover": "Seznam úkolů",
+    "todoPlaceholder": "Přidat úkol...",
 
     // Digital Clock
     "digitalclocktittle": "Digitální hodiny",
@@ -66,15 +71,10 @@ const cs = {
     "LearnMoreButton": "Zjistit více",
     "saveAPI": "Uložit",
 
-    /* BODY ITEMS */
+    // Body Items
     // Calendar
     "days": ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"],
     "months": ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"],
-
-    // Weather
-    "humidityLevel": "Vlhkost",
-    "feelsLike": "Pocitová teplota",
-    "location": "Země",
 
     // Bookmarks
     "bookmarksHeading": "Záložky",
@@ -85,15 +85,14 @@ const cs = {
 
     // New Tab Item
     "conditionText": "Dobrý den! Jak se máte?",
+    "humidityLevel": "Vlhkost",
+    "feelsLike": "Pocitová teplota",
+    "location": "Země",
     "enterBtn": "Vyhledat",
     "searchPlaceholder": "Zadejte hledaný výraz...",
     "listenPlaceholder": "Poslouchám...",
-    "todoPlaceholder": "Přidat úkol...",
     "searchWithHint": "Vyhledávat prostřednictvím",
-    "ai_tools": "AI nástroje",
     "userText": "Upravíte po kliknutí",
-    "googleAppsHover": "Google aplikace",
-    "todoListHover": "Seznam úkolů",
 
     // Greeting
     "greeting": {
@@ -102,19 +101,22 @@ const cs = {
         "evening": "Dobrý večer!"
     },
 
-    // Search Engines and rest
+    // Search Engines
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+
+    // AI Tools
+    "ai_tools": "AI nástroje",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-    "github": "GitHub",
 
     // Wallpaper and alerts
     "uploadWallpaperText": "Nahrát tapetu",
@@ -134,4 +136,4 @@ const cs = {
     "invalidBackup": "Neplatný soubor se zálohou",
     "deleteBookmark": "Opravdu si přejete smazat tuto záložku?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
-}
+};
