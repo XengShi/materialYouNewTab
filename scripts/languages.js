@@ -236,6 +236,15 @@ function applyLanguage(lang) {
         }
     }
 
+    // Dynamically update the font family based on the language
+    const root = document.documentElement;
+    const commonFontStack = "'poppins', 'Poppins', sans-serif";
+    if (lang === 'vi') {
+        root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
+    } else {
+        root.style.setProperty('--main-font-family', commonFontStack);
+    }
+
     // Save the selected language in localStorage
     saveLanguageStatus('selectedLanguage', lang);
 }
