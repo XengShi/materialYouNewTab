@@ -138,8 +138,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
         const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
         const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+
+        const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
         
-        if (!parsedData || ((Date.now() - weatherParsedTime) > 600000) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+        if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
             // Fetch weather data using Weather API
             let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
             let data = await fetch(weatherApi);
@@ -170,7 +172,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
             UpdateWeather();
         } else {
-            setTimeout(UpdateWeather, 25);
+            setTimeout(UpdateWeather, 50);
         }
 
         function UpdateWeather() {
@@ -303,7 +305,6 @@ const bookmarkSearch = document.getElementById('bookmarkSearch');
 const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
 const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
 const bookmarkViewList = document.getElementById('bookmarkViewList');
-
 
 const isFirefox = typeof browser !== 'undefined';
 var bookmarksAPI;
@@ -853,12 +854,10 @@ function updateanalogclock() {
     var initialMinutes = currentTime.getMinutes();
     var initialHours = currentTime.getHours();
 
-
     // Initialize cumulative rotations
-
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
+    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
+    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
     if (secondreset) {
         document.getElementById("second").style.transition = "none";
         document.getElementById("second").style.transform = `rotate(0deg)`;
@@ -885,6 +884,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
+
     if (cumulativeMinuteRotation == 0) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
@@ -892,13 +892,14 @@ function updateanalogclock() {
     } else if (minreset != true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    } if (cumulativeHourRotation == 0) {
+    }
 
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(361deg)`;
+    if (cumulativeHourRotation == 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
+        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
+        document.getElementById("hour").style.transform = `rotate(0deg)`;
         hourreset = true;
     } else if (hourreset != true) {
-        document.getElementById("hour").style.transition = "transform 1s ease"; // Transition fluide
+        document.getElementById("hour").style.transition = "transform 1s ease";
         document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
     }
     // Update date immediately
@@ -1224,9 +1225,9 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 const isEdge = /Edg/.test(navigator.userAgent);
 const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 // const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 function isSupportedBrowser() {
-    const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
 
@@ -1560,6 +1561,9 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
                 background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+		&:not(:has(svg)){
+                    background: var(--accentLightTint-blue);
+                }
             }
 
             .dark-theme .digiclock {
@@ -1688,7 +1692,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);;
+                background-color: var(--darkColor-dark);
             }
         `;
         document.head.appendChild(darkThemeStyleTag);
@@ -2633,6 +2637,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
+		filter: grayscale(1) contrast(1.4);
+                mix-blend-mode: lighten;
                 }`;
 
 
@@ -3433,9 +3439,9 @@ if(bookmarkGridCheckbox.checked){
 	bookmarkList.classList.remove("grid-view");
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowRight'&&event.target.tagName!=="INPUT"&&event.target.tagName!=="TEXTAREA") {
-        if(bookmarksCheckbox.checked){
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+        if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
             bookmarksCheckbox.click();
@@ -3446,7 +3452,7 @@ document.addEventListener('keydown', function(event) {
 document.addEventListener('keydown', function (event) {
     const searchInput = document.getElementById('searchQ');
     const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA") {
+    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
         searchBar.classList.add('active');
@@ -3458,4 +3464,109 @@ document.addEventListener('keydown', function (event) {
 function ApplyLoadingColor(){
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
     localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+}
+
+//---------------------- Search With Removal Toast --------------------------
+// Check if alert has already been shown
+if (!localStorage.getItem('alertShown')) {
+    // Show the toast after 4 seconds
+    setTimeout(() => {
+        // Create the wrapper for the background to blur
+        const blurWrapper = document.createElement('div');
+        blurWrapper.style.position = 'fixed';
+        blurWrapper.style.top = '0';
+        blurWrapper.style.left = '0';
+        blurWrapper.style.width = '100%';
+        blurWrapper.style.height = '100%';
+        blurWrapper.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        blurWrapper.style.backdropFilter = 'blur(10px)';
+        blurWrapper.style.zIndex = '999'; // Below the toast
+        document.body.appendChild(blurWrapper);
+
+        // Block all pointer events from any background elements
+        closeMenuBar();
+        document.body.style.pointerEvents = 'none';
+
+        // Create the toast container
+        const toast = document.createElement('div');
+        toast.style.position = 'fixed';
+        toast.style.top = '50%';
+        toast.style.left = '50%';
+        toast.style.transform = 'translate(-50%, -50%)';
+        toast.style.backgroundColor = 'var(--bg-color-blue)';
+        toast.style.color = 'var(--text-color-blue)';
+        toast.style.padding = '30px';
+        toast.style.borderRadius = '30px';
+        toast.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        toast.style.zIndex = '1000';
+        toast.style.fontSize = '1rem';
+        toast.style.textAlign = 'center';
+        toast.style.maxWidth = '600px';
+        toast.style.lineHeight = '1.8';
+        toast.style.pointerEvents = 'auto';  // Enable pointer events for toast
+
+        // Create message parts
+        const messageParts = [
+            { text: 'We have had to remove the "Search with" feature,', style: { fontWeight: 'bold' } },
+            { text: 'which allowed quick switching between search engines,' },
+            { text: 'because of Chrome Web Store policies.', style: { fontWeight: 'bold' } },
+            { text: '', style: { margin: '10px' }, isGap: true },
+            { text: 'This was NOT a voluntary choice but something ' },
+            { text: 'we had to do to comply. Thank you for your understanding.' },
+            { text: '', style: { margin: '10px' }, isGap: true },
+            { text: 'However, you can still use this feature if you' },
+            { text: ' download and install it from ', style: { fontWeight: 'bold' }, isLink: true }
+        ];
+
+        // Create the GitHub link
+        const githubLink = document.createElement('a');
+        githubLink.href = 'https://github.com/XengShi/materialYouNewTab#download';
+        githubLink.target = '_blank';
+        githubLink.textContent = 'GitHub';
+        githubLink.style.color = 'var(--darkerColor-blue)';
+        githubLink.style.fontWeight = 'bold';
+
+        // Append all message parts
+        messageParts.forEach(part => {
+            const element = document.createElement('p');
+            element.textContent = part.text;
+            if (part.style) {
+                Object.assign(element.style, part.style);
+            }
+            if (part.isGap) {
+                element.style.margin = part.style.margin || '0';
+            }
+            if (part.isLink) {
+                element.appendChild(githubLink); // Append GitHub link
+            }
+            toast.appendChild(element);
+        });
+
+        // Add the "Don't show again" button
+        const button = document.createElement('button');
+        button.textContent = "Got it, don’t show this again";
+        button.style.marginTop = '30px';
+        button.style.padding = '8px 15px';
+        button.style.border = 'none';
+        button.style.backgroundColor = 'var(--darkColor-blue)';
+        button.style.color = '#fff';
+        button.style.borderRadius = '17px';
+        button.style.cursor = 'pointer';
+
+        // Button click handler
+        button.addEventListener('click', () => {
+            // Set a flag in localStorage so the toast is not shown again
+            localStorage.setItem('alertShown', 'true');
+            // Remove the toast and the blur effect
+            document.body.removeChild(toast);
+            document.body.removeChild(blurWrapper);
+            document.body.style.pointerEvents = 'auto'; // Allow interactions with the background again
+        });
+
+        // Append the button to the toast
+        toast.appendChild(button);
+
+        // Append the toast to the body
+        document.body.appendChild(toast);
+    }, 4000);
 }

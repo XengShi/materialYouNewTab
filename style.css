@@ -213,18 +213,13 @@ body {
 .resultBox {
 	max-height: 222px;
 	overflow-y: auto;
-
 	position: absolute;
 	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
-
 	padding: 5px 10px;
 	scrollbar-width: none;
-	/* For Firefox */
-
-	/* Initially hidden */
 	opacity: 0;
 	z-index: -1000;
 	transform: translateY(-70px);
@@ -235,6 +230,13 @@ body {
 .resultBox::-webkit-scrollbar {
 	display: none;
 	/* For Chrome, Safari, and Edge */
+}
+
+@media screen and (max-height: 700px) {
+	.resultBox {
+		max-height: 180px;
+		bottom: -60px;
+	}
 }
 
 /* Visible state: when you want the result box to appear */
@@ -1659,7 +1661,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	line-height: 28px;
 }
 
-.autherName {
+.authorName {
 	background: var(--bg-color-blue);
 	position: absolute;
 	bottom: 0;
@@ -1670,7 +1672,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-bottom-right-radius: 20px;
 }
 
-.autherName .qtRounder {
+.authorName .qtRounder {
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -1679,7 +1681,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	bottom: 0px;
 }
 
-.autherName .qtRounder2 {
+.authorName .qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
@@ -1852,6 +1854,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: relative;
 	transition: all 0.3s;
 	will-change: transform;
+	isolation: isolate;
 }
 
 .shortcutsContainer .shortcuts:hover {
