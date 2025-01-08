@@ -132,7 +132,7 @@ const vi = {
     "ProxyDisclaimer": "Theo mặc định, mọi tính năng của proxy đều bị tắt.\n\nNếu bạn bật gợi ý tìm kiếm và bỏ qua proxy CORS, chúng tôi khuyên bạn nên lưu trữ proxy riêng để tăng cường quyền riêng tư.\n\nTheo mặc định, proxy sẽ được đặt thành https://mynt-proxy.rhythmcorehq.com, nghĩa là mọi dữ liệu của bạn sẽ đi qua dịch vụ này, điều này có thể gây ra lo ngại về quyền riêng tư.",
     "failedbackup": "Sao lưu không thành công: ",
     "restorecompleted": "Đã khôi phục thành công!",
-    "restorefailed": "Khôi phục không thành công:  ",
+    "restorefailed": "Khôi phục không thành công: ",
     "invalidBackup": "Tệp sao lưu không hợp lệ",
     "deleteBookmark": "Bạn có chắc chắn muốn xóa dấu trang không?",
     "UnsupportedBrowser": "Dấu trang không được hỗ trợ trong trình duyệt của bạn",
