@@ -2256,7 +2256,10 @@ function applyZoom(value, min, max) {
     slider.style.borderRadius = "100px";
     slider.style.background = `linear-gradient(to right, var(--darkColor-blue) calc(${percentage}% + ${sliderValue}px), #00000000 calc(${percentage}% + ${sliderValue}px))`;
     const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
-    document.documentElement.style.zoom = zoomLevel;
+    document.documentElement.style.scale = zoomLevel;
+    document.documentElement.style.height = `calc(100% / ${zoomLevel})`;
+    document.documentElement.style.overflow = `hidden`;
+    document.documentElement.style.width = `calc(100% / ${zoomLevel})`;
     localStorage.setItem('zoomLevel', value);
 }
 slider.addEventListener('input', function () {
@@ -2265,15 +2268,13 @@ slider.addEventListener('input', function () {
     const min = this.min;
     applyZoom(value, min, max);
 });
-window.addEventListener('load', function () {
-    const savedZoomLevel = localStorage.getItem('zoomLevel');
-    if (savedZoomLevel) {
-        slider.value = savedZoomLevel;
-        const max = slider.max;
-        const min = slider.min;
-        applyZoom(savedZoomLevel, min, max);
-    }
-});
+const savedZoomLevel = localStorage.getItem('zoomLevel');
+if (savedZoomLevel) {
+    slider.value = savedZoomLevel;
+    const max = slider.max;
+    const min = slider.min;
+    applyZoom(savedZoomLevel, min, max);
+}
 // ------- End of Zooming in out function-----------
 
 // when User click on "AI-Tools"

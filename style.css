@@ -146,6 +146,8 @@
 	--shortcut-bar-gap-and-padding: 10px;
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
+
+	transform-origin: top left;
 }
 
 /* Theme */
@@ -190,15 +192,17 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	min-height: 100%;
+	min-height: 100vh;
 	/* background-color: red; */
-	overflow: auto;
+	position: relative;
+	overflow-y: scroll;
+	scrollbar-width: none;
 	background-image: var(--bg-image, none);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh;
+	height: 100%;
 	/* Ensure the image fits the viewport height */
 	margin: 0;
 	/* Remove margin to avoid unwanted spacing */
@@ -280,8 +284,8 @@ body {
 	border-radius: 100px;
 	background: linear-gradient(
 		to right,
-		var(--darkColor-blue) 90%,
-		#00000000 90%
+		var(--darkColor-blue) calc(86.67% - 20px),
+		#00000000 calc(86.67% - 20px)
 	);
 	outline: none;
 	appearance: none;
@@ -1636,8 +1640,9 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ________________End of Searchbar______________________ */
 
 .searchWithCont {
-	margin-top: var(--gap);
-	border-radius: var(--round);
+	margin-top: 30px;
+	border-radius: 20px;
+	overflow: hidden;
 	position: relative;
 	display: flex;
 	font-size: 1rem;
@@ -1671,14 +1676,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 20px;
 	left: -20px;
 	transform: rotate(90deg);
-	bottom: 0;
+	bottom: 0px;
 }
 
 .autherName .qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	right: 0;
+	right: 0px;
 	transform: rotate(90deg);
 	top: -20px;
 }
@@ -1773,6 +1778,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 100%;
 	height: calc(var(--shortcut-size) + var(--gap) * 2);
 	position: absolute;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	scrollbar-width: none;
 	/* background: gold; */
 	left: 0;
 	right: 0;
@@ -1843,6 +1851,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .shortcutsContainer .shortcuts {
 	position: relative;
 	transition: all 0.3s;
+	will-change: transform;
 }
 
 .shortcutsContainer .shortcuts:hover {
@@ -1882,7 +1891,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+	background: radial-gradient(var(--accentLightTint-blue) 66%, transparent 66%);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
