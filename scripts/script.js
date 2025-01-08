@@ -3572,9 +3572,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
+        if (isFirefox && browser.permissions) {
             bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+        } else if (isChrome || isEdge || isBrave && chrome.permissions) {
             bookmarksPermission = chrome.permissions;
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
@@ -3612,6 +3612,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveDisplayStatus("bookmarksDisplayStatus", "none");
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
+        } else {
+            alert(translations[currentLanguage]?.BookmarksDenied || translations['en'].BookmarksDenied);
+            bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            return;
         }
     });
 

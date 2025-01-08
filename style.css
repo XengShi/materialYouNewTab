@@ -3068,6 +3068,9 @@ input:checked + .toggle:before {
 	#shortcuts-section {
 		height: auto;
 		position: relative;
+		scale: 0.85;
+		width: 112%;
+		margin-left: -6%;
 		margin-top: 0;
 	}
 	.centerDiv:has(.resultBox.show) + #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) + #shortcuts-section {
@@ -3075,6 +3078,7 @@ input:checked + .toggle:before {
 	}
 	.shortcutsContainer {
 		margin: 0;
+		padding: 0;
 		padding-bottom: 90px;
 		flex-wrap: wrap;
 		width: 100%;
