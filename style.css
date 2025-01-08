@@ -3070,7 +3070,7 @@ input:checked + .toggle:before {
 		position: relative;
 		margin-top: 0;
 	}
-	.centerDiv:has(.resultBox.show) + #shortcuts-section {
+	.centerDiv:has(.resultBox.show) + #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) + #shortcuts-section {
 		z-index: -1;
 	}
 	.shortcutsContainer {
@@ -3086,7 +3086,7 @@ input:checked + .toggle:before {
 	}
 	.todo-container {
 		transform-origin: top left;
-		scale: 0.9;
+		scale: 0.95;
 	}
 	.googleAppsCont {
 		transform-origin: top right;
@@ -3124,7 +3124,6 @@ input:checked + .toggle:before {
 	}
 	.centerDiv {
 		position: relative;
-		margin: var(--gap) 0 0 0;
 	}
 	.resultBox {
 		scale: 1.5;
