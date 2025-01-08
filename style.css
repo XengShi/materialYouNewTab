@@ -206,14 +206,14 @@ body {
 
 
 /* Search suggestions box */
-.resultBox {
+.resultBox, .searchbar:has(:placeholder-shown) + .resultBox {
 	max-height: 222px;
 	overflow-y: auto;
 	position: absolute;
-	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
+	margin-top: 10px;
 	padding: 5px 10px;
 	scrollbar-width: none;
 	/* Initially hidden */
@@ -225,9 +225,8 @@ body {
 }
 
 @media screen and (max-height: 700px) {
-	.resultBox {
+	.resultBox, .searchbar:has(:placeholder-shown) + .resultBox {
 		max-height: 180px;
-		bottom: -60px;
 	}
 }
 
@@ -3137,7 +3136,6 @@ input:checked + .toggle:before {
 	.resultBox {
 		scale: 1.5;
 		width: 427px;
-		bottom: -75px;
 		transform-origin: top left;
 	}
 	.searchWithCont {
@@ -3159,11 +3157,5 @@ input:checked + .toggle:before {
 	.shortcutsContainer {
 		gap: 2rem;
 		max-width: 380px;
-	}
-}
-
-@media screen and (max-width: 420px) and (max-height: 700px) {
-	.resultBox {
-		bottom: -32px;
 	}
 }
