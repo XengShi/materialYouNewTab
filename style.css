@@ -206,7 +206,7 @@ body {
 
 
 /* Search suggestions box */
-.resultBox, .searchbar:has(:placeholder-shown) + .resultBox {
+.resultBox {
 	max-height: 222px;
 	overflow-y: auto;
 	position: absolute;
@@ -224,8 +224,16 @@ body {
 	pointer-events: none;
 }
 
+.searchbar:has(:placeholder-shown) + .resultBox {
+	opacity: 0;
+	z-index: -1000;
+	transform: translateY(-70px);
+	visibility: hidden;
+	pointer-events: none;
+}
+
 @media screen and (max-height: 700px) {
-	.resultBox, .searchbar:has(:placeholder-shown) + .resultBox {
+	.resultBox {
 		max-height: 180px;
 	}
 }
@@ -3135,9 +3143,13 @@ input:checked + .toggle:before {
 	}
 	.resultBox {
 		scale: 1.5;
-		width: 427px;
+		width: calc(94vw / 0.75);
+		margin-left: calc(320px - 94vw);
 		transform-origin: top left;
 	}
+	.resultBox.show {
+		transform: translateY(36px);
+}
 	.searchWithCont {
 		display: none;
 	}
@@ -3157,5 +3169,11 @@ input:checked + .toggle:before {
 	.shortcutsContainer {
 		gap: 2rem;
 		max-width: 380px;
+	}
+}
+
+@media screen and (max-width: 420px) and (max-height: 700px) {
+	.resultBox {
+		bottom: -32px;
 	}
 }
