@@ -228,7 +228,7 @@ function applyLanguage(lang) {
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
         let widthh = window.innerWidth / parseInt(menuWidths[lang] || menuWidths['en']);
-        if (window.innerWidth < 470) {
+        if (window.innerWidth < 476) {
             let menuStyle = document.getElementById('menuStyle') || document.createElement('style');
             menuStyle.id = "menuStyle";
             menuStyle.innerHTML = `

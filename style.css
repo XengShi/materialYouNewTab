@@ -244,7 +244,7 @@ body {
 }
 
 /* Visible state: when you want the result box to appear */
-.resultBox.show {
+.resultBox.show:has(:first-child) {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
@@ -3021,7 +3021,7 @@ input:checked + .toggle:before {
 	}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
 	}
@@ -3050,7 +3050,7 @@ input:checked + .toggle:before {
 	}
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 500px) {
 	body {
 		display: flex;
 		min-height: fit-content;
@@ -3094,7 +3094,7 @@ input:checked + .toggle:before {
 		max-width: none;
 	}
 	.todoListCont {
-		transform-origin: top right;
+		transform-origin: top left;
 		scale: 0.8;
 	}
 	.todo-container {
@@ -3147,9 +3147,13 @@ input:checked + .toggle:before {
 		margin-left: calc(320px - 94vw);
 		transform-origin: top left;
 	}
+	.resultBox {
+		top: 120px;
+		bottom: unset;
+	}
 	.resultBox.show {
 		transform: translateY(36px);
-}
+	}
 	.searchWithCont {
 		display: none;
 	}
