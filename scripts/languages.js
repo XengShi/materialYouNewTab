@@ -9,6 +9,7 @@
 // Translation data
 const translations = {
     en: en, // English
+    np: np, // Nepali
     pt: pt, // Portuguese-BR
     zh: zh, // Chinese (Simplified)
     hi: hi, // Hindi
@@ -55,6 +56,7 @@ const menuWidths = {
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
     "mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
+    "np": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 

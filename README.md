@@ -176,6 +176,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/jp.svg' width=20> &nbsp; **Japanese** - 日本語             |  ja   | [XengShi](https://github.com/XengShi/), [S-H-Y-A](https://github.com/S-H-Y-A/)        |
 | <img src='https://flagcdn.com/kr.svg' width=20> &nbsp; **Korean** - 한국어               |  ko   | [XengShi](https://github.com/XengShi/)                                                |
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Marathi** - मराठी               |  mr   | [Prem](https://github.com/prem-k-r/), [Pratik Lokhande](https://github.com/konprtk)   |
+| <img src='https://flagcdn.com/np.svg' width=20> &nbsp; **Nepali** - नेपाली               |  np   | [Bikash Shresha](https://github.com/sthaB-kash/)    |
 | <img src='https://flagcdn.com/br.svg' width=20> &nbsp; **Portuguese** - Português        | pt-BR | [Maycon Vitor Correa](https://github.com/MestreWalla/)                                |
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский             |  ru   | [giwi](https://github.com/giwih/)                                                     |
 | <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina       | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
