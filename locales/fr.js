@@ -61,7 +61,8 @@ const fr = {
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    "InputOptionsButton": "Options de saisie",
+    //"InputOptionsButton": "Options de saisie",
+    "useGPS": "Utiliser le GPS",
     "saveLoc": "Enregistrer",
 
     // Weather
@@ -135,5 +136,5 @@ const fr = {
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur",
 };
