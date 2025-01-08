@@ -9,7 +9,6 @@
 // Translation data
 const translations = {
     en: en, // English
-    np: np, // Nepali
     pt: pt, // Portuguese-BR
     zh: zh, // Chinese (Simplified)
     hi: hi, // Hindi
@@ -29,12 +28,12 @@ const translations = {
     fr: fr, // French
     az: az, // Azerbaijani
     sl: sl, // Slovenian
+    np: np, // Nepali
 };
 
 // Define the width of the menu container for each language
 const menuWidths = {
     en: '400px',
-    np: '470px',
     pt: '470px',
     bn: '416px',
     uz: '455px',
@@ -51,7 +50,7 @@ const menuWidths = {
     fr: '475px',
     az: '418px',
     sl: '470px',
-    np: '500px',
+    np: '430px',
     // Add more languages and widths as needed
 };
 
