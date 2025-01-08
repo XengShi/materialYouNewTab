@@ -135,6 +135,6 @@ const en = {
     "restorefailed": "Restore failed: ",
     "invalidBackup": "Invalid backup file",
     "deleteBookmark": "Are you sure you want to delete the bookmark?",
-    "UnsupportedBrowser": "Bookmarks are not supported in your browser",
-    "BookmarksDenied": "Bookmarks Permission not granted",
+    "UnsupportedBrowser": "Bookmarks are not supported in your browser.",
+    "BookmarksDenied": "Bookmarks permission has not been granted.",
 };
