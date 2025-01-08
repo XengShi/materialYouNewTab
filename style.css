@@ -1795,7 +1795,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+	background: radial-gradient(var(--accentLightTint-blue) 66%, transparent 66%);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
@@ -2818,7 +2818,8 @@ input:checked + .toggle:before {
 	/* bottom: var(--gap); */
 	width: 42px;
 	height: 42px;
-	max-width: 100%;
+	min-width: 42px;
+	max-width: fit-content;
 	/* Set max-width to fit-content initially */
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
@@ -2831,14 +2832,14 @@ input:checked + .toggle:before {
 	border-radius: 100px;
 	overflow: hidden;
 	/* Hide the overflow when content expands */
-	transition: all 0.4s;
+	transition: all 0.4s ease;
 	/* Transition the max-width property */
 	cursor: pointer;
 	margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {
-	width: fit-content;
+	width: 100%;
 	background-color: #fff;
 }
 
@@ -2848,57 +2849,30 @@ input:checked + .toggle:before {
 	padding-right: 12px;
 	opacity: 0;
 	transform: translateX(-20px);
-	animation: 0.6s menuCloseButtonHoverReverse forwards;
+	width: 0;
+	max-width: fit-content;
 	z-index: 1;
+	transition: all 0.4s ease;
 }
 
 #menuCloseButton:hover::after {
 	content: attr(data-lang);
 	padding-right: 12px;
 	padding-left: 36px;
-	/* width: 32px; */
-	/* Expand the max-width on hover */
-	animation: 0.6s menuCloseButtonHover forwards;
-	animation-delay: 0.1s;
-}
-
-
-@keyframes menuCloseButtonHover {
-	0% {
-		opacity: 0;
-		transform: translateX(-20px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translate(0);
-	}
-}
-
-@keyframes menuCloseButtonHoverReverse {
-	0% {
-		opacity: 1;
-		transform: translateX(0);
-		visibility: hidden;
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateX(-10px);
-		visibility: hidden;
-	}
+	width: 100%;
+	opacity: 1;
+	transform: translateX(0px);
 }
 
 #menuCloseButton .icon {
 	position: absolute;
 	left: 6px;
-	background-color: #fff;
+	background: radial-gradient(#fff 66%, transparent 66%);
 	width: 30px;
 	height: 30px;
 	border-radius: 100px;
-	/* transform: translateX(30px); */
-	transition: 0.4s;
 	z-index: 2;
+	transition: all 0.4s ease;
 }
 
 /* #menuCloseButton .icon:hover{
