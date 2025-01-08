@@ -1,4 +1,4 @@
-// English -> en
+// English (Default)
 const en = {
     // Menu Items
     "github": "GitHub",
@@ -13,7 +13,7 @@ const en = {
     "shortcutsInfoText": "Choose which shortcuts get shown",
     "editShortcutsList": "Saved Shortcuts",
     "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
-    "adaptiveIconText": "Adaptive Icon Shapes",
+    "adaptiveIconText": "Adaptive Icons",
     "adaptiveIconInfoText": "Shortcut icons will match the theme color and appear smaller",
     "bookmarksText": "Bookmarks",
     "bookmarksInfo": "Show bookmarks sidebar",

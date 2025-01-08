@@ -34,6 +34,7 @@ const translations = {
 const menuWidths = {
     en: '400px',
     pt: '470px',
+    bn: '416px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
@@ -226,6 +227,15 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    // Dynamically update the font family based on the language
+    const root = document.documentElement;
+    const commonFontStack = "'poppins', 'Poppins', sans-serif";
+    if (lang === 'vi') {
+        root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
+    } else {
+        root.style.setProperty('--main-font-family', commonFontStack);
     }
 
     // Save the selected language in localStorage

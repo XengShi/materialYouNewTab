@@ -1,4 +1,4 @@
-// Hungarian -> hu
+// Hungarian
 const hu = {
     // Menu Items
     "feedback": "Visszajelzés",
@@ -20,12 +20,12 @@ const hu = {
     "enable_ai_tools": "Parancsikon az MI-eszközökhöz",
     "googleAppsMenuText": "Google Alkalmazások",
     "googleAppsMenuInfo": "Parancsikonok a Google alkalmazásaihoz",
-    "googleAppsHover": "Google Appok",    // Keep this shorter
+    "googleAppsHover": "Google Appok",
 
     // Todo List
     "todoListText": "Teendő lista",
     "todoListInfo": "Napi teendők lista megjelenítése",
-    "todoListHover": "Teendő lista",    // Keep this short
+    "todoListHover": "Teendő lista",
     "todoPlaceholder": "Feladat hozzáadása...",
 
     // Digital Clock
@@ -64,7 +64,7 @@ const hu = {
     "saveLoc": "Mentés",
 
     // Weather
-    "WeatherApiText": "Add meg a WeatherAPI kulcsodat",    // For 'WeatherAPI' string, only transliterate
+    "WeatherApiText": "Add meg a WeatherAPI kulcsodat",
     "WeatherApiSubtext": "Ha az időjárási funkciók nem működnek",
     "userAPI": "A weatherAPI kulcsod",
     "LearnMoreButton": "További információk",
@@ -83,8 +83,8 @@ const hu = {
     // Bookmarks
     "bookmarksHeading": "Könyvjelzők",
     "bookmarkViewAs": "Megjelenítés mint",
-    "bookmarkViewGrid": "Rács",    // Keep this shorter
-    "bookmarkViewList": "Lista",    // Keep this shorter
+    "bookmarkViewGrid": "Rács",
+    "bookmarkViewList": "Lista",
     "bookmarkSearch": "Könyvjező keresése",
 
     // New Tab Item
@@ -104,7 +104,7 @@ const hu = {
 
     // Search Engines and rest
     "googleEngine": "Google",
-    "duckEngine": "Duck",    // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
@@ -114,16 +114,17 @@ const hu = {
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
     "github": "GitHub",
 
     // Wallpaper and alerts
-    "uploadWallpaperText": "Háttérkép feltöltése",    // Keep this short
+    "uploadWallpaperText": "Háttérkép feltöltése",
     "backupText": "Mentés",
     "restoreText": "Visszaállítás",
-    "rangColor": "Szín kiválasztása",    // Keep this short
+    "rangColor": "Szín kiválasztása",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Szeretnél egy újabb képet beállítani a napi háttérképednek?",
