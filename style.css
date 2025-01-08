@@ -1495,6 +1495,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-right: 10px;
 	display: flex;
 	align-items: center;
+	position: relative;
 	justify-content: center;
 	color: var(--darkColor-blue);
 	cursor: pointer;
@@ -1517,6 +1518,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 40px;
 	border-radius: 100%;
 	border: 2px solid transparent;
+	top: -4px;
+	left: -4px;
 }
 
 .micActive::after,
