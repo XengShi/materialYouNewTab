@@ -224,7 +224,7 @@ body {
 	pointer-events: none;
 }
 
-.searchbar:has(:placeholder-shown) + .resultBox {
+.searchbar:has(:placeholder-shown) ~ .resultBox.show {
 	opacity: 0;
 	z-index: -1000;
 	transform: translateY(-70px);
@@ -2983,14 +2983,6 @@ input:checked + .toggle:before {
 		margin-top: 210px;
 	}
 
-	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
-		margin-top: 100px;
-	}
-
-	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
-		display: none;
-	}
-
 	.centerDiv {
 		/* display: grid; */
 		grid-template-columns: auto;
@@ -3029,9 +3021,20 @@ input:checked + .toggle:before {
 	}
 }
 
+@media screen and (max-width: 1200px) and (min-width: 711px) {
+	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
+		margin-top: 65px;
+	}
+	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
+		display: none;
+	}
+}
 @media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
+	}
+	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
+		margin-top: -20px;
 	}
 	.menuBar {
 		--gap: 30px;
@@ -3045,10 +3048,17 @@ input:checked + .toggle:before {
 		align-items: center;
 		justify-content: center;
 	}
+	.shortcutsContainer {
+		max-width: none;
+		margin-top: 100px;
+		padding-bottom: 90px;
+	}
 	.leftDiv {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
+		top: 30px;
 	}
 	.rightDiv {
 		scale: 0.75;
@@ -3127,6 +3137,7 @@ input:checked + .toggle:before {
 		max-width: calc(100% - 30px);
 	}
 	.leftDiv {
+		top: 0;
 		scale: 0.7;
 		transform-origin: center;
 		margin-bottom: -24px;
@@ -3144,6 +3155,10 @@ input:checked + .toggle:before {
 			scale: 1.1;
 			width: calc(94vw / 0.55);
 			margin-left: calc(320px - 94vw / 1.1);
+
+			& .rAndakar {
+				animation: none;
+			}
 		}
 	}
 	.centerDiv {
@@ -3179,8 +3194,10 @@ input:checked + .toggle:before {
 		}
 	}
 	.shortcutsContainer {
-		gap: 2rem;
-		max-width: 380px;
+		gap: 1.5rem;
+		max-width: 350px;
+		margin-top: 0 !important;
+		padding-bottom: 66px;
 	}
 }
 
