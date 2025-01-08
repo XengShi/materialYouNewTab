@@ -2261,9 +2261,11 @@ function applyZoom(value, min, max) {
     slider.style.background = `linear-gradient(to right, var(--darkColor-blue) calc(${percentage}% + ${sliderValue}px), #00000000 calc(${percentage}% + ${sliderValue}px))`;
     const zoomLevel = ((value - min) / (max - min)) * (1 - 0.6) + 0.6;
     document.documentElement.style.scale = zoomLevel;
-    document.documentElement.style.height = `calc(100% / ${zoomLevel})`;
-    document.documentElement.style.overflow = `hidden`;
-    document.documentElement.style.width = `calc(100% / ${zoomLevel})`;
+    document.documentElement.style.transformOrigin = `top left`;
+    document.documentElement.style.height = `calc(100vh / ${zoomLevel})`;
+    document.documentElement.style.marginBottom = `calc(100vh - 100vh / ${zoomLevel})`;
+    document.documentElement.style.width = `calc(100vw / ${zoomLevel})`;
+    document.documentElement.style.marginRight = `calc(100vw - 100vw / ${zoomLevel})`;
     localStorage.setItem('zoomLevel', value);
 }
 slider.addEventListener('input', function () {

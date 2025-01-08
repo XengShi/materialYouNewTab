@@ -539,6 +539,7 @@ body {
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
+	overflow: hidden;
 	z-index: 4;
 }
 
@@ -2143,7 +2144,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: var(--accentLightTint-blue);
 	border-top-left-radius: var(--round);
 	border-top-right-radius: var(--round);
-	bottom: 0;
+	bottom: -1px;
 }
 
 .menuCont .topDiv h1 {
