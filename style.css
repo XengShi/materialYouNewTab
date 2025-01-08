@@ -3053,11 +3053,13 @@ input:checked + .toggle:before {
 		top: 0;
 	}
 	.searchbar {
-		width: 320px;
-		transform-origin: top left;
-		scale: 2;
-		margin-top: 0rem;
-		margin-bottom: 2rem;
+		width: 94vw;
+        transform-origin: top left;
+        scale: 2;
+        margin-top: -1rem;
+        margin-left: calc(320px - 94vw);
+        margin-bottom: 3rem;
+
 		& #searchQ {
 			min-width: 0px;
 		}
@@ -3124,6 +3126,9 @@ input:checked + .toggle:before {
 		& .topDiv{
 			top: 64px;
 			position: relative;
+			scale: 1.1;
+			width: calc(94vw / 0.55);
+			margin-left: calc(320px - 94vw / 1.1);
 		}
 	}
 	.centerDiv {
@@ -3150,6 +3155,10 @@ input:checked + .toggle:before {
 			opacity: 0;
 			pointer-events: none;
 		}
+	}
+	.shortcutsContainer {
+		gap: 2rem;
+		max-width: 380px;
 	}
 }
 
