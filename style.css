@@ -2826,14 +2826,12 @@ input:checked + .toggle:before {
 	font-size: 1rem;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	padding: 6px;
+	justify-content: flex-start;
+	padding: 6px 0 6px 42px;
 	border-radius: 100px;
 	overflow: hidden;
 	/* Hide the overflow when content expands */
 	transition: all 0.4s ease;
-	/* Transition the max-width property */
 	cursor: pointer;
 	margin-top: var(--gap);
 }
@@ -2846,21 +2844,20 @@ input:checked + .toggle:before {
 #menuCloseButton::after {
 	content: attr(data-lang);
 	white-space: nowrap;
-	padding-right: 12px;
 	opacity: 0;
 	transform: translateX(-20px);
 	width: 0;
 	max-width: fit-content;
+	padding-right: 0;
 	z-index: 1;
-	transition: all 0.4s ease;
+	transition: all 0.5s ease;
+	overflow: hidden;
 }
 
 #menuCloseButton:hover::after {
-	content: attr(data-lang);
-	padding-right: 12px;
-	padding-left: 36px;
 	width: 100%;
 	opacity: 1;
+	padding-right: 8px;
 	transform: translateX(0px);
 }
 
