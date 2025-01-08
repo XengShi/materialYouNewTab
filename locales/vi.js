@@ -62,6 +62,7 @@ const vi = {
     "UserLocSubtext": "Nếu vị trí thời tiết không chính xác",
     "userLoc": "Thành phố hoặc tọa độ của bạn (Vĩ độ, Kinh độ)",
     "InputOptionsButton": "Tùy chọn đầu vào",
+    "useGPS": "Sử dụng GPS",
     "saveLoc": "Lưu",
 
     // Weather
