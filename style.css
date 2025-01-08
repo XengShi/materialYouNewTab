@@ -1802,7 +1802,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+	background: radial-gradient(var(--accentLightTint-blue) 66%, transparent 66%);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
@@ -3050,7 +3050,7 @@ input:checked + .toggle:before {
 	}
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 425px) {
 	body {
 		display: flex;
 		min-height: fit-content;
@@ -3172,7 +3172,7 @@ input:checked + .toggle:before {
 	}
 }
 
-@media screen and (max-width: 420px) and (max-height: 700px) {
+@media screen and (max-width: 425px) and (max-height: 700px) {
 	.resultBox {
 		bottom: -32px;
 	}

@@ -1791,7 +1791,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
-                background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+                background: radial-gradient(circle, #bfbfbf 66%, transparent 66%);
                 &:not(:has(svg)){
                     background: var(--accentLightTint-blue);
                 }
