@@ -2983,6 +2983,14 @@ input:checked + .toggle:before {
 		margin-top: 210px;
 	}
 
+	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
+		margin-top: 100px;
+	}
+
+	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
+		display: none;
+	}
+
 	.centerDiv {
 		/* display: grid; */
 		grid-template-columns: auto;
