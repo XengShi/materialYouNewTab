@@ -3090,7 +3090,7 @@ input:checked + .toggle:before {
 	}
 	.todo-container {
 		transform-origin: top left;
-		scale: 0.95;
+		scale: 0.94;
 	}
 	.googleAppsCont {
 		transform-origin: top right;
