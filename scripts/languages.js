@@ -50,6 +50,7 @@ const menuWidths = {
     fr: '475px',
     az: '418px',
     sl: '470px',
+    np: '500px',
     // Add more languages and widths as needed
 };
 
