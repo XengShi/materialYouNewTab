@@ -887,6 +887,7 @@ function updateDate() {
         const dateDisplay = {
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
@@ -1030,6 +1031,7 @@ function updatedigiClock() {
         az: `${dayName} ${dayOfMonth}`,
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
+        np: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
@@ -1051,7 +1053,7 @@ function updatedigiClock() {
 
     // Array of languages to use 'en-US' format
     const specialLanguages = ['tr', 'zh', 'ja', 'ko', 'hu']; // Languages with NaN in locale time format
-    const localizedLanguages = ['bn', 'mr'];
+    const localizedLanguages = ['bn', 'mr', 'np'];
     // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
