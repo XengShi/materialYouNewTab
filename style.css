@@ -146,6 +146,8 @@
 	--shortcut-bar-gap-and-padding: 10px;
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
+
+	transform-origin: top left;
 }
 
 /* Theme */
@@ -190,15 +192,17 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	min-height: 100%;
+	min-height: 100vh;
 	/* background-color: red; */
-	overflow: auto;
+	position: relative;
+	overflow-y: scroll;
+	scrollbar-width: none;
 	background-image: var(--bg-image, none);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh;
+	height: 100%;
 	/* Ensure the image fits the viewport height */
 	margin: 0;
 	/* Remove margin to avoid unwanted spacing */
@@ -257,6 +261,59 @@ body {
 	border-radius: 15px;
 	color: #fff;
 }
+
+/* ----Zooming page------- */
+.zoomSliderContainer {
+	position: relative;
+	margin-bottom: var(--gap);
+	margin-top: 8px;
+	height: 50px;
+}
+.sliderBGBar {
+	position: absolute;
+	height: 6px;
+	width: 100%;
+	background-color: var(--bg-color-blue);
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border-radius: 3px;
+}
+#zoom-slider {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	border-radius: 100px;
+	background: linear-gradient(
+		to right,
+		var(--darkColor-blue) calc(86.67% - 20px),
+		#00000000 calc(86.67% - 20px)
+	);
+	outline: none;
+	appearance: none;
+	-webkit-appearance: none;
+}
+#zoom-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	background-color: var(--darkColor-blue);
+	cursor: pointer;
+	border: none !important;
+	outline: none !important;
+}
+#zoom-slider::-moz-range-thumb {
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	background-color: var(--darkColor-blue);
+	cursor: pointer;
+	border: none !important;
+	outline: none !important;
+}
+
+/* ----End Zooming page------- */
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
@@ -482,6 +539,7 @@ body {
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
+	overflow: hidden;
 	z-index: 4;
 }
 
@@ -1585,8 +1643,9 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ________________End of Searchbar______________________ */
 
 .searchWithCont {
-	margin-top: var(--gap);
-	border-radius: var(--round);
+	margin-top: 30px;
+	border-radius: 20px;
+	overflow: hidden;
 	position: relative;
 	display: flex;
 	font-size: 1rem;
@@ -1620,14 +1679,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 20px;
 	left: -20px;
 	transform: rotate(90deg);
-	bottom: 0;
+	bottom: 0px;
 }
 
 .authorName .qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	right: 0;
+	right: 0px;
 	transform: rotate(90deg);
 	top: -20px;
 }
@@ -1722,6 +1781,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 100%;
 	height: calc(var(--shortcut-size) + var(--gap) * 2);
 	position: absolute;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	scrollbar-width: none;
 	/* background: gold; */
 	left: 0;
 	right: 0;
@@ -1792,6 +1854,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .shortcutsContainer .shortcuts {
 	position: relative;
 	transition: all 0.3s;
+	will-change: transform;
 	isolation: isolate;
 }
 
@@ -1832,7 +1895,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+	background: radial-gradient(var(--accentLightTint-blue) 66%, transparent 66%);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
@@ -2081,7 +2144,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: var(--accentLightTint-blue);
 	border-top-left-radius: var(--round);
 	border-top-right-radius: var(--round);
-	bottom: 0;
+	bottom: -1px;
 }
 
 .menuCont .topDiv h1 {
