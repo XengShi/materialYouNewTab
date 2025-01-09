@@ -1,9 +1,9 @@
-// Vietnamese -> vi
+// Vietnamese
 const vi = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Phản hồi",
-    "resetsettings": "Đặt lại Cài đặt",
+    "resetsettings": "Đặt lại cài đặt gốc",
     "menuCloseText": "Đóng",
 
     // Shortcuts
@@ -11,28 +11,28 @@ const vi = {
     "enableShortcutsText": "Bật/tắt phím tắt",
     "editShortcutsText": "Chỉnh sửa Phím tắt",
     "shortcutsInfoText": "Chọn các phím tắt muốn hiển thị",
-    "editShortcutsList": "Chỉnh sửa Danh sách Phím tắt",
-    // "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
-    "adaptiveIconText": "Hình dạng Biểu tượng Thích ứng",
+    "editShortcutsList": "Chỉnh sửa danh sách Phím tắt",
+    "editShortcutsListInfo": "Bạn có thể thêm phím tắt mới bằng cách nhấp vào biểu tượng \"+\" hoặc chỉnh sửa phím tắt hiện có bằng cách nhấp vào tên phím tắt hoặc URL.",
+    "adaptiveIconText": "Hình dạng biểu tượng Thích ứng",
     "adaptiveIconInfoText": "Biểu tượng phím tắt sẽ luôn là hình tròn",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
+    "bookmarksText": "Dấu trang",
+    "bookmarksInfo": "Hiển thị thanh bên dấu trang",
     "ai_tools_button": "Công cụ AI",
-    "enable_ai_tools": "Bật/tắt các phím tắt Công cụ AI",
+    "enable_ai_tools": "Bật/tắt các phím tắt công cụ AI",
     "googleAppsMenuText": "Ứng dụng Google",
     "googleAppsMenuInfo": "Hiển thị các phím tắt cho Ứng dụng Google",
-    // "googleAppsHover": "Google Apps",  // Keep this shorter
+    "googleAppsHover": "Ứng dụng Google",
 
     // To-do List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",    // Keep this short
-    // "todoPlaceholder": "Add task...",
+    "todoListText": "Danh sách việc cần làm",
+    "todoListInfo": "Hiển thị danh sách việc cần làm hàng ngày",
+    "todoListHover": "Việc cần làm",
+    "todoPlaceholder": "Thêm nhiệm vụ...",
 
     // Digital Clock
-    "digitalclocktittle": "Đồng hồ Kỹ thuật số",
-    "digitalclockinfo": "Bật/tắt Đồng hồ Kỹ thuật số",
-    "timeformattittle": "Sử dụng Định dạng 12 giờ",
+    "digitalclocktittle": "Đồng hồ kỹ thuật số",
+    "digitalclockinfo": "Bật/tắt đồng hồ Kỹ thuật số",
+    "timeformattittle": "Sử dụng định dạng 12 giờ",
     "timeformatinfo": "Sử dụng định dạng thời gian 12 giờ",
     "greetingtittle": "Lời chào",
     "greetinginfo": "Hiển thị lời chào dưới văn bản tùy chỉnh",
@@ -44,23 +44,24 @@ const vi = {
     "fahrenheitCelsiusText": "Tải lại trang để thấy cập nhật",
     "micIconTitle": "Ẩn biểu tượng mic",
     "micIconInfo": "Nếu gõ bằng giọng nói không hoạt động",
-    // "hideSearchWith": "Hide Search Engines",
-    // "hideSearchWithInfo": "Switch between search engines by clicking its icon",
-    "search_suggestions_button": "Gợi ý Tìm kiếm",
-    "search_suggestions_text": "Bật/tắt Gợi ý Tìm kiếm",
+    "hideSearchWith": "Ẩn công cụ tìm kiếm",
+    "hideSearchWithInfo": "Chuyển đổi giữa các công cụ tìm kiếm bằng cách nhấp vào biểu tượng của nó",
+    "search_suggestions_button": "Gợi ý tìm kiếm",
+    "search_suggestions_text": "Bật/tắt gợi ý tìm kiếm",
 
     // Proxy
     "useproxytitletext": "Bỏ qua Proxy",
     "useproxyText": "Nếu gợi ý tìm kiếm không hoạt động",
-    "ProxyText": "Proxy Bỏ qua CORS",
-    "ProxySubtext": "Thêm Proxy Bỏ qua CORS của bạn",
-    "HostproxyButton": "Tự Chạy Proxy",
+    "ProxyText": "Proxy bỏ qua CORS",
+    "ProxySubtext": "Thiết lập proxy bỏ qua CORS của bạn.",
+    "HostproxyButton": "Lưu trữ proxy của riêng bạn",
     "saveproxy": "Lưu",
 
     // Location
     "UserLocText": "Nhập vị trí của bạn",
     "UserLocSubtext": "Nếu vị trí thời tiết không chính xác",
-    "userLoc": "Vị trí của bạn (Thành phố/Vĩ độ, Kinh độ)",
+    "userLoc": "Thành phố hoặc tọa độ của bạn (Vĩ độ, Kinh độ)",
+    "useGPS": "Sử dụng GPS",
     "saveLoc": "Lưu",
 
     // Weather
@@ -76,11 +77,11 @@ const vi = {
     "months": ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', 'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'],
 
     // Bookmarks
-    // "bookmarksHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewGrid": "Grid",    // Keep this shorter
-    // "bookmarkViewList": "List",    // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarksHeading": "Dấu trang",
+    "bookmarkViewAs": "Dạng xem",
+    "bookmarkViewGrid": "Lưới",
+    "bookmarkViewList": "Danh sách",
+    "bookmarkSearch": "Tìm dấu trang",
 
     // New Tab Item
     "conditionText": "Xin chào! Bạn cảm thấy thế nào hôm nay?",
@@ -118,21 +119,21 @@ const vi = {
     "metaAI": "Meta AI",
 
     // Wallpaper and alerts
-    // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
-    // "backupText": "Backup",
-    // "restoreText": "Restore",
-    // "rangColor": "Pick color",    // Keep this short
+    "uploadWallpaperText": "Tải hình nền",
+    "backupText": "Sao lưu",
+    "restoreText": "Khôi phục",
+    "rangColor": "Chọn màu",
 
     // Dialog boxes (alerts)
-    // "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
-    // "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
-    // "Nobackgroundset": "No background image is currently set.",
-    // "clearbackgroundimage": "Are you sure you want to clear the background image?",
-    // "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
-    // "failedbackup": "Backup failed: ",
-    // "restorecompleted": "Restore completed successfully!",
-    // "restorefailed": "Restore failed: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "confirmWallpaper": "Bạn có muốn đặt một hình ảnh mới làm hình nền cho ngày không?",
+    "confirmRestore": "Bạn có chắc chắn muốn đặt lại cài đặt của mình không? Hành động này không thể hoàn tác.",
+    "Nobackgroundset": "Hiện tại chưa có hình nền nào được thiết lập.",
+    "clearbackgroundimage": "Bạn có chắc chắn muốn xóa hình nền không?",
+    "ProxyDisclaimer": "Theo mặc định, mọi tính năng của proxy đều bị tắt.\n\nNếu bạn bật gợi ý tìm kiếm và bỏ qua proxy CORS, chúng tôi khuyên bạn nên lưu trữ proxy riêng để tăng cường quyền riêng tư.\n\nTheo mặc định, proxy sẽ được đặt thành https://mynt-proxy.rhythmcorehq.com, nghĩa là mọi dữ liệu của bạn sẽ đi qua dịch vụ này, điều này có thể gây ra lo ngại về quyền riêng tư.",
+    "failedbackup": "Sao lưu không thành công: ",
+    "restorecompleted": "Đã khôi phục thành công!",
+    "restorefailed": "Khôi phục không thành công: ",
+    "invalidBackup": "Tệp sao lưu không hợp lệ",
+    "deleteBookmark": "Bạn có chắc chắn muốn xóa dấu trang không?",
+    "UnsupportedBrowser": "Dấu trang không được hỗ trợ trong trình duyệt của bạn",
 };
