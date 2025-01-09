@@ -3113,14 +3113,6 @@ input:checked + .toggle:before {
 	.centerDiv:has(.resultBox.show) + #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) + #shortcuts-section {
 		z-index: -1;
 	}
-	.shortcutsContainer {
-		margin: 0;
-		padding: 0;
-		padding-bottom: 90px;
-		flex-wrap: wrap;
-		width: 100%;
-		max-width: none;
-	}
 	.todoListCont {
 		transform-origin: top left;
 		scale: 0.8;
@@ -3153,10 +3145,46 @@ input:checked + .toggle:before {
 		max-width: calc(100% - 30px);
 	}
 	.leftDiv {
-		top: 0;
-		scale: 0.7;
-		transform-origin: center;
-		margin-bottom: -24px;
+		width: calc(100vw / 0.5);
+        top: 0;
+        scale: 0.5;
+        transform-origin: left bottom;
+        /* margin-top: -84%; */
+		height: 50vw;
+		margin-left: calc(100vw);
+		align-items: end;
+        justify-content: flex-start;
+	}
+	.clock .centerPoint {
+		width: calc(20% / 3);
+		height: calc(20% / 3);
+	}
+	.clock .centerPoint .sui {
+		height: 500%;
+		width: 100%;
+		top: -450%;
+		border-radius: 60px;
+	}
+	#hour {
+		height: 400%;
+		top: -350%;
+	}
+	#second::after {
+		width: 100%;
+		aspect-ratio: 1;
+		height: auto;
+		top: calc(-160% / 7);
+	}
+	#minute::after, #hour::after {
+		width: 100%;
+		aspect-ratio: 0.5;
+		height: auto;
+	}
+	#analogClock {
+		width: 45%;
+		margin-left: 5%;
+		aspect-ratio: 1;
+		height: auto;
 	}
 	.rightDiv {
 		scale: 0.5;
@@ -3166,15 +3194,32 @@ input:checked + .toggle:before {
 		flex-direction: column-reverse;
 
 		& .topDiv{
-			top: 64px;
+			top: 80px;
 			position: relative;
-			scale: 1.1;
-			width: calc(94vw / 0.55);
-			margin-left: calc(320px - 94vw / 1.1);
+			scale: 1.5;
+			width: calc(94vw / 0.75);
+			margin-left: calc(320px - 94vw / 1.5);
 
 			& .rAndakar {
 				animation: none;
+                position: absolute;
+                /* display: none; */
+                width: 45%;
+                aspect-ratio: 1;
+                height: auto;
+                bottom: 20rem;
+                /* scale: 1.2; */
+                transform-origin: right;
 			}
+		}
+		#temp {
+			font-size: 16vw;
+		}
+		#wIcon {
+			width: 30vw;
+			height: 30vw;
+			margin-top: -6vw;
+			margin-left: -16vw;
 		}
 	}
 	.centerDiv {
@@ -3211,10 +3256,21 @@ input:checked + .toggle:before {
 		}
 	}
 	.shortcutsContainer {
-		gap: 1.5rem;
-		max-width: 350px;
-		margin-top: 0 !important;
-		padding-bottom: 66px;
+		margin: 0;
+		width: fit-content;
+		gap: 1.8rem;
+		flex-wrap: nowrap;
+		max-width: unset;
+		padding: 20px 0;
+	}
+	#shortcuts-section {
+		margin: 0;
+		padding-left: 20px;
+		overflow-x: scroll;
+		scrollbar-width: none;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
 	}
 }
 
