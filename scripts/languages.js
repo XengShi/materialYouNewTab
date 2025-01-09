@@ -28,6 +28,7 @@ const translations = {
     fr: fr, // French
     az: az, // Azerbaijani
     sl: sl, // Slovenian
+    np: np, // Nepali
 };
 
 // Define the width of the menu container for each language
@@ -49,12 +50,14 @@ const menuWidths = {
     fr: '475px',
     az: '418px',
     sl: '470px',
+    np: '430px',
     // Add more languages and widths as needed
 };
 
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
     "mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
+    "np": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 
