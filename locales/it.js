@@ -1,4 +1,4 @@
-// Italian -> it
+// Italian
 const it = {
     // Menu Items
     "github": "GitHub",
@@ -113,7 +113,7 @@ const it = {
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
-        "claude": "Claude",
+    "claude": "Claude",
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",

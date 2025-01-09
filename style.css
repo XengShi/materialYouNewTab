@@ -7,7 +7,7 @@
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-/* @import url('https://fonts.googleapis.com/css2?family=Borel&family=Poppins&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
 
 @font-face {
 	font-family: "poppins";
@@ -18,11 +18,14 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "poppins", "Poppins", sans-serif;
+	font-family: var(--main-font-family);
 	user-select: none;
 }
 
 :root {
+	/* Default font */
+	--main-font-family: "poppins", "Poppins", sans-serif;
+
 	/* 🔵🔵🔵 */
 	/* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
 	--bg-color-blue: #bbd6fd;
@@ -676,9 +679,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 20px;
 	border: 2px solid var(--darkColor-blue);
 	color: var(--darkColor-blue);
-	width: 60px;
+	min-width: 60px;
 	font-size: 12px;
-	padding: 2px 0;
+	padding: 2px 9px;
 	margin-left: 10px;
 	cursor: pointer;
 }
@@ -1179,7 +1182,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #userText {
-	font-family: "poppins", "Poppins", serif;
+	font-family: var(--main-font-family);
 	font-size: 1.4rem;
 	margin-bottom: 10px;
 }
@@ -1492,6 +1495,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-right: 10px;
 	display: flex;
 	align-items: center;
+	position: relative;
 	justify-content: center;
 	color: var(--darkColor-blue);
 	cursor: pointer;
@@ -1514,6 +1518,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 40px;
 	border-radius: 100%;
 	border: 2px solid transparent;
+	top: -4px;
+	left: -4px;
 }
 
 .micActive::after,

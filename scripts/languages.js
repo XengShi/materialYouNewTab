@@ -28,12 +28,14 @@ const translations = {
     fr: fr, // French
     az: az, // Azerbaijani
     sl: sl, // Slovenian
+    np: np, // Nepali
 };
 
 // Define the width of the menu container for each language
 const menuWidths = {
     en: '400px',
     pt: '470px',
+    bn: '416px',
     uz: '455px',
     vi: '445px',
     cs: '452px',
@@ -48,12 +50,14 @@ const menuWidths = {
     fr: '475px',
     az: '418px',
     sl: '470px',
+    np: '430px',
     // Add more languages and widths as needed
 };
 
 const numberMappings = {
     "bn": { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' },
     "mr": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
+    "np": { '0': '०', '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९' },
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 
@@ -226,6 +230,15 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+    }
+
+    // Dynamically update the font family based on the language
+    const root = document.documentElement;
+    const commonFontStack = "'poppins', 'Poppins', sans-serif";
+    if (lang === 'vi') {
+        root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
+    } else {
+        root.style.setProperty('--main-font-family', commonFontStack);
     }
 
     // Save the selected language in localStorage

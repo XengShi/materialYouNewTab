@@ -63,6 +63,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         location.reload();
     });
 
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
     // Reset settings (clear localStorage)
     resetbtn.addEventListener("click", () => {
         if (confirm(translations[currentLanguage]?.confirmRestore || translations["en"].confirmRestore)) {
@@ -120,8 +121,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Flag indicating whether to use GPS
     const useGPS = JSON.parse(localStorage.getItem("useGPS"));
-
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
     // Fetch weather data based on a location
     async function fetchWeather(location) {
@@ -282,7 +281,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             return `${latitude},${longitude}`;
         } catch (error) {
             console.error("GPS Location retrieval failed: ", error);
-            throw new Error("Failed to retrieve GPS location");
         }
     }
 
@@ -290,9 +288,15 @@ window.addEventListener("DOMContentLoaded", async () => {
     await (async function initializeLocation() {
         try {
             if (useGPS) {
-                // Use GPS for dynamic location
-                currentUserLocation = await fetchGPSLocation();
-            } else if (!currentUserLocation) {
+                try {
+                    // Use GPS for dynamic location
+                    currentUserLocation = await fetchGPSLocation();
+                } catch {
+                    // Silent failover
+                }
+            }
+
+            if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
                 const geoLocation = "https://ipinfo.io/json/";
                 const locationData = await fetch(geoLocation);
@@ -831,7 +835,7 @@ function updateDate() {
         var month = currentTime.getMonth();
 
         // Define the current language
-        var currentLanguage = getLanguageStatus("selectedLanguage") || "en";
+        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
         // Get the translated name of the day
         var dayName;
@@ -863,6 +867,7 @@ function updateDate() {
         const dateDisplay = {
             bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
+            np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
@@ -874,7 +879,7 @@ function updateDate() {
             es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
             uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
-            vi: `${dayName}, Ngày ${dayOfMonth} ${monthName}`,
+            vi: `${dayName}, ngày ${dayOfMonth} ${monthName}`,
             idn: `${dayName}, ${dayOfMonth} ${monthName}`,
             fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
@@ -958,17 +963,17 @@ function getGreeting() {
     }
 
     // Get the user's language setting
-    const userLang = getLanguageStatus("selectedLanguage") || "en"; // Default to English
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
 
     // Check if the greeting is available for the selected language
     if (
-        translations[userLang] &&
-        translations[userLang].greeting &&
-        translations[userLang].greeting[greetingKey]
+        translations[currentLanguage] &&
+        translations[currentLanguage].greeting &&
+        translations[currentLanguage].greeting[greetingKey]
     ) {
-        return translations[userLang].greeting[greetingKey];
+        return translations[currentLanguage].greeting[greetingKey];
     } else {
-        // Fallback to English greeting if the userLang or greeting key is missing
+        // Fallback to English greeting if the currentLanguage or greeting key is missing
         return translations["en"].greeting[greetingKey];
     }
 }
@@ -1006,6 +1011,7 @@ function updatedigiClock() {
         az: `${dayName} ${dayOfMonth}`,
         bn: `${dayName}, ${localizedDayOfMonth}`,
         mr: `${dayName}, ${localizedDayOfMonth}`,
+        np: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
@@ -1027,7 +1033,7 @@ function updatedigiClock() {
 
     // Array of languages to use "en-US" format
     const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
-    const localizedLanguages = ["bn", "mr"];
+    const localizedLanguages = ["bn", "mr", "np"];
     // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
@@ -1453,11 +1459,15 @@ if (savedState !== null) {
 
 // Set the checkbox state based on the saved or default state
 micIconCheckbox.checked = !isMicIconVisible; // Checked hides the mic icon
-micIcon.style.visibility = isMicIconVisible ? "visible" : "hidden";
+if (isMicIconVisible) {
+    micIcon.style.display = "block";  // Mic icon is displayed
+} else {
+    micIcon.style.display = "none";   // Hide the mic icon
+}
 
 // Function to toggle mic icon visibility
 function toggleMicIconVisibility(isVisible) {
-    micIcon.style.visibility = isVisible ? "visible" : "hidden";
+    micIcon.style.display = isVisible ? "block" : "none";
     localStorage.setItem("micIconVisible", isVisible); // Save to localStorage
 }
 
