@@ -13,8 +13,8 @@ const fr = {
     "shortcutsInfoText": "Choisir les raccourcis à afficher",
     "editShortcutsList": "Raccourcis Sauvegardés",
     'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
-    "adaptiveIconText": "Formes d'Icônes Adaptatives",
-    "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
+    "adaptiveIconText": "Icônes Adaptatives",
+    "adaptiveIconInfoText": "L'icône du raccourci correspondra à la couleur du thème et apparaîtra plus petite.",
     "bookmarksText": "Favoris",
     "bookmarksInfo": "Afficher la barre latérale des favoris",
     "ai_tools_button": "Outils IA",
@@ -136,5 +136,6 @@ const fr = {
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
-    "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur",
+    "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
+    "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };
