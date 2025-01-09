@@ -273,7 +273,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             return `${latitude},${longitude}`;
         } catch (error) {
             console.error("GPS Location retrieval failed: ", error);
-            throw new Error("Failed to retrieve GPS location");
         }
     }
 
@@ -281,9 +280,14 @@ window.addEventListener('DOMContentLoaded', async () => {
     await (async function initializeLocation() {
         try {
             if (useGPS) {
-                // Use GPS for dynamic location
-                currentUserLocation = await fetchGPSLocation();
-            } else if (!currentUserLocation) {
+                try {
+                    // Use GPS for dynamic location
+                    currentUserLocation = await fetchGPSLocation();
+                } catch {
+                }
+            }
+
+            if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
                 const geoLocation = 'https://ipinfo.io/json/';
                 const locationData = await fetch(geoLocation);
