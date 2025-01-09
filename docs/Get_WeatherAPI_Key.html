@@ -26,6 +26,10 @@
             margin: 20px 0;
         }
 
+        h3:not(:first-of-type) {
+            margin-top: 35px;
+        }
+
         section {
             max-width: 800px;
             margin: 20px auto;
@@ -53,10 +57,10 @@
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             background: #0056b3;
             color: #fff;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         footer a {
@@ -146,26 +150,38 @@
             <li>If the API section isn’t open, locate and open it.</li>
             <li>You will see your API key displayed with a <strong>Copy</strong> option. Click it to copy your API key.
             </li>
-            <li>Paste this key into the WeatherAPI key field in the extension to activate and integrate it.
-            </li>
         </ol>
         <img src="https://i.ibb.co/jfW8f65/IMG-20241207-122916.png" alt="Dashboard with API Key" border="0">
     </section>
 
     <section>
+        <h2>Step 6: Paste Your API Key</h2>
+        <ol>
+            <li>Paste <b>your API key</b> into the WeatherAPI key field in the extension menu.</li>
+            <li>Press enter or click on Save button to integrate it.</li>
+        </ol>
+        <img src="https://i.ibb.co/CM3yrCG/image.png" alt="Paste API Key" border="0">
+    </section>
+
+    <section>
         <h2>FAQs</h2>
+
         <h3>Why is the location inaccurate?</h3>
-        <p>The extension determines your location based on your IP address rather than using GPS. IP-based location
-            detection can sometimes be approximate, as it is influenced by factors such as your internet service
-            provider's location and routing. If the detected location does not match your actual location, you can
-            manually enter your location by entering a city name or geographic coordinates to ensure accuracy.</p>
+        <p>The extension determines your location using your <b>IP address</b>, which can often be imprecise. If the
+            detected location differs from your actual location, you can:</p>
+        <ul>
+            <li>Manually enter your <b>city name</b> or <b>geographic coordinates</b>.</li>
+            <li>Use the <b>GPS</b> option to fetch your location for greater accuracy.</li>
+        </ul>
 
         <h3>Why do I need an API key?</h3>
-        <p>An API key acts as a unique identifier to manage access and monitor usage. Currently, our extension relies on
-            shared API keys, each allowing up to 1,000,000 calls per month. With over 150,000+ active users and increasing
-            demand, this shared usage can quickly reach its limit. Once the limit is reached, weather data will no
-            longer be accessible until the limit resets the following month. Using your own unique API key ensures
-            improved reliability, enhanced privacy, and better compliance while scaling with growing usage demands.</p>
+        <p>An API key serves as a unique identifier for managing access and monitoring usage.</p>
+        <ul>
+            <li>Our extension currently uses <b>shared</b> API keys that allow up to 10,000,000 calls per month. With
+                over 300,000 active users, these shared keys can reach their limit quickly. Once the limit is reached,
+                weather data will no longer be accessible until the limit resets the following month.</li>
+            <li>Using your <b>own API key</b> ensures that weather data remains accessible.</li>
+        </ul>
 
         <h3>What are the benefits of using my own API key?</h3>
         <p>Using your own unique API key provides several key advantages:</p>
