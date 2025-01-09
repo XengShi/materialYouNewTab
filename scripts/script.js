@@ -1487,11 +1487,15 @@ if (savedState !== null) {
 
 // Set the checkbox state based on the saved or default state
 micIconCheckbox.checked = !isMicIconVisible; // Checked hides the mic icon
-micIcon.style.visibility = isMicIconVisible ? "visible" : "hidden";
+if (isMicIconVisible) {
+    micIcon.style.display = "block";  // Mic icon is displayed
+} else {
+    micIcon.style.display = "none";   // Hide the mic icon
+}
 
 // Function to toggle mic icon visibility
 function toggleMicIconVisibility(isVisible) {
-    micIcon.style.visibility = isVisible ? "visible" : "hidden";
+    micIcon.style.display = isVisible ? "block" : "none";
     localStorage.setItem("micIconVisible", isVisible); // Save to localStorage
 }
 
