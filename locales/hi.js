@@ -93,7 +93,6 @@ const hi = {
     "enterBtn": "सर्च करें",
     "searchPlaceholder": "यहाँ लिखें...",
     "listenPlaceholder": "सुन रहे हैं...",
-    "todoPlaceholder": "कार्य जोड़ें...",
     "searchWithHint": "खोज माध्यम",
     "userText": "यहाँ अपना टेक्स्ट लिखें",
 
