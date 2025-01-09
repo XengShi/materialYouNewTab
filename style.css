@@ -679,9 +679,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 20px;
 	border: 2px solid var(--darkColor-blue);
 	color: var(--darkColor-blue);
-	width: 60px;
+	min-width: 60px;
 	font-size: 12px;
-	padding: 2px 0;
+	padding: 2px 9px;
 	margin-left: 10px;
 	cursor: pointer;
 }
