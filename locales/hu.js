@@ -60,7 +60,6 @@ const hu = {
     "UserLocText": "Add meg a tartózkodási helyed",
     "UserLocSubtext": "Ha az időjárás helye nem megfelelő",
     "userLoc": "A városod vagy koordinátáid (földrajzi szélesség, hosszúság)",
-    "InputOptionsButton": "Beviteli lehetőségek",
     "saveLoc": "Mentés",
 
     // Weather

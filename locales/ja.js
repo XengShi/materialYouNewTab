@@ -61,7 +61,6 @@ const ja = {
     "UserLocText": "場所を入力",
     "UserLocSubtext": "天気の地域が正しくない場合",
     "userLoc": "都市または座標（緯度、経度）",
-    "InputOptionsButton": "入力オプション",
     "saveLoc": "保存",
 
     // Weather

@@ -61,7 +61,6 @@ const zh = {
     "UserLocText": "输入您的位置",
     "UserLocSubtext": "如果天气位置不正确",
     "userLoc": "您的城市或坐标（纬度，经度）",
-    "InputOptionsButton": "输入选项",
     "saveLoc": "保存",
 
     // Weather

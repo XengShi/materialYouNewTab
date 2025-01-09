@@ -61,7 +61,6 @@ const idn = {
     "UserLocText": "Masukkan Lokasi Anda",
     "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
     "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
-    "InputOptionsButton": "Pilihan Input",
     "saveLoc": "Simpan",
 
     // Weather

@@ -61,7 +61,6 @@ const vi = {
     "UserLocText": "Nhập vị trí của bạn",
     "UserLocSubtext": "Nếu vị trí thời tiết không chính xác",
     "userLoc": "Vị trí của bạn (Thành phố/Vĩ độ, Kinh độ)",
-    "InputOptionsButton": "Tùy chọn Nhập",
     "saveLoc": "Lưu",
 
     // Weather

@@ -61,7 +61,6 @@ const tr = {
     "UserLocText": "Konumunuzu girin",
     "UserLocSubtext": "Hava durumu konumu doğru değilse",
     "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
-    "InputOptionsButton": "Girdi Seçenekleri",
     "saveLoc": "Kaydet",
 
     // Weather

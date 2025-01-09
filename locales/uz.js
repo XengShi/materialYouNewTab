@@ -61,7 +61,6 @@ const uz = {
     "UserLocText": "O'zingizning joylashganligingizni kiriting",
     "UserLocSubtext": "Agar havo joylashuvi noto'g'ri bo'lsa",
     "userLoc": "O'zingizning shahringiz yoki koordinatalaringiz (Kenglik, Uzunlik)",
-    "InputOptionsButton": "Kirish imkoniyatlari",
     "saveLoc": "Saqlash",
 
     // Weather

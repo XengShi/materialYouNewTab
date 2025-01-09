@@ -61,7 +61,6 @@ const fr = {
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    "InputOptionsButton": "Options de saisie",
     "saveLoc": "Enregistrer",
 
     // Weather

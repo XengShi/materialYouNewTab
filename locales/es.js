@@ -61,7 +61,6 @@ const es = {
     "UserLocText": "Ingresa tu ubicación",
     "UserLocSubtext": "Si la ubicación del clima es incorrecta",
     "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
-    "InputOptionsButton": "Opciones de entrada",
     "saveLoc": "Guardar",
 
     // Weather

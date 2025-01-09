@@ -61,7 +61,6 @@ const az = {
     "UserLocText": "Məkanınızı daxil edin",
     "UserLocSubtext": "Hava yeri düzgün deyilsə",
     "userLoc": "Məkanınız (Şəhər/Enlem, Boylam)",
-    "InputOptionsButton": "Daxiletmə Seçimləri",
     "saveLoc": "Saxla",
 
     // Weather

@@ -61,7 +61,6 @@ const sl = {
     "UserLocText": "Vnesite svojo lokacijo",
     "UserLocSubtext": "Če lokacija vremena ni pravilna",
     "userLoc": "Vaše mesto ali koordinate (geografska širina, dolžina)",
-    "InputOptionsButton": "Možnosti vnosa",
     "saveLoc": "Shrani",
 
     // Weather

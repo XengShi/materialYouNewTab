@@ -61,7 +61,6 @@ const ko = {
     "UserLocText": "위치 입력",
     "UserLocSubtext": "날씨 위치가 정확하지 않으면",
     "userLoc": "당신의 도시 또는 좌표 (위도, 경도)",
-    "InputOptionsButton": "입력 옵션",
     "saveLoc": "저장",
 
     // Weather
