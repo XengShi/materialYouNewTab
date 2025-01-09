@@ -22,7 +22,7 @@ const hu = {
     "googleAppsMenuInfo": "Parancsikonok a Google alkalmazásaihoz",
     "googleAppsHover": "Google Appok",
 
-    // Todo List
+    // To-do List
     "todoListText": "Teendő lista",
     "todoListInfo": "Napi teendők lista megjelenítése",
     "todoListHover": "Teendő lista",
@@ -60,7 +60,6 @@ const hu = {
     "UserLocText": "Add meg a tartózkodási helyed",
     "UserLocSubtext": "Ha az időjárás helye nem megfelelő",
     "userLoc": "A városod vagy koordinátáid (földrajzi szélesség, hosszúság)",
-    "InputOptionsButton": "Beviteli lehetőségek",
     "saveLoc": "Mentés",
 
     // Weather

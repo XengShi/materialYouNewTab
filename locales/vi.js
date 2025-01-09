@@ -23,7 +23,7 @@ const vi = {
     "googleAppsMenuInfo": "Hiển thị các phím tắt cho Ứng dụng Google",
     "googleAppsHover": "Ứng dụng Google",
 
-    // Todo List
+    // To-do List
     "todoListText": "Danh sách việc cần làm",
     "todoListInfo": "Hiển thị danh sách việc cần làm hàng ngày",
     "todoListHover": "Việc cần làm",

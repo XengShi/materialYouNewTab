@@ -23,7 +23,7 @@ const cs = {
     "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
     "googleAppsHover": "Google aplikace",
 
-    // Todo List
+    // To-do List
     "todoListText": "Seznam úkolů",
     "todoListInfo": "Zobrazí denní seznam úkolů",
     "todoListHover": "Seznam úkolů",
@@ -61,7 +61,6 @@ const cs = {
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
-    "InputOptionsButton": "Co lze zadat",
     "saveLoc": "Uložit",
 
     // Weather

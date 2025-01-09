@@ -23,7 +23,7 @@ const fr = {
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
     "googleAppsHover": "Apps Google",
 
-    // Todo List
+    // To-do List
     "todoListText": "Liste To-Do",
     "todoListInfo": "Afficher une liste de tâches quotidiennes",
     "todoListHover": "Liste To-Do",
@@ -61,7 +61,6 @@ const fr = {
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    //"InputOptionsButton": "Options de saisie",
     "useGPS": "Utiliser le GPS",
     "saveLoc": "Enregistrer",
 
