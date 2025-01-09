@@ -57,6 +57,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         location.reload();
     });
 
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
     // Reset settings (clear localStorage)
     resetbtn.addEventListener("click", () => {
         if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
@@ -114,8 +115,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Flag indicating whether to use GPS
     const useGPS = JSON.parse(localStorage.getItem("useGPS"));
-
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
     // Fetch weather data based on a location
     async function fetchWeather(location) {
@@ -284,6 +283,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     // Use GPS for dynamic location
                     currentUserLocation = await fetchGPSLocation();
                 } catch {
+                    // Silent failover
                 }
             }
 
