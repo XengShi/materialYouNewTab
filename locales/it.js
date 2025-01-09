@@ -61,6 +61,7 @@ const it = {
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
+    "useGPS": "Usa il GPS",
     "saveLoc": "Salva",
 
     // Weather
@@ -135,4 +136,5 @@ const it = {
     "invalidBackup": "File di backup non valido",
     "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro?",
     "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser",
+    "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
 };
