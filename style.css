@@ -3018,8 +3018,10 @@ input:checked + .toggle:before {
 		margin: auto auto auto var(--gap);
 	}
 	#shortcuts-section {
-		position: relative;
+		position: fixed;
 		max-width: 32rem;
+		height: fit-content;
+		bottom: 20px
 	}
 }
 
@@ -3055,6 +3057,10 @@ input:checked + .toggle:before {
 		position: relative;
 		/* margin-top: 100px; */
 		padding-bottom: 90px;
+	}
+	#shortcuts-section {
+		position: relative;
+		bottom: 0px;
 	}
 	.leftDiv {
 		display: flex;
