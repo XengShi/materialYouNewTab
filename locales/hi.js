@@ -23,7 +23,7 @@ const hi = {
     "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
     "googleAppsHover": "गूगल ऐप्स",
 
-    // Todo List
+    // To-do List
     "todoListText": "कार्य सूची",
     "todoListInfo": "दैनिक कार्यों की सूची देखें",
     "todoListHover": "कार्य सूची",

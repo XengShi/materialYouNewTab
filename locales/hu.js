@@ -22,7 +22,7 @@ const hu = {
     "googleAppsMenuInfo": "Parancsikonok a Google alkalmazásaihoz",
     "googleAppsHover": "Google Appok",
 
-    // Todo List
+    // To-do List
     "todoListText": "Teendő lista",
     "todoListInfo": "Napi teendők lista megjelenítése",
     "todoListHover": "Teendő lista",

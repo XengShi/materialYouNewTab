@@ -23,7 +23,7 @@ const zh = {
     "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
     "googleAppsHover": "谷歌应用",
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short

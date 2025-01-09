@@ -23,7 +23,7 @@ const uz = {
     "googleAppsMenuInfo": "Google Dasturlariga qisqacha havolani ko'rsating",
     // "googleAppsHover": "Google Apps",  // Keep this shorter
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short

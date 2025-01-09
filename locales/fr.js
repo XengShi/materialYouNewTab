@@ -23,7 +23,7 @@ const fr = {
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
     "googleAppsHover": "Apps Google",
 
-    // Todo List
+    // To-do List
     "todoListText": "Liste To-Do",
     "todoListInfo": "Afficher une liste de tâches quotidiennes",
     "todoListHover": "Liste To-Do",

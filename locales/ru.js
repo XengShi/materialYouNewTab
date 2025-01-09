@@ -23,7 +23,7 @@ const ru = {
     "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
     "googleAppsHover": "Гугл приложения",
 
-    // Todo List
+    // To-do List
     "todoListText": "To-do лист",
     "todoListInfo": "Показать ежедневный список дел",
     "todoListHover": "To-do лист",

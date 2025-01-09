@@ -23,7 +23,7 @@ const ja = {
     "googleAppsMenuInfo": "Googleアプリのショートカットを表示",
     "googleAppsHover": "Googleアプリ",
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",   // Keep this short

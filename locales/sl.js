@@ -23,7 +23,7 @@ const sl = {
     "googleAppsMenuInfo": "Prikaži bližnjice za Google aplikacije",
     "googleAppsHover": "Google Aplikacije",
 
-    // Todo List
+    // To-do List
     "todoListText": "Seznam opravil",
     "todoListInfo": "Prikaži dnevni seznam opravil",
     "todoListHover": "Seznam opravil",

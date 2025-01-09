@@ -23,7 +23,7 @@ const ko = {
     "googleAppsMenuInfo": "Google 앱 바로가기 표시",
     "googleAppsHover": "구글 앱",
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short

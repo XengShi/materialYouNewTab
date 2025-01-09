@@ -23,7 +23,7 @@ const cs = {
     "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
     "googleAppsHover": "Google aplikace",
 
-    // Todo List
+    // To-do List
     "todoListText": "Seznam úkolů",
     "todoListInfo": "Zobrazí denní seznam úkolů",
     "todoListHover": "Seznam úkolů",
