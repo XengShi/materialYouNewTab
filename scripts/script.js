@@ -6,13 +6,19 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-const isFirefox = typeof browser !== 'undefined';
+// Function to detect which browser is being used
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isFirefox = typeof browser !== "undefined";
+// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+const isEdge = /Edg/.test(navigator.userAgent);
+const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
+const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 let proxyurl;
 let clocktype;
 let hourformat;
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener("DOMContentLoaded", async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -32,22 +38,22 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (savedLocation) userLocInput.value = savedLocation;
     if (savedApiKey) userAPIInput.value = savedApiKey;
 
-    const defaultProxyURL = 'https://mynt-proxy.rhythmcorehq.com'; //Default proxy url
+    const defaultProxyURL = "https://mynt-proxy.rhythmcorehq.com"; //Default proxy url
     if (savedProxy && savedProxy !== defaultProxyURL) {
         userProxyInput.value = savedProxy;
     }
 
     // Function to simulate button click on Enter key press
     function handleEnterPress(event, buttonId) {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             document.getElementById(buttonId).click();
         }
     }
 
     // Add event listeners for handling Enter key presses
-    userAPIInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveAPI'));
-    userLocInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveLoc'));
-    userProxyInput.addEventListener('keydown', (event) => handleEnterPress(event, 'saveproxy'));
+    userAPIInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveAPI"));
+    userLocInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveLoc"));
+    userProxyInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveproxy"));
 
     // Save API key to localStorage
     saveAPIButton.addEventListener("click", () => {
@@ -57,10 +63,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         location.reload();
     });
 
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
     // Reset settings (clear localStorage)
     resetbtn.addEventListener("click", () => {
-        if (confirm(translations[currentLanguage]?.confirmRestore || translations['en'].confirmRestore)) {
+        if (confirm(translations[currentLanguage]?.confirmRestore || translations["en"].confirmRestore)) {
             localStorage.clear();
             location.reload();
         }
@@ -74,9 +80,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (proxyurl === "") {
             proxyurl = defaultProxyURL;
         } else {
-            // Validate if input starts with 'http://' or 'https://'
+            // Validate if input starts with "http://" or "https://"
             if (!(proxyurl.startsWith("http://") || proxyurl.startsWith("https://"))) {
-                // Automatically correct input by adding 'http://' if not present
+                // Automatically correct input by adding "http:/"" if not present
                 proxyurl = "http://" + proxyurl;
             }
 
@@ -93,16 +99,16 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Default Weather API key
     const weatherApiKeys = [
-        'd36ce712613d4f21a6083436240910',
-        'db0392b338114f208ee135134240312',
-        'de5f7396db034fa2bf3140033240312',
-        'c64591e716064800992140217240312',
-        '9b3204c5201b4b4d8a2140330240312',
-        'eb8a315c15214422b60140503240312',
-        'cd148ebb1b784212b74140622240312',
-        '7ae67e219af54df2840140801240312',
-        '0a6bc8a404224c8d89953341241912',
-        'f59e58d7735d4739ae953115241912'
+        "d36ce712613d4f21a6083436240910",
+        "db0392b338114f208ee135134240312",
+        "de5f7396db034fa2bf3140033240312",
+        "c64591e716064800992140217240312",
+        "9b3204c5201b4b4d8a2140330240312",
+        "eb8a315c15214422b60140503240312",
+        "cd148ebb1b784212b74140622240312",
+        "7ae67e219af54df2840140801240312",
+        "0a6bc8a404224c8d89953341241912",
+        "f59e58d7735d4739ae953115241912"
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
@@ -118,7 +124,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Fetch weather data based on a location
     async function fetchWeather(location) {
-        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
         try {
             let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
             const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
@@ -182,7 +188,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
                 // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations['en'].humidityLevel; // Fallback to English if translation is missing
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
                 document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
 
                 // Event Listener for the Fahrenheit toggle
@@ -190,7 +196,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const updateTemperatureDisplay = () => {
                     const tempElement = document.getElementById("temp");
                     const feelsLikeElement = document.getElementById("feelsLike");
-                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations['en'].feelsLike;
+                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
 
                     if (fahrenheitCheckbox.checked) {
                         // Update temperature
@@ -200,6 +206,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         tempUnitF.textContent = "°F";
                         tempElement.appendChild(tempUnitF);
 
+                        // TODO: Change, it's hard-coded for cs language
                         // Update feels like
                         const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
                         feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
@@ -211,6 +218,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         tempUnitC.textContent = "°C";
                         tempElement.appendChild(tempUnitC);
 
+                        // TODO: Change, it's hard-coded for cs language
                         // Update feels like
                         const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
                         feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
@@ -223,14 +231,15 @@ window.addEventListener('DOMContentLoaded', async () => {
                 const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
                 document.getElementById("wIcon").src = weatherIcon;
 
+                // TODO: Change, it's hard-coded for only few languages
                 // Define minimum width for the slider based on the language
                 const humidityMinWidth = {
-                    idn: '47%',
-                    hu: '48%',
-                    en: '42%', // Default for English and others
+                    idn: "47%",
+                    hu: "48%",
+                    en: "42%", // Default for English and others
                 };
                 const slider = document.getElementById("slider");
-                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth['en'];
+                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];
 
                 // Set slider width based on humidity
                 if (humidity > 40) {
@@ -289,7 +298,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
-                const geoLocation = 'https://ipinfo.io/json/';
+                const geoLocation = "https://ipinfo.io/json/";
                 const locationData = await fetch(geoLocation);
                 const parsedLocation = await locationData.json();
                 currentUserLocation = parsedLocation.loc;
@@ -324,146 +333,113 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 // ---------------------------end of weather stuff--------------------
 
-// ------------------------Google App Menu-----------------------------------
-const iconContainer = document.getElementById("iconContainer");
-const googleAppsCont = document.getElementById("googleAppsCont");
-
-// Toggle menu and tooltip visibility
-googleAppsCont.addEventListener("click", function (event) {
-    const isMenuVisible = iconContainer.style.display === 'grid';
-
-    // Toggle menu visibility
-    iconContainer.style.display = isMenuVisible ? 'none' : 'grid';
-
-    // Add or remove the class to hide the tooltip
-    if (!isMenuVisible) {
-        googleAppsCont.classList.add('menu-open'); // Hide tooltip
-    } else {
-        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
-    }
-
-    event.stopPropagation();
-});
-
-// Close menu when clicking outside
-document.addEventListener("click", function (event) {
-    const isClickInside =
-        iconContainer.contains(event.target) || googleAppsCont.contains(event.target);
-
-    if (!isClickInside && iconContainer.style.display === 'grid') {
-        iconContainer.style.display = 'none'; // Hide menu
-        googleAppsCont.classList.remove('menu-open'); // Restore tooltip
-    }
-});
-// ------------------------End of Google App Menu Setup-----------------------------------
-
 // ------------------------ Bookmark System -----------------------------------
 // DOM Variables
-const bookmarkButton = document.getElementById('bookmarkButton');
-const bookmarkSidebar = document.getElementById('bookmarkSidebar');
-const bookmarkList = document.getElementById('bookmarkList');
-const bookmarkSearch = document.getElementById('bookmarkSearch');
-const bookmarkSearchClearButton = document.getElementById('clearSearchButton');
-const bookmarkViewGrid = document.getElementById('bookmarkViewGrid');
-const bookmarkViewList = document.getElementById('bookmarkViewList');
+const bookmarkButton = document.getElementById("bookmarkButton");
+const bookmarkSidebar = document.getElementById("bookmarkSidebar");
+const bookmarkList = document.getElementById("bookmarkList");
+const bookmarkSearch = document.getElementById("bookmarkSearch");
+const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
+const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
+const bookmarkViewList = document.getElementById("bookmarkViewList");
 
 var bookmarksAPI;
 if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
-} else if (typeof chrome !== 'undefined' && chrome.bookmarks) {
+} else if (typeof chrome !== "undefined" && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
 } else {
     console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-    bookmarkButton.addEventListener('click', function () {
+    bookmarkButton.addEventListener("click", function () {
         toggleBookmarkSidebar();
         bookmarkSearchClearButton.click();
     });
 
-    bookmarkViewGrid.addEventListener('click', function () {
+    bookmarkViewGrid.addEventListener("click", function () {
         if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
-    bookmarkViewList.addEventListener('click', function () {
+    bookmarkViewList.addEventListener("click", function () {
         if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
     });
 
-    document.addEventListener('click', function (event) {
-        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains('open')) {
+    document.addEventListener("click", function (event) {
+        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains("open")) {
             toggleBookmarkSidebar();
         }
     });
 
-    bookmarkSearch.addEventListener('input', function () {
+    bookmarkSearch.addEventListener("input", function () {
         const searchTerm = bookmarkSearch.value.toLowerCase();
-        const bookmarks = bookmarkList.querySelectorAll('li[data-url], li.folder'); // Include both bookmarks and folders
+        const bookmarks = bookmarkList.querySelectorAll("li[data-url], li.folder"); // Include both bookmarks and folders
 
         Array.from(bookmarks).forEach(function (bookmark) {
             const text = bookmark.textContent.toLowerCase();
-            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : '';
-            const isFolder = bookmark.classList.contains('folder');
+            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : "";
+            const isFolder = bookmark.classList.contains("folder");
 
             // Show bookmarks if the search term matches either the name or the URL
             if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
-                bookmark.style.display = ''; // Show matching bookmarks
+                bookmark.style.display = ""; // Show matching bookmarks
             } else if (isFolder) {
                 // For folders, check if any child bookmarks match the search
-                const childBookmarks = bookmark.querySelectorAll('li[data-url]');
+                const childBookmarks = bookmark.querySelectorAll("li[data-url]");
                 let hasVisibleChild = false;
                 Array.from(childBookmarks).forEach(function (childBookmark) {
                     const childText = childBookmark.textContent.toLowerCase();
-                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : '';
+                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : "";
                     if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
                         hasVisibleChild = true;
-                        childBookmark.style.display = ''; // Show matching child bookmarks
+                        childBookmark.style.display = ""; // Show matching child bookmarks
                     } else {
-                        childBookmark.style.display = 'none'; // Hide non-matching child bookmarks
+                        childBookmark.style.display = "none"; // Hide non-matching child bookmarks
                     }
                 });
 
                 if (hasVisibleChild) {
-                    bookmark.style.display = ''; // Show folder if it has matching child bookmarks
-                    bookmark.classList.add('open'); // Open folder to show matching child bookmarks
+                    bookmark.style.display = ""; // Show folder if it has matching child bookmarks
+                    bookmark.classList.add("open"); // Open folder to show matching child bookmarks
                 } else {
-                    bookmark.style.display = 'none'; // Hide folder if no child matches
-                    bookmark.classList.remove('open');
+                    bookmark.style.display = "none"; // Hide folder if no child matches
+                    bookmark.classList.remove("open");
                 }
             } else {
-                bookmark.style.display = 'none'; // Hide non-matching bookmarks
+                bookmark.style.display = "none"; // Hide non-matching bookmarks
             }
         });
 
-        if (searchTerm === '') {
+        if (searchTerm === "") {
             // Reset display for all bookmarks and folders
             Array.from(bookmarks).forEach(function (bookmark) {
-                bookmark.style.display = '';
-                if (bookmark.classList.contains('folder')) {
-                    bookmark.classList.remove('open');
-                    const childList = bookmark.querySelector('ul');
+                bookmark.style.display = "";
+                if (bookmark.classList.contains("folder")) {
+                    bookmark.classList.remove("open");
+                    const childList = bookmark.querySelector("ul");
                     if (childList) {
-                        childList.classList.add('hidden');
+                        childList.classList.add("hidden");
                     }
                 }
             });
         }
 
         // Show or hide the clear button based on the search term
-        bookmarkSearchClearButton.style.display = searchTerm ? 'inline' : 'none';
+        bookmarkSearchClearButton.style.display = searchTerm ? "inline" : "none";
     });
 
-    bookmarkSearchClearButton.addEventListener('click', function () {
-        bookmarkSearch.value = '';
-        bookmarkSearch.dispatchEvent(new Event('input')); // Trigger input event to clear search results
+    bookmarkSearchClearButton.addEventListener("click", function () {
+        bookmarkSearch.value = "";
+        bookmarkSearch.dispatchEvent(new Event("input")); // Trigger input event to clear search results
     });
 
     function toggleBookmarkSidebar() {
-        bookmarkSidebar.classList.toggle('open');
-        bookmarkButton.classList.toggle('rotate');
+        bookmarkSidebar.classList.toggle("open");
+        bookmarkButton.classList.toggle("rotate");
 
-        if (bookmarkSidebar.classList.contains('open')) {
+        if (bookmarkSidebar.classList.contains("open")) {
             loadBookmarks();
         }
     }
@@ -477,14 +453,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         bookmarksAPI.getTree().then(bookmarkTreeNodes => {
             // Clear the current list
-            bookmarkList.innerHTML = '';
+            bookmarkList.innerHTML = "";
 
             // Display the "Recently Added" folder
             if (bookmarksAPI.getRecent) {
                 bookmarksAPI.getRecent(8).then(recentBookmarks => {
                     if (recentBookmarks.length > 0) {
                         const recentAddedFolder = {
-                            title: 'Recently Added',
+                            title: "Recently Added",
                             children: recentBookmarks
                         };
                         bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
@@ -514,14 +490,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (isBrave) {
                     default_folder = "Bookmarks";
                 }
-                // Extract the 'Main bookmarks' node and display its Children
+                // Extract the "Main bookmarks" node and display its Children
                 const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
 
                 if (mainBookmarks && mainBookmarks.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
 
-                // Extract the other 'Bookmarks' folders and display them
+                // Extract the other "Bookmarks" folders and display them
                 const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
                 if (bookmarksBar && bookmarksBar.children) {
                     bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
@@ -533,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function displayBookmarks(bookmarkNodes) {
-        let list = document.createElement('ul');
+        let list = document.createElement("ul");
 
         // Separate folders and bookmarks
         const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
@@ -555,56 +531,56 @@ document.addEventListener('DOMContentLoaded', function () {
                 continue;
             }
             if (node.children && node.children.length > 0) {
-                let folderItem = document.createElement('li');
+                let folderItem = document.createElement("li");
 
                 // Use the SVG icon from HTML
-                const folderIcon = document.getElementById('folderIconTemplate').cloneNode(true);
-                folderIcon.removeAttribute('id'); // Remove the id to prevent duplicates
+                const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
+                folderIcon.removeAttribute("\"id"); // Remove the id to prevent duplicates
                 folderItem.appendChild(folderIcon);
 
                 folderItem.appendChild(document.createTextNode(node.title));
-                folderItem.classList.add('folder');
+                folderItem.classList.add("folder");
 
                 // Add event listener for unfolding/folding
-                folderItem.addEventListener('click', function (event) {
+                folderItem.addEventListener("\"click", function (event) {
                     event.stopPropagation();
-                    folderItem.classList.toggle('open');
-                    const subList = folderItem.querySelector('ul');
+                    folderItem.classList.toggle("open");
+                    const subList = folderItem.querySelector("ul");
                     if (subList) {
-                        subList.classList.toggle('hidden');
+                        subList.classList.toggle("hidden");
                     }
                 });
 
                 let subList = displayBookmarks(node.children);
-                subList.classList.add('hidden');
+                subList.classList.add("hidden");
                 folderItem.appendChild(subList);
 
                 list.appendChild(folderItem);
             } else if (node.url) {
-                let item = document.createElement('li');
+                let item = document.createElement("li");
                 item.dataset.url = node.url; // Add URL as dataset for search functionality
-                let link = document.createElement('a');
+                let link = document.createElement("a");
                 link.href = node.url;
-                let span = document.createElement('span');
+                let span = document.createElement("span");
                 span.textContent = node.title;
 
-                let favicon = document.createElement('img');
+                let favicon = document.createElement("img");
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
-                favicon.classList.add('favicon');
+                favicon.classList.add("favicon");
                 favicon.onerror = () => {
                     favicon.src = "./svgs/shortcuts_icons/offline.svg";
                 };
 
                 // Create the delete button
-                let deleteButton = document.createElement('button');
-                deleteButton.textContent = '✖';
-                deleteButton.classList.add('bookmark-delete-button');
+                let deleteButton = document.createElement("button");
+                deleteButton.textContent = "✖";
+                deleteButton.classList.add("bookmark-delete-button");
 
-                deleteButton.addEventListener('click', function (event) {
+                deleteButton.addEventListener("click", function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations['en'].deleteBookmark)} "${node.title || node.url}"?`)) {
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)} "${node.title || node.url}"?`)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -627,7 +603,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.appendChild(deleteButton); // Add delete button to the item
 
                 // Open links in the current tab or new tab if ctrl pressed
-                link.addEventListener('click', function (event) {
+                link.addEventListener("click", function (event) {
                     if (event.ctrlKey || event.metaKey) {
                         // Open in a new tab
                         event.preventDefault();
@@ -636,7 +612,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         } else if (isChrome) {
                             chrome.tabs.create({url: node.url, active: false});
                         } else {
-                            window.open(node.url, '_blank');
+                            window.open(node.url, "_blank");
                         }
                     } else {
                         // Open in the current tab
@@ -655,7 +631,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        list.addEventListener('click', function (event) {
+        list.addEventListener("click", function (event) {
             event.stopPropagation();
         });
 
@@ -685,7 +661,7 @@ todoInput.addEventListener("keypress", (event) => {
 
 // Utility function to sanitize input
 function sanitizeInput(input) {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.textContent = input;
     return div.innerHTML;
 }
@@ -693,7 +669,7 @@ function sanitizeInput(input) {
 // Function to add items to the TODO list
 function addtodoItem() {
     const inputText = todoInput.value.trim(); // Remove useless whitespaces
-    if (inputText === '') {
+    if (inputText === "") {
         return; // Return the function when the input is empty
     }
     const t = "t" + Date.now(); // Generate a Unique ID
@@ -701,19 +677,19 @@ function addtodoItem() {
     todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
-    todoInput.value = ''; // Clear Input
+    todoInput.value = ""; // Clear Input
     SaveToDoData(); // Save changes
 }
 
 function createTodoItemDOM(id, title, status, pinned) {
-    let li = document.createElement('li');
+    let li = document.createElement("li");
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
     const removebtn = document.createElement("span"); // Create the Cross Icon
     removebtn.setAttribute("class", "todoremovebtn");
     removebtn.textContent = "\u00d7";
     li.appendChild(removebtn); // Add the cross icon to the LI tag
     li.setAttribute("class", "todolistitem");
-    if (status === 'completed') {
+    if (status === "completed") {
         li.classList.add("checked");
     }
     const pinbtn = document.createElement("span"); // Create the Cross Icon
@@ -733,12 +709,12 @@ todoulList.addEventListener("click", (event) => {
         let id = event.target.dataset.todoitem;
         todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todoremovebtn')) {
+    } else if (event.target.classList.contains("todoremovebtn")) {
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains('todopinbtn')) {
+    } else if (event.target.classList.contains("todopinbtn")) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
         todoList[id].pinned = ((todoList[id].pinned !== true)); // Update status
@@ -764,7 +740,7 @@ function ShowToDoList() {
         todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
     } catch (error) {
         console.error("Error loading from localStorage:", error);
-        localStorage.setItem("todoList", '{}'); // Reset corrupted data
+        localStorage.setItem("todoList", "{}"); // Reset corrupted data
     }
 }
 
@@ -792,28 +768,28 @@ if (todoLastUpdateDate === todoCurrentDate) {
 
 // Toggle menu and tooltip visibility
 todoListCont.addEventListener("click", function (event) {
-    const isMenuVisible = todoContainer.style.display === 'grid';
+    const isMenuVisible = todoContainer.style.display === "grid";
 
     // Toggle menu visibility
-    todoContainer.style.display = isMenuVisible ? 'none' : 'grid';
+    todoContainer.style.display = isMenuVisible ? "none" : "grid";
 
     // Add or remove the class to hide the tooltip
     if (!isMenuVisible) {
-        todoListCont.classList.add('menu-open'); // Hide tooltip
+        todoListCont.classList.add("menu-open"); // Hide tooltip
         todoInput.focus(); // Auto focus on input box
     } else {
-        todoListCont.classList.remove('menu-open'); // Restore tooltip
+        todoListCont.classList.remove("menu-open"); // Restore tooltip
     }
 });
 
 // Close menu when clicking outside
 document.addEventListener("click", function (event) {
     const isClickInside =
-        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains('todoremovebtn');
+        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains("todoremovebtn");
 
-    if (!isClickInside && todoContainer.style.display === 'grid') {
-        todoContainer.style.display = 'none'; // Hide menu
-        todoListCont.classList.remove('menu-open'); // Restore tooltip
+    if (!isClickInside && todoContainer.style.display === "grid") {
+        todoContainer.style.display = "none"; // Hide menu
+        todoListCont.classList.remove("menu-open"); // Restore tooltip
     }
 
     event.stopPropagation();
@@ -859,7 +835,7 @@ function updateDate() {
         var month = currentTime.getMonth();
 
         // Define the current language
-        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
         // Get the translated name of the day
         var dayName;
@@ -870,7 +846,7 @@ function updateDate() {
         ) {
             dayName = translations[currentLanguage].days[dayOfWeek];
         } else {
-            dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
+            dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
         }
 
         // Get the translated name of the month
@@ -882,7 +858,7 @@ function updateDate() {
         ) {
             monthName = translations[currentLanguage].months[month];
         } else {
-            monthName = translations['en'].months[month]; // Fallback to English month name
+            monthName = translations["en"].months[month]; // Fallback to English month name
         }
 
         // Localize the day of the month
@@ -979,15 +955,15 @@ function getGreeting() {
 
     // Determine the greeting key based on the current hour
     if (currentHour < 12) {
-        greetingKey = 'morning';
+        greetingKey = "morning";
     } else if (currentHour < 17) {
-        greetingKey = 'afternoon';
+        greetingKey = "afternoon";
     } else {
-        greetingKey = 'evening';
+        greetingKey = "evening";
     }
 
     // Get the user's language setting
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
 
     // Check if the greeting is available for the selected language
     if (
@@ -998,7 +974,7 @@ function getGreeting() {
         return translations[currentLanguage].greeting[greetingKey];
     } else {
         // Fallback to English greeting if the currentLanguage or greeting key is missing
-        return translations['en'].greeting[greetingKey];
+        return translations["en"].greeting[greetingKey];
     }
 }
 
@@ -1013,7 +989,7 @@ function updatedigiClock() {
     const dayOfWeek = now.getDay(); // Get day of the week (0-6)
     const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
 
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
     // Get translated day name
     let dayName;
@@ -1024,7 +1000,7 @@ function updatedigiClock() {
     ) {
         dayName = translations[currentLanguage].days[dayOfWeek];
     } else {
-        dayName = translations['en'].days[dayOfWeek]; // Fallback to English day name
+        dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
     }
 
     // Localize the day of the month
@@ -1053,16 +1029,16 @@ function updatedigiClock() {
 
     // Handle time formatting based on the selected language
     let timeString;
-    let period = ''; // For storing AM/PM equivalent
+    let period = ""; // For storing AM/PM equivalent
 
-    // Array of languages to use 'en-US' format
-    const specialLanguages = ['tr', 'zh', 'ja', 'ko', 'hu']; // Languages with NaN in locale time format
-    const localizedLanguages = ['bn', 'mr', 'np'];
-    // Force the 'en-US' format for Bengali, otherwise, it will be localized twice, resulting in NaN
+    // Array of languages to use "en-US" format
+    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
+    const localizedLanguages = ["bn", "mr", "np"];
+    // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
-    const timeOptions = {hour: '2-digit', minute: '2-digit', hour12: hourformat};
-    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? 'en-US' : currentLanguage;
+    const timeOptions = {hour: "2-digit", minute: "2-digit", hour12: hourformat};
+    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? "en-US" : currentLanguage;
     timeString = now.toLocaleTimeString(locale, timeOptions);
 
     // Split the time and period (AM/PM) if in 12-hour format
@@ -1083,24 +1059,24 @@ function updatedigiClock() {
     const localizedMinutes = localizeNumbers(minutes, currentLanguage);
 
     // Update the hour, colon, and minute text elements
-    document.getElementById('digihours').textContent = localizedHours;
-    document.getElementById('digicolon').textContent = ':'; // Static colon
-    document.getElementById('digiminutes').textContent = localizedMinutes;
+    document.getElementById("digihours").textContent = localizedHours;
+    document.getElementById("digicolon").textContent = ":"; // Static colon
+    document.getElementById("digiminutes").textContent = localizedMinutes;
 
     // Manually set the period for special languages if 12-hour format is enabled
     if (hourformat && specialLanguages.includes(currentLanguage)) {
-        period = parseInt(hours, 10) < 12 ? 'AM' : 'PM';
+        period = parseInt(hours, 10) < 12 ? "AM" : "PM";
     }
 
     // Display AM/PM if in 12-hour format
     if (hourformat) {
-        document.getElementById('amPm').textContent = period; // Show AM/PM based on calculated period
+        document.getElementById("amPm").textContent = period; // Show AM/PM based on calculated period
     } else {
-        document.getElementById('amPm').textContent = ''; // Clear AM/PM for 24-hour format
+        document.getElementById("amPm").textContent = ""; // Clear AM/PM for 24-hour format
     }
 
     // Update the translated date
-    document.getElementById('digidate').textContent = dateString;
+    document.getElementById("digidate").textContent = dateString;
 
     const clocktype1 = localStorage.getItem("clocktype");
     if (clocktype1 === "digital" && isGreetingEnabled) {
@@ -1131,7 +1107,7 @@ setInterval(updatedigiClock, 1000); // Update digital clock every second
 if (clocktype === "digital") {
     updatedigiClock();
 } else if (clocktype === "analog") {
-    if (document.visibilityState === 'visible') {
+    if (document.visibilityState === "visible") {
         startClock();
         updateDate(); // Immediately update date when clock is analog
     }
@@ -1139,7 +1115,7 @@ if (clocktype === "digital") {
 
 // Event listener for visibility change
 document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === 'visible') {
+    if (document.visibilityState === "visible") {
         startClock(); // Start the clock if the tab is focused
         updateDate(); // Update date when the tab becomes visible
     } else {
@@ -1148,15 +1124,15 @@ document.addEventListener("visibilitychange", function () {
 });
 
 function displayClock() {
-    const analogClock = document.getElementById('analogClock');
-    const digitalClock = document.getElementById('digitalClock');
+    const analogClock = document.getElementById("analogClock");
+    const digitalClock = document.getElementById("digitalClock");
 
-    if (clocktype === 'analog') {
-        analogClock.style.display = 'block'; // Show the analog clock
-        digitalClock.style.display = 'none';  // Hide the digital clock
-    } else if (clocktype === 'digital') {
-        digitalClock.style.display = 'block';  // Show the digital clock
-        analogClock.style.display = 'none';     // Hide the analog clock
+    if (clocktype === "analog") {
+        analogClock.style.display = "block"; // Show the analog clock
+        digitalClock.style.display = "none";  // Hide the digital clock
+    } else if (clocktype === "digital") {
+        digitalClock.style.display = "block";  // Show the digital clock
+        analogClock.style.display = "none";     // Hide the analog clock
     }
 }
 
@@ -1184,7 +1160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Set the default language to English if no language is saved
-    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    const savedLang = localStorage.getItem("selectedLanguage") || "en";
     applyLanguage(savedLang);
 
     // Load the stored text if it exists
@@ -1193,7 +1169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         userTextDiv.textContent = storedValue;
     } else {
         // Fallback to the placeholder based on the selected language
-        const placeholder = userTextDiv.dataset.placeholder || translations['en'].userText; // Fallback to English
+        const placeholder = userTextDiv.dataset.placeholder || translations["en"].userText; // Fallback to English
         userTextDiv.textContent = placeholder;
     }
 
@@ -1218,34 +1194,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Showing border or outline when you click on the searchbar
-const searchbar = document.getElementById('searchbar');
-searchbar.addEventListener('click', function (event) {
+const searchbar = document.getElementById("searchbar");
+searchbar.addEventListener("click", function (event) {
     event.stopPropagation(); // Stop the click event from propagating to the document
-    searchbar.classList.add('active');
+    searchbar.classList.add("active");
 });
 
-document.addEventListener('click', function (event) {
+document.addEventListener("click", function (event) {
     // Check if the clicked element is not the searchbar
     if (!searchbar.contains(event.target)) {
-        searchbar.classList.remove('active');
+        searchbar.classList.remove("active");
     }
 });
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
-    const dropdown = document.querySelector('.dropdown-content');
+    const dropdown = document.querySelector(".dropdown-content");
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
             event.stopPropagation();
-            dropdown.style.display = 'none';
+            dropdown.style.display = "none";
         }
     })
 
-    document.querySelector('.dropdown-btn').addEventListener('click', function (event) {
-        const resultBox = document.getElementById('resultBox');
-        if (resultBox.classList.toString().includes('show')) return;
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    document.querySelector(".dropdown-btn").addEventListener("click", function (event) {
+        const resultBox = document.getElementById("resultBox");
+        if (resultBox.classList.toString().includes("show")) return;
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     });
 
     const enterBTN = document.getElementById("enterBtn");
@@ -1260,8 +1236,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Sort the dropdown
         const sortedDropdowns = elements.sort((a, b) => {
-            const engineA = parseInt(a.getAttribute('data-engine'), 10);
-            const engineB = parseInt(b.getAttribute('data-engine'), 10);
+            const engineA = parseInt(a.getAttribute("data-engine"), 10);
+            const engineB = parseInt(b.getAttribute("data-engine"), 10);
 
             return engineA - engineB;
         })
@@ -1277,10 +1253,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // This will add event listener for click in the search bar
     searchDropdowns.forEach(element => {
-        element.addEventListener('click', () => {
-            const engine = element.getAttribute('data-engine');
+        element.addEventListener("click", () => {
+            const engine = element.getAttribute("data-engine");
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
-            const selector = `*[data-engine-name=${element.getAttribute('data-engine-name')}]`;
+            const selector = `*[data-engine-name=${element.getAttribute("data-engine-name")}]`;
 
             // console.log(element, selector);
 
@@ -1326,7 +1302,7 @@ document.addEventListener("DOMContentLoaded", () => {
         element.innerHTML = tempHTML;
 
         // Swap attributes
-        ['data-engine', 'data-engine-name', 'id'].forEach(attr => {
+        ["data-engine", "data-engine-name", "id"].forEach(attr => {
             const tempAttr = defaultEngine.getAttribute(attr);
             defaultEngine.setAttribute(attr, element.getAttribute(attr));
             element.setAttribute(attr, tempAttr);
@@ -1338,11 +1314,11 @@ document.addEventListener("DOMContentLoaded", () => {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
         var searchEngines = {
-            engine1: 'https://www.google.com/search?q=',
-            engine2: 'https://duckduckgo.com/?q=',
-            engine3: 'https://bing.com/?q=',
-            engine4: 'https://search.brave.com/search?q=',
-            engine5: 'https://www.youtube.com/results?search_query='
+            engine1: "https://www.google.com/search?q=",
+            engine2: "https://duckduckgo.com/?q=",
+            engine3: "https://bing.com/?q=",
+            engine4: "https://search.brave.com/search?q=",
+            engine5: "https://www.youtube.com/results?search_query="
         };
 
         if (searchTerm !== "") {
@@ -1366,7 +1342,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
         const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
-        const defaultDropdownSN = document.querySelector('*[data-default]').getAttribute('data-engine');
+        const defaultDropdownSN = document.querySelector("*[data-default]").getAttribute("data-engine");
 
         // check if the default selected search engine is same as the stored one.
         if (storedSearchEngineSN !== defaultDropdownSN) {
@@ -1383,7 +1359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const dropdownItems = document.querySelectorAll('.dropdown-item:not(*[data-default])');
+    const dropdownItems = document.querySelectorAll(".dropdown-item:not(*[data-default])");
     let selectedIndex = -1;
 
     // Function to update the selected item
@@ -1391,33 +1367,33 @@ document.addEventListener("DOMContentLoaded", () => {
         // let hasSelected = [];
         dropdownItems.forEach((item, index) => {
 
-            item.addEventListener('mouseenter', () => {
-                item.classList.add('selected');
+            item.addEventListener("mouseenter", () => {
+                item.classList.add("selected");
             })
-            item.addEventListener('mouseleave', () => {
-                item.classList.remove('selected');
+            item.addEventListener("mouseleave", () => {
+                item.classList.remove("selected");
             })
 
             if (index === selectedIndex) {
                 item.focus()
-                item.classList.add('selected');
+                item.classList.add("selected");
             } else {
                 item.focus()
-                item.classList.remove('selected');
+                item.classList.remove("selected");
             }
         });
     }
 
     // Event listener for keydown events to navigate up/down
-    document.querySelector('.dropdown').addEventListener('keydown', function (event) {
+    document.querySelector(".dropdown").addEventListener("keydown", function (event) {
         if (dropdown.style.display === "block") {
-            if (event.key === 'ArrowDown') {
+            if (event.key === "ArrowDown") {
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
-            } else if (event.key === 'ArrowUp') {
+            } else if (event.key === "ArrowUp") {
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
-                const selector = '.dropdown-content .selected';
-                const engine = element.getAttribute('data-engine');
+                const selector = ".dropdown-content .selected";
+                const engine = element.getAttribute("data-engine");
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
@@ -1451,20 +1427,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     // Remove Loading Screen When the DOM and the Theme has Loaded
-    document.getElementById('LoadingScreen').style.display = "none";
+    document.getElementById("LoadingScreen").style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
-        document.documentElement.classList.add('theme-transition');
+        document.documentElement.classList.add("theme-transition");
     }, 25);
 });
 
 //  -----------Voice Search------------
-// Function to detect Chrome and Edge on desktop
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-const isEdge = /Edg/.test(navigator.userAgent);
-const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-// const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 function isSupportedBrowser() {
     return (isChrome || isEdge) && isDesktop && !isBrave;
 }
@@ -1516,10 +1486,10 @@ micIconCheckbox.addEventListener("change", () => {
 function initializeSpeechRecognition() {
     const searchInput = document.getElementById("searchQ");
     const resultBox = document.getElementById("resultBox");
-    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
     // Check if the browser supports SpeechRecognition API
-    const isSpeechRecognitionAvailable = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+    const isSpeechRecognitionAvailable = "webkitSpeechRecognition" in window || "SpeechRecognition" in window;
 
     if (isSpeechRecognitionAvailable) {
         // Initialize SpeechRecognition (cross-browser compatibility)
@@ -1533,18 +1503,18 @@ function initializeSpeechRecognition() {
         // When speech recognition starts
         recognition.onstart = () => {
             isRecognizing = true; // Set the flag to indicate recognition is active
-            const selectedRadio = document.querySelector('.colorPlate:checked');
-            if (selectedRadio.value !== 'dark') {
-                micIcon.style.color = 'var(--darkerColor-blue)';
-                // micIcon.style.transform = 'scale(1.05)';
+            const selectedRadio = document.querySelector(".colorPlate:checked");
+            if (selectedRadio.value !== "dark") {
+                micIcon.style.color = "var(--darkerColor-blue)";
+                // micIcon.style.transform = "scale(1.05)";
             }
-            searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations['en'].listenPlaceholder}`;
-            micIcon.classList.add('micActive');
+            searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations["en"].listenPlaceholder}`;
+            micIcon.classList.add("micActive");
         };
 
         // When speech recognition results are available (including interim results)
         recognition.onresult = (event) => {
-            let transcript = '';
+            let transcript = "";
             // Loop through results to build the transcript text
             for (let i = 0; i < event.results.length; i++) {
                 transcript += event.results[i][0].transcript; // Append each piece of the transcript
@@ -1555,27 +1525,27 @@ function initializeSpeechRecognition() {
             searchInput.dispatchEvent(new Event("input"));
             // If the result is final, hide the result box
             if (event.results[event.results.length - 1].isFinal) {
-                resultBox.style.display = 'none'; // Hide result box after final input
+                resultBox.style.display = "none"; // Hide result box after final input
             }
         };
 
         // When an error occurs during speech recognition
         recognition.onerror = (event) => {
-            console.error('Speech recognition error: ', event.error);
+            console.error("Speech recognition error: ", event.error);
             isRecognizing = false; // Reset flag on error
         };
 
         // When speech recognition ends (either by user or automatically)
         recognition.onend = () => {
             isRecognizing = false; // Reset the flag to indicate recognition has stopped
-            micIcon.style.color = 'var(--darkColor-blue)'; // Reset mic color
-            // micIcon.style.transform = 'scale(1)'; // Reset scaling
-            micIcon.classList.remove('micActive');
-            searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations['en'].searchPlaceholder}`;
+            micIcon.style.color = "var(--darkColor-blue)"; // Reset mic color
+            // micIcon.style.transform = "scale(1)"; // Reset scaling
+            micIcon.classList.remove("micActive");
+            searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations["en"].searchPlaceholder}`;
         };
 
         // Start speech recognition when mic icon is clicked
-        micIcon.addEventListener('click', () => {
+        micIcon.addEventListener("click", () => {
             if (isRecognizing) {
                 recognition.stop(); // Stop recognition if it's already listening
             } else {
@@ -1583,7 +1553,7 @@ function initializeSpeechRecognition() {
             }
         });
     } else {
-        console.warn('Speech Recognition API not supported in this browser.');
+        console.warn("Speech Recognition API not supported in this browser.");
     }
 }
 
@@ -1595,12 +1565,12 @@ if (!micIconCheckbox.checked) {
 
 
 // Function to apply the selected theme
-const radioButtons = document.querySelectorAll('.colorPlate');
-const themeStorageKey = 'selectedTheme';
+const radioButtons = document.querySelectorAll(".colorPlate");
+const themeStorageKey = "selectedTheme";
 const storedTheme = localStorage.getItem(themeStorageKey);
-// const radioButtons = document.querySelectorAll('.colorPlate');
-// const themeStorageKey = 'selectedTheme'; // For predefined themes
-const customThemeStorageKey = 'customThemeColor'; // For color picker
+// const radioButtons = document.querySelectorAll(".colorPlate");
+// const themeStorageKey = "selectedTheme"; // For predefined themes
+const customThemeStorageKey = "customThemeColor"; // For color picker
 // const storedTheme = localStorage.getItem(themeStorageKey);
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
@@ -1608,7 +1578,7 @@ let darkThemeStyleTag; // Variable to store the dynamically added style tag
 
 const resetDarkTheme = () => {
     // Remove the dark theme class
-    document.documentElement.classList.remove('dark-theme');
+    document.documentElement.classList.remove("dark-theme");
 
     // Remove the injected dark theme style tag
     if (darkThemeStyleTag) {
@@ -1629,22 +1599,22 @@ const resetDarkTheme = () => {
     resetElements.forEach((id) => {
         const element = document.getElementById(id);
         if (element) {
-            element.removeAttribute('style');
+            element.removeAttribute("style");
         }
     });
 
     // Reset fill color for elements with the class "accentColor"
-    const accentElements = document.querySelectorAll('.accentColor');
+    const accentElements = document.querySelectorAll(".accentColor");
     accentElements.forEach((element) => {
-        element.style.fill = ''; // Reset fill color
+        element.style.fill = ""; // Reset fill color
     });
     // Reset the CSS variables to default (for non-dark themes)
-    document.documentElement.style.setProperty('--bg-color-blue', '#ffffff');
-    document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
-    document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
-    document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
-    document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
-    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.documentElement.style.setProperty("--bg-color-blue", "#ffffff");
+    document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
+    document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
+    document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
+    document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
+    document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
 };
 
 
@@ -1655,33 +1625,33 @@ const applySelectedTheme = (colorValue) => {
 
         // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
-            document.documentElement.style.setProperty('--bg-color-blue', '#BBD6FD');
-            document.documentElement.style.setProperty('--accentLightTint-blue', '#E2EEFF');
-            document.documentElement.style.setProperty('--darkerColor-blue', '#3569b2');
-            document.documentElement.style.setProperty('--darkColor-blue', '#4382EC');
-            document.documentElement.style.setProperty('--textColorDark-blue', '#1b3041');
-            document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+            document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
+            document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
+            document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
+            document.documentElement.style.setProperty("--darkColor-blue", "\"#4382EC");
+            document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
+            document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
         } else {
-            document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
-            document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
-            document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
-            document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
-            document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
-            document.documentElement.style.setProperty('--whitishColor-blue', `var(--whitishColor-${colorValue})`);
+            document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
+            document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
+            document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
+            document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
+            document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty("--whitishColor-blue", `var(--whitishColor-${colorValue})`);
         }
     }
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
         // Apply dark theme styles using CSS variables
-        document.documentElement.style.setProperty('--bg-color-blue', `var(--bg-color-${colorValue})`);
-        document.documentElement.style.setProperty('--accentLightTint-blue', `var(--accentLightTint-${colorValue})`);
-        document.documentElement.style.setProperty('--darkerColor-blue', `var(--darkerColor-${colorValue})`);
-        document.documentElement.style.setProperty('--darkColor-blue', `var(--darkColor-${colorValue})`);
-        document.documentElement.style.setProperty('--textColorDark-blue', `var(--textColorDark-${colorValue})`);
+        document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
+        document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
+        document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
+        document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
+        document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
 
         // Add dark theme styles for specific elements
-        darkThemeStyleTag = document.createElement('style');
+        darkThemeStyleTag = document.createElement("style");
         darkThemeStyleTag.textContent = `
             .dark-theme .search-engine input[type="radio"]:checked {
                 background-color: #2a2a2a;
@@ -1801,7 +1771,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
-                background: radial-gradient(circle, #bfbfbf 44%, #000 64%);
+                background: radial-gradient(circle, #bfbfbf 66%, transparent 66%);
                 &:not(:has(svg)){
                     background: var(--accentLightTint-blue);
                 }
@@ -1909,7 +1879,7 @@ const applySelectedTheme = (colorValue) => {
             }
 
             .dark-theme #menuCloseButton .icon {
-                background-color: #cdcdcd;
+                background: radial-gradient(#cdcdcd 66%, transparent 66%);
             }
 
             .dark-theme #closeBtnX {
@@ -1941,12 +1911,12 @@ const applySelectedTheme = (colorValue) => {
         document.head.appendChild(darkThemeStyleTag);
 
         // Apply dark theme class
-        document.documentElement.classList.add('dark-theme');
+        document.documentElement.classList.add("dark-theme");
 
         // Change fill color for elements with the class "accentColor"
-        const accentElements = document.querySelectorAll('.accentColor');
+        const accentElements = document.querySelectorAll(".accentColor");
         accentElements.forEach((element) => {
-            element.style.fill = '#212121';
+            element.style.fill = "\"#212121";
         });
     }
 
@@ -1983,7 +1953,7 @@ const applySelectedTheme = (colorValue) => {
 
 // ----Color Picker || ColorPicker----
 function darkenHexColor(hex, factor = 0.6) {
-    hex = hex.replace('#', '');
+    hex = hex.replace("#", "");
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
@@ -1994,9 +1964,9 @@ function darkenHexColor(hex, factor = 0.6) {
 }
 
 function lightenHexColor(hex, factor = 0.85) {
-    hex = hex.replace('#', '');
+    hex = hex.replace("#", "");
     if (hex.length === 3) {
-        hex = hex.split('').map(c => c + c).join('');
+        hex = hex.split("").map(c => c + c).join("");
     }
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
@@ -2008,9 +1978,9 @@ function lightenHexColor(hex, factor = 0.85) {
 }
 
 function lightestColor(hex, factor = 0.95) {
-    hex = hex.replace('#', '');
+    hex = hex.replace("#", "");
     if (hex.length === 3) {
-        hex = hex.split('').map(c => c + c).join('');
+        hex = hex.split("").map(c => c + c).join("");
     }
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
@@ -2022,7 +1992,7 @@ function lightestColor(hex, factor = 0.95) {
 }
 
 function isNearWhite(hex, threshold = 240) {
-    hex = hex.replace('#', '');
+    hex = hex.replace("#", "");
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
@@ -2035,28 +2005,28 @@ const applyCustomTheme = (color) => {
 
     adjustedColor = color;
     if (isNearWhite(color)) {
-        adjustedColor = '#696969'; // Light gray if near white
+        adjustedColor = "#696969"; // Light gray if near white
     }
     const darkerColorHex = darkenHexColor(adjustedColor);
     const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
     const lightTin = lightestColor(adjustedColor, 0.95);
 
     // resetDarkTheme();
-    document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
-    document.documentElement.style.setProperty('--accentLightTint-blue', lightTin);
-    document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
-    document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--whitishColor-blue', '#ffffff');
+    document.documentElement.style.setProperty("--bg-color-blue", lighterColorHex);
+    document.documentElement.style.setProperty("--accentLightTint-blue", lightTin);
+    document.documentElement.style.setProperty("--darkerColor-blue", darkerColorHex);
+    document.documentElement.style.setProperty("--darkColor-blue", adjustedColor);
+    document.documentElement.style.setProperty("--textColorDark-blue", darkerColorHex);
+    document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
     document.getElementById("rangColor").style.borderColor = color;
-    document.getElementById('dfChecked').checked = false;
+    document.getElementById("dfChecked").checked = false;
     ApplyLoadingColor();
 };
 
 // Load theme on page reload// Load theme on page reload
-window.addEventListener('load', function () {
-    // console.log('Page loaded, stored theme:', storedTheme);
-    // console.log('Page loaded, stored custom color:', storedCustomColor);
+window.addEventListener("load", function () {
+    // console.log("Page loaded, stored theme:", storedTheme);
+    // console.log("Page loaded, stored custom color:", storedCustomColor);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -2068,7 +2038,7 @@ window.addEventListener('load', function () {
 const handleThemeChange = function () {
     if (this.checked) {
         const colorValue = this.value;
-        // console.log('Radio button changed, selected theme:', colorValue);
+        // console.log("Radio button changed, selected theme:", colorValue);
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
@@ -2077,14 +2047,14 @@ const handleThemeChange = function () {
 
 // Remove any previously attached listeners and add only one
 radioButtons.forEach(radioButton => {
-    radioButton.removeEventListener('change', handleThemeChange); // Remove if already attached
-    radioButton.addEventListener('change', handleThemeChange);    // Add fresh listener
+    radioButton.removeEventListener("change", handleThemeChange); // Remove if already attached
+    radioButton.addEventListener("change", handleThemeChange);    // Add fresh listener
 });
 
 // Handle color picker changes
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
-    // console.log('Color picker changed, selected color:', selectedColor);
+    // console.log("Color picker changed, selected color:", selectedColor);
     resetDarkTheme(); // Clear dark theme if active
     localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
     localStorage.removeItem(themeStorageKey); // Clear predefined theme
@@ -2097,10 +2067,10 @@ const handleColorPickerChange = function (event) {
 };
 
 // Add listeners for color picker
-colorPicker.removeEventListener('input', handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener('input', handleColorPickerChange);
-// colorPicker.addEventListener('change', function () {
-//     // console.log('Final color applied:', colorPicker.value);
+colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
+colorPicker.addEventListener("input", handleColorPickerChange);
+// colorPicker.addEventListener("change", function () {
+//     // console.log("Final color applied:", colorPicker.value);
 //     location.reload();
 // });
 
@@ -2108,10 +2078,10 @@ colorPicker.addEventListener('input', handleColorPickerChange);
 // end of Function to apply the selected theme
 
 // -------------------------- Wallpaper -----------------------------
-const dbName = 'ImageDB';
-const storeName = 'backgroundImages';
-const timestampKey = 'lastUpdateTime'; // Key to store last update time
-const imageTypeKey = 'imageType'; // Key to store the type of image ('random' or 'upload')
+const dbName = "ImageDB";
+const storeName = "backgroundImages";
+const timestampKey = "lastUpdateTime"; // Key to store last update time
+const imageTypeKey = "imageType"; // Key to store the type of image ("random" or "upload")
 
 // Open IndexedDB database
 function openDatabase() {
@@ -2122,7 +2092,7 @@ function openDatabase() {
             db.createObjectStore(storeName);
         };
         request.onsuccess = (event) => resolve(event.target.result);
-        request.onerror = (event) => reject('Database error: ' + event.target.errorCode);
+        request.onerror = (event) => reject("Database error: " + event.target.errorCode);
     });
 }
 
@@ -2130,15 +2100,15 @@ function openDatabase() {
 async function saveImageToIndexedDB(imageBlob, isRandom) {
     const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, 'readwrite');
+        const transaction = db.transaction(storeName, "readwrite");
         const store = transaction.objectStore(storeName);
 
-        store.put(imageBlob, 'backgroundImage'); // Save Blob
+        store.put(imageBlob, "backgroundImage"); // Save Blob
         store.put(new Date().toISOString(), timestampKey);
-        store.put(isRandom ? 'random' : 'upload', imageTypeKey);
+        store.put(isRandom ? "random" : "upload", imageTypeKey);
 
         transaction.oncomplete = () => resolve();
-        transaction.onerror = (event) => reject('Transaction error: ' + event.target.errorCode);
+        transaction.onerror = (event) => reject("Transaction error: " + event.target.errorCode);
     });
 }
 
@@ -2146,7 +2116,7 @@ async function saveImageToIndexedDB(imageBlob, isRandom) {
 async function loadImageAndDetails() {
     const db = await openDatabase();
     return Promise.all([
-        getFromStore(db, 'backgroundImage'),
+        getFromStore(db, "backgroundImage"),
         getFromStore(db, timestampKey),
         getFromStore(db, imageTypeKey)
     ]);
@@ -2154,12 +2124,12 @@ async function loadImageAndDetails() {
 
 function getFromStore(db, key) {
     return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, 'readonly');
+        const transaction = db.transaction(storeName, "readonly");
         const store = transaction.objectStore(storeName);
         const request = store.get(key);
 
         request.onsuccess = () => resolve(request.result);
-        request.onerror = (event) => reject('Request error: ' + event.target.errorCode);
+        request.onerror = (event) => reject("Request error: " + event.target.errorCode);
     });
 }
 
@@ -2167,26 +2137,26 @@ function getFromStore(db, key) {
 async function clearImageFromIndexedDB() {
     const db = await openDatabase();
     return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, 'readwrite');
+        const transaction = db.transaction(storeName, "readwrite");
         const store = transaction.objectStore(storeName);
-        store.delete('backgroundImage');
+        store.delete("backgroundImage");
         store.delete(timestampKey);
         store.delete(imageTypeKey);
 
         transaction.oncomplete = () => resolve();
-        transaction.onerror = (event) => reject('Delete error: ' + event.target.errorCode);
+        transaction.onerror = (event) => reject("Delete error: " + event.target.errorCode);
     });
 }
 
 // Handle file input and save image as upload
-document.getElementById('imageUpload').addEventListener('change', function (event) {
+document.getElementById("imageUpload").addEventListener("change", function (event) {
     const file = event.target.files[0];
     if (file) {
         const imageUrl = URL.createObjectURL(file); // Create temporary Blob URL
         const image = new Image();
 
         image.onload = function () {
-            document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
             saveImageToIndexedDB(file, false)
                 .then(() => {
                     updateTextBackground(true);
@@ -2200,11 +2170,11 @@ document.getElementById('imageUpload').addEventListener('change', function (even
 });
 
 // Fetch and apply random image as background
-const RANDOM_IMAGE_URL = 'https://picsum.photos/1920/1080';
-const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
+const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
 async function applyRandomImage(showConfirmation = true) {
-    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations['en'].confirmWallpaper)) {
+    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper)) {
         return;
     }
     try {
@@ -2212,43 +2182,43 @@ async function applyRandomImage(showConfirmation = true) {
         const blob = await response.blob(); // Get Blob from response
         const imageUrl = URL.createObjectURL(blob);
 
-        document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+        document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
         await saveImageToIndexedDB(blob, true);
         updateTextBackground(true);
         setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
     } catch (error) {
-        console.error('Error fetching random image:', error);
+        console.error("Error fetching random image:", error);
     }
 }
 
 // Function to update solid background behind userText, date, greeting and shortcut names
 function updateTextBackground(hasWallpaper) {
-    const userText = document.getElementById('userText');
-    const date = document.getElementById('date');
-    const shortcuts = document.querySelectorAll('.shortcuts .shortcut-name');
+    const userText = document.getElementById("userText");
+    const date = document.getElementById("date");
+    const shortcuts = document.querySelectorAll(".shortcuts .shortcut-name");
 
     // Update styles for userText and date
     [userText, date].forEach(element => {
         if (hasWallpaper) {
-            element.style.backgroundColor = 'var(--accentLightTint-blue)';
-            element.style.padding = '2px 12px';
-            element.style.width = 'fit-content';
-            element.style.borderRadius = '10px';
-            element.style.fontSize = '1.32rem';
+            element.style.backgroundColor = "var(--accentLightTint-blue)";
+            element.style.padding = "2px 12px";
+            element.style.width = "fit-content";
+            element.style.borderRadius = "10px";
+            element.style.fontSize = "1.32rem";
         } else {
-            element.style.backgroundColor = ''; // Reset to default
-            element.style.padding = '';
-            element.style.width = '';
-            element.style.borderRadius = '';
-            element.style.fontSize = '';
+            element.style.backgroundColor = ""; // Reset to default
+            element.style.padding = "";
+            element.style.width = "";
+            element.style.borderRadius = "";
+            element.style.fontSize = "";
         }
     });
 
     // Update styles for shortcuts
     shortcuts.forEach(shortcut => {
-        shortcut.style.backgroundColor = hasWallpaper ? 'var(--accentLightTint-blue)' : '';
-        shortcut.style.padding = hasWallpaper ? '0px 6px' : '';
-        shortcut.style.borderRadius = hasWallpaper ? '5px' : '';
+        shortcut.style.backgroundColor = hasWallpaper ? "var(--accentLightTint-blue)" : "";
+        shortcut.style.padding = hasWallpaper ? "0px 6px" : "";
+        shortcut.style.borderRadius = hasWallpaper ? "5px" : "";
     });
 }
 
@@ -2268,8 +2238,8 @@ function checkAndUpdateImage() {
             // Create a new Blob URL dynamically
             const imageUrl = URL.createObjectURL(blob);
 
-            if (imageType === 'upload') {
-                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+            if (imageType === "upload") {
+                document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
                 updateTextBackground(true);
                 return;
             }
@@ -2279,7 +2249,7 @@ function checkAndUpdateImage() {
                 applyRandomImage(false);
             } else {
                 // Reapply the saved random image
-                document.body.style.setProperty('--bg-image', `url(${imageUrl})`);
+                document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
                 updateTextBackground(true);
             }
 
@@ -2287,25 +2257,25 @@ function checkAndUpdateImage() {
             setTimeout(() => URL.revokeObjectURL(imageUrl), 1500);
         })
         .catch((error) => {
-            console.error('Error loading image details:', error);
+            console.error("Error loading image details:", error);
             updateTextBackground(false);
         });
 }
 
 // Event listeners for buttons
-document.getElementById('uploadTrigger').addEventListener('click', () => document.getElementById('imageUpload').click());
-document.getElementById('clearImage').addEventListener('click', function () {
+document.getElementById("uploadTrigger").addEventListener("click", () => document.getElementById("imageUpload").click());
+document.getElementById("clearImage").addEventListener("click", function () {
     loadImageAndDetails()
         .then(([blob]) => {
             if (!blob) {
-                alert(translations[currentLanguage]?.Nobackgroundset || translations['en'].Nobackgroundset);
+                alert(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
                 return;
             }
-            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations['en'].clearbackgroundimage;
+            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
             if (confirm(confirmationMessage)) {
                 clearImageFromIndexedDB()
                     .then(() => {
-                        document.body.style.removeProperty('--bg-image');
+                        document.body.style.removeProperty("--bg-image");
                         updateTextBackground(false);
                     })
                     .catch((error) => console.error(error));
@@ -2313,7 +2283,7 @@ document.getElementById('clearImage').addEventListener('click', function () {
         })
         .catch((error) => console.error(error));
 });
-document.getElementById('randomImageTrigger').addEventListener('click', applyRandomImage);
+document.getElementById("randomImageTrigger").addEventListener("click", applyRandomImage);
 
 // Start image check on page load
 checkAndUpdateImage();
@@ -2341,7 +2311,7 @@ async function backupData() {
 
         // Generate filename with current date (format: DDMMYYYY)
         const date = new Date();
-        const formattedDate = `${String(date.getDate()).padStart(2, '0')}${String(date.getMonth() + 1).padStart(2, '0')}${date.getFullYear()}`;
+        const formattedDate = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${date.getFullYear()}`;
         const fileName = `NewTab_Backup_${formattedDate}.json`;
 
         // Create and download the backup file
@@ -2355,7 +2325,7 @@ async function backupData() {
 
         console.log("Backup completed successfully!");
     } catch (error) {
-        alert(translations[currentLanguage]?.failedbackup || translations['en'].failedbackup + error.message);
+        alert(translations[currentLanguage]?.failedbackup || translations["en"].failedbackup + error.message);
     }
 }
 
@@ -2371,16 +2341,16 @@ async function validateAndRestoreData(event) {
 
             // Validate the structure of the JSON file
             if (!isValidBackupFile(backup)) {
-                alert(translations[currentLanguage]?.invalidBackup || translations['en'].invalidBackup);
+                alert(translations[currentLanguage]?.invalidBackup || translations["en"].invalidBackup);
                 return;
             }
 
             await restoreData(backup);
 
-            alert(translations[currentLanguage]?.restorecompleted || translations['en'].restorecompleted);
+            alert(translations[currentLanguage]?.restorecompleted || translations["en"].restorecompleted);
             location.reload();
         } catch (error) {
-            alert(translations[currentLanguage]?.restorefailed || translations['en'].restorefailed + error.message);
+            alert(translations[currentLanguage]?.restorefailed || translations["en"].restorefailed + error.message);
         }
     };
     reader.readAsText(file);
@@ -2483,7 +2453,7 @@ async function restoreData(backup) {
 
 // Helper: Convert Base64 string to Blob
 function base64ToBlob(base64) {
-    const [metadata, data] = base64.split(',');
+    const [metadata, data] = base64.split("","");
     const mime = metadata.match(/:(.*?);/)[1];
     const binary = atob(data);
     const array = new Uint8Array(binary.length);
@@ -2495,80 +2465,18 @@ function base64ToBlob(base64) {
 
 // -------------------End of Settings ------------------------------
 
-// when User click on "AI-Tools"
-const element = document.getElementById("toolsCont");
-const shortcuts = document.getElementById("shortcutsContainer");
-
-function toggleShortcuts(event) {
-    const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
-
-    if (shortcutsCheckbox.checked) {
-        if (element.style.display === "flex") {
-            shortcuts.style.display = 'flex';
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
-
-            setTimeout(() => {
-                element.style.display = "none";
-                shortcuts.style.display = 'flex';
-            }, 500);
-        } else {
-            shortcuts.style.display = 'none';
-            element.style.display = "flex";
-            setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                element.style.gap = "12px";
-            }, 300);
-        }
-    } else {
-        if (element.style.display === "flex") {
-            shortcuts.style.display = 'none';
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                element.style.display = "none";
-            }, 500);
-        } else {
-            shortcuts.style.display = 'none';
-            element.style.display = "flex";
-            setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                element.style.gap = "12px";
-            }, 300);
-        }
-    }
-    // Prevent outside click handler from triggering
-    if (event) event.stopPropagation();
-}
-
-// Collapse when clicking outside toolsCont
-document.addEventListener("click", (event) => {
-    if (!element.contains(event.target) && element.style.display === "flex") {
-        toggleShortcuts();
-    }
-});
-
-document.getElementById("0NIHK").onclick = toggleShortcuts;
 
 // ------------Search Suggestions---------------
 
 // Show the result box
 function showResultBox() {
-    resultBox.classList.add('show');
+    resultBox.classList.add("show");
     resultBox.style.display = "block";
 }
 
 // Hide the result box
 function hideResultBox() {
-    resultBox.classList.remove('show');
+    resultBox.classList.remove("show");
     //resultBox.style.display = "none";
 }
 
@@ -2578,13 +2486,13 @@ hideResultBox();
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
-        var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+        var selectedOption = document.querySelector("input[name='search-engine']:checked").value;
         var searchEngines = {
-            engine1: 'https://www.google.com/search?q=',
-            engine2: 'https://duckduckgo.com/?q=',
-            engine3: 'https://bing.com/?q=',
-            engine4: 'https://search.brave.com/search?q=',
-            engine5: 'https://www.youtube.com/results?search_query='
+            engine1: "https://www.google.com/search?q=",
+            engine2: "https://duckduckgo.com/?q=",
+            engine3: "https://bing.com/?q=",
+            engine4: "https://search.brave.com/search?q=",
+            engine5: "https://www.youtube.com/results?search_query="
         };
         const query = this.value;
         const resultBox = document.getElementById("resultBox");
@@ -2598,7 +2506,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     hideResultBox();
                 } else {
                     // Clear the result box
-                    resultBox.innerHTML = '';
+                    resultBox.innerHTML = "";
 
                     // Add suggestions to the result box
                     suggestions.forEach((suggestion, index) => {
@@ -2614,7 +2522,7 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     });
 
                     // Check if the dropdown of search shortcut is open
-                    const dropdown = document.querySelector('.dropdown-content');
+                    const dropdown = document.querySelector(".dropdown-content");
 
                     if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
@@ -2723,7 +2631,7 @@ async function getAutocompleteSuggestions(query) {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (selectedOption === 'engine4') {
+        if (selectedOption === "engine4") {
             const suggestions = data[1].map(item => {
                 if (item.is_entity) {
                     return `${item.q} - ${item.name} (${item.category ? item.category : "No category"})`;
@@ -2737,7 +2645,7 @@ async function getAutocompleteSuggestions(query) {
             return data[1];
         }
     } catch (error) {
-        console.error('Error fetching autocomplete suggestions:', error);
+        console.error("Error fetching autocomplete suggestions:", error);
         return [];
     }
 }
@@ -2807,7 +2715,7 @@ const openMenuBar = () => {
 }
 
 menuButton.addEventListener("click", () => {
-    if (menuBar.style.display === 'none' || menuBar.style.display === '') {
+    if (menuBar.style.display === "none" || menuBar.style.display === "") {
         openMenuBar();
     } else {
         closeMenuBar();
@@ -2918,8 +2826,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Element selectors ------ */
 
     const shortcuts = document.getElementById("shortcuts-section");
-    const aiToolsCont = document.getElementById("aiToolsCont");
-    const googleAppsCont = document.getElementById("googleAppsCont");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
     const proxybypassField = document.getElementById("proxybypassField");
     const proxyinputField = document.getElementById("proxyField");
@@ -2929,8 +2835,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
-    const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
@@ -2947,57 +2851,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
-
-    /* ------ Helper functions for saving and loading states ------ */
-
-    // Function to save checkbox state to localStorage
-    function saveCheckboxState(key, checkbox) {
-        localStorage.setItem(key, checkbox.checked ? "checked" : "unchecked");
-    }
-
-    // Function to load and apply checkbox state from localStorage
-    function loadCheckboxState(key, checkbox) {
-        const savedState = localStorage.getItem(key);
-        checkbox.checked = savedState === "checked";
-        if (key === "bookmarkGridCheckboxState") {
-            if (!savedState) {
-                bookmarkGridCheckbox.click();
-            } else {
-                bookmarkGridCheckbox.click();
-                bookmarkGridCheckbox.click();
-            }
-        }
-    }
-
-    // Function to save display status to localStorage
-    function saveDisplayStatus(key, displayStatus) {
-        localStorage.setItem(key, displayStatus);
-    }
-
-    // Function to load and apply display status from localStorage
-    function loadDisplayStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "flex") {
-            element.style.display = "flex";
-        } else {
-            element.style.display = "none";
-        }
-    }
-
-    // Function to save activeness status to localStorage
-    function saveActiveStatus(key, activeStatus) {
-        localStorage.setItem(key, activeStatus)
-    }
-
-    // Function to load and apply activeness status from localStorage
-    function loadActiveStatus(key, element) {
-        const savedStatus = localStorage.getItem(key);
-        if (savedStatus === "active") {
-            element.classList.remove("inactive");
-        } else {
-            element.classList.add("inactive");
-        }
-    }
 
 
     /* ------ Loading shortcuts ------ */
@@ -3138,8 +2991,8 @@ document.addEventListener("DOMContentLoaded", function () {
      * It adds three event listeners to each of the two inputs:
      * 1. Blur, to save changes to the shortcut automatically.
      * 2. Focus, to select all text in the input field when it is selected.
-     * 3. Keydown, which moves the focus to the URL field when the user presses 'Enter' in the name field,
-     * and removes all focus to save the changes when the user presses 'Enter' in the URL field.
+     * 3. Keydown, which moves the focus to the URL field when the user presses "Enter" in the name field,
+     * and removes all focus to save the changes when the user presses "Enter" in the URL field.
      *
      * @param inputs a list of the two inputs these listeners should be applied to.
      */
@@ -3155,12 +3008,12 @@ document.addEventListener("DOMContentLoaded", function () {
             input.addEventListener("focus", (e) => e.target.select());
         });
         inputs[0].addEventListener("keydown", (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
                 inputs[1].focus();  // Move focus to the URL
             }
         });
         inputs[1].addEventListener("keydown", (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
                 e.target.blur();  // Blur the input field
             }
         });
@@ -3408,46 +3261,46 @@ document.addEventListener("DOMContentLoaded", function () {
      * This function shows the proxy disclaimer.
      */
     function showProxyDisclaimer() {
-        const message = translations[currentLanguage]?.ProxyDisclaimer || translations['en'].ProxyDisclaimer;
+        const message = translations[currentLanguage]?.ProxyDisclaimer || translations["en"].ProxyDisclaimer;
 
         return confirm(message);
     }
 
     /* ------ Event Listeners ------ */
-    const searchIconContainer = document.querySelectorAll('.searchIcon');
+    const searchIconContainer = document.querySelectorAll(".searchIcon");
 
     const showEngineContainer = () => {
-        searchIconContainer[1].style.display = 'none';
-        searchIconContainer[0].style.display = 'block';
-        document.getElementById('search-with-container').style.visibility = 'visible';
+        searchIconContainer[1].style.display = "none";
+        searchIconContainer[0].style.display = "block";
+        document.getElementById("search-with-container").style.visibility = "visible";
     }
 
     const hideEngineContainer = () => {
-        searchIconContainer[0].style.display = 'none';
-        searchIconContainer[1].style.display = 'block';
-        document.getElementById('search-with-container').style.visibility = 'hidden';
+        searchIconContainer[0].style.display = "none";
+        searchIconContainer[1].style.display = "block";
+        document.getElementById("search-with-container").style.visibility = "hidden";
     }
 
     const initShortCutSwitch = (element) => {
         if (element.checked) {
             hideEngineContainer();
-            localStorage.setItem('showShortcutSwitch', true)
+            localStorage.setItem("showShortcutSwitch", true)
         } else {
             showEngineContainer();
-            localStorage.setItem('showShortcutSwitch', false)
+            localStorage.setItem("showShortcutSwitch", false)
         }
     }
 
     // ---------- Code for Hiding Search Icon And Search With Options for Search switch shortcut --------
-    const element = document.getElementById('shortcut_switchcheckbox');
-    element.addEventListener('change', (e) => {
+    const element = document.getElementById("shortcut_switchcheckbox");
+    element.addEventListener("change", (e) => {
         initShortCutSwitch(e.target);
     })
 
     // Intialize shortcut switch
-    if (localStorage.getItem('showShortcutSwitch')) {
-        const isShortCutSwitchEnabled = localStorage.getItem('showShortcutSwitch').toString() === 'true';
-        document.getElementById('shortcut_switchcheckbox').checked = isShortCutSwitchEnabled;
+    if (localStorage.getItem("showShortcutSwitch")) {
+        const isShortCutSwitchEnabled = localStorage.getItem("showShortcutSwitch").toString() === "true";
+        document.getElementById("shortcut_switchcheckbox").checked = isShortCutSwitchEnabled;
 
         if (isShortCutSwitchEnabled) {
             hideEngineContainer();
@@ -3455,7 +3308,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showEngineContainer()
         }
     } else {
-        localStorage.setItem('showShortcutSwitch', false);
+        localStorage.setItem("showShortcutSwitch", false);
     }
 
     initShortCutSwitch(element);
@@ -3587,7 +3440,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
             bookmarksPermission = chrome.permissions;
         } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
@@ -3595,7 +3448,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (bookmarksPermission !== undefined) {
             if (bookmarksCheckbox.checked) {
                 bookmarksPermission.contains({
-                    permissions: ['bookmarks']
+                    permissions: ["bookmarks"]
                 }, function (alreadyGranted) {
                     if (alreadyGranted) {
                         bookmarkButton.style.display = "flex";
@@ -3603,7 +3456,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
                     } else {
                         bookmarksPermission.request({
-                            permissions: ['bookmarks']
+                            permissions: ["bookmarks"]
                         }, function (granted) {
                             if (granted) {
                                 bookmarksAPI = chrome.bookmarks;
@@ -3625,28 +3478,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    aiToolsCheckbox.addEventListener("change", function () {
-        saveCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
-        if (aiToolsCheckbox.checked) {
-            aiToolsCont.style.display = "flex";
-            saveDisplayStatus("aiToolsDisplayStatus", "flex");
-        } else {
-            aiToolsCont.style.display = "none";
-            saveDisplayStatus("aiToolsDisplayStatus", "none");
-            toggleShortcuts()
-        }
-    });
-
-    googleAppsCheckbox.addEventListener("change", function () {
-        saveCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
-        if (googleAppsCheckbox.checked) {
-            googleAppsCont.style.display = "flex";
-            saveDisplayStatus("googleAppsDisplayStatus", "flex");
-        } else {
-            googleAppsCont.style.display = "none";
-            saveDisplayStatus("googleAppsDisplayStatus", "none");
-        }
-    });
 
     bookmarkGridCheckbox.addEventListener("change", function () {
         saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
@@ -3720,9 +3551,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Rotate reset button when clicked
-    const resetButton = document.getElementById('resetButton');
-    resetButton.addEventListener('click', () => {
-        resetButton.querySelector('svg').classList.toggle('rotateResetButton');
+    const resetButton = document.getElementById("resetButton");
+    resetButton.addEventListener("click", () => {
+        resetButton.querySelector("svg").classList.toggle("rotateResetButton");
     });
 
     /* ------ Loading ------ */
@@ -3740,12 +3571,10 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-    loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
-    loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
@@ -3753,8 +3582,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadShortcuts();
 });
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'ArrowRight' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
         } else {
@@ -3763,13 +3592,13 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-document.addEventListener('keydown', function (event) {
-    const searchInput = document.getElementById('searchQ');
-    const searchBar = document.querySelector('.searchbar');
-    if (event.key === '/' && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+document.addEventListener("keydown", function (event) {
+    const searchInput = document.getElementById("searchQ");
+    const searchBar = document.querySelector(".searchbar");
+    if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
-        searchBar.classList.add('active');
+        searchBar.classList.add("active");
     }
 });
 
@@ -3777,5 +3606,5 @@ document.addEventListener('keydown', function (event) {
 
 function ApplyLoadingColor() {
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
-    localStorage.setItem('LoadingScreenColor', LoadingScreenColor);
+    localStorage.setItem("LoadingScreenColor", LoadingScreenColor);
 }

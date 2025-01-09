@@ -1798,7 +1798,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer .shortcuts a:has(svg) {
-	background-color: var(--accentLightTint-blue);
+	background: radial-gradient(var(--accentLightTint-blue) 66%, transparent 66%);
 }
 
 .shortcutsContainer .shortcuts a:has(img) {
@@ -2656,7 +2656,7 @@ input:checked + .toggle:before {
 	gap: 10px;
 }
 
-/* Styling for Upload/Random/Clear Buttons */
+/* --------- Styling for Upload/Random/Clear Buttons --------- */
 .uploadButton {
 	font-size: 0.95rem;
 	display: flex;
@@ -2727,7 +2727,7 @@ input:checked + .toggle:before {
 	display: none;
 }
 
-/* Style for Backup and Restore buttons */
+/* --------- Style for Backup and Restore buttons --------- */
 .backupRestoreContainer {
 	width: 100%;
 	height: 38px;
@@ -2821,87 +2821,58 @@ input:checked + .toggle:before {
 	/* bottom: var(--gap); */
 	width: 42px;
 	height: 42px;
-	max-width: 100%;
+	min-width: 42px;
+	max-width: fit-content;
 	/* Set max-width to fit-content initially */
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	padding: 6px;
+	justify-content: flex-start;
+	padding: 6px 0 6px 42px;
 	border-radius: 100px;
 	overflow: hidden;
 	/* Hide the overflow when content expands */
-	transition: all 0.4s;
-	/* Transition the max-width property */
+	transition: all 0.4s ease;
 	cursor: pointer;
 	margin-top: var(--gap);
 }
 
 #menuCloseButton:hover {
-	width: fit-content;
+	width: 100%;
 	background-color: #fff;
 }
 
 #menuCloseButton::after {
 	content: attr(data-lang);
 	white-space: nowrap;
-	padding-right: 12px;
 	opacity: 0;
 	transform: translateX(-20px);
-	animation: 0.6s menuCloseButtonHoverReverse forwards;
+	width: 0;
+	max-width: fit-content;
+	padding-right: 0;
 	z-index: 1;
+	transition: all 0.4s ease;
+	overflow: hidden;
 }
 
 #menuCloseButton:hover::after {
-	content: attr(data-lang);
-	padding-right: 12px;
-	padding-left: 36px;
-	/* width: 32px; */
-	/* Expand the max-width on hover */
-	animation: 0.6s menuCloseButtonHover forwards;
-	animation-delay: 0.1s;
-}
-
-
-@keyframes menuCloseButtonHover {
-	0% {
-		opacity: 0;
-		transform: translateX(-20px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translate(0);
-	}
-}
-
-@keyframes menuCloseButtonHoverReverse {
-	0% {
-		opacity: 1;
-		transform: translateX(0);
-		visibility: hidden;
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateX(-10px);
-		visibility: hidden;
-	}
+	width: 100%;
+	opacity: 1;
+	padding-right: 11px;
+	transform: translateX(0px);
 }
 
 #menuCloseButton .icon {
 	position: absolute;
 	left: 6px;
-	background-color: #fff;
+	background: radial-gradient(#fff 66%, transparent 66%);
 	width: 30px;
 	height: 30px;
 	border-radius: 100px;
-	/* transform: translateX(30px); */
-	transition: 0.4s;
 	z-index: 2;
+	transition: all 0.4s ease;
 }
 
 /* #menuCloseButton .icon:hover{
@@ -2913,7 +2884,7 @@ input:checked + .toggle:before {
 	transform: translateX(0) rotate(90deg);
 }
 
-/* Search engines Dropdown css */
+/* --------- Search engines Dropdown css --------- */
 .dropdown-item {
 	display: flex;
 	gap: 8px;
@@ -2991,7 +2962,7 @@ input:checked + .toggle:before {
 	border-radius: 100%;
 }
 
-
+/* --------- Save button --------- */
 .savebtn {
 	transition: background-color 0.3s ease;
 }
