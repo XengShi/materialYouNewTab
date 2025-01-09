@@ -859,7 +859,7 @@ function updateDate() {
         var month = currentTime.getMonth();
 
         // Define the current language
-        var currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
+        const currentLanguage = getLanguageStatus('selectedLanguage') || 'en';
 
         // Get the translated name of the day
         var dayName;
@@ -986,17 +986,17 @@ function getGreeting() {
     }
 
     // Get the user's language setting
-    const userLang = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
+    const currentLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default to English
 
     // Check if the greeting is available for the selected language
     if (
-        translations[userLang] &&
-        translations[userLang].greeting &&
-        translations[userLang].greeting[greetingKey]
+        translations[currentLanguage] &&
+        translations[currentLanguage].greeting &&
+        translations[currentLanguage].greeting[greetingKey]
     ) {
-        return translations[userLang].greeting[greetingKey];
+        return translations[currentLanguage].greeting[greetingKey];
     } else {
-        // Fallback to English greeting if the userLang or greeting key is missing
+        // Fallback to English greeting if the currentLanguage or greeting key is missing
         return translations['en'].greeting[greetingKey];
     }
 }
