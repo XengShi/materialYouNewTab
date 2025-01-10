@@ -1186,7 +1186,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: 1.4rem;
 	display: block;
     word-wrap: break-word;
-    max-width: 22rem;
+    max-width: 20rem;
     max-height: 6.4rem;
 	overflow-x: clip;
     overflow-y: scroll;
