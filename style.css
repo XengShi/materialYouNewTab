@@ -2996,17 +2996,17 @@ input:checked + .toggle:before {
 		margin: auto auto auto var(--gap);
 	}
 	#shortcuts-section {
-		position: fixed;
-		max-width: 32rem;
-		height: fit-content;
-		bottom: 20px
+		padding-left: 30px;
+		margin: 0 auto;
+		overflow-x: scroll;
+		scrollbar-width: none;
+		position: relative;
+		max-width: 40rem;
+		left: 0;
 	}
 }
 
 @media screen and (max-width: 1200px) and (min-width: 501px) {
-	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
-		margin-top: 65px;
-	}
 	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
 		display: none;
 	}
@@ -3015,8 +3015,19 @@ input:checked + .toggle:before {
 	:root {
 		--gap: 1rem;
 	}
+	#shortcuts-section {
+		max-width: 30rem;
+	}
+	.shortcutsContainer {
+		max-width: none;
+		flex-wrap: nowrap;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
+	}
 	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
-		margin-top: -20px;
+		margin-top: 0;
+		flex-wrap: nowrap;
 	}
 	.menuBar {
 		--gap: 30px;
@@ -3029,16 +3040,6 @@ input:checked + .toggle:before {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-	}
-	.shortcutsContainer {
-		max-width: none;
-		position: relative;
-		/* margin-top: 100px; */
-		padding-bottom: 90px;
-	}
-	#shortcuts-section {
-		position: relative;
-		bottom: 0px;
 	}
 	.leftDiv {
 		display: flex;
@@ -3088,6 +3089,7 @@ input:checked + .toggle:before {
 		width: calc(100vw / 0.85);
 		margin-left: calc(50vw - 50vw / 0.85);
 		margin-top: 0;
+		max-width: unset;
 		bottom: 0;
 	}
 	.centerDiv:has(.resultBox.show) + #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) + #shortcuts-section {

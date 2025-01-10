@@ -533,14 +533,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Use the SVG icon from HTML
                 const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
-                folderIcon.removeAttribute("\"id"); // Remove the id to prevent duplicates
+                folderIcon.removeAttribute("id"); // Remove the id to prevent duplicates
                 folderItem.appendChild(folderIcon);
 
                 folderItem.appendChild(document.createTextNode(node.title));
                 folderItem.classList.add("folder");
 
                 // Add event listener for unfolding/folding
-                folderItem.addEventListener("\"click", function (event) {
+                folderItem.addEventListener("click", function (event) {
                     event.stopPropagation();
                     folderItem.classList.toggle("open");
                     const subList = folderItem.querySelector("ul");
@@ -1626,7 +1626,7 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
             document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
-            document.documentElement.style.setProperty("--darkColor-blue", "\"#4382EC");
+            document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
             document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
         } else {
@@ -1914,7 +1914,7 @@ const applySelectedTheme = (colorValue) => {
         // Change fill color for elements with the class "accentColor"
         const accentElements = document.querySelectorAll(".accentColor");
         accentElements.forEach((element) => {
-            element.style.fill = "\"#212121";
+            element.style.fill = "#212121";
         });
     }
 
