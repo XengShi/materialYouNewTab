@@ -61,6 +61,7 @@ const cs = {
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
+    "useGPS": "Použít GPS",
     "saveLoc": "Uložit",
 
     // Weather
