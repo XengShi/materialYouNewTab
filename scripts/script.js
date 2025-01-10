@@ -18,23 +18,22 @@ let proxyurl;
 let clocktype;
 let hourformat;
 
-// TODO: Move all the CSS in a file called `theme.css`
-// TODO: Move all the SVG icons in files called `icon-name.svg`
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
 // TODO: Move all the to-do stuff in a file called `to-do.js` or `todo.js` or `todo-list.js`
 // TODO: Move all the weather stuff in a file called `weather.js`
-// TODO: Move all the clock display stuff in a file called `clock-display.js`
+// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
 // TODO: Move all the voice search stuff in a file called `voice-search.js`
 // TODO: Move all the theme functions stuff in a file called `theme.js`
 // TODO: Move all the BG Image stuff in a file called `background-images.js`
 // TODO: Move all the settings in a file called `settings.js`
 // TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
-// TODO: Move all the shortcut stuff in a file called `shortcut.js` (difficult)
+// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
+// TODO: Move into file called `browser-utils.js` with isChrome, isFirefox, etc.
+// TODO: Move into file called `backup.js` or `backup-system.js`
+// TODO: Move into file called `welcome-greeting.js`(?)
+// TODO: Move into file called `animations.js`(?)
 // TODO: @Migua-RC, can you move all the proxy stuff in a file called `proxy.js`?
-// TODO: File called `backup.js` or `backup-system.js`
-// TODO: File called `clock.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
-// TODO: File called `browser-utils.js` with isChrome, isFirefox, etc.
-// TODO: File called `welcome-greeting.js`(?)
-// TODO: File called `animations.js`(?)
 
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -2164,7 +2163,7 @@ async function restoreData(backup) {
 
 // Helper: Convert Base64 string to Blob
 function base64ToBlob(base64) {
-    const [metadata, data] = base64.split("","");
+    const [metadata, data] = base64.split("", "");
     const mime = metadata.match(/:(.*?);/)[1];
     const binary = atob(data);
     const array = new Uint8Array(binary.length);
