@@ -70,6 +70,8 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
+    "hideWeatherBox": "Hide Weather Box",
+    "hideWeatherBoxInfo": "Hide the box, show temp (Mobiles)",
 
     // Body Items
     // Calendar

@@ -2967,6 +2967,10 @@ input:checked + .toggle:before {
 	z-index: 99999;
 }
 
+.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+	display: none;
+}
+
 /* -------media query ------------------- */
 
 @media screen and (max-width: 1400px) {
@@ -3082,6 +3086,8 @@ input:checked + .toggle:before {
 		display: flex;
 		min-height: fit-content;
 		flex-direction: column;
+		justify-content: start;
+		padding-top: 60px;
 	}
 	.menuBar {
 		top: 0;
@@ -3105,8 +3111,8 @@ input:checked + .toggle:before {
 		height: auto;
 		position: relative;
 		scale: 0.85;
-		width: 112%;
-		margin-left: -6%;
+		width: calc(100vw / 0.85);
+		margin-left: calc(50vw - 50vw / 0.85);
 		margin-top: 0;
 		bottom: 0;
 	}
@@ -3180,7 +3186,7 @@ input:checked + .toggle:before {
 		aspect-ratio: 0.5;
 		height: auto;
 	}
-	#analogClock {
+	#analogClock, #digitalClock {
 		width: 45%;
 		margin-left: 5%;
 		aspect-ratio: 1;
@@ -3209,7 +3215,7 @@ input:checked + .toggle:before {
                 height: auto;
                 bottom: 20rem;
                 /* scale: 1.2; */
-                transform-origin: right;
+                transform-origin: center;
 			}
 		}
 		#temp {
@@ -3221,6 +3227,20 @@ input:checked + .toggle:before {
 			margin-top: -6vw;
 			margin-left: -16vw;
 		}
+	}
+	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+		display: flex;
+	}
+	.centerDiv:has(~ .menuBar #digitalCheckbox:checked) {
+		& .leftDiv {
+			margin-top: -6vw;
+		}
+		& .rAndakar {
+			scale: 0.8;
+		}
+	}
+	.centerDiv:has(~ .menuBar #hideWeatherCheckbox:checked) .topDiv .lrectangle  {
+		display: none;
 	}
 	.centerDiv {
 		position: relative;
@@ -3264,10 +3284,13 @@ input:checked + .toggle:before {
 		padding: 20px 0;
 	}
 	#shortcuts-section {
-		margin: 0;
-		padding-left: 20px;
+		padding-left: 30px;
 		overflow-x: scroll;
 		scrollbar-width: none;
+		position: fixed;
+		bottom: 62px;
+		max-width: unset;
+		left: 0;
 	}
 	#shortcuts-section .wrapper {
 		width: 100%;

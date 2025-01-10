@@ -2919,6 +2919,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
@@ -3660,6 +3661,10 @@ document.addEventListener("DOMContentLoaded", function () {
             saveDisplayStatus("todoListDisplayStatus", "none");
         }
     });
+    
+    hideWeatherCheckbox.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    });
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
@@ -3736,6 +3741,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
+    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);

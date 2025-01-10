@@ -123,6 +123,8 @@ function applyLanguage(lang) {
         'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
+        'hideWeatherBox',
+        'hideWeatherBoxInfo',
         'LearnMoreButton',
         'saveAPI',
         'conditionText',
