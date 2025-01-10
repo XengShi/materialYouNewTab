@@ -209,7 +209,7 @@ html:has(body[data-bg='color'] .menuBar #enableDarkModeCheckbox:checked)  {
 	-webkit-filter: invert(1) hue-rotate(180deg);
 }
 
-body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked)  {
+body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked) > *:not(.menuBar,#bookmarksContainer), body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked) :is(.menuCont,.bookmark-sidebar) {
 	filter: invert(1) hue-rotate(180deg);
 	-webkit-filter: invert(1) hue-rotate(180deg);
 }
