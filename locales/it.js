@@ -12,22 +12,22 @@ const it = {
     "editShortcutsText": "Modifica Scorciatoie",
     "shortcutsInfoText": "Scegli quali scorciatoie mostrare",
     "editShortcutsList": "Scorciatoie Salvate",
-    // "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
+    "editShortcutsListInfo": "Puoi aggiungere nuove scorciatoie cliccando l'icona \"+\" o modificiare le esistenti cliccando il nome della scorciatoia o dell'URL.",
     "adaptiveIconText": "Forme di Icona Adattiva",
     "adaptiveIconInfoText": "Le icone delle scorciatoie saranno sempre rotonde",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
+    "bookmarksText": "Segnalibri",
+    "bookmarksInfo": "Mostra segnalibri sulla barra laterale",
     "ai_tools_button": "Strumenti IA",
     "enable_ai_tools": "Abilita/disabilita scorciatoie Strumenti IA",
     "googleAppsMenuText": "App Google",
     "googleAppsMenuInfo": "Mostra collegamenti App Google",
-    // "googleAppsHover": "Google Apps",   // Keep this shorter
+    "googleAppsHover": "App di Google",   // Keep this shorter
 
-    // Todo List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",    // Keep this short
-    // "todoPlaceholder": "Add task...",
+    // To-do List
+    "todoListText": "Lista cose da fare",
+    "todoListInfo": "Mostra una lista di cose da fare giornaliera",
+    "todoListHover": "Lista ToDo",    // Keep this short
+    "todoPlaceholder": "Aggiungi attività...",
 
     // Digital Clock
     "digitalclocktittle": "Orologio Digitale",
@@ -61,7 +61,7 @@ const it = {
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
-    "InputOptionsButton": "Opzioni di Inserimento",
+    "useGPS": "Usa il GPS",
     "saveLoc": "Salva",
 
     // Weather
@@ -77,11 +77,11 @@ const it = {
     "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
 
     // Bookmarks
-    // "bookmarkHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewGrid": "Grid",    // Keep this shorter
-    // "bookmarkViewList": "List",    // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarkHeading": "Segnalibri",
+    "bookmarkViewAs": "Visualizza come",
+    "bookmarkViewGrid": "Griglia",      // Keep this shorter
+    "bookmarkViewList": "Elenco",       // Keep this shorter
+    "bookmarkSearch": "Cerca segnalibro",
 
     // New Tab Item
     "conditionText": "Ciao! Come stai oggi?",
@@ -133,7 +133,8 @@ const it = {
     "failedbackup": "Backup fallito: ",
     "restorecompleted": "Ripristino completato con successo!",
     "restorefailed": "Ripristino fallito: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "invalidBackup": "File di backup non valido",
+    "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro?",
+    "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser",
+    "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
 };

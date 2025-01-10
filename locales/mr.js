@@ -23,7 +23,7 @@ const mr = {
     "googleAppsMenuInfo": "गुगल ॲप्ससाठी शॉर्टकट्स दाखवा",
     "googleAppsHover": "गुगल ॲप्स",
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",   // Keep this short
@@ -61,7 +61,6 @@ const mr = {
     "UserLocText": "आपले स्थान प्रविष्ट करा",
     "UserLocSubtext": "जर हवामानाचे स्थान बरोबर नसेल",
     "userLoc": "आपले शहर किंवा समन्वय (अक्षांश, रेखांश)",
-    "InputOptionsButton": "इनपुट पर्याय",
     "saveLoc": "जतन करा",
 
     // Weather

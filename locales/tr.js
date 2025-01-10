@@ -23,7 +23,7 @@ const tr = {
     "googleAppsMenuInfo": "Google Uygulamaları için kısayollarını göster",
     // "googleAppsHover": "Google Apps",   // Keep this shorter
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short
@@ -61,7 +61,6 @@ const tr = {
     "UserLocText": "Konumunuzu girin",
     "UserLocSubtext": "Hava durumu konumu doğru değilse",
     "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
-    "InputOptionsButton": "Girdi Seçenekleri",
     "saveLoc": "Kaydet",
 
     // Weather

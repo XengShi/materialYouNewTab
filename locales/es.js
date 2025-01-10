@@ -23,7 +23,7 @@ const es = {
     "googleAppsMenuInfo": "Mostrar accesos directos a las aplicaciones de Google",
     // "googleAppsHover": "Google Apps",    // Keep this shorter
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short
@@ -61,7 +61,6 @@ const es = {
     "UserLocText": "Ingresa tu ubicación",
     "UserLocSubtext": "Si la ubicación del clima es incorrecta",
     "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
-    "InputOptionsButton": "Opciones de entrada",
     "saveLoc": "Guardar",
 
     // Weather

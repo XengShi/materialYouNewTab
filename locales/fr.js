@@ -13,8 +13,8 @@ const fr = {
     "shortcutsInfoText": "Choisir les raccourcis à afficher",
     "editShortcutsList": "Raccourcis Sauvegardés",
     'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
-    "adaptiveIconText": "Formes d'Icônes Adaptatives",
-    "adaptiveIconInfoText": "Les icônes de raccourci apparaîtront plus petites",
+    "adaptiveIconText": "Icônes Adaptatives",
+    "adaptiveIconInfoText": "L'icône du raccourci correspondra à la couleur du thème et apparaîtra plus petite",
     "bookmarksText": "Favoris",
     "bookmarksInfo": "Afficher la barre latérale des favoris",
     "ai_tools_button": "Outils IA",
@@ -23,7 +23,7 @@ const fr = {
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
     "googleAppsHover": "Apps Google",
 
-    // Todo List
+    // To-do List
     "todoListText": "Liste To-Do",
     "todoListInfo": "Afficher une liste de tâches quotidiennes",
     "todoListHover": "Liste To-Do",
@@ -61,7 +61,7 @@ const fr = {
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    "InputOptionsButton": "Options de saisie",
+    "useGPS": "Utiliser le GPS",
     "saveLoc": "Enregistrer",
 
     // Weather
@@ -135,5 +135,6 @@ const fr = {
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
+    "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };

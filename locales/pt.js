@@ -23,7 +23,7 @@ const pt = {
     "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
     "googleAppsHover": "Apps do Google",
 
-    // Todo List
+    // To-do List
     "todoListText": "Lista de Tarefas",
     "todoListInfo": "Mostrar uma Lista de Tarefas",
     "todoListHover": "Lista de Tarefas",

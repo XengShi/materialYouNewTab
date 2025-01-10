@@ -23,7 +23,7 @@ const ru = {
     "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
     "googleAppsHover": "Гугл приложения",
 
-    // Todo List
+    // To-do List
     "todoListText": "To-do лист",
     "todoListInfo": "Показать ежедневный список дел",
     "todoListHover": "To-do лист",
@@ -61,7 +61,6 @@ const ru = {
     "UserLocText": "Введите ваше местоположение",
     "UserLocSubtext": "Если местоположение для погоды неверно",
     "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
-    "InputOptionsButton": "Опции ввода",
     "saveLoc": "Сохранить",
 
     // Weather

@@ -23,7 +23,7 @@ const bn = {
     "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
     "googleAppsHover": "গুগল অ্যাপস",
 
-    // Todo List
+    // To-do List
     "todoListText": "টু ডু লিস্ট",
     "todoListInfo": "দৈনিক কাজের তালিকা দেখুন",
     "todoListHover": "টু ডু লিস্ট",

@@ -23,7 +23,7 @@ const zh = {
     "googleAppsMenuInfo": "显示谷歌应用的快捷方式",
     "googleAppsHover": "谷歌应用",
 
-    // Todo List
+    // To-do List
     // "todoListText": "To Do List",
     // "todoListInfo": "Show a daily To Do list",
     // "todoListHover": "ToDo List",    // Keep this short
@@ -61,7 +61,6 @@ const zh = {
     "UserLocText": "输入您的位置",
     "UserLocSubtext": "如果天气位置不正确",
     "userLoc": "您的城市或坐标（纬度，经度）",
-    "InputOptionsButton": "输入选项",
     "saveLoc": "保存",
 
     // Weather

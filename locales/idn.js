@@ -23,7 +23,7 @@ const idn = {
     "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
     // "googleAppsHover": "Google Apps",    // Keep this shorter
 
-    // Todo List
+    // To-do List
     "todoListText": "To-Do List",
     "todoListInfo": "Tampilkan To-Do list harian",
     "todoListHover": "To-Do List",
@@ -61,7 +61,6 @@ const idn = {
     "UserLocText": "Masukkan Lokasi Anda",
     "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
     "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
-    "InputOptionsButton": "Pilihan Input",
     "saveLoc": "Simpan",
 
     // Weather
