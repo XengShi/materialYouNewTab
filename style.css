@@ -204,6 +204,10 @@ body {
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
+body:has(.menuBar #enableDarkModeCheckbox:checked)  {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+}
 
 /* Search suggestions box */
 .resultBox {
