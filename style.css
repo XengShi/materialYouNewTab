@@ -1689,11 +1689,13 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: 100%;
 	height: calc(var(--shortcut-size) + var(--gap) * 2);
-	position: absolute;
+	position: fixed;
 	/* background: gold; */
 	left: 0;
 	right: 0;
 	bottom: 0;
+	overflow: scroll;
+	scrollbar-width: none;
 	margin: auto;
 }
 
@@ -1742,7 +1744,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: fit-content;
 	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-	gap: 26px;
+	gap: 2rem;
 }
 
 .shortcutsContainer::before {
@@ -2969,7 +2971,8 @@ input:checked + .toggle:before {
 		position: relative;
 		left: 0;
 		right: 0;
-		margin: var(--gap) auto auto;
+		margin: 0 auto;
+		padding-top: 60px;
 	}
 
 	.leftDiv {
@@ -3022,6 +3025,8 @@ input:checked + .toggle:before {
 	#shortcuts-section {
 		max-width: 30rem;
 		position: relative;
+		overflow-x: scroll;
+		overflow-y: clip;
 	}
 	.shortcutsContainer {
 		max-width: none;
