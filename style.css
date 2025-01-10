@@ -3198,10 +3198,10 @@ input:checked + .toggle:before {
 			font-size: 16vw;
 		}
 		#wIcon {
-			width: 30vw;
-			height: 30vw;
-			margin-top: -6vw;
-			margin-left: -16vw;
+			width: 25vw;
+			height: 25vw;
+			margin-top: -5vw;
+			margin-left: -13vw;
 		}
 	}
 	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
