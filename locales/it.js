@@ -77,7 +77,7 @@ const it = {
     "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
 
     // Bookmarks
-    "bookmarkHeading": "Segnalibri",
+    "bookmarksHeading": "Segnalibri",
     "bookmarkViewAs": "Visualizza come",
     "bookmarkViewGrid": "Griglia",      // Keep this shorter
     "bookmarkViewList": "Elenco",       // Keep this shorter
