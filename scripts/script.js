@@ -2528,9 +2528,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
-    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
@@ -3127,61 +3125,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    bookmarksCheckbox.addEventListener("change", function () {
-        let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
-            bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
-            bookmarksPermission = chrome.permissions;
-        } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
-            bookmarksCheckbox.checked = false;
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            return;
-        }
-        if (bookmarksPermission !== undefined) {
-            if (bookmarksCheckbox.checked) {
-                bookmarksPermission.contains({
-                    permissions: ["bookmarks"]
-                }, function (alreadyGranted) {
-                    if (alreadyGranted) {
-                        bookmarkButton.style.display = "flex";
-                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                    } else {
-                        bookmarksPermission.request({
-                            permissions: ["bookmarks"]
-                        }, function (granted) {
-                            if (granted) {
-                                bookmarksAPI = chrome.bookmarks;
-                                bookmarkButton.style.display = "flex";
-                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            } else {
-                                bookmarksCheckbox.checked = false;
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            }
-                        });
-                    }
-                });
-            } else {
-                bookmarkButton.style.display = "none";
-                saveDisplayStatus("bookmarksDisplayStatus", "none");
-                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            }
-        }
-    });
-
-
-    bookmarkGridCheckbox.addEventListener("change", function () {
-        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-        if (bookmarkGridCheckbox.checked) {
-            bookmarkList.classList.add("grid-view");
-        } else {
-            bookmarkList.classList.remove("grid-view");
-        }
-    });
-
     todoListCheckbox.addEventListener("change", function () {
         saveCheckboxState("todoListCheckboxState", todoListCheckbox);
         if (todoListCheckbox.checked) {
@@ -3264,26 +3207,13 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
-        if (bookmarksCheckbox.checked) {
-            bookmarkButton.click();
-        } else {
-            bookmarksCheckbox.click();
-        }
-    }
 });
 
 document.addEventListener("keydown", function (event) {

@@ -306,3 +306,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ------------------------ End of Bookmark System -----------------------------------
 
+document.addEventListener("DOMContentLoaded", function () {
+    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
+    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
+
+    bookmarksCheckbox.addEventListener("change", function () {
+        let bookmarksPermission;
+        if (isFirefox && browser.permissions && isDesktop) {
+            bookmarksPermission = browser.permissions;
+        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+            bookmarksPermission = chrome.permissions;
+        } else {
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
+            bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            return;
+        }
+        if (bookmarksPermission !== undefined) {
+            if (bookmarksCheckbox.checked) {
+                bookmarksPermission.contains({
+                    permissions: ["bookmarks"]
+                }, function (alreadyGranted) {
+                    if (alreadyGranted) {
+                        bookmarkButton.style.display = "flex";
+                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                    } else {
+                        bookmarksPermission.request({
+                            permissions: ["bookmarks"]
+                        }, function (granted) {
+                            if (granted) {
+                                bookmarksAPI = chrome.bookmarks;
+                                bookmarkButton.style.display = "flex";
+                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            } else {
+                                bookmarksCheckbox.checked = false;
+                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+                            }
+                        });
+                    }
+                });
+            } else {
+                bookmarkButton.style.display = "none";
+                saveDisplayStatus("bookmarksDisplayStatus", "none");
+                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            }
+        }
+    });
+
+    bookmarkGridCheckbox.addEventListener("change", function () {
+        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+        if (bookmarkGridCheckbox.checked) {
+            bookmarkList.classList.add("grid-view");
+        } else {
+            bookmarkList.classList.remove("grid-view");
+        }
+    });
+
+    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
+    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+})
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
+        if (bookmarksCheckbox.checked) {
+            bookmarkButton.click();
+        } else {
+            bookmarksCheckbox.click();
+        }
+    }
+});
