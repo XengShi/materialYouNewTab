@@ -1698,6 +1698,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	scrollbar-width: none;
 	margin: auto;
 }
+#shortcuts-section::-webkit-scrollbar {
+	display: none;
+}
 
 #shortcuts-section .wrapper {
 	position: relative;
