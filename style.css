@@ -2995,14 +2995,18 @@ input:checked + .toggle:before {
 		/*Because Clock width is 300px*/
 		margin: auto auto auto var(--gap);
 	}
+	.shortcutsContainer {
+		row-gap: 2rem;
+	}
 	#shortcuts-section {
 		padding-left: 30px;
 		margin: 0 auto;
 		overflow-x: scroll;
 		scrollbar-width: none;
-		position: relative;
+		position: fixed;
 		max-width: 40rem;
 		left: 0;
+		bottom: 0;
 	}
 }
 
@@ -3017,6 +3021,7 @@ input:checked + .toggle:before {
 	}
 	#shortcuts-section {
 		max-width: 30rem;
+		position: relative;
 	}
 	.shortcutsContainer {
 		max-width: none;
