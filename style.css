@@ -1172,11 +1172,11 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* ---------------------- */
 .ttteexxtt {
-	position: absolute;
+	position: relative;
 	/* background-color: yellow; */
  	/*bottom: 18px; */
 	/*Because search engines has margin-bottom 20px*/
-	bottom: 8px;
+	top: 2rem;
 	left: 10px;
  	/*text-align: center; */
 }
@@ -1184,6 +1184,14 @@ body #bookmarkButton.bookmark-button.rotate {
 #userText {
 	font-family: var(--main-font-family);
 	font-size: 1.4rem;
+	display: block;
+    word-wrap: break-word;
+    max-width: 22rem;
+    max-height: 6.4rem;
+	overflow-x: clip;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    scrollbar-width: none;
 	margin-bottom: 10px;
 }
 
@@ -1979,6 +1987,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 	.ttteexxtt {
 		/* background-color: yellow; */
+		position: absolute;
 		height: fit-content;
 		width: fit-content;
 		bottom: 0;
