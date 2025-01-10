@@ -3027,7 +3027,10 @@ input:checked + .toggle:before {
 	}
 	#shortcuts-section {
 		max-width: 30rem;
-		position: relative;
+		position: fixed;
+		bottom: 62px;
+		width: 100%;
+		max-width: none;
 		overflow-x: scroll;
 		overflow-y: clip;
 	}
