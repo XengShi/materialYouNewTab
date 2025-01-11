@@ -358,12 +358,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const greetingField = document.getElementById("greetingField");
 
     if (localStorage.getItem("greetingEnabled") === null) {
         localStorage.setItem("greetingEnabled", "true");
     }
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const greetingField = document.getElementById("greetingField");
+
     greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
     greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
 
