@@ -222,8 +222,6 @@ body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked):not(:has
 	}
 }
 
-#darkTheme
-
 /* Search suggestions box */
 .resultBox {
 	max-height: 222px;
