@@ -1209,14 +1209,31 @@ document.addEventListener("click", function (event) {
 
 // Search mode function
 const searchWith = document.getElementById('searchWithHint');
+const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
+
 searchWith.addEventListener('click', function () {
+    console.log('clicked');
     if (searchWith.innerText === 'Search With') {
         searchWith.innerText = 'Search On';
-        
+        toggleSearchEngines('search-on');
     } else {
         searchWith.innerText = 'Search With';
+        toggleSearchEngines('search-with');
     }
 });
+
+function toggleSearchEngines(category) {
+    searchEngines.forEach(engine => {
+        if (engine.getAttribute('data-category') === category) {
+            engine.style.display = 'flex';
+        } else {
+            engine.style.display = 'none';
+        }
+    });
+}
+
+// Initialize with "Search With" category visible
+toggleSearchEngines('search-with');
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
