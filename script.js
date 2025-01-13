@@ -1119,7 +1119,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-//Search mode function
+// Search mode function
 const searchWith = document.getElementById('searchWithHint');
 searchWith.addEventListener('click', function () {
     if (searchWith.innerText === 'Search With') {
