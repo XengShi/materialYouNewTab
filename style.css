@@ -1586,6 +1586,11 @@ body {
 	right: -20px;
 }
 
+.searchWithCont .hint:hover{
+	background-color: var(--darkColor-blue);
+	color: #fff;
+}
+
 .searchEnginesContainer {
 	display: flex;
 	flex-wrap: wrap;

@@ -1119,6 +1119,17 @@ document.addEventListener('click', function (event) {
     }
 });
 
+//Search mode function
+const searchWith = document.getElementById('searchWithHint');
+searchWith.addEventListener('click', function () {
+    if (searchWith.innerText === 'Search With') {
+        searchWith.innerText = 'Search On';
+        
+    } else {
+        searchWith.innerText = 'Search With';
+    }
+});
+
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector('.dropdown-content');
