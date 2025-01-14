@@ -1,4 +1,4 @@
-// Czech -> cs
+// Czech
 const cs = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const cs = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Nahrát tapetu",
     "backupText": "Zálohovat",
     "restoreText": "Obnovit",
@@ -133,6 +133,6 @@ const cs = {
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
     "invalidBackup": "Neplatný soubor se zálohou",
-    "deleteBookmark": "Opravdu si přejete smazat tuto záložku?",
+    "deleteBookmark": "Opravdu si přejete smazat tuto záložku",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
 };
