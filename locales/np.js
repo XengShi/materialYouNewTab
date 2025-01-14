@@ -143,7 +143,7 @@ const np = {
     firefly: "Adobe Firefly",
     metaAI: "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     uploadWallpaperText: "वालपेपर अपलोड गर्नुहोस्",
     backupText: "ब्याकअप",
     restoreText: "पुनर्स्थापना गर्नुहोस्",
@@ -162,6 +162,6 @@ const np = {
     restorecompleted: "पुनर्स्थापना सफलतापूर्वक सम्पन्न भयो!",
     restorefailed: "ब्याकअप असफल भयो: ",
     invalidBackup: "अवैध ब्याकअप फाइल",
-    deleteBookmark: "के तपाइँ निश्चित रूपमा बुकमार्क मेटाउन चाहनुहुन्छ?",
+    deleteBookmark: "के तपाइँ निश्चित रूपमा बुकमार्क मेटाउन चाहनुहुन्छ",
     UnsupportedBrowser: "बुकमार्कहरू तपाईंको ब्राउजरमा समर्थित छैनन्",
 };
