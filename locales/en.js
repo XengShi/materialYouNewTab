@@ -133,7 +133,7 @@ const en = {
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",
-    "invalidBackup": "Invalid backup file",
+    "invalidBackup": "Invalid backup file!",
     "deleteBookmark": "Are you sure you want to delete the bookmark",   // Ignore '?' at the end
     "UnsupportedBrowser": "Bookmarks are not supported in your browser.",
 };
