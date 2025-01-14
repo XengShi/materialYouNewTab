@@ -1,4 +1,4 @@
-// Azerbaijani -> az
+// Azerbaijani
 const az = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const az = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Divar kağızı yükləyin",
     "backupText": "Yedək",
     "restoreText": "Bərpa et",
