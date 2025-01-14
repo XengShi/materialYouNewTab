@@ -1,3 +1,11 @@
+<!--
+     Material You NewTab
+     Copyright (c) 2023-2025 XengShi
+     Licensed under the GNU General Public License v3.0 (GPL-3.0)
+     You should have received a copy of the GNU General Public License along with this program.
+     If not, see <https://www.gnu.org/licenses/>.
+-->
+
 // ------------------------ Bookmark System -----------------------------------
 // DOM Variables
 const bookmarkButton = document.getElementById("bookmarkButton");
@@ -13,8 +21,6 @@ if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
 } else if (typeof chrome !== "undefined" && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
-} else {
-    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -251,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             bookmarksAPI.remove(node.id).then(() => {
                                 item.remove(); // Remove the item from the DOM
                             }).catch(err => {
-                                console.error("Error removing bookmark in Firefox:", err);
+                                console.error("Error removing bookmark:", err);
                             });
                         } else {
                             // Chrome API (Callback-based)
@@ -312,9 +318,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
+        if (isFirefox && browser.permissions) {
             bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+        } else if (isChrome || isEdge || isBrave && chrome.permissions) {
             bookmarksPermission = chrome.permissions;
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
@@ -352,6 +358,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveDisplayStatus("bookmarksDisplayStatus", "none");
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
+        } else {
+            alert(translations[currentLanguage]?.BookmarksDenied || translations['en'].BookmarksDenied);
+            bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            return;
         }
     });
 
