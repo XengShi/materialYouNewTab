@@ -120,7 +120,7 @@ const bn = {
     "firefly": "অ্যাডোবি ফায়ারফ্লাই",
     "metaAI": "মেটা এআই",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "ওয়ালপেপার দিন",
     "backupText": "ব্যাকআপ করুন",
     "restoreText": "পুনরুদ্ধার করুন",
@@ -136,6 +136,7 @@ const bn = {
     "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
     "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
     "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
-    "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান?",
+    "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান",
     "UnsupportedBrowser": "আপনার ব্রাউজারে বুকমার্ক সমর্থিত নয়",
+    "BookmarksDenied": "বুকমার্ক অনুমতি প্রদান করা হয়নি।",
 };
