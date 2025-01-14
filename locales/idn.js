@@ -1,4 +1,4 @@
-// Indonesian -> idn
+// Indonesian
 const idn = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const idn = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",
     "restoreText": "Pulihkan",
@@ -133,6 +133,6 @@ const idn = {
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
     "invalidBackup": "File cadangan tidak valid",
-    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku?",
+    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };
