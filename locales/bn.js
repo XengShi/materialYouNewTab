@@ -135,8 +135,8 @@ const bn = {
     "failedbackup": "ব্যাকআপ ব্যর্থ: ",
     "restorecompleted": "পুনরুদ্ধার সফলভাবে সম্পন্ন হয়েছে!",
     "restorefailed": "পুনরুদ্ধার ব্যর্থ: ",
-    "invalidBackup": "অবৈধ ব্যাকআপ ফাইল",
+    "invalidBackup": "অবৈধ ব্যাকআপ ফাইল!",
     "deleteBookmark": "আপনি কি নিশ্চিত যে আপনি বুকমার্কটি মুছে ফেলতে চান",
-    "UnsupportedBrowser": "আপনার ব্রাউজারে বুকমার্ক সমর্থিত নয়",
+    "UnsupportedBrowser": "আপনার ব্রাউজারে বুকমার্ক সমর্থিত নয়।",
     "BookmarksDenied": "বুকমার্ক অনুমতি প্রদান করা হয়নি।",
 };
