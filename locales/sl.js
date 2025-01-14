@@ -1,4 +1,4 @@
-// Slovenian -> sl
+// Slovenian
 const sl = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const sl = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Naloži ozadje",
     "backupText": "Varnostna kopija",
     "restoreText": "Obnovi",
@@ -133,6 +133,6 @@ const sl = {
     "restorecompleted": "Obnovitev je bila uspešna!",
     "restorefailed": "Obnovitev ni uspela: ",
     "invalidBackup": "Neveljavna datoteka za varnostno kopijo",
-    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek?",
+    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };
