@@ -1,4 +1,4 @@
-// Spanish -> es
+// Spanish
 const es = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const es = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     // "backupText": "Backup",
     // "restoreText": "Restore",
@@ -133,6 +133,6 @@ const es = {
     // "restorecompleted": "Restore completed successfully!",
     // "restorefailed": "Restore failed: ",
     // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };
