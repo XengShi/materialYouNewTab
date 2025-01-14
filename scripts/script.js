@@ -586,7 +586,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             bookmarksAPI.remove(node.id).then(() => {
                                 item.remove(); // Remove the item from the DOM
                             }).catch(err => {
-                                console.error("Error removing bookmark in Firefox:", err);
+                                console.error("Error removing bookmark:", err);
                             });
                         } else {
                             // Chrome API (Callback-based)
