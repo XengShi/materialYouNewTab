@@ -118,7 +118,7 @@ const mr = {
     "firefly": "अडोबी फायरफ्लाय",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "वॉलपेपर सेट करा",
     "backupText": "बॅकअप करा",
     "restoreText": "पुनर्संचयित करा",
@@ -134,6 +134,6 @@ const mr = {
     "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
     "restorefailed": "पुनर्संचयित अयशस्वी: ",
     // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };
