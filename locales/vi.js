@@ -118,7 +118,7 @@ const vi = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Tải hình nền",
     "backupText": "Sao lưu",
     "restoreText": "Khôi phục",
@@ -134,6 +134,6 @@ const vi = {
     "restorecompleted": "Đã khôi phục thành công!",
     "restorefailed": "Khôi phục không thành công: ",
     "invalidBackup": "Tệp sao lưu không hợp lệ",
-    "deleteBookmark": "Bạn có chắc chắn muốn xóa dấu trang không?",
+    "deleteBookmark": "Bạn có chắc chắn muốn xóa dấu trang không",
     "UnsupportedBrowser": "Dấu trang không được hỗ trợ trong trình duyệt của bạn",
 };
