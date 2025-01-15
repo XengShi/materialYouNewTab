@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)} "${node.title || node.url}"?`)) {
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark).replace("{title}", node.title || node.url)}`)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
