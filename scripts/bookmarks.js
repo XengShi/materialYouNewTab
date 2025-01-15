@@ -206,14 +206,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Use the SVG icon from HTML
                 const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
-                folderIcon.removeAttribute("\"id"); // Remove the id to prevent duplicates
+                folderIcon.removeAttribute("id"); // Remove the id to prevent duplicates
                 folderItem.appendChild(folderIcon);
 
                 folderItem.appendChild(document.createTextNode(node.title));
                 folderItem.classList.add("folder");
 
                 // Add event listener for unfolding/folding
-                folderItem.addEventListener("\"click", function (event) {
+                folderItem.addEventListener("click", function (event) {
                     event.stopPropagation();
                     folderItem.classList.toggle("open");
                     const subList = folderItem.querySelector("ul");
