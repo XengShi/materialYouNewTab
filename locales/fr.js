@@ -134,7 +134,7 @@ const fr = {
     "restorecompleted": "Restauration terminée avec succès!",
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
-    "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori",
+    "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori \"{title}\"?",
     "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
     "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };

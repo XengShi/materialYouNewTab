@@ -132,7 +132,7 @@ const zh = {
     // "failedbackup": "Backup failed: ",
     // "restorecompleted": "Restore completed successfully!",
     // "restorefailed": "Restore failed: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark",
+    // "invalidBackup": "Invalid backup file selected.",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

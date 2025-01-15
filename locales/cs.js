@@ -77,9 +77,9 @@ const cs = {
 
     // Bookmarks
     "bookmarksHeading": "Záložky",
-    "bookmarkViewAs" : "Způsob zobrazení",
-    "bookmarkViewGrid" : "Mřížka",
-    "bookmarkViewList" : "Seznam",
+    "bookmarkViewAs": "Způsob zobrazení",
+    "bookmarkViewGrid": "Mřížka",
+    "bookmarkViewList": "Seznam",
     "bookmarkSearch": "Vyhledejte záložku",
 
     // New Tab Item
@@ -133,6 +133,6 @@ const cs = {
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
     "invalidBackup": "Neplatný soubor se zálohou",
-    "deleteBookmark": "Opravdu si přejete smazat tuto záložku",
+    "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
 };

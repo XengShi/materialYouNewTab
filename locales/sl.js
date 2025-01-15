@@ -133,6 +133,6 @@ const sl = {
     "restorecompleted": "Obnovitev je bila uspešna!",
     "restorefailed": "Obnovitev ni uspela: ",
     "invalidBackup": "Neveljavna datoteka za varnostno kopijo",
-    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek",
+    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek \"{title}\"?",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

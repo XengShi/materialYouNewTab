@@ -135,8 +135,8 @@ const hi = {
     "failedbackup": "बैकअप विफल: ",
     "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
     "restorefailed": "पुनर्स्थापना विफल: ",
-    "invalidBackup": "अमान्य बैकअप फ़ाइल!",
-    "deleteBookmark": "क्या आप बुकमार्क डिलीट करना चाहते हैं",
+    "invalidBackup": "अमान्य बैकअप फ़ाइल चयनित है।",
+    "deleteBookmark": "क्या आप \"{title}\" बुकमार्क डिलीट करना चाहते हैं?",
     "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं।",
     "BookmarksDenied": "बुकमार्क्स अनुमति प्रदान नहीं की गई है।",
 };

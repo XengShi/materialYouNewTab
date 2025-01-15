@@ -272,12 +272,12 @@ window.addEventListener("DOMContentLoaded", async () => {
                             });
                         },
                         (error) => reject(error),
-                        {timeout: 4000}
+                        { timeout: 4000 }
                     );
                 });
             };
 
-            const {latitude, longitude} = await getLocationFromGPS();
+            const { latitude, longitude } = await getLocationFromGPS();
             return `${latitude},${longitude}`;
         } catch (error) {
             console.error("GPS Location retrieval failed: ", error);
@@ -580,7 +580,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)} "${node.title || node.url}"?`)) {
+                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark).replace("{title}", node.title || node.url)}`)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -608,9 +608,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({url: node.url, active: false});
+                            browser.tabs.create({ url: node.url, active: false });
                         } else if (isChrome) {
-                            chrome.tabs.create({url: node.url, active: false});
+                            chrome.tabs.create({ url: node.url, active: false });
                         } else {
                             window.open(node.url, "_blank");
                         }
@@ -618,9 +618,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Open in the current tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.update({url: node.url});
+                            browser.tabs.update({ url: node.url });
                         } else if (isChrome) {
-                            chrome.tabs.update({url: node.url}, function () {
+                            chrome.tabs.update({ url: node.url }, function () {
                             });
                         } else {
                             window.location.href = node.url;
@@ -674,7 +674,7 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
+    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ""; // Clear Input
@@ -1037,7 +1037,7 @@ function updatedigiClock() {
     // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
     // Set time options and determine locale based on the current language
-    const timeOptions = {hour: "2-digit", minute: "2-digit", hour12: hourformat};
+    const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: hourformat };
     const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? "en-US" : currentLanguage;
     timeString = now.toLocaleTimeString(locale, timeOptions);
 
@@ -1932,13 +1932,13 @@ const applySelectedTheme = (colorValue) => {
     const updateExtensionIcon = (colorValue) => {
         if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
-            browser.browserAction.setIcon({path: iconPaths[colorValue]});
+            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof chrome !== "undefined" && chrome.action) {
             // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({path: iconPaths[colorValue]});
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
-            safari.extension.setToolbarIcon({path: iconPaths[colorValue]});
+            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
     updateExtensionIcon(colorValue);
@@ -2297,7 +2297,7 @@ document.getElementById("fileInput").addEventListener("change", validateAndResto
 // Backup data from localStorage and IndexedDB
 async function backupData() {
     try {
-        const backup = {localStorage: {}, indexedDB: {}};
+        const backup = { localStorage: {}, indexedDB: {} };
 
         // Backup localStorage
         for (let key in localStorage) {
@@ -2315,7 +2315,7 @@ async function backupData() {
         const fileName = `NewTab_Backup_${formattedDate}.json`;
 
         // Create and download the backup file
-        const blob = new Blob([JSON.stringify(backup, null, 2)], {type: "application/json"});
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = fileName;
@@ -2385,7 +2385,7 @@ async function backupIndexedDB() {
                         // Convert Blob to Base64 for JSON compatibility
                         const reader = new FileReader();
                         reader.onload = () => {
-                            data[key] = {blob: reader.result, isBlob: true};
+                            data[key] = { blob: reader.result, isBlob: true };
                             if (--pending === 0) resolve(data);
                         };
                         reader.readAsDataURL(value);
@@ -2453,14 +2453,14 @@ async function restoreData(backup) {
 
 // Helper: Convert Base64 string to Blob
 function base64ToBlob(base64) {
-    const [metadata, data] = base64.split("","");
+    const [metadata, data] = base64.split("", "");
     const mime = metadata.match(/:(.*?);/)[1];
     const binary = atob(data);
     const array = new Uint8Array(binary.length);
     for (let i = 0; i < binary.length; i++) {
         array[i] = binary.charCodeAt(i);
     }
-    return new Blob([array], {type: mime});
+    return new Blob([array], { type: mime });
 }
 
 // -------------------End of Settings ------------------------------
@@ -2573,7 +2573,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -2584,7 +2584,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();

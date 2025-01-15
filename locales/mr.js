@@ -133,7 +133,7 @@ const mr = {
     "failedbackup": "बॅकअप अयशस्वी: ",
     "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
     "restorefailed": "पुनर्संचयित अयशस्वी: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark",
+    // "invalidBackup": "Invalid backup file selected.",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

@@ -133,6 +133,6 @@ const idn = {
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
     "invalidBackup": "File cadangan tidak valid",
-    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku",
+    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku \"{title}\"?",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

@@ -134,6 +134,6 @@ const pt = {
     "restorecompleted": "Restauração concluída com sucesso!",
     "restorefailed": "Restauração falhou: ",
     "invalidBackup": "Arquivo de backup inválido",
-    "deleteBookmark": "Você tem certeza de que deseja excluir o favorito",
+    "deleteBookmark": "Você tem certeza de que deseja excluir o favorito \"{title}\"?",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };
