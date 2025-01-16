@@ -1211,29 +1211,30 @@ document.addEventListener("click", function (event) {
 const searchWith = document.getElementById('searchWithHint');
 const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
 
+let activeSearchMode = localStorage.getItem("activeSearchMode")
+
 searchWith.addEventListener('click', function () {
-    console.log('clicked');
-    if (searchWith.innerText === 'Search With') {
-        searchWith.innerText = 'Search On';
+    if (activeSearchMode === 'search-with') {
+        activeSearchMode = 'search-on';
         toggleSearchEngines('search-on');
     } else {
-        searchWith.innerText = 'Search With';
+        activeSearchMode = 'search-with'
         toggleSearchEngines('search-with');
     }
 });
 
 function toggleSearchEngines(category) {
+    const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`);
+    document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
     searchEngines.forEach(engine => {
         if (engine.getAttribute('data-category') === category) {
             engine.style.display = 'flex';
         } else {
             engine.style.display = 'none';
         }
+        if (engine.lastElementChild.value === checkeditem){ engine.lastElementChild.click() }
     });
 }
-
-// Initialize with "Search With" category visible
-toggleSearchEngines('search-with');
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
@@ -1294,7 +1295,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
         });
     });
 
@@ -1313,7 +1315,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
         });
     });
 
@@ -1365,7 +1368,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Set selected search engine from local storage
-    const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+    let activeSearchMode = localStorage.getItem("activeSearchMode")
+    const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+
+    if (activeSearchMode) {
+        if (activeSearchMode !== 'search-with') {
+            searchWith.innerText = 'Search On';
+            toggleSearchEngines('search-on');
+        } else {
+            searchWith.innerText = 'Search With';
+            toggleSearchEngines('search-with');
+        }
+    }
 
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
@@ -1440,8 +1454,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
         radio.addEventListener("change", () => {
-            const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-            localStorage.setItem("selectedSearchEngine", selectedOption);
+            const selectedOption = document.querySelector('input[name="search-engine"]:checked');
+            localStorage.setItem(`selectedSearchEngine-${selectedOption.parentElement.dataset.category}`, selectedOption.value);
+            localStorage.setItem(`activeSearchMode`, selectedOption.parentElement.dataset.category);
         });
     });
     // -----Theme stay changed even if user reload the page---
