@@ -1323,9 +1323,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (searchTerm !== "") {
             if (selectedOption === "engine0") {
-                chrome.search.query({ text: searchTerm });
-            }
-            else {
+                if (isFirefox) {
+                    browser.search.query({ text: searchTerm }).catch(() => { });
+                } else {
+                    chrome.search.query({ text: searchTerm });
+                }
+            } else {
                 var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
                 window.location.href = searchUrl;
             }
@@ -2521,7 +2524,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         resultItem.setAttribute("data-index", index);
                         resultItem.onclick = () => {
                             if (selectedOption === "engine0") {
-                                chrome.search.query({ text: suggestion });
+                                if (isFirefox) {
+                                    browser.search.query({ text: suggestion }).catch(() => { });
+                                } else {
+                                    chrome.search.query({ text: suggestion });
+                                }
                             } else {
                                 var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
                                 window.location.href = resultlink;
