@@ -1210,9 +1210,9 @@ document.addEventListener("click", function (event) {
 // Search mode function
 const searchWith = document.getElementById('searchWithHint');
 const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
+const searchEnginesdiv = document.getElementsByClassName('.searchEnginesContainer');
 
 searchWith.addEventListener('click', function () {
-    console.log('clicked');
     if (searchWith.innerText === 'Search With') {
         searchWith.innerText = 'Search On';
         toggleSearchEngines('search-on');
@@ -1223,17 +1223,33 @@ searchWith.addEventListener('click', function () {
 });
 
 function toggleSearchEngines(category) {
-    searchEngines.forEach(engine => {
-        if (engine.getAttribute('data-category') === category) {
-            engine.style.display = 'flex';
-        } else {
-            engine.style.display = 'none';
-        }
-    });
+    const searchEnginesContainer = document.querySelector('.searchEnginesContainer');
+    searchEnginesContainer.classList.remove('show'); // Hide container for animation and transition
+    
+    setTimeout(() => {
+        let firstEngineSet = false;
+
+        searchEngines.forEach(engine => {
+            if (engine.getAttribute('data-category') === category) {
+                engine.style.display = 'flex';
+
+                // Reset to the first engine(default) for the selected category
+                if (!firstEngineSet) {
+                    engine.querySelector('.radio-button').checked = true;
+                    firstEngineSet = true;
+                }
+            } else {
+                engine.style.display = 'none';
+            }
+        });
+
+        searchEnginesContainer.classList.add('show'); // Show the updated container
+    }, 400); // Matches the CSS transition duration
 }
 
-// Initialize with "Search With" category visible
+// Initialize the search engine selection when page loads can further be optimized by using the local storage
 toggleSearchEngines('search-with');
+
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
