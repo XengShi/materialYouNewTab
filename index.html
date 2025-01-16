@@ -658,10 +658,24 @@
                 <div class="searchIcon">
                     <!-- Dropdown Button -->
                     <div class="dropdown search-dropdown">
+                        <!-- Default Search Engine -->
                         <button id="default-dropdown-item" style="cursor: pointer;" role="button" class="dropdown-btn">
-                            <div id="google-dropdown" data-default data-engine-name="google" data-engine="1"
+                            <div id="default-dropdown" data-default data-engine-name="default" data-engine="0"
                                 class="dropdown-item">
-                                <!-- Default Google Icon -->
+                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.9); transform-origin: center;"
+                                        d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                                </svg>
+                                <span class="engine-name" id="defaultEngineDD">
+                                    Default
+                                </span>
+                            </div>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- Default Google Icon -->
+                            <div id="google-dropdown" data-engine-name="google" data-engine="1" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect class="accentColor" height="28" rx="14" width="28" />
@@ -674,8 +688,6 @@
                                     Google
                                 </span>
                             </div>
-                        </button>
-                        <div class="dropdown-content">
                             <!-- Duck -->
                             <div data-engine="2" data-engine-name="duck" id="duck-dropdown" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
@@ -758,8 +770,18 @@
                 <div class="hint bgLightTint" id="searchWithHint">Search With</div>
 
                 <div class="searchEnginesContainer">
+
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="darkIconForDarkTheme" fill="white"
+                                style="transform: scale(0.93); transform-origin: center;"
+                                d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                        </svg>
+                        <label class="engine-name" id="defaultEngine">Default</label>
+                        <input checked class="radio-button" name="search-engine" type="radio" value="engine0">
+                    </div>
+
+                    <div class="search-engine bgLightTint">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -767,11 +789,10 @@
                                 fill="white" />
                         </svg>
                         <label class="engine-name" id="googleEngine">Google</label>
-                        <input checked class="radio-button" name="search-engine" type="radio" value="engine1">
+                        <input class="radio-button" name="search-engine" type="radio" value="engine1">
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/duck.svg" alt="D" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF00ff" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -783,7 +804,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/bing.svg" alt="B" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -795,7 +815,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/brave.svg" alt="B" class="logo"> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -0.5 24 24">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme" fill-rule="evenodd"
@@ -807,7 +826,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/youtube.svg" alt="Y" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
