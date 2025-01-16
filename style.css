@@ -232,6 +232,10 @@ body {
 	pointer-events: none;
 }
 
+.centerDiv:has(.resultBox.show) ~ #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) ~ #shortcuts-section {
+	z-index: -1;
+}
+
 @media screen and (max-height: 700px) {
 	.resultBox {
 		max-height: 180px;
@@ -2970,7 +2974,7 @@ input:checked + .toggle:before {
 	.centerDiv {
 		/* display: grid; */
 		grid-template-columns: auto;
-		padding-bottom: 0;
+		padding-bottom: 100px;
 		position: relative;
 		left: 0;
 		right: 0;
@@ -3050,7 +3054,7 @@ input:checked + .toggle:before {
 	}
 	.centerDiv {
 		width: calc(100% - 4rem);
-		padding-bottom: 0;
+		margin-bottom: 10rem;
 		align-self: center;
 		display: flex;
 		flex-direction: column;
@@ -3107,9 +3111,6 @@ input:checked + .toggle:before {
 		margin-top: 0;
 		max-width: unset;
 		bottom: 0;
-	}
-	.centerDiv:has(.resultBox.show) + #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) + #shortcuts-section {
-		z-index: -1;
 	}
 	.todoListCont {
 		transform-origin: top left;
@@ -3223,6 +3224,15 @@ input:checked + .toggle:before {
 	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
 		display: flex;
 	}
+	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
+		display: none;
+	}
+	.searchbar .searchIcon:nth-of-type(1) {
+		display: none !important;
+	}
+	.searchbar .searchIcon:nth-of-type(2) {
+		display: block !important;
+	}
 	.centerDiv:has(~ .menuBar #digitalCheckbox:checked) {
 		& .leftDiv {
 			margin-top: -6vw;
@@ -3236,7 +3246,8 @@ input:checked + .toggle:before {
 	}
 	.centerDiv {
 		position: relative;
-		margin-bottom: 1.5rem;
+		margin-bottom: 6rem;
+		padding-top: 0;
 	}
 	.resultBox {
 		scale: 1.5;
