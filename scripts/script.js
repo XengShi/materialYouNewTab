@@ -1211,7 +1211,7 @@ document.addEventListener("click", function (event) {
 const searchWith = document.getElementById('searchWithHint');
 const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
 
-let activeSearchMode = localStorage.getItem("activeSearchMode")
+let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
 
 searchWith.addEventListener('click', function () {
     if (activeSearchMode === 'search-with') {
@@ -1224,7 +1224,11 @@ searchWith.addEventListener('click', function () {
 });
 
 function toggleSearchEngines(category) {
-    const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`);
+    const defaultItems = {
+        'search-with' : "engine1",
+        'search-on' : "engine5",
+    }
+    const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
     document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
     searchEngines.forEach(engine => {
         if (engine.getAttribute('data-category') === category) {
@@ -1368,7 +1372,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Set selected search engine from local storage
-    let activeSearchMode = localStorage.getItem("activeSearchMode")
+    let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
     const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
 
     if (activeSearchMode) {
