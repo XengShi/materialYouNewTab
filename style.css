@@ -2921,7 +2921,7 @@ input:checked + .toggle:before {
 
 .dropdown-content::-webkit-scrollbar-track {
 	background-color: transparent;
-	margin: 7px;
+	margin: 7px 0;
 }
 
 .dropdown-content::-webkit-scrollbar-thumb {
