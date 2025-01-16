@@ -1322,8 +1322,13 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         if (searchTerm !== "") {
-            var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
-            window.location.href = searchUrl;
+            if (selectedOption === "engine0") {
+                chrome.search.query({ text: searchTerm });
+            }
+            else {
+                var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
+                window.location.href = searchUrl;
+            }
         }
     }
 
