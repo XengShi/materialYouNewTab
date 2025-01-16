@@ -1584,58 +1584,76 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ________________End of Searchbar______________________ */
 
 .searchWithCont {
-	margin-top: var(--gap);
-	border-radius: var(--round);
-	position: relative;
-	display: flex;
-	font-size: 1rem;
+    margin-top: var(--gap);
+    border-radius: var(--round);
+    position: relative;
+    display: flex;
+    font-size: 1rem;
+    z-index: 2; /* Ensures it's above the engines container */
+    overflow: hidden; /* Prevents child elements from overflowing outside */
+	max-width: 100%;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px;
-	position: relative;
-	margin-right: 16px;
-	border-radius: var(--round);
+    flex: 0 0 auto; /* Prevents it from growing */
+    width: 150px; /* Fixed width */
+    height: 100px;
+    white-space: nowrap; /* Prevents text from wrapping when search modes are changed*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    margin-right: 16px;
+    border-radius: var(--round);
 }
+
 
 .searchWithCont .hint::after {
-	content: "";
-	position: absolute;
-	width: 6px;
-	height: 100%;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 3px;
-	right: -20px;
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 3px;
+    right: -20px;
 }
 
-.searchWithCont .hint:hover{
-	background-color: var(--darkColor-blue);
-	color: #fff;
+.searchWithCont .hint:hover {
+    background-color: var(--darkColor-blue);
+    color: #fff;
 }
 
 .searchEnginesContainer {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	padding-left: 20px;
+    position: relative; 
+    z-index: 1; 
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 20px;
+    transform: translateX(100%);
+    opacity: 0.2; 
 }
 
-.searchEnginesContainer .search-engine {
-	/* background-color: var(--accentLightTint-blue); */
-	border-radius: 20px;
-	height: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	cursor: pointer;
+.searchEnginesContainer.show {
+    transform: translateX(0); /* Brings it into view */
+    opacity: 1; 
 }
+
+
+.searchEnginesContainer .search-engine {
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
 
 .searchEnginesContainer .search-engine svg{
 	width: 30px;

@@ -1212,6 +1212,7 @@ const searchWith = document.getElementById('searchWithHint');
 const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
 
 let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
+const searchEnginesdiv = document.getElementsByClassName('.searchEnginesContainer');
 
 searchWith.addEventListener('click', function () {
     if (activeSearchMode === 'search-with') {
@@ -1224,20 +1225,28 @@ searchWith.addEventListener('click', function () {
 });
 
 function toggleSearchEngines(category) {
-    const defaultItems = {
-        'search-with' : "engine1",
-        'search-on' : "engine5",
-    }
-    const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
-    document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
-    searchEngines.forEach(engine => {
-        if (engine.getAttribute('data-category') === category) {
-            engine.style.display = 'flex';
-        } else {
-            engine.style.display = 'none';
+    const searchEnginesContainer = document.querySelector('.searchEnginesContainer');
+    searchEnginesContainer.classList.remove('show'); // Hide container for animation and transition
+    
+    setTimeout(() => {
+        const defaultItems = {
+            'search-with' : "engine1",
+            'search-on' : "engine5",
         }
-        if (engine.lastElementChild.value === checkeditem){ engine.lastElementChild.click() }
-    });
+        const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
+        document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
+
+        searchEngines.forEach(engine => {
+            if (engine.getAttribute('data-category') === category) {
+                engine.style.display = 'flex';
+            } else {
+                engine.style.display = 'none';
+            }
+            if (engine.lastElementChild.value === checkeditem){ engine.lastElementChild.click() }
+        });
+
+        searchEnginesContainer.classList.add('show'); // Show the updated container
+    }, 400); // Matches the CSS transition duration
 }
 
 // Search function
