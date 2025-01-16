@@ -1210,14 +1210,16 @@ document.addEventListener("click", function (event) {
 // Search mode function
 const searchWith = document.getElementById('searchWithHint');
 const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
+
+let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
 const searchEnginesdiv = document.getElementsByClassName('.searchEnginesContainer');
 
 searchWith.addEventListener('click', function () {
-    if (searchWith.innerText === 'Search With') {
-        searchWith.innerText = 'Search On';
+    if (activeSearchMode === 'search-with') {
+        activeSearchMode = 'search-on';
         toggleSearchEngines('search-on');
     } else {
-        searchWith.innerText = 'Search With';
+        activeSearchMode = 'search-with'
         toggleSearchEngines('search-with');
     }
 });
@@ -1227,29 +1229,25 @@ function toggleSearchEngines(category) {
     searchEnginesContainer.classList.remove('show'); // Hide container for animation and transition
     
     setTimeout(() => {
-        let firstEngineSet = false;
+        const defaultItems = {
+            'search-with' : "engine1",
+            'search-on' : "engine5",
+        }
+        const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
+        document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
 
         searchEngines.forEach(engine => {
             if (engine.getAttribute('data-category') === category) {
                 engine.style.display = 'flex';
-
-                // Reset to the first engine(default) for the selected category
-                if (!firstEngineSet) {
-                    engine.querySelector('.radio-button').checked = true;
-                    firstEngineSet = true;
-                }
             } else {
                 engine.style.display = 'none';
             }
+            if (engine.lastElementChild.value === checkeditem){ engine.lastElementChild.click() }
         });
 
         searchEnginesContainer.classList.add('show'); // Show the updated container
     }, 400); // Matches the CSS transition duration
 }
-
-// Initialize the search engine selection when page loads can further be optimized by using the local storage
-toggleSearchEngines('search-with');
-
 
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
@@ -1310,7 +1308,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
         });
     });
 
@@ -1329,7 +1328,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
         });
     });
 
@@ -1381,7 +1381,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Set selected search engine from local storage
-    const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+    let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
+    const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+
+    if (activeSearchMode) {
+        if (activeSearchMode !== 'search-with') {
+            searchWith.innerText = 'Search On';
+            toggleSearchEngines('search-on');
+        } else {
+            searchWith.innerText = 'Search With';
+            toggleSearchEngines('search-with');
+        }
+    }
 
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
@@ -1456,8 +1467,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
         radio.addEventListener("change", () => {
-            const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-            localStorage.setItem("selectedSearchEngine", selectedOption);
+            const selectedOption = document.querySelector('input[name="search-engine"]:checked');
+            localStorage.setItem(`selectedSearchEngine-${selectedOption.parentElement.dataset.category}`, selectedOption.value);
+            localStorage.setItem(`activeSearchMode`, selectedOption.parentElement.dataset.category);
         });
     });
     // -----Theme stay changed even if user reload the page---
