@@ -71,7 +71,7 @@ const en = {
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
     "hideWeatherBox": "Hide Weather Box",
-    "hideWeatherBoxInfo": "Hide the box, show temp (Mobiles)",
+    "hideWeatherBoxInfo": "Only show temperature on mobile",
 
     // Body Items
     // Calendar
