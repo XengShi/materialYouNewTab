@@ -1605,18 +1605,50 @@ body #bookmarkButton.bookmark-button.rotate {
     padding: 10px;
     position: relative;
     margin-right: 16px;
+	transition: all 0.3s ease;
     border-radius: var(--round);
 }
 
 
 .searchWithCont .hint::after {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 100%;
-    background-color: var(--accentLightTint-blue);
-    border-radius: 3px;
-    right: -20px;
+	content: "";
+	position: absolute;
+	width: 6px;
+	height: 100%;
+	background-color: var(--accentLightTint-blue);
+	border-radius: 3px;
+	right: -20px;
+}
+
+.searchWithCont .hint::before {
+	content: "";
+	position: absolute;
+	height: auto;
+	width: 100%;
+	aspect-ratio: 1;
+	background-color: var(--accentLightTint-blue);
+	border-radius: 300px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	transform-origin: top left;
+	opacity: 0;
+}
+
+.searchWithCont .hint:active:before {
+	animation: ripple_effect 0.3s ease 1 forwards;
+	-webkit-animation: ripple_effect 0.3s ease 1 forwards;
+}
+
+@keyframes ripple_effect {
+	0% {
+		scale: 0;
+		opacity: 1;
+	} 100% {
+		scale: 1;
+		opacity: 0;
+	}
 }
 
 .searchWithCont .hint:hover {
