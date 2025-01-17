@@ -1323,10 +1323,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (searchTerm !== "") {
             if (selectedOption === "engine0") {
-                if (isFirefox) {
-                    browser.search.query({ text: searchTerm }).catch(() => { });
-                } else {
-                    chrome.search.query({ text: searchTerm });
+                try {
+                    if (isFirefox) {
+                        browser.search.query({ text: searchTerm });
+                    } else {
+                        chrome.search.query({ text: searchTerm });
+                    }
+                } catch (error) {
+                    // Fallback to Google if an error occurs
+                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(searchTerm);
+                    window.location.href = fallbackUrl;
                 }
             } else {
                 var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
@@ -2524,10 +2530,15 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         resultItem.setAttribute("data-index", index);
                         resultItem.onclick = () => {
                             if (selectedOption === "engine0") {
-                                if (isFirefox) {
-                                    browser.search.query({ text: suggestion }).catch(() => { });
-                                } else {
-                                    chrome.search.query({ text: suggestion });
+                                try {
+                                    if (isFirefox) {
+                                        browser.search.query({ text: suggestion });
+                                    } else {
+                                        chrome.search.query({ text: suggestion });
+                                    }
+                                } catch (error) {
+                                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(suggestion);
+                                    window.location.href = fallbackUrl;
                                 }
                             } else {
                                 var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
