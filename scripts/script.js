@@ -1403,8 +1403,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dropdown.style.display === "block") {
             if (event.key === "ArrowDown") {
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "ArrowUp") {
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "Enter") {
                 const selector = ".dropdown-content .selected";
                 const engine = element.getAttribute("data-engine");
