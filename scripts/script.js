@@ -1234,7 +1234,8 @@ function toggleSearchEngines(category) {
             'search-on' : "engine5",
         }
         const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
-        document.getElementById('searchWithHint').innerText = category.split("-").map((elem)=>{return elem[0].toUpperCase()+elem.substring(1)}).join(" ")
+        const namee = category.split("-").map((elem,index)=>{return ((index==0) ? elem[0] : elem[0].toUpperCase())+elem.substring(1)}).join("")+"Hint";
+        document.getElementById('searchWithHint').innerText = translations[currentLanguage][namee] || translations["en"][namee]
 
         searchEngines.forEach(engine => {
             if (engine.getAttribute('data-category') === category) {
@@ -1386,10 +1387,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (activeSearchMode) {
         if (activeSearchMode !== 'search-with') {
-            searchWith.innerText = 'Search On';
+            searchWith.innerText = translations[currentLanguage].searchOnHint || translations['en'].searchOnHint;
             toggleSearchEngines('search-on');
         } else {
-            searchWith.innerText = 'Search With';
+            searchWith.innerText = translations[currentLanguage].searchWithHint || translations['en'].searchWithHint;
             toggleSearchEngines('search-with');
         }
     }
