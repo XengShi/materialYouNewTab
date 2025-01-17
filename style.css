@@ -1605,7 +1605,7 @@ body #bookmarkButton.bookmark-button.rotate {
     padding: 10px;
     position: relative;
     margin-right: 16px;
-	transition: all 0.3s ease;
+	transition: all 0.4s ease;
     border-radius: var(--round);
 }
 
@@ -1621,34 +1621,39 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint::before {
-	content: "";
-	position: absolute;
-	height: auto;
-	width: 100%;
-	aspect-ratio: 1;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 300px;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
-	transform-origin: top left;
-	opacity: 0;
+    content: "";
+    position: absolute;
+    height: auto;
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 50%;  /* Changed from 300px to 50% for perfect circle */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transform-origin: center;  /* Changed to center for better scaling */
+    opacity: 0;
+    pointer-events: none;  /* Ensures the ripple doesn't interfere with clicks */
 }
 
-.searchWithCont .hint:active:before {
-	animation: ripple_effect 0.3s ease 1 forwards;
-	-webkit-animation: ripple_effect 0.3s ease 1 forwards;
+.searchWithCont .hint:active::before {
+    animation: ripple_effect 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    /* Using cubic-bezier for smoother easing */
 }
 
 @keyframes ripple_effect {
-	0% {
-		scale: 0;
-		opacity: 1;
-	} 100% {
-		scale: 1;
-		opacity: 0;
-	}
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.40;  /* Reduced initial opacity */
+    }
+    50% {
+        opacity: 0.20;  /* Mid-point opacity for smoother fade */
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);  /* Increased scale for bigger effect */
+        opacity: 0;
+    }
 }
 
 .searchWithCont .hint:hover {
