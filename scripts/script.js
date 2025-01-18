@@ -1211,6 +1211,14 @@ document.addEventListener("click", function (event) {
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
 
+    dropdown.addEventListener("click", (event) => {
+        if (dropdown.style.display === "block") {
+            event.stopPropagation();
+            dropdown.style.display = "none";
+            searchInput.focus();
+        }
+    })
+
     document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
             event.stopPropagation();
