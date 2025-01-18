@@ -49,28 +49,10 @@ function updateDate() {
         const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
         // Get the translated name of the day
-        var dayName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].days &&
-            translations[currentLanguage].days[dayOfWeek]
-        ) {
-            dayName = translations[currentLanguage].days[dayOfWeek];
-        } else {
-            dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-        }
+        var dayName = translations[currentLanguage]?.days?.[dayOfWeek] ?? translations["en"].days[dayOfWeek];
 
         // Get the translated name of the month
-        var monthName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].months &&
-            translations[currentLanguage].months[month]
-        ) {
-            monthName = translations[currentLanguage].months[month];
-        } else {
-            monthName = translations["en"].months[month]; // Fallback to English month name
-        }
+        var monthName = translations[currentLanguage]?.months?.[month] ?? translations["en"].months[month];
 
         // Localize the day of the month
         var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
@@ -176,17 +158,8 @@ function getGreeting() {
     // Get the user's language setting
     const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
 
-    // Check if the greeting is available for the selected language
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].greeting &&
-        translations[currentLanguage].greeting[greetingKey]
-    ) {
-        return translations[currentLanguage].greeting[greetingKey];
-    } else {
-        // Fallback to English greeting if the currentLanguage or greeting key is missing
-        return translations["en"].greeting[greetingKey];
-    }
+    // Return the translated greeting is available
+    return translations[currentLanguage]?.greeting?.[greetingKey] ?? translations["en"].greeting[greetingKey];
 }
 
 function updatedigiClock() {
@@ -203,16 +176,7 @@ function updatedigiClock() {
     const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
     // Get translated day name
-    let dayName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].days &&
-        translations[currentLanguage].days[dayOfWeek]
-    ) {
-        dayName = translations[currentLanguage].days[dayOfWeek];
-    } else {
-        dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-    }
+    let dayName = translations[currentLanguage]?.days?.[dayOfWeek] ?? translations["en"].days[dayOfWeek];
 
     // Localize the day of the month
     const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
@@ -358,13 +322,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
     const digitalCheckbox = document.getElementById("digitalCheckbox");
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const greetingField = document.getElementById("greetingField");
 
     if (localStorage.getItem("greetingEnabled") === null) {
         localStorage.setItem("greetingEnabled", "true");
     }
-
+    const greetingCheckbox = document.getElementById("greetingcheckbox");
+    const greetingField = document.getElementById("greetingField");
     greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
     greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
 
