@@ -2818,7 +2818,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
-                filter: grayscale(1) contrast(1.5);
+                filter: grayscale(1);
                 mix-blend-mode: screen;
                 }`;
 
