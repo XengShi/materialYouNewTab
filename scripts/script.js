@@ -1222,7 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultBox = document.getElementById("resultBox");
         if (resultBox.classList.toString().includes("show")) return;
 
-        /// Clear selected state and reset index when dropdown opens
+        // Clear selected state and reset index when dropdown opens
         dropdownItems.forEach(item => item.classList.remove("selected"));
         selectedIndex = -1;
 
