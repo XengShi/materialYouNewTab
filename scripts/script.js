@@ -1258,7 +1258,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // get the parent
         const parent = sortedDropdowns[0]?.parentNode;
 
-        // Append the items. if parent exists.
+        // Append the items if parent exists.
         if (parent) {
             sortedDropdowns.forEach(item => parent.appendChild(item));
         }
@@ -1273,7 +1273,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             radioButton.checked = true;
 
-            // Swap The dropdown. and sort them
+            // Swap the dropdown and sort them
             swapDropdown(selector);
             sortDropdown()
 
@@ -1283,7 +1283,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
-        engineDiv.addEventListener("click", () => {
+        engineDiv.addEventListener("click", (event) => {
+            event.stopPropagation();
             const radioButton = engineDiv.querySelector('input[type="radio"]');
 
             radioButton.checked = true;
@@ -1292,11 +1293,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const selector = `[data-engine="${radioButtonValue}"]`;
 
-            // Swap The dropdown.
+            // Swap the dropdown
             swapDropdown(selector);
-            sortDropdown()
+            sortDropdown();
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+            const searchBar = document.querySelector(".searchbar");
+            searchInput.focus();
+            searchBar.classList.add("active");
         });
     });
 
