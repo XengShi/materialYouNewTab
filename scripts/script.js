@@ -1391,8 +1391,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown").addEventListener("keydown", function (event) {
         if (dropdown.style.display === "block") {
             if (event.key === "ArrowDown") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
             } else if (event.key === "ArrowUp") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
                 const selectedItem = document.querySelector(".dropdown-content .selected");
