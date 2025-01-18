@@ -1221,6 +1221,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown-btn").addEventListener("click", function (event) {
         const resultBox = document.getElementById("resultBox");
         if (resultBox.classList.toString().includes("show")) return;
+
+        /// Clear selected state and reset index when dropdown opens
+        dropdownItems.forEach(item => item.classList.remove("selected"));
+        selectedIndex = -1;
+
         dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     });
 
@@ -1257,8 +1262,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const engine = element.getAttribute("data-engine");
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
             const selector = `*[data-engine-name=${element.getAttribute("data-engine-name")}]`;
-
-            // console.log(element, selector);
 
             radioButton.checked = true;
 
@@ -1392,15 +1395,21 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (event.key === "ArrowUp") {
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
-                const selector = ".dropdown-content .selected";
-                const engine = element.getAttribute("data-engine");
+                const selectedItem = document.querySelector(".dropdown-content .selected");
+                const engine = selectedItem.getAttribute("data-engine");
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
 
-                // Swap The dropdown. and sort them
-                swapDropdown(selector);
-                sortDropdown()
+                // Swap the dropdown and sort them
+                swapDropdown(`*[data-engine="${engine}"]`);
+                sortDropdown();
+
+                localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+                // Close the dropdown after selection
+                dropdown.style.display = "none";
+                searchInput.focus();
             }
             updateSelection();
         }
