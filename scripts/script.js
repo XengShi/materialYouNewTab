@@ -348,8 +348,6 @@ if (isFirefox && browser.bookmarks) {
     bookmarksAPI = browser.bookmarks;
 } else if (typeof chrome !== "undefined" && chrome.bookmarks) {
     bookmarksAPI = chrome.bookmarks;
-} else {
-    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -1210,6 +1208,12 @@ document.addEventListener("click", function (event) {
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
+    dropdown.addEventListener("click", (event) => {
+        if (dropdown.style.display === "block") {
+            event.stopPropagation();
+            dropdown.style.display = "none";
+        }
+    })
 
     document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
@@ -2835,6 +2839,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
     const timeformatField = document.getElementById("timeformatField");
@@ -3435,9 +3440,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
+        if (isFirefox && browser.permissions) {
             bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
+        } else if (isChrome || isEdge || isBrave && chrome.permissions) {
             bookmarksPermission = chrome.permissions;
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
@@ -3475,6 +3480,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveDisplayStatus("bookmarksDisplayStatus", "none");
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
+        } else {
+            alert(translations[currentLanguage]?.BookmarksDenied || translations['en'].BookmarksDenied);
+            bookmarksCheckbox.checked = false;
+            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+            return;
         }
     });
 
@@ -3497,6 +3507,10 @@ document.addEventListener("DOMContentLoaded", function () {
             todoListCont.style.display = "none";
             saveDisplayStatus("todoListDisplayStatus", "none");
         }
+    });
+    
+    hideWeatherCheckbox.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     });
 
     fahrenheitCheckbox.addEventListener("change", function () {
@@ -3573,6 +3587,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
+    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
