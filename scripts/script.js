@@ -2070,7 +2070,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-
     hideWeatherCheckbox.addEventListener("change", function () {
         saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     });
