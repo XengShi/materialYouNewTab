@@ -22,9 +22,15 @@
     <script src="scripts/preload.js"></script>
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
+    <script defer src="scripts/wallpaper.js"></script>
+    <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/ai-tools.js"></script>
+    <script defer src="scripts/bookmarks.js"></script>
     <script defer src="scripts/google-app-menu.js"></script>
+    <script defer src="scripts/todo-list.js"></script>
+    <script defer src="scripts/voice-search.js"></script>
+    <script defer src="scripts/backup-restore.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -1166,6 +1172,19 @@
                             </div>
                             <label class="switch">
                                 <input id="shortcut_switchcheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
+                                <div class="infoText" id="hideWeatherBoxInfo">
+                                    Only show temperature on mobile
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideWeatherCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
