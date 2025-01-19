@@ -13,15 +13,15 @@ const idn = {
     "shortcutsInfoText": "Pilih pintasan apa yang akan ditampilkan",
     "editShortcutsList": "Pintasan Tersimpan",
     'editShortcutsListInfo': 'Anda dapat menambahkan pintasan baru dengan mengeklik ikon "+" atau mengedit pintasan yang sudah ada dengan mengeklik nama pintasan atau URL',
-    "adaptiveIconText": "Penyesuaian Bentuk Ikon",
-    "adaptiveIconInfoText": "Ikon pintasan akan terlihat lebih kecil",
+    "adaptiveIconText": "Ikon Adaptif",
+    "adaptiveIconInfoText": "Ikon pintasan akan sesuai dengan warna tema dan tampak lebih kecil",
     "bookmarksText": "Markah Buku",
     "bookmarksInfo": "Tampilkan sisi markah buku",
     "ai_tools_button": "Utilitas AI",
     "enable_ai_tools": "Tampilkan pintasan untuk utilitas AI",
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "Tampilkan pintasan untuk Google Apps",
-    // "googleAppsHover": "Google Apps",    // Keep this shorter
+    "googleAppsHover": "Google Apps",    // Keep this shorter
 
     // To-do List
     "todoListText": "To-Do List",
@@ -61,6 +61,7 @@ const idn = {
     "UserLocText": "Masukkan Lokasi Anda",
     "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
     "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
+    "useGPS": "Gunakan GPS",
     "saveLoc": "Simpan",
 
     // Weather
@@ -134,5 +135,5 @@ const idn = {
     "restorefailed": "Pemulihan gagal: ",
     "invalidBackup": "File cadangan tidak valid",
     "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "UnsupportedBrowser": "Markah buku tidak didukung oleh browser anda",
 };
