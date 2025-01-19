@@ -1946,6 +1946,7 @@ const applyCustomTheme = (color) => {
     }
     const darkerColorHex = darkenHexColor(adjustedColor);
     const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
+    const lightTin = lightenHexColor(adjustedColor, 0.95);
 
     // resetDarkTheme();
     document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
