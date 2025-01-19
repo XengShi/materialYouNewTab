@@ -67,7 +67,7 @@ document.addEventListener("click", (event) => {
     }
 });
 
-document.getElementById("0NIHK").onclick = toggleShortcuts;
+document.getElementById("aiToolsIcon").onclick = toggleShortcuts;
 
 // Save and load checkbox state
 document.addEventListener("DOMContentLoaded", function () {
