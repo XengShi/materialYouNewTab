@@ -1928,20 +1928,6 @@ function lightenHexColor(hex, factor = 0.85) {
     return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
 }
 
-function lightestColor(hex, factor = 0.95) {
-    hex = hex.replace('#', '');
-    if (hex.length === 3) {
-        hex = hex.split('').map(c => c + c).join('');
-    }
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r + (255 - r) * factor);
-    g = Math.floor(g + (255 - g) * factor);
-    b = Math.floor(b + (255 - b) * factor);
-    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
-}
-
 function isNearWhite(hex, threshold = 240) {
     hex = hex.replace('#', '');
     let r = parseInt(hex.substring(0, 2), 16);
@@ -1960,7 +1946,7 @@ const applyCustomTheme = (color) => {
     }
     const darkerColorHex = darkenHexColor(adjustedColor);
     const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
-    const lightTin = lightestColor(adjustedColor, 0.95);
+    const lightTin = lightenHexColor(adjustedColor, 0.95);
 
     // resetDarkTheme();
     document.documentElement.style.setProperty('--bg-color-blue', lighterColorHex);
@@ -1968,7 +1954,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
     document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
     document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--whitishColor-blue', lightTin);
+    document.documentElement.style.setProperty('--whitishColor-blue', "#FFFFFF");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
     ApplyLoadingColor();
