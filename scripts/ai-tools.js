@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// when User click on "AI-Tools"
+// When User click on "AI-Tools"
 const element = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
@@ -60,7 +60,6 @@ function toggleShortcuts(event) {
     if (event) event.stopPropagation();
 }
 
-
 // Collapse when clicking outside toolsCont
 document.addEventListener("click", (event) => {
     if (!element.contains(event.target) && element.style.display === "flex") {
@@ -70,9 +69,7 @@ document.addEventListener("click", (event) => {
 
 document.getElementById("0NIHK").onclick = toggleShortcuts;
 
-//
-
-
+// Save and load checkbox state
 document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCont = document.getElementById("aiToolsCont");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");

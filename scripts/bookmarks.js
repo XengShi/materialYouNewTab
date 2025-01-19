@@ -279,9 +279,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Open in a new tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.create({url: node.url, active: false});
+                            browser.tabs.create({ url: node.url, active: false });
                         } else if (isChrome) {
-                            chrome.tabs.create({url: node.url, active: false});
+                            chrome.tabs.create({ url: node.url, active: false });
                         } else {
                             window.open(node.url, "_blank");
                         }
@@ -289,9 +289,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Open in the current tab
                         event.preventDefault();
                         if (isFirefox) {
-                            browser.tabs.update({url: node.url});
+                            browser.tabs.update({ url: node.url });
                         } else if (isChrome) {
-                            chrome.tabs.update({url: node.url}, function () {
+                            chrome.tabs.update({ url: node.url }, function () {
                             });
                         } else {
                             window.location.href = node.url;
@@ -312,6 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ------------------------ End of Bookmark System -----------------------------------
 
+// Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
@@ -380,6 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
 })
 
+// Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
