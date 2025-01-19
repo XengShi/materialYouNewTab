@@ -192,7 +192,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	min-height: 100%;
+	min-height: 100vh;
 	/* background-color: red; */
 	overflow: auto;
 	background-image: var(--bg-image, none);
@@ -200,7 +200,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh; /* Ensure the image fits the viewport height */
+	height: 100%; /* Ensure the image fits the viewport height */
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
@@ -210,10 +210,10 @@ body {
 	max-height: 222px;
 	overflow-y: auto;
 	position: absolute;
-	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
+	margin-top: 10px;
 	padding: 5px 10px;
 	scrollbar-width: none;
 	/* Initially hidden */
@@ -224,10 +224,21 @@ body {
 	pointer-events: none;
 }
 
+.searchbar:has(:placeholder-shown) ~ .resultBox.show {
+	opacity: 0;
+	z-index: -1000;
+	transform: translateY(-70px);
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.centerDiv:has(.resultBox.show) ~ #shortcuts-section, .centerDiv:has(.dropdown-content[style="display: block;"]) ~ #shortcuts-section {
+	z-index: -1;
+}
+
 @media screen and (max-height: 700px) {
 	.resultBox {
 		max-height: 180px;
-		bottom: -60px;
 	}
 }
 
@@ -237,7 +248,7 @@ body {
 }
 
 /* Visible state: when you want the result box to appear */
-.resultBox.show {
+.resultBox.show:has(:first-child) {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
@@ -357,7 +368,7 @@ body {
 	/* 3 icons per row */
 	justify-items: center;
 	/* Center icons within each grid cell */
-	position: absolute;
+	position: fixed;
 	top: 85px;
 	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
@@ -477,6 +488,8 @@ body {
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	top: 0;
+	right: 0;
 	z-index: 2;
 	opacity: 0;
 	transition: all 0.5s;
@@ -521,9 +534,9 @@ body {
 }
 
 .bookmark-sidebar {
-	width: 380px;
+	width: min(380px, 100vw);
 	position: fixed;
-	right: -380px;
+	right: max(-380px, -100vw);
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
@@ -881,7 +894,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: 8px solid var(--bg-color-blue);
 	grid-template-columns: 320px;
 	justify-items: center;
-	position: absolute;
+	position: fixed;
 	top: 85px;
 	left: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
@@ -1172,19 +1185,31 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* ---------------------- */
 .ttteexxtt {
-	position: absolute;
-	/* background-color: yellow; */
- 	/*bottom: 18px; */
-	/*Because search engines has margin-bottom 20px*/
-	bottom: 8px;
+	position: relative;
+	top: 2rem;
 	left: 10px;
- 	/*text-align: center; */
+}
+
+#digitalClock[style="display: block;"] + .ttteexxtt {
+	top: 1rem;
 }
 
 #userText {
 	font-family: var(--main-font-family);
 	font-size: 1.4rem;
+	display: block;
+	word-wrap: break-word;
+	max-width: 18.75rem;
+	max-height: 4.2rem;
+	overflow-x: clip;
+	overflow-y: scroll;
+	text-overflow: ellipsis;
+	scrollbar-width: none;
 	margin-bottom: 10px;
+}
+
+#userText::-webkit-scrollbar {
+	display: none;
 }
 
 #date {
@@ -1680,12 +1705,17 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: 100%;
 	height: calc(var(--shortcut-size) + var(--gap) * 2);
-	position: absolute;
+	position: fixed;
 	/* background: gold; */
 	left: 0;
 	right: 0;
 	bottom: 0;
+	overflow: scroll;
+	scrollbar-width: none;
 	margin: auto;
+}
+#shortcuts-section::-webkit-scrollbar {
+	display: none;
 }
 
 #shortcuts-section .wrapper {
@@ -1733,7 +1763,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: fit-content;
 	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-	gap: 26px;
+	gap: 2rem;
 }
 
 .shortcutsContainer::before {
@@ -1874,7 +1904,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: fit-content;
-    	min-width: 61px; /* 61px is working fine for english lang */
+	text-wrap-mode: nowrap;
 }
 
 .aiToolsCont .toolsCont {
@@ -1899,9 +1929,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 6px;
 	left: -18px;
 }
-#firefly{
-	width: 103px;
-}
 
 .aiToolsCont .toolsCont a {
 	background-color: var(--accentLightTint-blue);
@@ -1915,6 +1942,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
 	transition: all 0.3s ease;
+	& div {
+		text-wrap-mode: nowrap;
+	}
 }
 
 .aiToolsCont .toolsCont a:hover {
@@ -1931,64 +1961,6 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* -----------End of Ai-Tools---------- */
 
-/* -------media query ------------------- */
-
-@media screen and (max-width: 1400px) {
-	.leftDiv {
-		transform: translateX(-50px);
-	}
-
-	.rightDiv {
-		transform: translateX(50px);
-	}
-}
-
-@media screen and (max-width: 1200px) {
-	body {
-		display: block;
-	}
-
-	.shortcutsContainer {
-		margin-top: 210px;
-	}
-
-	.centerDiv {
-		/* display: grid; */
-		grid-template-columns: auto;
-		/* width: fit-content; */
-		/* height: 500px; */
-		/* background-color: orange; */
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: var(--gap) auto auto;
-	}
-
-	.leftDiv {
-		transform: translateX(0px);
-		/* background-color: green; */
-		margin-bottom: var(--gap);
-	}
-
-	.rightDiv {
-		/* position: relative;
-        width: 640px; */
-		transform: translateX(0px);
-		/* background-color: rgba(0, 0, 255, 0.159); */
-	}
-
-	.ttteexxtt {
-		/* background-color: yellow; */
-		height: fit-content;
-		width: fit-content;
-		bottom: 0;
-		top: 0;
-		left: 300px;
-		/*Because Clock width is 300px*/
-		margin: auto auto auto var(--gap);
-	}
-}
-
 /* ---------------Menu-bar-css---------------- */
 .menuBar {
 	background-color: #0000004f;
@@ -1996,6 +1968,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	top: 0;
+	right: 0;
 	z-index: 9999;
 	opacity: 0;
 	/*we are increasing opacity in js file*/
@@ -2004,7 +1978,8 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .menuBar .menuCont {
-	position: absolute;
+	position: fixed;
+	top: 0;
 	right: 0;
 	height: 100%;
 	width: 400px;
@@ -2985,4 +2960,361 @@ input:checked + .toggle:before {
 	top: 0;
 	left: 0;
 	z-index: 99999;
+}
+
+.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+	display: none;
+}
+
+/* -------media query ------------------- */
+
+@media screen and (max-width: 1400px) {
+	.leftDiv {
+		transform: translateX(-50px);
+	}
+
+	.rightDiv {
+		transform: translateX(50px);
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	body {
+		display: block;
+	}
+
+	.centerDiv {
+		/* display: grid; */
+		grid-template-columns: auto;
+		padding-bottom: 100px;
+		position: relative;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		padding-top: 60px;
+	}
+
+	.leftDiv {
+		transform: translateX(0px);
+		/* background-color: green; */
+		margin-bottom: var(--gap);
+	}
+
+	.rightDiv {
+		/* position: relative;
+        width: 640px; */
+		transform: translateX(0px);
+		/* background-color: rgba(0, 0, 255, 0.159); */
+	}
+
+	.ttteexxtt {
+    position: absolute;
+		/* background-color: yellow; */
+		height: fit-content;
+		width: fit-content;
+		bottom: 0;
+		top: 0;
+		left: 300px;
+		/*Because Clock width is 300px*/
+		margin: auto auto auto var(--gap);
+	}
+	.shortcutsContainer {
+		row-gap: 2rem;
+	}
+	#shortcuts-section {
+		padding-left: 30px;
+		margin: 0 auto;
+		overflow-x: scroll;
+		scrollbar-width: none;
+		position: fixed;
+		max-width: 40rem;
+		left: 0;
+		bottom: 0;
+	}
+}
+
+@media screen and (max-width: 1200px) and (min-width: 501px) {
+	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
+		display: none;
+	}
+}
+@media screen and (max-width: 720px) {
+	:root {
+		--gap: 1rem;
+	}
+	#shortcuts-section {
+		max-width: 30rem;
+		position: fixed;
+		bottom: 62px;
+		width: 100%;
+		max-width: none;
+		overflow-x: scroll;
+		overflow-y: clip;
+	}
+	.shortcutsContainer {
+		max-width: none;
+		flex-wrap: nowrap;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
+	}
+	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked) .shortcutsContainer {
+		margin-top: 0;
+		flex-wrap: nowrap;
+	}
+	.menuBar {
+		--gap: 30px;
+	}
+	.centerDiv {
+		width: calc(100% - 4rem);
+		margin-bottom: 10rem;
+		align-self: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.leftDiv {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		top: 30px;
+	}
+	.rightDiv {
+		scale: 0.75;
+	}
+	.ttteexxtt {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	body {
+		display: flex;
+		min-height: fit-content;
+		flex-direction: column;
+		justify-content: start;
+		padding-top: 60px;
+	}
+	.menuBar {
+		top: 0;
+	}
+	.searchbar {
+		width: 94vw;
+        transform-origin: top left;
+        scale: 2;
+        margin-top: -1rem;
+        margin-left: calc(320px - 94vw);
+        margin-bottom: 3rem;
+
+		& #searchQ {
+			min-width: 0px;
+		}
+	}
+	#enterBtn {
+		display: none;
+	}
+	#shortcuts-section {
+		height: auto;
+		position: relative;
+		scale: 0.85;
+		width: calc(100vw / 0.85);
+		margin-left: calc(50vw - 50vw / 0.85);
+		margin-top: 0;
+		max-width: unset;
+		bottom: 0;
+	}
+	.todoListCont {
+		transform-origin: top left;
+		scale: 0.8;
+	}
+	.todo-container {
+		transform-origin: top left;
+		scale: 0.85;
+		position: fixed;
+	}
+	.googleAppsCont {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.bookmark-button {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.icon-container {
+		transform-origin: top right;
+		scale: 0.85;
+		position: fixed;
+	}
+	#menuButton {
+		transform-origin: bottom right;
+		scale: 0.8;
+	}
+	.aiToolsCont {
+		transform-origin: bottom left;
+		scale: 0.8;
+		max-width: calc(100% - 30px);
+	}
+	.leftDiv {
+		width: calc(100vw / 0.5);
+        top: 0;
+        scale: 0.5;
+        transform-origin: left bottom;
+        /* margin-top: -84%; */
+		height: 50vw;
+		margin-left: calc(100vw);
+		align-items: end;
+        justify-content: flex-start;
+	}
+	.clock .centerPoint {
+		width: calc(20% / 3);
+		height: calc(20% / 3);
+	}
+	.clock .centerPoint .sui {
+		height: 500%;
+		width: 100%;
+		top: -450%;
+		border-radius: 60px;
+	}
+	#hour {
+		height: 400%;
+		top: -350%;
+	}
+	#second::after {
+		width: 100%;
+		aspect-ratio: 1;
+		height: auto;
+		top: calc(-160% / 7);
+	}
+	#minute::after, #hour::after {
+		width: 100%;
+		aspect-ratio: 0.5;
+		height: auto;
+	}
+	#analogClock, #digitalClock {
+		width: 45%;
+		margin-left: 5%;
+		aspect-ratio: 1;
+		height: auto;
+	}
+	.rightDiv {
+		scale: 0.5;
+		margin-top: -64px;
+        margin-bottom: -32px;
+		display: flex;
+		flex-direction: column-reverse;
+
+		& .topDiv{
+			top: 80px;
+			position: relative;
+			scale: 1.5;
+			width: calc(94vw / 0.75);
+			margin-left: calc(320px - 94vw / 1.5);
+
+			& .rAndakar {
+				animation: none;
+                position: absolute;
+                /* display: none; */
+                width: 45%;
+                aspect-ratio: 1;
+                height: auto;
+                bottom: 20rem;
+                /* scale: 1.2; */
+                transform-origin: center;
+			}
+		}
+		#temp {
+			font-size: 16vw;
+		}
+		#wIcon {
+			width: 25vw;
+			height: 25vw;
+			margin-top: -5vw;
+			margin-left: -13vw;
+		}
+	}
+	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+		display: flex;
+	}
+	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
+		display: none;
+	}
+	.searchbar .searchIcon:nth-of-type(1) {
+		display: none !important;
+	}
+	.searchbar .searchIcon:nth-of-type(2) {
+		display: block !important;
+	}
+	.centerDiv:has(~ .menuBar #digitalCheckbox:checked) {
+		& .leftDiv {
+			margin-top: -6vw;
+		}
+		& .rAndakar {
+			scale: 0.8;
+		}
+	}
+	.centerDiv:has(~ .menuBar #hideWeatherCheckbox:checked) .topDiv .lrectangle  {
+		display: none;
+	}
+	.centerDiv {
+		position: relative;
+		margin-bottom: 6rem;
+		padding-top: 0;
+	}
+	.resultBox {
+		scale: 1.5;
+		width: calc(94vw / 0.75);
+		margin-left: calc(320px - 94vw);
+		transform-origin: top left;
+	}
+	.resultBox {
+		top: 120px;
+		bottom: unset;
+	}
+	.resultBox.show {
+		transform: translateY(36px);
+	}
+	.searchWithCont {
+		display: none;
+	}
+	.shortcutsContainer[style="display: none;"] {
+		display: flex !important;
+	}
+	.hangno:has(+ :is(.toolsCont[style="display: flex; opacity: 1; transform: translateX(0px); gap: 12px;"], .toolsCont[style="display: flex; opacity: 0; transform: translateX(-100%); gap: 0px;"])) {
+		& .icon {
+			margin: 0
+		}
+		& .label {
+			width: 0;
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+	.shortcutsContainer {
+		margin: 0;
+		width: fit-content;
+		gap: 1.8rem;
+		flex-wrap: nowrap;
+		max-width: unset;
+		padding: 20px 0;
+	}
+	#shortcuts-section {
+		padding-left: 30px;
+		overflow-x: scroll;
+		scrollbar-width: none;
+		position: fixed;
+		bottom: 62px;
+		max-width: unset;
+		left: 0;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 425px) and (max-height: 700px) {
+	.resultBox {
+		bottom: -32px;
+	}
 }

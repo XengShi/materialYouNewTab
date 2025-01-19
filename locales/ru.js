@@ -1,4 +1,4 @@
-// Russian -> ru
+// Russian
 const ru = {
     // Menu Items
     "github": "GitHub",
@@ -117,7 +117,7 @@ const ru = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Загрузить обои",
     "backupText": "Экспорт",
     "restoreText": "Восстановить",
@@ -133,6 +133,6 @@ const ru = {
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",
     "invalidBackup": "Недопустимый файл резервной копии.",
-    "deleteBookmark": "Вы уверены, что хотите удалить эту закладку?",
+    "deleteBookmark": "Вы уверены, что хотите удалить эту закладку \"{title}\"?",
     "UnsupportedBrowser": "Закладки не поддерживаются в вашем браузере.",
 };
