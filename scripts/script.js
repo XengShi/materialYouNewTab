@@ -409,10 +409,12 @@ document.addEventListener("click", function (event) {
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
+
     dropdown.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
             event.stopPropagation();
             dropdown.style.display = "none";
+            searchInput.focus();
         }
     })
 
@@ -426,6 +428,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown-btn").addEventListener("click", function (event) {
         const resultBox = document.getElementById("resultBox");
         if (resultBox.classList.toString().includes("show")) return;
+
+        // Clear selected state and reset index when dropdown opens
+        dropdownItems.forEach(item => item.classList.remove("selected"));
+        selectedIndex = -1;
+
         dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     });
 
@@ -450,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // get the parent
         const parent = sortedDropdowns[0]?.parentNode;
 
-        // Append the items. if parent exists.
+        // Append the items if parent exists.
         if (parent) {
             sortedDropdowns.forEach(item => parent.appendChild(item));
         }
@@ -463,11 +470,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
             const selector = `*[data-engine-name=${element.getAttribute("data-engine-name")}]`;
 
-            // console.log(element, selector);
-
             radioButton.checked = true;
 
-            // Swap The dropdown. and sort them
+            // Swap the dropdown and sort them
             swapDropdown(selector);
             sortDropdown()
 
@@ -477,7 +482,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
-        engineDiv.addEventListener("click", () => {
+        engineDiv.addEventListener("click", (event) => {
+            event.stopPropagation();
             const radioButton = engineDiv.querySelector('input[type="radio"]');
 
             radioButton.checked = true;
@@ -486,11 +492,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const selector = `[data-engine="${radioButtonValue}"]`;
 
-            // Swap The dropdown.
+            // Swap the dropdown
             swapDropdown(selector);
-            sortDropdown()
+            sortDropdown();
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+            const searchBar = document.querySelector(".searchbar");
+            searchInput.focus();
+            searchBar.classList.add("active");
         });
     });
 
@@ -593,19 +603,27 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown").addEventListener("keydown", function (event) {
         if (dropdown.style.display === "block") {
             if (event.key === "ArrowDown") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
             } else if (event.key === "ArrowUp") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
             } else if (event.key === "Enter") {
-                const selector = ".dropdown-content .selected";
-                const engine = element.getAttribute("data-engine");
+                const selectedItem = document.querySelector(".dropdown-content .selected");
+                const engine = selectedItem.getAttribute("data-engine");
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
 
-                // Swap The dropdown. and sort them
-                swapDropdown(selector);
-                sortDropdown()
+                // Swap the dropdown and sort them
+                swapDropdown(`*[data-engine="${engine}"]`);
+                sortDropdown();
+
+                localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+                // Close the dropdown after selection
+                dropdown.style.display = "none";
+                searchInput.focus();
             }
             updateSelection();
         }
