@@ -39,11 +39,10 @@ document.addEventListener("click", function (event) {
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
 
-//
+// Toggle
 
 document.addEventListener("DOMContentLoaded", function () {
     const googleAppsCont = document.getElementById("googleAppsCont");
-    loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
 
     googleAppsCheckbox.addEventListener("change", function () {
         saveCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
@@ -55,4 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
             saveDisplayStatus("googleAppsDisplayStatus", "none");
         }
     });
+    loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
+    loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
 });
