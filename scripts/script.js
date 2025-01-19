@@ -920,6 +920,12 @@ document.addEventListener("click", function (event) {
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
+    dropdown.addEventListener("click", (event) => {
+        if (dropdown.style.display === "block") {
+            event.stopPropagation();
+            dropdown.style.display = "none";
+        }
+    })
 
     document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
@@ -2544,6 +2550,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
@@ -3151,6 +3158,10 @@ document.addEventListener("DOMContentLoaded", function () {
             saveDisplayStatus("todoListDisplayStatus", "none");
         }
     });
+    
+    hideWeatherCheckbox.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    });
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
@@ -3225,6 +3236,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("proxybypassField", proxybypassField);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
+    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);

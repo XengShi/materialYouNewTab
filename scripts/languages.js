@@ -126,6 +126,8 @@ function applyLanguage(lang) {
         'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
+        'hideWeatherBox',
+        'hideWeatherBoxInfo',
         'LearnMoreButton',
         'saveAPI',
         'conditionText',
@@ -230,6 +232,19 @@ function applyLanguage(lang) {
     const menuCont = document.querySelector('.menuBar .menuCont');
     if (menuCont) {
         menuCont.style.width = menuWidths[lang] || menuWidths['en'];
+        let widthh = window.innerWidth / parseInt(menuWidths[lang] || menuWidths['en']);
+        if (window.innerWidth < 476) {
+            let menuStyle = document.getElementById('menuStyle') || document.createElement('style');
+            menuStyle.id = "menuStyle";
+            menuStyle.innerHTML = `
+                .menuCont {
+                    scale: ${widthh} !important;
+                    height: ${(100 / widthh).toString()}dvh !important;
+                    transform-origin: top right !important;
+                }
+            `
+            document.head.append(menuStyle)
+        }
     }
 
     // Dynamically update the font family based on the language
