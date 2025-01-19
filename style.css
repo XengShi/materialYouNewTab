@@ -1595,20 +1595,19 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint {
-    flex: 0 0 auto; /* Prevents it from growing */
-    width: 150px; /* Fixed width */
-    height: 100px;
-    white-space: nowrap; /* Prevents text from wrapping when search modes are changed*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    position: relative;
-    margin-right: 16px;
-	transition: all 0.4s ease;
-    border-radius: var(--round);
+	flex: 0 0 auto; /* Prevents it from growing */
+	width: 150px; /* Fixed width */
+	height: 100px;
+	white-space: nowrap; /* Prevents text from wrapping when search modes are changed*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	position: relative;
+	margin-right: 16px;
+	border-radius: var(--round);
+	transition: transform 0.4s ease;
 }
-
 
 .searchWithCont .hint::after {
 	content: "";
@@ -1621,25 +1620,25 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint::before {
-    content: "";
-    position: absolute;
-    height: auto;
-    width: 100%;
-    aspect-ratio: 1;
-    background-color: var(--accentLightTint-blue);
-    border-radius: 50%;  /* Changed from 300px to 50% for perfect circle */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    transform-origin: center;  /* Changed to center for better scaling */
-    opacity: 0;
-    pointer-events: none;  /* Ensures the ripple doesn't interfere with clicks */
+	content: "";
+	position: absolute;
+	height: auto;
+	width: 100%;
+	aspect-ratio: 1;
+	background-color: var(--accentLightTint-blue);
+	border-radius: 50%;  /* Changed from 300px to 50% for perfect circle */
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+	transform-origin: center;  /* Changed to center for better scaling */
+	opacity: 0;
+	pointer-events: none;  /* Ensures the ripple doesn't interfere with clicks */
 }
 
 .searchWithCont .hint:active::before {
-    animation: ripple_effect 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    /* Using cubic-bezier for smoother easing */
+	animation: ripple_effect 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	/* Using cubic-bezier for smoother easing */
 }
 
 @keyframes ripple_effect {
@@ -1664,20 +1663,27 @@ body #bookmarkButton.bookmark-button.rotate {
 .searchEnginesContainer {
     position: relative; 
     z-index: 1; 
-    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding-left: 20px;
-    transform: translateX(100%);
-    opacity: 0.2; 
-}
-
-.searchEnginesContainer.show {
-    transform: translateX(0); /* Brings it into view */
     opacity: 1; 
+	transform: translateX(0);
+}
+.searchEnginesContainer.show{
+	animation: slideIn 0.3s ease-in-out forwards;
 }
 
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+		opacity: 0.2;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
 
 .searchEnginesContainer .search-engine {
     border-radius: 20px;
