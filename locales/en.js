@@ -70,7 +70,7 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
-    "hideWeatherBox": "Hide Weather Box",
+    "hideWeatherBox": "Hide Weather Card",
     "hideWeatherBoxInfo": "Only show temperature on mobile",
 
     // Body Items
@@ -124,7 +124,7 @@ const en = {
     "enableDarkMode": "Dark Mode",
     "enableDarkModeInfo": "Enable dark mode themes",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     "backupText": "Backup",
     "restoreText": "Restore",
@@ -139,8 +139,8 @@ const en = {
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",
-    "invalidBackup": "Invalid backup file",
-    "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    "invalidBackup": "Invalid backup file selected.",
+    "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     "UnsupportedBrowser": "Bookmarks are not supported in your browser.",
     "BookmarksDenied": "Bookmarks permission has not been granted.",
 };

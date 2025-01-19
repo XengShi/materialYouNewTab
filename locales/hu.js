@@ -119,7 +119,7 @@ const hu = {
     "metaAI": "Meta AI",
     "github": "GitHub",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Háttérkép feltöltése",
     "backupText": "Mentés",
     "restoreText": "Visszaállítás",
@@ -135,6 +135,6 @@ const hu = {
     "restorecompleted": "A visszaállítás sikeresen befejeződött!",
     "restorefailed": "Sikertelen visszaállítás: ",
     "invalidBackup": "Érvénytelen mentési fájl",
-    "deleteBookmark": "Biztos, hogy törölni szeretnéd a könyvjelzőt?",
+    "deleteBookmark": "Biztos, hogy törölni szeretnéd a könyvjelzőt \"{title}\"?",
     "UnsupportedBrowser": "A könyvjelzők nem támogatottak a böngészőben",
 };

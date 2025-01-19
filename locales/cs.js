@@ -1,4 +1,4 @@
-// Czech -> cs
+// Czech
 const cs = {
     // Menu Items
     "github": "GitHub",
@@ -78,9 +78,9 @@ const cs = {
 
     // Bookmarks
     "bookmarksHeading": "Záložky",
-    "bookmarkViewAs" : "Způsob zobrazení",
-    "bookmarkViewGrid" : "Mřížka",
-    "bookmarkViewList" : "Seznam",
+    "bookmarkViewAs": "Způsob zobrazení",
+    "bookmarkViewGrid": "Mřížka",
+    "bookmarkViewList": "Seznam",
     "bookmarkSearch": "Vyhledejte záložku",
 
     // New Tab Item
@@ -118,7 +118,7 @@ const cs = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Nahrát tapetu",
     "backupText": "Zálohovat",
     "restoreText": "Obnovit",
@@ -134,7 +134,7 @@ const cs = {
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
     "invalidBackup": "Neplatný soubor se zálohou",
-    "deleteBookmark": "Opravdu si přejete smazat tuto záložku?",
-    "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované.",
+    "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
+    "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
     "BookmarksDenied": "Nebylo přiděleno oprávnění pro záložky.",
 };

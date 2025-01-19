@@ -280,12 +280,12 @@ window.addEventListener("DOMContentLoaded", async () => {
                             });
                         },
                         (error) => reject(error),
-                        {timeout: 4000}
+                        { timeout: 4000 }
                     );
                 });
             };
 
-            const {latitude, longitude} = await getLocationFromGPS();
+            const { latitude, longitude } = await getLocationFromGPS();
             return `${latitude},${longitude}`;
         } catch (error) {
             console.error("GPS Location retrieval failed: ", error);
@@ -374,7 +374,7 @@ function addtodoItem() {
     }
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
-    todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
+    todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
     todoInput.value = ""; // Clear Input
@@ -1165,13 +1165,13 @@ const applySelectedTheme = (colorValue) => {
     const updateExtensionIcon = (colorValue) => {
         if (typeof browser !== "undefined" && browser.browserAction) {
             // Firefox
-            browser.browserAction.setIcon({path: iconPaths[colorValue]});
+            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof chrome !== "undefined" && chrome.action) {
             // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({path: iconPaths[colorValue]});
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
         } else if (typeof safari !== "undefined") {
             // Safari
-            safari.extension.setToolbarIcon({path: iconPaths[colorValue]});
+            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
     updateExtensionIcon(colorValue);
@@ -1418,7 +1418,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -1429,7 +1429,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
