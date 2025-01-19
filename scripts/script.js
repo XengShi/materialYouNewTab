@@ -15,8 +15,24 @@ const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
 const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
 
 let proxyurl;
-let clocktype;
-let hourformat;
+
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
+// TODO: Move all the to-do stuff in a file called `to-do.js` or `todo.js` or `todo-list.js`
+// TODO: Move all the weather stuff in a file called `weather.js`
+// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
+// TODO: Move all the voice search stuff in a file called `voice-search.js`
+// TODO: Move all the theme functions stuff in a file called `theme.js`
+// TODO: Move all the BG Image stuff in a file called `background-images.js`
+// TODO: Move all the settings in a file called `settings.js`
+// TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
+// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
+// TODO: Move into file called `browser-utils.js` with isChrome, isFirefox, etc.
+// TODO: Move into file called `backup.js` or `backup-system.js`
+// TODO: Move into file called `welcome-greeting.js`(?)
+// TODO: Move into file called `animations.js`(?)
+// TODO: @Migua-RC, can you move all the proxy stuff in a file called `proxy.js`?
+
 
 window.addEventListener("DOMContentLoaded", async () => {
     // Cache DOM elements
@@ -325,314 +341,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 // ---------------------------end of weather stuff--------------------
 
-// ------------------------ Bookmark System -----------------------------------
-// DOM Variables
-const bookmarkButton = document.getElementById("bookmarkButton");
-const bookmarkSidebar = document.getElementById("bookmarkSidebar");
-const bookmarkList = document.getElementById("bookmarkList");
-const bookmarkSearch = document.getElementById("bookmarkSearch");
-const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
-const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
-const bookmarkViewList = document.getElementById("bookmarkViewList");
-
-var bookmarksAPI;
-if (isFirefox && browser.bookmarks) {
-    bookmarksAPI = browser.bookmarks;
-} else if (typeof chrome !== "undefined" && chrome.bookmarks) {
-    bookmarksAPI = chrome.bookmarks;
-} else {
-    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    bookmarkButton.addEventListener("click", function () {
-        toggleBookmarkSidebar();
-        bookmarkSearchClearButton.click();
-    });
-
-    bookmarkViewGrid.addEventListener("click", function () {
-        if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
-    });
-
-    bookmarkViewList.addEventListener("click", function () {
-        if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains("open")) {
-            toggleBookmarkSidebar();
-        }
-    });
-
-    bookmarkSearch.addEventListener("input", function () {
-        const searchTerm = bookmarkSearch.value.toLowerCase();
-        const bookmarks = bookmarkList.querySelectorAll("li[data-url], li.folder"); // Include both bookmarks and folders
-
-        Array.from(bookmarks).forEach(function (bookmark) {
-            const text = bookmark.textContent.toLowerCase();
-            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : "";
-            const isFolder = bookmark.classList.contains("folder");
-
-            // Show bookmarks if the search term matches either the name or the URL
-            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
-                bookmark.style.display = ""; // Show matching bookmarks
-            } else if (isFolder) {
-                // For folders, check if any child bookmarks match the search
-                const childBookmarks = bookmark.querySelectorAll("li[data-url]");
-                let hasVisibleChild = false;
-                Array.from(childBookmarks).forEach(function (childBookmark) {
-                    const childText = childBookmark.textContent.toLowerCase();
-                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : "";
-                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
-                        hasVisibleChild = true;
-                        childBookmark.style.display = ""; // Show matching child bookmarks
-                    } else {
-                        childBookmark.style.display = "none"; // Hide non-matching child bookmarks
-                    }
-                });
-
-                if (hasVisibleChild) {
-                    bookmark.style.display = ""; // Show folder if it has matching child bookmarks
-                    bookmark.classList.add("open"); // Open folder to show matching child bookmarks
-                } else {
-                    bookmark.style.display = "none"; // Hide folder if no child matches
-                    bookmark.classList.remove("open");
-                }
-            } else {
-                bookmark.style.display = "none"; // Hide non-matching bookmarks
-            }
-        });
-
-        if (searchTerm === "") {
-            // Reset display for all bookmarks and folders
-            Array.from(bookmarks).forEach(function (bookmark) {
-                bookmark.style.display = "";
-                if (bookmark.classList.contains("folder")) {
-                    bookmark.classList.remove("open");
-                    const childList = bookmark.querySelector("ul");
-                    if (childList) {
-                        childList.classList.add("hidden");
-                    }
-                }
-            });
-        }
-
-        // Show or hide the clear button based on the search term
-        bookmarkSearchClearButton.style.display = searchTerm ? "inline" : "none";
-    });
-
-    bookmarkSearchClearButton.addEventListener("click", function () {
-        bookmarkSearch.value = "";
-        bookmarkSearch.dispatchEvent(new Event("input")); // Trigger input event to clear search results
-    });
-
-    function toggleBookmarkSidebar() {
-        bookmarkSidebar.classList.toggle("open");
-        bookmarkButton.classList.toggle("rotate");
-
-        if (bookmarkSidebar.classList.contains("open")) {
-            loadBookmarks();
-        }
-    }
-
-    // Function to load bookmarks
-    function loadBookmarks() {
-        if (!bookmarksAPI || !bookmarksAPI.getTree) {
-            console.error("Bookmarks API is unavailable. Please check permissions or context.");
-            return;
-        }
-
-        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
-            // Clear the current list
-            bookmarkList.innerHTML = "";
-
-            // Display the "Recently Added" folder
-            if (bookmarksAPI.getRecent) {
-                bookmarksAPI.getRecent(8).then(recentBookmarks => {
-                    if (recentBookmarks.length > 0) {
-                        const recentAddedFolder = {
-                            title: "Recently Added",
-                            children: recentBookmarks
-                        };
-                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                    }
-                });
-            }
-
-            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
-            if (isFirefox) {
-                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
-                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
-                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
-
-                if (toolbarNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
-                }
-                if (menuNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
-                }
-                if (otherNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
-                }
-            } else {
-                let default_folder = "Bookmarks bar";
-                if (isEdge) {
-                    default_folder = "Favorites bar";
-                } else if (isBrave) {
-                    default_folder = "Bookmarks";
-                }
-                // Extract the "Main bookmarks" node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
-
-                if (mainBookmarks && mainBookmarks.children) {
-                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
-                }
-
-                // Extract the other "Bookmarks" folders and display them
-                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
-                if (bookmarksBar && bookmarksBar.children) {
-                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
-                }
-            }
-        }).catch(err => {
-            console.error("Error loading bookmarks:", err);
-        });
-    }
-
-    function displayBookmarks(bookmarkNodes) {
-        let list = document.createElement("ul");
-
-        // Separate folders and bookmarks
-        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
-        const bookmarks = bookmarkNodes.filter(node => node.url);
-
-        // Sort folders and bookmarks separately
-        folders.sort((a, b) => a.title.localeCompare(b.title));
-        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
-
-        // Sort folders and bookmarks separately by dateAdded
-        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-
-        // Combine folders and bookmarks, placing folders first
-        const sortedNodes = [...folders, ...bookmarks];
-
-        for (let node of sortedNodes) {
-            if (node.id === "1") {
-                continue;
-            }
-            if (node.children && node.children.length > 0) {
-                let folderItem = document.createElement("li");
-
-                // Use the SVG icon from HTML
-                const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
-                folderIcon.removeAttribute("\"id"); // Remove the id to prevent duplicates
-                folderItem.appendChild(folderIcon);
-
-                folderItem.appendChild(document.createTextNode(node.title));
-                folderItem.classList.add("folder");
-
-                // Add event listener for unfolding/folding
-                folderItem.addEventListener("\"click", function (event) {
-                    event.stopPropagation();
-                    folderItem.classList.toggle("open");
-                    const subList = folderItem.querySelector("ul");
-                    if (subList) {
-                        subList.classList.toggle("hidden");
-                    }
-                });
-
-                let subList = displayBookmarks(node.children);
-                subList.classList.add("hidden");
-                folderItem.appendChild(subList);
-
-                list.appendChild(folderItem);
-            } else if (node.url) {
-                let item = document.createElement("li");
-                item.dataset.url = node.url; // Add URL as dataset for search functionality
-                let link = document.createElement("a");
-                link.href = node.url;
-                let span = document.createElement("span");
-                span.textContent = node.title;
-
-                let favicon = document.createElement("img");
-                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
-                favicon.classList.add("favicon");
-                favicon.onerror = () => {
-                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
-                };
-
-                // Create the delete button
-                let deleteButton = document.createElement("button");
-                deleteButton.textContent = "✖";
-                deleteButton.classList.add("bookmark-delete-button");
-
-                deleteButton.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)} "${node.title || node.url}"?`)) {
-                        if (isFirefox) {
-                            // Firefox API (Promise-based)
-                            bookmarksAPI.remove(node.id).then(() => {
-                                item.remove(); // Remove the item from the DOM
-                            }).catch(err => {
-                                console.error("Error removing bookmark in Firefox:", err);
-                            });
-                        } else {
-                            // Chrome API (Callback-based)
-                            bookmarksAPI.remove(node.id, function () {
-                                item.remove(); // Remove the item from the DOM
-                            });
-                        }
-                    }
-                });
-
-                link.appendChild(favicon);
-                link.appendChild(span);
-                item.appendChild(link);
-                item.appendChild(deleteButton); // Add delete button to the item
-
-                // Open links in the current tab or new tab if ctrl pressed
-                link.addEventListener("click", function (event) {
-                    if (event.ctrlKey || event.metaKey) {
-                        // Open in a new tab
-                        event.preventDefault();
-                        if (isFirefox) {
-                            browser.tabs.create({url: node.url, active: false});
-                        } else if (isChrome) {
-                            chrome.tabs.create({url: node.url, active: false});
-                        } else {
-                            window.open(node.url, "_blank");
-                        }
-                    } else {
-                        // Open in the current tab
-                        event.preventDefault();
-                        if (isFirefox) {
-                            browser.tabs.update({url: node.url});
-                        } else if (isChrome) {
-                            chrome.tabs.update({url: node.url}, function () {
-                            });
-                        } else {
-                            window.location.href = node.url;
-                        }
-                    }
-                });
-                list.appendChild(item);
-            }
-        }
-
-        list.addEventListener("click", function (event) {
-            event.stopPropagation();
-        });
-
-        return list;
-    }
-});
-
-// ------------------------ End of Bookmark System -----------------------------------
-
 // ----------------------------------- To Do List ----------------------------------------
 
 // DOM Variables
@@ -658,7 +366,7 @@ function sanitizeInput(input) {
     return div.innerHTML;
 }
 
-// Function to add items to the TODO list
+// Function to add items to the TO-DO list
 function addtodoItem() {
     const inputText = todoInput.value.trim(); // Remove useless whitespaces
     if (inputText === "") {
@@ -789,352 +497,6 @@ document.addEventListener("click", function (event) {
 
 // ------------------------------- End of To Do List -------------------------------------
 
-// Retrieve current time and calculate initial angles
-var currentTime = new Date();
-var initialSeconds = currentTime.getSeconds();
-var initialMinutes = currentTime.getMinutes();
-var initialHours = currentTime.getHours();
-
-// Initialize cumulative rotations
-let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
-
-// Apply initial rotations (no need to wait 1s now)
-document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-
-let intervalId;
-let secondreset = false;
-let hourreset = false;
-let minreset = false;
-
-function initializeClockType() {
-    const savedClockType = localStorage.getItem("clocktype");
-    clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
-    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
-}
-
-// Call this function to initialize the clock type
-initializeClockType();
-
-function updateDate() {
-    if (clocktype === "analog") {
-        var currentTime = new Date();
-        var dayOfWeek = currentTime.getDay();
-        var dayOfMonth = currentTime.getDate();
-        var month = currentTime.getMonth();
-
-        // Define the current language
-        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-        // Get the translated name of the day
-        var dayName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].days &&
-            translations[currentLanguage].days[dayOfWeek]
-        ) {
-            dayName = translations[currentLanguage].days[dayOfWeek];
-        } else {
-            dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-        }
-
-        // Get the translated name of the month
-        var monthName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].months &&
-            translations[currentLanguage].months[month]
-        ) {
-            monthName = translations[currentLanguage].months[month];
-        } else {
-            monthName = translations["en"].months[month]; // Fallback to English month name
-        }
-
-        // Localize the day of the month
-        var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
-        const dateDisplay = {
-            bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            zh: `${monthName}${dayOfMonth}日${dayName}`,
-            cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
-            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
-            it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            ja: `${dayName.substring(0, 1)}, ${monthName}${dayOfMonth}`,
-            ko: `${dayName.substring(0, 1)}, ${monthName} ${dayOfMonth}일`,
-            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            ru: `${dayName.substring(0, 2)}, ${dayOfMonth} ${monthName.substring(0, 4)}.`,
-            es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
-            uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
-            vi: `${dayName}, ngày ${dayOfMonth} ${monthName}`,
-            idn: `${dayName}, ${dayOfMonth} ${monthName}`,
-            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
-            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
-            hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
-        };
-        document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
-    }
-}
-
-function updateanalogclock() {
-    var currentTime = new Date();
-    var initialSeconds = currentTime.getSeconds();
-    var initialMinutes = currentTime.getMinutes();
-    var initialHours = currentTime.getHours();
-
-    // Initialize cumulative rotations
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
-    if (secondreset) {
-        document.getElementById("second").style.transition = "none";
-        document.getElementById("second").style.transform = `rotate(0deg)`;
-        secondreset = false;
-        return;
-    }
-    if (minreset) {
-        document.getElementById("minute").style.transition = "none";
-        document.getElementById("minute").style.transform = `rotate(0deg)`;
-        minreset = false;
-        return;
-    }
-    if (hourreset) {
-        document.getElementById("hour").style.transition = "none";
-        document.getElementById("hour").style.transform = `rotate(0deg)`;
-        hourreset = false;
-        return;
-    }
-    if (cumulativeSecondRotation === 0) {
-        document.getElementById("second").style.transition = "transform 1s ease";
-        document.getElementById("second").style.transform = `rotate(361deg)`;
-        secondreset = true;
-    } else if (secondreset !== true) {
-        document.getElementById("second").style.transition = "transform 1s ease";
-        document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-    }
-
-    if (cumulativeMinuteRotation === 0) {
-        document.getElementById("minute").style.transition = "transform 1s ease";
-        document.getElementById("minute").style.transform = `rotate(361deg)`;
-        minreset = true;
-    } else if (minreset !== true) {
-        document.getElementById("minute").style.transition = "transform 1s ease";
-        document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    }
-
-    if (cumulativeHourRotation === 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
-        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
-        document.getElementById("hour").style.transform = `rotate(0deg)`;
-        hourreset = true;
-    } else if (hourreset !== true) {
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-    }
-    // Update date immediately
-    updateDate();
-}
-
-function getGreeting() {
-    const currentHour = new Date().getHours();
-    let greetingKey;
-
-    // Determine the greeting key based on the current hour
-    if (currentHour < 12) {
-        greetingKey = "morning";
-    } else if (currentHour < 17) {
-        greetingKey = "afternoon";
-    } else {
-        greetingKey = "evening";
-    }
-
-    // Get the user's language setting
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
-
-    // Check if the greeting is available for the selected language
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].greeting &&
-        translations[currentLanguage].greeting[greetingKey]
-    ) {
-        return translations[currentLanguage].greeting[greetingKey];
-    } else {
-        // Fallback to English greeting if the currentLanguage or greeting key is missing
-        return translations["en"].greeting[greetingKey];
-    }
-}
-
-function updatedigiClock() {
-    const hourformatstored = localStorage.getItem("hourformat");
-    let hourformat = hourformatstored === "true"; // Default to false if null
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const isGreetingEnabled = localStorage.getItem("greetingEnabled") === "true";
-    greetingCheckbox.checked = isGreetingEnabled;
-
-    const now = new Date();
-    const dayOfWeek = now.getDay(); // Get day of the week (0-6)
-    const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
-
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-    // Get translated day name
-    let dayName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].days &&
-        translations[currentLanguage].days[dayOfWeek]
-    ) {
-        dayName = translations[currentLanguage].days[dayOfWeek];
-    } else {
-        dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-    }
-
-    // Localize the day of the month
-    const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
-    // Determine the translated short date string based on language
-    const dateFormats = {
-        az: `${dayName} ${dayOfMonth}`,
-        bn: `${dayName}, ${localizedDayOfMonth}`,
-        mr: `${dayName}, ${localizedDayOfMonth}`,
-        np: `${dayName}, ${localizedDayOfMonth}`,
-        zh: `${dayOfMonth}日${dayName}`,
-        cs: `${dayName}, ${dayOfMonth}.`,
-        hi: `${dayName}, ${dayOfMonth}`,
-        ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
-        ko: `${dayOfMonth} ${dayName.substring(0, 1)}`,
-        pt: `${dayName}, ${dayOfMonth}`,
-        ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
-        vi: `${dayOfMonth} ${dayName}`,
-        idn: `${dayOfMonth} ${dayName}`,
-        fr: `${dayName} ${dayOfMonth}`, // Mardi 11
-        hu: `${dayName} ${dayOfMonth}`, // Kedd 11
-        default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
-    };
-    const dateString = dateFormats[currentLanguage] || dateFormats.default;
-
-    // Handle time formatting based on the selected language
-    let timeString;
-    let period = ""; // For storing AM/PM equivalent
-
-    // Array of languages to use "en-US" format
-    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
-    const localizedLanguages = ["bn", "mr", "np"];
-    // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
-
-    // Set time options and determine locale based on the current language
-    const timeOptions = {hour: "2-digit", minute: "2-digit", hour12: hourformat};
-    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? "en-US" : currentLanguage;
-    timeString = now.toLocaleTimeString(locale, timeOptions);
-
-    // Split the time and period (AM/PM) if in 12-hour format
-    if (hourformat) {
-        [timeString, period] = timeString.split(' '); // Split AM/PM if present
-    }
-
-    // Split the hours and minutes from the localized time string
-    let [hours, minutes] = timeString.split(':');
-
-    // Remove leading zero from hours in 12-hour format
-    if (hourformat) {
-        hours = parseInt(hours, 10).toString(); // Remove leading zero
-    }
-
-    // Localize hours and minutes for the selected language
-    const localizedHours = localizeNumbers(hours, currentLanguage);
-    const localizedMinutes = localizeNumbers(minutes, currentLanguage);
-
-    // Update the hour, colon, and minute text elements
-    document.getElementById("digihours").textContent = localizedHours;
-    document.getElementById("digicolon").textContent = ":"; // Static colon
-    document.getElementById("digiminutes").textContent = localizedMinutes;
-
-    // Manually set the period for special languages if 12-hour format is enabled
-    if (hourformat && specialLanguages.includes(currentLanguage)) {
-        period = parseInt(hours, 10) < 12 ? "AM" : "PM";
-    }
-
-    // Display AM/PM if in 12-hour format
-    if (hourformat) {
-        document.getElementById("amPm").textContent = period; // Show AM/PM based on calculated period
-    } else {
-        document.getElementById("amPm").textContent = ""; // Clear AM/PM for 24-hour format
-    }
-
-    // Update the translated date
-    document.getElementById("digidate").textContent = dateString;
-
-    const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 === "digital" && isGreetingEnabled) {
-        document.getElementById("date").innerText = getGreeting();
-    } else if (clocktype1 === "digital") {
-        document.getElementById("date").innerText = ""; // Hide the greeting
-    }
-}
-
-// Function to start the clock
-function startClock() {
-    if (!intervalId) { // Only set interval if not already set
-        intervalId = setInterval(updateanalogclock, 500);
-    }
-}
-
-// Function to stop the clock
-function stopClock() {
-    clearInterval(intervalId);
-    intervalId = null; // Reset intervalId
-}
-
-// Initial clock display
-displayClock();
-setInterval(updatedigiClock, 1000); // Update digital clock every second
-
-// Start or stop clocks based on clock type and visibility state
-if (clocktype === "digital") {
-    updatedigiClock();
-} else if (clocktype === "analog") {
-    if (document.visibilityState === "visible") {
-        startClock();
-        updateDate(); // Immediately update date when clock is analog
-    }
-}
-
-// Event listener for visibility change
-document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "visible") {
-        startClock(); // Start the clock if the tab is focused
-        updateDate(); // Update date when the tab becomes visible
-    } else {
-        stopClock(); // Stop the clock if the tab is not focused
-    }
-});
-
-function displayClock() {
-    const analogClock = document.getElementById("analogClock");
-    const digitalClock = document.getElementById("digitalClock");
-
-    if (clocktype === "analog") {
-        analogClock.style.display = "block"; // Show the analog clock
-        digitalClock.style.display = "none";  // Hide the digital clock
-    } else if (clocktype === "digital") {
-        digitalClock.style.display = "block";  // Show the digital clock
-        analogClock.style.display = "none";     // Hide the analog clock
-    }
-}
-
-// Call updateanalogclock when the document is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-    updateanalogclock();
-});
-
-// End of clock display
-
 document.addEventListener("DOMContentLoaded", () => {
     const userTextDiv = document.getElementById("userText");
     const userTextCheckbox = document.getElementById("userTextCheckbox");
@@ -1202,6 +564,12 @@ document.addEventListener("click", function (event) {
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
+    dropdown.addEventListener("click", (event) => {
+        if (dropdown.style.display === "block") {
+            event.stopPropagation();
+            dropdown.style.display = "none";
+        }
+    })
 
     document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
@@ -1493,7 +861,7 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
             document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
-            document.documentElement.style.setProperty("--darkColor-blue", "\"#4382EC");
+            document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
             document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
         } else {
@@ -1781,7 +1149,7 @@ const applySelectedTheme = (colorValue) => {
         // Change fill color for elements with the class "accentColor"
         const accentElements = document.querySelectorAll(".accentColor");
         accentElements.forEach((element) => {
-            element.style.fill = "\"#212121";
+            element.style.fill = "#212121";
         });
     }
 
@@ -2295,8 +1663,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
-                filter: grayscale(1) contrast(1.4);
-                mix-blend-mode: lighten;
+                filter: grayscale(1);
+                mix-blend-mode: screen;
                 }`;
 
 
@@ -2311,12 +1679,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
-    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
     const todoListCheckbox = document.getElementById("todoListCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
-    const timeformatField = document.getElementById("timeformatField");
-    const hourcheckbox = document.getElementById("12hourcheckbox");
-    const digitalCheckbox = document.getElementById("digitalCheckbox");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
     const backButton = document.getElementById("backButton");
@@ -2825,54 +2189,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    if (localStorage.getItem("greetingEnabled") === null) {
-        localStorage.setItem("greetingEnabled", "true");
-    }
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const greetingField = document.getElementById("greetingField");
-    greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
-    greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
-
-    digitalCheckbox.addEventListener("change", function () {
-        saveCheckboxState("digitalCheckboxState", digitalCheckbox);
-        if (digitalCheckbox.checked) {
-            timeformatField.classList.remove("inactive");
-            greetingField.classList.remove("inactive");
-            greetingCheckbox.disabled = false; // Enable greeting toggle
-            localStorage.setItem("clocktype", "digital");
-            clocktype = localStorage.getItem("clocktype");
-            displayClock();
-            stopClock();
-            saveActiveStatus("timeformatField", "active");
-            saveActiveStatus("greetingField", "active");
-        } else {
-            timeformatField.classList.add("inactive");
-            greetingField.classList.add("inactive");
-            greetingCheckbox.disabled = true; // Disable greeting toggle
-            localStorage.setItem("clocktype", "analog");
-            clocktype = localStorage.getItem("clocktype");
-            stopClock();
-            startClock();
-            displayClock();
-            saveActiveStatus("timeformatField", "inactive");
-            saveActiveStatus("greetingField", "inactive");
-        }
-    });
-
-    hourcheckbox.addEventListener("change", function () {
-        saveCheckboxState("hourcheckboxState", hourcheckbox);
-        if (hourcheckbox.checked) {
-            localStorage.setItem("hourformat", "true");
-        } else {
-            localStorage.setItem("hourformat", "false");
-        }
-    });
-
-    greetingCheckbox.addEventListener("change", () => {
-        localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
-        updatedigiClock();
-    });
-
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -2910,61 +2226,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    bookmarksCheckbox.addEventListener("change", function () {
-        let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
-            bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
-            bookmarksPermission = chrome.permissions;
-        } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
-            bookmarksCheckbox.checked = false;
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            return;
-        }
-        if (bookmarksPermission !== undefined) {
-            if (bookmarksCheckbox.checked) {
-                bookmarksPermission.contains({
-                    permissions: ["bookmarks"]
-                }, function (alreadyGranted) {
-                    if (alreadyGranted) {
-                        bookmarkButton.style.display = "flex";
-                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                    } else {
-                        bookmarksPermission.request({
-                            permissions: ["bookmarks"]
-                        }, function (granted) {
-                            if (granted) {
-                                bookmarksAPI = chrome.bookmarks;
-                                bookmarkButton.style.display = "flex";
-                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            } else {
-                                bookmarksCheckbox.checked = false;
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            }
-                        });
-                    }
-                });
-            } else {
-                bookmarkButton.style.display = "none";
-                saveDisplayStatus("bookmarksDisplayStatus", "none");
-                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            }
-        }
-    });
-
-
-    bookmarkGridCheckbox.addEventListener("change", function () {
-        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-        if (bookmarkGridCheckbox.checked) {
-            bookmarkList.classList.add("grid-view");
-        } else {
-            bookmarkList.classList.remove("grid-view");
-        }
-    });
-
     todoListCheckbox.addEventListener("change", function () {
         saveCheckboxState("todoListCheckboxState", todoListCheckbox);
         if (todoListCheckbox.checked) {
@@ -2974,6 +2235,10 @@ document.addEventListener("DOMContentLoaded", function () {
             todoListCont.style.display = "none";
             saveDisplayStatus("todoListDisplayStatus", "none");
         }
+    });
+    
+    hideWeatherCheckbox.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     });
 
     fahrenheitCheckbox.addEventListener("change", function () {
@@ -3041,32 +2306,16 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("adaptiveIconField", adaptiveIconField);
     loadCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
-    loadCheckboxState("digitalCheckboxState", digitalCheckbox);
-    loadCheckboxState("hourcheckboxState", hourcheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
-    loadActiveStatus("timeformatField", timeformatField);
-    loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
     loadCheckboxState("todoListCheckboxState", todoListCheckbox);
+    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
     loadDisplayStatus("todoListDisplayStatus", todoListCont);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
     loadShortcuts();
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
-        if (bookmarksCheckbox.checked) {
-            bookmarkButton.click();
-        } else {
-            bookmarksCheckbox.click();
-        }
-    }
 });
 
 document.addEventListener("keydown", function (event) {
