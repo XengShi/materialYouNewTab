@@ -1185,19 +1185,31 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* ---------------------- */
 .ttteexxtt {
-	position: absolute;
-	/* background-color: yellow; */
- 	/*bottom: 18px; */
-	/*Because search engines has margin-bottom 20px*/
-	bottom: 8px;
+	position: relative;
+	top: 2rem;
 	left: 10px;
- 	/*text-align: center; */
+}
+
+#digitalClock[style="display: block;"] + .ttteexxtt {
+	top: 1rem;
 }
 
 #userText {
 	font-family: var(--main-font-family);
 	font-size: 1.4rem;
+	display: block;
+	word-wrap: break-word;
+	max-width: 18.75rem;
+	max-height: 4.2rem;
+	overflow-x: clip;
+	overflow-y: scroll;
+	text-overflow: ellipsis;
+	scrollbar-width: none;
 	margin-bottom: 10px;
+}
+
+#userText::-webkit-scrollbar {
+	display: none;
 }
 
 #date {
@@ -2996,6 +3008,7 @@ input:checked + .toggle:before {
 	}
 
 	.ttteexxtt {
+    position: absolute;
 		/* background-color: yellow; */
 		height: fit-content;
 		width: fit-content;
