@@ -1953,7 +1953,7 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty('--darkerColor-blue', darkerColorHex);
     document.documentElement.style.setProperty('--darkColor-blue', adjustedColor);
     document.documentElement.style.setProperty('--textColorDark-blue', darkerColorHex);
-    document.documentElement.style.setProperty('--whitishColor-blue', lightTin);
+    document.documentElement.style.setProperty('--whitishColor-blue', "#FFFFFF");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById('dfChecked').checked = false;
     ApplyLoadingColor();
