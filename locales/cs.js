@@ -13,8 +13,8 @@ const cs = {
     "shortcutsInfoText": "Vyberte, které zkratky se mají zobrazit",
     "editShortcutsList": "Uložené zkratky",
     "editShortcutsListInfo": "Nové zkratky můžete přidat klepnutím na ikonku „+“. Upravit existující můžete klepnutím na název nebo URL adresu zkratky.",
-    "adaptiveIconText": "Adaptivní tvary ikon",
-    "adaptiveIconInfoText": "Ikony zkratek se zmenší",
+    "adaptiveIconText": "Adaptivní ikony",
+    "adaptiveIconInfoText": "Ikony zkratek budou odpovídat barvě motivu a zmenší se",
     "bookmarksText": "Záložky",
     "bookmarksInfo": "Zobrazí boční panel se záložkami",
     "ai_tools_button": "AI nástroje",
@@ -61,6 +61,7 @@ const cs = {
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
+    "useGPS": "Použít GPS",
     "saveLoc": "Uložit",
 
     // Weather
@@ -135,4 +136,5 @@ const cs = {
     "invalidBackup": "Neplatný soubor se zálohou",
     "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
+    "BookmarksDenied": "Nebylo přiděleno oprávnění pro záložky.",
 };
