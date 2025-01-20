@@ -60,6 +60,7 @@ function toggleShortcuts(event) {
     if (event) event.stopPropagation();
 }
 
+
 // Collapse when clicking outside toolsCont
 document.addEventListener("click", (event) => {
     if (!element.contains(event.target) && element.style.display === "flex") {
