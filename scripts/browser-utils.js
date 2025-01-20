@@ -9,7 +9,7 @@
 // Constants to detect the browser and platform details
 
 // Check if the browser is Chrome
-const isChrome = /Chrome/.test(navigator.userAgent) || /CriOS/.test(navigator.userAgent && /Google Inc/.test(navigator.vendor));
+const isChrome = (/Chrome/.test(navigator.userAgent) || /CriOS/.test(navigator.userAgent)) && /Google Inc/.test(navigator.vendor);
 
 // Check if the browser is Firefox
 const isFirefox = typeof browser !== "undefined" || navigator.userAgent.toLowerCase().includes("firefox");
@@ -27,7 +27,7 @@ const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window
 const isOpera = /OPR/.test(navigator.userAgent) && /Opera/.test(navigator.vendor);
 
 // Check if the browser is Safari
-const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+const isSafari = /Safari/.test(navigator.userAgent) && !isChromiumBased && /Apple Computer/.test(navigator.vendor);
 
 // Check if the operating system is macOS
 const isMac = /Macintosh|MacIntel|MacPPC|Mac68K/.test(navigator.platform);
