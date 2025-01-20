@@ -1076,15 +1076,16 @@ function isNearWhite(hex, threshold = 240) {
 const applyCustomTheme = (color) => {
     let adjustedColor = isNearWhite(color) ? "#696969" : color;
 
-    const lighterColorHex = adjustHexColor(adjustedColor, 0.85);
-    const lightTin = adjustHexColor(adjustedColor, 0.95);
-    const darkerColorHex = adjustHexColor(adjustedColor, 0.6, false);
+    const lighterColorHex = adjustHexColor(adjustedColor, 0.7);
+    const lightTin = adjustHexColor(adjustedColor, 0.9);
+    const darkerColorHex = adjustHexColor(adjustedColor, 0.3, false);
+    const darkTextColor = adjustHexColor(adjustedColor, 0.8, false);
 
     document.documentElement.style.setProperty("--bg-color-blue", lighterColorHex);
     document.documentElement.style.setProperty("--accentLightTint-blue", lightTin);
     document.documentElement.style.setProperty("--darkerColor-blue", darkerColorHex);
     document.documentElement.style.setProperty("--darkColor-blue", adjustedColor);
-    document.documentElement.style.setProperty("--textColorDark-blue", darkerColorHex);
+    document.documentElement.style.setProperty("--textColorDark-blue", darkTextColor);
     document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
