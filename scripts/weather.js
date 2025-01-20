@@ -66,8 +66,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const useGPS = JSON.parse(localStorage.getItem("useGPS"));
 
     // Fetch weather data based on a location
-    async function fetchWeather(location) {
-        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
+    async function fetchWeather() {
         try {
             let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
             const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
