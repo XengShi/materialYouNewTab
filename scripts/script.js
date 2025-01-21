@@ -537,8 +537,22 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         if (searchTerm !== "") {
-            var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
-            window.location.href = searchUrl;
+            if (selectedOption === "engine0") {
+                try {
+                    if (isFirefox) {
+                        browser.search.query({ text: searchTerm });
+                    } else {
+                        chrome.search.query({ text: searchTerm });
+                    }
+                } catch (error) {
+                    // Fallback to Google if an error occurs
+                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(searchTerm);
+                    window.location.href = fallbackUrl;
+                }
+            } else {
+                var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
+                window.location.href = searchUrl;
+            }
         }
     }
 
@@ -605,9 +619,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (event.key === "ArrowDown") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "ArrowUp") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "Enter") {
                 const selectedItem = document.querySelector(".dropdown-content .selected");
                 const engine = selectedItem.getAttribute("data-engine");
@@ -1223,8 +1245,21 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         resultItem.textContent = suggestion;
                         resultItem.setAttribute("data-index", index);
                         resultItem.onclick = () => {
-                            var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
-                            window.location.href = resultlink;
+                            if (selectedOption === "engine0") {
+                                try {
+                                    if (isFirefox) {
+                                        browser.search.query({ text: suggestion });
+                                    } else {
+                                        chrome.search.query({ text: suggestion });
+                                    }
+                                } catch (error) {
+                                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(suggestion);
+                                    window.location.href = fallbackUrl;
+                                }
+                            } else {
+                                var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
+                                window.location.href = resultlink;
+                            }
                         };
                         resultBox.appendChild(resultItem);
                     });
@@ -1323,6 +1358,7 @@ async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
     var searchEnginesapi = {
+        engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
@@ -1361,7 +1397,6 @@ async function getAutocompleteSuggestions(query) {
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
     const searchbar = document.getElementById("searchbar");
-    // const resultBox = document.getElementById("resultBox");
 
     if (!searchbar.contains(event.target)) {
         hideResultBox();
