@@ -126,6 +126,12 @@ function updateTextBackground(hasWallpaper) {
     const date = document.getElementById("date");
     const shortcuts = document.querySelectorAll(".shortcuts .shortcut-name");
 
+    if (hasWallpaper) {
+        document.body.setAttribute('data-bg','wallpaper')
+    } else {
+        document.body.setAttribute('data-bg','color')
+    }
+
     // Update styles for userText and date
     [userText, date].forEach(element => {
         if (hasWallpaper) {
