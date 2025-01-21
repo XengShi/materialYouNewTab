@@ -1207,6 +1207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
+    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
 
     const proxybypassField = document.getElementById("proxybypassField");
     const proxyinputField = document.getElementById("proxyField");
@@ -1747,6 +1748,10 @@ document.addEventListener("DOMContentLoaded", function () {
             iconStyle.textContent = "";
         }
     });
+    
+    enableDarkModeCheckbox.addEventListener("change", function () {
+        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
+    });
 
     newShortcutButton.addEventListener("click", () => newShortcut());
 
@@ -1812,6 +1817,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("proxyinputField", proxyinputField);
     loadActiveStatus("proxybypassField", proxybypassField);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
+    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
 });
 
