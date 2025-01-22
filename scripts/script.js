@@ -889,10 +889,11 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
+		color: var(--darkColor-dark);
             }
 
             .dark-theme .clearButton:active {
-                color: #0e0e0e;
+                color: #000000;
             }
 
             .dark-theme .backupRestoreBtn {
