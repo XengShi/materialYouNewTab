@@ -1018,7 +1018,7 @@ const applySelectedTheme = (colorValue) => {
 
 
     // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
         .reduce((acc, color) => {
             acc[color] = `./favicon/${color}.png`;
             return acc;
@@ -2088,7 +2088,7 @@ document.addEventListener("DOMContentLoaded", function () {
             iconStyle.textContent = "";
         }
     });
-    
+
     enableDarkModeCheckbox.addEventListener("change", function () {
         saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     });
