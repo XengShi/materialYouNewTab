@@ -1831,6 +1831,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	transform: translateX(-50%);
 	/* Center horizontally */
 	margin: auto;
+	min-width: 30px;
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
