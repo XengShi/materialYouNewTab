@@ -73,7 +73,7 @@ scrollContainer.addEventListener('wheel', (event) => {
             scrollContainer.scrollLeft += event.deltaY;
         }
     }
-});
+}, { passive: false });
 
 // Collapse when clicking outside toolsCont
 document.addEventListener("click", (event) => {
