@@ -2807,8 +2807,7 @@ input:checked + .toggle:before {
 	border-radius: 50%;
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow:
-		/* inset 0 0 0 6px var(--accentLightTint-blue), */ inset 0 0 0 4px
-			var(--darkColor-blue),
+		inset 0 0 0 4px var(--darkColor-blue),
 		inset 0 0 0 9.7px var(--accentLightTint-blue),
 		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
