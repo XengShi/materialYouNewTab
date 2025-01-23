@@ -39,8 +39,7 @@ document.addEventListener("click", function (event) {
 });
 // ------------------------End of Google App Menu Setup-----------------------------------
 
-// Toggle
-
+// Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
     const googleAppsCont = document.getElementById("googleAppsCont");
 

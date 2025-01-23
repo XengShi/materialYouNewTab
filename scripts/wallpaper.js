@@ -6,6 +6,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Get the current language from localStorage
+const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+
 // -------------------------- Wallpaper -----------------------------
 const dbName = "ImageDB";
 const storeName = "backgroundImages";
@@ -100,7 +103,6 @@ document.getElementById("imageUpload").addEventListener("change", function (even
 
 // Fetch and apply random image as background
 const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
-const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
 async function applyRandomImage(showConfirmation = true) {
     if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper)) {

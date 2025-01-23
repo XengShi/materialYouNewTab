@@ -318,6 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ----------------------- End of clock display -------------------------
 
+// Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
