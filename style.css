@@ -1832,6 +1832,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: all 0.3s;
 	font-size: 1rem;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 120px;
 }
 
 .shortcuts:hover .shortcut-name {
