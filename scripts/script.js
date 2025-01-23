@@ -1663,7 +1663,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const name = document.createElement("span");
         name.className = "shortcut-name"
-        name.textContent = shortcutName.slice(0, 12) + ((shortcutName.length > 12) ? "..." : "");
+        name.textContent = shortcutName;
 
         let icon = getCustomLogo(shortcutUrl);
 
