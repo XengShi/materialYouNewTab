@@ -664,10 +664,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const radioButtons = document.querySelectorAll(".colorPlate");
 const themeStorageKey = "selectedTheme";
 const storedTheme = localStorage.getItem(themeStorageKey);
-// const radioButtons = document.querySelectorAll(".colorPlate");
-// const themeStorageKey = "selectedTheme"; // For predefined themes
 const customThemeStorageKey = "customThemeColor"; // For color picker
-// const storedTheme = localStorage.getItem(themeStorageKey);
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
@@ -1048,81 +1045,56 @@ const applySelectedTheme = (colorValue) => {
 };
 
 // ----Color Picker || ColorPicker----
-function darkenHexColor(hex, factor = 0.6) {
+function adjustHexColor(hex, factor, isLighten = true) {
     hex = hex.replace("#", "");
+    if (hex.length === 3) {
+        hex = hex.split("").map(c => c + c).join("");
+    }
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r * (1 - factor));
-    g = Math.floor(g * (1 - factor));
-    b = Math.floor(b * (1 - factor));
+    if (isLighten) {
+        r = Math.floor(r + (255 - r) * factor);
+        g = Math.floor(g + (255 - g) * factor);
+        b = Math.floor(b + (255 - b) * factor);
+    } else {
+        r = Math.floor(r * (1 - factor));
+        g = Math.floor(g * (1 - factor));
+        b = Math.floor(b * (1 - factor));
+    }
     return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
-}
-
-function lightenHexColor(hex, factor = 0.85) {
-    hex = hex.replace("#", "");
-    if (hex.length === 3) {
-        hex = hex.split("").map(c => c + c).join("");
-    }
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r + (255 - r) * factor);
-    g = Math.floor(g + (255 - g) * factor);
-    b = Math.floor(b + (255 - b) * factor);
-    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
-}
-
-function lightestColor(hex, factor = 0.95) {
-    hex = hex.replace("#", "");
-    if (hex.length === 3) {
-        hex = hex.split("").map(c => c + c).join("");
-    }
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r + (255 - r) * factor);
-    g = Math.floor(g + (255 - g) * factor);
-    b = Math.floor(b + (255 - b) * factor);
-    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
 }
 
 function isNearWhite(hex, threshold = 240) {
     hex = hex.replace("#", "");
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
     return r > threshold && g > threshold && b > threshold;
 }
 
-// ---- Color Picker || ColorPicker----
-
 const applyCustomTheme = (color) => {
+    let adjustedColor = isNearWhite(color) ? "#696969" : color;
 
-    adjustedColor = color;
-    if (isNearWhite(color)) {
-        adjustedColor = "#696969"; // Light gray if near white
-    }
-    const darkerColorHex = darkenHexColor(adjustedColor);
-    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
-    const lightTin = lightestColor(adjustedColor, 0.95);
+    const lighterColorHex = adjustHexColor(adjustedColor, 0.7);
+    const lightTin = adjustHexColor(adjustedColor, 0.9);
+    const darkerColorHex = adjustHexColor(adjustedColor, 0.3, false);
+    const darkTextColor = adjustHexColor(adjustedColor, 0.8, false);
 
-    // resetDarkTheme();
     document.documentElement.style.setProperty("--bg-color-blue", lighterColorHex);
     document.documentElement.style.setProperty("--accentLightTint-blue", lightTin);
     document.documentElement.style.setProperty("--darkerColor-blue", darkerColorHex);
     document.documentElement.style.setProperty("--darkColor-blue", adjustedColor);
-    document.documentElement.style.setProperty("--textColorDark-blue", darkerColorHex);
+    document.documentElement.style.setProperty("--textColorDark-blue", darkTextColor);
     document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
+
     ApplyLoadingColor();
 };
 
-// Load theme on page reload// Load theme on page reload
+// Load theme on page reload
 window.addEventListener("load", function () {
-    // console.log("Page loaded, stored theme:", storedTheme);
-    // console.log("Page loaded, stored custom color:", storedCustomColor);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -1134,7 +1106,6 @@ window.addEventListener("load", function () {
 const handleThemeChange = function () {
     if (this.checked) {
         const colorValue = this.value;
-        // console.log("Radio button changed, selected theme:", colorValue);
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
@@ -1150,7 +1121,6 @@ radioButtons.forEach(radioButton => {
 // Handle color picker changes
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
-    // console.log("Color picker changed, selected color:", selectedColor);
     resetDarkTheme(); // Clear dark theme if active
     localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
     localStorage.removeItem(themeStorageKey); // Clear predefined theme
@@ -1165,13 +1135,8 @@ const handleColorPickerChange = function (event) {
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
 colorPicker.addEventListener("input", handleColorPickerChange);
-// colorPicker.addEventListener("change", function () {
-//     // console.log("Final color applied:", colorPicker.value);
-//     location.reload();
-// });
 
-
-// end of Function to apply the selected theme
+// End of Function to apply the selected theme
 
 
 // ------------Search Suggestions---------------
