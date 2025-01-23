@@ -640,141 +640,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // -----Theme stay changed even if user reload the page---
-    //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
-    const storedTheme = localStorage.getItem(themeStorageKey);
-    if (storedTheme) {
-        applySelectedTheme(storedTheme);
-        const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
-        if (selectedRadioButton) {
-            selectedRadioButton.checked = true;
-        }
-    }
-
-    // Remove Loading Screen When the DOM and the Theme has Loaded
-    document.getElementById("LoadingScreen").style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add("theme-transition");
+        // Remove Loading Screen When the DOM and the Theme has Loaded
+        document.getElementById("LoadingScreen").style.display = "none";
     }, 25);
 });
-
-
-// Function to apply the selected theme
-const radioButtons = document.querySelectorAll(".colorPlate");
-const themeStorageKey = "selectedTheme";
-const storedTheme = localStorage.getItem(themeStorageKey);
-
-const applySelectedTheme = (colorValue) => {
-
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (typeof browser !== "undefined" && browser.browserAction) {
-            // Firefox
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof safari !== "undefined") {
-            // Safari
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
-    ApplyLoadingColor();
-};
-
-// ----Color Picker || ColorPicker----
-function hueExtracter(hex) {
-    // Convert hex to RGB
-    const r = parseInt(hex.slice(1, 3), 16) / 255;
-    const g = parseInt(hex.slice(3, 5), 16) / 255;
-    const b = parseInt(hex.slice(5, 7), 16) / 255;
-    // Find max and min values
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    const delta = max - min;
-    // Calculate hue
-    let hue = 0;
-    if (delta !== 0) {
-        if (max === r) hue = ((g - b) / delta + (g < b ? 6 : 0)) * 60;
-        else if (max === g) hue = ((b - r) / delta + 2) * 60;
-        else hue = ((r - g) / delta + 4) * 60;
-    }
-    return Math.round(hue); // Return hue as a whole number
-}
-
-const applyCustomTheme = (color, isDarkTheme = true, fullDark = true) => {
-    let colorHue = hueExtracter(color);
-    let modif = isDarkTheme ? 100 : 0;
-
-    document.documentElement.style.setProperty("--bg-color-blue", `hsl(${colorHue}, ${fullDark ? 0 : 94}%, ${Math.abs(modif-86)}%)`);
-    document.documentElement.style.setProperty("--accentLightTint-blue", `hsl(${colorHue}, ${fullDark ? 0 : 100}%, ${Math.abs(modif-94)}%)`);
-    document.documentElement.style.setProperty("--darkerColor-blue", `hsl(${colorHue}, ${fullDark ? 0 : 54}%, ${Math.abs(modif-45)}%)`);
-    document.documentElement.style.setProperty("--darkColor-blue", `hsl(${colorHue}, ${fullDark ? 0 : 82}%, ${Math.abs(modif-59)}%)`);
-    document.documentElement.style.setProperty("--textColorDark-blue", `hsl(${colorHue}, ${fullDark ? 0 : 41}%, ${Math.abs(modif-18)}%)`);
-    document.documentElement.style.setProperty("--whitishColor-blue", `hsl(${colorHue}, ${fullDark ? 0 : 0}%, ${Math.abs(modif-100)}%)`);
-    document.getElementById("rangColor").style.borderColor = color;
-    document.getElementById("dfChecked").checked = false;
-
-    ApplyLoadingColor();
-};
-
-// Load theme on page reload
-window.addEventListener("load", function () {
-    if (storedTheme) {
-        applySelectedTheme(storedTheme);
-    } else if (storedCustomColor) {
-        applyCustomTheme(storedCustomColor);
-    }
-});
-
-// Handle radio button changes
-const handleThemeChange = function () {
-    if (this.checked) {
-        const colorValue = this.value;
-        localStorage.setItem(themeStorageKey, colorValue);
-        applySelectedTheme(colorValue);
-    }
-};
-
-// Remove any previously attached listeners and add only one
-radioButtons.forEach(radioButton => {
-    radioButton.removeEventListener("change", handleThemeChange); // Remove if already attached
-    radioButton.addEventListener("change", handleThemeChange);    // Add fresh listener
-});
-
-// Handle color picker changes
-const handleColorPickerChange = function (event) {
-    const selectedColor = event.target.value;
-    resetDarkTheme(); // Clear dark theme if active
-    localStorage.setItem(themeStorageKey, selectedColor); // Save custom color
-    applyCustomTheme(selectedColor);
-
-    // Uncheck all radio buttons
-    radioButtons.forEach(radio => {
-        radio.checked = false;
-    });
-};
-
-// Add listeners for color picker
-colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener("input", handleColorPickerChange);
-
-// End of Function to apply the selected theme
 
 
 // ------------Search Suggestions---------------
@@ -1154,7 +1026,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
-    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
@@ -1691,10 +1562,6 @@ document.addEventListener("DOMContentLoaded", function () {
             iconStyle.textContent = "";
         }
     });
-    
-    enableDarkModeCheckbox.addEventListener("change", function () {
-        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
-    });
 
     hideWeatherCheckbox.addEventListener("change", function () {
         saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
@@ -1770,7 +1637,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
 });
 
@@ -1783,10 +1649,3 @@ document.addEventListener("keydown", function (event) {
         searchBar.classList.add("active");
     }
 });
-
-//------------------------- LoadingScreen -----------------------//
-
-function ApplyLoadingColor() {
-    let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
-    localStorage.setItem("LoadingScreenColor", LoadingScreenColor);
-}

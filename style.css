@@ -195,26 +195,6 @@ body {
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
-html:has(body[data-bg='color'] .menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked))  {
-	filter: invert(1) hue-rotate(180deg);
-	-webkit-filter: invert(1) hue-rotate(180deg);
-	& #darkTheme, & .favicon {
-		filter: invert(1) hue-rotate(180deg);
-		-webkit-filter: invert(1) hue-rotate(180deg);
-	}
-	--whitishColor-blue: #F2F2F2;
-}
-
-body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked)) > *:not(.menuBar,#bookmarksContainer), body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked)) :is(.menuCont,.bookmark-sidebar) {
-	filter: invert(1) hue-rotate(180deg);
-	-webkit-filter: invert(1) hue-rotate(180deg);
-	& #darkTheme, & .favicon {
-		filter: invert(1) hue-rotate(180deg);
-		-webkit-filter: invert(1) hue-rotate(180deg);
-	}
-	--whitishColor-blue: #F2F2F2;
-}
-
 /* Search suggestions box */
 .resultBox {
 	max-height: 222px;
