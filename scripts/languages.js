@@ -162,6 +162,8 @@ function applyLanguage(lang) {
         'bookmarkViewAs',
         'bookmarkViewGrid',
         'bookmarkViewList',
+        'enableDarkMode',
+        'enableDarkModeInfo',
     ];
 
     // Specific mapping for placeholders

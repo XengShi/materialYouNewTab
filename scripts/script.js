@@ -1516,6 +1516,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
+    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
@@ -2052,6 +2053,10 @@ document.addEventListener("DOMContentLoaded", function () {
             iconStyle.textContent = "";
         }
     });
+    
+    enableDarkModeCheckbox.addEventListener("change", function () {
+        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
+    });
 
     hideWeatherCheckbox.addEventListener("change", function () {
         saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
@@ -2127,6 +2132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
 });
 
