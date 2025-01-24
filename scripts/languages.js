@@ -11,6 +11,7 @@ const translations = {
     en: en, // English
     pt: pt, // Portuguese-BR
     zh: zh, // Chinese (Simplified)
+    zh_TW: zh_TW, // Chinese (Traditional)
     hi: hi, // Hindi
     hu: hu, // Hungarian
     cs: cs, // Czech
