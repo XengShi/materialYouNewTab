@@ -61,6 +61,7 @@ const zh_TW = {
     "UserLocText": "輸入您的位置",
     "UserLocSubtext": "如果天氣位置不正確",
     "userLoc": "您的城市或座標（緯度，經度）",
+    "useGPS": "使用 GPS",
     "saveLoc": "儲存",
 
     // Weather
@@ -69,6 +70,8 @@ const zh_TW = {
     "userAPI": "您的 WeatherAPI 密鑰",
     "LearnMoreButton": "了解更多",
     "saveAPI": "儲存",
+    "hideWeatherBox": "隱藏天氣卡片",
+    "hideWeatherBoxInfo": "只在裝置上顯示溫度",
 
     // Body Items
     // Calendar
@@ -117,6 +120,10 @@ const zh_TW = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "深色模式",
+    "enableDarkModeInfo": "啟用深色模式主題",
+
     // Wallpaper and misc
     "uploadWallpaperText": "上傳桌布",
     "backupText": "備份",
@@ -135,4 +142,5 @@ const zh_TW = {
     "invalidBackup": "選擇的備份檔案無效。",
     "deleteBookmark": "您確定要刪除書籤 \"{title}\" 嗎？",
     "UnsupportedBrowser": "您的瀏覽器不支援書籤功能",
+    "BookmarksDenied": "尚未授予書籤權限",
 };

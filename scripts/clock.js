@@ -209,7 +209,7 @@ function updatedigiClock() {
     let period = ""; // For storing AM/PM equivalent
 
     // Array of languages to use "en-US" format
-    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
+    const specialLanguages = ["tr", "zh", "zh_TW", "ja", "ko", "hu"]; // Languages with NaN in locale time format
     const localizedLanguages = ["bn", "mr", "np"];
     // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
