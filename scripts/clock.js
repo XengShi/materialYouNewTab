@@ -62,6 +62,7 @@ function updateDate() {
             mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
+            zh_TW: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
             it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
@@ -188,6 +189,7 @@ function updatedigiClock() {
         mr: `${dayName}, ${localizedDayOfMonth}`,
         np: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
+        zh_TW: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
         ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
@@ -207,7 +209,7 @@ function updatedigiClock() {
     let period = ""; // For storing AM/PM equivalent
 
     // Array of languages to use "en-US" format
-    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
+    const specialLanguages = ["tr", "zh", "zh_TW", "ja", "ko", "hu"]; // Languages with NaN in locale time format
     const localizedLanguages = ["bn", "mr", "np"];
     // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
