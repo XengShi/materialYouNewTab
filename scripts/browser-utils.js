@@ -8,11 +8,11 @@
 
 // Constants to detect the browser and platform details
 
-// Check if the browser is Chromium-based
-const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-
 // Check if the browser is Firefox
 const isFirefox = typeof browser !== "undefined" || navigator.userAgent.toLowerCase().includes("firefox");
+
+// Check if the browser is Chromium-based
+const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime) && !isFirefox;
 
 // Check if the browser is Edge
 const isEdge = /Edg/.test(navigator.userAgent);
