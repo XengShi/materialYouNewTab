@@ -696,14 +696,11 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof browser !== "undefined" && browser.browserAction) {
-            // Firefox
+        if (isFirefox) {
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
+        } else if (isChromiumBased) {
             chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof safari !== "undefined") {
-            // Safari
+        } else if (isSafari) {
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
@@ -973,7 +970,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChrome || isBrave || isEdge) return "chrome";
+    if (isChromiumBased) return "chrome";
     if (isOpera) return "opera";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
