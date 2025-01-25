@@ -8,8 +8,8 @@
 
 // Constants to detect the browser and platform details
 
-// Check if the browser is Chrome
-const isChrome = (/Chrome/.test(navigator.userAgent) || /CriOS/.test(navigator.userAgent)) && /Google Inc/.test(navigator.vendor);
+// Check if the browser is Chromium-based
+const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
 // Check if the browser is Firefox
 const isFirefox = typeof browser !== "undefined" || navigator.userAgent.toLowerCase().includes("firefox");
@@ -18,13 +18,13 @@ const isFirefox = typeof browser !== "undefined" || navigator.userAgent.toLowerC
 const isEdge = /Edg/.test(navigator.userAgent);
 
 // Check if the browser is Brave
-const isBrave = navigator.brave && navigator.brave.isBrave;
-
-// Check if the browser is Chromium-based
-const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+const isBrave = !!(navigator.brave && navigator.brave.isBrave());
 
 // Check if the browser is Opera
-const isOpera = /OPR/.test(navigator.userAgent) && /Opera/.test(navigator.vendor);
+const isOpera = /OPR/.test(navigator.userAgent);
+
+// Check if the browser is Chrome
+const isChrome = (/Chrome|CriOS/.test(navigator.userAgent)) && /Google Inc/.test(navigator.vendor) && !isEdge && !isBrave && !isOpera;
 
 // Check if the browser is Safari
 const isSafari = /Safari/.test(navigator.userAgent) && !isChromiumBased && /Apple Computer/.test(navigator.vendor);
