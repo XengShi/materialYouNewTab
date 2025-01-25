@@ -2169,6 +2169,58 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
+
+    // Add these new constants with the other element selectors
+    const scheduledDarkModeCheckbox = document.getElementById("scheduleDarkModeCheckbox");
+    const scheduledDarkModeField = document.getElementById("scheduledDarkModeField");
+
+    // Load saved schedule preferences
+    const isDarkModeScheduled = localStorage.getItem("darkModeScheduled") === "true";
+    scheduledDarkModeCheckbox.checked = isDarkModeScheduled;
+
+    // Enable/disable schedule checkbox based on dark mode state
+    enableDarkModeCheckbox.addEventListener("change", function() {
+        const isDarkModeEnabled = this.checked;
+        scheduledDarkModeCheckbox.disabled = !isDarkModeEnabled;
+        
+        if (!isDarkModeEnabled) {
+            scheduledDarkModeCheckbox.checked = false;
+            localStorage.setItem("darkModeScheduled", "false");
+        }
+    });
+
+    // Handle scheduled dark mode changes
+    scheduledDarkModeCheckbox.addEventListener("change", function() {
+        localStorage.setItem("darkModeScheduled", this.checked);
+        if (this.checked) {
+            checkAndApplyScheduledDarkMode();
+        }
+    });
+
+    // Function to check time and apply dark mode accordingly
+    function checkAndApplyScheduledDarkMode() {
+        if (!scheduledDarkModeCheckbox.checked) return;
+
+        const currentHour = new Date().getHours();
+        // Default schedule: Dark mode between 7PM (19) and 7AM (7)
+        const shouldBeDark = currentHour >= 19 || currentHour < 7;
+
+        if (shouldBeDark !== enableDarkModeCheckbox.checked) {
+            enableDarkModeCheckbox.checked = shouldBeDark;
+            // Trigger dark mode change
+            const colorValue = shouldBeDark ? "dark" : (localStorage.getItem(themeStorageKey) || "blue");
+            applySelectedTheme(colorValue);
+        }
+    }
+
+    // Check schedule every minute
+    setInterval(checkAndApplyScheduledDarkMode, 60000);
+
+    // Initial check on page load
+    if (isDarkModeScheduled) {
+        scheduledDarkModeCheckbox.disabled = !enableDarkModeCheckbox.checked;
+        checkAndApplyScheduledDarkMode();
+    }
 });
 
 document.addEventListener("keydown", function (event) {
@@ -2187,3 +2239,150 @@ function ApplyLoadingColor() {
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
     localStorage.setItem("LoadingScreenColor", LoadingScreenColor);
 }
+
+// Add these constants at the top with your other constants
+const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
+const scheduledDarkModeCheckbox = document.getElementById("scheduleDarkModeCheckbox");
+
+// Add this HTML after the schedule checkbox in your settings menu
+const scheduleSettingsHTML = `
+    <div id="scheduleSettings" class="schedule-settings" style="display: none;">
+        <div class="schedule-container">
+            <div class="schedule-row">
+                <div class="time-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Zm0-2a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0-8.5V7a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2h-4Z"/>
+                    </svg>
+                    <span>Dark Mode On</span>
+                </div>
+                <input type="time" id="darkModeOnTime" class="time-input" />
+            </div>
+            <div class="schedule-row">
+                <div class="time-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Zm0-2a9 9 0 1 1 0-18 9 9 0 0 1 0 18Zm0-8.5V7a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2h-4Z"/>
+                    </svg>
+                    <span>Dark Mode Off</span>
+                </div>
+                <input type="time" id="darkModeOffTime" class="time-input" />
+            </div>
+        </div>
+    </div>
+`;
+
+// Insert the schedule settings HTML after the schedule checkbox
+document.querySelector('#scheduledDarkModeField').insertAdjacentHTML('afterend', scheduleSettingsHTML);
+
+// Add new constants for time inputs
+const scheduleSettings = document.getElementById("scheduleSettings");
+const darkModeOnTime = document.getElementById("darkModeOnTime");
+const darkModeOffTime = document.getElementById("darkModeOffTime");
+
+document.addEventListener("DOMContentLoaded", () => {
+    // ... existing code ...
+
+    // Load saved preferences
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    const isDarkModeScheduled = localStorage.getItem("darkModeScheduled") === "true";
+    
+    // Set initial states
+    enableDarkModeCheckbox.checked = isDarkMode;
+    scheduledDarkModeCheckbox.checked = isDarkModeScheduled;
+    scheduledDarkModeCheckbox.disabled = !isDarkMode;
+    
+    // Load saved schedule times or set defaults (19:00 and 07:00)
+    darkModeOnTime.value = localStorage.getItem("darkModeOnTime") || "19:00";
+    darkModeOffTime.value = localStorage.getItem("darkModeOffTime") || "07:00";
+    scheduleSettings.style.display = isDarkModeScheduled && isDarkMode ? "block" : "none";
+
+    // Handle dark mode toggle
+    enableDarkModeCheckbox.addEventListener("change", function() {
+        const isDarkModeEnabled = this.checked;
+        localStorage.setItem("darkMode", isDarkModeEnabled);
+        
+        // Enable/disable schedule checkbox based on dark mode state
+        scheduledDarkModeCheckbox.disabled = !isDarkModeEnabled;
+        
+        if (!isDarkModeEnabled) {
+            // If dark mode is disabled, disable scheduling
+            scheduledDarkModeCheckbox.checked = false;
+            localStorage.setItem("darkModeScheduled", false);
+            scheduleSettings.style.display = "none";
+        }
+
+        applyDarkMode(isDarkModeEnabled);
+    });
+
+    // Handle scheduled dark mode toggle
+    scheduledDarkModeCheckbox.addEventListener("change", function() {
+        const isScheduled = this.checked;
+        localStorage.setItem("darkModeScheduled", isScheduled);
+        
+        // Show/hide schedule settings
+        scheduleSettings.style.display = isScheduled ? "block" : "none";
+        
+        if (isScheduled) {
+            checkAndApplyScheduledDarkMode();
+        }
+    });
+
+    // ... rest of your existing event listeners ...
+
+    // Add some CSS for the schedule settings
+    const style = document.createElement('style');
+    style.textContent = `
+        .schedule-settings {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .schedule-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .time-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+        }
+
+        .time-label svg {
+            opacity: 0.8;
+        }
+
+        .time-input {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            color: var(--text-color);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .time-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .time-input::-webkit-calendar-picker-indicator {
+            filter: var(--calendar-icon-filter);
+        }
+    `;
+    document.head.appendChild(style);
+});
