@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         event.preventDefault();
                         if (isFirefox) {
                             browser.tabs.create({ url: node.url, active: false });
-                        } else if (isChrome) {
+                        } else if (isChromiumBased) {
                             chrome.tabs.create({ url: node.url, active: false });
                         } else {
                             window.open(node.url, "_blank");
@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         event.preventDefault();
                         if (isFirefox) {
                             browser.tabs.update({ url: node.url });
-                        } else if (isChrome) {
+                        } else if (isChromiumBased) {
                             chrome.tabs.update({ url: node.url }, function () {
                             });
                         } else {
@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let bookmarksPermission;
         if (isFirefox && browser.permissions) {
             bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions) {
+        } else if (isChromiumBased && chrome.permissions) {
             bookmarksPermission = chrome.permissions;
         } else {
             alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
