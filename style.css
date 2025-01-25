@@ -3337,3 +3337,57 @@ input:checked + .toggle:before {
 		bottom: -32px;
 	}
 }
+
+/* Dark Mode Schedule Settings */
+.dark-mode-schedule-settings {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: var(--accentLightTint-blue);
+    border-radius: 15px;
+    display: none;
+}
+
+.time-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.time-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.time-input input[type="time"] {
+    padding: 5px 10px;
+    border: 1px solid var(--darkColor-blue);
+    border-radius: 8px;
+    background-color: var(--whitishColor-blue);
+    color: var(--textColorDark-blue);
+    font-size: 14px;
+}
+
+.time-input input[type="time"]:focus {
+    outline: none;
+    border-color: var(--darkerColor-blue);
+}
+
+/* Dark mode schedule switch specific styles */
+.dark-mode-schedule .switch {
+    margin-left: 10px;
+}
+
+/* When dark mode is scheduled and active */
+body.dark-mode-scheduled {
+    background-color: var(--bg-color-dark);
+    color: var(--textColorDark-dark);
+}
+
+body.dark-mode-scheduled .time-input input[type="time"] {
+    background-color: var(--darkColor-dark);
+    color: var(--textColorDark-dark);
+    border-color: var(--darkerColor-dark);
+}
