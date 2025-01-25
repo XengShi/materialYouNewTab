@@ -970,7 +970,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChromiumBased) return "chrome";
+    if (isChromiumBased && !isOpera) return "chrome";
     if (isOpera) return "opera";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
