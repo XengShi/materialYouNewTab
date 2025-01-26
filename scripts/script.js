@@ -6,79 +6,30 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Function to detect which browser is being used
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-const isFirefox = typeof browser !== "undefined";
-// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-const isEdge = /Edg/.test(navigator.userAgent);
-const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
-
-let proxyurl;
 
 // TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
 // TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
-// TODO: Move all the to-do stuff in a file called `to-do.js` or `todo.js` or `todo-list.js`
-// TODO: Move all the weather stuff in a file called `weather.js`
 // TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
-// TODO: Move all the voice search stuff in a file called `voice-search.js`
 // TODO: Move all the theme functions stuff in a file called `theme.js`
-// TODO: Move all the BG Image stuff in a file called `background-images.js`
 // TODO: Move all the settings in a file called `settings.js`
 // TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
 // TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
-// TODO: Move into file called `browser-utils.js` with isChrome, isFirefox, etc.
-// TODO: Move into file called `backup.js` or `backup-system.js`
 // TODO: Move into file called `welcome-greeting.js`(?)
 // TODO: Move into file called `animations.js`(?)
-// TODO: @Migua-RC, can you move all the proxy stuff in a file called `proxy.js`?
 
 
-window.addEventListener("DOMContentLoaded", async () => {
-    // Cache DOM elements
-    const userAPIInput = document.getElementById("userAPI");
-    const userLocInput = document.getElementById("userLoc");
+let proxyurl;
+window.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
-    const saveAPIButton = document.getElementById("saveAPI");
-    const saveLocButton = document.getElementById("saveLoc");
-    const useGPSButton = document.getElementById("useGPS");
     const saveProxyButton = document.getElementById("saveproxy");
-
-    // Load saved data from localStorage
-    const savedApiKey = localStorage.getItem("weatherApiKey");
-    const savedLocation = localStorage.getItem("weatherLocation");
     const savedProxy = localStorage.getItem("proxy");
-
-    // Pre-fill input fields with saved data
-    if (savedLocation) userLocInput.value = savedLocation;
-    if (savedApiKey) userAPIInput.value = savedApiKey;
 
     const defaultProxyURL = "https://mynt-proxy.rhythmcorehq.com"; //Default proxy url
     if (savedProxy && savedProxy !== defaultProxyURL) {
         userProxyInput.value = savedProxy;
     }
 
-    // Function to simulate button click on Enter key press
-    function handleEnterPress(event, buttonId) {
-        if (event.key === "Enter") {
-            document.getElementById(buttonId).click();
-        }
-    }
-
-    // Add event listeners for handling Enter key presses
-    userAPIInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveAPI"));
-    userLocInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveLoc"));
     userProxyInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveproxy"));
-
-    // Save API key to localStorage
-    saveAPIButton.addEventListener("click", () => {
-        const apiKey = userAPIInput.value.trim();
-        localStorage.setItem("weatherApiKey", apiKey);
-        userAPIInput.value = "";
-        location.reload();
-    });
-
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
@@ -105,292 +56,11 @@ window.addEventListener("DOMContentLoaded", async () => {
         location.reload();
     });
 
-    // Default Weather API key
-    const weatherApiKeys = [
-        "d36ce712613d4f21a6083436240910",
-        "db0392b338114f208ee135134240312",
-        "de5f7396db034fa2bf3140033240312",
-        "c64591e716064800992140217240312",
-        "9b3204c5201b4b4d8a2140330240312",
-        "eb8a315c15214422b60140503240312",
-        "cd148ebb1b784212b74140622240312",
-        "7ae67e219af54df2840140801240312",
-        "0a6bc8a404224c8d89953341241912",
-        "f59e58d7735d4739ae953115241912"
-    ];
-    const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
-
-    // Determine API key and proxy URL to use
-    const apiKey = savedApiKey || defaultApiKey;
+    // Determine which proxy URL to use
     proxyurl = savedProxy || defaultProxyURL;
-
-    // Determine the location to use
-    let currentUserLocation = savedLocation;
-
-    // Flag indicating whether to use GPS
-    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
-
-    // Fetch weather data based on a location
-    async function fetchWeather(location) {
-        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-        try {
-            let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
-            const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
-            const weatherParsedLang = localStorage.getItem("weatherParsedLang");
-
-            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
-
-            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
-                // Fetch weather data using Weather API
-                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
-                let data = await fetch(weatherApi);
-                parsedData = await data.json();
-                if (!parsedData.error) {
-                    // Extract only the necessary fields before saving
-                    const filteredData = {
-                        location: {
-                            name: parsedData.location.name,
-                        },
-                        current: {
-                            condition: {
-                                text: parsedData.current.condition.text,
-                                icon: parsedData.current.condition.icon,
-                            },
-                            temp_c: parsedData.current.temp_c,
-                            temp_f: parsedData.current.temp_f,
-                            humidity: parsedData.current.humidity,
-                            feelslike_c: parsedData.current.feelslike_c,
-                            feelslike_f: parsedData.current.feelslike_f,
-                        },
-                    };
-
-                    // Save filtered weather data to localStorage
-                    localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
-                    localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
-                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
-                    localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
-                }
-                UpdateWeather();
-            } else {
-                setTimeout(UpdateWeather, 25);
-            }
-
-            function UpdateWeather() {
-                // Weather data
-                const conditionText = parsedData.current.condition.text;
-                const tempCelsius = Math.round(parsedData.current.temp_c);
-                const tempFahrenheit = Math.round(parsedData.current.temp_f);
-                const humidity = parsedData.current.humidity;
-                const feelsLikeCelsius = parsedData.current.feelslike_c;
-                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
-
-                // Update DOM elements with the weather data
-                document.getElementById("conditionText").textContent = conditionText;
-
-                // Localize and display temperature and humidity
-                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-                // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
-                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-                // Event Listener for the Fahrenheit toggle
-                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-                const updateTemperatureDisplay = () => {
-                    const tempElement = document.getElementById("temp");
-                    const feelsLikeElement = document.getElementById("feelsLike");
-                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
-
-                    if (fahrenheitCheckbox.checked) {
-                        // Update temperature
-                        tempElement.textContent = localizedTempFahrenheit;
-                        const tempUnitF = document.createElement("span");
-                        tempUnitF.className = "tempUnit";
-                        tempUnitF.textContent = "°F";
-                        tempElement.appendChild(tempUnitF);
-
-                        // TODO: Change, it's hard-coded for cs language
-                        // Update feels like
-                        const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                    } else {
-                        // Update temperature
-                        tempElement.textContent = localizedTempCelsius;
-                        const tempUnitC = document.createElement("span");
-                        tempUnitC.className = "tempUnit";
-                        tempUnitC.textContent = "°C";
-                        tempElement.appendChild(tempUnitC);
-
-                        // TODO: Change, it's hard-coded for cs language
-                        // Update feels like
-                        const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
-                    }
-                };
-                updateTemperatureDisplay();
-
-                // Setting weather Icon
-                const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-                document.getElementById("wIcon").src = weatherIcon;
-
-                // TODO: Change, it's hard-coded for only few languages
-                // Define minimum width for the slider based on the language
-                const humidityMinWidth = {
-                    idn: "47%",
-                    hu: "48%",
-                    en: "42%", // Default for English and others
-                };
-                const slider = document.getElementById("slider");
-                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];
-
-                // Set slider width based on humidity
-                if (humidity > 40) {
-                    slider.style.width = `calc(${humidity}% - 60px)`;
-                }
-
-                // Update location
-                var city = parsedData.location.name;
-                // var city = "Thiruvananthapuram";
-                var maxLength = 10;
-                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-                document.getElementById("location").textContent = limitedText;
-
-            }
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-        }
-    }
-
-    // Function to fetch GPS-based location
-    async function fetchGPSLocation() {
-        try {
-            const getLocationFromGPS = () => {
-                return new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => reject(error),
-                        { timeout: 4000 }
-                    );
-                });
-            };
-
-            const { latitude, longitude } = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
-        } catch (error) {
-            console.error("GPS Location retrieval failed: ", error);
-        }
-    }
-
-    // Fetch location dynamically based on user preference
-    await (async function initializeLocation() {
-        try {
-            if (useGPS) {
-                try {
-                    // Use GPS for dynamic location
-                    currentUserLocation = await fetchGPSLocation();
-                } catch {
-                    // Silent failover
-                }
-            }
-
-            if (!currentUserLocation) {
-                // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.loc;
-            }
-
-            // Fetch weather data
-            fetchWeather(currentUserLocation);
-        } catch (error) {
-            console.error("Failed to determine location:", error);
-            currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
-        }
-    })();
-
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS dynamically and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
-        location.reload();
-    });
-
-    // Handle manual location input
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        localStorage.setItem("useGPS", false);
-        userLocInput.value = "";
-        fetchWeather(userLocation);
-        location.reload();
-    });
 });
-// ---------------------------end of weather stuff--------------------
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    const userTextDiv = document.getElementById("userText");
-    const userTextCheckbox = document.getElementById("userTextCheckbox");
-
-    // Load and apply the checkbox state
-    const isUserTextVisible = localStorage.getItem("userTextVisible") !== "false";
-    userTextCheckbox.checked = isUserTextVisible;
-    userTextDiv.style.display = isUserTextVisible ? "block" : "none";
-
-    // Toggle userText display based on checkbox state
-    userTextCheckbox.addEventListener("change", () => {
-        const isVisible = userTextCheckbox.checked;
-        userTextDiv.style.display = isVisible ? "block" : "none";
-        localStorage.setItem("userTextVisible", isVisible);
-    });
-
-    // Set the default language to English if no language is saved
-    const savedLang = localStorage.getItem("selectedLanguage") || "en";
-    applyLanguage(savedLang);
-
-    // Load the stored text if it exists
-    const storedValue = localStorage.getItem("userText");
-    if (storedValue) {
-        userTextDiv.textContent = storedValue;
-    } else {
-        // Fallback to the placeholder based on the selected language
-        const placeholder = userTextDiv.dataset.placeholder || translations["en"].userText; // Fallback to English
-        userTextDiv.textContent = placeholder;
-    }
-
-    // Handle input event
-    userTextDiv.addEventListener("input", function () {
-        localStorage.setItem("userText", userTextDiv.textContent);
-    });
-
-    // Remove placeholder text when the user starts editing
-    userTextDiv.addEventListener("focus", function () {
-        if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
-            userTextDiv.textContent = "";  // Clear the placeholder when focused
-        }
-    });
-
-    // Restore placeholder if the user leaves the div empty after editing
-    userTextDiv.addEventListener("blur", function () {
-        if (userTextDiv.textContent === "") {
-            userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
-        }
-    });
-});
+// --------------------------- Search Bar ------------------------------------
 
 // Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById("searchbar");
@@ -1023,14 +693,11 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof browser !== "undefined" && browser.browserAction) {
-            // Firefox
+        if (isFirefox) {
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
+        } else if (isChromiumBased) {
             chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof safari !== "undefined") {
-            // Safari
+        } else if (isSafari) {
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
@@ -1265,23 +932,13 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
     }
 });
 
+// Check for different browsers and return the corresponding client parameter
 function getClientParam() {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    // Check for different browsers and return the corresponding client parameter
-    if (userAgent.includes("firefox")) {
-        return "firefox";
-    } else if (userAgent.includes("chrome") || userAgent.includes("crios")) {
-        return "chrome";
-    } else if (userAgent.includes("safari")) {
-        return "safari";
-    } else if (userAgent.includes("edge") || userAgent.includes("edg")) {
-        return "firefox";
-    } else if (userAgent.includes("opera") || userAgent.includes("opr")) {
-        return "opera";
-    } else {
-        return "firefox";  // Default to Firefox client if the browser is not recognized
-    }
+    if (isFirefox) return "firefox";
+    if (isChromiumBased && !isOpera) return "chrome";
+    if (isOpera) return "opera";
+    if (isSafari) return "safari";
+    return "firefox"; // Default to Firefox if the browser is not recognized
 }
 
 async function getAutocompleteSuggestions(query) {
@@ -1500,15 +1157,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shortcuts = document.getElementById("shortcuts-section");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
-    const proxybypassField = document.getElementById("proxybypassField");
-    const proxyinputField = document.getElementById("proxyField");
-    const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
-    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
-    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
     const backButton = document.getElementById("backButton");
     const shortcutSettingsContainer = document.getElementById("shortcutList"); // shortcuts in settings
@@ -1517,6 +1169,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
     const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
+
+    const proxybypassField = document.getElementById("proxybypassField");
+    const proxyinputField = document.getElementById("proxyField");
+    const useproxyCheckbox = document.getElementById("useproxyCheckbox");
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
@@ -2058,14 +1714,6 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     });
 
-    hideWeatherCheckbox.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
-    });
-
-    fahrenheitCheckbox.addEventListener("change", function () {
-        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    });
-
     newShortcutButton.addEventListener("click", () => newShortcut());
 
     resetShortcutsButton.addEventListener("click", () => resetShortcuts());
@@ -2129,9 +1777,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
 });
