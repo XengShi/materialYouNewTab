@@ -120,6 +120,10 @@ const en = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "Dark Mode",
+    "enableDarkModeInfo": "Enable dark mode themes",
+
     // Wallpaper and misc
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     "backupText": "Backup",

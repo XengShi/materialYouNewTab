@@ -114,21 +114,12 @@
 	--whitishColor-brown: #ffffff;
 
 	/* 🩶🩶🩶 Grey */
-	/* --bg-color-pink: #f9c8d6;
-	--accentLightTint-pink: #ffebf2;
-	--darkerColor-pink: #b24b64;
-	--darkColor-pink: #ec5e78;
-	--textColorDark-pink: #411b28;
-	--whitishColor-pink: #ffffff; */
-
-
 	--bg-color-grey: #ffccbf;
 	--accentLightTint-grey: #fdf1ef;
 	--darkerColor-grey: #f67455;
 	--darkColor-grey: #9c29ba;
 	--textColorDark-grey: #441730;
 	--whitishColor-grey: #ffffff;
-
 
 	/* ⚫⚫⚫ */
 	--bg-color-dark: #171615;
@@ -204,6 +195,25 @@ body {
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
+html:has(body[data-bg='color'] .menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked))  {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	& #darkTheme, & .favicon {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
+	--whitishColor-blue: #F2F2F2;
+}
+
+body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked)) > *:not(.menuBar,#bookmarksContainer), body[data-bg='wallpaper']:has(.menuBar #enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked)) :is(.menuCont,.bookmark-sidebar) {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	& #darkTheme, & .favicon {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
+	--whitishColor-blue: #F2F2F2;
+}
 
 /* Search suggestions box */
 .resultBox {
@@ -267,7 +277,7 @@ body {
 .resultItem:hover {
 	background-color: var(--darkColor-blue);
 	border-radius: 15px;
-	color: #fff;
+	color: var(--whitishColor-blue);
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
@@ -944,7 +954,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #todoAdd:hover {
 	background-color: var(--darkerColor-blue);
-	color: #fff;
+	color: var(--whitishColor-blue);
 	cursor: pointer;
 }
 
@@ -968,7 +978,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .dark-theme #todoInput {
-	color: #FFF;
+	color: var(--whitishColor-blue);
 }
 
 /* Default placeholder color */
@@ -996,7 +1006,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 100%;
 	display: flex;
 	background-color: var(--darkColor-blue);
-	color: #FFF;
+	color: var(--whitishColor-blue);
 	border-radius: 8px;
 	list-style-type: none;
 	font-size: 1rem;
@@ -1051,7 +1061,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem .todoremovebtn:hover {
-	color: #FFF;
+	color: var(--whitishColor-blue);
 }
 
 .todolistitem .todopinbtn {
@@ -1314,7 +1324,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .tilesContainer .location .location_spn {
-	color: #fff;
+	color: var(--whitishColor-blue);
 }
 
 .tilesContainer .tiles .icon {
@@ -1378,7 +1388,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #humidityLevel {
-	color: #fff;
+	color: var(--whitishColor-blue);
 	width: fit-content;
 	position: absolute;
 	bottom: 0;
@@ -1594,7 +1604,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #enterBtn:hover {
 	background-color: var(--darkColor-blue);
-	color: #fff;
+	color: var(--whitishColor-blue);
 	cursor: pointer;
 }
 
@@ -2126,7 +2136,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .divider {
 	height: 6px;
 	width: 100px;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 	border-radius: 3px;
 	margin: 20px auto;
 }
@@ -2259,7 +2269,7 @@ input:checked + .toggle:before {
 
 .bottom button {
 	border: none;
-	color: #fff;
+	color: var(--whitishColor-blue);
 	background-color: var(--darkColor-blue);
 	padding: 6px 20px;
 	font-size: 1rem;
@@ -2271,7 +2281,7 @@ input:checked + .toggle:before {
 	width: -webkit-fill-available;
 	width: -moz-available;
 	border: none;
-	color: #fff;
+	color: var(--whitishColor-blue);
 	background-color: var(--darkColor-blue);
 	padding: 6px 20px;
 	font-size: 1rem;
@@ -2536,7 +2546,7 @@ input:checked + .toggle:before {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 	height: 36px;
 	width: 36px;
 	border-radius: 18px;
@@ -2816,7 +2826,7 @@ input:checked + .toggle:before {
 
 #menuCloseButton:hover {
 	width: 100%;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 }
 
 #menuCloseButton::after {

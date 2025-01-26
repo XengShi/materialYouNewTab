@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// when User click on "AI-Tools"
+// When User click on "AI-Tools"
 const aiToolName = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
@@ -82,11 +82,9 @@ document.addEventListener("click", (event) => {
     }
 });
 
-document.getElementById("0NIHK").onclick = toggleShortcuts;
+document.getElementById("aiToolsIcon").onclick = toggleShortcuts;
 
-//
-
-
+// Save and load checkbox state
 document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCont = document.getElementById("aiToolsCont");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");
