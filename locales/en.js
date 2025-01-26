@@ -94,6 +94,7 @@ const en = {
     "searchPlaceholder": "Type here...",
     "listenPlaceholder": "Listening...",
     "searchWithHint": "Search With",
+    "searchOnHint": "Search On",
     "userText": "Click here to edit",
 
     // Greeting
