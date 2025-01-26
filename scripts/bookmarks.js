@@ -17,9 +17,9 @@ const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
 const bookmarkViewList = document.getElementById("bookmarkViewList");
 
 var bookmarksAPI;
-if (isFirefox && browser.bookmarks) {
+if (isFirefox) {
     bookmarksAPI = browser.bookmarks;
-} else if (typeof chrome !== "undefined" && chrome.bookmarks) {
+} else if (isChromiumBased) {
     bookmarksAPI = chrome.bookmarks;
 }
 
