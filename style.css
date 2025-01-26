@@ -59,13 +59,7 @@
 	--textColorDark-green: #1b411b;
 	--whitishColor-green: #ffffff;
 
-	/* Cyan */
-	/* --bg-color-cyan: #9bffff;
-    --accentLightTint-cyan: #d5ffff;
-    --darkerColor-cyan: #5E9CA0;
-    --darkColor-cyan: #00CED1;
-    --textColorDark-cyan: #08354B; */
-
+	/* 🌊 Cyan */
 	--bg-color-cyan: #9cefef;
 	--accentLightTint-cyan: #d5ffff;
 	--darkerColor-cyan: #07787f;
@@ -113,22 +107,13 @@
 	--textColorDark-brown: #16100d;
 	--whitishColor-brown: #ffffff;
 
-	/* 🩶🩶🩶 Grey */
-	/* --bg-color-pink: #f9c8d6;
-	--accentLightTint-pink: #ffebf2;
-	--darkerColor-pink: #b24b64;
-	--darkColor-pink: #ec5e78;
-	--textColorDark-pink: #411b28;
-	--whitishColor-pink: #ffffff; */
-
-
-	--bg-color-grey: #ffccbf;
-	--accentLightTint-grey: #fdf1ef;
-	--darkerColor-grey: #f67455;
-	--darkColor-grey: #9c29ba;
-	--textColorDark-grey: #441730;
-	--whitishColor-grey: #ffffff;
-
+	/* 🫶🏻 Peach */
+	--bg-color-peach: #ffccbf;
+	--accentLightTint-peach: #fdf1ef;
+	--darkerColor-peach: #f67455;
+	--darkColor-peach: #9c29ba;
+	--textColorDark-peach: #441730;
+	--whitishColor-peach: #ffffff;
 
 	/* ⚫⚫⚫ */
 	--bg-color-dark: #171615;
@@ -192,7 +177,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	min-height: 100%;
+	min-height: 100vh;
 	/* background-color: red; */
 	overflow: auto;
 	background-image: var(--bg-image, none);
@@ -200,20 +185,50 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
-	height: 100vh; /* Ensure the image fits the viewport height */
+	height: 100%; /* Ensure the image fits the viewport height */
 	margin: 0; /* Remove margin to avoid unwanted spacing */
 }
 
+html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
+		:has(#darkTheme:checked)
+	) {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	& #darkTheme,
+	& .favicon {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
+	--whitishColor-blue: #f2f2f2;
+}
+
+body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
+		:has(#darkTheme:checked)
+	)
+	> *:not(.menuBar, #bookmarksContainer),
+body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
+		:has(#darkTheme:checked)
+	)
+	:is(.menuCont, .bookmark-sidebar) {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	& #darkTheme,
+	& .favicon {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
+	--whitishColor-blue: #f2f2f2;
+}
 
 /* Search suggestions box */
 .resultBox {
 	max-height: 222px;
 	overflow-y: auto;
 	position: absolute;
-	bottom: -100px;
 	left: 0;
 	width: 100%;
 	border-radius: 25px;
+	margin-top: 10px;
 	padding: 5px 10px;
 	scrollbar-width: none;
 	/* Initially hidden */
@@ -224,10 +239,23 @@ body {
 	pointer-events: none;
 }
 
+.searchbar:has(:placeholder-shown) ~ .resultBox.show {
+	opacity: 0;
+	z-index: -1000;
+	transform: translateY(-70px);
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.centerDiv:has(.resultBox.show) ~ #shortcuts-section,
+.centerDiv:has(.dropdown-content[style="display: block;"])
+	~ #shortcuts-section {
+	z-index: -1;
+}
+
 @media screen and (max-height: 700px) {
 	.resultBox {
 		max-height: 180px;
-		bottom: -60px;
 	}
 }
 
@@ -237,7 +265,7 @@ body {
 }
 
 /* Visible state: when you want the result box to appear */
-.resultBox.show {
+.resultBox.show:has(:first-child) {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
@@ -256,7 +284,7 @@ body {
 .resultItem:hover {
 	background-color: var(--darkColor-blue);
 	border-radius: 15px;
-	color: #fff;
+	color: var(--whitishColor-blue);
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
@@ -286,7 +314,7 @@ body {
 	cursor: pointer;
 }
 
-.theme-transition .dot-icon{
+.theme-transition .dot-icon {
 	transition: fill 0.3s ease;
 }
 
@@ -357,7 +385,7 @@ body {
 	/* 3 icons per row */
 	justify-items: center;
 	/* Center icons within each grid cell */
-	position: absolute;
+	position: fixed;
 	top: 85px;
 	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
@@ -477,6 +505,8 @@ body {
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	top: 0;
+	right: 0;
 	z-index: 2;
 	opacity: 0;
 	transition: all 0.5s;
@@ -491,22 +521,22 @@ body {
 
 .bookmark-button {
 	position: fixed;
-    display: inline-block;
-    margin: 10px;
-    top: var(--gap);
-    right: var(--gap);
-    font-size: 25px;
+	display: inline-block;
+	margin: 10px;
+	top: var(--gap);
+	right: var(--gap);
+	font-size: 25px;
 	background-color: var(--accentLightTint-blue);
-    border: none;
-    cursor: pointer;
-    z-index: 2;
+	border: none;
+	cursor: pointer;
+	z-index: 2;
 	padding: 6px;
 	border-radius: 25%;
 	transition: right 0.3s ease;
 }
 
 .bookmark-button:has(~ .googleAppsCont[style="display: flex;"]) {
-    right: calc(2 * var(--gap) + 36px);
+	right: calc(2 * var(--gap) + 36px);
 }
 
 /* Show tooltip on hover */
@@ -521,9 +551,9 @@ body {
 }
 
 .bookmark-sidebar {
-	width: 380px;
+	width: min(380px, 100vw);
 	position: fixed;
-	right: -380px;
+	right: max(-380px, -100vw);
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
@@ -535,7 +565,7 @@ body {
 	box-sizing: border-box;
 }
 
-.bookmark-sidebar .topOutRoundCorner{
+.bookmark-sidebar .topOutRoundCorner {
 	position: absolute;
 	width: 30px;
 	height: 30px;
@@ -585,16 +615,16 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .bookmark-search-container::after {
-	content: '';
-	background: url('./svgs/bookmarksSearch.svg') no-repeat center / contain;
+	content: "";
+	background: url("./svgs/bookmarksSearch.svg") no-repeat center / contain;
 	width: 18px;
-    filter: invert(1);
-    height: 18px;
-    opacity: 0.5;
-    left: 9%;
-    top: calc(50% + 7px);
-    transform: translateY(-50%);
-    position: absolute;
+	filter: invert(1);
+	height: 18px;
+	opacity: 0.5;
+	left: 9%;
+	top: calc(50% + 7px);
+	transform: translateY(-50%);
+	position: absolute;
 }
 
 #bookmarkSearch {
@@ -631,7 +661,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: 0;
 	text-align: left;
 	height: calc(100% - 230px);
-	overflow-y: auto;  /* Add vertical scrollbar */
+	overflow-y: auto; /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
 
@@ -685,8 +715,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-left: 10px;
 	cursor: pointer;
 }
-.bookmark-view-as-container #bookmarkGridCheckbox:is(:checked) ~ #bookmarkViewGrid,
-.bookmark-view-as-container #bookmarkGridCheckbox:is(:not(:checked)) ~ #bookmarkViewList {
+.bookmark-view-as-container
+	#bookmarkGridCheckbox:is(:checked)
+	~ #bookmarkViewGrid,
+.bookmark-view-as-container
+	#bookmarkGridCheckbox:is(:not(:checked))
+	~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -697,7 +731,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-weight: normal;
 }
 
-#bookmarkList .folder ul{
+#bookmarkList .folder ul {
 	padding-top: 10px;
 }
 
@@ -715,7 +749,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: calc(100% - 10px);
 }
 
-#bookmarkList:is(.grid-view) ul:not(.hidden), #bookmarkList:is(.grid-view) .folder.open > ul {
+#bookmarkList:is(.grid-view) ul:not(.hidden),
+#bookmarkList:is(.grid-view) .folder.open > ul {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 
@@ -731,31 +766,32 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #bookmarkList:is(.grid-view) li a {
 	padding: 2px;
-    flex-direction: column;
+	flex-direction: column;
 }
 #bookmarkList:is(.grid-view) li a .favicon {
 	margin: 20px auto 24px auto;
 }
-#bookmarkList:is(.grid-view) li a:has(.favicon)::after, #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-	content: '';
-    background: var(--bg-color-blue);
-    position: absolute;
-    width: 48px;
-    height: 48px;
+#bookmarkList:is(.grid-view) li a:has(.favicon)::after,
+#bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+	content: "";
+	background: var(--bg-color-blue);
+	position: absolute;
+	width: 48px;
+	height: 48px;
 	z-index: -1;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.35;
-    top: 12px;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0.35;
+	top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
 }
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-    background: var(--bg-color-blue);
-    width: 36px;
-    height: 36px;
-    opacity: 1;
-    top: 18px;
+	background: var(--bg-color-blue);
+	width: 36px;
+	height: 36px;
+	opacity: 1;
+	top: 18px;
 }
 
 #bookmarkList li a {
@@ -781,7 +817,6 @@ body #bookmarkButton.bookmark-button.rotate {
 #bookmarkList:is(.grid-view) li a span {
 	text-align: center;
 }
-
 
 .favicon {
 	width: 18px;
@@ -824,7 +859,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: block;
 }
 
-#bookmarkList:is(.grid-view)  .bookmark-delete-button {
+#bookmarkList:is(.grid-view) .bookmark-delete-button {
 	top: 12px;
 	right: 6px;
 }
@@ -881,7 +916,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: 8px solid var(--bg-color-blue);
 	grid-template-columns: 320px;
 	justify-items: center;
-	position: absolute;
+	position: fixed;
 	top: 85px;
 	left: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
@@ -931,7 +966,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #todoAdd:hover {
 	background-color: var(--darkerColor-blue);
-	color: #fff;
+	color: var(--whitishColor-blue);
 	cursor: pointer;
 }
 
@@ -940,7 +975,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition #todoAdd {
-    transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 #todoInput {
@@ -955,7 +990,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .dark-theme #todoInput {
-	color: #FFF;
+	color: var(--whitishColor-blue);
 }
 
 /* Default placeholder color */
@@ -970,7 +1005,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 100%;
 }
 
-.todolist{
+.todolist {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -979,11 +1014,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	align-items: flex-start;
 }
 
-.todolistitem{
+.todolistitem {
 	width: 100%;
 	display: flex;
 	background-color: var(--darkColor-blue);
-	color: #FFF;
+	color: var(--whitishColor-blue);
 	border-radius: 8px;
 	list-style-type: none;
 	font-size: 1rem;
@@ -994,13 +1029,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	word-break: break-word;
 }
 
-.todolistitem::before{
-	content: '';
+.todolistitem::before {
+	content: "";
 	position: absolute;
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background: url('./svgs/todo-check-stroke.svg') no-repeat center center / contain;
+	background: url("./svgs/todo-check-stroke.svg") no-repeat center center /
+		contain;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 8px;
@@ -1008,16 +1044,17 @@ body #bookmarkButton.bookmark-button.rotate {
 	user-select: none;
 }
 
-.todolistitem.checked::before{
-	background-image: url('./svgs/todo-check-fill.svg');
+.todolistitem.checked::before {
+	background-image: url("./svgs/todo-check-fill.svg");
 }
 
-.todolistitem.checked{
-	color: #CCC;
+.todolistitem.checked {
+	color: #ccc;
 	text-decoration: line-through;
 }
 
-.todolistitem .todoremovebtn, .todolistitem .todopinbtn {
+.todolistitem .todoremovebtn,
+.todolistitem .todopinbtn {
 	position: absolute;
 	right: 6px;
 	top: 50%;
@@ -1038,16 +1075,17 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem .todoremovebtn:hover {
-	color: #FFF;
+	color: var(--whitishColor-blue);
 }
 
 .todolistitem .todopinbtn {
 	right: 28px;
-	background: url('./svgs/todo-pin-stroke.svg') no-repeat center center / contain;
+	background: url("./svgs/todo-pin-stroke.svg") no-repeat center center /
+		contain;
 }
 
 .todolistitem.pinned .todopinbtn {
-	background-image: url('./svgs/todo-pin-fill.svg');
+	background-image: url("./svgs/todo-pin-fill.svg");
 }
 
 .todolistitem:first-child {
@@ -1172,19 +1210,31 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* ---------------------- */
 .ttteexxtt {
-	position: absolute;
-	/* background-color: yellow; */
- 	/*bottom: 18px; */
-	/*Because search engines has margin-bottom 20px*/
-	bottom: 8px;
+	position: relative;
+	top: 2rem;
 	left: 10px;
- 	/*text-align: center; */
+}
+
+#digitalClock[style="display: block;"] + .ttteexxtt {
+	top: 1rem;
 }
 
 #userText {
 	font-family: var(--main-font-family);
 	font-size: 1.4rem;
+	display: block;
+	word-wrap: break-word;
+	max-width: 18.75rem;
+	max-height: 4.2rem;
+	overflow-x: clip;
+	overflow-y: scroll;
+	text-overflow: ellipsis;
+	scrollbar-width: none;
 	margin-bottom: 10px;
+}
+
+#userText::-webkit-scrollbar {
+	display: none;
 }
 
 #date {
@@ -1289,7 +1339,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .tilesContainer .location .location_spn {
-	color: #fff;
+	color: var(--whitishColor-blue);
 }
 
 .tilesContainer .tiles .icon {
@@ -1353,7 +1403,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #humidityLevel {
-	color: #fff;
+	color: var(--whitishColor-blue);
 	width: fit-content;
 	position: absolute;
 	bottom: 0;
@@ -1508,7 +1558,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .micIcon {
-    transition: all 0.5s;
+	transition: all 0.5s;
 }
 
 .micIcon::after {
@@ -1569,7 +1619,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #enterBtn:hover {
 	background-color: var(--darkColor-blue);
-	color: #fff;
+	color: var(--whitishColor-blue);
 	cursor: pointer;
 }
 
@@ -1578,7 +1628,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition #enterBtn {
-    transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 /* ________________End of Searchbar______________________ */
@@ -1632,7 +1682,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	cursor: pointer;
 }
 
-.searchEnginesContainer .search-engine svg{
+.searchEnginesContainer .search-engine svg {
 	width: 30px;
 	height: 30px;
 	background-color: var(--darkColor-blue);
@@ -1667,7 +1717,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .search-engine input[type="radio"] {
-    transition: 0.2s;
+	transition: 0.2s;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1680,12 +1730,17 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: 100%;
 	height: calc(var(--shortcut-size) + var(--gap) * 2);
-	position: absolute;
+	position: fixed;
 	/* background: gold; */
 	left: 0;
 	right: 0;
 	bottom: 0;
+	overflow: scroll;
+	scrollbar-width: none;
 	margin: auto;
+}
+#shortcuts-section::-webkit-scrollbar {
+	display: none;
 }
 
 #shortcuts-section .wrapper {
@@ -1733,7 +1788,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	width: fit-content;
 	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-	gap: 26px;
+	gap: 2rem;
 }
 
 .shortcutsContainer::before {
@@ -1776,6 +1831,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	transform: translateX(-50%);
 	/* Center horizontally */
 	margin: auto;
+	min-width: 30px;
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
@@ -1783,6 +1839,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: all 0.3s;
 	font-size: 1rem;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 120px;
 }
 
 .shortcuts:hover .shortcut-name {
@@ -1840,11 +1899,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: auto;
 	display: flex;
 
-    max-width: calc(100% - 140px);
-    overflow-x: scroll;
+	max-width: calc(100% - 140px);
+	overflow-x: scroll;
 	overflow-y: hidden;
 	scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+	-ms-overflow-style: none; /* IE and Edge */
 }
 .aiToolsCont::-webkit-scrollbar {
 	display: none; /* Chrome, Safari, Edge, Opera */
@@ -1874,7 +1933,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	cursor: pointer;
 	width: fit-content;
-    	min-width: 61px; /* 61px is working fine for english lang */
+	text-wrap-mode: nowrap;
 }
 
 .aiToolsCont .toolsCont {
@@ -1899,9 +1958,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 6px;
 	left: -18px;
 }
-#firefly{
-	width: 103px;
-}
 
 .aiToolsCont .toolsCont a {
 	background-color: var(--accentLightTint-blue);
@@ -1915,6 +1971,9 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--textColorDark-blue);
 	font-size: 1rem;
 	transition: all 0.3s ease;
+	& div {
+		text-wrap-mode: nowrap;
+	}
 }
 
 .aiToolsCont .toolsCont a:hover {
@@ -1931,64 +1990,6 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* -----------End of Ai-Tools---------- */
 
-/* -------media query ------------------- */
-
-@media screen and (max-width: 1400px) {
-	.leftDiv {
-		transform: translateX(-50px);
-	}
-
-	.rightDiv {
-		transform: translateX(50px);
-	}
-}
-
-@media screen and (max-width: 1200px) {
-	body {
-		display: block;
-	}
-
-	.shortcutsContainer {
-		margin-top: 210px;
-	}
-
-	.centerDiv {
-		/* display: grid; */
-		grid-template-columns: auto;
-		/* width: fit-content; */
-		/* height: 500px; */
-		/* background-color: orange; */
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: var(--gap) auto auto;
-	}
-
-	.leftDiv {
-		transform: translateX(0px);
-		/* background-color: green; */
-		margin-bottom: var(--gap);
-	}
-
-	.rightDiv {
-		/* position: relative;
-        width: 640px; */
-		transform: translateX(0px);
-		/* background-color: rgba(0, 0, 255, 0.159); */
-	}
-
-	.ttteexxtt {
-		/* background-color: yellow; */
-		height: fit-content;
-		width: fit-content;
-		bottom: 0;
-		top: 0;
-		left: 300px;
-		/*Because Clock width is 300px*/
-		margin: auto auto auto var(--gap);
-	}
-}
-
 /* ---------------Menu-bar-css---------------- */
 .menuBar {
 	background-color: #0000004f;
@@ -1996,6 +1997,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	top: 0;
+	right: 0;
 	z-index: 9999;
 	opacity: 0;
 	/*we are increasing opacity in js file*/
@@ -2004,7 +2007,8 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .menuBar .menuCont {
-	position: absolute;
+	position: fixed;
+	top: 0;
 	right: 0;
 	height: 100%;
 	width: 400px;
@@ -2151,7 +2155,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .divider {
 	height: 6px;
 	width: 100px;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 	border-radius: 3px;
 	margin: 20px auto;
 }
@@ -2284,7 +2288,7 @@ input:checked + .toggle:before {
 
 .bottom button {
 	border: none;
-	color: #fff;
+	color: var(--whitishColor-blue);
 	background-color: var(--darkColor-blue);
 	padding: 6px 20px;
 	font-size: 1rem;
@@ -2296,7 +2300,7 @@ input:checked + .toggle:before {
 	width: -webkit-fill-available;
 	width: -moz-available;
 	border: none;
-	color: #fff;
+	color: var(--whitishColor-blue);
 	background-color: var(--darkColor-blue);
 	padding: 6px 20px;
 	font-size: 1rem;
@@ -2466,7 +2470,7 @@ input:checked + .toggle:before {
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
-.themingStuff{
+.themingStuff {
 	margin-top: 11px;
 	position: relative;
 	width: 100%;
@@ -2561,7 +2565,7 @@ input:checked + .toggle:before {
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 	height: 36px;
 	width: 36px;
 	border-radius: 18px;
@@ -2610,8 +2614,8 @@ input:checked + .toggle:before {
 	background-color: #9e9e9e;
 }
 
-.colorsContainer input[value="grey"] {
-	background: linear-gradient(45deg,#bb4dee, #f8b880);
+.colorsContainer input[value="peach"] {
+	background: linear-gradient(45deg, #bb4dee, #f8b880);
 }
 
 .colorsContainer input[value="dark"] {
@@ -2772,26 +2776,26 @@ input:checked + .toggle:before {
 } */
 
 /* <!-- ----Color Picker || ColorPicker---- --> */
-#colorPicker{
+#colorPicker {
 	display: none;
 }
-.colorPickerLabel{
+.colorPickerLabel {
 	grid-column: span 3;
-    width: 100%;
-    background: var(--accentLightTint-blue);
-    height: 100%;
-    border-radius: 100px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    line-height: 35px;
+	width: 100%;
+	background: var(--accentLightTint-blue);
+	height: 100%;
+	border-radius: 100px;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	font-size: 0.8rem;
+	line-height: 35px;
 	cursor: pointer;
 	border: 2px solid transparent;
 	transition: background-color 0.3s ease;
 }
-.colorPickerLabel:hover{
-    background: var(--bg-color-blue);
+.colorPickerLabel:hover {
+	background: var(--bg-color-blue);
 }
 /* <!-- ----End of Color Picker || ColorPicker---- --> */
 
@@ -2807,7 +2811,6 @@ input:checked + .toggle:before {
 	border-radius: 50%;
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow:
-		/* inset 0 0 0 6px var(--accentLightTint-blue), */
 		inset 0 0 0 4px var(--darkColor-blue),
 		inset 0 0 0 9.7px var(--accentLightTint-blue),
 		inset 0 0 0 40px var(--darkColor-blue);
@@ -2841,7 +2844,7 @@ input:checked + .toggle:before {
 
 #menuCloseButton:hover {
 	width: 100%;
-	background-color: #fff;
+	background-color: var(--whitishColor-blue);
 }
 
 #menuCloseButton::after {
@@ -3012,4 +3015,369 @@ input:checked + .toggle:before {
 	top: 0;
 	left: 0;
 	z-index: 99999;
+}
+
+.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+	display: none;
+}
+
+/* -------media query ------------------- */
+
+@media screen and (max-width: 1400px) {
+	.leftDiv {
+		transform: translateX(-50px);
+	}
+
+	.rightDiv {
+		transform: translateX(50px);
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	body {
+		display: block;
+	}
+
+	.centerDiv {
+		/* display: grid; */
+		grid-template-columns: auto;
+		padding-bottom: 100px;
+		position: relative;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		padding-top: 60px;
+	}
+
+	.leftDiv {
+		transform: translateX(0px);
+		/* background-color: green; */
+		margin-bottom: var(--gap);
+	}
+
+	.rightDiv {
+		/* position: relative;
+        width: 640px; */
+		transform: translateX(0px);
+		/* background-color: rgba(0, 0, 255, 0.159); */
+	}
+
+	.ttteexxtt {
+		position: absolute;
+		/* background-color: yellow; */
+		height: fit-content;
+		width: fit-content;
+		bottom: 0;
+		top: 0;
+		left: 300px;
+		/*Because Clock width is 300px*/
+		margin: auto auto auto var(--gap);
+	}
+	.shortcutsContainer {
+		row-gap: 2rem;
+	}
+	#shortcuts-section {
+		padding-left: 30px;
+		margin: 0 auto;
+		overflow-x: scroll;
+		scrollbar-width: none;
+		position: fixed;
+		max-width: 40rem;
+		left: 0;
+		bottom: 0;
+	}
+}
+
+@media screen and (max-width: 1200px) and (min-width: 501px) {
+	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
+		display: none;
+	}
+}
+@media screen and (max-width: 720px) {
+	:root {
+		--gap: 1rem;
+	}
+	#shortcuts-section {
+		max-width: 30rem;
+		position: fixed;
+		bottom: 62px;
+		width: 100%;
+		max-width: none;
+		overflow-x: scroll;
+		overflow-y: clip;
+	}
+	.shortcutsContainer {
+		max-width: none;
+		flex-wrap: nowrap;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
+	}
+	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked)
+		.shortcutsContainer {
+		margin-top: 0;
+		flex-wrap: nowrap;
+	}
+	.menuBar {
+		--gap: 30px;
+	}
+	.centerDiv {
+		width: calc(100% - 4rem);
+		margin-bottom: 10rem;
+		align-self: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.leftDiv {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		top: 30px;
+	}
+	.rightDiv {
+		scale: 0.75;
+	}
+	.ttteexxtt {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	body {
+		display: flex;
+		min-height: fit-content;
+		flex-direction: column;
+		justify-content: start;
+		padding-top: 60px;
+	}
+	.menuBar {
+		top: 0;
+	}
+	.searchbar {
+		width: 94vw;
+		transform-origin: top left;
+		scale: 2;
+		margin-top: -1rem;
+		margin-left: calc(320px - 94vw);
+		margin-bottom: 3rem;
+
+		& #searchQ {
+			min-width: 0px;
+		}
+	}
+	#enterBtn {
+		display: none;
+	}
+	#shortcuts-section {
+		height: auto;
+		position: relative;
+		scale: 0.85;
+		width: calc(100vw / 0.85);
+		margin-left: calc(50vw - 50vw / 0.85);
+		margin-top: 0;
+		max-width: unset;
+		bottom: 0;
+	}
+	.todoListCont {
+		transform-origin: top left;
+		scale: 0.8;
+	}
+	.todo-container {
+		transform-origin: top left;
+		scale: 0.85;
+		position: fixed;
+	}
+	.googleAppsCont {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.bookmark-button {
+		transform-origin: top right;
+		scale: 0.8;
+	}
+	.icon-container {
+		transform-origin: top right;
+		scale: 0.85;
+		position: fixed;
+	}
+	#menuButton {
+		transform-origin: bottom right;
+		scale: 0.8;
+	}
+	.aiToolsCont {
+		transform-origin: bottom left;
+		scale: 0.8;
+		max-width: calc(100% - 30px);
+	}
+	.leftDiv {
+		width: calc(100vw / 0.5);
+		top: 0;
+		scale: 0.5;
+		transform-origin: left bottom;
+		/* margin-top: -84%; */
+		height: 50vw;
+		margin-left: calc(100vw);
+		align-items: end;
+		justify-content: flex-start;
+	}
+	.clock .centerPoint {
+		width: calc(20% / 3);
+		height: calc(20% / 3);
+	}
+	.clock .centerPoint .sui {
+		height: 500%;
+		width: 100%;
+		top: -450%;
+		border-radius: 60px;
+	}
+	#hour {
+		height: 400%;
+		top: -350%;
+	}
+	#second::after {
+		width: 100%;
+		aspect-ratio: 1;
+		height: auto;
+		top: calc(-160% / 7);
+	}
+	#minute::after,
+	#hour::after {
+		width: 100%;
+		aspect-ratio: 0.5;
+		height: auto;
+	}
+	#analogClock,
+	#digitalClock {
+		width: 45%;
+		margin-left: 5%;
+		aspect-ratio: 1;
+		height: auto;
+	}
+	.rightDiv {
+		scale: 0.5;
+		margin-top: -64px;
+		margin-bottom: -32px;
+		display: flex;
+		flex-direction: column-reverse;
+
+		& .topDiv {
+			top: 80px;
+			position: relative;
+			scale: 1.5;
+			width: calc(94vw / 0.75);
+			margin-left: calc(320px - 94vw / 1.5);
+
+			& .rAndakar {
+				animation: none;
+				position: absolute;
+				/* display: none; */
+				width: 45%;
+				aspect-ratio: 1;
+				height: auto;
+				bottom: 20rem;
+				/* scale: 1.2; */
+				transform-origin: center;
+			}
+		}
+		#temp {
+			font-size: 16vw;
+		}
+		#wIcon {
+			width: 25vw;
+			height: 25vw;
+			margin-top: -5vw;
+			margin-left: -13vw;
+		}
+	}
+	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
+		display: flex;
+	}
+	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
+		display: none;
+	}
+	.searchbar .searchIcon:nth-of-type(1) {
+		display: none !important;
+	}
+	.searchbar .searchIcon:nth-of-type(2) {
+		display: block !important;
+	}
+	.centerDiv:has(~ .menuBar #digitalCheckbox:checked) {
+		& .leftDiv {
+			margin-top: -6vw;
+		}
+		& .rAndakar {
+			scale: 0.8;
+		}
+	}
+	.centerDiv:has(~ .menuBar #hideWeatherCheckbox:checked) .topDiv .lrectangle {
+		display: none;
+	}
+	.centerDiv {
+		position: relative;
+		margin-bottom: 6rem;
+		padding-top: 0;
+	}
+	.resultBox {
+		scale: 1.5;
+		width: calc(94vw / 0.75);
+		margin-left: calc(320px - 94vw);
+		transform-origin: top left;
+	}
+	.resultBox {
+		top: 120px;
+		bottom: unset;
+	}
+	.resultBox.show {
+		transform: translateY(36px);
+	}
+	.searchWithCont {
+		display: none;
+	}
+	.shortcutsContainer[style="display: none;"] {
+		display: flex !important;
+	}
+	.hangno:has(
+			+ :is(
+					.toolsCont[style="display: flex; opacity: 1; transform: translateX(0px); gap: 12px;"],
+					.toolsCont[style="display: flex; opacity: 0; transform: translateX(-100%); gap: 0px;"]
+				)
+		) {
+		& .icon {
+			margin: 0;
+		}
+		& .label {
+			width: 0;
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+	.shortcutsContainer {
+		margin: 0;
+		width: fit-content;
+		gap: 1.8rem;
+		flex-wrap: nowrap;
+		max-width: unset;
+		padding: 20px 0;
+	}
+	#shortcuts-section {
+		padding-left: 30px;
+		overflow-x: scroll;
+		scrollbar-width: none;
+		position: fixed;
+		bottom: 62px;
+		max-width: unset;
+		left: 0;
+	}
+	#shortcuts-section .wrapper {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 425px) and (max-height: 700px) {
+	.resultBox {
+		bottom: -32px;
+	}
 }

@@ -6,71 +6,30 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Function to detect which browser is being used
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-const isFirefox = typeof browser !== "undefined";
-// const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-const isEdge = /Edg/.test(navigator.userAgent);
-const isBrave = navigator.brave && navigator.brave.isBrave; // Detect Brave
-const isDesktop = !/Android|iPhone|iPad|iPod/.test(navigator.userAgent); // Check if the device is not mobile
+
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
+// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
+// TODO: Move all the theme functions stuff in a file called `theme.js`
+// TODO: Move all the settings in a file called `settings.js`
+// TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
+// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
+// TODO: Move into file called `welcome-greeting.js`(?)
+// TODO: Move into file called `animations.js`(?)
+
 
 let proxyurl;
-let clocktype;
-let hourformat;
-
-window.addEventListener("DOMContentLoaded", async () => {
-    // Cache DOM elements
-    const userAPIInput = document.getElementById("userAPI");
-    const userLocInput = document.getElementById("userLoc");
+window.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
-    const saveAPIButton = document.getElementById("saveAPI");
-    const saveLocButton = document.getElementById("saveLoc");
-    const useGPSButton = document.getElementById("useGPS");
     const saveProxyButton = document.getElementById("saveproxy");
-    const resetbtn = document.getElementById("resetsettings");
-
-    // Load saved data from localStorage
-    const savedApiKey = localStorage.getItem("weatherApiKey");
-    const savedLocation = localStorage.getItem("weatherLocation");
     const savedProxy = localStorage.getItem("proxy");
-
-    // Pre-fill input fields with saved data
-    if (savedLocation) userLocInput.value = savedLocation;
-    if (savedApiKey) userAPIInput.value = savedApiKey;
 
     const defaultProxyURL = "https://mynt-proxy.rhythmcorehq.com"; //Default proxy url
     if (savedProxy && savedProxy !== defaultProxyURL) {
         userProxyInput.value = savedProxy;
     }
 
-    // Function to simulate button click on Enter key press
-    function handleEnterPress(event, buttonId) {
-        if (event.key === "Enter") {
-            document.getElementById(buttonId).click();
-        }
-    }
-
-    // Add event listeners for handling Enter key presses
-    userAPIInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveAPI"));
-    userLocInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveLoc"));
     userProxyInput.addEventListener("keydown", (event) => handleEnterPress(event, "saveproxy"));
-
-    // Save API key to localStorage
-    saveAPIButton.addEventListener("click", () => {
-        const apiKey = userAPIInput.value.trim();
-        localStorage.setItem("weatherApiKey", apiKey);
-        userAPIInput.value = "";
-        location.reload();
-    });
-
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-    // Reset settings (clear localStorage)
-    resetbtn.addEventListener("click", () => {
-        if (confirm(translations[currentLanguage]?.confirmRestore || translations["en"].confirmRestore)) {
-            localStorage.clear();
-            location.reload();
-        }
-    });
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
@@ -97,1101 +56,11 @@ window.addEventListener("DOMContentLoaded", async () => {
         location.reload();
     });
 
-    // Default Weather API key
-    const weatherApiKeys = [
-        "d36ce712613d4f21a6083436240910",
-        "db0392b338114f208ee135134240312",
-        "de5f7396db034fa2bf3140033240312",
-        "c64591e716064800992140217240312",
-        "9b3204c5201b4b4d8a2140330240312",
-        "eb8a315c15214422b60140503240312",
-        "cd148ebb1b784212b74140622240312",
-        "7ae67e219af54df2840140801240312",
-        "0a6bc8a404224c8d89953341241912",
-        "f59e58d7735d4739ae953115241912"
-    ];
-    const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
-
-    // Determine API key and proxy URL to use
-    const apiKey = savedApiKey || defaultApiKey;
+    // Determine which proxy URL to use
     proxyurl = savedProxy || defaultProxyURL;
-
-    // Determine the location to use
-    let currentUserLocation = savedLocation;
-
-    // Flag indicating whether to use GPS
-    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
-
-    // Fetch weather data based on a location
-    async function fetchWeather(location) {
-        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-        try {
-            let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
-            const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
-            const weatherParsedLang = localStorage.getItem("weatherParsedLang");
-
-            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
-
-            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
-                // Fetch weather data using Weather API
-                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
-                let data = await fetch(weatherApi);
-                parsedData = await data.json();
-                if (!parsedData.error) {
-                    // Extract only the necessary fields before saving
-                    const filteredData = {
-                        location: {
-                            name: parsedData.location.name,
-                        },
-                        current: {
-                            condition: {
-                                text: parsedData.current.condition.text,
-                                icon: parsedData.current.condition.icon,
-                            },
-                            temp_c: parsedData.current.temp_c,
-                            temp_f: parsedData.current.temp_f,
-                            humidity: parsedData.current.humidity,
-                            feelslike_c: parsedData.current.feelslike_c,
-                            feelslike_f: parsedData.current.feelslike_f,
-                        },
-                    };
-
-                    // Save filtered weather data to localStorage
-                    localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
-                    localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
-                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
-                    localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
-                }
-                UpdateWeather();
-            } else {
-                setTimeout(UpdateWeather, 25);
-            }
-
-            function UpdateWeather() {
-                // Weather data
-                const conditionText = parsedData.current.condition.text;
-                const tempCelsius = Math.round(parsedData.current.temp_c);
-                const tempFahrenheit = Math.round(parsedData.current.temp_f);
-                const humidity = parsedData.current.humidity;
-                const feelsLikeCelsius = parsedData.current.feelslike_c;
-                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
-
-                // Update DOM elements with the weather data
-                document.getElementById("conditionText").textContent = conditionText;
-
-                // Localize and display temperature and humidity
-                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
-
-                // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
-                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
-
-                // Event Listener for the Fahrenheit toggle
-                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-                const updateTemperatureDisplay = () => {
-                    const tempElement = document.getElementById("temp");
-                    const feelsLikeElement = document.getElementById("feelsLike");
-                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
-
-                    if (fahrenheitCheckbox.checked) {
-                        // Update temperature
-                        tempElement.textContent = localizedTempFahrenheit;
-                        const tempUnitF = document.createElement("span");
-                        tempUnitF.className = "tempUnit";
-                        tempUnitF.textContent = "°F";
-                        tempElement.appendChild(tempUnitF);
-
-                        // TODO: Change, it's hard-coded for cs language
-                        // Update feels like
-                        const feelsLikeFUnit = currentLanguage === 'cs' ? ' °F' : '°F';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                    } else {
-                        // Update temperature
-                        tempElement.textContent = localizedTempCelsius;
-                        const tempUnitC = document.createElement("span");
-                        tempUnitC.className = "tempUnit";
-                        tempUnitC.textContent = "°C";
-                        tempElement.appendChild(tempUnitC);
-
-                        // TODO: Change, it's hard-coded for cs language
-                        // Update feels like
-                        const feelsLikeCUnit = currentLanguage === 'cs' ? ' °C' : '°C';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
-                    }
-                };
-                updateTemperatureDisplay();
-
-                // Setting weather Icon
-                const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
-                document.getElementById("wIcon").src = weatherIcon;
-
-                // TODO: Change, it's hard-coded for only few languages
-                // Define minimum width for the slider based on the language
-                const humidityMinWidth = {
-                    idn: "47%",
-                    hu: "48%",
-                    en: "42%", // Default for English and others
-                };
-                const slider = document.getElementById("slider");
-                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];
-
-                // Set slider width based on humidity
-                if (humidity > 40) {
-                    slider.style.width = `calc(${humidity}% - 60px)`;
-                }
-
-                // Update location
-                var city = parsedData.location.name;
-                // var city = "Thiruvananthapuram";
-                var maxLength = 10;
-                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-                document.getElementById("location").textContent = limitedText;
-
-            }
-        } catch (error) {
-            console.error("Error fetching weather data:", error);
-        }
-    }
-
-    // Function to fetch GPS-based location
-    async function fetchGPSLocation() {
-        try {
-            const getLocationFromGPS = () => {
-                return new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => reject(error),
-                        {timeout: 4000}
-                    );
-                });
-            };
-
-            const {latitude, longitude} = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
-        } catch (error) {
-            console.error("GPS Location retrieval failed: ", error);
-        }
-    }
-
-    // Fetch location dynamically based on user preference
-    await (async function initializeLocation() {
-        try {
-            if (useGPS) {
-                try {
-                    // Use GPS for dynamic location
-                    currentUserLocation = await fetchGPSLocation();
-                } catch {
-                    // Silent failover
-                }
-            }
-
-            if (!currentUserLocation) {
-                // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.loc;
-            }
-
-            // Fetch weather data
-            fetchWeather(currentUserLocation);
-        } catch (error) {
-            console.error("Failed to determine location:", error);
-            currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
-        }
-    })();
-
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS dynamically and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
-        location.reload();
-    });
-
-    // Handle manual location input
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        localStorage.setItem("useGPS", false);
-        userLocInput.value = "";
-        fetchWeather(userLocation);
-        location.reload();
-    });
-});
-// ---------------------------end of weather stuff--------------------
-
-// ------------------------ Bookmark System -----------------------------------
-// DOM Variables
-const bookmarkButton = document.getElementById("bookmarkButton");
-const bookmarkSidebar = document.getElementById("bookmarkSidebar");
-const bookmarkList = document.getElementById("bookmarkList");
-const bookmarkSearch = document.getElementById("bookmarkSearch");
-const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
-const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
-const bookmarkViewList = document.getElementById("bookmarkViewList");
-
-var bookmarksAPI;
-if (isFirefox && browser.bookmarks) {
-    bookmarksAPI = browser.bookmarks;
-} else if (typeof chrome !== "undefined" && chrome.bookmarks) {
-    bookmarksAPI = chrome.bookmarks;
-} else {
-    console.log("Bookmarks API is either not supported in this browser or permission is not granted by the user.");
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    bookmarkButton.addEventListener("click", function () {
-        toggleBookmarkSidebar();
-        bookmarkSearchClearButton.click();
-    });
-
-    bookmarkViewGrid.addEventListener("click", function () {
-        if (!bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
-    });
-
-    bookmarkViewList.addEventListener("click", function () {
-        if (bookmarkGridCheckbox.checked) bookmarkGridCheckbox.click();
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains("open")) {
-            toggleBookmarkSidebar();
-        }
-    });
-
-    bookmarkSearch.addEventListener("input", function () {
-        const searchTerm = bookmarkSearch.value.toLowerCase();
-        const bookmarks = bookmarkList.querySelectorAll("li[data-url], li.folder"); // Include both bookmarks and folders
-
-        Array.from(bookmarks).forEach(function (bookmark) {
-            const text = bookmark.textContent.toLowerCase();
-            const url = bookmark.dataset.url ? bookmark.dataset.url.toLowerCase() : "";
-            const isFolder = bookmark.classList.contains("folder");
-
-            // Show bookmarks if the search term matches either the name or the URL
-            if (!isFolder && (text.includes(searchTerm) || url.includes(searchTerm))) {
-                bookmark.style.display = ""; // Show matching bookmarks
-            } else if (isFolder) {
-                // For folders, check if any child bookmarks match the search
-                const childBookmarks = bookmark.querySelectorAll("li[data-url]");
-                let hasVisibleChild = false;
-                Array.from(childBookmarks).forEach(function (childBookmark) {
-                    const childText = childBookmark.textContent.toLowerCase();
-                    const childUrl = childBookmark.dataset.url ? childBookmark.dataset.url.toLowerCase() : "";
-                    if (childText.includes(searchTerm) || childUrl.includes(searchTerm)) {
-                        hasVisibleChild = true;
-                        childBookmark.style.display = ""; // Show matching child bookmarks
-                    } else {
-                        childBookmark.style.display = "none"; // Hide non-matching child bookmarks
-                    }
-                });
-
-                if (hasVisibleChild) {
-                    bookmark.style.display = ""; // Show folder if it has matching child bookmarks
-                    bookmark.classList.add("open"); // Open folder to show matching child bookmarks
-                } else {
-                    bookmark.style.display = "none"; // Hide folder if no child matches
-                    bookmark.classList.remove("open");
-                }
-            } else {
-                bookmark.style.display = "none"; // Hide non-matching bookmarks
-            }
-        });
-
-        if (searchTerm === "") {
-            // Reset display for all bookmarks and folders
-            Array.from(bookmarks).forEach(function (bookmark) {
-                bookmark.style.display = "";
-                if (bookmark.classList.contains("folder")) {
-                    bookmark.classList.remove("open");
-                    const childList = bookmark.querySelector("ul");
-                    if (childList) {
-                        childList.classList.add("hidden");
-                    }
-                }
-            });
-        }
-
-        // Show or hide the clear button based on the search term
-        bookmarkSearchClearButton.style.display = searchTerm ? "inline" : "none";
-    });
-
-    bookmarkSearchClearButton.addEventListener("click", function () {
-        bookmarkSearch.value = "";
-        bookmarkSearch.dispatchEvent(new Event("input")); // Trigger input event to clear search results
-    });
-
-    function toggleBookmarkSidebar() {
-        bookmarkSidebar.classList.toggle("open");
-        bookmarkButton.classList.toggle("rotate");
-
-        if (bookmarkSidebar.classList.contains("open")) {
-            loadBookmarks();
-        }
-    }
-
-    // Function to load bookmarks
-    function loadBookmarks() {
-        if (!bookmarksAPI || !bookmarksAPI.getTree) {
-            console.error("Bookmarks API is unavailable. Please check permissions or context.");
-            return;
-        }
-
-        bookmarksAPI.getTree().then(bookmarkTreeNodes => {
-            // Clear the current list
-            bookmarkList.innerHTML = "";
-
-            // Display the "Recently Added" folder
-            if (bookmarksAPI.getRecent) {
-                bookmarksAPI.getRecent(8).then(recentBookmarks => {
-                    if (recentBookmarks.length > 0) {
-                        const recentAddedFolder = {
-                            title: "Recently Added",
-                            children: recentBookmarks
-                        };
-                        bookmarkList.appendChild(displayBookmarks([recentAddedFolder]));
-                    }
-                });
-            }
-
-            // For Firefox: "Bookmarks Menu" and "Other Bookmarks" are distinct nodes
-            if (isFirefox) {
-                const toolbarNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Toolbar");
-                const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
-                const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
-
-                if (toolbarNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
-                }
-                if (menuNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
-                }
-                if (otherNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
-                }
-            } else {
-                let default_folder = "Bookmarks bar";
-                if (isEdge) {
-                    default_folder = "Favorites bar";
-                } else if (isBrave) {
-                    default_folder = "Bookmarks";
-                }
-                // Extract the "Main bookmarks" node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
-
-                if (mainBookmarks && mainBookmarks.children) {
-                    bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
-                }
-
-                // Extract the other "Bookmarks" folders and display them
-                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
-                if (bookmarksBar && bookmarksBar.children) {
-                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
-                }
-            }
-        }).catch(err => {
-            console.error("Error loading bookmarks:", err);
-        });
-    }
-
-    function displayBookmarks(bookmarkNodes) {
-        let list = document.createElement("ul");
-
-        // Separate folders and bookmarks
-        const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
-        const bookmarks = bookmarkNodes.filter(node => node.url);
-
-        // Sort folders and bookmarks separately
-        folders.sort((a, b) => a.title.localeCompare(b.title));
-        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
-
-        // Sort folders and bookmarks separately by dateAdded
-        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-
-        // Combine folders and bookmarks, placing folders first
-        const sortedNodes = [...folders, ...bookmarks];
-
-        for (let node of sortedNodes) {
-            if (node.id === "1") {
-                continue;
-            }
-            if (node.children && node.children.length > 0) {
-                let folderItem = document.createElement("li");
-
-                // Use the SVG icon from HTML
-                const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
-                folderIcon.removeAttribute("id"); // Remove the id to prevent duplicates
-                folderItem.appendChild(folderIcon);
-
-                folderItem.appendChild(document.createTextNode(node.title));
-                folderItem.classList.add("folder");
-
-                // Add event listener for unfolding/folding
-                folderItem.addEventListener("click", function (event) {
-                    event.stopPropagation();
-                    folderItem.classList.toggle("open");
-                    const subList = folderItem.querySelector("ul");
-                    if (subList) {
-                        subList.classList.toggle("hidden");
-                    }
-                });
-
-                let subList = displayBookmarks(node.children);
-                subList.classList.add("hidden");
-                folderItem.appendChild(subList);
-
-                list.appendChild(folderItem);
-            } else if (node.url) {
-                let item = document.createElement("li");
-                item.dataset.url = node.url; // Add URL as dataset for search functionality
-                let link = document.createElement("a");
-                link.href = node.url;
-                let span = document.createElement("span");
-                span.textContent = node.title;
-
-                let favicon = document.createElement("img");
-                favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
-                favicon.classList.add("favicon");
-                favicon.onerror = () => {
-                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
-                };
-
-                // Create the delete button
-                let deleteButton = document.createElement("button");
-                deleteButton.textContent = "✖";
-                deleteButton.classList.add("bookmark-delete-button");
-
-                deleteButton.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)} "${node.title || node.url}"?`)) {
-                        if (isFirefox) {
-                            // Firefox API (Promise-based)
-                            bookmarksAPI.remove(node.id).then(() => {
-                                item.remove(); // Remove the item from the DOM
-                            }).catch(err => {
-                                console.error("Error removing bookmark in Firefox:", err);
-                            });
-                        } else {
-                            // Chrome API (Callback-based)
-                            bookmarksAPI.remove(node.id, function () {
-                                item.remove(); // Remove the item from the DOM
-                            });
-                        }
-                    }
-                });
-
-                link.appendChild(favicon);
-                link.appendChild(span);
-                item.appendChild(link);
-                item.appendChild(deleteButton); // Add delete button to the item
-
-                // Open links in the current tab or new tab if ctrl pressed
-                link.addEventListener("click", function (event) {
-                    if (event.ctrlKey || event.metaKey) {
-                        // Open in a new tab
-                        event.preventDefault();
-                        if (isFirefox) {
-                            browser.tabs.create({url: node.url, active: false});
-                        } else if (isChrome) {
-                            chrome.tabs.create({url: node.url, active: false});
-                        } else {
-                            window.open(node.url, "_blank");
-                        }
-                    } else {
-                        // Open in the current tab
-                        event.preventDefault();
-                        if (isFirefox) {
-                            browser.tabs.update({url: node.url});
-                        } else if (isChrome) {
-                            chrome.tabs.update({url: node.url}, function () {
-                            });
-                        } else {
-                            window.location.href = node.url;
-                        }
-                    }
-                });
-                list.appendChild(item);
-            }
-        }
-
-        list.addEventListener("click", function (event) {
-            event.stopPropagation();
-        });
-
-        return list;
-    }
 });
 
-// ------------------------ End of Bookmark System -----------------------------------
-
-// ----------------------------------- To Do List ----------------------------------------
-
-// DOM Variables
-const todoContainer = document.getElementById("todoContainer");
-const todoListCont = document.getElementById("todoListCont");
-const todoulList = document.getElementById("todoullist");
-const todoAdd = document.getElementById("todoAdd");
-const todoInput = document.getElementById("todoInput");
-let todoList = {}; // Initialize todoList JSON
-
-// Add event listeners for Add button click or Enter key press
-todoAdd.addEventListener("click", addtodoItem);
-todoInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-        addtodoItem();
-    }
-});
-
-// Utility function to sanitize input
-function sanitizeInput(input) {
-    const div = document.createElement("div");
-    div.textContent = input;
-    return div.innerHTML;
-}
-
-// Function to add items to the TODO list
-function addtodoItem() {
-    const inputText = todoInput.value.trim(); // Remove useless whitespaces
-    if (inputText === "") {
-        return; // Return the function when the input is empty
-    }
-    const t = "t" + Date.now(); // Generate a Unique ID
-    const rawText = inputText;
-    todoList[t] = {title: rawText, status: "pending", pinned: false}; // Add data to the JSON variable
-    const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
-    todoulList.appendChild(li); // Append the new item to the DOM immediately
-    todoInput.value = ""; // Clear Input
-    SaveToDoData(); // Save changes
-}
-
-function createTodoItemDOM(id, title, status, pinned) {
-    let li = document.createElement("li");
-    li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
-    const removebtn = document.createElement("span"); // Create the Cross Icon
-    removebtn.setAttribute("class", "todoremovebtn");
-    removebtn.textContent = "\u00d7";
-    li.appendChild(removebtn); // Add the cross icon to the LI tag
-    li.setAttribute("class", "todolistitem");
-    if (status === "completed") {
-        li.classList.add("checked");
-    }
-    const pinbtn = document.createElement("span"); // Create the Cross Icon
-    pinbtn.setAttribute("class", "todopinbtn");
-    li.appendChild(pinbtn); // Add the cross icon to the LI tag
-    if (pinned) {
-        li.classList.add("pinned");
-    }
-    li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
-    return li; // Return the created `li` element
-}
-
-// Event delegation for task check and remove
-todoulList.addEventListener("click", (event) => {
-    if (event.target.tagName === "LI") {
-        event.target.classList.toggle("checked"); // Check the clicked LI tag
-        let id = event.target.dataset.todoitem;
-        todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
-        SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains("todoremovebtn")) {
-        let id = event.target.parentElement.dataset.todoitem;
-        event.target.parentElement.remove(); // Remove the clicked LI tag
-        delete todoList[id]; // Remove the deleted List item data
-        SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains("todopinbtn")) {
-        event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
-        let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned !== true)); // Update status
-        SaveToDoData(); // Save Changes
-    }
-});
-
-// Save JSON to local Storage
-function SaveToDoData() {
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-}
-
-// Fetch saved JSON and create list items using it
-function ShowToDoList() {
-    try {
-        todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
-        const fragment = document.createDocumentFragment(); // Create a DocumentFragment
-        for (let id in todoList) {
-            const todo = todoList[id];
-            const li = createTodoItemDOM(id, todo.title, todo.status, todo.pinned); // Create `li` elements
-            fragment.appendChild(li); // Add `li` to the fragment
-        }
-        todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
-    } catch (error) {
-        console.error("Error loading from localStorage:", error);
-        localStorage.setItem("todoList", "{}"); // Reset corrupted data
-    }
-}
-
-// Code to reset the List on the Next Day
-let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
-let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
-if (todoLastUpdateDate === todoCurrentDate) {
-    ShowToDoList();
-} else {
-    // Modify the list when last update date and the current date does not match
-    localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
-    todoList = JSON.parse(localStorage.getItem("todoList")) || {};
-    for (let id in todoList) {
-        if (todoList[id].pinned === false) {
-            if (todoList[id].status === "completed") {
-                delete todoList[id]; // Remove the Unpinned and Completed list item data
-            }
-        } else {
-            todoList[id].status = "pending"; // Reset status of pinned items
-        }
-    }
-    SaveToDoData();
-    ShowToDoList();
-}
-
-// Toggle menu and tooltip visibility
-todoListCont.addEventListener("click", function (event) {
-    const isMenuVisible = todoContainer.style.display === "grid";
-
-    // Toggle menu visibility
-    todoContainer.style.display = isMenuVisible ? "none" : "grid";
-
-    // Add or remove the class to hide the tooltip
-    if (!isMenuVisible) {
-        todoListCont.classList.add("menu-open"); // Hide tooltip
-        todoInput.focus(); // Auto focus on input box
-    } else {
-        todoListCont.classList.remove("menu-open"); // Restore tooltip
-    }
-});
-
-// Close menu when clicking outside
-document.addEventListener("click", function (event) {
-    const isClickInside =
-        todoContainer.contains(event.target) || todoListCont.contains(event.target) || event.target.classList.contains("todoremovebtn");
-
-    if (!isClickInside && todoContainer.style.display === "grid") {
-        todoContainer.style.display = "none"; // Hide menu
-        todoListCont.classList.remove("menu-open"); // Restore tooltip
-    }
-
-    event.stopPropagation();
-});
-
-// ------------------------------- End of To Do List -------------------------------------
-
-// Retrieve current time and calculate initial angles
-var currentTime = new Date();
-var initialSeconds = currentTime.getSeconds();
-var initialMinutes = currentTime.getMinutes();
-var initialHours = currentTime.getHours();
-
-// Initialize cumulative rotations
-let cumulativeSecondRotation = initialSeconds * 6; // 6° par seconde
-let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° par minute + ajustement pour les secondes
-let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° par heure + ajustement pour les minutes
-
-// Apply initial rotations (no need to wait 1s now)
-document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-
-let intervalId;
-let secondreset = false;
-let hourreset = false;
-let minreset = false;
-
-function initializeClockType() {
-    const savedClockType = localStorage.getItem("clocktype");
-    clocktype = savedClockType ? savedClockType : "analog"; // Default to "analog" if nothing is saved
-    localStorage.setItem("clocktype", clocktype); // Ensure it's set in local storage
-}
-
-// Call this function to initialize the clock type
-initializeClockType();
-
-function updateDate() {
-    if (clocktype === "analog") {
-        var currentTime = new Date();
-        var dayOfWeek = currentTime.getDay();
-        var dayOfMonth = currentTime.getDate();
-        var month = currentTime.getMonth();
-
-        // Define the current language
-        const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-        // Get the translated name of the day
-        var dayName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].days &&
-            translations[currentLanguage].days[dayOfWeek]
-        ) {
-            dayName = translations[currentLanguage].days[dayOfWeek];
-        } else {
-            dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-        }
-
-        // Get the translated name of the month
-        var monthName;
-        if (
-            translations[currentLanguage] &&
-            translations[currentLanguage].months &&
-            translations[currentLanguage].months[month]
-        ) {
-            monthName = translations[currentLanguage].months[month];
-        } else {
-            monthName = translations["en"].months[month]; // Fallback to English month name
-        }
-
-        // Localize the day of the month
-        var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
-        const dateDisplay = {
-            bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
-            zh: `${monthName}${dayOfMonth}日${dayName}`,
-            cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
-            hi: `${dayName}, ${dayOfMonth} ${monthName}`,
-            it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            ja: `${dayName.substring(0, 1)}, ${monthName}${dayOfMonth}`,
-            ko: `${dayName.substring(0, 1)}, ${monthName} ${dayOfMonth}일`,
-            pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            ru: `${dayName.substring(0, 2)}, ${dayOfMonth} ${monthName.substring(0, 4)}.`,
-            es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            tr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName}`,
-            uz: `${dayName.substring(0, 3)}, ${dayOfMonth}-${monthName}`,
-            vi: `${dayName}, ngày ${dayOfMonth} ${monthName}`,
-            idn: `${dayName}, ${dayOfMonth} ${monthName}`,
-            fr: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`, // Jeudi, 5 avril
-            az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
-            hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
-            default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
-        };
-        document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
-    }
-}
-
-function updateanalogclock() {
-    var currentTime = new Date();
-    var initialSeconds = currentTime.getSeconds();
-    var initialMinutes = currentTime.getMinutes();
-    var initialHours = currentTime.getHours();
-
-    // Initialize cumulative rotations
-    let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
-    if (secondreset) {
-        document.getElementById("second").style.transition = "none";
-        document.getElementById("second").style.transform = `rotate(0deg)`;
-        secondreset = false;
-        return;
-    }
-    if (minreset) {
-        document.getElementById("minute").style.transition = "none";
-        document.getElementById("minute").style.transform = `rotate(0deg)`;
-        minreset = false;
-        return;
-    }
-    if (hourreset) {
-        document.getElementById("hour").style.transition = "none";
-        document.getElementById("hour").style.transform = `rotate(0deg)`;
-        hourreset = false;
-        return;
-    }
-    if (cumulativeSecondRotation === 0) {
-        document.getElementById("second").style.transition = "transform 1s ease";
-        document.getElementById("second").style.transform = `rotate(361deg)`;
-        secondreset = true;
-    } else if (secondreset !== true) {
-        document.getElementById("second").style.transition = "transform 1s ease";
-        document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-    }
-
-    if (cumulativeMinuteRotation === 0) {
-        document.getElementById("minute").style.transition = "transform 1s ease";
-        document.getElementById("minute").style.transform = `rotate(361deg)`;
-        minreset = true;
-    } else if (minreset !== true) {
-        document.getElementById("minute").style.transition = "transform 1s ease";
-        document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-    }
-
-    if (cumulativeHourRotation === 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
-        document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
-        document.getElementById("hour").style.transform = `rotate(0deg)`;
-        hourreset = true;
-    } else if (hourreset !== true) {
-        document.getElementById("hour").style.transition = "transform 1s ease";
-        document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-    }
-    // Update date immediately
-    updateDate();
-}
-
-function getGreeting() {
-    const currentHour = new Date().getHours();
-    let greetingKey;
-
-    // Determine the greeting key based on the current hour
-    if (currentHour < 12) {
-        greetingKey = "morning";
-    } else if (currentHour < 17) {
-        greetingKey = "afternoon";
-    } else {
-        greetingKey = "evening";
-    }
-
-    // Get the user's language setting
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
-
-    // Check if the greeting is available for the selected language
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].greeting &&
-        translations[currentLanguage].greeting[greetingKey]
-    ) {
-        return translations[currentLanguage].greeting[greetingKey];
-    } else {
-        // Fallback to English greeting if the currentLanguage or greeting key is missing
-        return translations["en"].greeting[greetingKey];
-    }
-}
-
-function updatedigiClock() {
-    const hourformatstored = localStorage.getItem("hourformat");
-    let hourformat = hourformatstored === "true"; // Default to false if null
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const isGreetingEnabled = localStorage.getItem("greetingEnabled") === "true";
-    greetingCheckbox.checked = isGreetingEnabled;
-
-    const now = new Date();
-    const dayOfWeek = now.getDay(); // Get day of the week (0-6)
-    const dayOfMonth = now.getDate(); // Get current day of the month (1-31)
-
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-    // Get translated day name
-    let dayName;
-    if (
-        translations[currentLanguage] &&
-        translations[currentLanguage].days &&
-        translations[currentLanguage].days[dayOfWeek]
-    ) {
-        dayName = translations[currentLanguage].days[dayOfWeek];
-    } else {
-        dayName = translations["en"].days[dayOfWeek]; // Fallback to English day name
-    }
-
-    // Localize the day of the month
-    const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
-
-    // Determine the translated short date string based on language
-    const dateFormats = {
-        az: `${dayName} ${dayOfMonth}`,
-        bn: `${dayName}, ${localizedDayOfMonth}`,
-        mr: `${dayName}, ${localizedDayOfMonth}`,
-        np: `${dayName}, ${localizedDayOfMonth}`,
-        zh: `${dayOfMonth}日${dayName}`,
-        cs: `${dayName}, ${dayOfMonth}.`,
-        hi: `${dayName}, ${dayOfMonth}`,
-        ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
-        ko: `${dayOfMonth} ${dayName.substring(0, 1)}`,
-        pt: `${dayName}, ${dayOfMonth}`,
-        ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
-        vi: `${dayOfMonth} ${dayName}`,
-        idn: `${dayOfMonth} ${dayName}`,
-        fr: `${dayName} ${dayOfMonth}`, // Mardi 11
-        hu: `${dayName} ${dayOfMonth}`, // Kedd 11
-        default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
-    };
-    const dateString = dateFormats[currentLanguage] || dateFormats.default;
-
-    // Handle time formatting based on the selected language
-    let timeString;
-    let period = ""; // For storing AM/PM equivalent
-
-    // Array of languages to use "en-US" format
-    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
-    const localizedLanguages = ["bn", "mr", "np"];
-    // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
-
-    // Set time options and determine locale based on the current language
-    const timeOptions = {hour: "2-digit", minute: "2-digit", hour12: hourformat};
-    const locale = specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage) ? "en-US" : currentLanguage;
-    timeString = now.toLocaleTimeString(locale, timeOptions);
-
-    // Split the time and period (AM/PM) if in 12-hour format
-    if (hourformat) {
-        [timeString, period] = timeString.split(' '); // Split AM/PM if present
-    }
-
-    // Split the hours and minutes from the localized time string
-    let [hours, minutes] = timeString.split(':');
-
-    // Remove leading zero from hours in 12-hour format
-    if (hourformat) {
-        hours = parseInt(hours, 10).toString(); // Remove leading zero
-    }
-
-    // Localize hours and minutes for the selected language
-    const localizedHours = localizeNumbers(hours, currentLanguage);
-    const localizedMinutes = localizeNumbers(minutes, currentLanguage);
-
-    // Update the hour, colon, and minute text elements
-    document.getElementById("digihours").textContent = localizedHours;
-    document.getElementById("digicolon").textContent = ":"; // Static colon
-    document.getElementById("digiminutes").textContent = localizedMinutes;
-
-    // Manually set the period for special languages if 12-hour format is enabled
-    if (hourformat && specialLanguages.includes(currentLanguage)) {
-        period = parseInt(hours, 10) < 12 ? "AM" : "PM";
-    }
-
-    // Display AM/PM if in 12-hour format
-    if (hourformat) {
-        document.getElementById("amPm").textContent = period; // Show AM/PM based on calculated period
-    } else {
-        document.getElementById("amPm").textContent = ""; // Clear AM/PM for 24-hour format
-    }
-
-    // Update the translated date
-    document.getElementById("digidate").textContent = dateString;
-
-    const clocktype1 = localStorage.getItem("clocktype");
-    if (clocktype1 === "digital" && isGreetingEnabled) {
-        document.getElementById("date").innerText = getGreeting();
-    } else if (clocktype1 === "digital") {
-        document.getElementById("date").innerText = ""; // Hide the greeting
-    }
-}
-
-// Function to start the clock
-function startClock() {
-    if (!intervalId) { // Only set interval if not already set
-        intervalId = setInterval(updateanalogclock, 500);
-    }
-}
-
-// Function to stop the clock
-function stopClock() {
-    clearInterval(intervalId);
-    intervalId = null; // Reset intervalId
-}
-
-// Initial clock display
-displayClock();
-setInterval(updatedigiClock, 1000); // Update digital clock every second
-
-// Start or stop clocks based on clock type and visibility state
-if (clocktype === "digital") {
-    updatedigiClock();
-} else if (clocktype === "analog") {
-    if (document.visibilityState === "visible") {
-        startClock();
-        updateDate(); // Immediately update date when clock is analog
-    }
-}
-
-// Event listener for visibility change
-document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "visible") {
-        startClock(); // Start the clock if the tab is focused
-        updateDate(); // Update date when the tab becomes visible
-    } else {
-        stopClock(); // Stop the clock if the tab is not focused
-    }
-});
-
-function displayClock() {
-    const analogClock = document.getElementById("analogClock");
-    const digitalClock = document.getElementById("digitalClock");
-
-    if (clocktype === "analog") {
-        analogClock.style.display = "block"; // Show the analog clock
-        digitalClock.style.display = "none";  // Hide the digital clock
-    } else if (clocktype === "digital") {
-        digitalClock.style.display = "block";  // Show the digital clock
-        analogClock.style.display = "none";     // Hide the analog clock
-    }
-}
-
-// Call updateanalogclock when the document is fully loaded
-document.addEventListener("DOMContentLoaded", function () {
-    updateanalogclock();
-});
-
-// End of clock display
-
-document.addEventListener("DOMContentLoaded", () => {
-    const userTextDiv = document.getElementById("userText");
-    const userTextCheckbox = document.getElementById("userTextCheckbox");
-
-    // Load and apply the checkbox state
-    const isUserTextVisible = localStorage.getItem("userTextVisible") !== "false";
-    userTextCheckbox.checked = isUserTextVisible;
-    userTextDiv.style.display = isUserTextVisible ? "block" : "none";
-
-    // Toggle userText display based on checkbox state
-    userTextCheckbox.addEventListener("change", () => {
-        const isVisible = userTextCheckbox.checked;
-        userTextDiv.style.display = isVisible ? "block" : "none";
-        localStorage.setItem("userTextVisible", isVisible);
-    });
-
-    // Set the default language to English if no language is saved
-    const savedLang = localStorage.getItem("selectedLanguage") || "en";
-    applyLanguage(savedLang);
-
-    // Load the stored text if it exists
-    const storedValue = localStorage.getItem("userText");
-    if (storedValue) {
-        userTextDiv.textContent = storedValue;
-    } else {
-        // Fallback to the placeholder based on the selected language
-        const placeholder = userTextDiv.dataset.placeholder || translations["en"].userText; // Fallback to English
-        userTextDiv.textContent = placeholder;
-    }
-
-    // Handle input event
-    userTextDiv.addEventListener("input", function () {
-        localStorage.setItem("userText", userTextDiv.textContent);
-    });
-
-    // Remove placeholder text when the user starts editing
-    userTextDiv.addEventListener("focus", function () {
-        if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
-            userTextDiv.textContent = "";  // Clear the placeholder when focused
-        }
-    });
-
-    // Restore placeholder if the user leaves the div empty after editing
-    userTextDiv.addEventListener("blur", function () {
-        if (userTextDiv.textContent === "") {
-            userTextDiv.textContent = userTextDiv.dataset.placeholder;  // Show the placeholder again if empty
-        }
-    });
-});
+// --------------------------- Search Bar ------------------------------------
 
 // Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById("searchbar");
@@ -1211,6 +80,14 @@ document.addEventListener("click", function (event) {
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
 
+    dropdown.addEventListener("click", (event) => {
+        if (dropdown.style.display === "block") {
+            event.stopPropagation();
+            dropdown.style.display = "none";
+            searchInput.focus();
+        }
+    })
+
     document.addEventListener("click", (event) => {
         if (dropdown.style.display === "block") {
             event.stopPropagation();
@@ -1221,6 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown-btn").addEventListener("click", function (event) {
         const resultBox = document.getElementById("resultBox");
         if (resultBox.classList.toString().includes("show")) return;
+
+        // Clear selected state and reset index when dropdown opens
+        dropdownItems.forEach(item => item.classList.remove("selected"));
+        selectedIndex = -1;
+
         dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     });
 
@@ -1245,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // get the parent
         const parent = sortedDropdowns[0]?.parentNode;
 
-        // Append the items. if parent exists.
+        // Append the items if parent exists.
         if (parent) {
             sortedDropdowns.forEach(item => parent.appendChild(item));
         }
@@ -1258,11 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
             const selector = `*[data-engine-name=${element.getAttribute("data-engine-name")}]`;
 
-            // console.log(element, selector);
-
             radioButton.checked = true;
 
-            // Swap The dropdown. and sort them
+            // Swap the dropdown and sort them
             swapDropdown(selector);
             sortDropdown()
 
@@ -1272,7 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Make entire search-engine div clickable
     document.querySelectorAll(".search-engine").forEach((engineDiv) => {
-        engineDiv.addEventListener("click", () => {
+        engineDiv.addEventListener("click", (event) => {
+            event.stopPropagation();
             const radioButton = engineDiv.querySelector('input[type="radio"]');
 
             radioButton.checked = true;
@@ -1281,11 +162,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const selector = `[data-engine="${radioButtonValue}"]`;
 
-            // Swap The dropdown.
+            // Swap the dropdown
             swapDropdown(selector);
-            sortDropdown()
+            sortDropdown();
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+            const searchBar = document.querySelector(".searchbar");
+            searchInput.focus();
+            searchBar.classList.add("active");
         });
     });
 
@@ -1402,27 +287,35 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".dropdown").addEventListener("keydown", function (event) {
         if (dropdown.style.display === "block") {
             if (event.key === "ArrowDown") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
 
                 // Scroll the newly selected item into view
                 const activeElement = dropdownItems[selectedIndex];
                 activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "ArrowUp") {
+                event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
 
                 // Scroll the newly selected item into view
                 const activeElement = dropdownItems[selectedIndex];
                 activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "Enter") {
-                const selector = ".dropdown-content .selected";
-                const engine = element.getAttribute("data-engine");
+                const selectedItem = document.querySelector(".dropdown-content .selected");
+                const engine = selectedItem.getAttribute("data-engine");
                 const radioButton = document.querySelector(`input[type="radio"][value="engine${engine}"]`);
 
                 radioButton.checked = true;
 
-                // Swap The dropdown. and sort them
-                swapDropdown(selector);
-                sortDropdown()
+                // Swap the dropdown and sort them
+                swapDropdown(`*[data-engine="${engine}"]`);
+                sortDropdown();
+
+                localStorage.setItem("selectedSearchEngine", radioButton.value);
+
+                // Close the dropdown after selection
+                dropdown.style.display = "none";
+                searchInput.focus();
             }
             updateSelection();
         }
@@ -1438,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("selectedSearchEngine", selectedOption);
         });
     });
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
@@ -1448,6 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedRadioButton.checked = true;
         }
     }
+
     // Remove Loading Screen When the DOM and the Theme has Loaded
     document.getElementById("LoadingScreen").style.display = "none";
     // it is necessary for some elements not to blink when the page is reloaded
@@ -1456,144 +351,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 25);
 });
 
-//  -----------Voice Search------------
-function isSupportedBrowser() {
-    return (isChrome || isEdge) && isDesktop && !isBrave;
-}
-
-// Set the initial state of the mic icon and checkbox based on saved state or supported browser
-const micIcon = document.getElementById("micIcon");
-const micIconCheckbox = document.getElementById("micIconCheckbox");
-
-// Check if there's a saved state in localStorage
-const savedState = localStorage.getItem("micIconVisible");
-let isMicIconVisible;
-
-// If saved state exists, use it; otherwise, fallback to initial state based on browser support
-if (savedState !== null) {
-    isMicIconVisible = savedState === "true";
-} else {
-    // Default state: Hide mic icon if browser is not supported
-    isMicIconVisible = isSupportedBrowser();
-    // Save the initial state based on the user agent
-    localStorage.setItem("micIconVisible", isMicIconVisible);
-}
-
-// Set the checkbox state based on the saved or default state
-micIconCheckbox.checked = !isMicIconVisible; // Checked hides the mic icon
-if (isMicIconVisible) {
-    micIcon.style.display = "block";  // Mic icon is displayed
-} else {
-    micIcon.style.display = "none";   // Hide the mic icon
-}
-
-// Function to toggle mic icon visibility
-function toggleMicIconVisibility(isVisible) {
-    micIcon.style.display = isVisible ? "block" : "none";
-    localStorage.setItem("micIconVisible", isVisible); // Save to localStorage
-}
-
-// Toggle mic icon display based on checkbox state
-micIconCheckbox.addEventListener("change", () => {
-    const isChecked = micIconCheckbox.checked;
-    toggleMicIconVisibility(!isChecked); // Checked hides the mic icon
-
-    // Only initialize Web Speech API if the mic icon is visible
-    if (!isChecked) {
-        initializeSpeechRecognition();
-    }
-});
-
-// Function to initialize Web Speech API if supported
-function initializeSpeechRecognition() {
-    const searchInput = document.getElementById("searchQ");
-    const resultBox = document.getElementById("resultBox");
-    const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-    // Check if the browser supports SpeechRecognition API
-    const isSpeechRecognitionAvailable = "webkitSpeechRecognition" in window || "SpeechRecognition" in window;
-
-    if (isSpeechRecognitionAvailable) {
-        // Initialize SpeechRecognition (cross-browser compatibility)
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.continuous = false;  // Stop recognition after first result
-        recognition.interimResults = true; // Enable interim results for live transcription
-        recognition.lang = currentLanguage; // Set the language dynamically based on selected language
-
-        let isRecognizing = false; // Flag to check if recognition is active
-
-        // When speech recognition starts
-        recognition.onstart = () => {
-            isRecognizing = true; // Set the flag to indicate recognition is active
-            const selectedRadio = document.querySelector(".colorPlate:checked");
-            if (selectedRadio.value !== "dark") {
-                micIcon.style.color = "var(--darkerColor-blue)";
-                // micIcon.style.transform = "scale(1.05)";
-            }
-            searchInput.placeholder = `${translations[currentLanguage]?.listenPlaceholder || translations["en"].listenPlaceholder}`;
-            micIcon.classList.add("micActive");
-        };
-
-        // When speech recognition results are available (including interim results)
-        recognition.onresult = (event) => {
-            let transcript = "";
-            // Loop through results to build the transcript text
-            for (let i = 0; i < event.results.length; i++) {
-                transcript += event.results[i][0].transcript; // Append each piece of the transcript
-            }
-            // Display the interim result in the search input
-            searchInput.value = transcript;
-            // Trigger the input event manually to update suggestions
-            searchInput.dispatchEvent(new Event("input"));
-            // If the result is final, hide the result box
-            if (event.results[event.results.length - 1].isFinal) {
-                resultBox.style.display = "none"; // Hide result box after final input
-            }
-        };
-
-        // When an error occurs during speech recognition
-        recognition.onerror = (event) => {
-            console.error("Speech recognition error: ", event.error);
-            isRecognizing = false; // Reset flag on error
-        };
-
-        // When speech recognition ends (either by user or automatically)
-        recognition.onend = () => {
-            isRecognizing = false; // Reset the flag to indicate recognition has stopped
-            micIcon.style.color = "var(--darkColor-blue)"; // Reset mic color
-            // micIcon.style.transform = "scale(1)"; // Reset scaling
-            micIcon.classList.remove("micActive");
-            searchInput.placeholder = `${translations[currentLanguage]?.searchPlaceholder || translations["en"].searchPlaceholder}`;
-        };
-
-        // Start speech recognition when mic icon is clicked
-        micIcon.addEventListener("click", () => {
-            if (isRecognizing) {
-                recognition.stop(); // Stop recognition if it's already listening
-            } else {
-                recognition.start(); // Start recognition if it's not already listening
-            }
-        });
-    } else {
-        console.warn("Speech Recognition API not supported in this browser.");
-    }
-}
-
-// Initialize SpeechRecognition only if the mic icon is visible
-if (!micIconCheckbox.checked) {
-    initializeSpeechRecognition();
-}
-//  -----------End of Voice Search------------
-
 
 // Function to apply the selected theme
 const radioButtons = document.querySelectorAll(".colorPlate");
 const themeStorageKey = "selectedTheme";
 const storedTheme = localStorage.getItem(themeStorageKey);
-// const radioButtons = document.querySelectorAll(".colorPlate");
-// const themeStorageKey = "selectedTheme"; // For predefined themes
 const customThemeStorageKey = "customThemeColor"; // For color picker
-// const storedTheme = localStorage.getItem(themeStorageKey);
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
 let darkThemeStyleTag; // Variable to store the dynamically added style tag
@@ -1815,10 +578,11 @@ const applySelectedTheme = (colorValue) => {
 
             .dark-theme .clearButton:hover {
                 background-color: var(--whitishColor-dark);
+		color: var(--darkColor-dark);
             }
 
             .dark-theme .clearButton:active {
-                color: #0e0e0e;
+                color: #000000;
             }
 
             .dark-theme .backupRestoreBtn {
@@ -1944,7 +708,7 @@ const applySelectedTheme = (colorValue) => {
 
 
     // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
         .reduce((acc, color) => {
             acc[color] = `./favicon/${color}.png`;
             return acc;
@@ -1952,15 +716,12 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof browser !== "undefined" && browser.browserAction) {
-            // Firefox
-            browser.browserAction.setIcon({path: iconPaths[colorValue]});
-        } else if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
-            chrome.action.setIcon({path: iconPaths[colorValue]});
-        } else if (typeof safari !== "undefined") {
-            // Safari
-            safari.extension.setToolbarIcon({path: iconPaths[colorValue]});
+        if (isFirefox) {
+            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
+        } else if (isChromiumBased) {
+            chrome.action.setIcon({ path: iconPaths[colorValue] });
+        } else if (isSafari) {
+            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
     updateExtensionIcon(colorValue);
@@ -1974,81 +735,56 @@ const applySelectedTheme = (colorValue) => {
 };
 
 // ----Color Picker || ColorPicker----
-function darkenHexColor(hex, factor = 0.6) {
+function adjustHexColor(hex, factor, isLighten = true) {
     hex = hex.replace("#", "");
+    if (hex.length === 3) {
+        hex = hex.split("").map(c => c + c).join("");
+    }
     let r = parseInt(hex.substring(0, 2), 16);
     let g = parseInt(hex.substring(2, 4), 16);
     let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r * (1 - factor));
-    g = Math.floor(g * (1 - factor));
-    b = Math.floor(b * (1 - factor));
+    if (isLighten) {
+        r = Math.floor(r + (255 - r) * factor);
+        g = Math.floor(g + (255 - g) * factor);
+        b = Math.floor(b + (255 - b) * factor);
+    } else {
+        r = Math.floor(r * (1 - factor));
+        g = Math.floor(g * (1 - factor));
+        b = Math.floor(b * (1 - factor));
+    }
     return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
-}
-
-function lightenHexColor(hex, factor = 0.85) {
-    hex = hex.replace("#", "");
-    if (hex.length === 3) {
-        hex = hex.split("").map(c => c + c).join("");
-    }
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r + (255 - r) * factor);
-    g = Math.floor(g + (255 - g) * factor);
-    b = Math.floor(b + (255 - b) * factor);
-    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
-}
-
-function lightestColor(hex, factor = 0.95) {
-    hex = hex.replace("#", "");
-    if (hex.length === 3) {
-        hex = hex.split("").map(c => c + c).join("");
-    }
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-    r = Math.floor(r + (255 - r) * factor);
-    g = Math.floor(g + (255 - g) * factor);
-    b = Math.floor(b + (255 - b) * factor);
-    return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase()}`;
 }
 
 function isNearWhite(hex, threshold = 240) {
     hex = hex.replace("#", "");
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
     return r > threshold && g > threshold && b > threshold;
 }
 
-// ---- Color Picker || ColorPicker----
-
 const applyCustomTheme = (color) => {
+    let adjustedColor = isNearWhite(color) ? "#696969" : color;
 
-    adjustedColor = color;
-    if (isNearWhite(color)) {
-        adjustedColor = "#696969"; // Light gray if near white
-    }
-    const darkerColorHex = darkenHexColor(adjustedColor);
-    const lighterColorHex = lightenHexColor(adjustedColor, 0.85);
-    const lightTin = lightestColor(adjustedColor, 0.95);
+    const lighterColorHex = adjustHexColor(adjustedColor, 0.7);
+    const lightTin = adjustHexColor(adjustedColor, 0.9);
+    const darkerColorHex = adjustHexColor(adjustedColor, 0.3, false);
+    const darkTextColor = adjustHexColor(adjustedColor, 0.8, false);
 
-    // resetDarkTheme();
     document.documentElement.style.setProperty("--bg-color-blue", lighterColorHex);
     document.documentElement.style.setProperty("--accentLightTint-blue", lightTin);
     document.documentElement.style.setProperty("--darkerColor-blue", darkerColorHex);
     document.documentElement.style.setProperty("--darkColor-blue", adjustedColor);
-    document.documentElement.style.setProperty("--textColorDark-blue", darkerColorHex);
+    document.documentElement.style.setProperty("--textColorDark-blue", darkTextColor);
     document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
+
     ApplyLoadingColor();
 };
 
-// Load theme on page reload// Load theme on page reload
+// Load theme on page reload
 window.addEventListener("load", function () {
-    // console.log("Page loaded, stored theme:", storedTheme);
-    // console.log("Page loaded, stored custom color:", storedCustomColor);
     if (storedTheme) {
         applySelectedTheme(storedTheme);
     } else if (storedCustomColor) {
@@ -2060,7 +796,6 @@ window.addEventListener("load", function () {
 const handleThemeChange = function () {
     if (this.checked) {
         const colorValue = this.value;
-        // console.log("Radio button changed, selected theme:", colorValue);
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
@@ -2076,7 +811,6 @@ radioButtons.forEach(radioButton => {
 // Handle color picker changes
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
-    // console.log("Color picker changed, selected color:", selectedColor);
     resetDarkTheme(); // Clear dark theme if active
     localStorage.setItem(customThemeStorageKey, selectedColor); // Save custom color
     localStorage.removeItem(themeStorageKey); // Clear predefined theme
@@ -2091,401 +825,8 @@ const handleColorPickerChange = function (event) {
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
 colorPicker.addEventListener("input", handleColorPickerChange);
-// colorPicker.addEventListener("change", function () {
-//     // console.log("Final color applied:", colorPicker.value);
-//     location.reload();
-// });
 
-
-// end of Function to apply the selected theme
-
-// -------------------------- Wallpaper -----------------------------
-const dbName = "ImageDB";
-const storeName = "backgroundImages";
-const timestampKey = "lastUpdateTime"; // Key to store last update time
-const imageTypeKey = "imageType"; // Key to store the type of image ("random" or "upload")
-
-// Open IndexedDB database
-function openDatabase() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open(dbName, 1);
-        request.onupgradeneeded = function (event) {
-            const db = event.target.result;
-            db.createObjectStore(storeName);
-        };
-        request.onsuccess = (event) => resolve(event.target.result);
-        request.onerror = (event) => reject("Database error: " + event.target.errorCode);
-    });
-}
-
-// Save image Blob, timestamp, and type to IndexedDB
-async function saveImageToIndexedDB(imageBlob, isRandom) {
-    const db = await openDatabase();
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, "readwrite");
-        const store = transaction.objectStore(storeName);
-
-        store.put(imageBlob, "backgroundImage"); // Save Blob
-        store.put(new Date().toISOString(), timestampKey);
-        store.put(isRandom ? "random" : "upload", imageTypeKey);
-
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = (event) => reject("Transaction error: " + event.target.errorCode);
-    });
-}
-
-// Load image Blob, timestamp, and type from IndexedDB
-async function loadImageAndDetails() {
-    const db = await openDatabase();
-    return Promise.all([
-        getFromStore(db, "backgroundImage"),
-        getFromStore(db, timestampKey),
-        getFromStore(db, imageTypeKey)
-    ]);
-}
-
-function getFromStore(db, key) {
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, "readonly");
-        const store = transaction.objectStore(storeName);
-        const request = store.get(key);
-
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = (event) => reject("Request error: " + event.target.errorCode);
-    });
-}
-
-// Clear image data from IndexedDB
-async function clearImageFromIndexedDB() {
-    const db = await openDatabase();
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, "readwrite");
-        const store = transaction.objectStore(storeName);
-        store.delete("backgroundImage");
-        store.delete(timestampKey);
-        store.delete(imageTypeKey);
-
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = (event) => reject("Delete error: " + event.target.errorCode);
-    });
-}
-
-// Handle file input and save image as upload
-document.getElementById("imageUpload").addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const imageUrl = URL.createObjectURL(file); // Create temporary Blob URL
-        const image = new Image();
-
-        image.onload = function () {
-            document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
-            saveImageToIndexedDB(file, false)
-                .then(() => {
-                    updateTextBackground(true);
-                    URL.revokeObjectURL(imageUrl); // Clean up memory
-                })
-                .catch(error => console.error(error));
-        };
-
-        image.src = imageUrl;
-    }
-});
-
-// Fetch and apply random image as background
-const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
-const currentLanguage = getLanguageStatus("selectedLanguage") || "en";
-
-async function applyRandomImage(showConfirmation = true) {
-    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper)) {
-        return;
-    }
-    try {
-        const response = await fetch(RANDOM_IMAGE_URL);
-        const blob = await response.blob(); // Get Blob from response
-        const imageUrl = URL.createObjectURL(blob);
-
-        document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
-        await saveImageToIndexedDB(blob, true);
-        updateTextBackground(true);
-        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
-    } catch (error) {
-        console.error("Error fetching random image:", error);
-    }
-}
-
-// Function to update solid background behind userText, date, greeting and shortcut names
-function updateTextBackground(hasWallpaper) {
-    const userText = document.getElementById("userText");
-    const date = document.getElementById("date");
-    const shortcuts = document.querySelectorAll(".shortcuts .shortcut-name");
-
-    // Update styles for userText and date
-    [userText, date].forEach(element => {
-        if (hasWallpaper) {
-            element.style.backgroundColor = "var(--accentLightTint-blue)";
-            element.style.padding = "2px 12px";
-            element.style.width = "fit-content";
-            element.style.borderRadius = "10px";
-            element.style.fontSize = "1.32rem";
-        } else {
-            element.style.backgroundColor = ""; // Reset to default
-            element.style.padding = "";
-            element.style.width = "";
-            element.style.borderRadius = "";
-            element.style.fontSize = "";
-        }
-    });
-
-    // Update styles for shortcuts
-    shortcuts.forEach(shortcut => {
-        shortcut.style.backgroundColor = hasWallpaper ? "var(--accentLightTint-blue)" : "";
-        shortcut.style.padding = hasWallpaper ? "0px 6px" : "";
-        shortcut.style.borderRadius = hasWallpaper ? "5px" : "";
-    });
-}
-
-// Check and update image on page load
-function checkAndUpdateImage() {
-    loadImageAndDetails()
-        .then(([blob, savedTimestamp, imageType]) => {
-            const now = new Date();
-            const lastUpdate = new Date(savedTimestamp);
-
-            // No image or invalid data
-            if (!blob || !savedTimestamp || isNaN(lastUpdate)) {
-                updateTextBackground(false);
-                return;
-            }
-
-            // Create a new Blob URL dynamically
-            const imageUrl = URL.createObjectURL(blob);
-
-            if (imageType === "upload") {
-                document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
-                updateTextBackground(true);
-                return;
-            }
-
-            if (lastUpdate.toDateString() !== now.toDateString()) {
-                // Refresh random image if a new day
-                applyRandomImage(false);
-            } else {
-                // Reapply the saved random image
-                document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
-                updateTextBackground(true);
-            }
-
-            // Clean up the Blob URL after setting the background
-            setTimeout(() => URL.revokeObjectURL(imageUrl), 1500);
-        })
-        .catch((error) => {
-            console.error("Error loading image details:", error);
-            updateTextBackground(false);
-        });
-}
-
-// Event listeners for buttons
-document.getElementById("uploadTrigger").addEventListener("click", () => document.getElementById("imageUpload").click());
-document.getElementById("clearImage").addEventListener("click", function () {
-    loadImageAndDetails()
-        .then(([blob]) => {
-            if (!blob) {
-                alert(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
-                return;
-            }
-            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
-            if (confirm(confirmationMessage)) {
-                clearImageFromIndexedDB()
-                    .then(() => {
-                        document.body.style.removeProperty("--bg-image");
-                        updateTextBackground(false);
-                    })
-                    .catch((error) => console.error(error));
-            }
-        })
-        .catch((error) => console.error(error));
-});
-document.getElementById("randomImageTrigger").addEventListener("click", applyRandomImage);
-
-// Start image check on page load
-checkAndUpdateImage();
-// ------------------------ End of BG Image --------------------------
-
-// -------------------- Backup-Restore Settings ----------------------
-document.getElementById("backupBtn").addEventListener("click", backupData);
-document.getElementById("restoreBtn").addEventListener("click", () => document.getElementById("fileInput").click());
-document.getElementById("fileInput").addEventListener("change", validateAndRestoreData);
-
-// Backup data from localStorage and IndexedDB
-async function backupData() {
-    try {
-        const backup = {localStorage: {}, indexedDB: {}};
-
-        // Backup localStorage
-        for (let key in localStorage) {
-            if (localStorage.hasOwnProperty(key)) {
-                backup.localStorage[key] = localStorage.getItem(key);
-            }
-        }
-
-        // Backup IndexedDB (ImageDB)
-        backup.indexedDB = await backupIndexedDB();
-
-        // Generate filename with current date (format: DDMMYYYY)
-        const date = new Date();
-        const formattedDate = `${String(date.getDate()).padStart(2, "0")}${String(date.getMonth() + 1).padStart(2, "0")}${date.getFullYear()}`;
-        const fileName = `NewTab_Backup_${formattedDate}.json`;
-
-        // Create and download the backup file
-        const blob = new Blob([JSON.stringify(backup, null, 2)], {type: "application/json"});
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        console.log("Backup completed successfully!");
-    } catch (error) {
-        alert(translations[currentLanguage]?.failedbackup || translations["en"].failedbackup + error.message);
-    }
-}
-
-// Validate and restore data from a backup file
-async function validateAndRestoreData(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-        try {
-            const backup = JSON.parse(e.target.result);
-
-            // Validate the structure of the JSON file
-            if (!isValidBackupFile(backup)) {
-                alert(translations[currentLanguage]?.invalidBackup || translations["en"].invalidBackup);
-                return;
-            }
-
-            await restoreData(backup);
-
-            alert(translations[currentLanguage]?.restorecompleted || translations["en"].restorecompleted);
-            location.reload();
-        } catch (error) {
-            alert(translations[currentLanguage]?.restorefailed || translations["en"].restorefailed + error.message);
-        }
-    };
-    reader.readAsText(file);
-}
-
-function isValidBackupFile(backup) {
-    // Check if localStorage and indexedDB exist and are objects
-    return !(typeof backup.localStorage !== "object" || typeof backup.indexedDB !== "object");
-}
-
-// Backup IndexedDB: Extract data from ImageDB -> backgroundImages
-async function backupIndexedDB() {
-    const db = await openDatabase();
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, "readonly");
-        const store = transaction.objectStore(storeName);
-        const data = {};
-
-        store.getAllKeys().onsuccess = (keysEvent) => {
-            const keys = keysEvent.target.result;
-
-            if (!keys.length) {
-                resolve({});
-                return;
-            }
-
-            let pending = keys.length;
-            keys.forEach(key => {
-                store.get(key).onsuccess = (getEvent) => {
-                    const value = getEvent.target.result;
-                    if (value instanceof Blob) {
-                        // Convert Blob to Base64 for JSON compatibility
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                            data[key] = {blob: reader.result, isBlob: true};
-                            if (--pending === 0) resolve(data);
-                        };
-                        reader.readAsDataURL(value);
-                    } else {
-                        data[key] = value;
-                        if (--pending === 0) resolve(data);
-                    }
-                };
-            });
-        };
-
-        transaction.onerror = () => reject(transaction.error);
-    });
-}
-
-// Restore IndexedDB: Clear and repopulate ImageDB -> backgroundImages
-async function restoreIndexedDB(data) {
-    const db = await openDatabase();
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(storeName, "readwrite");
-        const store = transaction.objectStore(storeName);
-
-        store.clear();
-        const entries = Object.entries(data);
-        let pending = entries.length;
-
-        if (pending === 0) {
-            resolve(); // If no data to restore, resolve immediately
-            return;
-        }
-
-        entries.forEach(([key, value]) => {
-            if (value.isBlob) {
-                // Convert Base64 back to Blob
-                const blob = base64ToBlob(value.blob);
-                store.put(blob, key);
-            } else {
-                store.put(value, key);
-            }
-
-            if (--pending === 0) resolve();
-        });
-
-        transaction.onerror = () => reject(transaction.error);
-    });
-}
-
-// Restore data for both localStorage and IndexedDB
-async function restoreData(backup) {
-    // Clear localStorage before restoring
-    localStorage.clear();
-
-    // Restore localStorage from backup
-    if (backup.localStorage) {
-        Object.keys(backup.localStorage).forEach(key => {
-            localStorage.setItem(key, backup.localStorage[key]);
-        });
-    }
-
-    // Restore IndexedDB from backup
-    if (backup.indexedDB) {
-        await restoreIndexedDB(backup.indexedDB);
-    }
-}
-
-// Helper: Convert Base64 string to Blob
-function base64ToBlob(base64) {
-    const [metadata, data] = base64.split("","");
-    const mime = metadata.match(/:(.*?);/)[1];
-    const binary = atob(data);
-    const array = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) {
-        array[i] = binary.charCodeAt(i);
-    }
-    return new Blob([array], {type: mime});
-}
-
-// -------------------End of Settings ------------------------------
+// End of Function to apply the selected theme
 
 
 // ------------Search Suggestions---------------
@@ -2608,7 +949,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -2619,7 +960,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({block: "nearest"});
+            activeElement.scrollIntoView({ block: "nearest" });
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
@@ -2627,23 +968,13 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
     }
 });
 
+// Check for different browsers and return the corresponding client parameter
 function getClientParam() {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    // Check for different browsers and return the corresponding client parameter
-    if (userAgent.includes("firefox")) {
-        return "firefox";
-    } else if (userAgent.includes("chrome") || userAgent.includes("crios")) {
-        return "chrome";
-    } else if (userAgent.includes("safari")) {
-        return "safari";
-    } else if (userAgent.includes("edge") || userAgent.includes("edg")) {
-        return "firefox";
-    } else if (userAgent.includes("opera") || userAgent.includes("opr")) {
-        return "opera";
-    } else {
-        return "firefox";  // Default to Firefox client if the browser is not recognized
-    }
+    if (isFirefox) return "firefox";
+    if (isChromiumBased && !isOpera) return "chrome";
+    if (isOpera) return "opera";
+    if (isSafari) return "safari";
+    return "firefox"; // Default to Firefox if the browser is not recognized
 }
 
 async function getAutocompleteSuggestions(query) {
@@ -2853,8 +1184,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
                 height: calc(100% / sqrt(2)) !important;
                 width: calc(100% / sqrt(2)) !important;
-                filter: grayscale(1) contrast(1.4);
-                mix-blend-mode: lighten;
+                filter: grayscale(1);
+                mix-blend-mode: screen;
                 }`;
 
 
@@ -2862,20 +1193,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const shortcuts = document.getElementById("shortcuts-section");
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
-    const proxybypassField = document.getElementById("proxybypassField");
-    const proxyinputField = document.getElementById("proxyField");
-    const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     const shortcutEditField = document.getElementById("shortcutEditField");
     const adaptiveIconField = document.getElementById("adaptiveIconField");
     const adaptiveIconToggle = document.getElementById("adaptiveIconToggle");
-    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const todoListCheckbox = document.getElementById("todoListCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
-    const timeformatField = document.getElementById("timeformatField");
-    const hourcheckbox = document.getElementById("12hourcheckbox");
-    const digitalCheckbox = document.getElementById("digitalCheckbox");
-    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
     const shortcutEditButton = document.getElementById("shortcutEditButton");
     const backButton = document.getElementById("backButton");
     const shortcutSettingsContainer = document.getElementById("shortcutList"); // shortcuts in settings
@@ -2883,6 +1204,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const newShortcutButton = document.getElementById("newShortcutButton");
     const resetShortcutsButton = document.getElementById("resetButton");
     const iconStyle = document.getElementById("iconStyle");
+    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
+
+    const proxybypassField = document.getElementById("proxybypassField");
+    const proxyinputField = document.getElementById("proxyField");
+    const useproxyCheckbox = document.getElementById("useproxyCheckbox");
 
     // const flexMonitor = document.getElementById("flexMonitor"); // monitors whether shortcuts have flex-wrap flexed
     // const defaultHeight = document.getElementById("defaultMonitor").clientHeight; // used to compare to previous element
@@ -3383,54 +1709,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    if (localStorage.getItem("greetingEnabled") === null) {
-        localStorage.setItem("greetingEnabled", "true");
-    }
-    const greetingCheckbox = document.getElementById("greetingcheckbox");
-    const greetingField = document.getElementById("greetingField");
-    greetingCheckbox.checked = localStorage.getItem("greetingEnabled") === "true";
-    greetingCheckbox.disabled = localStorage.getItem("clocktype") !== "digital";
-
-    digitalCheckbox.addEventListener("change", function () {
-        saveCheckboxState("digitalCheckboxState", digitalCheckbox);
-        if (digitalCheckbox.checked) {
-            timeformatField.classList.remove("inactive");
-            greetingField.classList.remove("inactive");
-            greetingCheckbox.disabled = false; // Enable greeting toggle
-            localStorage.setItem("clocktype", "digital");
-            clocktype = localStorage.getItem("clocktype");
-            displayClock();
-            stopClock();
-            saveActiveStatus("timeformatField", "active");
-            saveActiveStatus("greetingField", "active");
-        } else {
-            timeformatField.classList.add("inactive");
-            greetingField.classList.add("inactive");
-            greetingCheckbox.disabled = true; // Disable greeting toggle
-            localStorage.setItem("clocktype", "analog");
-            clocktype = localStorage.getItem("clocktype");
-            stopClock();
-            startClock();
-            displayClock();
-            saveActiveStatus("timeformatField", "inactive");
-            saveActiveStatus("greetingField", "inactive");
-        }
-    });
-
-    hourcheckbox.addEventListener("change", function () {
-        saveCheckboxState("hourcheckboxState", hourcheckbox);
-        if (hourcheckbox.checked) {
-            localStorage.setItem("hourformat", "true");
-        } else {
-            localStorage.setItem("hourformat", "false");
-        }
-    });
-
-    greetingCheckbox.addEventListener("change", () => {
-        localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
-        updatedigiClock();
-    });
-
     useproxyCheckbox.addEventListener("change", function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
@@ -3468,74 +1746,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    bookmarksCheckbox.addEventListener("change", function () {
-        let bookmarksPermission;
-        if (isFirefox && browser.permissions && isDesktop) {
-            bookmarksPermission = browser.permissions;
-        } else if (isChrome || isEdge || isBrave && chrome.permissions && isDesktop) {
-            bookmarksPermission = chrome.permissions;
-        } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
-            bookmarksCheckbox.checked = false;
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            return;
-        }
-        if (bookmarksPermission !== undefined) {
-            if (bookmarksCheckbox.checked) {
-                bookmarksPermission.contains({
-                    permissions: ["bookmarks"]
-                }, function (alreadyGranted) {
-                    if (alreadyGranted) {
-                        bookmarkButton.style.display = "flex";
-                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                    } else {
-                        bookmarksPermission.request({
-                            permissions: ["bookmarks"]
-                        }, function (granted) {
-                            if (granted) {
-                                bookmarksAPI = chrome.bookmarks;
-                                bookmarkButton.style.display = "flex";
-                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            } else {
-                                bookmarksCheckbox.checked = false;
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            }
-                        });
-                    }
-                });
-            } else {
-                bookmarkButton.style.display = "none";
-                saveDisplayStatus("bookmarksDisplayStatus", "none");
-                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            }
-        }
-    });
-
-
-    bookmarkGridCheckbox.addEventListener("change", function () {
-        saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-        if (bookmarkGridCheckbox.checked) {
-            bookmarkList.classList.add("grid-view");
-        } else {
-            bookmarkList.classList.remove("grid-view");
-        }
-    });
-
-    todoListCheckbox.addEventListener("change", function () {
-        saveCheckboxState("todoListCheckboxState", todoListCheckbox);
-        if (todoListCheckbox.checked) {
-            todoListCont.style.display = "flex";
-            saveDisplayStatus("todoListDisplayStatus", "flex");
-        } else {
-            todoListCont.style.display = "none";
-            saveDisplayStatus("todoListDisplayStatus", "none");
-        }
-    });
-
-    fahrenheitCheckbox.addEventListener("change", function () {
-        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+    enableDarkModeCheckbox.addEventListener("change", function () {
+        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     });
 
     newShortcutButton.addEventListener("click", () => newShortcut());
@@ -3599,32 +1811,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadActiveStatus("adaptiveIconField", adaptiveIconField);
     loadCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
     loadCheckboxState("useproxyCheckboxState", useproxyCheckbox);
-    loadCheckboxState("digitalCheckboxState", digitalCheckbox);
-    loadCheckboxState("hourcheckboxState", hourcheckbox);
     loadActiveStatus("proxyinputField", proxyinputField);
-    loadActiveStatus("timeformatField", timeformatField);
-    loadActiveStatus("greetingField", greetingField);
     loadActiveStatus("proxybypassField", proxybypassField);
-    loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-    loadCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
-    loadCheckboxState("todoListCheckboxState", todoListCheckbox);
     loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
-    loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
-    loadDisplayStatus("googleAppsDisplayStatus", googleAppsCont);
-    loadDisplayStatus("todoListDisplayStatus", todoListCont);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
+    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
     loadShortcuts();
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
-        if (bookmarksCheckbox.checked) {
-            bookmarkButton.click();
-        } else {
-            bookmarksCheckbox.click();
-        }
-    }
 });
 
 document.addEventListener("keydown", function (event) {

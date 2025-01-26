@@ -118,7 +118,7 @@ const it = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Carica immagine",
     "backupText": "Backup",
     "restoreText": "Ripristina",
@@ -134,7 +134,7 @@ const it = {
     "restorecompleted": "Ripristino completato con successo!",
     "restorefailed": "Ripristino fallito: ",
     "invalidBackup": "File di backup non valido",
-    "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro?",
-    "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser",
+    "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro",
+    "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser \"{title}\"?",
     "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
 };
