@@ -242,7 +242,8 @@ function updatedigiClock() {
 
     // Manually set the period for special languages if 12-hour format is enabled
     if (hourformat && specialLanguages.includes(currentLanguage)) {
-        period = parseInt(hours, 10) < 12 ? "AM" : "PM";
+        let realHours = new Date().getHours();
+        period = realHours < 12 ? "AM" : "PM";
     }
 
     // Display AM/PM if in 12-hour format
