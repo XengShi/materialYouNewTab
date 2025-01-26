@@ -15,15 +15,6 @@ const defaultQuotes = [
     { quote: "Since light travels faster than sound, some people appear bright until you hear them speak.", author: "Alan Dundes" }
 ];
 
-// Sanitize quote text
-function sanitizeQuote(quote) {
-    // Remove trailing ” if there is no matching opening “
-    if (quote.endsWith("”") && !quote.includes("“")) {
-        quote = quote.slice(0, -1);
-    }
-    return quote;
-}
-
 // Fetch and display a quote
 async function fetchAndDisplayQuote() {
     try {
@@ -32,9 +23,6 @@ async function fetchAndDisplayQuote() {
 
         const data = await response.json();
         let { quote, author } = data;
-
-        // Sanitize the quote
-        quote = sanitizeQuote(quote);
 
         // Check if the quote length meets the criteria
         if (quote.length + author.length >= MIN_QUOTE_LENGTH && quote.length + author.length <= MAX_QUOTE_LENGTH) {
