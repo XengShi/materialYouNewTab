@@ -62,6 +62,7 @@ function updateDate() {
             mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             np: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
             zh: `${monthName}${dayOfMonth}日${dayName}`,
+            zh_TW: `${monthName}${dayOfMonth}日${dayName}`,
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
             it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
@@ -188,6 +189,7 @@ function updatedigiClock() {
         mr: `${dayName}, ${localizedDayOfMonth}`,
         np: `${dayName}, ${localizedDayOfMonth}`,
         zh: `${dayOfMonth}日${dayName}`,
+        zh_TW: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
         ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
@@ -207,7 +209,7 @@ function updatedigiClock() {
     let period = ""; // For storing AM/PM equivalent
 
     // Array of languages to use "en-US" format
-    const specialLanguages = ["tr", "zh", "ja", "ko", "hu"]; // Languages with NaN in locale time format
+    const specialLanguages = ["tr", "zh", "zh_TW", "ja", "ko", "hu"]; // Languages with NaN in locale time format
     const localizedLanguages = ["bn", "mr", "np"];
     // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
 
@@ -240,7 +242,8 @@ function updatedigiClock() {
 
     // Manually set the period for special languages if 12-hour format is enabled
     if (hourformat && specialLanguages.includes(currentLanguage)) {
-        period = parseInt(hours, 10) < 12 ? "AM" : "PM";
+        let realHours = new Date().getHours();
+        period = realHours < 12 ? "AM" : "PM";
     }
 
     // Display AM/PM if in 12-hour format
@@ -318,6 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ----------------------- End of clock display -------------------------
 
+// Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
     const timeformatField = document.getElementById("timeformatField");
     const hourcheckbox = document.getElementById("12hourcheckbox");
