@@ -310,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
@@ -363,15 +364,7 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ""; // Reset fill color
     });
-    // Reset the CSS variables to default (for non-dark themes)
-    document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
-    document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
-    document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
-    document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
-    document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
-    document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
 };
-
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
