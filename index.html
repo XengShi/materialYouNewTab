@@ -24,11 +24,14 @@
     <script defer src="scripts/save-load-states.js"></script>
     <script defer src="scripts/wallpaper.js"></script>
     <script defer src="scripts/clock.js"></script>
+    <script defer src="scripts/weather.js"></script>
+    <script defer src="scripts/custom-text.js"></script>
+    <script defer src="scripts/browser-utils.js"></script>
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/ai-tools.js"></script>
     <script defer src="scripts/bookmarks.js"></script>
-    <script defer src="scripts/google-app-menu.js"></script>
     <script defer src="scripts/todo-list.js"></script>
+    <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
     <script defer src="scripts/dark-mode.js"></script>
@@ -41,6 +44,7 @@
     <script src="locales/hi.js"></script>
     <script src="locales/hu.js"></script>
     <script src="locales/zh.js"></script>
+    <script src="locales/zh_TW.js"></script>
     <script src="locales/cs.js"></script>
     <script src="locales/it.js"></script>
     <script src="locales/tr.js"></script>
@@ -60,7 +64,7 @@
 
 <body>
     <!----------------------- Loading Screen Starting ----------------------->
-    <img src="./docs/Loading.png" id="LoadingScreen" fetchpriority="high" />
+    <img src="./images/Loading.png" id="LoadingScreen" fetchpriority="high" />
 
     <!----------------------- ToDo List Setup Starting ----------------------->
     <!-- ToDo Icon -->
@@ -602,7 +606,7 @@
                         <div class="humidityBar">
                             <div class="thinLine"></div>
                             <div class="slider" id="slider">
-                                <div id="humidityLevel">Humidity</div>
+                                <div id="humidityLevel"></div>
                             </div>
                         </div>
 
@@ -617,7 +621,7 @@
                                     </svg>
 
                                 </div>
-                                <span id="feelsLike" style="padding-inline-end: 12px;">Seems</span>
+                                <span id="feelsLike" style="padding-inline-end: 12px;"></span>
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
@@ -629,7 +633,7 @@
                                     </svg>
 
                                 </div>
-                                <span class="location_spn" id="location">Earth</span>
+                                <span class="location_spn" id="location"></span>
                             </div>
                         </div>
                         <!-- end of tilesContainer -->
@@ -846,10 +850,10 @@
     <!-- -----------AI-Tools------------------ -->
     <div class="aiToolsCont" id="aiToolsCont">
 
-        <div class="hangno" id="0NIHK">
+        <div class="hangno" id="aiToolsIcon">
             <div class="icon">
                 <svg fill="none" height="100%" viewBox="0 0 280 280" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <path id="HangNoAlive" class="accentColor" clip-rule="evenodd"
+                    <path class="accentColor" clip-rule="evenodd"
                         d="M152 178C152 163.641 163.641 152 178 152H254C268.359 152 280.275 163.76 277.393 177.827C267.155 227.797 227.797 267.155 177.827 277.393C163.76 280.275 152 268.359 152 254V178ZM128 183.26C128 206.423 99.9943 218.024 83.6152 201.645L8.78205 126.811C3.43206 121.461 0.529946 114.017 1.78833 106.556C10.5659 54.5162 50.7487 13.1442 102.17 2.60743C116.237 -0.275091 128 11.6406 128 26V183.26ZM0 214.74C0 191.577 28.0057 179.976 44.3847 196.355L127.994 279.964C127.998 279.968 128 279.974 128 279.979V279.979C128 279.991 127.991 280 127.979 280H26C11.6406 280 0 268.359 0 254V214.74ZM152 26C152 11.6406 163.641 0 178 0H254C268.359 0 280 11.6406 280 26V102C280 116.359 268.359 128 254 128H178C163.641 128 152 116.359 152 102V26Z"
                         fill="white" fill-rule="evenodd" />
                 </svg>
@@ -1320,7 +1324,8 @@
                             <option value="en">English</option>
                             <option value="az">Azərbaycanca (Azerbaijani)</option>
                             <option value="bn">বাংলা (Bangla)</option>
-                            <option value="zh">中文 (Simplified Chinese)</option>
+                            <option value="zh">简体中文 (Simplified Chinese)</option>
+                            <option value="zh_TW">繁體中文 (Traditional Chinese)</option>
                             <option value="cs">Čeština (Czech)</option>
                             <option value="fr">Français (French)</option>
                             <option value="hi">हिन्दी (Hindi)</option>
@@ -1372,7 +1377,7 @@
 
                             <!-- -------- -->
 
-                            <input class="colorPlate" name="color" type="radio" value="grey">
+                            <input class="colorPlate" name="color" type="radio" value="peach">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
                             <!-- ----Color Picker || ColorPicker---- -->

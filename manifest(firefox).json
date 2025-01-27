@@ -10,7 +10,7 @@
 		"https://search.brave.com/api/suggest*"
 	],
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["scripts/background.js"],
         "persistent": true
     },
     "icons": {
