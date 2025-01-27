@@ -136,5 +136,4 @@ const fr = {
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori \"{title}\"?",
     "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
-    "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };

@@ -136,5 +136,4 @@ const cs = {
     "invalidBackup": "Neplatný soubor se zálohou",
     "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
-    "BookmarksDenied": "Nebylo přiděleno oprávnění pro záložky.",
 };

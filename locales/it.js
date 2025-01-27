@@ -136,5 +136,4 @@ const it = {
     "invalidBackup": "File di backup non valido",
     "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro",
     "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser \"{title}\"?",
-    "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
 };

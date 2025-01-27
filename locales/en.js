@@ -70,8 +70,8 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
-    "hideWeatherBox": "Hide Weather Card",
-    "hideWeatherBoxInfo": "Only show temperature on mobile",
+    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Show only temperature pill",
 
     // Body Items
     // Calendar
@@ -142,5 +142,4 @@ const en = {
     "invalidBackup": "Invalid backup file selected.",
     "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     "UnsupportedBrowser": "Bookmarks are not supported in your browser.",
-    "BookmarksDenied": "Bookmarks permission has not been granted.",
 };

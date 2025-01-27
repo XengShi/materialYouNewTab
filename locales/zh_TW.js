@@ -142,5 +142,4 @@ const zh_TW = {
     "invalidBackup": "選擇的備份檔案無效。",
     "deleteBookmark": "您確定要刪除書籤 \"{title}\" 嗎？",
     "UnsupportedBrowser": "您的瀏覽器不支援書籤功能",
-    "BookmarksDenied": "尚未授予書籤權限",
 };
