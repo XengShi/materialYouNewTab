@@ -23,7 +23,7 @@ const applySelectedTheme = (colorValue) => {
         "brown": "#705347",
         "silver": "#9e9e9e",
         "dark": "#171615",
-        "grey": 0,
+        "peach": 0,
     }
 
     if (colorValue in themeColorMapping) {
@@ -34,7 +34,7 @@ const applySelectedTheme = (colorValue) => {
     }
 
     // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
         .reduce((acc, color) => {
             acc[color] = `./favicon/${color}.png`;
             return acc;
@@ -42,14 +42,11 @@ const applySelectedTheme = (colorValue) => {
 
     // Function to update the extension icon based on browser
     const updateExtensionIcon = (colorValue) => {
-        if (typeof browser !== "undefined" && browser.browserAction) {
-            // Firefox
+        if (isFirefox) {
             browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof chrome !== "undefined" && chrome.action) {
-            // Chromium-based: Chrome, Edge, Brave
+        } else if (isChromiumBased) {
             chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (typeof safari !== "undefined") {
-            // Safari
+        } else if (isSafari) {
             safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
         }
     };
