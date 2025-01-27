@@ -30,11 +30,11 @@ const fr = {
     "todoPlaceholder": "Ajouter une tâche...",
 
     // Digital Clock
-    "digitalclocktittle": "Horloge Numérique",
+    "digitalclocktitle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
-    "timeformattittle": "Format 12h",
+    "timeformattitle": "Format 12h",
     "timeformatinfo": "Utiliser le format 12h",
-    "greetingtittle": "Salutation",
+    "greetingtitle": "Salutation",
     "greetinginfo": "Afficher la salutation sous le texte personnalisé",
 
     // Misc

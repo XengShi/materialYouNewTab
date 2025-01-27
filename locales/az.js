@@ -30,11 +30,11 @@ const az = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Rəqəmsal saat",
+    "digitalclocktitle": "Rəqəmsal saat",
     "digitalclockinfo": "Rəqəmsal saata keç",
-    "timeformattittle": "12 Saat Format",
+    "timeformattitle": "12 Saat Format",
     "timeformatinfo": "12 saatlıq vaxt formatından istifadə edin",
-    "greetingtittle": "Xoş gəlmisiniz",
+    "greetingtitle": "Xoş gəlmisiniz",
     "greetinginfo": "Fərdi mətnin altında salamlama mesajını göstər",
 
     // Misc

@@ -30,11 +30,11 @@ const mr = {
     "todoPlaceholder": "कार्य जोडा...",
 
     // Digital Clock
-    "digitalclocktittle": "डिजिटल घड्याळ",
+    "digitalclocktitle": "डिजिटल घड्याळ",
     "digitalclockinfo": "डिजिटल घड्याळावर स्विच करा",
-    "timeformattittle": "१२-तासांचा फॉरमॅट",
+    "timeformattitle": "१२-तासांचा फॉरमॅट",
     "timeformatinfo": "१२-तासांचा वेळ फॉरमॅट वापरा",
-    "greetingtittle": "शुभेच्छा",
+    "greetingtitle": "शुभेच्छा",
     "greetinginfo": "सानुकूल मजकुराखाली शुभेच्छा दाखवा",
 
     // Misc

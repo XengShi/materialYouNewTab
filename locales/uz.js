@@ -30,11 +30,11 @@ const uz = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Digital Clock",
+    "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Digital Clockga o'tish",
-    "timeformattittle": "12-soat format",
+    "timeformattitle": "12-soat format",
     "timeformatinfo": "12-soat formatni qo'llang",
-    "greetingtittle": "Salomlashish",
+    "greetingtitle": "Salomlashish",
     "greetinginfo": "Savatchadagi text pastdagi salomlashishni ko'rsatish",
 
     // Misc

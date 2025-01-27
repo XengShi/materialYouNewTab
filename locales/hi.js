@@ -30,11 +30,11 @@ const hi = {
     "todoPlaceholder": "कार्य जोड़ें...",
 
     // Digital Clock
-    "digitalclocktittle": "डिजिटल घड़ी",
+    "digitalclocktitle": "डिजिटल घड़ी",
     "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
-    "timeformattittle": "12 घंटे का प्रारूप",
+    "timeformattitle": "12 घंटे का प्रारूप",
     "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
-    "greetingtittle": "अभिवादन",
+    "greetingtitle": "अभिवादन",
     "greetinginfo": "कस्टम टेक्स्ट के नीचे अभिवादन दिखाएँ",
 
     // Misc

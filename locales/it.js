@@ -30,11 +30,11 @@ const it = {
     "todoPlaceholder": "Aggiungi attività...",
 
     // Digital Clock
-    "digitalclocktittle": "Orologio Digitale",
+    "digitalclocktitle": "Orologio Digitale",
     "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
-    "timeformattittle": "Usa formato 12h",
+    "timeformattitle": "Usa formato 12h",
     "timeformatinfo": "Usa formato orario a 12 ore",
-    "greetingtittle": "Saluto",
+    "greetingtitle": "Saluto",
     "greetinginfo": "Mostra il saluto sotto il testo personalizzato",
 
     // Misc

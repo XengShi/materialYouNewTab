@@ -30,11 +30,11 @@ const cs = {
     "todoPlaceholder": "Přidat úkol...",
 
     // Digital Clock
-    "digitalclocktittle": "Digitální hodiny",
+    "digitalclocktitle": "Digitální hodiny",
     "digitalclockinfo": "Přepne hodiny na digitální",
-    "timeformattittle": "12hodinový formát",
+    "timeformattitle": "12hodinový formát",
     "timeformatinfo": "Použije se 12hodinový formát času",
-    "greetingtittle": "Pozdrav",
+    "greetingtitle": "Pozdrav",
     "greetinginfo": "Zobrazí pozdrav pod upravitelným textem",
 
     // Misc

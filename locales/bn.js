@@ -30,11 +30,11 @@ const bn = {
     "todoPlaceholder": "টাস্ক যোগ করুন...",
 
     // Digital Clock
-    "digitalclocktittle": "ডিজিটাল ঘড়ি",
+    "digitalclocktitle": "ডিজিটাল ঘড়ি",
     "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
-    "timeformattittle": "১২-ঘণ্টা ফরম্যাট",
+    "timeformattitle": "১২-ঘণ্টা ফরম্যাট",
     "timeformatinfo": "১২-ঘণ্টার সময় ফরম্যাট ব্যবহার করুন",
-    "greetingtittle": "অভিবাদন",
+    "greetingtitle": "অভিবাদন",
     "greetinginfo": "কাস্টম টেক্সটের নিচে অভিবাদন দেখান",
 
     // Misc
