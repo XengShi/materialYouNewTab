@@ -364,7 +364,7 @@ const resetDarkTheme = () => {
         element.style.fill = ""; // Reset fill color
     });
     // Reset the CSS variables to default (for non-dark themes)
-    document.documentElement.style.setProperty("--bg-color-blue", "#ffffff");
+    document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
     document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
     document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
     document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
@@ -414,7 +414,6 @@ const applySelectedTheme = (colorValue) => {
             element.style.fill = "#212121";
         });
     }
-
 
     // Change the extension icon based on the selected theme
     const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
