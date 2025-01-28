@@ -135,9 +135,17 @@ Below are screenshots of the process to guide you through each step visually.
 
 <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-**Or** follow the manual steps below:
+2. **To Update the Homepage**:
 
-2. **Manual Installation**:
+   - Open Firefox **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
+   - Under the **Homepage and new windows** section, select **Custom URLs...**.
+   - Paste the following URL:
+     ```text
+     moz-extension://e31d6701-f699-414f-bb4c-8fde495c432e/index.html
+     ```
+   - This will update both your homepage and new tab to the extension.
+
+2. **Manual Installation (Temporary)**:
 
    - Clone the repository or download and extract the ZIP file.
    - **Prepare the Manifest**:
