@@ -6,6 +6,8 @@
     - Delete any inline comments meant for instructions.
     - Place this file in the `locales` directory.
 
+<br>
+
 2. **Add the Locale to `index.html`**
     - Open `index.html` and locate the `<!-- LANGUAGES SCRIPTS -->` section.
     - Add your new locale script tag in chronological order, like this:
@@ -17,19 +19,27 @@
       <option value="de">Deutsch (German)</option>
       ```
 
+<br>
+
 3. **Update Date Format in `clock.js`**
     - Add the date display for both analog and digital clocks if the format differs from the default, ensuring chronological order.
     - Follow the local conventions for date formatting.
     - Ensure the digital clock display is correct regarding the 12-hour mode.
+
+<br>
 
 4. **Add the Locale to `languages.js`**
     - Add the language to `languages.js` in chronological order.
     - Check if the `menuWidth` needs to be adjusted.
     - If the language uses a comma instead of a dot as the decimal separator, make the necessary adjustments in the appropriate array.
 
+<br>
+
 5. **Update the Currently Supported Languages Section in `README.md`**
     - Add the new language to the list of supported languages in the README, ensuring lexicographical order.
     - Increase the count by 1 in both the header and the link at the top.
+
+<br>
 
 6. **Add the Locale to `tools/languagesAnalysis.html`**
     - Add the new language script tag in chronological order:
@@ -38,18 +48,18 @@
       ```
     - Add the language to the languages object in lexicographical order.
 
----
-
-### Notes:
-- **Test the Translation**: Verify that the translations display correctly when the respective locale is selected.
-- **Keep Translations Consistent**: Ensure the structure of the new translation file matches existing ones for consistency across locales.
-- **Additional Considerations**: Some languages may require specific adjustments based on regional needs. For example:
-  - **Confirm in `weather.js`**: Ensure the humidity value stays on a single line. If it moves to a second line, increase the minimum width.
-
----
+<br>
 
 7. **Subscribe to Translation Updates for Contributors** (Optional)
    - Join the [discussion channel](https://github.com/XengShi/materialYouNewTab/discussions/195) or mailing list to receive notifications about new lines being added to translations.
+
+<br>
+
+### Notes:
+- **Test the Translation**: Verify that the translations display correctly when the respective locale is selected including hover text and alerts.
+- **Confirm in `weather.js`**: Ensure the humidity value stays on a single line. If it moves to a second line, increase the minimum width.
+- **Keep Translations Consistent**: Ensure the structure of the new translation file matches existing ones for consistency across locales.
+- **Additional Considerations**: Some languages may require specific adjustments based on regional needs.
 
 ---
 
