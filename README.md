@@ -145,7 +145,7 @@ Below are screenshots of the process to guide you through each step visually.
      ```
    - This will update both your homepage and new tab to the extension.
 
-2. **Manual Installation (Temporary)**:
+3. **Manual Installation (Temporary)**:
 
    - Clone the repository or download and extract the ZIP file.
    - **Prepare the Manifest**:
