@@ -30,11 +30,11 @@ const it = {
     "todoPlaceholder": "Aggiungi attività...",
 
     // Digital Clock
-    "digitalclocktittle": "Orologio Digitale",
+    "digitalclocktitle": "Orologio Digitale",
     "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
-    "timeformattittle": "Usa formato 12h",
+    "timeformattitle": "Usa formato 12h",
     "timeformatinfo": "Usa formato orario a 12 ore",
-    "greetingtittle": "Saluto",
+    "greetingtitle": "Saluto",
     "greetinginfo": "Mostra il saluto sotto il testo personalizzato",
 
     // Misc
@@ -136,5 +136,4 @@ const it = {
     "invalidBackup": "File di backup non valido",
     "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro",
     "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser \"{title}\"?",
-    "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
 };

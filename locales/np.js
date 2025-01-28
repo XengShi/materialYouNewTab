@@ -32,11 +32,11 @@ const np = {
     todoPlaceholder: "गर्नु पर्ने काम थप्नुहोस...",
 
     // Digital Clock
-    digitalclocktittle: "डिजिटल घडी",
+    digitalclocktitle: "डिजिटल घडी",
     digitalclockinfo: "डिजिटल घडीमा परिवर्तन गर्नुहोस्",
-    timeformattittle: "12-घण्टा ढाँचा",
+    timeformattitle: "12-घण्टा ढाँचा",
     timeformatinfo: "12-घण्टा समय ढाँचा प्रयोग गर्नुहोस्",
-    greetingtittle: "अभिवादन",
+    greetingtitle: "अभिवादन",
     greetinginfo: "अनुकूलन पाठ अभिवादनको तल देखाउनुहोस्",
 
     // Misc

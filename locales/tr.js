@@ -30,11 +30,11 @@ const tr = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Dijital Saat",
+    "digitalclocktitle": "Dijital Saat",
     "digitalclockinfo": "Dijital saate geçiş yap",
-    "timeformattittle": "12 Saat Formatı",
+    "timeformattitle": "12 Saat Formatı",
     "timeformatinfo": "12 saat zaman formatını kullanın",
-    "greetingtittle": "Hoşgeldiniz",
+    "greetingtitle": "Hoşgeldiniz",
     "greetinginfo": "Özel metinin altında hoşgeldiniz mesajını göster",
 
     // Misc

@@ -7,19 +7,8 @@
  */
 
 
-// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
-// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
-// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
-// TODO: Move all the theme functions stuff in a file called `theme.js`
-// TODO: Move all the settings in a file called `settings.js`
-// TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
-// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
-// TODO: Move into file called `welcome-greeting.js`(?)
-// TODO: Move into file called `animations.js`(?)
-
-
 let proxyurl;
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
     const saveProxyButton = document.getElementById("saveproxy");
     const savedProxy = localStorage.getItem("proxy");
@@ -33,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        let proxyurl = userProxyInput.value.trim();
+        proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
