@@ -877,8 +877,6 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
                     }
-
-
                     showResultBox();
                 }
             } catch (error) {
@@ -945,8 +943,8 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChromiumBased && !isOpera) return "chrome";
     if (isOpera) return "opera";
+    if (isChromiumBased) return "chrome";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
 }
