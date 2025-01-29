@@ -47,7 +47,7 @@ const menuWidths = {
     ru: '400px',
     it: '437px',
     idn: '435px',
-    tr: '418px',
+    tr: '430px',
     fr: '475px',
     az: '418px',
     sl: '470px',
