@@ -19,6 +19,20 @@ function ApplyLoadingColor() {
 const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
 loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
 
+// Function to save theme to Local Storage
+const saveThemeColors = () => {
+    const getComputedStyl = getComputedStyle(document.documentElement);
+    let themeColors = {
+        "--bg-color-blue": getComputedStyl.getPropertyValue("--bg-color-blue"),
+        "--accentLightTint-blue": getComputedStyl.getPropertyValue("--accentLightTint-blue"),
+        "--darkerColor-blue": getComputedStyl.getPropertyValue("--darkerColor-blue"),
+        "--darkColor-blue": getComputedStyl.getPropertyValue("--darkColor-blue"),
+        "--textColorDark-blue": getComputedStyl.getPropertyValue("--textColorDark-blue"),
+        "--whitishColor-blue": getComputedStyl.getPropertyValue("--whitishColor-blue"),
+    }
+    localStorage.setItem("themeColors", JSON.stringify(themeColors));
+}
+
 // Function to apply the selected theme
 const radioButtons = document.querySelectorAll(".colorPlate");
 const applySelectedTheme = (colorValue) => {
@@ -67,8 +81,10 @@ const applySelectedTheme = (colorValue) => {
         document.getElementById("rangColor").style.borderColor = "transparent";
     } else  {
         applyCustomTheme(colorValue, enableDarkModeCheckbox.checked);
+        saveThemeColors()
         return;
     }
+    saveThemeColors()
 
     // Change the extension icon based on the selected theme
     const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
@@ -166,7 +182,16 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
 
 // -----Theme stay changed even if user reload the page---
 if (storedTheme) {
-    applySelectedTheme(storedTheme);
+    // applySelectedTheme(storedTheme);
+    if (localStorage.getItem("themeColors")) {
+        const themeColors = JSON.parse(localStorage.getItem("themeColors"));
+        document.documentElement.style.setProperty("--bg-color-blue", themeColors["--bg-color-blue"]);
+        document.documentElement.style.setProperty("--accentLightTint-blue", themeColors["--accentLightTint-blue"]);
+        document.documentElement.style.setProperty("--darkerColor-blue", themeColors["--darkerColor-blue"]);
+        document.documentElement.style.setProperty("--darkColor-blue", themeColors["--darkColor-blue"]);
+        document.documentElement.style.setProperty("--textColorDark-blue", themeColors["--textColorDark-blue"]);
+        document.documentElement.style.setProperty("--whitishColor-blue", themeColors["--whitishColor-blue"]);
+    }
     const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
     if (selectedRadioButton) {
         selectedRadioButton.checked = true;
