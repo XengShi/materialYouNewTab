@@ -14,9 +14,9 @@
       ```html
       <script src="locales/de.js"></script>
       ```
-    - Locate the `<!-- LANGUAGE SELECTION DROPDOWN -->` section and add the new language option in lexicographical order (using the English name for the language):
+    - Locate the `<!-- LANGUAGE SELECTION OPTIONS -->` section and add the new language option in lexicographical order:
       ```html
-      <option value="de">Deutsch (German)</option>
+      <option value="de">German (Deutsch)</option>
       ```
 
 <br>
