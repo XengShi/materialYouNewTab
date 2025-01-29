@@ -33,14 +33,39 @@ const applySelectedTheme = (colorValue) => {
         "pink": "#ec5e78",
         "brown": "#705347",
         "silver": "#9e9e9e",
-        "dark": "#171615",
         "peach": 0,
+        "dark": "#171615",
     }
+    // const themeColorMapping = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
 
-    if (colorValue in themeColorMapping) {
-        const color = themeColorMapping[colorValue];
-        applyCustomTheme(color, ((colorValue==="dark") ? true : enableDarkModeCheckbox.checked));
-    } else {
+    document.querySelector('.ttcont:has(#enableDarkMode)').classList.remove("inactive");
+
+    // if (themeColorMapping.includes(colorValue)&&(!enableDarkModeCheckbox.checked==false)) {
+    if ((colorValue in themeColorMapping)&&(enableDarkModeCheckbox.checked==false)||colorValue=="dark"||colorValue=="peach") {
+        if (colorValue=="dark"||colorValue=="peach"){
+            document.querySelector('.ttcont:has(#enableDarkMode)').classList.add("inactive");
+        }
+        if (colorValue != "blue") {
+            document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
+            document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
+            document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
+            document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
+            document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
+        } else {
+            document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
+            document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
+            document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
+            document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
+            document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
+            document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
+        }
+        document.getElementById("rangColor").style.borderColor = "transparent";
+        document.getElementById("dfChecked").checked = false;
+    } else if (colorValue in themeColorMapping) {
+        applyCustomTheme(themeColorMapping[colorValue], true);
+        document.getElementById("rangColor").style.borderColor = "transparent";
+    } else  {
         applyCustomTheme(colorValue, enableDarkModeCheckbox.checked);
         return;
     }
