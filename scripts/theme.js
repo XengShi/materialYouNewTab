@@ -6,6 +6,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+//  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
+let storedTheme = localStorage.getItem("selectedTheme");
+
 //------------------------- LoadingScreen -----------------------//
 
 function ApplyLoadingColor() {
@@ -39,6 +42,7 @@ const applySelectedTheme = (colorValue) => {
         applyCustomTheme(color, ((colorValue==="dark") ? true : enableDarkModeCheckbox.checked));
     } else {
         applyCustomTheme(colorValue, enableDarkModeCheckbox.checked);
+        return;
     }
 
     // Change the extension icon based on the selected theme
@@ -127,29 +131,15 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
     document.documentElement.style.setProperty("--darkColor-blue", `rgb(${themeShades[Math.abs(modif-8)].join(',')})`);
     document.documentElement.style.setProperty("--textColorDark-blue", `rgb(${themeShades[Math.abs(modif-1)].join(',')})`);
     document.documentElement.style.setProperty("--whitishColor-blue", `rgb(${themeShades[Math.abs(modif-15)].join(',')})`);
-    document.getElementById("rangColor").style.borderColor = color;
-    document.getElementById("dfChecked").checked = false;
+    if (localStorage.getItem("selectedTheme").slice(0,1)==='#') {
+        document.getElementById("rangColor").style.borderColor = color;
+        document.getElementById("dfChecked").checked = false;
+    }
 
     ApplyLoadingColor();
 };
 
-// Handle radio button changes
-const handleThemeChange = function () {
-    if (this.checked) {
-        const colorValue = this.value;
-        localStorage.setItem("selectedTheme", colorValue);
-        applySelectedTheme(colorValue);
-    }
-};
-
-enableDarkModeCheckbox.addEventListener("change", function () {
-    applySelectedTheme(localStorage.getItem("selectedTheme"));
-    saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
-});
-
 // -----Theme stay changed even if user reload the page---
-//  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
-const storedTheme = localStorage.getItem("selectedTheme");
 if (storedTheme) {
     applySelectedTheme(storedTheme);
     const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
@@ -157,6 +147,22 @@ if (storedTheme) {
         selectedRadioButton.checked = true;
     }
 }
+
+// Handle radio button changes
+const handleThemeChange = function () {
+    if (this.checked) {
+        const colorValue = this.value;
+        storedTheme = colorValue;
+        localStorage.setItem("selectedTheme", colorValue);
+        applySelectedTheme(colorValue);
+    }
+};
+
+enableDarkModeCheckbox.addEventListener("change", function () {
+    saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
+    applySelectedTheme(storedTheme);
+});
+
 
 // Remove any previously attached listeners and add only one
 radioButtons.forEach(radioButton => {

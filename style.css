@@ -526,7 +526,7 @@ body {
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 	transition: right 0.3s ease;
 	z-index: 5;
 	display: block;
@@ -691,7 +691,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	#bookmarkGridCheckbox:is(:not(:checked))
 	~ #bookmarkViewList {
 	background: var(--darkColor-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 }
 
 #bookmarkList ul {
@@ -956,6 +956,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: #00000000;
 	padding: 0 2px;
 	font-size: 1rem;
+	color: var(--textColorDark-blue);
 }
 
 .dark-theme #todoInput {
@@ -1317,6 +1318,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: var(--whitishColor-blue);
 }
 
 .tilesContainer .tiles span {
@@ -1486,6 +1488,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0 2px;
 	margin-left: 55px;
 	font-size: 1rem;
+	color: var(--textColorDark-blue);
 }
 
 /* Default placeholder color */
@@ -1551,10 +1554,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: all 0.5s;
 }
 
-.micIcon:hover {
-	background-color: #fffffff2;
-}
-
 @keyframes micAnimation {
 	0% {
 		transform: rotate(0deg);
@@ -1582,7 +1581,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: none;
 	font-size: 1.1rem;
 	background-color: var(--darkColor-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 	/* transition: all 0.3s; */
 }
 
@@ -1783,6 +1782,15 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: relative;
 	transition: all 0.3s;
 	isolation: isolate;
+}
+
+#shortcuts-section:has(~ .menuBar #enableDarkModeCheckbox:checked) .shortcutsContainer .shortcuts:has(img) {
+	filter: invert(1) hue-rotate(180deg) brightness(0.9);
+	-webkit-filter: invert(1) hue-rotate(180deg) brightness(0.9);
+	& span {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
 }
 
 .shortcutsContainer .shortcuts:hover {
@@ -2396,7 +2404,7 @@ input:checked + .toggle:before {
 }
 
 .delete button:hover {
-	fill: white;
+	fill: var(--whitishColor-blue);
 	background: var(--darkColor-blue);
 }
 
@@ -2406,7 +2414,7 @@ input:checked + .toggle:before {
 }
 
 .addShortcutContainer button {
-	fill: white;
+	fill: var(--whitishColor-blue);
 	background: var(--darkColor-blue);
 	position: absolute;
 	display: flex;

@@ -576,6 +576,10 @@ menuBar.addEventListener("click", (event) => {
 document.getElementById("menuCloseButton").onclick = () => {
     closeMenuBar()
 }
+// Hiding Menu Bar when user is choosing a theme --------
+document.getElementById("rangColor").onclick = () => {
+    // closeMenuBar()
+}
 
 // ---------------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
