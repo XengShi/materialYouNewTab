@@ -903,7 +903,6 @@ const handleThemeChange = function () {
         localStorage.setItem(themeStorageKey, colorValue);
         localStorage.removeItem(customThemeStorageKey); // Clear custom theme
         applySelectedTheme(colorValue);
-        updateFaviconForCustomColor(selectedColor);
     }
 };
 
