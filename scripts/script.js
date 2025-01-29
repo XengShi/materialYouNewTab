@@ -695,7 +695,7 @@ const applySelectedTheme = (colorValue) => {
 };
 
 // Map color values to icon paths
-const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "grey", "dark"]
+const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
     .reduce((acc, color) => {
         acc[color] = `./favicon/${color}.png`;
         return acc;
