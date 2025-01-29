@@ -42,6 +42,7 @@
 <br>
 
 6. **Add the Locale to `tools/languagesAnalysis.html`**
+    - (You may use this tool for an overview of missing or extra strings in the language.)
     - Add the new language script tag in chronological order:
       ```html
       <script src="../locales/de.js"></script>
@@ -56,7 +57,7 @@
 <br>
 
 ### Notes:
-- **Test the Translation**: Verify that the translations display correctly when the respective locale is selected including hover text and alerts.
+- **Test the Translation**: Verify that the translations display correctly when the respective locale is selected, including hover texts and alerts.
 - **Confirm in `weather.js`**: Ensure the humidity value stays on a single line. If it moves to a second line, increase the minimum width.
 - **Keep Translations Consistent**: Ensure the structure of the new translation file matches existing ones for consistency across locales.
 - **Additional Considerations**: Some languages may require specific adjustments based on regional needs.
