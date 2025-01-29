@@ -42,7 +42,7 @@
 <br>
 
 6. **Add the Locale to `tools/languagesAnalysis.html`**
-    - (You may use this tool for an overview of missing or extra strings in the language.)
+    - (You can use this tool to get an overview of missing or extra strings in the language.)
     - Add the new language script tag in chronological order:
       ```html
       <script src="../locales/de.js"></script>
