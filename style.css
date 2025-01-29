@@ -3349,3 +3349,10 @@ body:has(#darkTheme:checked){
 		--accentLightTint-blue: #bfbfbf;
 	}
 }
+
+body:has(#enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked,.colorPlate[value="peach"]:checked)) .topDiv .cconnt {
+	--whitishColor-blue: #ccc;
+	& .tiles:first-of-type {
+		--whitishColor-blue: black;
+	}
+}
