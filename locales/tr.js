@@ -21,12 +21,12 @@ const tr = {
     "enable_ai_tools": "Yapay zeka araçları kısayollarını göster",
     "googleAppsMenuText": "Google Uygulamaları",
     "googleAppsMenuInfo": "Google uygulamaları için kısayollarını göster",
-    "googleAppsHover": "Google Apps",   // Keep this shorter
+    "googleAppsHover": "Google Apps",
 
     // To-do List
     "todoListText": "Yapılacaklar Listesi",
     "todoListInfo": "Yapılacaklar listesini göster",
-    "todoListHover": "Yapılacaklar",    // Keep this short
+    "todoListHover": "Yapılacaklar",
     "todoPlaceholder": "Görev ekle",
 
     // Digital Clock
@@ -81,11 +81,11 @@ const tr = {
     // Bookmarks
     "bookmarksHeading": "Yer imleri",
     "bookmarkViewAs": "Görünüm",
-    "bookmarkViewGrid": "Izgara",    // Keep this shorter
-    "bookmarkViewList": "Liste",    // Keep this shorter
+    "bookmarkViewGrid": "Izgara",
+    "bookmarkViewList": "Liste",
     "bookmarkSearch": "Yer imlerinde ara",
 
-    // New Tab Item kontrol et
+    // New Tab Item
     "conditionText": "Merhaba! Bugün nasılsın?",
     "humidityLevel": "Nem",
     "feelsLike": "Hissediyor",
@@ -93,7 +93,7 @@ const tr = {
     "enterBtn": "Arama Yap",
     "searchPlaceholder": "Buraya yazın...",
     "listenPlaceholder": "Dinleniyor...",
-    "searchWithHint": "ile Ara", // ?
+    "searchWithHint": "ile Ara",
     "userText": "Düzenlemek için buraya tıklayın",
 
     // Greeting
@@ -125,10 +125,10 @@ const tr = {
     "enableDarkModeInfo": "Karanlık moda geç",
 
     // Wallpaper and misc
-    "uploadWallpaperText": "Duvar Kağıdı Yükle",    // Keep this short
+    "uploadWallpaperText": "Duvar Kağıdı Yükle",
     "backupText": "Yedekleme",
     "restoreText": "Kurtarma",
-    "rangColor": "Renk seç",    // Keep this short
+    "rangColor": "Renk seç",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Bugün için yeni bir duvar kağıdı ayarlamak ister misiniz?",
@@ -140,7 +140,7 @@ const tr = {
     "restorecompleted": "Geri yükleme başarıyla tamamlandı!",
     "restorefailed": "Geri yükleme başarısız oldu: ",
     "invalidBackup": "Geçersiz yedekleme dosyası seçildi.",
-    "deleteBookmark": "\"{title}\" yer imini silmek istediğinizden emin misiniz?",  // Do not translate {title}
+    "deleteBookmark": "\"{title}\" yer imini silmek istediğinizden emin misiniz?",
     "UnsupportedBrowser": "Yer imleri tarayıcınızda desteklenmiyor.",
-    "BookmarksDenied": "Yer imlerine izin verilmedi.",
+    //"BookmarksDenied": "Yer imlerine izin verilmedi.",
 };
