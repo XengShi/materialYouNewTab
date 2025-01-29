@@ -45,7 +45,7 @@ const tr = {
     "micIconTitle": "Mikrofon Simgesini Gizle",
     "micIconInfo": "Eğer sesli yazma çalışmıyorsa",
     "hideSearchWith": "Arama Motorlarını Gizle",
-    "hideSearchWithInfo": "İkonuna tıklayarak arama motorları arasında geçiş yapın",//?
+    "hideSearchWithInfo": "İkonuna tıklayarak arama motorları arasında geçiş yapın",
     "search_suggestions_button": "Arama Önerileri",
     "search_suggestions_text": "Arama önerilerini etkinleştir",
 
