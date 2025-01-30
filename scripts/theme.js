@@ -230,6 +230,7 @@ radioButtons.forEach(radioButton => {
 // Handle color picker changes
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
+    storedTheme = selectedColor;
     localStorage.setItem("selectedTheme", selectedColor); // Save custom color
     applySelectedTheme(selectedColor);
 
