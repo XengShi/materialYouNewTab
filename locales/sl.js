@@ -30,11 +30,11 @@ const sl = {
     "todoPlaceholder": "Dodaj nalogo...",
 
     // Digital Clock
-    "digitalclocktittle": "Digitalna ura",
+    "digitalclocktitle": "Digitalna ura",
     "digitalclockinfo": "Preklopi na digitalno uro",
-    "timeformattittle": "12-urni format",
+    "timeformattitle": "12-urni format",
     "timeformatinfo": "Uporabi 12-urni časovni format",
-    "greetingtittle": "Pozdrav",
+    "greetingtitle": "Pozdrav",
     "greetinginfo": "Prikaži pozdrav pod prilagojenim besedilom",
 
     // Misc

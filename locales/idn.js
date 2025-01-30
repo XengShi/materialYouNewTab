@@ -30,11 +30,11 @@ const idn = {
     "todoPlaceholder": "Tambah tugas...",
 
     // Digital Clock
-    "digitalclocktittle": "Jam Digital",
+    "digitalclocktitle": "Jam Digital",
     "digitalclockinfo": "Ubah menjadi jam digital",
-    "timeformattittle": "Format 12-Jam",
+    "timeformattitle": "Format 12-Jam",
     "timeformatinfo": "Menggunakan format 12-jam",
-    "greetingtittle": "Sapaan",
+    "greetingtitle": "Sapaan",
     "greetinginfo": "Tampilkan sapaan di bawah teks kustom",
 
     // Misc

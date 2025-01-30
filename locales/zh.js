@@ -30,11 +30,11 @@ const zh = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "数字时钟",
+    "digitalclocktitle": "数字时钟",
     "digitalclockinfo": "切换到数字时钟",
-    "timeformattittle": "12 小时制",
+    "timeformattitle": "12 小时制",
     "timeformatinfo": "使用 12 小时制时间格式",
-    "greetingtittle": "问候语",
+    "greetingtitle": "问候语",
     "greetinginfo": "在自定义文本下显示问候语",
 
     // Misc

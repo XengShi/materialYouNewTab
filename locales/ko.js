@@ -30,11 +30,11 @@ const ko = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "디지털 시계",
+    "digitalclocktitle": "디지털 시계",
     "digitalclockinfo": "디지털 시계로 전환",
-    "timeformattittle": "12시간 형식",
+    "timeformattitle": "12시간 형식",
     "timeformatinfo": "12시간 형식 사용",
-    "greetingtittle": "인사말",
+    "greetingtitle": "인사말",
     "greetinginfo": "사용자 정의 텍스트 아래에 인사말 표시",
 
     // Misc

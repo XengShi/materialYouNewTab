@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-window.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
