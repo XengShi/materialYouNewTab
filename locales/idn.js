@@ -70,6 +70,8 @@ const idn = {
     "userAPI": "Kunci weatherAPI anda",
     "LearnMoreButton": "Pelajari lebih lanjut",
     "saveAPI": "Simpan",
+    "hideWeatherBox": "Sembunyikan Kartu Cuaca",
+    "hideWeatherBoxInfo": "Hanya tampilkan suhu pada ponsel",
 
     // Body Items
     // Calendar
@@ -117,6 +119,10 @@ const idn = {
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
+    
+    // Theme
+    "enableDarkMode": "Mode Gelap",
+    "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
 
     // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
@@ -136,4 +142,5 @@ const idn = {
     "invalidBackup": "File cadangan tidak valid",
     "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku \"{title}\"?",
     "UnsupportedBrowser": "Markah buku tidak didukung oleh browser anda",
+    "BookmarksDenied": "Izin markah buku belum diberikan.",
 };
