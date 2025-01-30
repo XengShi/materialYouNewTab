@@ -3335,9 +3335,17 @@ body:has(#darkTheme:checked){
 	& .tilesContainer .tiles span{
 		--textColorDark-blue: #1a1a1a;
 	}
-	& .shortcutsContainer .shortcuts{
+	& .shortcutsContainer .shortcuts {
 		--darkColor-blue: #3c3c3c;
 		--accentLightTint-blue: #bfbfbf;
+	}
+	& .searchIcon .accentColor {
+		--darkColor-blue: #bfbfbf;
+	}
+	& #menuCloseButton {
+		--darkColor-blue: #3c3c3c;
+		--accentLightTint-blue: #bfbfbf;
+		--textColorDark-blue: #212121;
 	}
 }
 

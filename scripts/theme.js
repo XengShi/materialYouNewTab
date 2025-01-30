@@ -199,6 +199,10 @@ if (storedTheme) {
         }
         selectedRadioButton.checked = true;
     }
+    if (storedTheme.slice(0,1)==='#') {
+        document.getElementById("rangColor").style.borderColor = storedTheme;
+        document.getElementById("dfChecked").checked = false;
+    }
 }
 
 // Handle radio button changes
@@ -227,7 +231,7 @@ radioButtons.forEach(radioButton => {
 const handleColorPickerChange = function (event) {
     const selectedColor = event.target.value;
     localStorage.setItem("selectedTheme", selectedColor); // Save custom color
-    applyCustomTheme(selectedColor, enableDarkModeCheckbox.checked);
+    applySelectedTheme(selectedColor);
 
     // Uncheck all radio buttons
     radioButtons.forEach(radio => {
