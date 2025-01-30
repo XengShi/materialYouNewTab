@@ -695,11 +695,10 @@ const applySelectedTheme = (colorValue) => {
 };
 
 // Map color values to icon paths
-const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-    .reduce((acc, color) => {
-        acc[color] = `./favicon/${color}.png`;
-        return acc;
-    }, {});
+const iconPaths = Object.fromEntries(
+    ["blue", "brown", "cyan", "dark", "green", "orange", "peach", "pink", "purple", "red", "silver", "yellow"]
+        .map(color => [color, `./favicon/${color}.png`])
+);
 
 // Function to update the extension icon based on browser
 const updateExtensionIcon = (colorValue, isCustom = false) => {
