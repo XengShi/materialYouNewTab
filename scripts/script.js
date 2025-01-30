@@ -684,35 +684,17 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
-
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (isFirefox) {
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (isChromiumBased) {
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (isSafari) {
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
+    // Change the favicon dynamically based on the selected theme
     const faviconLink = document.querySelector("link[rel='icon']");
     if (faviconLink && iconPaths[colorValue]) {
         faviconLink.href = iconPaths[colorValue];
     }
+    updateExtensionIcon(colorValue);
+
     ApplyLoadingColor();
 };
 
-// ----Color Picker || ColorPicker----
+// ------------- Color Picker || ColorPicker -------------
 function adjustHexColor(hex, factor, isLighten = true) {
     hex = hex.replace("#", "");
     if (hex.length === 3) {
@@ -759,6 +741,7 @@ const applyCustomTheme = (color) => {
     document.getElementById("dfChecked").checked = false;
 
     ApplyLoadingColor();
+    updateFaviconForCustomColor(color); // Update favicon
 };
 
 // Load theme on page reload
