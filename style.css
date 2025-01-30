@@ -3326,10 +3326,10 @@ body:has(#darkTheme:checked){
 		--darkColor-blue: #1a1a1a;
 		--whitishColor-blue: #ccd;
 	}
-	& .optCont :is(input:not([type="radio"]),button,.languageSelector,.languageIcon,.colorsContainer, #themeButton) {
+	& .optCont #overviewPage :is(input:not([type="radio"]),button:not(#shortcutEditButton),.languageSelector,.languageIcon,.colorsContainer, #themeButton) {
 		background: #212121;
 	}
-	& .optCont button:hover {
+	& .optCont #overviewPage button:not(#shortcutEditButton):hover {
 		background: #050708 !important;
 	}
 	& .tilesContainer .tiles span{
@@ -3339,13 +3339,27 @@ body:has(#darkTheme:checked){
 		--darkColor-blue: #3c3c3c;
 		--accentLightTint-blue: #bfbfbf;
 	}
-	& .searchIcon .accentColor {
-		--darkColor-blue: #bfbfbf;
+	& .searchIcon {
+		& > svg .accentColor {
+			--darkColor-blue: #bfbfbf;
+		}
+	}
+	& .searchbar.active {
+		outline: 2px solid #bfbfbf;
 	}
 	& #menuCloseButton {
 		--darkColor-blue: #3c3c3c;
 		--accentLightTint-blue: #bfbfbf;
 		--textColorDark-blue: #212121;
+	}
+	& #bookmarksContainer {
+		& #bookmarkSearch {
+			--whitishColor-blue: #212121;
+		}
+		& .bookmark-view-as-container .bookmark-view-as-button {
+			--darkColor-blue: #000;
+			color: #fff;
+		}
 	}
 }
 
