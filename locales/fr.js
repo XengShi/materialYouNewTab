@@ -70,6 +70,8 @@ const fr = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "En savoir plus",
     "saveAPI": "Enregistrer",
+    "hideWeatherBox": "Masquer la carte météo",
+    "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
 
     // Body Items
     // Calendar
@@ -117,6 +119,11 @@ const fr = {
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
+
+    // Theme
+    "enableDarkMode": "Mode Sombre",
+    "enableDarkModeInfo": "Activer le mode sombre des thèmes",
+
 
     // Wallpaper and misc
     "uploadWallpaperText": "Uploader un fond d'ecran",
