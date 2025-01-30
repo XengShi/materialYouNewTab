@@ -70,6 +70,8 @@ const cs = {
     "userAPI": "Váš klíč k WeatherAPI",
     "LearnMoreButton": "Zjistit více",
     "saveAPI": "Uložit",
+    "hideWeatherBox": "Skrýt kartu s počasím",
+    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
 
     // Body Items
     // Calendar
