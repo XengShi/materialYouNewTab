@@ -1780,15 +1780,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	isolation: isolate;
 }
 
-#shortcuts-section:has(~ .menuBar #enableDarkModeCheckbox:checked) .shortcutsContainer .shortcuts:has(img) {
-	filter: invert(1) hue-rotate(180deg) brightness(0.9);
-	-webkit-filter: invert(1) hue-rotate(180deg) brightness(0.9);
-	& span {
-		filter: invert(1) hue-rotate(180deg);
-		-webkit-filter: invert(1) hue-rotate(180deg);
-	}
-}
-
 .shortcutsContainer .shortcuts:hover {
 	transform: translateY(-10px) scale(1.03);
 	/* box-shadow: 0 5px 10px var(--accentLightTint-blue); */
@@ -3354,5 +3345,40 @@ body:has(#enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked,.colorPlat
 	--whitishColor-blue: #ccc;
 	& .tiles:first-of-type {
 		--whitishColor-blue: black;
+	}
+}
+
+.darkmodeswitch {
+	margin-top: 50px;
+	border-radius: 50%;
+	padding: 12px;
+	border: none;
+	display: flex;
+	cursor: pointer;
+	color: var(--darkColor-blue);
+	background: var(--whitishColor-blue);
+	& svg {
+		width: 26px;
+		height: 26px;
+	}
+}
+.darkmodeswitch:has(#enableDarkModeCheckbox:disabled) {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.darkmodeswitch:has(#enableDarkModeCheckbox:checked) .moon{
+	display: none;
+}
+.darkmodeswitch:not(:has(#enableDarkModeCheckbox:checked)) .sun{
+	display: none;
+}
+
+body:not(:has(#darkTheme:checked,.colorPlate[value="peach"]:checked)) #shortcuts-section:has(~ .menuBar #enableDarkModeCheckbox:checked) .shortcutsContainer .shortcuts:has(img) {
+	filter: invert(1) hue-rotate(180deg) brightness(0.9);
+	-webkit-filter: invert(1) hue-rotate(180deg) brightness(0.9);
+	& span {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
 }

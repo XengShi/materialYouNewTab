@@ -52,12 +52,12 @@ const applySelectedTheme = (colorValue) => {
     }
     // const themeColorMapping = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
 
-    document.querySelector('.ttcont:has(#enableDarkMode)').classList.remove("inactive");
+    document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = false;
 
     // if (themeColorMapping.includes(colorValue)&&(!enableDarkModeCheckbox.checked==false)) {
     if ((colorValue in themeColorMapping)&&(enableDarkModeCheckbox.checked==false)||colorValue=="dark"||colorValue=="peach") {
         if (colorValue=="dark"||colorValue=="peach"){
-            document.querySelector('.ttcont:has(#enableDarkMode)').classList.add("inactive");
+            document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
         }
         if (colorValue != "blue") {
             document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
@@ -194,6 +194,9 @@ if (storedTheme) {
     }
     const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
     if (selectedRadioButton) {
+        if (storedTheme=="dark"||storedTheme=="peach"){
+            document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
+        }
         selectedRadioButton.checked = true;
     }
 }
@@ -237,3 +240,9 @@ colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no 
 colorPicker.addEventListener("input", handleColorPickerChange);
 
 // End of Function to apply the selected theme
+
+
+// Button CLick Event
+document.getElementById("darkModeSwitch").addEventListener("click", function () {
+    enableDarkModeCheckbox.click();
+});
