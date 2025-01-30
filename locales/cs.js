@@ -27,7 +27,7 @@ const cs = {
     "todoListText": "Seznam úkolů",
     "todoListInfo": "Zobrazí denní seznam úkolů",
     "todoListHover": "Seznam úkolů",
-    "todoPlaceholder": "Přidat úkol...",
+    "todoPlaceholder": "Přidat úkol…",
 
     // Digital Clock
     "digitalclocktittle": "Digitální hodiny",
@@ -91,8 +91,8 @@ const cs = {
     "feelsLike": "Pocitová teplota",
     "location": "Země",
     "enterBtn": "Vyhledat",
-    "searchPlaceholder": "Zadejte hledaný výraz...",
-    "listenPlaceholder": "Poslouchám...",
+    "searchPlaceholder": "Zadejte hledaný výraz…",
+    "listenPlaceholder": "Poslouchám…",
     "searchWithHint": "Vyhledávat prostřednictvím",
     "userText": "Upravíte po kliknutí",
 
