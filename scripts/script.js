@@ -7,6 +7,14 @@
  */
 
 
+// TODO: Seperate stuffs to theme.js, search.js, search-suggestions.js (with proxy)
+// TODO: Seperate stuffs to shortcuts.js, menu.js
+// TODO: `clock.js` - might be divided in two: `clock-analog.js` and `clock-digital.js`
+// TODO: `search.js` - might be divided in two: `search-default.js` and `search-dropdown.js`
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name) ??
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists) ??
+
+
 let proxyurl;
 document.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
