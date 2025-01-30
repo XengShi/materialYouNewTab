@@ -140,7 +140,6 @@ const cs = {
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
     "invalidBackup": "Neplatný soubor se zálohou",
-    "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
+    "deleteBookmark": "Opravdu si přejete smazat záložku „{title}“?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
-    "BookmarksDenied": "Nebylo přiděleno oprávnění pro záložky.",
 };
