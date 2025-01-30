@@ -118,6 +118,10 @@ const cs = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "Tmavý režim",
+    "enableDarkModeInfo": "Zapne motivy v tmavém režimu",
+
     // Wallpaper and misc
     "uploadWallpaperText": "Nahrát tapetu",
     "backupText": "Zálohovat",
