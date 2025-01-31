@@ -1036,7 +1036,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background: url("./svgs/todo-list/todo-check-stroke.svg") no-repeat center
+	background: url("./svgs/todo_list/todo-check-stroke.svg") no-repeat center
 		center / contain;
 	top: 50%;
 	transform: translateY(-50%);
@@ -1046,7 +1046,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem.checked::before {
-	background-image: url("./svgs/todo-list/todo-check-fill.svg");
+	background-image: url("./svgs/todo_list/todo-check-fill.svg");
 }
 
 .todolistitem.checked {
@@ -1081,12 +1081,12 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .todolistitem .todopinbtn {
 	right: 28px;
-	background: url("./svgs/todo-list/todo-pin-stroke.svg") no-repeat center
+	background: url("./svgs/todo_list/todo-pin-stroke.svg") no-repeat center
 		center / contain;
 }
 
 .todolistitem.pinned .todopinbtn {
-	background-image: url("./svgs/todo-list/todo-pin-fill.svg");
+	background-image: url("./svgs/todo_list/todo-pin-fill.svg");
 }
 
 .todolistitem:first-child {
