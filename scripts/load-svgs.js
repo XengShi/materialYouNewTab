@@ -58,4 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSVG("artsandcultureGAIcon", "./svgs/google_apps/arts-and-culture.svg");
     loadSVG("saveGAIcon", "./svgs/google_apps/saved.svg");
     loadSVG("chromestoreGAIcon", "./svgs/google_apps/chrome-web-store.svg");
+
+    // Menu Page
+    loadSVG("githubIcon", "./svgs/menu_page/github.svg");
+    loadSVG("feedbackIcon", "./svgs/menu_page/feedback.svg");
+    loadSVG("languageIconSvg", "./svgs/menu_page/language-icon.svg");
+    loadSVG("themeButton", "./svgs/menu_page/theme.svg");
+    loadSVG("closeIcon", "./svgs/menu_page/cross.svg");
 });
