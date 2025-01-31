@@ -2628,7 +2628,7 @@ input:checked + .toggle:before {
 	content: "";
 	width: 36px;
 	height: 36px;
-	background: url("./svgs/menu/tick.svg") center center no-repeat;
+	background: url("./svgs/menu-page/tick.svg") center center no-repeat;
 	background-size: 74%;
 }
 
