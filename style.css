@@ -616,7 +616,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .bookmark-search-container::after {
 	content: "";
-	background: url("./svgs/bookmark-page/bookmarks-search.svg") no-repeat center /
+	background: url("./svgs/bookmark_page/bookmarks-search.svg") no-repeat center /
 		contain;
 	width: 18px;
 	filter: invert(1);

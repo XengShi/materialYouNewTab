@@ -1,8 +1,12 @@
 function loadSVG(containerId, svgFile) {
     fetch(svgFile)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) throw new Error();
+            return response.text();
+        })
         .then(svgContent => {
-            document.getElementById(containerId).innerHTML = svgContent;
+            const container = document.getElementById(containerId);
+            if (container) container.innerHTML = svgContent;
         })
         .catch(() => { });
 }
