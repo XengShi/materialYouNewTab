@@ -1,3 +1,11 @@
+/*
+ * Material You NewTab
+ * Copyright (c) 2023-2025 XengShi
+ * Licensed under the GNU General Public License v3.0 (GPL-3.0)
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ */
+
 function loadSVG(containerId, svgFile) {
     fetch(svgFile)
         .then(response => {
@@ -62,7 +70,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Menu Page
     loadSVG("githubIcon", "./svgs/menu_page/github.svg");
     loadSVG("feedbackIcon", "./svgs/menu_page/feedback.svg");
+    loadSVG("shortcutEditButton", "./svgs/menu_page/edit-shortcuts.svg");
     loadSVG("languageIconSvg", "./svgs/menu_page/language-icon.svg");
     loadSVG("themeButton", "./svgs/menu_page/theme.svg");
+    loadSVG("randomImageTrigger", "./svgs/menu_page/random-bg.svg");
     loadSVG("closeIcon", "./svgs/menu_page/cross.svg");
+
+    // Shortcut Page
+    loadSVG("backButton", "./svgs/shortcut_page/back-icon.svg");
+    loadSVG("newShortcutButton", "./svgs/shortcut_page/add-icon.svg");
+    loadSVG("resetButton", "./svgs/shortcut_page/reset-icon.svg");
 });
