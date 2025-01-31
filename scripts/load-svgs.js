@@ -8,6 +8,15 @@ function loadSVG(containerId, svgFile) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // AI Tools
+    loadSVG("chatGPTIcon", "./svgs/ai_tools/chatgpt.svg");
+    loadSVG("geminiIcon", "./svgs/ai_tools/gemini-bard.svg");
+    loadSVG("copilotIcon", "./svgs/ai_tools/copilot.svg");
+    loadSVG("claudeIcon", "./svgs/ai_tools/claude.svg");
+    loadSVG("perplexityIcon", "./svgs/ai_tools/perplexity.svg");
+    loadSVG("fireflyIcon", "./svgs/ai_tools/adobe-firefly.svg");
+    loadSVG("metaAIIcon", "./svgs/ai_tools/meta-ai.svg");
+
     // Google Apps
     loadSVG("accountGAIcon", "./svgs/google_apps/account.svg");
     loadSVG("searchGAIcon", "./svgs/google_apps/search.svg");
