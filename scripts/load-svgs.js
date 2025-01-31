@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSVG("myadcenterGAIcon", "./svgs/google_apps/my-ad-center.svg");
     loadSVG("businessGAIcon", "./svgs/google_apps/business-profile.svg");
     loadSVG("shoppingGAIcon", "./svgs/google_apps/shopping.svg");
-
     loadSVG("docsGAIcon", "./svgs/google_apps/docs.svg");
     loadSVG("sheetsGAIcon", "./svgs/google_apps/sheets.svg");
     loadSVG("presentationGAIcon", "./svgs/google_apps/slides.svg");
@@ -46,5 +45,4 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSVG("artsandcultureGAIcon", "./svgs/google_apps/arts-and-culture.svg");
     loadSVG("saveGAIcon", "./svgs/google_apps/saved.svg");
     loadSVG("chromestoreGAIcon", "./svgs/google_apps/chrome-web-store.svg");
-
 });
