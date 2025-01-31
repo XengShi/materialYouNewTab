@@ -616,7 +616,8 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .bookmark-search-container::after {
 	content: "";
-	background: url("./svgs/bookmarksSearch.svg") no-repeat center / contain;
+	background: url("./svgs/bookmark-page/bookmarks-search.svg") no-repeat center /
+		contain;
 	width: 18px;
 	filter: invert(1);
 	height: 18px;
@@ -1035,8 +1036,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 18px;
 	width: 18px;
 	border-radius: 50%;
-	background: url("./svgs/todo-check-stroke.svg") no-repeat center center /
-		contain;
+	background: url("./svgs/todo-list/todo-check-stroke.svg") no-repeat center
+		center / contain;
 	top: 50%;
 	transform: translateY(-50%);
 	left: 8px;
@@ -1045,7 +1046,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem.checked::before {
-	background-image: url("./svgs/todo-check-fill.svg");
+	background-image: url("./svgs/todo-list/todo-check-fill.svg");
 }
 
 .todolistitem.checked {
@@ -1080,12 +1081,12 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .todolistitem .todopinbtn {
 	right: 28px;
-	background: url("./svgs/todo-pin-stroke.svg") no-repeat center center /
-		contain;
+	background: url("./svgs/todo-list/todo-pin-stroke.svg") no-repeat center
+		center / contain;
 }
 
 .todolistitem.pinned .todopinbtn {
-	background-image: url("./svgs/todo-pin-fill.svg");
+	background-image: url("./svgs/todo-list/todo-pin-fill.svg");
 }
 
 .todolistitem:first-child {
@@ -1374,8 +1375,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 100%;
 	width: 40px;
 	background-size: 66%;
-	background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center
-		center;
+	background: var(--darkColor-blue) url("./svgs/home_page/humidity.svg")
+		no-repeat center center;
 	right: 0;
 	border-radius: 100%;
 }
@@ -2627,7 +2628,7 @@ input:checked + .toggle:before {
 	content: "";
 	width: 36px;
 	height: 36px;
-	background: url("./svgs/tick.svg") center center no-repeat;
+	background: url("./svgs/menu/tick.svg") center center no-repeat;
 	background-size: 74%;
 }
 
@@ -2810,8 +2811,7 @@ input:checked + .toggle:before {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 50%;
 	border: 6px solid var(--accentLightTint-blue);
-	box-shadow:
-		inset 0 0 0 4px var(--darkColor-blue),
+	box-shadow: inset 0 0 0 4px var(--darkColor-blue),
 		inset 0 0 0 9.7px var(--accentLightTint-blue),
 		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
@@ -2877,11 +2877,6 @@ input:checked + .toggle:before {
 	z-index: 2;
 	transition: all 0.4s ease;
 }
-
-/* #menuCloseButton .icon:hover{
-    transition: all 0.2s;
-    transform: rotate(90deg);
-} */
 
 #menuCloseButton:hover .icon {
 	transform: translateX(0) rotate(90deg);
