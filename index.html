@@ -1350,11 +1350,8 @@
                             <input class="colorPlate" name="color" type="radio" value="peach">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
-                            <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
-                                color</label>
-                            <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
-                            <!-- ----End of Color Picker || ColorPicker---- -->
+                            <!-- Custom Theme -->
+                            <label id="customThemeColor" class="colorPlate colorPickerLabel">Choose Theme</label>
                         </div>
 
                     </div>
@@ -1465,6 +1462,54 @@
     </div>
     <!-- ------end of Menu-bar----------- -->
     <div id="menuButton"></div>
+
+
+    <div class="CustomThemeModal" id="customThemeModal">
+        <div class="modalContent">
+            <div class="modalHeader">
+                <h2>Custom Theme</h2>
+                <!-- ----Color Picker || ColorPicker---- -->
+                <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
+                    color</label>
+                <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
+                <!-- ----End of Color Picker || ColorPicker---- -->
+            </div>
+            <div class="modalBody">
+                <div>
+                    <div class="modalBodyContentItem">
+                        <h3>Background Color</h3>
+                        <input type="color" id="backgroundColorPicker" value="#BBD6FD">
+                    </div>
+                    <div class="modalBodyContentItem">
+                        <h3>Accent Light Tint</h3>
+                        <input type="color" id="accentLightTintPicker" value="#E2EEFF">
+                    </div>
+                    <div class="modalBodyContentItem">
+                        <h3>Darker Color</h3>
+                        <input type="color" id="darkerColorPicker" value="#3569b2">
+                    </div>
+                </div>
+                <div>
+                    <div class="modalBodyContentItem">
+                        <h3>Dark Color</h3>
+                        <input type="color" id="darkColorPicker" value="#4382EC">
+                    </div>
+                    <div class="modalBodyContentItem">
+                        <h3>Text Color</h3>
+                        <input type="color" id="textColorPicker" value="#1b3041">
+                    </div>
+                    <div class="modalBodyContentItem">
+                        <h3>Whitish Color</h3>
+                        <input type="color" id="whitishColorPicker" value="#ffffff">
+                    </div>
+                </div>
+            </div>
+            <div class="modalFooter">
+                <button class="closeModal" id="closeCustomThemeModal">Cancel<!--&#10006;--></button>
+                <button id="saveCustomTheme">Save</button>
+            </div>
+        </div>
+    </div>
     <!-- ending-of-body -->
 
 </body>

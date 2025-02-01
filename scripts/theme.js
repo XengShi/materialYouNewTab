@@ -8,6 +8,10 @@
 
 //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
 let storedTheme = localStorage.getItem("selectedTheme");
+if (!storedTheme) {
+    storedTheme = "blue";
+    localStorage.setItem("selectedTheme", storedTheme);
+}
 
 //------------------------- LoadingScreen -----------------------//
 
@@ -48,7 +52,7 @@ const applySelectedTheme = (colorValue) => {
         "brown": "#705347",
         "silver": "#9e9e9e",
         "peach": 0,
-        "dark": "#171615",
+        "dark": 0,
     }
     // const themeColorMapping = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
 
@@ -66,6 +70,7 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
+            document.getElementById("dfChecked").checked = false;
         } else {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
@@ -73,18 +78,20 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
             document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
+            document.getElementById("dfChecked").checked = true;
         }
         document.getElementById("rangColor").style.borderColor = "transparent";
-        document.getElementById("dfChecked").checked = false;
     } else if (colorValue in themeColorMapping) {
         applyCustomTheme(themeColorMapping[colorValue], true);
         document.getElementById("rangColor").style.borderColor = "transparent";
     } else  {
         applyCustomTheme(colorValue, enableDarkModeCheckbox.checked);
-        saveThemeColors()
+        saveThemeColors();
+        UpdateCustomThemeModal();
         return;
     }
-    saveThemeColors()
+    saveThemeColors();
+    UpdateCustomThemeModal();
 
     // Change the extension icon based on the selected theme
     const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
@@ -181,7 +188,7 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
 };
 
 // -----Theme stay changed even if user reload the page---
-if (storedTheme) {
+(function () {
     // applySelectedTheme(storedTheme);
     if (localStorage.getItem("themeColors")) {
         const themeColors = JSON.parse(localStorage.getItem("themeColors"));
@@ -191,6 +198,11 @@ if (storedTheme) {
         document.documentElement.style.setProperty("--darkColor-blue", themeColors["--darkColor-blue"]);
         document.documentElement.style.setProperty("--textColorDark-blue", themeColors["--textColorDark-blue"]);
         document.documentElement.style.setProperty("--whitishColor-blue", themeColors["--whitishColor-blue"]);
+        if (storedTheme==='customTheme') {
+            document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
+            document.getElementById("dfChecked").checked = false;
+            return;
+        }
     }
     const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
     if (selectedRadioButton) {
@@ -203,7 +215,7 @@ if (storedTheme) {
         document.getElementById("rangColor").style.borderColor = storedTheme;
         document.getElementById("dfChecked").checked = false;
     }
-}
+}())
 
 // Handle radio button changes
 const handleThemeChange = function () {
@@ -251,3 +263,82 @@ colorPicker.addEventListener("input", handleColorPickerChange);
 document.getElementById("darkModeSwitch").addEventListener("click", function () {
     enableDarkModeCheckbox.click();
 });
+
+
+
+
+
+
+
+
+
+//> Custom Theme Modal
+const customThemeModal = document.getElementById("customThemeModal");
+const closeCustomThemeModal = document.getElementById("closeCustomThemeModal");
+const saveCustomTheme = document.getElementById("saveCustomTheme");
+const backgroundColorPicker = document.getElementById("backgroundColorPicker");
+const accentLightTintPicker = document.getElementById("accentLightTintPicker");
+const darkerColorPicker = document.getElementById("darkerColorPicker");
+const darkColorPicker = document.getElementById("darkColorPicker");
+const textColorPicker = document.getElementById("textColorPicker");
+const whitishColorPicker = document.getElementById("whitishColorPicker");
+const customThemeColor = document.getElementById("customThemeColor");
+
+customThemeColor.addEventListener("click", () => {
+    closeMenuBar();
+    customThemeModal.classList.add("active");
+});
+
+customThemeModal.addEventListener("click", (e) => {
+    if (e.target === customThemeModal) {
+        customThemeModal.classList.remove("active");
+    }
+});
+
+closeCustomThemeModal.addEventListener("click", () => {
+    customThemeModal.classList.remove("active");
+});
+
+saveCustomTheme.addEventListener("click", () => {
+    storedTheme = "customTheme";
+    localStorage.setItem("selectedTheme", storedTheme);
+    document.documentElement.style.setProperty("--bg-color-blue", backgroundColorPicker.value || "#BBD6FD");
+    document.documentElement.style.setProperty("--accentLightTint-blue", accentLightTintPicker.value || "#E2EEFF");
+    document.documentElement.style.setProperty("--darkerColor-blue", darkerColorPicker.value || "#3569b2");
+    document.documentElement.style.setProperty("--darkColor-blue", darkColorPicker.value || "#4382EC");
+    document.documentElement.style.setProperty("--textColorDark-blue",textColorPicker.value || "#1b3041" );
+    document.documentElement.style.setProperty("--whitishColor-blue", whitishColorPicker.value || "#ffffff");
+    document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
+    document.getElementById("dfChecked").checked = true;
+    document.getElementById("dfChecked").checked = false;
+    ApplyLoadingColor();
+    saveThemeColors();
+    customThemeModal.classList.remove("active");
+});
+
+function rgbToHex(rgbString) {
+    if (rgbString.slice(0,1)==='#') {
+        return rgbString;
+    }
+    const match = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!match) {
+        return "Invalid RGB format";
+    }
+    const [_, r, g, b] = match.map(Number);
+    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+        return "Invalid RGB values";
+    }
+    return "#" + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase();
+}
+
+function UpdateCustomThemeModal() {
+    const getComputedStyl = getComputedStyle(document.documentElement);
+    backgroundColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--bg-color-blue"));
+    accentLightTintPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--accentLightTint-blue"));
+    darkerColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkerColor-blue"));
+    darkColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkColor-blue"));
+    textColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--textColorDark-blue"));
+    whitishColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--whitishColor-blue"));
+}
+
+UpdateCustomThemeModal();

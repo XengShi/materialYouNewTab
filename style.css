@@ -2958,6 +2958,120 @@ input:checked + .toggle:before {
 	display: none;
 }
 
+/* ---------- Custom Theme Modal ---------- */
+.CustomThemeModal {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 1rem;
+	z-index: 9999;
+	/* backdrop-filter: blur(15px) saturate(160%); */
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s ease;
+}
+
+.CustomThemeModal.active {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.modalContent {
+	background-color: var(--accentLightTint-blue);
+	border-radius: 20px;
+	padding: 20px;
+	width: 400px;
+	letter-spacing: 0.05rem;
+	filter: drop-shadow(0px 0px 10px #0005);
+	-webkit-filter: drop-shadow(0px 0px 10px #0005);
+}
+
+.modalHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	& h2 {
+		font-size: 1.35rem;
+	}
+	& label {
+		opacity: 0.65;
+		width: fit-content;
+		background: var(--bg-color-blue);
+		transition: all 0.3s ease;
+		padding: 0 20px;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+
+
+.modalBody {
+	margin-top: 8px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.modalBody > div {
+	width: 50%;
+	min-width: 180px;
+	& .modalBodyContentItem {
+		padding: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		& h3 {
+			opacity: 0.8;
+		}
+		& input[type="color"] {
+			all: unset;
+			width: 60px;
+			height: 36px;
+			margin: 0;
+			padding: 0;
+			border-radius: 10px;
+			cursor: pointer;
+			&#accentLightTintPicker {
+				border: 1px solid var(--textColorDark-blue);
+			}
+		}
+		& input[type="color"]::-moz-color-swatch {
+			border: none;
+		}
+		
+		& input[type="color"]::-webkit-color-swatch-wrapper {
+			padding: 0;
+			border-radius: 0;
+		}
+		
+		& input[type="color"]::-webkit-color-swatch {
+			border: none;
+		}
+	}
+}
+
+.modalFooter {
+	display: flex;
+	margin-top: 0.8rem;
+	justify-content: space-between;
+	& button {
+		background-color: var(--darkerColor-blue);
+		border: none !important;
+		outline: none !important;
+		cursor: pointer;
+		border-radius: 30px;
+		padding: 8px 20px;
+		color: var(--whitishColor-blue);
+	}
+}
+
+
 /* -------media query ------------------- */
 
 @media screen and (max-width: 1400px) {
@@ -3361,9 +3475,15 @@ body:has(#darkTheme:checked){
 			color: #fff;
 		}
 	}
+	& .todolistitem .todoremovebtn, & .todolistitem .todopinbtn {
+		--bg-color-blue: #7c7c7c;
+	}
+	& .CustomThemeModal.active {
+		--whitishColor-blue: #212121;
+	}
 }
 
-body:has(#enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked,.colorPlate[value="peach"]:checked)) .topDiv .cconnt {
+body:not(:has(#enableDarkModeCheckbox:disabled)):has(#enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked,.colorPlate[value="peach"]:checked)) .topDiv .cconnt {
 	--whitishColor-blue: #ccc;
 	& .tiles:first-of-type {
 		--whitishColor-blue: black;
@@ -3397,8 +3517,8 @@ body:has(#enableDarkModeCheckbox:checked):not(:has(#darkTheme:checked,.colorPlat
 }
 
 body:not(:has(#darkTheme:checked,.colorPlate[value="peach"]:checked)) #shortcuts-section:has(~ .menuBar #enableDarkModeCheckbox:checked) .shortcutsContainer .shortcuts:has(img) {
-	filter: invert(1) hue-rotate(180deg) brightness(0.9);
-	-webkit-filter: invert(1) hue-rotate(180deg) brightness(0.9);
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
 	& span {
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
