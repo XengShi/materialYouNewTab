@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-window.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -203,22 +203,22 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Function to fetch GPS-based location
     async function fetchGPSLocation() {
-        try {
-            const getLocationFromGPS = () => {
-                return new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => reject(error),
-                        { timeout: 4000 }
-                    );
-                });
-            };
+        const getLocationFromGPS = () => {
+            return new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                        });
+                    },
+                    (error) => reject(error),
+                    { timeout: 4000 }
+                );
+            });
+        };
 
+        try {
             const { latitude, longitude } = await getLocationFromGPS();
             return `${latitude},${longitude}`;
         } catch (error) {
@@ -233,15 +233,15 @@ window.addEventListener("DOMContentLoaded", async () => {
                 try {
                     // Use GPS for dynamic location
                     currentUserLocation = await fetchGPSLocation();
-                } catch {
+                } catch (error) {
                     console.log("Failed to use GPS for location:", error);
                 }
             }
 
             if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
+                const ipLocation = "https://ipinfo.io/json/";
+                const locationData = await fetch(ipLocation);
                 const parsedLocation = await locationData.json();
                 currentUserLocation = parsedLocation.loc;
             }
