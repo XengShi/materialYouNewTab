@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-window.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -233,15 +233,15 @@ window.addEventListener("DOMContentLoaded", async () => {
                 try {
                     // Use GPS for dynamic location
                     currentUserLocation = await fetchGPSLocation();
-                } catch {
+                } catch (error) {
                     console.log("Failed to use GPS for location:", error);
                 }
             }
 
             if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
+                const ipLocation = "https://ipinfo.io/json/";
+                const locationData = await fetch(ipLocation);
                 const parsedLocation = await locationData.json();
                 currentUserLocation = parsedLocation.loc;
             }
