@@ -30,11 +30,11 @@ const zh_TW = {
     "todoPlaceholder": "新增任務...",
 
     // Digital Clock
-    "digitalclocktittle": "數位時鐘",
+    "digitalclocktitle": "數位時鐘",
     "digitalclockinfo": "切換到數位時鐘",
-    "timeformattittle": "12 小時制",
+    "timeformattitle": "12 小時制",
     "timeformatinfo": "使用 12 小時制時間格式",
-    "greetingtittle": "問候語",
+    "greetingtitle": "問候語",
     "greetinginfo": "在自訂文字下顯示問候語",
 
     // Misc
@@ -142,5 +142,4 @@ const zh_TW = {
     "invalidBackup": "選擇的備份檔案無效。",
     "deleteBookmark": "您確定要刪除書籤 \"{title}\" 嗎？",
     "UnsupportedBrowser": "您的瀏覽器不支援書籤功能",
-    "BookmarksDenied": "尚未授予書籤權限",
 };
