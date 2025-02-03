@@ -29,11 +29,11 @@ const hu = {
     "todoPlaceholder": "Feladat hozzáadása...",
 
     // Digital Clock
-    "digitalclocktittle": "Digitális óra",
+    "digitalclocktitle": "Digitális óra",
     "digitalclockinfo": "Váltás a digitális órára",
-    "timeformattittle": "12 órás formátum",
+    "timeformattitle": "12 órás formátum",
     "timeformatinfo": "12 órás időformátum használata",
-    "greetingtittle": "Üdvözlés",
+    "greetingtitle": "Üdvözlés",
     "greetinginfo": "Üdvözlet megjelenítése az egyéni szöveg alatt",
 
     // Misc

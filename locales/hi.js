@@ -30,11 +30,11 @@ const hi = {
     "todoPlaceholder": "कार्य जोड़ें...",
 
     // Digital Clock
-    "digitalclocktittle": "डिजिटल घड़ी",
+    "digitalclocktitle": "डिजिटल घड़ी",
     "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
-    "timeformattittle": "12 घंटे का प्रारूप",
+    "timeformattitle": "12 घंटे का प्रारूप",
     "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
-    "greetingtittle": "अभिवादन",
+    "greetingtitle": "अभिवादन",
     "greetinginfo": "कस्टम टेक्स्ट के नीचे अभिवादन दिखाएँ",
 
     // Misc
@@ -70,6 +70,8 @@ const hi = {
     "userAPI": "आपकी WeatherAPI कुंजी",
     "LearnMoreButton": "और जानें",
     "saveAPI": "सहेजें",
+    "hideWeatherBox": "मौसम कार्ड छिपाएं",
+    "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएं",
 
     // Body Items
     // Calendar
@@ -139,5 +141,4 @@ const hi = {
     "invalidBackup": "अमान्य बैकअप फ़ाइल चयनित है।",
     "deleteBookmark": "क्या आप \"{title}\" बुकमार्क डिलीट करना चाहते हैं?",
     "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं।",
-    "BookmarksDenied": "बुकमार्क्स अनुमति प्रदान नहीं की गई है।",
 };

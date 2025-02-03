@@ -30,11 +30,11 @@ const idn = {
     "todoPlaceholder": "Tambah tugas...",
 
     // Digital Clock
-    "digitalclocktittle": "Jam Digital",
+    "digitalclocktitle": "Jam Digital",
     "digitalclockinfo": "Ubah menjadi jam digital",
-    "timeformattittle": "Format 12-Jam",
+    "timeformattitle": "Format 12-Jam",
     "timeformatinfo": "Menggunakan format 12-jam",
-    "greetingtittle": "Sapaan",
+    "greetingtitle": "Sapaan",
     "greetinginfo": "Tampilkan sapaan di bawah teks kustom",
 
     // Misc
@@ -70,6 +70,8 @@ const idn = {
     "userAPI": "Kunci weatherAPI anda",
     "LearnMoreButton": "Pelajari lebih lanjut",
     "saveAPI": "Simpan",
+    "hideWeatherBox": "Sembunyikan Kartu Cuaca", // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Hanya tampilkan kapsul suhu",
 
     // Body Items
     // Calendar
@@ -117,7 +119,7 @@ const idn = {
     "perplexity": "Perplexity",
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
-
+    
     // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",
@@ -133,7 +135,7 @@ const idn = {
     "failedbackup": "Pencadangan gagal: ",
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
-    "invalidBackup": "File cadangan tidak valid",
+    "invalidBackup": "File cadangan tidak valid terpilih",
     "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku \"{title}\"?",
     "UnsupportedBrowser": "Markah buku tidak didukung oleh browser anda",
 };

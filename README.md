@@ -135,9 +135,17 @@ Below are screenshots of the process to guide you through each step visually.
 
 <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-**Or** follow the manual steps below:
+2. **To Update the Homepage**:
 
-2. **Manual Installation**:
+   - Open Firefox **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
+   - Under the **Homepage and new windows** section, select **Custom URLs...**.
+   - Paste the following URL:
+     ```text
+     moz-extension://e31d6701-f699-414f-bb4c-8fde495c432e/index.html
+     ```
+   - This will update both your homepage and new tab to the extension.
+
+3. **Manual Installation (Temporary)**:
 
    - Clone the repository or download and extract the ZIP file.
    - **Prepare the Manifest**:
@@ -182,7 +190,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский                 |  ru   | [giwi](https://github.com/giwih/)                                                     |
 | <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina           | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español                 | es-ES | [XengShi](https://github.com/XengShi/)                                                |
-| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                  |  tr   | [Nobody](https://github.com/Nobody9512/)                                              |
+| <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                  |  tr   | [Nobody](https://github.com/Nobody9512), [Kerim Ölçer](https://github.com/kerimlcr)   |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                    |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt           |  vn   | [Diep](https://github.com/diepdo1810/), [Tuan](https://github.com/Tuan1-2-3)          |
 
@@ -255,7 +263,7 @@ Contributions are welcome! If you’d like to contribute:
 
 1. Follow the guidelines in the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
 2. Fork the repository.
-3. Create a branch: `git checkout -b feature/YourFeature`.
+3. Create a new branch: `git checkout -b feature/YourFeature`.
 4. Commit your changes: `git commit -m 'Add Your Feature'`.
 5. Push to the branch: `git push origin feature/YourFeature`.
 6. Open a pull request.

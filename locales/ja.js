@@ -30,11 +30,11 @@ const ja = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "デジタル時計",
+    "digitalclocktitle": "デジタル時計",
     "digitalclockinfo": "デジタル時計に変更",
-    "timeformattittle": "12時間形式",
+    "timeformattitle": "12時間形式",
     "timeformatinfo": "12時間形式を使用",
-    "greetingtittle": "あいさつ",
+    "greetingtitle": "あいさつ",
     "greetinginfo": "カスタムテキストの下にあいさつを表示",
 
     // Misc

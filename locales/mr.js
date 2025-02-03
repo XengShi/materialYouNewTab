@@ -15,8 +15,8 @@ const mr = {
     'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता.',
     "adaptiveIconText": "अनुकूल आयकॉन आकार",
     "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
+    "bookmarksText": "बुकमार्क्स",
+    "bookmarksInfo": "बुकमार्क्स साइडबार दाखवा",
     "ai_tools_button": "AI साधने",
     "enable_ai_tools": "AI साधनांसाठी शॉर्टकट्स दाखवा",
     "googleAppsMenuText": "गुगल ॲप्स",
@@ -24,17 +24,17 @@ const mr = {
     "googleAppsHover": "गुगल ॲप्स",
 
     // To-do List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",   // Keep this short
-    // "todoPlaceholder": "Add task...",
+    "todoListText": "कार्य सूची",
+    "todoListInfo": "दैनिक कार्यांची सूची पहा",
+    "todoListHover": "कार्य सूची",
+    "todoPlaceholder": "कार्य जोडा...",
 
     // Digital Clock
-    "digitalclocktittle": "डिजिटल घड्याळ",
+    "digitalclocktitle": "डिजिटल घड्याळ",
     "digitalclockinfo": "डिजिटल घड्याळावर स्विच करा",
-    "timeformattittle": "१२-तासांचा फॉरमॅट",
+    "timeformattitle": "१२-तासांचा फॉरमॅट",
     "timeformatinfo": "१२-तासांचा वेळ फॉरमॅट वापरा",
-    "greetingtittle": "शुभेच्छा",
+    "greetingtitle": "शुभेच्छा",
     "greetinginfo": "सानुकूल मजकुराखाली शुभेच्छा दाखवा",
 
     // Misc
@@ -67,8 +67,11 @@ const mr = {
     "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
     "WeatherApiSubtext": "जर हवामान कार्यरत नसेल",
     "userAPI": "आपली WeatherAPI कळी",
+    "useGPS": "GPS वापरा",
     "LearnMoreButton": "अधिक जाणून घ्या",
     "saveAPI": "जतन करा",
+    "hideWeatherBox": "हवामान कार्ड लपवा",
+    "hideWeatherBoxInfo": "केवळ तापमान पिल दाखवा",
 
     // Body Items
     // Calendar
@@ -77,11 +80,11 @@ const mr = {
     "months": ['जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून', 'जुलै', 'ऑगस्ट', 'सप्टेंबर', 'ऑक्टोबर', 'नोव्हेंबर', 'डिसेंबर'],
 
     // Bookmarks
-    // "bookmarksHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewGrid": "Grid",    // Keep this shorter
-    // "bookmarkViewList": "List",    // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarksHeading": "बुकमार्क्स",
+    "bookmarkViewAs": "या रूपात पाहा",
+    "bookmarkViewGrid": "ग्रिड",
+    "bookmarkViewList": "लिस्ट",
+    "bookmarkSearch": "बुकमार्क शोधा",
 
     // New Tab Item
     "conditionText": "नमस्कार! तुम्ही आज कसे आहात?",
@@ -134,7 +137,7 @@ const mr = {
     "failedbackup": "बॅकअप अयशस्वी: ",
     "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
     "restorefailed": "पुनर्संचयित अयशस्वी: ",
-    // "invalidBackup": "Invalid backup file selected.",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "invalidBackup": "अवैध बॅकअप फाइल निवडली आहे.",
+    "deleteBookmark": "तुम्हाला \"{title}\" बुकमार्क डिलीट करायचा आहे का?",
+    "UnsupportedBrowser": "तुमच्या ब्राउझरमध्ये बुकमार्क्सला समर्थन नाही.",
 };
