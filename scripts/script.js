@@ -811,7 +811,7 @@ const debounce = (func, delay) => {
 
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener("input", debounce(handleColorPickerChange, 100));
+colorPicker.addEventListener("input", debounce(handleColorPickerChange, 25));
 
 // End of Function to apply the selected theme
 
