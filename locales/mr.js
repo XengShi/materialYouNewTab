@@ -68,6 +68,7 @@ const mr = {
     "WeatherApiSubtext": "जर हवामान कार्यरत नसेल",
     "userAPI": "आपली WeatherAPI कळी",
     "useGPS": "GPS वापरा",
+    "LearnMoreButton": "अधिक जाणून घ्या",
     "saveAPI": "जतन करा",
     "hideWeatherBox": "हवामान कार्ड लपवा",
     "hideWeatherBoxInfo": "केवळ तापमान पिल दाखवा",
