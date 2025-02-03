@@ -30,11 +30,11 @@ const vi = {
     "todoPlaceholder": "Thêm nhiệm vụ...",
 
     // Digital Clock
-    "digitalclocktittle": "Đồng hồ kỹ thuật số",
+    "digitalclocktitle": "Đồng hồ kỹ thuật số",
     "digitalclockinfo": "Bật/tắt đồng hồ Kỹ thuật số",
-    "timeformattittle": "Sử dụng định dạng 12 giờ",
+    "timeformattitle": "Sử dụng định dạng 12 giờ",
     "timeformatinfo": "Sử dụng định dạng thời gian 12 giờ",
-    "greetingtittle": "Lời chào",
+    "greetingtitle": "Lời chào",
     "greetinginfo": "Hiển thị lời chào dưới văn bản tùy chỉnh",
 
     // Misc

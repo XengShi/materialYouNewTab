@@ -30,11 +30,11 @@ const ru = {
     "todoPlaceholder": "Добавить задачу...",
 
     // Digital Clock
-    "digitalclocktittle": "Цифровые часы",
+    "digitalclocktitle": "Цифровые часы",
     "digitalclockinfo": "Включить/Отключить цифровые часы",
-    "timeformattittle": "12-часовой формат",
+    "timeformattitle": "12-часовой формат",
     "timeformatinfo": "Использовать 12-часовой формат времени",
-    "greetingtittle": "Приветствие",
+    "greetingtitle": "Приветствие",
     "greetinginfo": "Показать приветствие под вашим текстом",
 
     // Misc
