@@ -30,11 +30,11 @@ const tr = {
     "todoPlaceholder": "Görev ekle",
 
     // Digital Clock
-    "digitalclocktittle": "Dijital Saat",
+    "digitalclocktitle": "Dijital Saat",
     "digitalclockinfo": "Dijital saate geçiş yap",
-    "timeformattittle": "12 Saat Formatı",
+    "timeformattitle": "12 Saat Formatı",
     "timeformatinfo": "12 saat zaman formatını kullanın",
-    "greetingtittle": "Karşılama",
+    "greetingtitle": "Karşılama",
     "greetinginfo": "Özel metinin altında karşılama mesajını göster",
 
     // Misc
@@ -142,5 +142,4 @@ const tr = {
     "invalidBackup": "Geçersiz yedekleme dosyası seçildi.",
     "deleteBookmark": "\"{title}\" yer imini silmek istediğinizden emin misiniz?",
     "UnsupportedBrowser": "Yer imleri tarayıcınızda desteklenmiyor.",
-    //"BookmarksDenied": "Yer imlerine izin verilmedi.",
 };
