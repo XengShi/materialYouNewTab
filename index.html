@@ -1469,39 +1469,36 @@
             <div class="modalHeader">
                 <h2>Custom Theme</h2>
                 <!-- ----Color Picker || ColorPicker---- -->
-                <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
-                    color</label>
-                <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
+                <div>
+                    <label id="rangColor" for="colorPicker">Change Hue</label>
+                    <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
+                </div>
                 <!-- ----End of Color Picker || ColorPicker---- -->
             </div>
             <div class="modalBody">
-                <div>
-                    <div class="modalBodyContentItem">
-                        <h3>Background Color</h3>
-                        <input type="color" id="backgroundColorPicker" value="#BBD6FD">
-                    </div>
-                    <div class="modalBodyContentItem">
-                        <h3>Accent Light Tint</h3>
-                        <input type="color" id="accentLightTintPicker" value="#E2EEFF">
-                    </div>
-                    <div class="modalBodyContentItem">
-                        <h3>Darker Color</h3>
-                        <input type="color" id="darkerColorPicker" value="#3569b2">
-                    </div>
+                <div class="modalBodyContentItem">
+                    <h3>Background</h3>
+                    <input type="color" id="backgroundColorPicker" value="#BBD6FD">
                 </div>
-                <div>
-                    <div class="modalBodyContentItem">
-                        <h3>Dark Color</h3>
-                        <input type="color" id="darkColorPicker" value="#4382EC">
-                    </div>
-                    <div class="modalBodyContentItem">
-                        <h3>Text Color</h3>
-                        <input type="color" id="textColorPicker" value="#1b3041">
-                    </div>
-                    <div class="modalBodyContentItem">
-                        <h3>Whitish Color</h3>
-                        <input type="color" id="whitishColorPicker" value="#ffffff">
-                    </div>
+                <div class="modalBodyContentItem">
+                    <h3>Accent</h3>
+                    <input type="color" id="accentColorPicker" value="#E2EEFF">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Primary</h3>
+                    <input type="color" id="primaryColorPicker" value="#4382EC">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Secondary</h3>
+                    <input type="color" id="secondaryColorPicker" value="#3569b2">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Text</h3>
+                    <input type="color" id="textColorPicker" value="#1b3041">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Highlight</h3>
+                    <input type="color" id="highlightColorPicker" value="#ffffff">
                 </div>
             </div>
             <div class="modalFooter">

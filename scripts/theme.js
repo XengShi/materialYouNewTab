@@ -277,11 +277,11 @@ const customThemeModal = document.getElementById("customThemeModal");
 const closeCustomThemeModal = document.getElementById("closeCustomThemeModal");
 const saveCustomTheme = document.getElementById("saveCustomTheme");
 const backgroundColorPicker = document.getElementById("backgroundColorPicker");
-const accentLightTintPicker = document.getElementById("accentLightTintPicker");
-const darkerColorPicker = document.getElementById("darkerColorPicker");
-const darkColorPicker = document.getElementById("darkColorPicker");
+const accentColorPicker = document.getElementById("accentColorPicker");
+const secondaryColorPicker = document.getElementById("secondaryColorPicker");
+const primaryColorPicker = document.getElementById("primaryColorPicker");
 const textColorPicker = document.getElementById("textColorPicker");
-const whitishColorPicker = document.getElementById("whitishColorPicker");
+const highlightColorPicker = document.getElementById("highlightColorPicker");
 const customThemeColor = document.getElementById("customThemeColor");
 
 customThemeColor.addEventListener("click", () => {
@@ -303,11 +303,11 @@ saveCustomTheme.addEventListener("click", () => {
     storedTheme = "customTheme";
     localStorage.setItem("selectedTheme", storedTheme);
     document.documentElement.style.setProperty("--bg-color-blue", backgroundColorPicker.value || "#BBD6FD");
-    document.documentElement.style.setProperty("--accentLightTint-blue", accentLightTintPicker.value || "#E2EEFF");
-    document.documentElement.style.setProperty("--darkerColor-blue", darkerColorPicker.value || "#3569b2");
-    document.documentElement.style.setProperty("--darkColor-blue", darkColorPicker.value || "#4382EC");
+    document.documentElement.style.setProperty("--accentLightTint-blue", accentColorPicker.value || "#E2EEFF");
+    document.documentElement.style.setProperty("--darkerColor-blue", secondaryColorPicker.value || "#3569b2");
+    document.documentElement.style.setProperty("--darkColor-blue", primaryColorPicker.value || "#4382EC");
     document.documentElement.style.setProperty("--textColorDark-blue",textColorPicker.value || "#1b3041" );
-    document.documentElement.style.setProperty("--whitishColor-blue", whitishColorPicker.value || "#ffffff");
+    document.documentElement.style.setProperty("--whitishColor-blue", highlightColorPicker.value || "#ffffff");
     document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
     document.getElementById("dfChecked").checked = true;
     document.getElementById("dfChecked").checked = false;
@@ -334,11 +334,11 @@ function rgbToHex(rgbString) {
 function UpdateCustomThemeModal() {
     const getComputedStyl = getComputedStyle(document.documentElement);
     backgroundColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--bg-color-blue"));
-    accentLightTintPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--accentLightTint-blue"));
-    darkerColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkerColor-blue"));
-    darkColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkColor-blue"));
+    accentColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--accentLightTint-blue"));
+    secondaryColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkerColor-blue"));
+    primaryColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--darkColor-blue"));
     textColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--textColorDark-blue"));
-    whitishColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--whitishColor-blue"));
+    highlightColorPicker.value = rgbToHex(getComputedStyl.getPropertyValue("--whitishColor-blue"));
 }
 
 UpdateCustomThemeModal();

@@ -2741,7 +2741,7 @@ input:checked + .toggle:before {
 
 /* <!-- ----Color Picker || ColorPicker---- --> */
 #colorPicker {
-	display: none;
+	/* display: none; */
 }
 .colorPickerLabel {
 	grid-column: span 3;
@@ -2985,27 +2985,51 @@ input:checked + .toggle:before {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 20px;
 	padding: 20px;
-	width: 400px;
+	width: 280px;
 	letter-spacing: 0.05rem;
 	filter: drop-shadow(0px 0px 10px #0005);
 	-webkit-filter: drop-shadow(0px 0px 10px #0005);
+
+	& input[type="color"]::-moz-color-swatch {
+		border: none;
+	}
+	
+	& input[type="color"]::-webkit-color-swatch-wrapper {
+		padding: 0;
+		border-radius: 0;
+	}
+	
+	& input[type="color"]::-webkit-color-swatch {
+		border: none;
+	}
 }
 
 .modalHeader {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	& h2 {
 		font-size: 1.35rem;
 	}
-	& label {
-		opacity: 0.65;
+	& > div {
 		width: fit-content;
 		background: var(--bg-color-blue);
 		transition: all 0.3s ease;
-		padding: 0 20px;
-		&:hover {
-			opacity: 1;
+		padding: 6px 6px 6px 24px;
+		border-radius: 50px;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		margin-top: 1rem;
+		& input[type="color"] {
+			all: unset;
+			width: 36px;
+			height: 36px;
+			margin: 0;
+			padding: 0;
+			border-radius: 50px;
+			cursor: pointer;
 		}
 	}
 }
@@ -3018,16 +3042,19 @@ input:checked + .toggle:before {
 	flex-wrap: wrap;
 }
 
-.modalBody > div {
-	width: 50%;
-	min-width: 180px;
+.modalBody {
+	display: flex;
+	flex-direction: column;
 	& .modalBodyContentItem {
 		padding: 8px;
 		display: flex;
-		flex-direction: column;
-		gap: 4px;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		gap: 1rem;
 		& h3 {
 			opacity: 0.8;
+			font-size: 1.1rem;
+			font-weight: normal;
 		}
 		& input[type="color"] {
 			all: unset;
@@ -3037,21 +3064,9 @@ input:checked + .toggle:before {
 			padding: 0;
 			border-radius: 10px;
 			cursor: pointer;
-			&#accentLightTintPicker {
+			&#accentColorPicker {
 				border: 1px solid var(--textColorDark-blue);
 			}
-		}
-		& input[type="color"]::-moz-color-swatch {
-			border: none;
-		}
-		
-		& input[type="color"]::-webkit-color-swatch-wrapper {
-			padding: 0;
-			border-radius: 0;
-		}
-		
-		& input[type="color"]::-webkit-color-swatch {
-			border: none;
 		}
 	}
 }
