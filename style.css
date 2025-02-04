@@ -2601,6 +2601,7 @@ input:checked + .toggle:before {
 	aspect-ratio: 1/1;
 	right: 0;
 	border-radius: 100%;
+	cursor: pointer;
 	z-index: 2;
 }
 
@@ -2741,7 +2742,7 @@ input:checked + .toggle:before {
 
 /* <!-- ----Color Picker || ColorPicker---- --> */
 #colorPicker {
-	/* display: none; */
+	display: none;
 }
 .colorPickerLabel {
 	grid-column: span 3;

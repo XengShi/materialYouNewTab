@@ -282,9 +282,9 @@ const secondaryColorPicker = document.getElementById("secondaryColorPicker");
 const primaryColorPicker = document.getElementById("primaryColorPicker");
 const textColorPicker = document.getElementById("textColorPicker");
 const highlightColorPicker = document.getElementById("highlightColorPicker");
-const customThemeColor = document.getElementById("customThemeColor");
+const customThemeButton = document.getElementById("themeButton");
 
-customThemeColor.addEventListener("click", () => {
+customThemeButton.addEventListener("click", () => {
     closeMenuBar();
     customThemeModal.classList.add("active");
 });

@@ -1350,8 +1350,10 @@
                             <input class="colorPlate" name="color" type="radio" value="peach">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
-                            <!-- Custom Theme -->
-                            <label id="customThemeColor" class="colorPlate colorPickerLabel">Choose Theme</label>
+                             <!-- ----Color Picker || ColorPicker---- -->
+                            <label id="rangColor" for="colorPicker" class="colorPlate colorPickerLabel">Change Hue</label>
+                            <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
+                            <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
 
                     </div>
@@ -1468,12 +1470,7 @@
         <div class="modalContent">
             <div class="modalHeader">
                 <h2>Custom Theme</h2>
-                <!-- ----Color Picker || ColorPicker---- -->
-                <div>
-                    <label id="rangColor" for="colorPicker">Change Hue</label>
-                    <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
-                </div>
-                <!-- ----End of Color Picker || ColorPicker---- -->
+                
             </div>
             <div class="modalBody">
                 <div class="modalBodyContentItem">
