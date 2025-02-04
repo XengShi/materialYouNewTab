@@ -105,6 +105,7 @@ const mr = {
     },
 
     // Search Engines
+    "defaultEngine": "डिफॉल्ट",
     "googleEngine": "गुगल",
     "duckEngine": "डकडकगो",
     "bingEngine": "बिंग",

@@ -104,6 +104,7 @@ const en = {
     },
 
     // Search Engines
+    "defaultEngine": "Default",
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
