@@ -405,13 +405,7 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
-    // Change the favicon dynamically based on the selected theme
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
-    updateExtensionIcon(colorValue);
-
+    updateFavicon(colorValue);
     ApplyLoadingColor();
 };
 
@@ -462,7 +456,7 @@ const applyCustomTheme = (color) => {
     document.getElementById("dfChecked").checked = false;
 
     ApplyLoadingColor();
-    updateFaviconForCustomColor(color); // Update favicon
+    updateFavicon(color); // Update favicon
 };
 
 // Load theme on page reload
