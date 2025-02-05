@@ -7,19 +7,16 @@
  */
 
 
-// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
-// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
-// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
-// TODO: Move all the theme functions stuff in a file called `theme.js`
-// TODO: Move all the settings in a file called `settings.js`
-// TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
-// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
-// TODO: Move into file called `welcome-greeting.js`(?)
-// TODO: Move into file called `animations.js`(?)
+// TODO: Seperate stuffs to theme.js, search.js, search-suggestions.js (with proxy)
+// TODO: Seperate stuffs to shortcuts.js, menu.js
+// TODO: `clock.js` - might be divided in two: `clock-analog.js` and `clock-digital.js`
+// TODO: `search.js` - might be divided in two: `search-default.js` and `search-dropdown.js`
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name) ??
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists) ??
 
 
 let proxyurl;
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
     const saveProxyButton = document.getElementById("saveproxy");
     const savedProxy = localStorage.getItem("proxy");
@@ -33,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        let proxyurl = userProxyInput.value.trim();
+        proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
@@ -310,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
@@ -337,17 +335,9 @@ const storedTheme = localStorage.getItem(themeStorageKey);
 const customThemeStorageKey = "customThemeColor"; // For color picker
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
-let darkThemeStyleTag; // Variable to store the dynamically added style tag
-
 const resetDarkTheme = () => {
     // Remove the dark theme class
     document.documentElement.classList.remove("dark-theme");
-
-    // Remove the injected dark theme style tag
-    if (darkThemeStyleTag) {
-        darkThemeStyleTag.remove();
-        darkThemeStyleTag = null;
-    }
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
@@ -371,15 +361,7 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ""; // Reset fill color
     });
-    // Reset the CSS variables to default (for non-dark themes)
-    document.documentElement.style.setProperty("--bg-color-blue", "#ffffff");
-    document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
-    document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
-    document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
-    document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
-    document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
 };
-
 
 const applySelectedTheme = (colorValue) => {
     // If the selected theme is not dark, reset dark theme styles
@@ -394,13 +376,26 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
             document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
-        } else {
+            changeFaviconColor("#fff","#4382EC");
+        }
+        else if (colorValue === "peach") {
             document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
             document.documentElement.style.setProperty("--whitishColor-blue", `var(--whitishColor-${colorValue})`);
+            changeFaviconColor("#fff","#af00bd");
+        }
+        
+        else {
+            document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
+            document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
+            document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
+            document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
+            document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
+            document.documentElement.style.setProperty("--whitishColor-blue", `var(--whitishColor-${colorValue})`);
+            changeFaviconColor("#fff",`${colorValue}`);
         }
     }
 
@@ -413,267 +408,6 @@ const applySelectedTheme = (colorValue) => {
         document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
         document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
 
-        // Add dark theme styles for specific elements
-        darkThemeStyleTag = document.createElement("style");
-        darkThemeStyleTag.textContent = `
-            .dark-theme .search-engine input[type="radio"]:checked {
-                background-color: #2a2a2a;
-                border: 2px solid #919191;
-            }
-
-            .dark-theme .search-engine input[type="radio"] {
-                background-color: #9d9d9d   ;
-                border: 0px solid #000000;
-            }
-
-            .dark-theme .colorsContainer {
-                background-color: #212121;
-            }
-
-            .dark-theme #themeButton {
-                background-color: #212121;
-            }
-
-            .dark-theme #themeIconSvg, .dark-theme #languageSelectorIconSvg {
-                fill: #cdcdcd !important;
-            }
-
-            .dark-theme .languageIcon,
-            .dark-theme .languageSelector {
-                background-color: #212121;
-                scrollbar-color: var(--darkerColor-blue) transparent;
-            }
-
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
-                background-color: var(--darkerColor-blue);
-            }
-
-            .dark-theme .bottom a {
-                color: #a1a1a1;
-            }
-
-            .dark-theme .ttcont input {
-                background-color: #212121 !important;
-            }
-
-            .dark-theme input:checked + .toggle {
-                background-color: #aaaaaa;
-            }
-
-            .dark-theme .tilesCont .tiles {
-                color: #e8e8e8;
-            }
-
-            .dark-theme .resetbtn:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .resetbtn:active {
-                background-color: #4e4e4e;
-            }
-
-            .dark-theme .savebtn:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .tiles:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .bottom a:hover {
-                color: var(--darkerColor-blue);
-            }
-
-            .dark-theme #searchQ {
-                color: #fff;
-            }
-
-            .dark-theme .searchbar.active {
-                outline: 2px solid #696969;
-            }
-
-            .dark-theme #searchIconDark {
-                fill: #bbb !important;
-            }
-	    
-            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
-                background-color: #707070;
-            }
-
-            .dark-theme .tilesContainer .tiles {
-                background-color: #212121;
-            }
-
-            .dark-theme #darkFeelsLikeIcon {
-                fill: #fff !important;
-            }
-
-            .dark-theme .humidityBar .thinLine {
-                background-color: #aaaaaa;
-            }
-
-            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
-                fill: #bbbbbb !important;
-            }
-
-            .dark-theme .divider {
-                background-color: #cdcdcd;
-            }
-    
-            .dark-theme .shorcutDarkColor {
-                fill: #3c3c3c !important;
-            }
-
-            .dark-theme #darkLightTint {
-                fill: #bfbfbf;
-            }
-
-            .dark-theme .strokecolor {
-	            stroke: #3c3c3c;
-            }
-
-            .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
-                background: radial-gradient(circle, #bfbfbf 66%, transparent 66%);
-                &:not(:has(svg)){
-                    background: var(--accentLightTint-blue);
-                }
-            }
-
-            .dark-theme .digiclock {
-                fill: #909090;
-            }
-
-     	    .dark-theme .uploadButton,
-            .dark-theme .randomButton {
-                background-color: var(--darkColor-blue);
-                color: var(--whitishColor-dark);
-            }
-	    
-            .dark-theme .clearButton{
-                color: #d6d6d6;
-            }
-
-            .dark-theme .clearButton:hover {
-                background-color: var(--whitishColor-dark);
-		color: var(--darkColor-dark);
-            }
-
-            .dark-theme .clearButton:active {
-                color: #000000;
-            }
-
-            .dark-theme .backupRestoreBtn {
-                background-color: var(--darkColor-dark);
-            }
-
-            .dark-theme .backupRestoreBtn:hover,
-            .dark-theme .uploadButton:hover,
-            .dark-theme .randomButton:hover,
-            .dark-theme #todoAdd:hover {
-                background-color: var(--bg-color-dark);
-            }
-            
-            .dark-theme .uploadButton:active,
-            .dark-theme .randomButton:active,
-            .dark-theme .backupRestoreBtn:active,
-            .dark-theme .resetbtn:active {
-                background-color: #0e0e0e;
-            }
-	    
-            .dark-theme .todolistitem .todoremovebtn {
-                color:#616161;
-            }
-
-            .dark-theme .todolistitem .todoremovebtn:hover {
-                color:#888888;
-            }
-
-            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-                color: var(--textColorDark-blue) !important;
-            }
-
-            .dark-theme #bookmarkSearch{
-                background-color: #212121 !important;
-            }
-
-            .dark-theme .bookmark-search-container::after {
-                filter: none;
-            }
-
-            .dark-theme .bookmark-button svg {
-                fill: var(--textColorDark-blue);
-            }
-
-	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
-            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-                background: var(--darkColor-dark);
-            }
-
-	    .dark-theme .favicon {
-                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-            }
-
-     	    .dark-theme .micIcon {
-                background-color: var(--whitishColor-dark);
-            }
-
-            .dark-theme #minute, .dark-theme #minute::after, .dark-theme #second::after {
-                background-color: #909090;
-            }
-
-            .dark-theme .dot-icon {
-                fill: #bfbfbf;
-            }
-
-            .dark-theme .menuicon {
-                color: #c2c2c2;
-            }
-
-            .dark-theme #menuButton {
-                border: 6px solid var(--accentLightTint-blue);
-                box-shadow:
-                    inset 0 0 0 4px #858585,
-                    inset 0 0 0 9.7px var(--accentLightTint-blue),
-                    inset 0 0 0 40px #bfbfbf;
-            }
-
-            .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
-                background-color: var(--darkColor-dark);
-            }
-
-            .dark-theme #menuCloseButton .icon {
-                background: radial-gradient(#cdcdcd 66%, transparent 66%);
-            }
-
-            .dark-theme #closeBtnX {
-                border: 2px solid #bdbdbd;
-                border-radius: 100px;
-            }
-
-            .dark-theme body {
-                background-color: #000000;
-            }
-            
-            .dark-theme #HangNoAlive {
-                fill: #c2c2c2 !important;
-            }
-
-            .dark-theme .tempUnit {
-                color: #dadada;
-            }
-
-            .dark-theme #githab,
-            .dark-theme #sujhaw {
-                fill: #b1b1b1;
-            }
-
-            .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);
-            }
-        `;
-        document.head.appendChild(darkThemeStyleTag);
-
         // Apply dark theme class
         document.documentElement.classList.add("dark-theme");
 
@@ -682,35 +416,37 @@ const applySelectedTheme = (colorValue) => {
         accentElements.forEach((element) => {
             element.style.fill = "#212121";
         });
+        changeFaviconColor("#ffffff","#000000");
+
     }
 
-
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (isFirefox) {
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (isChromiumBased) {
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (isSafari) {
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
     ApplyLoadingColor();
 };
+
+let currentFillColor1 = '#2062C2';
+let currentFillColor2 = '#FFFFFF';
+
+function changeFaviconColor(fillColor1, fillColor2) {
+    currentFillColor1 = fillColor1;
+    currentFillColor2 = fillColor2;
+    const svg = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_452_2)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0001 1.83912C12.6859 1.83912 11.3957 1.39556 10.2302 0.788239C9.26379 0.284665 8.16514 0 7 0C3.13401 0 0 3.13401 0 7C0 8.16513 0.28466 9.26378 0.788228 10.2302C1.39555 11.3957 1.83911 12.6859 1.83911 14.0001V14.0001V14.0001C1.83911 15.3143 1.3956 16.6043 0.788311 17.7697C0.284692 18.7361 0 19.8348 0 21C0 24.866 3.13401 28 7 28C8.16493 28 9.2634 27.7154 10.2297 27.212C11.3954 26.6047 12.6857 26.1612 14.0001 26.1612V26.1612V26.1612C15.3144 26.1612 16.6046 26.6047 17.7702 27.2119C18.7365 27.7154 19.835 28 21 28C24.866 28 28 24.866 28 21C28 19.835 27.7154 18.7365 27.2119 17.7701C26.6047 16.6046 26.1611 15.3144 26.1611 14.0001V14.0001V14.0001C26.1611 12.6857 26.6047 11.3954 27.212 10.2297C27.7154 9.26341 28 8.16494 28 7C28 3.13401 24.866 0 21 0C19.8348 0 18.7361 0.284694 17.7696 0.788317C16.6043 1.39561 15.3143 1.83912 14.0001 1.83912V1.83912V1.83912Z" fill="${fillColor2}"/>
+                <path d="M12.0413 21.0393V16.236H15.9543V21.0393C15.9543 21.5677 16.3945 22 16.9326 22H19.8673C20.4054 22 20.8456 21.5677 20.8456 21.0393V14.3146H22.5086C22.9586 14.3146 23.1738 13.767 22.8315 13.4788L14.6533 6.24497C14.2815 5.91834 13.7141 5.91834 13.3424 6.24497L5.1642 13.4788C4.8316 13.767 5.03703 14.3146 5.48703 14.3146H7.15006V21.0393C7.15006 21.5677 7.59027 22 8.12831 22H11.0631C11.6011 22 12.0413 21.5677 12.0413 21.0393Z" fill="${fillColor1}"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_452_2">
+                <rect width="28" height="28" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>`;
+    const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    document.getElementById("favicon").href = encodedSvg;
+}
+
+// Set default color on page load
+changeFaviconColor(currentFillColor1, currentFillColor2);
+
 
 // ----Color Picker || ColorPicker----
 function adjustHexColor(hex, factor, isLighten = true) {
@@ -757,6 +493,8 @@ const applyCustomTheme = (color) => {
     document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
+
+    changeFaviconColor("#ffffff",darkerColorHex);
 
     ApplyLoadingColor();
 };

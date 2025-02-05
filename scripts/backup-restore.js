@@ -170,7 +170,7 @@ async function restoreData(backup) {
 
 // Helper: Convert Base64 string to Blob
 function base64ToBlob(base64) {
-    const [metadata, data] = base64.split("", "");
+    const [metadata, data] = base64.split(",");
     const mime = metadata.match(/:(.*?);/)[1];
     const binary = atob(data);
     const array = new Uint8Array(binary.length);

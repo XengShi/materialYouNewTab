@@ -30,11 +30,11 @@ const es = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Reloj digital",
+    "digitalclocktitle": "Reloj digital",
     "digitalclockinfo": "Cambiar a reloj digital",
-    "timeformattittle": "Formato de 12 horas",
+    "timeformattitle": "Formato de 12 horas",
     "timeformatinfo": "Usar formato de 12 horas",
-    "greetingtittle": "Saludo",
+    "greetingtitle": "Saludo",
     "greetinginfo": "Mostrar saludo debajo del texto personalizado",
 
     // Misc

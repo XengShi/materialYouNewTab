@@ -27,14 +27,14 @@ const cs = {
     "todoListText": "Seznam úkolů",
     "todoListInfo": "Zobrazí denní seznam úkolů",
     "todoListHover": "Seznam úkolů",
-    "todoPlaceholder": "Přidat úkol...",
+    "todoPlaceholder": "Přidat úkol…",
 
     // Digital Clock
-    "digitalclocktittle": "Digitální hodiny",
+    "digitalclocktitle": "Digitální hodiny",
     "digitalclockinfo": "Přepne hodiny na digitální",
-    "timeformattittle": "12hodinový formát",
+    "timeformattitle": "12hodinový formát",
     "timeformatinfo": "Použije se 12hodinový formát času",
-    "greetingtittle": "Pozdrav",
+    "greetingtitle": "Pozdrav",
     "greetinginfo": "Zobrazí pozdrav pod upravitelným textem",
 
     // Misc
@@ -70,6 +70,8 @@ const cs = {
     "userAPI": "Váš klíč k WeatherAPI",
     "LearnMoreButton": "Zjistit více",
     "saveAPI": "Uložit",
+    "hideWeatherBox": "Skrýt kartu s počasím",
+    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
 
     // Body Items
     // Calendar
@@ -89,8 +91,8 @@ const cs = {
     "feelsLike": "Pocitová teplota",
     "location": "Země",
     "enterBtn": "Vyhledat",
-    "searchPlaceholder": "Zadejte hledaný výraz...",
-    "listenPlaceholder": "Poslouchám...",
+    "searchPlaceholder": "Zadejte hledaný výraz…",
+    "listenPlaceholder": "Poslouchám…",
     "searchWithHint": "Vyhledávat prostřednictvím",
     "userText": "Upravíte po kliknutí",
 
@@ -118,6 +120,10 @@ const cs = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "Tmavý režim",
+    "enableDarkModeInfo": "Zapne motivy v tmavém režimu",
+
     // Wallpaper and misc
     "uploadWallpaperText": "Nahrát tapetu",
     "backupText": "Zálohovat",
@@ -133,8 +139,7 @@ const cs = {
     "failedbackup": "Zálohování selhalo: ",
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
-    "invalidBackup": "Neplatný soubor se zálohou",
-    "deleteBookmark": "Opravdu si přejete smazat tuto záložku \"{title}\"?",
+    "invalidBackup": "Vybrali jste neplatný soubor se zálohou.",
+    "deleteBookmark": "Opravdu si přejete smazat záložku „{title}“?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
-    "BookmarksDenied": "Nebylo přiděleno oprávnění pro záložky.",
 };
