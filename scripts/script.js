@@ -538,18 +538,29 @@ const handleColorPickerChange = function (event) {
     });
 };
 
-// Debounce for performance optimization
-const debounce = (func, delay) => {
-    let timeout;
+// Throttle for performance optimization
+const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
     return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), delay);
+        if (!lastRan) {
+            func(...args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(() => {
+                if (Date.now() - lastRan >= limit) {
+                    func(...args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
     };
 };
 
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener("input", debounce(handleColorPickerChange, 25));
+colorPicker.addEventListener("input", throttle(handleColorPickerChange, 10));
 
 // End of Function to apply the selected theme
 
