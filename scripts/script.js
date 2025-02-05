@@ -425,9 +425,9 @@ function changeFaviconColor() {
 }
 
 // Set default color on first page load
-if (!localStorage.getItem('faviconColorChanged')) {
+if (!localStorage.getItem('newFavicon')) {
     changeFaviconColor();
-    localStorage.setItem('faviconColorChanged', 'true');
+    localStorage.setItem('newFavicon', 'true');
 }
 
 
@@ -654,8 +654,8 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChromiumBased && !isOpera) return "chrome";
     if (isOpera) return "opera";
+    if (isChromiumBased) return "chrome";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
 }
