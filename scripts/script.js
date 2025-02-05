@@ -7,19 +7,16 @@
  */
 
 
-// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name)
-// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists)
-// TODO: Move all the clock display stuff in a file called `clock-display.js` - can also be divided in two: `clock-default.js` and `clock-analog.js`
-// TODO: Move all the theme functions stuff in a file called `theme.js`
-// TODO: Move all the settings in a file called `settings.js`
-// TODO: Move all the search suggestions stuff in a file called `search-suggestions.js`
-// TODO: Move all the shortcut stuff in a file called `shortcut.js` (Difficult)
-// TODO: Move into file called `welcome-greeting.js`(?)
-// TODO: Move into file called `animations.js`(?)
+// TODO: Seperate stuffs to theme.js, search.js, search-suggestions.js (with proxy)
+// TODO: Seperate stuffs to shortcuts.js, menu.js
+// TODO: `clock.js` - might be divided in two: `clock-analog.js` and `clock-digital.js`
+// TODO: `search.js` - might be divided in two: `search-default.js` and `search-dropdown.js`
+// TODO: Move all the CSS in a file called `theme/theme.css` (theme is the folder name) ??
+// TODO: Move all the SVG icons in files called `svgs/icon-name.svg` (svgs is the folder name, it already exists) ??
 
 
 let proxyurl;
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const userProxyInput = document.getElementById("userproxy");
     const saveProxyButton = document.getElementById("saveproxy");
     const savedProxy = localStorage.getItem("proxy");
@@ -33,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Save the proxy to localStorage
     saveProxyButton.addEventListener("click", () => {
-        let proxyurl = userProxyInput.value.trim();
+        proxyurl = userProxyInput.value.trim();
 
         // If the input is empty, use the default proxy.
         if (proxyurl === "") {
@@ -310,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     // -----Theme stay changed even if user reload the page---
     //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
     const storedTheme = localStorage.getItem(themeStorageKey);
@@ -337,17 +335,9 @@ const storedTheme = localStorage.getItem(themeStorageKey);
 const customThemeStorageKey = "customThemeColor"; // For color picker
 const storedCustomColor = localStorage.getItem(customThemeStorageKey);
 
-let darkThemeStyleTag; // Variable to store the dynamically added style tag
-
 const resetDarkTheme = () => {
     // Remove the dark theme class
     document.documentElement.classList.remove("dark-theme");
-
-    // Remove the injected dark theme style tag
-    if (darkThemeStyleTag) {
-        darkThemeStyleTag.remove();
-        darkThemeStyleTag = null;
-    }
 
     // Reset inline styles that were applied specifically for dark mode
     const resetElements = [
@@ -371,22 +361,12 @@ const resetDarkTheme = () => {
     accentElements.forEach((element) => {
         element.style.fill = ""; // Reset fill color
     });
-    // Reset the CSS variables to default (for non-dark themes)
-    document.documentElement.style.setProperty("--bg-color-blue", "#ffffff");
-    document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
-    document.documentElement.style.setProperty("--darkerColor-blue", "#3569b2");
-    document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
-    document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
-    document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
 };
 
-
 const applySelectedTheme = (colorValue) => {
-    // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
         resetDarkTheme();
 
-        // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
@@ -406,273 +386,11 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
         document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
         document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
         document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
-
-        // Add dark theme styles for specific elements
-        darkThemeStyleTag = document.createElement("style");
-        darkThemeStyleTag.textContent = `
-            .dark-theme .search-engine input[type="radio"]:checked {
-                background-color: #2a2a2a;
-                border: 2px solid #919191;
-            }
-
-            .dark-theme .search-engine input[type="radio"] {
-                background-color: #9d9d9d   ;
-                border: 0px solid #000000;
-            }
-
-            .dark-theme .colorsContainer {
-                background-color: #212121;
-            }
-
-            .dark-theme #themeButton {
-                background-color: #212121;
-            }
-
-            .dark-theme #themeIconSvg, .dark-theme #languageSelectorIconSvg {
-                fill: #cdcdcd !important;
-            }
-
-            .dark-theme .languageIcon,
-            .dark-theme .languageSelector {
-                background-color: #212121;
-                scrollbar-color: var(--darkerColor-blue) transparent;
-            }
-
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb,
-            .dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
-                background-color: var(--darkerColor-blue);
-            }
-
-            .dark-theme .bottom a {
-                color: #a1a1a1;
-            }
-
-            .dark-theme .ttcont input {
-                background-color: #212121 !important;
-            }
-
-            .dark-theme input:checked + .toggle {
-                background-color: #aaaaaa;
-            }
-
-            .dark-theme .tilesCont .tiles {
-                color: #e8e8e8;
-            }
-
-            .dark-theme .resetbtn:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .resetbtn:active {
-                background-color: #4e4e4e;
-            }
-
-            .dark-theme .savebtn:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .tiles:hover {
-                background-color: var(--bg-color-dark);
-            }
-
-            .dark-theme .bottom a:hover {
-                color: var(--darkerColor-blue);
-            }
-
-            .dark-theme #searchQ {
-                color: #fff;
-            }
-
-            .dark-theme .searchbar.active {
-                outline: 2px solid #696969;
-            }
-
-            .dark-theme #searchIconDark {
-                fill: #bbb !important;
-            }
-	    
-            .dark-theme .dropdown-item.selected:not(*[data-default]):before {
-                background-color: #707070;
-            }
-
-            .dark-theme .tilesContainer .tiles {
-                background-color: #212121;
-            }
-
-            .dark-theme #darkFeelsLikeIcon {
-                fill: #fff !important;
-            }
-
-            .dark-theme .humidityBar .thinLine {
-                background-color: #aaaaaa;
-            }
-
-            .dark-theme .search-engine .darkIconForDarkTheme, .dark-theme .aiDarkIcons {
-                fill: #bbbbbb !important;
-            }
-
-            .dark-theme .divider {
-                background-color: #cdcdcd;
-            }
-    
-            .dark-theme .shorcutDarkColor {
-                fill: #3c3c3c !important;
-            }
-
-            .dark-theme #darkLightTint {
-                fill: #bfbfbf;
-            }
-
-            .dark-theme .strokecolor {
-	            stroke: #3c3c3c;
-            }
-
-            .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
-                background: radial-gradient(circle, #bfbfbf 66%, transparent 66%);
-                &:not(:has(svg)){
-                    background: var(--accentLightTint-blue);
-                }
-            }
-
-            .dark-theme .digiclock {
-                fill: #909090;
-            }
-
-     	    .dark-theme .uploadButton,
-            .dark-theme .randomButton {
-                background-color: var(--darkColor-blue);
-                color: var(--whitishColor-dark);
-            }
-	    
-            .dark-theme .clearButton{
-                color: #d6d6d6;
-            }
-
-            .dark-theme .clearButton:hover {
-                background-color: var(--whitishColor-dark);
-		color: var(--darkColor-dark);
-            }
-
-            .dark-theme .clearButton:active {
-                color: #000000;
-            }
-
-            .dark-theme .backupRestoreBtn {
-                background-color: var(--darkColor-dark);
-            }
-
-            .dark-theme .backupRestoreBtn:hover,
-            .dark-theme .uploadButton:hover,
-            .dark-theme .randomButton:hover,
-            .dark-theme #todoAdd:hover {
-                background-color: var(--bg-color-dark);
-            }
-            
-            .dark-theme .uploadButton:active,
-            .dark-theme .randomButton:active,
-            .dark-theme .backupRestoreBtn:active,
-            .dark-theme .resetbtn:active {
-                background-color: #0e0e0e;
-            }
-	    
-            .dark-theme .todolistitem .todoremovebtn {
-                color:#616161;
-            }
-
-            .dark-theme .todolistitem .todoremovebtn:hover {
-                color:#888888;
-            }
-
-            .dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-                color: var(--textColorDark-blue) !important;
-            }
-
-            .dark-theme #bookmarkSearch{
-                background-color: #212121 !important;
-            }
-
-            .dark-theme .bookmark-search-container::after {
-                filter: none;
-            }
-
-            .dark-theme .bookmark-button svg {
-                fill: var(--textColorDark-blue);
-            }
-
-	    .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
-            .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-                background: var(--darkColor-dark);
-            }
-
-	    .dark-theme .favicon {
-                filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-            }
-
-     	    .dark-theme .micIcon {
-                background-color: var(--whitishColor-dark);
-            }
-
-            .dark-theme #minute, .dark-theme #minute::after, .dark-theme #second::after {
-                background-color: #909090;
-            }
-
-            .dark-theme .dot-icon {
-                fill: #bfbfbf;
-            }
-
-            .dark-theme .menuicon {
-                color: #c2c2c2;
-            }
-
-            .dark-theme #menuButton {
-                border: 6px solid var(--accentLightTint-blue);
-                box-shadow:
-                    inset 0 0 0 4px #858585,
-                    inset 0 0 0 9.7px var(--accentLightTint-blue),
-                    inset 0 0 0 40px #bfbfbf;
-            }
-
-            .dark-theme #menuCloseButton, .dark-theme #menuCloseButton:hover {
-                background-color: var(--darkColor-dark);
-            }
-
-            .dark-theme #menuCloseButton .icon {
-                background: radial-gradient(#cdcdcd 66%, transparent 66%);
-            }
-
-            .dark-theme #closeBtnX {
-                border: 2px solid #bdbdbd;
-                border-radius: 100px;
-            }
-
-            .dark-theme body {
-                background-color: #000000;
-            }
-            
-            .dark-theme #HangNoAlive {
-                fill: #c2c2c2 !important;
-            }
-
-            .dark-theme .tempUnit {
-                color: #dadada;
-            }
-
-            .dark-theme #githab,
-            .dark-theme #sujhaw {
-                fill: #b1b1b1;
-            }
-
-            .dark-theme .resultItem.active {
-                background-color: var(--darkColor-dark);
-            }
-        `;
-        document.head.appendChild(darkThemeStyleTag);
 
         // Apply dark theme class
         document.documentElement.classList.add("dark-theme");
@@ -684,33 +402,34 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
-
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (isFirefox) {
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (isChromiumBased) {
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (isSafari) {
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
+    changeFaviconColor();
     ApplyLoadingColor();
 };
+
+function changeFaviconColor() {
+    // Fetch colors from CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    const darkColor = rootStyles.getPropertyValue("--darkColor-blue");
+    //const bgColor = rootStyles.getPropertyValue("--bg-color-blue");
+
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="${darkColor}" style="transform: scale(1.2); transform-origin: center;"
+            d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1" />
+    </svg>
+    `;
+    const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    const favicon = document.getElementById("favicon");
+    favicon.href = encodedSvg;
+    favicon.setAttribute('type', 'image/svg+xml');
+}
+
+// Set default color on first page load
+if (!localStorage.getItem('newFavicon')) {
+    changeFaviconColor();
+    localStorage.setItem('newFavicon', 'true');
+}
+
 
 // ----Color Picker || ColorPicker----
 function adjustHexColor(hex, factor, isLighten = true) {
@@ -758,6 +477,7 @@ const applyCustomTheme = (color) => {
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
 
+    changeFaviconColor();
     ApplyLoadingColor();
 };
 
@@ -868,8 +588,6 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
                     }
-
-
                     showResultBox();
                 }
             } catch (error) {
@@ -936,8 +654,8 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChromiumBased && !isOpera) return "chrome";
     if (isOpera) return "opera";
+    if (isChromiumBased) return "chrome";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
 }

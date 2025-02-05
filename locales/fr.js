@@ -30,11 +30,11 @@ const fr = {
     "todoPlaceholder": "Ajouter une tâche...",
 
     // Digital Clock
-    "digitalclocktittle": "Horloge Numérique",
+    "digitalclocktitle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
-    "timeformattittle": "Format 12h",
+    "timeformattitle": "Format 12h",
     "timeformatinfo": "Utiliser le format 12h",
-    "greetingtittle": "Salutation",
+    "greetingtitle": "Salutation",
     "greetinginfo": "Afficher la salutation sous le texte personnalisé",
 
     // Misc
@@ -70,6 +70,8 @@ const fr = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "En savoir plus",
     "saveAPI": "Enregistrer",
+    "hideWeatherBox": "Masquer la carte météo",
+    "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
 
     // Body Items
     // Calendar
@@ -118,6 +120,11 @@ const fr = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "Mode Sombre",
+    "enableDarkModeInfo": "Activer le mode sombre des thèmes",
+
+
     // Wallpaper and misc
     "uploadWallpaperText": "Uploader un fond d'ecran",
     "backupText": "Sauvegarder",
@@ -136,5 +143,4 @@ const fr = {
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori \"{title}\"?",
     "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
-    "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };
