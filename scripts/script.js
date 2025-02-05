@@ -364,11 +364,9 @@ const resetDarkTheme = () => {
 };
 
 const applySelectedTheme = (colorValue) => {
-    // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
         resetDarkTheme();
 
-        // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
@@ -376,32 +374,18 @@ const applySelectedTheme = (colorValue) => {
             document.documentElement.style.setProperty("--darkColor-blue", "#4382EC");
             document.documentElement.style.setProperty("--textColorDark-blue", "#1b3041");
             document.documentElement.style.setProperty("--whitishColor-blue", "#ffffff");
-            changeFaviconColor("#fff","#4382EC");
-        }
-        else if (colorValue === "peach") {
+        } else {
             document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
             document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
             document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
             document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
             document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
             document.documentElement.style.setProperty("--whitishColor-blue", `var(--whitishColor-${colorValue})`);
-            changeFaviconColor("#fff","#af00bd");
-        }
-        
-        else {
-            document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
-            document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
-            document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
-            document.documentElement.style.setProperty("--darkColor-blue", `var(--darkColor-${colorValue})`);
-            document.documentElement.style.setProperty("--textColorDark-blue", `var(--textColorDark-${colorValue})`);
-            document.documentElement.style.setProperty("--whitishColor-blue", `var(--whitishColor-${colorValue})`);
-            changeFaviconColor("#fff",`${colorValue}`);
         }
     }
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
         document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
@@ -416,36 +400,35 @@ const applySelectedTheme = (colorValue) => {
         accentElements.forEach((element) => {
             element.style.fill = "#212121";
         });
-        changeFaviconColor("#ffffff","#000000");
-
     }
 
+    changeFaviconColor();
     ApplyLoadingColor();
 };
 
-let currentFillColor1 = '#2062C2';
-let currentFillColor2 = '#FFFFFF';
+function changeFaviconColor() {
+    // Fetch colors from CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    const darkColor = rootStyles.getPropertyValue("--darkColor-blue");
+    //const bgColor = rootStyles.getPropertyValue("--bg-color-blue");
 
-function changeFaviconColor(fillColor1, fillColor2) {
-    currentFillColor1 = fillColor1;
-    currentFillColor2 = fillColor2;
-    const svg = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_452_2)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0001 1.83912C12.6859 1.83912 11.3957 1.39556 10.2302 0.788239C9.26379 0.284665 8.16514 0 7 0C3.13401 0 0 3.13401 0 7C0 8.16513 0.28466 9.26378 0.788228 10.2302C1.39555 11.3957 1.83911 12.6859 1.83911 14.0001V14.0001V14.0001C1.83911 15.3143 1.3956 16.6043 0.788311 17.7697C0.284692 18.7361 0 19.8348 0 21C0 24.866 3.13401 28 7 28C8.16493 28 9.2634 27.7154 10.2297 27.212C11.3954 26.6047 12.6857 26.1612 14.0001 26.1612V26.1612V26.1612C15.3144 26.1612 16.6046 26.6047 17.7702 27.2119C18.7365 27.7154 19.835 28 21 28C24.866 28 28 24.866 28 21C28 19.835 27.7154 18.7365 27.2119 17.7701C26.6047 16.6046 26.1611 15.3144 26.1611 14.0001V14.0001V14.0001C26.1611 12.6857 26.6047 11.3954 27.212 10.2297C27.7154 9.26341 28 8.16494 28 7C28 3.13401 24.866 0 21 0C19.8348 0 18.7361 0.284694 17.7696 0.788317C16.6043 1.39561 15.3143 1.83912 14.0001 1.83912V1.83912V1.83912Z" fill="${fillColor2}"/>
-                <path d="M12.0413 21.0393V16.236H15.9543V21.0393C15.9543 21.5677 16.3945 22 16.9326 22H19.8673C20.4054 22 20.8456 21.5677 20.8456 21.0393V14.3146H22.5086C22.9586 14.3146 23.1738 13.767 22.8315 13.4788L14.6533 6.24497C14.2815 5.91834 13.7141 5.91834 13.3424 6.24497L5.1642 13.4788C4.8316 13.767 5.03703 14.3146 5.48703 14.3146H7.15006V21.0393C7.15006 21.5677 7.59027 22 8.12831 22H11.0631C11.6011 22 12.0413 21.5677 12.0413 21.0393Z" fill="${fillColor1}"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_452_2">
-                <rect width="28" height="28" fill="white"/>
-                </clipPath>
-                </defs>
-            </svg>`;
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="${darkColor}" style="transform: scale(1.2); transform-origin: center;"
+            d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1" />
+    </svg>
+    `;
     const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svg);
-    document.getElementById("favicon").href = encodedSvg;
+    const favicon = document.getElementById("favicon");
+    favicon.href = encodedSvg;
+    favicon.setAttribute('type', 'image/svg+xml');
 }
 
-// Set default color on page load
-changeFaviconColor(currentFillColor1, currentFillColor2);
+// Set default color on first page load
+if (!localStorage.getItem('newFavicon')) {
+    changeFaviconColor();
+    localStorage.setItem('newFavicon', 'true');
+}
 
 
 // ----Color Picker || ColorPicker----
@@ -494,8 +477,7 @@ const applyCustomTheme = (color) => {
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
 
-    changeFaviconColor("#ffffff",darkerColorHex);
-
+    changeFaviconColor();
     ApplyLoadingColor();
 };
 
