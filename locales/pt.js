@@ -70,6 +70,9 @@ const pt = {
     "userAPI": "Sua chave weatherAPI",
     "LearnMoreButton": "Saiba mais",
     "saveAPI": "Salvar",
+    "hideWeatherBox": "Ocultar Cartão do Tempo",
+    "hideWeatherBoxInfo": "Mostrar apenas o pílula de temperatura",
+
 
     // Body Items
     // Calendar
@@ -118,6 +121,10 @@ const pt = {
     "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
+    // Theme
+    "enableDarkMode": "Modo Escuro",
+    "enableDarkModeInfo": "Ativar temas em modo escuro",
+
     // Wallpaper and misc
     "uploadWallpaperText": "Enviar Papel de Parede",
     "backupText": "Backup",
@@ -135,5 +142,5 @@ const pt = {
     "restorefailed": "Restauração falhou: ",
     "invalidBackup": "Arquivo de backup inválido",
     "deleteBookmark": "Você tem certeza de que deseja excluir o favorito \"{title}\"?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "UnsupportedBrowser": "Bookmarks não são suportados no seu navegador.",
 };
