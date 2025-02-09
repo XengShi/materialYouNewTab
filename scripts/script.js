@@ -386,11 +386,9 @@ const resetDarkTheme = () => {
 };
 
 const applySelectedTheme = (colorValue) => {
-    // If the selected theme is not dark, reset dark theme styles
     if (colorValue !== "dark") {
         resetDarkTheme();
 
-        // Apply styles for other themes (not dark)
         if (colorValue === "blue") {
             document.documentElement.style.setProperty("--bg-color-blue", "#BBD6FD");
             document.documentElement.style.setProperty("--accentLightTint-blue", "#E2EEFF");
@@ -410,7 +408,6 @@ const applySelectedTheme = (colorValue) => {
 
     // If the selected theme is dark
     else if (colorValue === "dark") {
-        // Apply dark theme styles using CSS variables
         document.documentElement.style.setProperty("--bg-color-blue", `var(--bg-color-${colorValue})`);
         document.documentElement.style.setProperty("--accentLightTint-blue", `var(--accentLightTint-${colorValue})`);
         document.documentElement.style.setProperty("--darkerColor-blue", `var(--darkerColor-${colorValue})`);
@@ -427,32 +424,34 @@ const applySelectedTheme = (colorValue) => {
         });
     }
 
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (isFirefox) {
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (isChromiumBased) {
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (isSafari) {
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
+    changeFaviconColor();
     ApplyLoadingColor();
 };
+
+function changeFaviconColor() {
+    // Fetch colors from CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    const darkColor = rootStyles.getPropertyValue("--darkColor-blue");
+    //const bgColor = rootStyles.getPropertyValue("--bg-color-blue");
+
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="${darkColor}" style="transform: scale(1.2); transform-origin: center;"
+            d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1" />
+    </svg>
+    `;
+    const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    const favicon = document.getElementById("favicon");
+    favicon.href = encodedSvg;
+    favicon.setAttribute('type', 'image/svg+xml');
+}
+
+// Set default color on first page load
+if (!localStorage.getItem('newFavicon')) {
+    changeFaviconColor();
+    localStorage.setItem('newFavicon', 'true');
+}
+
 
 // ----Color Picker || ColorPicker----
 function adjustHexColor(hex, factor, isLighten = true) {
@@ -500,6 +499,7 @@ const applyCustomTheme = (color) => {
     document.getElementById("rangColor").style.borderColor = color;
     document.getElementById("dfChecked").checked = false;
 
+    changeFaviconColor();
     ApplyLoadingColor();
 };
 
@@ -623,8 +623,6 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                     if (dropdown.style.display === "block") {
                         dropdown.style.display = "none";
                     }
-
-
                     showResultBox();
                 }
             } catch (error) {
@@ -691,8 +689,8 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 // Check for different browsers and return the corresponding client parameter
 function getClientParam() {
     if (isFirefox) return "firefox";
-    if (isChromiumBased && !isOpera) return "chrome";
     if (isOpera) return "opera";
+    if (isChromiumBased) return "chrome";
     if (isSafari) return "safari";
     return "firefox"; // Default to Firefox if the browser is not recognized
 }
