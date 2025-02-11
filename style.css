@@ -148,10 +148,6 @@
 	background-color: var(--accentLightTint-blue);
 }
 
-.strokecolor {
-	stroke: var(--darkColor-blue);
-}
-
 .lessDark {
 	background-color: var(--bg-color-blue);
 	fill: var(--bg-color-blue);
@@ -3468,10 +3464,6 @@ input:checked + .toggle:before {
 
 .dark-theme #darkLightTint {
 	fill: #bfbfbf;
-}
-
-.dark-theme .strokecolor {
-	stroke: #3c3c3c;
 }
 
 .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
