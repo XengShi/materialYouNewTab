@@ -5,6 +5,8 @@ const iconPath = "./favicon/icon128.png";
 let iconUpdated = false;
 
 const updateExtensionIcon = () => {
+    if (iconUpdated) return;
+
     if (isFirefox) {
         browser.browserAction.setIcon({ path: iconPath });
     } else {
