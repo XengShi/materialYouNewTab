@@ -492,11 +492,11 @@ document.addEventListener("DOMContentLoaded", function () {
      * @returns {Element|null} The logo if it was found, otherwise null.
      */
     function getCustomLogo(url) {
-        const html = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
-        if (!html) return null;
+        const logoHtml = SHORTCUT_PRESET_URLS_AND_LOGOS.get(url.replace("https://", ""));
+        if (!logoHtml) return null;
 
         const template = document.createElement("template");
-        template.innerHTML = html.trim();
+        template.innerHTML = logoHtml.trim();
         return template.content.firstElementChild;
     }
 
