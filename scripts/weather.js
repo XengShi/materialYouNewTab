@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Setting weather Icon
                 const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
                 document.getElementById("wIcon").src = weatherIcon;
 
                 // Define minimum width for the slider based on the language
