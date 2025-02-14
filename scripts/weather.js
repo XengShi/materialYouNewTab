@@ -10,37 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const hideWeather = document.getElementById("hideWeather");
     const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
 
-    if (!hideWeather || !hideWeatherCheckbox) return;
-
-    function updateVisibility() {
-        const visibility = hideWeather.style.display !== "none"; // true if visible, false if hidden
-        return visibility;
-    }
-
-    // Retrieve saved state from localStorage (default: visible)
-    const savedState = JSON.parse(localStorage.getItem("hideWeatherVisible")) || false;
+    // Retrieve saved state from localStorage (default: false if null)
+    const savedState = localStorage.getItem("hideWeatherVisible") === "true";
     hideWeatherCheckbox.checked = savedState;
-    hideWeather.style.display = savedState ? "none" : "flex";
+    hideWeather.style.opacity = savedState ? "0" : "1";
 
-    // Initial visibility log
-
-    if (updateVisibility() == true) {
+    // Show weather widgets only if toggle is unchecked
+    if (!savedState) {
         getWeatherData();
     }
 
     hideWeatherCheckbox.addEventListener("change", () => {
         const isChecked = hideWeatherCheckbox.checked;
-        hideWeather.style.display = isChecked ? "none" : "flex";
-        localStorage.setItem("hideWeatherVisible", JSON.stringify(isChecked));
+        hideWeather.style.opacity = isChecked ? "0" : "1";
+        localStorage.setItem("hideWeatherVisible", isChecked);
 
-        // Update visibility whenever the toggle is clicked
-        updateVisibility();
-
-        if (updateVisibility() == true) {
+        if (!isChecked) {
             getWeatherData();
         }
     });
-
 });
 
 async function getWeatherData() {
