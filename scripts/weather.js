@@ -10,10 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const hideWeather = document.getElementById("hideWeather");
     const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
 
+    // Select all elements that need to be disabled
+    const elementsToDisable = document.querySelectorAll(".weather");
+
     // Retrieve saved state from localStorage (default: false if null)
     const savedState = localStorage.getItem("hideWeatherVisible") === "true";
     hideWeatherCheckbox.checked = savedState;
     hideWeather.style.opacity = savedState ? "0" : "1";
+
+    // Function to toggle the 'inactive' class
+    function toggleInactiveState(isInactive) {
+        elementsToDisable.forEach(element => {
+            element.classList.toggle("inactive", isInactive);
+        });
+    }
+
+    // Apply initial state
+    toggleInactiveState(savedState);
 
     // Show weather widgets only if toggle is unchecked
     if (!savedState) {
@@ -24,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const isChecked = hideWeatherCheckbox.checked;
         hideWeather.style.opacity = isChecked ? "0" : "1";
         localStorage.setItem("hideWeatherVisible", isChecked);
+
+        // Apply inactive class to disable elements visually
+        toggleInactiveState(isChecked);
 
         if (!isChecked) {
             getWeatherData();
