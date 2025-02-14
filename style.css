@@ -3280,7 +3280,7 @@ input:checked + .toggle:before {
 			scale: 0.8;
 		}
 	}
-	.centerDiv:has(~ .menuBar #hideWeatherCheckbox:checked) .topDiv .lrectangle {
+	.centerDiv:has(~ .menuBar #hideWeatherCard:checked) .topDiv .lrectangle {
 		display: none;
 	}
 	.centerDiv {
