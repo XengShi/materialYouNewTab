@@ -43,6 +43,8 @@ const en = {
     "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
     "fahrenheitCelsiusText": "Refresh the page to apply changes",
     "micIconTitle": "Hide Microphone Icon",
+    "hideWeatherTitle" :"Hide whole weather section",
+    "hideWeatherInfo":"Hide whole weather section",
     "micIconInfo": "If voice typing is not working",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
