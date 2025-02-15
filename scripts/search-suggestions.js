@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Allow pressing Enter to save the proxy
     userProxyInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
-            document.getElementById("saveproxy").click();
+            saveProxyButton.click();
         }
     });
 
