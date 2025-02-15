@@ -3623,6 +3623,6 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .delete button:hover {
-	background: #0b0b0a;
+	background: #404040;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
