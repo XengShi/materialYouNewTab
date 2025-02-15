@@ -3610,7 +3610,15 @@ input:checked + .toggle:before {
 	background-color: var(--darkColor-dark);
 }
 
+.dark-theme .shortcutSettingsEntry {
+	background-color: #171615;
+}
+
 .dark-theme .delete button {
 	background: #232221;
+}
+
+.dark-theme .delete button:hover {
+	background: #0b0b0a;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
