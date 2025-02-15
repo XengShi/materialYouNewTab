@@ -2392,6 +2392,10 @@ input:checked + .toggle:before {
 	padding: 15px 10px 15px 15px;
 }
 
+.shortcutSettingsEntry:last-child {
+	margin-bottom: 0;
+}
+
 .shortcutSettingsEntry input {
 	width: 95%;
 	background: none;
