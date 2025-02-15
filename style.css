@@ -2388,7 +2388,7 @@ input:checked + .toggle:before {
 	align-items: center;
 	margin-bottom: 16px;
 	background-color: var(--bg-color-blue);
-	border-radius: 15px;
+	border-radius: 13px;
 	padding: 15px 10px 15px 15px;
 }
 
