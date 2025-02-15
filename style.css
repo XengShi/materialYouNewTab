@@ -2388,8 +2388,8 @@ input:checked + .toggle:before {
 	align-items: center;
 	margin-bottom: 16px;
 	background-color: var(--bg-color-blue);
-	border-radius: 10px;
-	padding: 15px 0 15px 15px;
+	border-radius: 15px;
+	padding: 15px 10px 15px 15px;
 }
 
 .shortcutSettingsEntry input {
@@ -2417,11 +2417,11 @@ input:checked + .toggle:before {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 68px;
-	height: 68px;
-	background: rgba(255, 255, 255, 0.2);
+	width: 46px;
+	height: 46px;
+	background: rgba(255, 255, 255, 0.4);
 	border: none;
-	border-radius: 10px;
+	border-radius: 7px;
 	cursor: pointer;
 	transition: 0.3s all;
 }
