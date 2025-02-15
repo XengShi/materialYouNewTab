@@ -2339,6 +2339,14 @@ input:checked + .toggle:before {
 	gap: 24px;
 }
 
+#resetButton,
+#newShortcutButton {
+	fill: var(--textColorDark-blue);
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
 #newShortcutButton svg {
 	transition: transform 0.3s ease;
 }
@@ -2350,14 +2358,6 @@ input:checked + .toggle:before {
 .rotateResetButton {
 	transform: rotate(-360deg);
 	transition: transform 0.3s ease;
-}
-
-#resetButton,
-#newShortcutButton {
-	fill: var(--textColorDark-blue);
-	border: none;
-	background: none;
-	cursor: pointer;
 }
 
 #newShortcutButton.inactive {
@@ -2375,35 +2375,43 @@ input:checked + .toggle:before {
 #editShortcutsListInfo {
 	font-size: 0.8rem;
 	margin-top: 5px;
-	margin-bottom: var(--gap);
+	margin-bottom: 25px;
 	text-align: justify;
+	font-style: italic;
 }
 
 .shortcutSettingsEntry {
 	width: 100%;
 	display: flex;
-	height: 50px;
+	height: 68px;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 20px;
+	margin-bottom: 16px;
+	background-color: var(--bg-color-blue);
+	border-radius: 13px;
+	padding: 15px 10px 15px 15px;
+}
+
+.shortcutSettingsEntry:last-child {
+	margin-bottom: 0;
 }
 
 .shortcutSettingsEntry input {
-	width: calc(100% - var(--gap));
+	width: 95%;
 	background: none;
 	border: none;
 }
 
 .shortcutSettingsEntry .shortcutName {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	color: var(--textColorDark-blue);
 	text-overflow: ellipsis;
 }
 
 .shortcutSettingsEntry .URL {
-	font-size: 0.9rem;
+	font-size: 0.84rem;
 	color: var(--textColorDark-blue);
-	opacity: 0.86;
+	opacity: 0.9;
 	margin-top: -3px;
 	text-overflow: ellipsis;
 }
@@ -2413,11 +2421,11 @@ input:checked + .toggle:before {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 60px;
-	height: 34px;
-	background: var(--bg-color-blue);
+	width: 46px;
+	height: 46px;
+	background: rgba(255, 255, 255, 0.4);
 	border: none;
-	border-radius: 34px;
+	border-radius: 7px;
 	cursor: pointer;
 	transition: 0.3s all;
 }
@@ -3604,5 +3612,17 @@ input:checked + .toggle:before {
 
 .dark-theme .resultItem.active {
 	background-color: var(--darkColor-dark);
+}
+
+.dark-theme .shortcutSettingsEntry {
+	background-color: #171615;
+}
+
+.dark-theme .delete button {
+	background: #232221;
+}
+
+.dark-theme .delete button:hover {
+	background: #404040;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
