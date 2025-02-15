@@ -2419,7 +2419,7 @@ input:checked + .toggle:before {
 	justify-content: center;
 	width: 50px;
 	height: 60px;
-	background: var(--bg-color-blue);
+	background: rgba(255, 255, 255, 0.2);
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
@@ -3608,5 +3608,9 @@ input:checked + .toggle:before {
 
 .dark-theme .resultItem.active {
 	background-color: var(--darkColor-dark);
+}
+
+.dark-theme .delete button {
+	background: #232221;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
