@@ -2339,6 +2339,14 @@ input:checked + .toggle:before {
 	gap: 24px;
 }
 
+#resetButton,
+#newShortcutButton {
+	fill: var(--textColorDark-blue);
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
 #newShortcutButton svg {
 	transition: transform 0.3s ease;
 }
@@ -2350,14 +2358,6 @@ input:checked + .toggle:before {
 .rotateResetButton {
 	transform: rotate(-360deg);
 	transition: transform 0.3s ease;
-}
-
-#resetButton,
-#newShortcutButton {
-	fill: var(--textColorDark-blue);
-	border: none;
-	background: none;
-	cursor: pointer;
 }
 
 #newShortcutButton.inactive {

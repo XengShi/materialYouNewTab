@@ -540,7 +540,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetShortcutsButton.addEventListener("click", () => {
         resetShortcuts();
-        resetShortcutsButton.querySelector("svg").classList.toggle("rotateResetButton");
+
+        // Animate the reset button
+        const svgElement = resetShortcutsButton.querySelector("svg");
+        svgElement.classList.toggle("rotateResetButton");
+        setTimeout(() => {
+            svgElement.classList.remove("rotateResetButton");
+        }, 300);
     });
 
     // Load and apply the saved checkbox states and display statuses
