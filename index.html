@@ -64,10 +64,10 @@
 </head>
 
 <body>
-    <!----------------------- Loading Screen Starting ----------------------->
+    <!-- --------------------- Loading Screen Starting --------------------- -->
     <img src="./images/Loading.png" id="LoadingScreen" fetchpriority="high" />
 
-    <!----------------------- ToDo List Setup Starting ----------------------->
+    <!-- --------------------- ToDo List Setup Starting --------------------- -->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
         <svg id="todoIcon" xmlns="http://www.w3.org/2000/svg" class="dot-icon" width="36" height="36"
@@ -100,7 +100,7 @@
         </ul>
     </div>
 
-    <!----------------------- Bookmark System ----------------------->
+    <!-- --------------------- Bookmark System --------------------- -->
     <div style="display: none;">
         <svg id="folderIconTemplate" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,6 +152,24 @@
             <ul id="bookmarkList"></ul>
         </div>
     </div>
+
+    <!-- Edit Bookmark Modal -->
+    <div id="editBookmarkModal">
+        <div class="modal-content">
+            <h2 id="editBookmarkHeading">Edit Bookmark</h2>
+
+            <img id="editBookmarkFavicon" src="" alt="Favicon">
+
+            <input type="text" id="editBookmarkName" placeholder="Bookmark Name">
+            <input type="url" id="editBookmarkURL" placeholder="Bookmark URL">
+
+            <div class="modal-buttons">
+                <button id="saveBookmarkChanges">Save</button>
+                <button id="cancelBookmarkEdit">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!----------------------- End of Bookmark System ----------------------->
 
     <!----------------------- Google App Menu Setup Starting ----------------------->
@@ -626,7 +644,7 @@
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
-                                    <img src="./svgs/location.svg">
+                                    <img src="./svgs/location.svg" alt="">
                                 </div>
                                 <span class="location_spn" id="location"></span>
                             </div>
@@ -1232,7 +1250,8 @@
                                 <div class="infoText" id="ProxySubtext">Add your own CORS bypass proxy
                                 </div>
                             </div>
-                            <input id="userproxy" placeholder="https://mynt-proxy.rhythmcorehq.com" type="text">
+                            <input class="menuinputfield" id="userproxy"
+                                placeholder="https://mynt-proxy.rhythmcorehq.com" type="text">
                             <div class="bottom">
                                 <a href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" id="HostproxyButton"
                                     target="_blank">Host
@@ -1247,8 +1266,8 @@
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
                                 </div>
                             </div>
-                            <input id="userLoc" placeholder="Your City or Coordinates (Latitude, Longitude)"
-                                type="text">
+                            <input class="menuinputfield" id="userLoc"
+                                placeholder="Your City or Coordinates (Latitude, Longitude)" type="text">
                             <div class="bottom">
                                 <button class="savebtn" id="useGPS">Use GPS</button>
                                 <button class="savebtn" id="saveLoc">Save</button>
@@ -1261,7 +1280,7 @@
                                 <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
                                 </div>
                             </div>
-                            <input id="userAPI" placeholder="Your weatherAPI key" type="text">
+                            <input class="menuinputfield" id="userAPI" placeholder="Your weatherAPI key" type="text">
                             <div class="bottom">
                                 <a href="https://xengshi.github.io/materialYouNewTab/docs/Get_WeatherAPI_Key.html"
                                     id="LearnMoreButton" target="_blank">Learn more</a>

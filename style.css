@@ -878,6 +878,94 @@ body #bookmarkButton.bookmark-button.rotate {
 	pointer-events: auto;
 }
 
+/* Modal Styling */
+#editBookmarkModal {
+	display: none;
+	position: fixed;
+	z-index: 5;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+	border-radius: 25px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+}
+
+/* Modal Content */
+#editBookmarkModal .modal-content {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* Modal Header */
+#editBookmarkModal h2 {
+	text-align: center;
+	font-size: 1.5rem;
+	color: var(--textColorDark-blue);
+	margin-top: 5px;
+}
+
+/* Input Fields */
+#editBookmarkModal input {
+	width: 100%;
+	padding: 10px;
+	font-size: 1rem;
+	border: 1px solid var(--accentLightTint-blue);
+	border-radius: 10px;
+	outline: none;
+	transition: 0.2s;
+}
+
+#editBookmarkModal input:focus {
+	border-color: var(--darkColor-blue);
+	box-shadow: 0 0 5px var(--darkColor-blue);
+}
+
+/* Favicon Display */
+#editBookmarkFavicon {
+	display: block;
+	margin: 7px auto;
+	width: 32px;
+	height: 32px;
+	border-radius: 2px;
+}
+
+/* Modal Buttons */
+#editBookmarkModal .modal-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+#editBookmarkModal button {
+	flex: 1;
+	padding: 10px;
+	font-size: 1rem;
+	border: none;
+	cursor: pointer;
+	transition: 0.2s;
+	border-radius: 10px;
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+#saveBookmarkChanges {
+	margin-right: 15px;
+}
+
+#saveBookmarkChanges:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+#editBookmarkModal button:hover {
+	background: var(--darkerColor-blue);
+}
+
 /* ----------------- End of Bookmark System ----------------- */
 
 /* ------------------ To Do List Section -------------------- */
@@ -2448,17 +2536,7 @@ input:checked + .toggle:before {
 }
 
 /* Placeholder InputText color*/
-#userproxy {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
-}
-
-#userLoc {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
-}
-
-#userAPI {
+.menuinputfield {
 	color: var(--textColorDark-blue);
 	background-color: var(--whitishColor-blue);
 }
