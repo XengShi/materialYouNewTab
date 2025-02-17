@@ -404,6 +404,24 @@ document.addEventListener("DOMContentLoaded", function () {
             bookmarkItem.dataset.url = url;
         }
     }
+
+    // Move focus to URL field when Enter is pressed in Name field
+    editBookmarkName.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            editBookmarkURL.focus();
+        }
+    });
+
+    // Trigger Save button when Enter is pressed in URL field
+    editBookmarkURL.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (!saveBookmarkChanges.disabled) {
+                saveBookmarkChanges.click();
+            }
+        }
+    });
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
