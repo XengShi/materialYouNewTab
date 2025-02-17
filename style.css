@@ -913,7 +913,7 @@ body #bookmarkButton.bookmark-button.rotate {
 #editBookmarkModal input {
 	width: 100%;
 	padding: 10px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	border: 1px solid var(--accentLightTint-blue);
 	border-radius: 10px;
 	outline: none;
@@ -944,7 +944,7 @@ body #bookmarkButton.bookmark-button.rotate {
 #editBookmarkModal button {
 	flex: 1;
 	padding: 10px;
-	font-size: 1rem;
+	font-size: 0.96rem;
 	border: none;
 	cursor: pointer;
 	transition: 0.2s;
