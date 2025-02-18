@@ -161,8 +161,22 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         if (searchTerm !== "") {
-            var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
-            window.location.href = searchUrl;
+            if (selectedOption === "engine0") {
+                try {
+                    if (isFirefox) {
+                        browser.search.query({ text: searchTerm });
+                    } else {
+                        chrome.search.query({ text: searchTerm });
+                    }
+                } catch (error) {
+                    // Fallback to Google if an error occurs
+                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(searchTerm);
+                    window.location.href = fallbackUrl;
+                }
+            } else {
+                var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
+                window.location.href = searchUrl;
+            }
         }
     }
 
@@ -229,9 +243,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (event.key === "ArrowDown") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "ArrowUp") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "Enter") {
                 const selectedItem = document.querySelector(".dropdown-content .selected");
                 const engine = selectedItem.getAttribute("data-engine");
