@@ -6,7 +6,48 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const hideWeather = document.getElementById("hideWeather");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+
+    // Select all elements that need to be disabled
+    const elementsToDisable = document.querySelectorAll(".weather");
+
+    // Retrieve saved state from localStorage (default: false if null)
+    const savedState = localStorage.getItem("hideWeatherVisible") === "true";
+    hideWeatherCheckbox.checked = savedState;
+    hideWeather.style.opacity = savedState ? "0" : "1";
+
+    // Function to toggle the 'inactive' class
+    function toggleInactiveState(isInactive) {
+        elementsToDisable.forEach(element => {
+            element.classList.toggle("inactive", isInactive);
+        });
+    }
+
+    // Apply initial state
+    toggleInactiveState(savedState);
+
+    // Show weather widgets only if toggle is unchecked
+    if (!savedState) {
+        getWeatherData();
+    }
+
+    hideWeatherCheckbox.addEventListener("change", () => {
+        const isChecked = hideWeatherCheckbox.checked;
+        hideWeather.style.opacity = isChecked ? "0" : "1";
+        localStorage.setItem("hideWeatherVisible", isChecked);
+
+        // Apply inactive class to disable elements visually
+        toggleInactiveState(isChecked);
+
+        if (!isChecked) {
+            getWeatherData();
+        }
+    });
+});
+
+async function getWeatherData() {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -41,24 +82,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         location.reload();
     });
 
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
-        location.reload();
-    });
-
-    // Handle manual location input
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        localStorage.setItem("useGPS", false);
-        userLocInput.value = "";
-        fetchWeather(userLocation);
-        location.reload();
-    });
-
     // Default Weather API key
     const weatherApiKeys = [
         "d36ce712613d4f21a6083436240910",
@@ -82,53 +105,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Flag indicating whether to use GPS
     const useGPS = JSON.parse(localStorage.getItem("useGPS"));
-
-    // Function to fetch GPS-based location
-    async function fetchGPSLocation() {
-        const getLocationFromGPS = () => {
-            return new Promise((resolve, reject) => {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        resolve({
-                            latitude: position.coords.latitude,
-                            longitude: position.coords.longitude,
-                        });
-                    },
-                    (error) => reject(error),
-                    { timeout: 4000 }
-                );
-            });
-        };
-
-        try {
-            const { latitude, longitude } = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
-        } catch (error) {
-            console.error("Failed to retrieve GPS Location:", error);
-        }
-    }
-
-    // Fetch location dynamically based on user preference
-    await (async function initializeLocation() {
-        try {
-            if (useGPS) currentUserLocation = await fetchGPSLocation();
-
-            if (!currentUserLocation) {
-                // Fallback to IP-based location if no manual input
-                const ipInfo = "https://ipinfo.io/json/";
-                const locationData = await fetch(ipInfo);
-                const ipLocation = await locationData.json();
-                currentUserLocation = ipLocation.loc;
-            }
-
-            // Fetch weather data
-            fetchWeather(currentUserLocation);
-        } catch (error) {
-            console.error("Failed to retrieve IP-based location:", error);
-            currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
-        }
-    })();
 
     // Fetch weather data based on a location
     async function fetchWeather() {
@@ -236,7 +212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Setting weather Icon
                 const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
                 document.getElementById("wIcon").src = weatherIcon;
 
                 // Define minimum width for the slider based on the language
@@ -265,22 +241,94 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Error fetching weather data:", error);
         }
     }
-});
+
+    // Function to fetch GPS-based location
+    async function fetchGPSLocation() {
+        try {
+            const getLocationFromGPS = () => {
+                return new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            resolve({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                            });
+                        },
+                        (error) => reject(error),
+                        { timeout: 4000 }
+                    );
+                });
+            };
+
+            const { latitude, longitude } = await getLocationFromGPS();
+            return `${latitude},${longitude}`;
+        } catch (error) {
+            console.error("GPS Location retrieval failed: ", error);
+        }
+    }
+
+    // Fetch location dynamically based on user preference
+    await (async function initializeLocation() {
+        try {
+            if (useGPS) {
+                try {
+                    // Use GPS for dynamic location
+                    currentUserLocation = await fetchGPSLocation();
+                } catch {
+                    console.log("Failed to use GPS for location:", error);
+                }
+            }
+
+            if (!currentUserLocation) {
+                // Fallback to IP-based location if no manual input
+                const geoLocation = "https://ipinfo.io/json/";
+                const locationData = await fetch(geoLocation);
+                const parsedLocation = await locationData.json();
+                currentUserLocation = parsedLocation.loc;
+            }
+
+            // Fetch weather data
+            fetchWeather(currentUserLocation);
+        } catch (error) {
+            console.error("Failed to determine location:", error);
+            currentUserLocation = "auto:ip";
+            fetchWeather(currentUserLocation);
+        }
+    })();
+
+    // Handle "Use GPS" button click
+    useGPSButton.addEventListener("click", () => {
+        // Set the flag to use GPS dynamically and remove manual location
+        localStorage.setItem("useGPS", true);
+        localStorage.removeItem("weatherLocation");
+        location.reload();
+    });
+
+    // Handle manual location input
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        localStorage.setItem("useGPS", false);
+        userLocInput.value = "";
+        fetchWeather(userLocation);
+        location.reload();
+    });
+}
 
 
 // Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+    const hideWeatherCard = document.getElementById("hideWeatherCard");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCheckbox.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    hideWeatherCard.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
     });
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
 
-    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
 });
