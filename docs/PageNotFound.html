@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSIjNThiY2Y5IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzBhMTkyOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjQiIGQ9Ik02IDExTDExIDZMIDI0IDE5TDM3IDZMNDIgMTFMIDI5IDI0TDQyIDM3TDM3IDQyTDI0IDI5TDExIDQyTDYgMzdMMTkgMjRMMiAxMFoiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==">
+
     <style>
         body {
             margin: 0;
@@ -14,66 +17,42 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #0a1929;
             text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1e1e2f;
-                color: #e4e4eb;
-            }
-        }
-
-        .container {
-            padding: 20px;
-            max-width: 600px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .container {
-                background-color: #2a2a3d;
-                border-color: #444;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            }
         }
 
         h1 {
-            font-size: 24px;
-            margin-bottom: 16px;
+            color: #f0f5ff;
+            font-size: 10rem;
+            margin: 0;
         }
 
-        p {
-            font-size: 16px;
-            line-height: 1.6;
+        h2 {
+            color: #90caf9;
+            font-size: 2rem;
+            margin-bottom: 40px;
         }
 
-        .poem {
-            font-style: italic;
-            margin: 16px 0;
+        .typo {
+            font-size: 1.4rem;
+            color: #64b5f6;
+            margin-top: 40px;
+            display: block;
         }
 
-        .note {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        @media (max-width: 520px) {
+            h1 {
+                font-size: 7.5rem;
+            }
 
-        code {
-            background-color: #eaeaea;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
 
-        @media (prefers-color-scheme: dark) {
-            code {
-                background-color: #444;
+            .typo {
+                font-size: 1.1rem;
+                margin-top: 30px;
             }
         }
     </style>
@@ -81,20 +60,9 @@
 
 <body>
     <div class="container">
-        <h1>This site can't be reached</h1>
-
-        <p class="poem">
-            Paths cross empty void<br>
-            Seeking what once existed<br>
-            Silence answers all.
-        </p>
-
-        <p>Check if there is a typo in the URL.</p>
-
-        <p class="note">
-            Note: Only <code>http://</code> or <code>https://</code> protocols' shortcuts are supported for now.<br>
-            The following are NOT supported: <code>ftp://</code>, <code>data:</code>, <code>chrome://</code>, and more.
-        </p>
+        <h1>404</h1>
+        <h2>PAGE NOT FOUND</h2>
+        <p class="typo">Please check the URL for any typos.</p>
     </div>
 </body>
 
