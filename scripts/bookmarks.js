@@ -204,6 +204,18 @@ document.addEventListener("DOMContentLoaded", function () {
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement("li");
 
+                // folderItem.classList.add("folder");
+
+                // // Create a div as a placeholder for the SVG
+                // let folderIconContainer = document.createElement("div");
+                // folderIconContainer.id = `folderIcon-${node.id}`; // Unique ID for each folder
+                // folderItem.appendChild(folderIconContainer);
+
+                // // Load the SVG dynamically into the placeholder
+                // loadSVG(folderIconContainer.id, "./svgs/bookmark_page/folder-icon.svg");
+
+                // folderItem.appendChild(document.createTextNode(node.title));
+
                 // Use the SVG icon from HTML
                 const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
                 folderIcon.removeAttribute("id"); // Remove the id to prevent duplicates
