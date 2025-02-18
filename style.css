@@ -2546,6 +2546,11 @@ input:checked + .toggle:before {
 	background-color: var(--whitishColor-blue);
 }
 
+.ttcont input:focus {
+	border-color: var(--darkColor-blue);
+	box-shadow: 0 0 2px var(--darkColor-blue);
+}
+
 /* ---------------Menu-bar-css---------------- */
 
 /* --------------Theming stuff------------------ */
