@@ -639,6 +639,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 0.7;
 }
 
+#bookmarkSidebar input:focus {
+	border-color: var(--darkColor-blue);
+	box-shadow: 0 0 3px var(--darkColor-blue);
+}
+
 #clearSearchButton {
 	position: absolute;
 	right: 9%;
