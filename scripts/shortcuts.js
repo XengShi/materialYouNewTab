@@ -304,8 +304,10 @@ document.addEventListener("DOMContentLoaded", function () {
             url = "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html";
         }
 
-        // Normalize URL if valid
-        const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
+        // Normalize and encode URL
+        const normalizedUrl = encodeURI(
+            url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url
+        );
 
         const i = shortcut._index;
 
