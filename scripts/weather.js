@@ -6,7 +6,48 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const hideWeather = document.getElementById("hideWeather");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+
+    // Select all elements that need to be disabled
+    const elementsToDisable = document.querySelectorAll(".weather");
+
+    // Retrieve saved state from localStorage (default: false if null)
+    const savedState = localStorage.getItem("hideWeatherVisible") === "true";
+    hideWeatherCheckbox.checked = savedState;
+    hideWeather.style.opacity = savedState ? "0" : "1";
+
+    // Function to toggle the 'inactive' class
+    function toggleInactiveState(isInactive) {
+        elementsToDisable.forEach(element => {
+            element.classList.toggle("inactive", isInactive);
+        });
+    }
+
+    // Apply initial state
+    toggleInactiveState(savedState);
+
+    // Show weather widgets only if toggle is unchecked
+    if (!savedState) {
+        getWeatherData();
+    }
+
+    hideWeatherCheckbox.addEventListener("change", () => {
+        const isChecked = hideWeatherCheckbox.checked;
+        hideWeather.style.opacity = isChecked ? "0" : "1";
+        localStorage.setItem("hideWeatherVisible", isChecked);
+
+        // Apply inactive class to disable elements visually
+        toggleInactiveState(isChecked);
+
+        if (!isChecked) {
+            getWeatherData();
+        }
+    });
+});
+
+async function getWeatherData() {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -272,22 +313,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         fetchWeather(userLocation);
         location.reload();
     });
-});
+}
 
 
 // Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+    const hideWeatherCard = document.getElementById("hideWeatherCard");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCheckbox.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    hideWeatherCard.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
     });
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
 
-    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
 });
