@@ -96,7 +96,7 @@ async function getWeatherData() {
         localStorage.setItem("weatherLocation", userLocation);
         localStorage.setItem("useGPS", false);
         userLocInput.value = "";
-        fetchWeather(userLocation);
+        fetchWeather();
         location.reload();
     });
 
@@ -163,11 +163,11 @@ async function getWeatherData() {
             }
 
             // Fetch weather data
-            fetchWeather(currentUserLocation);
+            fetchWeather();
         } catch (error) {
             console.error("Failed to retrieve IP-based location:", error);
             currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
+            fetchWeather();
         }
     })();
 

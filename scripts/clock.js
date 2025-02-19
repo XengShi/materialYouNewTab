@@ -126,7 +126,7 @@ function updateanalogclock() {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
         minreset = true;
-    } else if (minreset !== true) {
+    } else {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     }
