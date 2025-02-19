@@ -43,7 +43,7 @@ const bn = {
     "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
     "fahrenheitCelsiusText": "পরিবর্তন প্রয়োগ করতে পেজ রিফ্রেশ করুন",
     "hideWeatherTitle": "আবহাওয়া লুকান",
-    "hideWeatherInfo": "আবহাওয়া উইজেট অক্ষম করুন",
+    "hideWeatherInfo": "আবহাওয়া উইজেট বন্ধ করুন",
     "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
     "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
 
