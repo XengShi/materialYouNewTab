@@ -117,7 +117,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(361deg)`;
         secondreset = true;
-    } else if (secondreset !== true) {
+    } else {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
@@ -126,7 +126,7 @@ function updateanalogclock() {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(361deg)`;
         minreset = true;
-    } else {
+    } else if (minreset !== true) {
         document.getElementById("minute").style.transition = "transform 1s ease";
         document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     }
