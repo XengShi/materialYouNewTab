@@ -44,7 +44,7 @@ function loadDisplayStatus(key, element) {
 
 // Function to save activeness status to localStorage
 function saveActiveStatus(key, activeStatus) {
-    localStorage.setItem(key, activeStatus)
+    localStorage.setItem(key, activeStatus);
 }
 
 // Function to load and apply activeness status from localStorage
