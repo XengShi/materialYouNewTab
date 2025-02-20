@@ -492,6 +492,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
+    if (menuBar.style.display !== "none") {
+        return;
+    }
+
     if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();

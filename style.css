@@ -916,10 +916,10 @@ body #bookmarkButton.bookmark-button.rotate {
 /* Input Fields */
 #editBookmarkModal input {
 	width: 100%;
-	padding: 10px 16px;
+	padding: 10px 14px;
 	font-size: 0.9rem;
 	border: 1px solid var(--accentLightTint-blue);
-	border-radius: 23px;
+	border-radius: 14px;
 	outline: none;
 	transition: 0.2s;
 }
