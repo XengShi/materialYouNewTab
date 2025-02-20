@@ -274,9 +274,7 @@ document.getElementById('languageSelector').addEventListener('change', (event) =
 // Function to apply the language when the page loads
 window.onload = function () {
     const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
-    if (savedLanguage) {
-        document.getElementById("languageSelector").value = savedLanguage;
-    }
+    document.getElementById("languageSelector").value = savedLanguage;
     applyLanguage(savedLanguage);
 };
 

@@ -81,7 +81,7 @@ todoulList.addEventListener("click", (event) => {
     } else if (event.target.classList.contains("todopinbtn")) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
-        todoList[id].pinned = ((todoList[id].pinned !== true)); // Update status
+        todoList[id].pinned = (todoList[id].pinned !== true); // Update status
         SaveToDoData(); // Save Changes
     }
 });

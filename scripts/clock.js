@@ -117,7 +117,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(361deg)`;
         secondreset = true;
-    } else if (secondreset !== true) {
+    } else {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
