@@ -3626,3 +3626,79 @@ input:checked + .toggle:before {
 	background: #404040;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
+
+/* Alert & Confirm Modal */
+#prompt-modal-container {
+	display: none;
+	position: fixed;
+	z-index: 10000;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: var(--accentLightTint-blue);
+	color: var(--textColorDark-blue);
+	border-radius: var(--round);
+	filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+	-webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+	padding: 25px;
+}
+
+/* Modal Content */
+#prompt-modal-box {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 13px;
+	align-items: center;
+}
+
+/* Modal Message */
+#prompt-modal-message {
+	/* text-align: center; */
+	font-size: 1rem;
+	color: var(--textColorDark-blue);
+	margin-bottom: 15px;
+}
+
+/* Modal Buttons */
+#prompt-modal-buttons {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	gap: 20px;
+}
+
+/* Button Styling */
+.prompt-modal-button {
+	min-width: 80px;
+	padding: 8px 18px;
+	font-size: 0.9rem;
+	border: none;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	border-radius: var(--round);
+	text-align: center;
+}
+
+/* OK/Yes Button */
+.prompt-modal-ok {
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+.prompt-modal-ok:hover {
+	background: var(--darkerColor-blue);
+}
+
+/* Cancel/No Button */
+.prompt-modal-cancel {
+	background: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+}
+
+.prompt-modal-cancel:hover {
+	background: var(--darkColor-blue);
+	color: white;
+}
+/* ---------------- End of Alert & Confirm Modal ---------------- */

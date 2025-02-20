@@ -105,7 +105,9 @@ document.getElementById("imageUpload").addEventListener("change", function (even
 const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
 
 async function applyRandomImage(showConfirmation = true) {
-    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper)) {
+    if (showConfirmation && !(await confirmPrompt(
+        translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper
+    ))) {
         return;
     }
     try {
@@ -129,9 +131,9 @@ function updateTextBackground(hasWallpaper) {
     const shortcuts = document.querySelectorAll(".shortcuts .shortcut-name");
 
     if (hasWallpaper) {
-        document.body.setAttribute('data-bg','wallpaper')
+        document.body.setAttribute('data-bg', 'wallpaper')
     } else {
-        document.body.setAttribute('data-bg','color')
+        document.body.setAttribute('data-bg', 'color')
     }
 
     // Update styles for userText and date
@@ -200,25 +202,31 @@ function checkAndUpdateImage() {
 }
 
 // Event listeners for buttons
-document.getElementById("uploadTrigger").addEventListener("click", () => document.getElementById("imageUpload").click());
-document.getElementById("clearImage").addEventListener("click", function () {
-    loadImageAndDetails()
-        .then(([blob]) => {
-            if (!blob) {
-                alert(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
-                return;
+document.getElementById("uploadTrigger").addEventListener("click", () =>
+    document.getElementById("imageUpload").click()
+);
+
+document.getElementById("clearImage").addEventListener("click", async function () {
+    try {
+        const [blob] = await loadImageAndDetails();
+        if (!blob) {
+            await alertPrompt(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
+            return;
+        }
+
+        const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
+        if (await confirmPrompt(confirmationMessage)) {
+            try {
+                await clearImageFromIndexedDB();
+                document.body.style.removeProperty("--bg-image");
+                updateTextBackground(false);
+            } catch (error) {
+                console.error(error);
             }
-            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
-            if (confirm(confirmationMessage)) {
-                clearImageFromIndexedDB()
-                    .then(() => {
-                        document.body.style.removeProperty("--bg-image");
-                        updateTextBackground(false);
-                    })
-                    .catch((error) => console.error(error));
-            }
-        })
-        .catch((error) => console.error(error));
+        }
+    } catch (error) {
+        console.error(error);
+    }
 });
 document.getElementById("randomImageTrigger").addEventListener("click", applyRandomImage);
 
