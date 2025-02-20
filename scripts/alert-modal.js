@@ -6,7 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 // Create modal container if not already present
 (function setupCustomModal() {
     if (document.getElementById("prompt-modal-container")) return;
@@ -59,27 +58,71 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
         const okButton = document.createElement("button");
         okButton.textContent = okText;
         okButton.classList.add("prompt-modal-button", "prompt-modal-ok");
-        okButton.onclick = () => {
-            modalContainer.style.display = "none";
-            resolve(isAlert ? undefined : true); // Resolve `true` only if confirm modal
-        };
+        okButton.onclick = closeModal.bind(null, true);
 
         buttonContainer.appendChild(okButton);
 
+        let cancelButton = null;
         // If it's a confirm modal, add Cancel button
         if (!isAlert) {
-            const cancelButton = document.createElement("button");
+            cancelButton = document.createElement("button");
             cancelButton.textContent = cancelText;
             cancelButton.classList.add("prompt-modal-button", "prompt-modal-cancel");
-            cancelButton.onclick = () => {
-                modalContainer.style.display = "none";
-                resolve(false);
-            };
+            cancelButton.onclick = closeModal.bind(null, false);
 
             buttonContainer.appendChild(cancelButton);
         }
 
         modalContainer.style.display = "flex";
+
+        // Disable background interaction
+        document.body.style.pointerEvents = "none";
+        modalContainer.style.pointerEvents = "auto";
+
+        // Focus OK button by default
+        okButton.focus();
+
+        // Prevent clicks outside from affecting focus
+        document.addEventListener("mousedown", preventFocusLoss);
+
+        // Handle keyboard events
+        function handleKeydown(event) {
+            if (event.key === "Enter") {
+                if (document.activeElement === okButton) {
+                    closeModal(true);
+                } else if (document.activeElement === cancelButton) {
+                    closeModal(false);
+                }
+            } else if (event.key === "Escape") {
+                closeModal(isAlert ? undefined : false);
+            } else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                event.preventDefault();
+                const buttons = buttonContainer.querySelectorAll("button");
+                let index = [...buttons].indexOf(document.activeElement);
+                if (event.key === "ArrowRight") {
+                    index = (index + 1) % buttons.length;
+                } else if (event.key === "ArrowLeft") {
+                    index = (index - 1 + buttons.length) % buttons.length;
+                }
+                buttons[index].focus();
+            }
+        }
+
+        function preventFocusLoss(event) {
+            if (!modalContainer.contains(event.target)) {
+                event.preventDefault();
+            }
+        }
+
+        document.addEventListener("keydown", handleKeydown);
+
+        function closeModal(result) {
+            modalContainer.style.display = "none";
+            document.removeEventListener("keydown", handleKeydown);
+            document.removeEventListener("mousedown", preventFocusLoss);
+            document.body.style.pointerEvents = "auto";
+            resolve(result);
+        }
     });
 }
 

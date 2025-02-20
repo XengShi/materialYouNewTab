@@ -2656,6 +2656,7 @@ input:checked + .toggle:before {
 	align-items: center;
 }
 
+/* --------- Styling for Upload/Random/Clear Buttons --------- */
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
@@ -2664,7 +2665,6 @@ input:checked + .toggle:before {
 	gap: 10px;
 }
 
-/* --------- Styling for Upload/Random/Clear Buttons --------- */
 .uploadButton {
 	font-size: 0.95rem;
 	display: flex;
@@ -2677,8 +2677,8 @@ input:checked + .toggle:before {
 	width: -moz-available;
 	padding: 10px 12px;
 	/*white-space: nowrap; */
+	border: none;
 	border-radius: 23px;
-	border: 2px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
 }
@@ -2689,8 +2689,8 @@ input:checked + .toggle:before {
 	justify-content: center;
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
+	border: none;
 	border-radius: 26px;
-	border: 2px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
 	padding: 10px;
@@ -2703,7 +2703,7 @@ input:checked + .toggle:before {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid transparent;
+	border: none;
 	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
@@ -3641,7 +3641,7 @@ input:checked + .toggle:before {
 	border-radius: var(--round);
 	filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
 	-webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
-	padding: 25px;
+	padding: var(--gap);
 }
 
 /* Modal Content */
@@ -3675,6 +3675,7 @@ input:checked + .toggle:before {
 	padding: 8px 18px;
 	font-size: 0.9rem;
 	border: none;
+	outline: none;
 	cursor: pointer;
 	transition: 0.3s ease-in-out;
 	border-radius: var(--round);
@@ -3700,5 +3701,10 @@ input:checked + .toggle:before {
 .prompt-modal-cancel:hover {
 	background: var(--darkColor-blue);
 	color: white;
+}
+
+.prompt-modal-button:focus {
+	outline: 3px solid var(--darkerColor-blue);
+	outline-offset: 3px;
 }
 /* ---------------- End of Alert & Confirm Modal ---------------- */

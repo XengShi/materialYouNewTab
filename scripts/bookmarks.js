@@ -381,6 +381,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
+    // Prevent if modal is open
+    const modalContainer = document.getElementById("prompt-modal-container");
+    if (modalContainer?.style.display === "flex") return;
+
     if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();
