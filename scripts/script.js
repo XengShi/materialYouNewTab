@@ -565,6 +565,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("keydown", function (event) {
     const searchInput = document.getElementById("searchQ");
     const searchBar = document.querySelector(".searchbar");
+    const modalContainer = document.getElementById("prompt-modal-container");
+
+    // Prevent if modal is open
+    if (modalContainer?.style.display === "flex") return;
+
     if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
