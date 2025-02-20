@@ -42,6 +42,12 @@ const en = {
     "userTextInfo": "Show custom text below the clock",
     "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
     "fahrenheitCelsiusText": "Refresh the page to apply changes",
+    "hideWeatherTitle": "Hide Weather",
+    "hideWeatherInfo": "Disable the weather widgets",
+    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Show only temperature pill",
+
+    // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
     "hideSearchWith": "Hide Search Engines",
@@ -70,8 +76,6 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
-    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
-    "hideWeatherBoxInfo": "Show only temperature pill",
 
     // Body Items
     // Calendar
