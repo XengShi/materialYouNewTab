@@ -941,13 +941,14 @@ body #bookmarkButton.bookmark-button.rotate {
 /* Modal Buttons */
 #editBookmarkModal .modal-buttons {
 	display: flex;
-	justify-content: center;
-	margin-top: 13px;
-	gap: 30px;
+	justify-content: space-between;
+	margin-top: 11px;
+	gap: 20px;
 }
 
 #editBookmarkModal button {
-	min-width: 120px;
+	/* min-width: 120px; */
+	flex: 1;
 	padding: 10px 16px;
 	font-size: 0.96rem;
 	border: none;
