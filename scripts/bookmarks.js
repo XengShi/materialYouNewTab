@@ -39,6 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function (event) {
+        const modalContainer = document.getElementById("prompt-modal-container");
+        // If modal is open, don't close the sidebar
+        if (modalContainer && modalContainer.style.display === "flex") {
+            return;
+        }
+
         if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains("open")) {
             toggleBookmarkSidebar();
         }

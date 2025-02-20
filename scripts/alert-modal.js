@@ -39,6 +39,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
         const blurOverlay = document.getElementById("prompt-modal-blur");
         const messageElement = document.getElementById("prompt-modal-message");
         const buttonContainer = document.getElementById("prompt-modal-buttons");
+        const bookmarkContainer = document.getElementById("bookmarkSidebar");
 
         // Clear previous message
         messageElement.innerHTML = "";
@@ -83,6 +84,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
 
         // Disable background interaction
         document.body.style.pointerEvents = "none";
+        if (bookmarkContainer) bookmarkContainer.style.pointerEvents = "none";
         modalContainer.style.pointerEvents = "auto";
 
         // Focus OK button by default and track last focused button
@@ -134,6 +136,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
             document.removeEventListener("keydown", handleKeydown);
             document.removeEventListener("mousedown", preventFocusLoss);
             document.body.style.pointerEvents = "auto";
+            if (bookmarkContainer) bookmarkContainer.style.pointerEvents = "auto";
             resolve(result);
         }
     });
