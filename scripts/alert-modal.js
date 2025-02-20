@@ -10,6 +10,9 @@
 (function setupCustomModal() {
     if (document.getElementById("prompt-modal-container")) return;
 
+    const blurOverlay = document.createElement("div");
+    blurOverlay.id = "prompt-modal-blur";
+
     const modalContainer = document.createElement("div");
     modalContainer.id = "prompt-modal-container";
 
@@ -25,6 +28,7 @@
     modalBox.appendChild(messageElement);
     modalBox.appendChild(buttonContainer);
     modalContainer.appendChild(modalBox);
+    document.body.appendChild(blurOverlay);
     document.body.appendChild(modalContainer);
 })();
 
@@ -32,6 +36,7 @@
 function alertPrompt(message, isAlert = true, okText, cancelText) {
     return new Promise((resolve) => {
         const modalContainer = document.getElementById("prompt-modal-container");
+        const blurOverlay = document.getElementById("prompt-modal-blur");
         const messageElement = document.getElementById("prompt-modal-message");
         const buttonContainer = document.getElementById("prompt-modal-buttons");
 
@@ -74,6 +79,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
         }
 
         modalContainer.style.display = "flex";
+        blurOverlay.style.display = "block";
 
         // Disable background interaction
         document.body.style.pointerEvents = "none";
@@ -124,6 +130,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
 
         function closeModal(result) {
             modalContainer.style.display = "none";
+            blurOverlay.style.display = "none";
             document.removeEventListener("keydown", handleKeydown);
             document.removeEventListener("mousedown", preventFocusLoss);
             document.body.style.pointerEvents = "auto";
