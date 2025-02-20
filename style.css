@@ -640,8 +640,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #bookmarkSidebar input:focus {
-	border-color: var(--darkColor-blue);
-	box-shadow: 0 0 3px var(--darkColor-blue);
+	box-shadow: 0 0 2px var(--darkColor-blue);
 }
 
 #clearSearchButton {
@@ -927,7 +926,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #editBookmarkModal input:focus {
 	border-color: var(--darkColor-blue);
-	box-shadow: 0 0 5px var(--darkColor-blue);
+	box-shadow: 0 0 3px var(--darkColor-blue);
 }
 
 /* Favicon Display */
@@ -2337,12 +2336,18 @@ input:checked + .toggle:before {
 
 .ttcont input {
 	width: 100%;
+	color: var(--textColorDark-blue);
+	background-color: var(--whitishColor-blue);
 	margin-top: 6px;
 	height: 30px;
 	border-radius: 10px;
 	border: none;
 	outline: none;
 	padding: 0 11px;
+}
+
+.ttcont input:focus {
+	box-shadow: 0 0 2px var(--darkColor-blue);
 }
 
 .ttcont .texts .bigText {
@@ -2538,17 +2543,6 @@ input:checked + .toggle:before {
 	border-radius: 34px;
 	cursor: pointer;
 	transition: 0.3s all;
-}
-
-/* Placeholder InputText color*/
-.menuinputfield {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
-}
-
-.ttcont input:focus {
-	border-color: var(--darkColor-blue);
-	box-shadow: 0 0 2px var(--darkColor-blue);
 }
 
 /* ---------------Menu-bar-css---------------- */
