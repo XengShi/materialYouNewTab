@@ -79,10 +79,21 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
         document.body.style.pointerEvents = "none";
         modalContainer.style.pointerEvents = "auto";
 
-        // Focus OK button by default
+        // Focus OK button by default and track last focused button
+        let lastFocusedButton = okButton;
         okButton.focus();
 
-        // Prevent clicks outside from affecting focus
+        // Prevent focus loss when clicking outside or on non-buttons
+        function preventFocusLoss(event) {
+            const isInsideModal = modalContainer.contains(event.target);
+            const isButton = event.target.classList.contains("prompt-modal-button");
+
+            if (!isInsideModal || !isButton) {
+                event.preventDefault();
+                lastFocusedButton.focus(); // Restore focus to the last button
+            }
+        }
+
         document.addEventListener("mousedown", preventFocusLoss);
 
         // Handle keyboard events
@@ -105,12 +116,7 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
                     index = (index - 1 + buttons.length) % buttons.length;
                 }
                 buttons[index].focus();
-            }
-        }
-
-        function preventFocusLoss(event) {
-            if (!modalContainer.contains(event.target)) {
-                event.preventDefault();
+                lastFocusedButton = buttons[index];
             }
         }
 

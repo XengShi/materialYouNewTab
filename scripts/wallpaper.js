@@ -118,8 +118,9 @@ async function applyRandomImage(showConfirmation = true) {
         document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
         await saveImageToIndexedDB(blob, true);
         updateTextBackground(true);
-        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 2000); // Delay URL revocation
     } catch (error) {
+        await alertPrompt(translations[currentLanguage]?.randomImageError || translations["en"].randomImageError);
         console.error("Error fetching random image:", error);
     }
 }

@@ -1520,11 +1520,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: #757575;
 }
 
-/* Placeholder color when the condition is met */
-/* #searchQ.darker-placeholder::placeholder {
-	color: #3c3c3c;
-} */
-
 .searchControls {
 	margin-left: 10px;
 	right: 10px;
@@ -3370,11 +3365,11 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .colorsContainer {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #themeButton {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #themeIconSvg,
@@ -3384,7 +3379,7 @@ input:checked + .toggle:before {
 
 .dark-theme .languageIcon,
 .dark-theme .languageSelector {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 	scrollbar-color: var(--darkerColor-blue) transparent;
 }
 
@@ -3398,7 +3393,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .ttcont input {
-	background-color: #212121 !important;
+	background-color: var(--darkColor-dark) !important;
 }
 
 .dark-theme input:checked + .toggle {
@@ -3446,7 +3441,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .tilesContainer .tiles {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #darkFeelsLikeIcon {
@@ -3467,7 +3462,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .shorcutDarkColor {
-	fill: #3c3c3c !important;
+	fill: var(--accentLightTint-dark) !important;
 }
 
 .dark-theme #darkLightTint {
@@ -3492,7 +3487,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .clearButton {
-	color: #d6d6d6;
+	color: var(--textColorDark-dark);
 }
 
 .dark-theme .clearButton:hover {
@@ -3535,7 +3530,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme #bookmarkSearch {
-	background-color: #212121 !important;
+	background-color: var(--darkColor-dark) !important;
 }
 
 .dark-theme .bookmark-search-container::after {
@@ -3615,7 +3610,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .shortcutSettingsEntry {
-	background-color: #171615;
+	background-color: var(--bg-color-dark);
 }
 
 .dark-theme .delete button {
@@ -3624,6 +3619,28 @@ input:checked + .toggle:before {
 
 .dark-theme .delete button:hover {
 	background: #404040;
+}
+
+.dark-theme .prompt-modal-ok {
+	background: var(--bg-color-dark);
+	color: var(--textColorDark-dark);
+}
+
+.dark-theme .prompt-modal-cancel {
+	background: var(--darkColor-dark);
+	color: var(--textColorDark-dark);
+}
+
+.dark-theme .prompt-modal-ok:hover {
+	background: black;
+}
+
+.dark-theme .prompt-modal-cancel:hover {
+	background: var(--bg-color-dark);
+}
+
+.dark-theme .prompt-modal-button:focus {
+	outline: 3px solid var(--textColorDark-dark);
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
 
