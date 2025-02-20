@@ -88,6 +88,10 @@ const en = {
     "bookmarkViewGrid": "Grid",    // Keep this shorter
     "bookmarkViewList": "List",    // Keep this shorter
     "bookmarkSearch": "Search bookmark",
+    "editBookmarkHeading": "Edit Bookmark",
+    "editBookmarkName": "Bookmark Name",
+    "editBookmarkURL": "Bookmark URL",
+    "cancelBookmarkEdit": "Cancel",
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
