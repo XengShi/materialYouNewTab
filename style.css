@@ -3346,7 +3346,7 @@ input:checked + .toggle:before {
 		width: 100%;
 	}
 	#prompt-modal-container {
-		width: 360px;
+		width: 86% !important;
 	}
 }
 
