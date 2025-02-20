@@ -893,7 +893,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 400px;
 	background: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
-	border-radius: 25px;
+	border-radius: var(--round);
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 	padding: 20px;
 }
@@ -916,10 +916,10 @@ body #bookmarkButton.bookmark-button.rotate {
 /* Input Fields */
 #editBookmarkModal input {
 	width: 100%;
-	padding: 10px;
+	padding: 10px 16px;
 	font-size: 0.9rem;
 	border: 1px solid var(--accentLightTint-blue);
-	border-radius: 10px;
+	border-radius: 23px;
 	outline: none;
 	transition: 0.2s;
 }
@@ -941,24 +941,21 @@ body #bookmarkButton.bookmark-button.rotate {
 /* Modal Buttons */
 #editBookmarkModal .modal-buttons {
 	display: flex;
-	justify-content: space-between;
-	margin-top: 10px;
+	justify-content: center;
+	margin-top: 13px;
+	gap: 30px;
 }
 
 #editBookmarkModal button {
-	flex: 1;
-	padding: 10px;
+	min-width: 120px;
+	padding: 10px 16px;
 	font-size: 0.96rem;
 	border: none;
 	cursor: pointer;
 	transition: 0.2s;
-	border-radius: 10px;
+	border-radius: var(--round);
 	background: var(--darkColor-blue);
 	color: white;
-}
-
-#saveBookmarkChanges {
-	margin-right: 15px;
 }
 
 #saveBookmarkChanges:disabled {
