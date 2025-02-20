@@ -120,7 +120,6 @@ async function applyRandomImage(showConfirmation = true) {
         updateTextBackground(true);
         setTimeout(() => URL.revokeObjectURL(imageUrl), 2000); // Delay URL revocation
     } catch (error) {
-        await alertPrompt(translations[currentLanguage]?.randomImageError || translations["en"].randomImageError);
         console.error("Error fetching random image:", error);
     }
 }

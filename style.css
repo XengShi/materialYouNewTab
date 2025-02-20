@@ -3345,6 +3345,9 @@ input:checked + .toggle:before {
 	#shortcuts-section .wrapper {
 		width: 100%;
 	}
+	#prompt-modal-container {
+		width: 360px;
+	}
 }
 
 @media screen and (max-width: 425px) and (max-height: 700px) {
@@ -3640,7 +3643,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .prompt-modal-button:focus {
-	outline: 3px solid var(--textColorDark-dark);
+	outline: 2px solid black;
 }
 /* ---------------- End of Dark(Black) theme ---------------- */
 
@@ -3657,7 +3660,7 @@ input:checked + .toggle:before {
 	color: var(--textColorDark-blue);
 	border-radius: var(--round);
 	filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
-	padding: var(--gap);
+	padding: 30px 35px;
 }
 
 /* Background blur overlay */
@@ -3685,7 +3688,7 @@ input:checked + .toggle:before {
 /* Modal Message */
 #prompt-modal-message {
 	/* text-align: center; */
-	font-size: 1rem;
+	font-size: 0.94rem;
 	color: var(--textColorDark-blue);
 	margin-bottom: 15px;
 }
@@ -3733,7 +3736,7 @@ input:checked + .toggle:before {
 }
 
 .prompt-modal-button:focus {
-	outline: 3px solid var(--darkerColor-blue);
+	outline: 2px solid var(--darkerColor-blue);
 	outline-offset: 3px;
 }
 /* ---------------- End of Alert & Confirm Modal ---------------- */

@@ -141,7 +141,6 @@ const en = {
     "agreeText": "I Agree",
     "cancelText": "Cancel",
     "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
-    "randomImageError": "Error fetching random image. Please try again.",
     "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
     "Nobackgroundset": "No background image is currently set.",
     "clearbackgroundimage": "Are you sure you want to clear the background image?",

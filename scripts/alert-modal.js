@@ -44,9 +44,9 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
         // Clear previous message
         messageElement.innerHTML = "";
 
-        // Safely handle newlines by splitting & appending text nodes
+        // Handle newlines by splitting & appending text nodes
         message.split("\n").forEach((line, index) => {
-            if (index > 0) messageElement.appendChild(document.createElement("br")); // Add line breaks safely
+            if (index > 0) messageElement.appendChild(document.createElement("br"));
             messageElement.appendChild(document.createTextNode(line));
         });
 
