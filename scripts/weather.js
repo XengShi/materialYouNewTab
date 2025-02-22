@@ -170,9 +170,14 @@ async function getWeatherData() {
                 const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
                 const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
+                // Check if language is RTL
+                const isRTL = rtlLanguages.includes(currentLanguage);
+
                 // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
-                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+                document.getElementById("humidityLevel").textContent = isRTL
+                    ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
+                    : `${humidityLabel} ${localizedHumidity}%`;
 
                 // Event Listener for the Fahrenheit toggle
                 const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
@@ -194,7 +199,9 @@ async function getWeatherData() {
 
                         // Update feels like
                         const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
                     } else {
                         // Update temperature
                         tempElement.textContent = localizedTempCelsius;
@@ -205,7 +212,9 @@ async function getWeatherData() {
 
                         // Update feels like
                         const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
                     }
                 };
                 updateTemperatureDisplay();

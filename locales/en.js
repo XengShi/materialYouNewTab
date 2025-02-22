@@ -3,8 +3,6 @@ const en = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Feedback",
-    "resetsettings": "Reset Settings",
-    "menuCloseText": "Close",
 
     // Shortcuts
     "shortcutsText": "Shortcuts",
@@ -128,11 +126,13 @@ const en = {
     "enableDarkMode": "Dark Mode",
     "enableDarkModeInfo": "Enable dark mode themes",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
+    "rangColor": "Pick color",    // Keep this short
     "backupText": "Backup",
     "restoreText": "Restore",
-    "rangColor": "Pick color",    // Keep this short
+    "resetsettings": "Reset Settings",
+    "menuCloseText": "Close",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",

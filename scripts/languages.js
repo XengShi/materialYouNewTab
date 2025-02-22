@@ -80,6 +80,9 @@ function localizeNumbers(text, language) {
     return text;  // Return the localized text
 }
 
+// Right-to-left languages
+const rtlLanguages = ['ur'];
+
 // Function to apply the language to the page
 function applyLanguage(lang) {
     // Mapping of text elements and their translation keys
@@ -253,14 +256,35 @@ function applyLanguage(lang) {
         }
     }
 
+    // Function to dynamically load Google Fonts
+    function loadFont(fontUrl) {
+        if (!document.querySelector(`link[href="${fontUrl}"]`)) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = fontUrl;
+            document.head.appendChild(link);
+        }
+    }
+
     // Dynamically update the font family based on the language
     const root = document.documentElement;
     const commonFontStack = "'poppins', 'Poppins', sans-serif";
     if (lang === 'vi') {
         root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
+        loadFont("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
+    } else if (lang === 'ur') {
+        root.style.setProperty('--main-font-family', `'Noto Sans Arabic', ${commonFontStack}`);
+        loadFont("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap");
     } else {
         root.style.setProperty('--main-font-family', commonFontStack);
     }
+
+    // Apply the direction to the elements based on the language
+    const rtlElements = ['.menuBar'];
+    rtlElements.forEach(selector => {
+        const element = document.querySelector(selector);
+        element.style.direction = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+    });
 
     // Save the selected language in localStorage
     saveLanguageStatus('selectedLanguage', lang);

@@ -7,7 +7,6 @@
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
 
 @font-face {
 	font-family: "poppins";
@@ -1407,6 +1406,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: auto;
 	left: 20px;
 	height: fit-content;
+}
+
+#feelsLike {
+	padding-right: 12px;
 }
 
 /* End of _____________________- */
@@ -2880,11 +2883,6 @@ input:checked + .toggle:before {
 	z-index: 2;
 	transition: all 0.4s ease;
 }
-
-/* #menuCloseButton .icon:hover{
-    transition: all 0.2s;
-    transform: rotate(90deg);
-} */
 
 #menuCloseButton:hover .icon {
 	transform: translateX(0) rotate(90deg);
