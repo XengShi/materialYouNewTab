@@ -270,19 +270,14 @@ function applyLanguage(lang) {
     const root = document.documentElement;
     const commonFontStack = "'poppins', 'Poppins', sans-serif";
     if (lang === 'vi') {
-        root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
         loadFont("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
+        root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
     } else if (lang === 'ur') {
-        root.style.setProperty('--main-font-family', `'Noto Sans Arabic', ${commonFontStack}`);
         loadFont("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap");
+        root.style.setProperty('--main-font-family', `'Noto Sans Arabic', ${commonFontStack}`);
+        document.body.classList.add('lang-ur'); // Apply special styles
     } else {
         root.style.setProperty('--main-font-family', commonFontStack);
-    }
-
-    // Apply special styles for Urdu language
-    if (lang === 'ur') {
-        document.body.classList.add('lang-ur');
-    } else {
         document.body.classList.remove('lang-ur');
     }
 
