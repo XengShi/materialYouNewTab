@@ -50,6 +50,8 @@ const en = {
     // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
+    "switchSearchModes": "Switch Search Modes",
+    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
     "search_suggestions_button": "Search Suggestions",
