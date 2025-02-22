@@ -30,6 +30,7 @@ const translations = {
     az: az, // Azerbaijani
     sl: sl, // Slovenian
     np: np, // Nepali
+    ur: ur, // Urdu
 };
 
 // Define the width of the menu container for each language
