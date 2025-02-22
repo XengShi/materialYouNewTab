@@ -53,11 +53,11 @@ searchWith.addEventListener('click', function () {
 
 function toggleSearchEngines(category) {
     const defaultItems = {
-        'search-with' : "engine1",
-        'search-on' : "engine5",
+        'search-with': "engine1",
+        'search-on': "engine5",
     }
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
-    const namee = category.split("-").map((elem,index)=>{return ((index==0) ? elem[0] : elem[0].toUpperCase())+elem.substring(1)}).join("")+"Hint";
+    const namee = category.split("-").map((elem, index) => { return ((index == 0) ? elem[0] : elem[0].toUpperCase()) + elem.substring(1) }).join("") + "Hint";
     document.getElementById('searchWithHint').innerText = translations[currentLanguage][namee] || translations["en"][namee]
 
     searchEngines.forEach(engine => {
@@ -66,7 +66,7 @@ function toggleSearchEngines(category) {
         } else {
             engine.style.display = 'none';
         }
-        if (engine.lastElementChild.value === checkeditem){ engine.lastElementChild.click() }
+        if (engine.lastElementChild.value === checkeditem) { engine.lastElementChild.click() }
     });
 }
 
@@ -194,12 +194,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function performSearch() {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
+        const languageCode = (localStorage.getItem("selectedLanguage") || "en").slice(0, 2);
         var searchEngines = {
             engine1: "https://www.google.com/search?q=",
             engine2: "https://duckduckgo.com/?q=",
             engine3: "https://bing.com/?q=",
             engine4: "https://search.brave.com/search?q=",
-            engine5: "https://www.youtube.com/results?search_query="
+            engine5: "https://www.youtube.com/results?search_query=",
+            engine6: "https://www.google.com/search?tbm=isch&q=",
+            engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
         };
 
         if (searchTerm !== "") {

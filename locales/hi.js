@@ -111,6 +111,8 @@ const hi = {
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज़्स",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI उपकरण",

@@ -1725,7 +1725,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 16px 0 10px;
+	margin: 0 15px 0 10px;
 	cursor: pointer;
 }
 
@@ -2954,7 +2954,7 @@ input:checked + .toggle:before {
 	z-index: 1;
 	top: 50px;
 	left: -15px;
-	overflow: hidden;
+	overflow-y: auto;
 	max-height: 192px;
 }
 

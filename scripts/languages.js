@@ -145,6 +145,8 @@ function applyLanguage(lang) {
         'bingEngine',
         'braveEngine',
         'youtubeEngine',
+        'gImagesEngine',
+        'wikipediaEngine',
         'chatGPT',
         'gemini',
         'copilot',
@@ -186,6 +188,8 @@ function applyLanguage(lang) {
         { id: 'bingEngineDD', key: 'bingEngine' },
         { id: 'braveEngineDD', key: 'braveEngine' },
         { id: 'youtubeEngineDD', key: 'youtubeEngine' },
+        { id: 'gImagesEngineDD', key: 'gImagesEngine' },
+        { id: 'wikipediaEngineDD', key: 'wikipediaEngine' },
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
     ];
 

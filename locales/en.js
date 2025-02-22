@@ -114,6 +114,8 @@ const en = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Images",
+    "wikipediaEngine": "Wikipedia",
 
     // AI Tools
     "ai_tools": "AI Tools",
