@@ -1469,6 +1469,19 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-left: -30px;
 }
 
+.lang-ur .rightDiv .topDiv .rAndakar .wInfo {
+	height: 95%;
+}
+
+.lang-ur #temp {
+	font-size: 3.3rem;
+}
+
+.lang-ur #wIcon {
+	width: 70px;
+	height: 70px;
+}
+
 /* ------------End of Weather Pill------------- */
 
 /* ________________________________________________________ */

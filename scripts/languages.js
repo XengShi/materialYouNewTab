@@ -279,8 +279,15 @@ function applyLanguage(lang) {
         root.style.setProperty('--main-font-family', commonFontStack);
     }
 
+    // Apply special styles for Urdu language
+    if (lang === 'ur') {
+        document.body.classList.add('lang-ur');
+    } else {
+        document.body.classList.remove('lang-ur');
+    }
+
     // Apply the direction to the elements based on the language
-    const rtlElements = ['.menuBar'];
+    const rtlElements = ['.menuBar', '#conditionText'];
     rtlElements.forEach(selector => {
         const element = document.querySelector(selector);
         element.style.direction = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
