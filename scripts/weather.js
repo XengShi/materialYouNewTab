@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Retrieve saved state from localStorage (default: false if null)
     const savedState = localStorage.getItem("hideWeatherVisible") === "true";
     hideWeatherCheckbox.checked = savedState;
-    hideWeather.style.visibility = savedState ? "hidden" : "visible";
+    hideWeather.style.opacity = savedState ? "0" : "1";
 
     // Function to toggle the 'inactive' class
     function toggleInactiveState(isInactive) {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideWeatherCheckbox.addEventListener("change", () => {
         const isChecked = hideWeatherCheckbox.checked;
-        hideWeather.style.visibility = isChecked ? "hidden" : "visible";
+        hideWeather.style.opacity = isChecked ? "0" : "1";
         localStorage.setItem("hideWeatherVisible", isChecked);
 
         // Apply inactive class to disable elements visually
