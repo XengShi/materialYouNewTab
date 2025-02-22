@@ -15,25 +15,31 @@
     <meta name="google-site-verification" content="f80bboVVkBBgR-pRl_jZR6dnG7tuaYD4Fv4fSr3IhZE" />
     <title>New Tab</title>
     <link href="style.css" rel="stylesheet">
-    <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
+    <link href="./favicon/icon48.png" id="favicon" rel="icon" type="image/png">
     <style id="iconStyle"></style>
 
     <!-- SCRIPTS -->
     <script src="scripts/preload.js"></script>
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
+    <script defer src="scripts/menu-shortcut-page.js"></script>
+    <!-- <script defer src="scripts/theme.js"></script> -->
     <script defer src="scripts/wallpaper.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/weather.js"></script>
     <script defer src="scripts/custom-text.js"></script>
     <script defer src="scripts/browser-utils.js"></script>
+    <!-- <script defer src="scripts/search.js"></script> -->
+    <script defer src="scripts/shortcuts.js"></script>
     <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/search-suggestions.js"></script>
     <script defer src="scripts/ai-tools.js"></script>
     <script defer src="scripts/bookmarks.js"></script>
     <script defer src="scripts/todo-list.js"></script>
     <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
+    <script defer src="scripts/revert-extension-icon.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -598,7 +604,7 @@
 
         <div class="rightDiv">
             <!-- ---weather stuff--------- -->
-            <div class="topDiv">
+            <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
                     <div id="conditionText">Hello! How are you today?</div>
                     <div class="cconnt">
@@ -624,13 +630,7 @@
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
-                                    <svg fill="none" height="24" viewBox="0 0 29 29" width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M14.5 2C18.4306 2 21.625 5.29333 21.625 9.36667C21.625 14.8886 14.5 23.0476 14.5 23.0476C14.5 23.0476 7.375 14.8886 7.375 9.36667C7.375 5.29333 10.5694 2 14.5 2ZM14.5 6.95238C13.8701 6.95238 13.266 7.21326 12.8206 7.67764C12.3752 8.14202 12.125 8.77185 12.125 9.42857C12.125 10.0853 12.3752 10.7151 12.8206 11.1795C13.266 11.6439 13.8701 11.9048 14.5 11.9048C15.1299 11.9048 15.734 11.6439 16.1794 11.1795C16.6248 10.7151 16.875 10.0853 16.875 9.42857C16.875 8.77185 16.6248 8.14202 16.1794 7.67764C15.734 7.21326 15.1299 6.95238 14.5 6.95238ZM24 23.0476C24 25.7838 19.7488 28 14.5 28C9.25125 28 5 25.7838 5 23.0476C5 21.4505 6.44875 20.0267 8.69313 19.1229L9.45312 20.2495C8.17062 20.8067 7.375 21.5743 7.375 22.4286C7.375 24.1371 10.5694 25.5238 14.5 25.5238C18.4306 25.5238 21.625 24.1371 21.625 22.4286C21.625 21.5743 20.8294 20.8067 19.5469 20.2495L20.3069 19.1229C22.5512 20.0267 24 21.4505 24 23.0476Z"
-                                            fill="#fff" />
-                                    </svg>
-
+                                    <img src="./svgs/location.svg">
                                 </div>
                                 <span class="location_spn" id="location"></span>
                             </div>
@@ -641,7 +641,6 @@
 
                 <!-- -----rAndakar-------- -->
                 <div class="rAndakar">
-                    <!-- <img src="./svgs/andakar.svg" alt=""> this is below svg -->
                     <svg fill="none" height="100%" viewBox="0 0 288 288" width="100%"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect class="bgLightTint" fill="#E2EEFF" height="304.742" rx="123.401"
@@ -852,7 +851,7 @@
         <div class="hangno" id="aiToolsIcon">
             <div class="icon">
                 <svg fill="none" height="100%" viewBox="0 0 280 280" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <path class="accentColor" clip-rule="evenodd"
+                    <path id="aiIcon" class="accentColor" clip-rule="evenodd"
                         d="M152 178C152 163.641 163.641 152 178 152H254C268.359 152 280.275 163.76 277.393 177.827C267.155 227.797 227.797 267.155 177.827 277.393C163.76 280.275 152 268.359 152 254V178ZM128 183.26C128 206.423 99.9943 218.024 83.6152 201.645L8.78205 126.811C3.43206 121.461 0.529946 114.017 1.78833 106.556C10.5659 54.5162 50.7487 13.1442 102.17 2.60743C116.237 -0.275091 128 11.6406 128 26V183.26ZM0 214.74C0 191.577 28.0057 179.976 44.3847 196.355L127.994 279.964C127.998 279.968 128 279.974 128 279.979V279.979C128 279.991 127.991 280 127.979 280H26C11.6406 280 0 268.359 0 254V214.74ZM152 26C152 11.6406 163.641 0 178 0H254C268.359 0 280 11.6406 280 26V102C280 116.359 268.359 128 254 128H178C163.641 128 152 116.359 152 102V26Z"
                         fill="white" fill-rule="evenodd" />
                 </svg>
@@ -1102,7 +1101,7 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
-                                <div class="bigText" id="digitalclocktittle">Digital Clock</div>
+                                <div class="bigText" id="digitalclocktitle">Digital Clock</div>
                                 <div class="infoText" id="digitalclockinfo">Switch to the digital clock</div>
                             </div>
                             <label class="switch">
@@ -1112,7 +1111,7 @@
                         </div>
                         <div class="ttcont" id="timeformatField">
                             <div class="texts">
-                                <div class="bigText" id="timeformattittle">12-Hour Format</div>
+                                <div class="bigText" id="timeformattitle">12-Hour Format</div>
                                 <div class="infoText" id="timeformatinfo">Use 12-hour time format</div>
                             </div>
                             <label class="switch">
@@ -1122,7 +1121,7 @@
                         </div>
                         <div class="ttcont" id="greetingField">
                             <div class="texts">
-                                <div class="bigText" id="greetingtittle">Greeting</div>
+                                <div class="bigText" id="greetingtitle">Greeting</div>
                                 <div class="infoText" id="greetinginfo">Show greeting below custom text</div>
                             </div>
                             <label class="switch">
@@ -1144,6 +1143,32 @@
                         </div>
                         <!-- ---🟡--- -->
                         <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
+                                <div class="infoText" id="hideWeatherInfo">Disable the weather widgets
+                                </div>
+                            </div>
+
+                            <label class="switch">
+                                <input id="hideWeatherCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
+                                <div class="infoText" id="hideWeatherBoxInfo">
+                                    Only show temperature on mobile
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideWeatherCard" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
                             <div class="texts">
                                 <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
                                 <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
@@ -1179,7 +1204,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        
+
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="enableDarkMode">Dark Mode</div>
@@ -1189,19 +1214,6 @@
                             </div>
                             <label class="switch">
                                 <input id="enableDarkModeCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-
-                        <div class="ttcont">
-                            <div class="texts">
-                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
-                                <div class="infoText" id="hideWeatherBoxInfo">
-                                    Only show temperature on mobile
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="hideWeatherCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
@@ -1245,7 +1257,7 @@
                             </div>
                         </div>
 
-                        <div class="ttcont unflex" style="margin-top: 95px;">
+                        <div class="ttcont unflex weather" style="margin-top: 95px;">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
@@ -1259,7 +1271,7 @@
                             </div>
                         </div>
 
-                        <div class="ttcont unflex" style="margin-top: 110px;">
+                        <div class="ttcont unflex weather" style="margin-top: 110px;">
                             <div class="texts">
                                 <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
                                 <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
@@ -1290,30 +1302,30 @@
                             </svg>
                         </div>
 
-                        <!-- Language selection button -->
+                        <!-- LANGUAGE SELECTION OPTIONS -->
                         <select class="languageSelector" id="languageSelector">
                             <option value="en">English</option>
-                            <option value="az">Azərbaycanca (Azerbaijani)</option>
-                            <option value="bn">বাংলা (Bangla)</option>
-                            <option value="zh">简体中文 (Simplified Chinese)</option>
-                            <option value="zh_TW">繁體中文 (Traditional Chinese)</option>
-                            <option value="cs">Čeština (Czech)</option>
-                            <option value="fr">Français (French)</option>
-                            <option value="hi">हिन्दी (Hindi)</option>
-                            <option value="hu">Magyar (Hungarian)</option>
-                            <option value="idn">Bahasa Indonesia (Indonesian)</option>
-                            <option value="it">Italiano (Italian)</option>
-                            <option value="ja">日本語 (Japanese)</option>
-                            <option value="ko">한국어 (Korean)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="np">नेपाली (Nepali)</option>
-                            <option value="pt">Português (Portuguese)</option>
-                            <option value="ru">Русский (Russian)</option>
-                            <option value="sl">Slovenščina (Slovenian)</option>
-                            <option value="es">Español (Spanish)</option>
-                            <option value="tr">Türkçe (Turkish)</option>
-                            <option value="uz">O'zbek (Uzbek)</option>
-                            <option value="vi">Tiếng Việt (Vietnamese)</option>
+                            <option value="az">Azerbaijani (Azərbaycanca)</option>
+                            <option value="bn">Bangla (বাংলা)</option>
+                            <option value="zh">Chinese (Simplified) (简体中文)</option>
+                            <option value="zh_TW">Chinese (Traditional) (繁體中文)</option>
+                            <option value="cs">Czech (Čeština)</option>
+                            <option value="fr">French (Français)</option>
+                            <option value="hi">Hindi (हिन्दी)</option>
+                            <option value="hu">Hungarian (Magyar)</option>
+                            <option value="idn">Indonesian (Bahasa Indonesia)</option>
+                            <option value="it">Italian (Italiano)</option>
+                            <option value="ja">Japanese (日本語)</option>
+                            <option value="ko">Korean (한국어)</option>
+                            <option value="mr">Marathi (मराठी)</option>
+                            <option value="np">Nepali (नेपाली)</option>
+                            <option value="pt">Portuguese (Brazil) (Português)</option>
+                            <option value="ru">Russian (Русский)</option>
+                            <option value="sl">Slovenian (Slovenščina)</option>
+                            <option value="es">Spanish (Español)</option>
+                            <option value="tr">Turkish (Türkçe)</option>
+                            <option value="uz">Uzbek (O'zbek)</option>
+                            <option value="vi">Vietnamese (Tiếng Việt)</option>
                             <!-- Place new language alphabetically -->
                         </select>
                         <!-- end of languageSelector -->

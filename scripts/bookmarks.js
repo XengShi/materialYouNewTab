@@ -17,9 +17,9 @@ const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
 const bookmarkViewList = document.getElementById("bookmarkViewList");
 
 var bookmarksAPI;
-if (isFirefox && browser.bookmarks) {
+if (isFirefox) {
     bookmarksAPI = browser.bookmarks;
-} else if (typeof chrome !== "undefined" && chrome.bookmarks) {
+} else if (isChromiumBased) {
     bookmarksAPI = chrome.bookmarks;
 }
 
@@ -319,15 +319,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bookmarksCheckbox.addEventListener("change", function () {
         let bookmarksPermission;
-        if (isFirefox && browser.permissions) {
+        if (isFirefox) {
             bookmarksPermission = browser.permissions;
-        } else if (isChromiumBased && chrome.permissions) {
+        } else if (isChromiumBased) {
             bookmarksPermission = chrome.permissions;
-        } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations["en"].UnsupportedBrowser);
-            bookmarksCheckbox.checked = false;
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            return;
         }
         if (bookmarksPermission !== undefined) {
             if (bookmarksCheckbox.checked) {
@@ -360,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
         } else {
-            alert(translations[currentLanguage]?.BookmarksDenied || translations['en'].BookmarksDenied);
+            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;

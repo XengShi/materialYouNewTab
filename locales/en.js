@@ -30,11 +30,11 @@ const en = {
     "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Digital Clock",
+    "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Switch to the digital clock",
-    "timeformattittle": "12-Hour Format",
+    "timeformattitle": "12-Hour Format",
     "timeformatinfo": "Use 12-hour time format",
-    "greetingtittle": "Greeting",
+    "greetingtitle": "Greeting",
     "greetinginfo": "Show greeting below custom text",
 
     // Misc
@@ -42,6 +42,12 @@ const en = {
     "userTextInfo": "Show custom text below the clock",
     "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
     "fahrenheitCelsiusText": "Refresh the page to apply changes",
+    "hideWeatherTitle": "Hide Weather",
+    "hideWeatherInfo": "Disable the weather widgets",
+    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Show only temperature pill",
+
+    // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
     "hideSearchWith": "Hide Search Engines",
@@ -70,8 +76,6 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
-    "hideWeatherBox": "Hide Weather Card",
-    "hideWeatherBoxInfo": "Only show temperature on mobile",
 
     // Body Items
     // Calendar
@@ -143,5 +147,4 @@ const en = {
     "invalidBackup": "Invalid backup file selected.",
     "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     "UnsupportedBrowser": "Bookmarks are not supported in your browser.",
-    "BookmarksDenied": "Bookmarks permission has not been granted.",
 };
