@@ -36,16 +36,14 @@ const searchEngines = document.querySelectorAll('.searchEnginesContainer .search
 const searchEnginesContainer = document.querySelector('.searchEnginesContainer');
 let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
 
-searchWith.addEventListener('click', function () {
-    if (activeSearchMode === 'search-with') {
-        activeSearchMode = 'search-on';
-        searchEnginesContainer.classList.toggle('show');
-        toggleSearchEngines('search-on');
-    } else {
-        activeSearchMode = 'search-with'
-        searchEnginesContainer.classList.toggle('show');
-        toggleSearchEngines('search-with');
-    }
+searchWith.addEventListener('click', function (event) {
+    activeSearchMode = (activeSearchMode === 'search-with') ? 'search-on' : 'search-with';
+    searchEnginesContainer.classList.toggle('show');
+    toggleSearchEngines(activeSearchMode);
+
+    event.stopPropagation();
+    searchBar.classList.add("active");
+
     setTimeout(() => {
         searchEnginesContainer.classList.remove('show');
     }, 300);
@@ -57,8 +55,8 @@ function toggleSearchEngines(category) {
         'search-on': "engine5",
     }
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
-    const namee = category.split("-").map((elem, index) => { return ((index == 0) ? elem[0] : elem[0].toUpperCase()) + elem.substring(1) }).join("") + "Hint";
-    document.getElementById('searchWithHint').innerText = translations[currentLanguage][namee] || translations["en"][namee]
+    const searchModeName = category === "search-with" ? "searchWithHint" : "searchOnHint";
+    searchWith.innerText = translations[currentLanguage][searchModeName] || translations["en"][searchModeName]
 
     searchEngines.forEach(engine => {
         if (engine.getAttribute('data-category') === category) {
@@ -225,13 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
 
     if (activeSearchMode) {
-        if (activeSearchMode !== 'search-with') {
-            searchWith.innerText = translations[currentLanguage].searchOnHint || translations['en'].searchOnHint;
-            toggleSearchEngines('search-on');
-        } else {
-            searchWith.innerText = translations[currentLanguage].searchWithHint || translations['en'].searchWithHint;
-            toggleSearchEngines('search-with');
-        }
+        toggleSearchEngines(activeSearchMode);
     }
 
     if (storedSearchEngine) {

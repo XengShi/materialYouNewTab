@@ -1642,9 +1642,8 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont .hint {
 	flex: 0 0 auto; /* Prevents it from growing */
-	width: 150px; /* Fixed width */
+	width: 140px; /* Fixed width */
 	height: 100px;
-	white-space: nowrap; /* Prevents text from wrapping when search modes are changed*/
 	display: flex;
 	align-items: center;
 	justify-content: center;
