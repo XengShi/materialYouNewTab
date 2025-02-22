@@ -1630,13 +1630,13 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ________________End of Searchbar______________________ */
 
 .searchWithCont {
-    margin-top: var(--gap);
-    border-radius: var(--round);
-    position: relative;
-    display: flex;
-    font-size: 1rem;
-    z-index: 2; /* Ensures it's above the engines container */
-    overflow: hidden; /* Prevents child elements from overflowing outside */
+	margin-top: var(--gap);
+	border-radius: 20px;
+	position: relative;
+	display: flex;
+	font-size: 1rem;
+	z-index: 2; /* Ensures it's above the engines container */
+	overflow: hidden; /* Prevents child elements from overflowing outside */
 	max-width: 100%;
 }
 
@@ -1665,58 +1665,30 @@ body #bookmarkButton.bookmark-button.rotate {
 	right: -20px;
 }
 
-.searchWithCont .hint::before {
-	content: "";
-	position: absolute;
-	height: auto;
-	width: 100%;
-	aspect-ratio: 1;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 50%;  /* Changed from 300px to 50% for perfect circle */
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
-	transform-origin: center;  /* Changed to center for better scaling */
-	opacity: 0;
-	pointer-events: none;  /* Ensures the ripple doesn't interfere with clicks */
-}
-
-.searchWithCont .hint:active::before {
-	animation: ripple_effect 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-	/* Using cubic-bezier for smoother easing */
-}
-
-@keyframes ripple_effect {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0.40;  /* Reduced initial opacity */
-    }
-    50% {
-        opacity: 0.20;  /* Mid-point opacity for smoother fade */
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(2);  /* Increased scale for bigger effect */
-        opacity: 0;
-    }
-}
-
 .searchWithCont .hint:hover {
-    background-color: var(--darkColor-blue);
-    color: #fff;
+	background-color: var(--darkColor-blue);
+	color: #fff;
+}
+
+.searchWithCont .hint:active {
+	scale: 0.98;
+}
+
+.searchWithCont .hint:active::after {
+	transform: none;
 }
 
 .searchEnginesContainer {
-    position: relative; 
-    z-index: 1; 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-left: 20px;
-    opacity: 1; 
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding-left: 20px;
+	opacity: 1;
 	transform: translateX(0);
 }
-.searchEnginesContainer.show{
+.searchEnginesContainer.show {
 	animation: slideIn 0.3s ease-in-out forwards;
 }
 
@@ -1732,15 +1704,15 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine {
-    border-radius: 20px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+	border-radius: 20px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .searchEnginesContainer .search-engine svg {
