@@ -55,14 +55,12 @@ const cs = {
     "ProxyText": "Proxy pro obcházení CORS",
     "ProxySubtext": "Nastavte si vlastní proxy pro obcházení CORS",
     "HostproxyButton": "Provozování vlastní proxy",
-    "saveproxy": "Uložit",
 
     // Location
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
     "useGPS": "Použít GPS",
-    "saveLoc": "Uložit",
 
     // Weather
     "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
@@ -133,6 +131,11 @@ const cs = {
     "rangColor": "Vybrat barvu",
 
     // Dialog boxes (alerts)
+    "okText": "Budiž",
+    "yesText": "Ano",
+    "noText": "Ne",
+    "agreeText": "Souhlasím",
+    "cancelText": "Zrušit",
     "confirmWallpaper": "Přejete si nastavit nový obrázek jako denní tapetu?",
     "confirmRestore": "Opravdu si přejete resetovat nastavení? Tuto akci nelze zvrátit.",
     "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
