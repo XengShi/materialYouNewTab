@@ -42,6 +42,8 @@ const idn = {
     "userTextInfo": "Tampilkan teks kustom di bawah jam",
     "fahrenheitCelsiusCheckbox": "Ubah menjadi Fahrenheit",
     "fahrenheitCelsiusText": "Muat ulang halaman untuk mengaplikasikan perubahan",
+    "hideWeatherTitle": "Sembunyikan Cuaca",
+    "hideWeatherInfo": "Menonaktifkan widget cuaca",
     "micIconTitle": "Sembunyikan Ikon Microfon",
     "micIconInfo": "Jika voice typing tidak berfungsi",
     "hideSearchWith": "Sembunyikan Mesin Pencarian",
@@ -55,14 +57,12 @@ const idn = {
     "ProxyText": "Pemintas proksi CORS",
     "ProxySubtext": "Tambahkan pemintas proksi CORS anda sendiri",
     "HostproxyButton": "Host proksi anda sendiri",
-    "saveproxy": "Simpan",
 
     // Location
     "UserLocText": "Masukkan Lokasi Anda",
     "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
     "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
     "useGPS": "Gunakan GPS",
-    "saveLoc": "Simpan",
 
     // Weather
     "WeatherApiText": "Masukkan kunci WeatherAPI anda",
@@ -84,6 +84,9 @@ const idn = {
     "bookmarkViewGrid": "Kisi-kisi",
     "bookmarkViewList": "Daftar",
     "bookmarkSearch": "Cari markah buku",
+    "editBookmarkHeading": "Ubah Markah Buku",
+    "editBookmarkName": "Nama Markah Buku",
+    "editBookmarkURL": "URL Markah Buku",
 
     // New Tab Item
     "conditionText": "Halo! Bagaimana kabarmu hari ini?",
@@ -117,8 +120,13 @@ const idn = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    //"firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    
+    // Theme
+    "enableDarkMode": "Mode Gelap",
+    "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
     
     // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
@@ -127,6 +135,11 @@ const idn = {
     "rangColor": "Pilih warna",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Ya",
+    "noText": "Tidak",
+    "agreeText": "Saya Setuju",
+    "cancelText": "Batalkan",
     "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
     "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
     "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
