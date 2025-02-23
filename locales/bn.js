@@ -125,7 +125,8 @@ const bn = {
     "copilot": "কোপাইলট",
     "claude": "ক্লড",
     "perplexity": "পারপ্লেক্সিটি",
-    "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+    // "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+    "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
 
     // Wallpaper and misc

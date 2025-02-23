@@ -148,7 +148,7 @@ function applyLanguage(lang) {
         'copilot',
         'claude',
         'perplexity',
-        'firefly',
+        'deepseek',
         'metaAI',
         'github',
         'googleAppsHover',
