@@ -23,18 +23,24 @@
     <script defer src="scripts/load-svgs.js"></script>
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
+    <script defer src="scripts/menu-shortcut-page.js"></script>
+    <!-- <script defer src="scripts/theme.js"></script> -->
     <script defer src="scripts/wallpaper.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/weather.js"></script>
     <script defer src="scripts/custom-text.js"></script>
     <script defer src="scripts/browser-utils.js"></script>
+    <!-- <script defer src="scripts/search.js"></script> -->
+    <script defer src="scripts/shortcuts.js"></script>
     <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/search-suggestions.js"></script>
     <script defer src="scripts/ai-tools.js"></script>
     <script defer src="scripts/bookmarks.js"></script>
     <script defer src="scripts/todo-list.js"></script>
     <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
+    <script defer src="scripts/revert-extension-icon.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -66,7 +72,7 @@
     <!-- --------------------- Loading Screen Starting --------------------- -->
     <img src="./images/Loading.png" id="LoadingScreen" fetchpriority="high" />
 
-    <!----------------------- ToDo List Setup Starting ----------------------->
+    <!-- --------------------- ToDo List Setup Starting --------------------- -->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
         <svg id="todoIcon" xmlns="http://www.w3.org/2000/svg" class="dot-icon" width="36" height="36"
@@ -151,6 +157,24 @@
             <ul id="bookmarkList"></ul>
         </div>
     </div>
+
+    <!-- Edit Bookmark Modal -->
+    <div id="editBookmarkModal">
+        <div class="modal-content">
+            <h2 id="editBookmarkHeading">Edit Bookmark</h2>
+
+            <img id="editBookmarkFavicon" src="" alt="Favicon">
+
+            <input type="text" id="editBookmarkName" placeholder="Bookmark Name">
+            <input type="url" id="editBookmarkURL" placeholder="Bookmark URL">
+
+            <div class="modal-buttons">
+                <button id="saveBookmarkChanges">Save</button>
+                <button id="cancelBookmarkEdit">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!----------------------- End of Bookmark System ----------------------->
 
     <!----------------------- Google App Menu Setup Starting ----------------------->
@@ -408,7 +432,7 @@
 
         <div class="rightDiv">
             <!-- ---weather stuff--------- -->
-            <div class="topDiv">
+            <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
                     <div id="conditionText">Hello! How are you today?</div>
                     <div class="cconnt">
@@ -434,7 +458,7 @@
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
-                                    <img src="./svgs/home_page/location.svg">
+                                    <img src="./svgs/home_page/location.svg" alt="">
                                 </div>
                                 <span class="location_spn" id="location"></span>
                             </div>
@@ -445,7 +469,6 @@
 
                 <!-- -----rAndakar-------- -->
                 <div class="rAndakar">
-                    <!-- <img src="./svgs/andakar.svg" alt=""> this is below svg -->
                     <svg fill="none" height="100%" viewBox="0 0 288 288" width="100%"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect class="bgLightTint" fill="#E2EEFF" height="304.742" rx="123.401"
@@ -881,6 +904,32 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
+                                <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
+                                <div class="infoText" id="hideWeatherInfo">Disable the weather widgets
+                                </div>
+                            </div>
+
+                            <label class="switch">
+                                <input id="hideWeatherCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
+                                <div class="infoText" id="hideWeatherBoxInfo">
+                                    Only show temperature on mobile
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideWeatherCard" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
                                 <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
                                 <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
                                 </div>
@@ -929,19 +978,6 @@
                             </label>
                         </div>
 
-                        <div class="ttcont">
-                            <div class="texts">
-                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
-                                <div class="infoText" id="hideWeatherBoxInfo">
-                                    Only show temperature on mobile
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="hideWeatherCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
@@ -981,7 +1017,7 @@
                             </div>
                         </div>
 
-                        <div class="ttcont unflex" style="margin-top: 95px;">
+                        <div class="ttcont unflex weather" style="margin-top: 95px;">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
@@ -995,7 +1031,7 @@
                             </div>
                         </div>
 
-                        <div class="ttcont unflex" style="margin-top: 110px;">
+                        <div class="ttcont unflex weather" style="margin-top: 110px;">
                             <div class="texts">
                                 <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
                                 <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
