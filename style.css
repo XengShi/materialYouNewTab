@@ -639,6 +639,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 0.7;
 }
 
+#bookmarkSidebar input:focus {
+	box-shadow: 0 0 2px var(--darkColor-blue);
+}
+
 #clearSearchButton {
 	position: absolute;
 	right: 9%;
@@ -876,6 +880,92 @@ body #bookmarkButton.bookmark-button.rotate {
 :hover > .bookmark-delete-button {
 	opacity: 1;
 	pointer-events: auto;
+}
+
+/* Modal Styling */
+#editBookmarkModal {
+	display: none;
+	position: fixed;
+	z-index: 5;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+	border-radius: var(--round);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+}
+
+/* Modal Content */
+#editBookmarkModal .modal-content {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+/* Modal Header */
+#editBookmarkModal h2 {
+	text-align: center;
+	font-size: 1.5rem;
+	color: var(--textColorDark-blue);
+	margin-top: 5px;
+}
+
+/* Input Fields */
+#editBookmarkModal input {
+	width: 100%;
+	padding: 10px 14px;
+	font-size: 0.9rem;
+	border: 1px solid var(--accentLightTint-blue);
+	border-radius: 14px;
+	outline: none;
+	transition: 0.2s;
+}
+
+#editBookmarkModal input:focus {
+	border-color: var(--darkColor-blue);
+	box-shadow: 0 0 3px var(--darkColor-blue);
+}
+
+/* Favicon Display */
+#editBookmarkFavicon {
+	display: block;
+	margin: 7px auto;
+	width: 32px;
+	height: 32px;
+	border-radius: 2px;
+}
+
+/* Modal Buttons */
+#editBookmarkModal .modal-buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 11px;
+	gap: 20px;
+}
+
+#editBookmarkModal button {
+	/* min-width: 120px; */
+	flex: 1;
+	padding: 10px 16px;
+	font-size: 0.96rem;
+	border: none;
+	cursor: pointer;
+	transition: 0.2s;
+	border-radius: var(--round);
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+#saveBookmarkChanges:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+#editBookmarkModal button:hover {
+	background: var(--darkerColor-blue);
 }
 
 /* ----------------- End of Bookmark System ----------------- */
@@ -2239,12 +2329,18 @@ input:checked + .toggle:before {
 
 .ttcont input {
 	width: 100%;
+	color: var(--textColorDark-blue);
+	background-color: var(--whitishColor-blue);
 	margin-top: 6px;
 	height: 30px;
 	border-radius: 10px;
 	border: none;
 	outline: none;
 	padding: 0 11px;
+}
+
+.ttcont input:focus {
+	box-shadow: 0 0 2px var(--darkColor-blue);
 }
 
 .ttcont .texts .bigText {
@@ -2448,22 +2544,6 @@ input:checked + .toggle:before {
 	border-radius: 34px;
 	cursor: pointer;
 	transition: 0.3s all;
-}
-
-/* Placeholder InputText color*/
-#userproxy {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
-}
-
-#userLoc {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
-}
-
-#userAPI {
-	color: var(--textColorDark-blue);
-	background-color: var(--whitishColor-blue);
 }
 
 /* ---------------Menu-bar-css---------------- */
@@ -3547,6 +3627,10 @@ input:checked + .toggle:before {
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	background: var(--darkColor-dark);
+}
+
+.dark-theme #editBookmarkModal button:hover {
+	background: #1d1d1d;
 }
 
 .dark-theme .favicon {

@@ -570,6 +570,11 @@ document.addEventListener("keydown", function (event) {
     // Prevent if modal is open
     if (modalContainer?.style.display === "flex") return;
 
+    // Prevent shortcut if the menu is open or bookmarks sidebar is open
+    if (menuBar.style.display !== "none" || bookmarkSidebar.classList.contains("open")) {
+        return;
+    }
+
     if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
