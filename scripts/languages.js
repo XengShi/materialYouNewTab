@@ -124,11 +124,9 @@ function applyLanguage(lang) {
         'ProxyText',
         'ProxySubtext',
         'HostproxyButton',
-        'saveproxy',
         'UserLocText',
         'UserLocSubtext',
         'useGPS',
-        'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
         'LearnMoreButton',
@@ -150,7 +148,7 @@ function applyLanguage(lang) {
         'copilot',
         'claude',
         'perplexity',
-        'firefly',
+        'deepseek',
         'metaAI',
         'github',
         'googleAppsHover',
@@ -190,8 +188,10 @@ function applyLanguage(lang) {
         { id: 'braveEngineDD', key: 'braveEngine' },
         { id: 'youtubeEngineDD', key: 'youtubeEngine' },
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
+        { id: 'saveproxy', key: 'saveAPI' },
+        { id: 'saveLoc', key: 'saveAPI' },
         { id: 'saveBookmarkChanges', key: 'saveAPI' },
-        { id: 'cancelBookmarkEdit', key: 'cancelText' },
+        { id: 'cancelBookmarkEdit', key: 'cancelText' }
     ];
 
     // Function to apply translations

@@ -61,14 +61,12 @@ const en = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "Add your own CORS bypass proxy",
     "HostproxyButton": "Host your own proxy",
-    "saveproxy": "Save",
 
     // Location
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
     "useGPS": "Use GPS",
-    "saveLoc": "Save",
 
     // Weather
     "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
@@ -124,7 +122,8 @@ const en = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    //"firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
     // Theme
