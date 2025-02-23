@@ -112,6 +112,7 @@ const bn = {
     },
 
     // Search Engines
+    "defaultEngine": "ডিফল্ট",
     "googleEngine": "গুগল",
     "duckEngine": "ডাকডাকগো",
     "bingEngine": "বিং",
