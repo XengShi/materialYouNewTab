@@ -163,6 +163,8 @@ function applyLanguage(lang) {
         'bookmarkViewAs',
         'bookmarkViewGrid',
         'bookmarkViewList',
+        'editBookmarkHeading',
+        'cancelBookmarkEdit',
         'enableDarkMode',
         'enableDarkModeInfo',
     ];
@@ -173,7 +175,9 @@ function applyLanguage(lang) {
         { id: 'userAPI', key: 'userAPI' },
         { id: 'searchQ', key: 'searchPlaceholder' },
         { id: 'todoInput', key: 'todoPlaceholder' },
-        { id: 'bookmarkSearch', key: 'bookmarkSearch' }
+        { id: 'bookmarkSearch', key: 'bookmarkSearch' },
+        { id: 'editBookmarkName', key: 'editBookmarkName' },
+        { id: 'editBookmarkURL', key: 'editBookmarkURL' }
     ];
 
     // Mapping of elements and their different translation keys
@@ -187,6 +191,7 @@ function applyLanguage(lang) {
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
         { id: 'saveproxy', key: 'saveAPI' },
         { id: 'saveLoc', key: 'saveAPI' },
+        { id: 'saveBookmarkChanges', key: 'saveAPI' }
     ];
 
     // Function to apply translations
@@ -274,9 +279,7 @@ document.getElementById('languageSelector').addEventListener('change', (event) =
 // Function to apply the language when the page loads
 window.onload = function () {
     const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
-    if (savedLanguage) {
-        document.getElementById("languageSelector").value = savedLanguage;
-    }
+    document.getElementById("languageSelector").value = savedLanguage;
     applyLanguage(savedLanguage);
 };
 
