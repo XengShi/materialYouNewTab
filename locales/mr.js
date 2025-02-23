@@ -3,8 +3,6 @@ const mr = {
     // Menu Items
     "github": "गिटहब",
     "feedback": "प्रतिसाद",
-    "resetsettings": "सेटिंग्ज रीसेट करा",
-    "menuCloseText": "बंद करा",
 
     // Shortcuts
     "shortcutsText": "शॉर्टकट्स",
@@ -90,7 +88,6 @@ const mr = {
     "editBookmarkHeading": "बुकमार्क संपादित करा",
     "editBookmarkName": "बुकमार्क नाव",
     "editBookmarkURL": "बुकमार्क URL",
-    "cancelBookmarkEdit": "रद्द करा",
 
     // New Tab Item
     "conditionText": "नमस्कार! तुम्ही आज कसे आहात?",
@@ -128,13 +125,20 @@ const mr = {
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करा",
+    "rangColor": "रंग निवडा",
     "backupText": "बॅकअप करा",
     "restoreText": "पुनर्संचयित करा",
-    "rangColor": "रंग निवडा",
+    "resetsettings": "सेटिंग्ज रीसेट करा",
+    "menuCloseText": "बंद करा",
 
     // Dialog boxes (alerts)
+    "okText": "ठीक आहे",
+    "yesText": "होय",
+    "noText": "नाही",
+    "agreeText": "मी सहमत आहे",
+    "cancelText": "रद्द करा",
     "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
     "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
     "Nobackgroundset": "सद्यस्थितीत कोणतीही पार्श्वभूमी सेट केलेली नाही.",
