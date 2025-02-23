@@ -166,7 +166,6 @@ function applyLanguage(lang) {
         'bookmarkViewGrid',
         'bookmarkViewList',
         'editBookmarkHeading',
-        'cancelBookmarkEdit',
         'enableDarkMode',
         'enableDarkModeInfo',
     ];
@@ -191,7 +190,8 @@ function applyLanguage(lang) {
         { id: 'braveEngineDD', key: 'braveEngine' },
         { id: 'youtubeEngineDD', key: 'youtubeEngine' },
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
-        { id: 'saveBookmarkChanges', key: 'saveAPI' }
+        { id: 'saveBookmarkChanges', key: 'saveAPI' },
+        { id: 'cancelBookmarkEdit', key: 'cancelText' },
     ];
 
     // Function to apply translations

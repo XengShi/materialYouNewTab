@@ -91,7 +91,6 @@ const en = {
     "editBookmarkHeading": "Edit Bookmark",
     "editBookmarkName": "Bookmark Name",
     "editBookmarkURL": "Bookmark URL",
-    "cancelBookmarkEdit": "Cancel",
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
