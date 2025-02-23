@@ -168,7 +168,6 @@ function applyLanguage(lang) {
         'bookmarkViewGrid',
         'bookmarkViewList',
         'editBookmarkHeading',
-        'cancelBookmarkEdit',
         'enableDarkMode',
         'enableDarkModeInfo',
     ];
@@ -195,7 +194,8 @@ function applyLanguage(lang) {
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
         { id: 'saveproxy', key: 'saveAPI' },
         { id: 'saveLoc', key: 'saveAPI' },
-        { id: 'saveBookmarkChanges', key: 'saveAPI' }
+        { id: 'saveBookmarkChanges', key: 'saveAPI' },
+        { id: 'cancelBookmarkEdit', key: 'cancelText' }
     ];
 
     // Function to apply translations

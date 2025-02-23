@@ -87,7 +87,6 @@ const en = {
     "editBookmarkHeading": "Edit Bookmark",
     "editBookmarkName": "Bookmark Name",
     "editBookmarkURL": "Bookmark URL",
-    "cancelBookmarkEdit": "Cancel",
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
@@ -138,6 +137,11 @@ const en = {
     "menuCloseText": "Close",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Yes",
+    "noText": "No",
+    "agreeText": "I Agree",
+    "cancelText": "Cancel",
     "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
     "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
     "Nobackgroundset": "No background image is currently set.",

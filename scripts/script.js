@@ -565,6 +565,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("keydown", function (event) {
     const searchInput = document.getElementById("searchQ");
     const searchBar = document.querySelector(".searchbar");
+    const modalContainer = document.getElementById("prompt-modal-container");
+
+    // Prevent if modal is open
+    if (modalContainer?.style.display === "flex") return;
 
     // Prevent shortcut if the menu is open or bookmarks sidebar is open
     if (menuBar.style.display !== "none" || bookmarkSidebar.classList.contains("open")) {

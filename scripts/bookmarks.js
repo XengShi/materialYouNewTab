@@ -47,6 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function (event) {
+        const modalContainer = document.getElementById("prompt-modal-container");
+        // If modal is open, don't close the sidebar
+        if (modalContainer && modalContainer.style.display === "flex") {
+            return;
+        }
+
         if (
             !bookmarkSidebar.contains(event.target) &&
             !bookmarkButton.contains(event.target) &&
@@ -267,11 +273,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 deleteButton.textContent = "✖";
                 deleteButton.classList.add("bookmark-delete-button");
 
-                deleteButton.addEventListener("click", function (event) {
+                deleteButton.addEventListener("click", async function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark).replace("{title}", node.title || node.url)}`)) {
+                    const confirmMessage = (translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)
+                        .replace("{title}", node.title || node.url);
+
+                    if (await confirmPrompt(confirmMessage)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -431,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
     const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 
-    bookmarksCheckbox.addEventListener("change", function () {
+    bookmarksCheckbox.addEventListener("change", async function () {
         let bookmarksPermission;
         if (isFirefox) {
             bookmarksPermission = browser.permissions;
@@ -469,7 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
         } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            await alertPrompt(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
@@ -488,10 +497,14 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-})
+});
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
+    // Prevent if modal is open
+    const modalContainer = document.getElementById("prompt-modal-container");
+    if (modalContainer?.style.display === "flex") return;
+
     if (menuBar.style.display !== "none") {
         return;
     }
