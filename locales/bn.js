@@ -42,6 +42,12 @@ const bn = {
     "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
     "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
     "fahrenheitCelsiusText": "পরিবর্তন প্রয়োগ করতে পেজ রিফ্রেশ করুন",
+    "hideWeatherTitle": "আবহাওয়া লুকান",
+    "hideWeatherInfo": "আবহাওয়া উইজেট বন্ধ করুন",
+    "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
+    "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
+
+    // Search
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
     "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
     "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
@@ -55,14 +61,12 @@ const bn = {
     "ProxyText": "CORS বাইপাস প্রক্সি",
     "ProxySubtext": "নিজস্ব CORS বাইপাস প্রক্সি যোগ করুন",
     "HostproxyButton": "নিজস্ব প্রক্সি হোস্ট করুন",
-    "saveproxy": "সংরক্ষণ করুন",
 
     // Location
     "UserLocText": "আপনার অবস্থান লিখুন",
     "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
     "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
     "useGPS": "জিপিএস ব্যবহার করুন",
-    "saveLoc": "সংরক্ষণ করুন",
 
     // Weather
     "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
@@ -70,8 +74,6 @@ const bn = {
     "userAPI": "আপনার WeatherAPI কী",
     "LearnMoreButton": "আরও জানুন",
     "saveAPI": "সংরক্ষণ করুন",
-    "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
-    "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
 
     // Body Items
     // Calendar
@@ -86,6 +88,10 @@ const bn = {
     "bookmarkViewGrid": "গ্রিড",
     "bookmarkViewList": "লিস্ট",
     "bookmarkSearch": "বুকমার্ক সার্চ করুন",
+    "editBookmarkHeading": "বুকমার্ক সম্পাদনা করুন",
+    "editBookmarkName": "বুকমার্কের নাম",
+    "editBookmarkURL": "বুকমার্কের URL",
+    "cancelBookmarkEdit": "বাতিল করুন",
 
     // New Tab Item
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",

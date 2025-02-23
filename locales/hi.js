@@ -42,9 +42,15 @@ const hi = {
     "userTextInfo": "घड़ी के नीचे कस्टम टेक्स्ट दिखाएँ",
     "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
     "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
+    "hideWeatherTitle": "मौसम छिपाएँ",
+    "hideWeatherInfo": "मौसम विजेट्स को अक्षम करें",
+    "hideWeatherBox": "मौसम कार्ड छिपाएँ",
+    "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएँ",
+
+    // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
     "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-    "hideSearchWith": "सर्च इंजन छिपाएं",
+    "hideSearchWith": "सर्च इंजन छिपाएँ",
     "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
     "search_suggestions_button": "खोज सुझाव",
     "search_suggestions_text": "खोज सुझाव सक्षम करें",
@@ -55,14 +61,12 @@ const hi = {
     "ProxyText": "CORS बायपास प्रॉक्सी",
     "ProxySubtext": "अपना CORS बायपास प्रॉक्सी जोड़ें",
     "HostproxyButton": "अपना प्रॉक्सी संचालित करें",
-    "saveproxy": "सहेजें",
 
     // Location
     "UserLocText": "अपना स्थान दर्ज करें",
     "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
     "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
     "useGPS": "GPS का उपयोग करें",
-    "saveLoc": "सहेजें",
 
     // Weather
     "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
@@ -70,8 +74,6 @@ const hi = {
     "userAPI": "आपकी WeatherAPI कुंजी",
     "LearnMoreButton": "और जानें",
     "saveAPI": "सहेजें",
-    "hideWeatherBox": "मौसम कार्ड छिपाएं",
-    "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएं",
 
     // Body Items
     // Calendar
@@ -86,6 +88,10 @@ const hi = {
     "bookmarkViewGrid": "ग्रिड",
     "bookmarkViewList": "लिस्ट",
     "bookmarkSearch": "बुकमार्क खोजें",
+    "editBookmarkHeading": "बुकमार्क संपादित करें",
+    "editBookmarkName": "बुकमार्क नाम",
+    "editBookmarkURL": "बुकमार्क URL",
+    "cancelBookmarkEdit": "रद्द करें",
 
     // New Tab Item
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
