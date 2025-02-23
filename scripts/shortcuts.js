@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const SHORTCUT_URL_PLACEHOLDER = "Shortcut URL";
 
     const SHORTCUT_PRESET_NAMES = ["Youtube", "Gmail", "Telegram", "WhatsApp", "Twitter", "Discord"];
-    const SHORTCUT_PRESET_URLS_AND_LOGOS = Object.freeze(new Map([["youtube.com", `
+    const SHORTCUT_PRESET_URLS_AND_LOGOS = new Map([["youtube.com", `
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/>
                 <g style="transform: scale(0.6); transform-origin: center;">
@@ -64,15 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     d="M19.303 5.337A17.3 17.3 0 0 0 14.963 4c-.191.329-.403.775-.552 1.125a16.6 16.6 0 0 0-4.808 0C9.454 4.775 9.23 4.329 9.05 4a17 17 0 0 0-4.342 1.337C1.961 9.391 1.218 13.35 1.59 17.255a17.7 17.7 0 0 0 5.318 2.664a13 13 0 0 0 1.136-1.836c-.627-.234-1.22-.52-1.794-.86c.149-.106.297-.223.435-.34c3.46 1.582 7.207 1.582 10.624 0c.149.117.287.234.435.34c-.573.34-1.167.626-1.793.86a13 13 0 0 0 1.135 1.836a17.6 17.6 0 0 0 5.318-2.664c.457-4.52-.722-8.448-3.1-11.918M8.52 14.846c-1.04 0-1.889-.945-1.889-2.101s.828-2.102 1.89-2.102c1.05 0 1.91.945 1.888 2.102c0 1.156-.838 2.1-1.889 2.1m6.974 0c-1.04 0-1.89-.945-1.89-2.101s.828-2.102 1.89-2.102c1.05 0 1.91.945 1.889 2.102c0 1.156-.828 2.1-1.89 2.1" />
                 </g>
             </svg>
-            `]]));
+            `]]);
 
-    const SHORTCUT_DELETE_BUTTON_HTML = Object.freeze(`
+    const SHORTCUT_DELETE_BUTTON_HTML = `
             <button>
-                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                     <path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-12q-15.3 0-25.65-10.29Q192-716.58 192-731.79t10.35-25.71Q212.7-768 228-768h156v-12q0-15.3 10.35-25.65Q404.7-816 420-816h120q15.3 0 25.65 10.35Q576-795.3 576-780v12h156q15.3 0 25.65 10.29Q768-747.42 768-732.21t-10.35 25.71Q747.3-696 732-696h-12v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM419.79-288q15.21 0 25.71-10.35T456-324v-264q0-15.3-10.29-25.65Q435.42-624 420.21-624t-25.71 10.35Q384-603.3 384-588v264q0 15.3 10.29 25.65Q404.58-288 419.79-288Zm120 0q15.21 0 25.71-10.35T576-324v-264q0-15.3-10.29-25.65Q555.42-624 540.21-624t-25.71 10.35Q504-603.3 504-588v264q0 15.3 10.29 25.65Q524.58-288 539.79-288ZM312-696v480-480Z"/>
                 </svg>
             </button>
-            `);
+            `;
 
     // const FAVICON_CANDIDATES = (hostname) => [
     //     `https://${hostname}/apple-touch-icon-180x180.png`,
@@ -304,8 +304,10 @@ document.addEventListener("DOMContentLoaded", function () {
             url = "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html";
         }
 
-        // Normalize URL if valid
-        const normalizedUrl = url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url;
+        // Normalize and encode URL
+        const normalizedUrl = encodeURI(
+            url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url
+        );
 
         const i = shortcut._index;
 
@@ -540,7 +542,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     resetShortcutsButton.addEventListener("click", () => {
         resetShortcuts();
-        resetShortcutsButton.querySelector("svg").classList.toggle("rotateResetButton");
+
+        // Animate the reset button
+        const svgElement = resetShortcutsButton.querySelector("svg");
+        svgElement.classList.toggle("rotateResetButton");
+        setTimeout(() => {
+            svgElement.classList.remove("rotateResetButton");
+        }, 300);
     });
 
     // Load and apply the saved checkbox states and display statuses

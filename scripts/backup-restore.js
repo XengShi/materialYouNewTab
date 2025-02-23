@@ -42,7 +42,9 @@ async function backupData() {
 
         console.log("Backup completed successfully!");
     } catch (error) {
-        alert(translations[currentLanguage]?.failedbackup || translations["en"].failedbackup + error.message);
+        await alertPrompt(
+            (translations[currentLanguage]?.failedbackup || translations["en"].failedbackup) + error.message
+        );
     }
 }
 
@@ -58,16 +60,16 @@ async function validateAndRestoreData(event) {
 
             // Validate the structure of the JSON file
             if (!isValidBackupFile(backup)) {
-                alert(translations[currentLanguage]?.invalidBackup || translations["en"].invalidBackup);
+                await alertPrompt(translations[currentLanguage]?.invalidBackup || translations["en"].invalidBackup);
                 return;
             }
 
             await restoreData(backup);
 
-            alert(translations[currentLanguage]?.restorecompleted || translations["en"].restorecompleted);
+            await alertPrompt(translations[currentLanguage]?.restorecompleted || translations["en"].restorecompleted);
             location.reload();
         } catch (error) {
-            alert(translations[currentLanguage]?.restorefailed || translations["en"].restorefailed + error.message);
+            await alertPrompt(translations[currentLanguage]?.restorefailed || translations["en"].restorefailed + error.message);
         }
     };
     reader.readAsText(file);
@@ -184,9 +186,12 @@ function base64ToBlob(base64) {
 const resetbtn = document.getElementById("resetsettings");
 
 // Clear localStorage and reload the page
-resetbtn.addEventListener("click", () => {
-    if (confirm(translations[currentLanguage]?.confirmRestore || translations["en"].confirmRestore)) {
+resetbtn.addEventListener("click", async () => {
+    const confirmationMessage = translations[currentLanguage]?.confirmRestore || translations["en"].confirmRestore;
+
+    if (await confirmPrompt(confirmationMessage)) {
         localStorage.clear();
         location.reload();
     }
 });
+

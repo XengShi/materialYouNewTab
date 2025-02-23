@@ -499,9 +499,29 @@ const handleColorPickerChange = function (event) {
     });
 };
 
+// Throttle for performance optimization
+const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
+    return (...args) => {
+        if (!lastRan) {
+            func(...args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(() => {
+                if (Date.now() - lastRan >= limit) {
+                    func(...args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+};
+
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener("input", handleColorPickerChange);
+colorPicker.addEventListener("input", throttle(handleColorPickerChange, 10));
 
 // End of Function to apply the selected theme
 
@@ -567,6 +587,16 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("keydown", function (event) {
     const searchInput = document.getElementById("searchQ");
     const searchBar = document.querySelector(".searchbar");
+    const modalContainer = document.getElementById("prompt-modal-container");
+
+    // Prevent if modal is open
+    if (modalContainer?.style.display === "flex") return;
+
+    // Prevent shortcut if the menu is open or bookmarks sidebar is open
+    if (menuBar.style.display !== "none" || bookmarkSidebar.classList.contains("open")) {
+        return;
+    }
+
     if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();

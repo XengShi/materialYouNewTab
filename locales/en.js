@@ -3,8 +3,6 @@ const en = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Feedback",
-    "resetsettings": "Reset Settings",
-    "menuCloseText": "Close",
 
     // Shortcuts
     "shortcutsText": "Shortcuts",
@@ -42,6 +40,12 @@ const en = {
     "userTextInfo": "Show custom text below the clock",
     "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
     "fahrenheitCelsiusText": "Refresh the page to apply changes",
+    "hideWeatherTitle": "Hide Weather",
+    "hideWeatherInfo": "Disable the weather widgets",
+    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Show only temperature pill",
+
+    // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
     "hideSearchWith": "Hide Search Engines",
@@ -55,14 +59,12 @@ const en = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "Add your own CORS bypass proxy",
     "HostproxyButton": "Host your own proxy",
-    "saveproxy": "Save",
 
     // Location
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
     "useGPS": "Use GPS",
-    "saveLoc": "Save",
 
     // Weather
     "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
@@ -70,8 +72,6 @@ const en = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "Learn more",
     "saveAPI": "Save",
-    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
-    "hideWeatherBoxInfo": "Show only temperature pill",
 
     // Body Items
     // Calendar
@@ -84,6 +84,9 @@ const en = {
     "bookmarkViewGrid": "Grid",    // Keep this shorter
     "bookmarkViewList": "List",    // Keep this shorter
     "bookmarkSearch": "Search bookmark",
+    "editBookmarkHeading": "Edit Bookmark",
+    "editBookmarkName": "Bookmark Name",
+    "editBookmarkURL": "Bookmark URL",
 
     // New Tab Item
     "conditionText": "Hello! How are you today?",
@@ -118,20 +121,28 @@ const en = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    //"firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
     // Theme
     "enableDarkMode": "Dark Mode",
     "enableDarkModeInfo": "Enable dark mode themes",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
+    "rangColor": "Pick color",    // Keep this short
     "backupText": "Backup",
     "restoreText": "Restore",
-    "rangColor": "Pick color",    // Keep this short
+    "resetsettings": "Reset Settings",
+    "menuCloseText": "Close",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Yes",
+    "noText": "No",
+    "agreeText": "I Agree",
+    "cancelText": "Cancel",
     "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
     "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
     "Nobackgroundset": "No background image is currently set.",
