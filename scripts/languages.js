@@ -30,6 +30,7 @@ const translations = {
     az: az, // Azerbaijani
     sl: sl, // Slovenian
     np: np, // Nepali
+    ur: ur, // Urdu
 };
 
 // Define the width of the menu container for each language
@@ -79,6 +80,9 @@ function localizeNumbers(text, language) {
     return text;  // Return the localized text
 }
 
+// Right-to-left languages
+const rtlLanguages = ['ur'];
+
 // Function to apply the language to the page
 function applyLanguage(lang) {
     // Mapping of text elements and their translation keys
@@ -126,11 +130,9 @@ function applyLanguage(lang) {
         'ProxyText',
         'ProxySubtext',
         'HostproxyButton',
-        'saveproxy',
         'UserLocText',
         'UserLocSubtext',
         'useGPS',
-        'saveLoc',
         'WeatherApiText',
         'WeatherApiSubtext',
         'LearnMoreButton',
@@ -153,7 +155,7 @@ function applyLanguage(lang) {
         'copilot',
         'claude',
         'perplexity',
-        'firefly',
+        'deepseek',
         'metaAI',
         'github',
         'googleAppsHover',
@@ -168,6 +170,7 @@ function applyLanguage(lang) {
         'bookmarkViewAs',
         'bookmarkViewGrid',
         'bookmarkViewList',
+        'editBookmarkHeading',
         'enableDarkMode',
         'enableDarkModeInfo',
     ];
@@ -178,7 +181,9 @@ function applyLanguage(lang) {
         { id: 'userAPI', key: 'userAPI' },
         { id: 'searchQ', key: 'searchPlaceholder' },
         { id: 'todoInput', key: 'todoPlaceholder' },
-        { id: 'bookmarkSearch', key: 'bookmarkSearch' }
+        { id: 'bookmarkSearch', key: 'bookmarkSearch' },
+        { id: 'editBookmarkName', key: 'editBookmarkName' },
+        { id: 'editBookmarkURL', key: 'editBookmarkURL' }
     ];
 
     // Mapping of elements and their different translation keys
@@ -192,6 +197,10 @@ function applyLanguage(lang) {
         { id: 'gImagesEngineDD', key: 'gImagesEngine' },
         { id: 'wikipediaEngineDD', key: 'wikipediaEngine' },
         { id: 'bookmarksHover', key: 'bookmarksHeading' },
+        { id: 'saveproxy', key: 'saveAPI' },
+        { id: 'saveLoc', key: 'saveAPI' },
+        { id: 'saveBookmarkChanges', key: 'saveAPI' },
+        { id: 'cancelBookmarkEdit', key: 'cancelText' }
     ];
 
     // Function to apply translations
@@ -257,14 +266,37 @@ function applyLanguage(lang) {
         }
     }
 
+    // Function to dynamically load Google Fonts
+    function loadFont(fontUrl) {
+        if (!document.querySelector(`link[href="${fontUrl}"]`)) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = fontUrl;
+            document.head.appendChild(link);
+        }
+    }
+
     // Dynamically update the font family based on the language
     const root = document.documentElement;
     const commonFontStack = "'poppins', 'Poppins', sans-serif";
     if (lang === 'vi') {
+        loadFont("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
         root.style.setProperty('--main-font-family', `'Be Vietnam Pro', ${commonFontStack}`);
+    } else if (lang === 'ur') {
+        loadFont("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap");
+        root.style.setProperty('--main-font-family', `'Noto Sans Arabic', ${commonFontStack}`);
+        document.body.classList.add('lang-ur'); // Apply special styles
     } else {
         root.style.setProperty('--main-font-family', commonFontStack);
+        document.body.classList.remove('lang-ur');
     }
+
+    // Apply the direction to the elements based on the language
+    const rtlElements = ['.menuBar', '#conditionText'];
+    rtlElements.forEach(selector => {
+        const element = document.querySelector(selector);
+        element.style.direction = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+    });
 
     // Save the selected language in localStorage
     saveLanguageStatus('selectedLanguage', lang);
@@ -279,9 +311,7 @@ document.getElementById('languageSelector').addEventListener('change', (event) =
 // Function to apply the language when the page loads
 window.onload = function () {
     const savedLanguage = getLanguageStatus('selectedLanguage') || 'en'; // Default language is English
-    if (savedLanguage) {
-        document.getElementById("languageSelector").value = savedLanguage;
-    }
+    document.getElementById("languageSelector").value = savedLanguage;
     applyLanguage(savedLanguage);
 };
 

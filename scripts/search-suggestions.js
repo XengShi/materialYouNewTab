@@ -242,9 +242,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
 
     // This function shows the proxy disclaimer.
-    function showProxyDisclaimer() {
+    async function showProxyDisclaimer() {
         const message = translations[currentLanguage]?.ProxyDisclaimer || translations["en"].ProxyDisclaimer;
-        return confirm(message);
+        const agreeText = translations[currentLanguage]?.agreeText || translations["en"].agreeText;
+        const cancelText = translations[currentLanguage]?.cancelText || translations["en"].cancelText;
+
+        return await confirmPrompt(message, agreeText, cancelText);
     }
 
     // Add change event listeners for the checkboxes
@@ -263,10 +266,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    useproxyCheckbox.addEventListener("change", function () {
+    useproxyCheckbox.addEventListener("change", async function () {
         if (useproxyCheckbox.checked) {
             // Show the disclaimer and check the user's choice
-            const userConfirmed = showProxyDisclaimer();
+            const userConfirmed = await showProxyDisclaimer();
             if (userConfirmed) {
                 // Only enable the proxy if the user confirmed
                 saveCheckboxState("useproxyCheckboxState", useproxyCheckbox);

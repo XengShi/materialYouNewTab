@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Retrieve saved state from localStorage (default: false if null)
     const savedState = localStorage.getItem("hideWeatherVisible") === "true";
     hideWeatherCheckbox.checked = savedState;
-    hideWeather.style.opacity = savedState ? "0" : "1";
+    hideWeather.style.visibility = savedState ? "hidden" : "visible";
 
     // Function to toggle the 'inactive' class
     function toggleInactiveState(isInactive) {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideWeatherCheckbox.addEventListener("change", () => {
         const isChecked = hideWeatherCheckbox.checked;
-        hideWeather.style.opacity = isChecked ? "0" : "1";
+        hideWeather.style.visibility = isChecked ? "hidden" : "visible";
         localStorage.setItem("hideWeatherVisible", isChecked);
 
         // Apply inactive class to disable elements visually
@@ -82,6 +82,24 @@ async function getWeatherData() {
         location.reload();
     });
 
+    // Handle "Use GPS" button click
+    useGPSButton.addEventListener("click", () => {
+        // Set the flag to use GPS and remove manual location
+        localStorage.setItem("useGPS", true);
+        localStorage.removeItem("weatherLocation");
+        location.reload();
+    });
+
+    // Handle manual location input
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        localStorage.setItem("useGPS", false);
+        userLocInput.value = "";
+        fetchWeather();
+        location.reload();
+    });
+
     // Default Weather API key
     const weatherApiKeys = [
         "d36ce712613d4f21a6083436240910",
@@ -105,6 +123,53 @@ async function getWeatherData() {
 
     // Flag indicating whether to use GPS
     const useGPS = JSON.parse(localStorage.getItem("useGPS"));
+
+    // Function to fetch GPS-based location
+    async function fetchGPSLocation() {
+        const getLocationFromGPS = () => {
+            return new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                        });
+                    },
+                    (error) => reject(error),
+                    { timeout: 4000 }
+                );
+            });
+        };
+
+        try {
+            const { latitude, longitude } = await getLocationFromGPS();
+            return `${latitude},${longitude}`;
+        } catch (error) {
+            console.error("Failed to retrieve GPS Location:", error);
+        }
+    }
+
+    // Fetch location based on user preference
+    await (async function initializeLocation() {
+        try {
+            if (useGPS) currentUserLocation = await fetchGPSLocation();
+
+            if (!currentUserLocation) {
+                // Fallback to IP-based location if no manual input
+                const ipInfo = "https://ipinfo.io/json/";
+                const locationData = await fetch(ipInfo);
+                const ipLocation = await locationData.json();
+                currentUserLocation = ipLocation.loc;
+            }
+
+            // Fetch weather data
+            fetchWeather();
+        } catch (error) {
+            console.error("Failed to retrieve IP-based location:", error);
+            currentUserLocation = "auto:ip";
+            fetchWeather();
+        }
+    })();
 
     // Fetch weather data based on a location
     async function fetchWeather() {
@@ -170,9 +235,14 @@ async function getWeatherData() {
                 const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
                 const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
+                // Check if language is RTL
+                const isRTL = rtlLanguages.includes(currentLanguage);
+
                 // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
-                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+                document.getElementById("humidityLevel").textContent = isRTL
+                    ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
+                    : `${humidityLabel} ${localizedHumidity}%`;
 
                 // Event Listener for the Fahrenheit toggle
                 const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
@@ -194,7 +264,9 @@ async function getWeatherData() {
 
                         // Update feels like
                         const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
                     } else {
                         // Update temperature
                         tempElement.textContent = localizedTempCelsius;
@@ -205,7 +277,9 @@ async function getWeatherData() {
 
                         // Update feels like
                         const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
                     }
                 };
                 updateTemperatureDisplay();
@@ -241,78 +315,6 @@ async function getWeatherData() {
             console.error("Error fetching weather data:", error);
         }
     }
-
-    // Function to fetch GPS-based location
-    async function fetchGPSLocation() {
-        try {
-            const getLocationFromGPS = () => {
-                return new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => reject(error),
-                        { timeout: 4000 }
-                    );
-                });
-            };
-
-            const { latitude, longitude } = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
-        } catch (error) {
-            console.error("GPS Location retrieval failed: ", error);
-        }
-    }
-
-    // Fetch location dynamically based on user preference
-    await (async function initializeLocation() {
-        try {
-            if (useGPS) {
-                try {
-                    // Use GPS for dynamic location
-                    currentUserLocation = await fetchGPSLocation();
-                } catch {
-                    console.log("Failed to use GPS for location:", error);
-                }
-            }
-
-            if (!currentUserLocation) {
-                // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.loc;
-            }
-
-            // Fetch weather data
-            fetchWeather(currentUserLocation);
-        } catch (error) {
-            console.error("Failed to determine location:", error);
-            currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
-        }
-    })();
-
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS dynamically and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
-        location.reload();
-    });
-
-    // Handle manual location input
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        localStorage.setItem("useGPS", false);
-        userLocInput.value = "";
-        fetchWeather(userLocation);
-        location.reload();
-    });
 }
 
 
