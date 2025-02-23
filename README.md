@@ -24,7 +24,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#-currently-supported-languages-22">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-23">Currently Supported Languages</a> •
   <a href="#download">Download</a> •
   <a href="#-installation-guide">Installation Guide</a>
 <br>
@@ -167,7 +167,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
 
-## 🌐 Currently Supported Languages (22)
+## 🌐 Currently Supported Languages (23)
 
 | Language                                                                                     | Code  | Translator(s)                                                                         |
 | -------------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
@@ -191,12 +191,14 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina           | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español                 | es-ES | [XengShi](https://github.com/XengShi/)                                                |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                  |  tr   | [Nobody](https://github.com/Nobody9512), [Kerim Ölçer](https://github.com/kerimlcr)   |
+| <img src='https://flagcdn.com/pk.svg' width=20> &nbsp; **Urdu** - اردو                        |  ur   | [Asfandiyar Khan](https://github.com/asfand-dev)                                      |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                    |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt           |  vn   | [Diep](https://github.com/diepdo1810/), [Tuan](https://github.com/Tuan1-2-3)          |
 
 Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
 
-## 📖 Usage
+<details>
+<summary><h2>📖 Usage</h2></summary>
 
 1. **Welcome Greeting**:
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
@@ -256,6 +258,8 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
 14. **Language Selector**:
     - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
     - This feature supports multilingual customization, enhancing accessibility for users worldwide.
+   
+</details>
 
 ## 🤝 Contributing
 
