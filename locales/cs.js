@@ -84,6 +84,9 @@ const cs = {
     "bookmarkViewGrid": "Mřížka",
     "bookmarkViewList": "Seznam",
     "bookmarkSearch": "Vyhledejte záložku",
+    "editBookmarkHeading": "Upravit záložku",
+    "editBookmarkName": "Název záložky",
+    "editBookmarkURL": "URL adresa záložky",
 
     // New Tab Item
     "conditionText": "Dobrý den! Jak se máte?",
