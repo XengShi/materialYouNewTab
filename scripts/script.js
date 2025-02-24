@@ -18,6 +18,7 @@
 
 // Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById("searchbar");
+const searchInput = document.getElementById("searchQ");
 searchbar.addEventListener("click", function (event) {
     event.stopPropagation(); // Stop the click event from propagating to the document
     searchbar.classList.add("active");
@@ -61,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const enterBTN = document.getElementById("enterBtn");
-    const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
     const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
     const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
@@ -122,9 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             localStorage.setItem("selectedSearchEngine", radioButton.value);
 
-            const searchBar = document.querySelector(".searchbar");
             searchInput.focus();
-            searchBar.classList.add("active");
+            searchbar.classList.add("active");
         });
     });
 
@@ -563,8 +562,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("keydown", function (event) {
-    const searchInput = document.getElementById("searchQ");
-    const searchBar = document.querySelector(".searchbar");
     const modalContainer = document.getElementById("prompt-modal-container");
 
     // Prevent if modal is open
@@ -578,7 +575,7 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
-        searchBar.classList.add("active");
+        searchbar.classList.add("active");
     }
 });
 

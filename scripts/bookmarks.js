@@ -438,7 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 
     bookmarksCheckbox.addEventListener("change", async function () {
         let bookmarksPermission;
