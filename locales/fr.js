@@ -42,6 +42,12 @@ const fr = {
     "userTextInfo": "Afficher le texte personnalisé sous l'horloge",
     "fahrenheitCelsiusCheckbox": "Passer à Fahrenheit",
     "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
+    "hideWeatherTitle": "Masquer la météo",
+    "hideWeatherInfo": "Désactiver les widgets de météo",
+    "hideWeatherBox": "Masquer la carte météo",
+    "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
+
+    // Search
     "micIconTitle": "Masquer l'Icône du Microphone",
     "micIconInfo": "Si la saisie vocale ne fonctionne pas",
     "hideSearchWith": "Masquer les Moteurs de Recherche",
@@ -55,14 +61,12 @@ const fr = {
     "ProxyText": "Proxy de contournement CORS",
     "ProxySubtext": "Ajouter votre propre proxy de contournement CORS",
     "HostproxyButton": "Hébergez votre propre proxy",
-    "saveproxy": "Enregistrer",
 
     // Location
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
     "useGPS": "Utiliser le GPS",
-    "saveLoc": "Enregistrer",
 
     // Weather
     "WeatherApiText": "Entrez votre clé WeatherAPI",
@@ -70,8 +74,6 @@ const fr = {
     "userAPI": "Your weatherAPI key",
     "LearnMoreButton": "En savoir plus",
     "saveAPI": "Enregistrer",
-    "hideWeatherBox": "Masquer la carte météo",
-    "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
 
     // Body Items
     // Calendar
@@ -84,6 +86,9 @@ const fr = {
     "bookmarkViewGrid": "Grille",
     "bookmarkViewList": "Liste",
     "bookmarkSearch": "Rechercher un favori",
+    "editBookmarkHeading": "Modifier un favori",
+    "editBookmarkName": "Nom du favori",
+    "editBookmarkURL": "URL du favori",
 
     // New Tab Item
     "conditionText": "Bonjour, comment allez-vous?",
@@ -117,7 +122,8 @@ const fr = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    //"firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
     // Theme
@@ -132,6 +138,11 @@ const fr = {
     "rangColor": "Choisir la couleur",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Oui",
+    "noText": "Non",
+    "agreeText": "J'accepte",
+    "cancelText": "Annuler",
     "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
     "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
     "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
