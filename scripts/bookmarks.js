@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!currentBookmarkId) return;
 
         const updatedTitle = editBookmarkName.value.trim();
-        const updatedURL = editBookmarkURL.value.trim();
+        const updatedURL = encodeURI(editBookmarkURL.value.trim());
 
         const updatedData = { title: updatedTitle, url: updatedURL };
 
