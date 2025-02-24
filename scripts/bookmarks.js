@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!currentBookmarkId) return;
 
         const updatedTitle = editBookmarkName.value.trim();
-        const updatedURL = editBookmarkURL.value.trim();
+        const updatedURL = encodeURI(editBookmarkURL.value.trim());
 
         const updatedData = { title: updatedTitle, url: updatedURL };
 
@@ -438,7 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 
     bookmarksCheckbox.addEventListener("change", async function () {
         let bookmarksPermission;

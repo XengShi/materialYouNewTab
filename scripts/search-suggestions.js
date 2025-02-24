@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ---------------------------- Search Suggestions ----------------------------
+
+const resultBox = document.getElementById("resultBox");
+
 // Show the result box
 function showResultBox() {
     resultBox.classList.add("show");
@@ -77,7 +80,6 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             engine5: "https://www.youtube.com/results?search_query="
         };
         const query = this.value;
-        const resultBox = document.getElementById("resultBox");
 
         if (query.length > 0) {
             try {
@@ -222,8 +224,6 @@ async function getAutocompleteSuggestions(query) {
 
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
-    const searchbar = document.getElementById("searchbar");
-
     if (!searchbar.contains(event.target)) {
         hideResultBox();
     }

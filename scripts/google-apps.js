@@ -42,6 +42,7 @@ document.addEventListener("click", function (event) {
 // Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
     const googleAppsCont = document.getElementById("googleAppsCont");
+    const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
 
     googleAppsCheckbox.addEventListener("change", function () {
         saveCheckboxState("googleAppsCheckboxState", googleAppsCheckbox);
