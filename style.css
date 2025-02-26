@@ -384,8 +384,9 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	top: 85px;
 	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
+	width: fit-content;
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
-	overflow-y: auto;
+	overflow-x: hidden;
 	/* Add vertical scrollbar when needed */
 	box-sizing: border-box;
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
@@ -393,6 +394,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 /* Individual Icon Item Styling */
 .icon-item {
+	gap: 0.5rem; /* Item Gap*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -414,7 +416,9 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	color: var(--darkColor-blue);
 	width: 40px;
 	height: 40px;
-	margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Label Styling */
@@ -2289,13 +2293,13 @@ body #bookmarkButton.bookmark-button.rotate {
 .toggle:before {
 	position: absolute;
 	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
+	height: 16px;
+	width: 16px;
+	left: 9px;
+	bottom: 9px;
 	background-color: var(--accentLightTint-blue);
 	/* Slider color when on */
-	transition: 0.4s;
+	transition: 0.175s;
 	border-radius: 50%;
 }
 
@@ -2326,6 +2330,10 @@ input:checked + .toggle {
 }
 
 input:checked + .toggle:before {
+	height: 24px;
+	width: 24px;
+	left: 5px;
+	bottom: 5px;
 	transform: translateX(26px);
 }
 
