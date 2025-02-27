@@ -1814,7 +1814,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .search-engine input[type="radio"] {
-	transition: 0.2s;
+	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
 /* -----------end of Radio Button Customizing------------ */
