@@ -517,16 +517,27 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ------ Event Listeners for Searchbar dropdown ------ */
     const searchIconContainer = document.querySelectorAll(".searchIcon");
 
+    const radioButtons = document.getElementsByName("search-engine");
+
     const showEngineContainer = () => {
         searchIconContainer[1].style.display = "none";
         searchIconContainer[0].style.display = "block";
         document.getElementById("search-with-container").style.visibility = "visible";
+
+        for (const element of radioButtons) {
+            element.style.transition = "0.2s";
+        }
     }
 
     const hideEngineContainer = () => {
         searchIconContainer[0].style.display = "none";
         searchIconContainer[1].style.display = "block";
         document.getElementById("search-with-container").style.visibility = "hidden";
+
+        for (const element of radioButtons) {
+            element.style.transition = "0s";
+        }
+
     }
 
     const initShortCutSwitch = (element) => {
