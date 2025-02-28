@@ -1804,7 +1804,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
-	margin-right: 7px;
+	margin-right: 8px;
 	cursor: pointer;
 	/* transition: 0.2s; */
 }
