@@ -2382,6 +2382,10 @@ input:checked + .toggle:before {
 	margin-top: 12px;
 }
 
+/* .bottom:has(:only-child) {
+	justify-content: flex-end;
+} */
+
 .bottom a {
 	text-decoration: none;
 	color: var(--darkColor-blue);

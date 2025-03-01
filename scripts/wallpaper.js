@@ -6,8 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Get the current language from localStorage
-const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
 
 // -------------------------- Wallpaper -----------------------------
 const dbName = "ImageDB";
