@@ -24,12 +24,12 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
+  <a href="#-installation-guide">Installation Guide</a> •
   <a href="#-currently-supported-languages-23">Currently Supported Languages</a> •
-  <a href="#download">Download</a> •
-  <a href="#-installation-guide">Installation Guide</a>
+  <a href="#-usage">Usage</a>
 <br>
-  <a href="#-usage">Usage</a> •
   <a href="#-contributing">Contributing</a> •
+  <a href="#-star-history">Star History</a> •
   <a href="#-issues-and-support">Issues and Support</a> •
   <a href="#-privacy-policy">Privacy Policy</a> •
   <a href="#-license">License</a>
@@ -271,6 +271,19 @@ Contributions are welcome! If you’d like to contribute:
 4. Commit your changes: `git commit -m 'Add Your Feature'`.
 5. Push to the branch: `git push origin feature/YourFeature`.
 6. Open a pull request.
+
+## ⭐ Star History
+
+Here is the star history chart for the **Material You NewTab** repository. It shows the growth of stars over time, reflecting the increasing interest and support for the project.
+
+<a href="https://star-history.com/#XengShi/materialYouNewTab&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date" />
+ </picture>
+</a>
+
 
 ## ❓ Issues and Support
 
