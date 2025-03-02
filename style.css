@@ -1869,23 +1869,21 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Adjust size as needed */
 	pointer-events: auto;
 	transition: transform 0.5s;
 	margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
-	max-width: calc(
-		var(--max-shortcut-bar-width) -
-			mod(
-				var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
-				var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
-			)
-	);
-	display: flex;
-	flex-wrap: wrap;
+	max-width: var(--max-shortcut-bar-width);
 	padding: var(--shortcut-bar-gap-and-padding);
-	justify-content: center;
 	width: fit-content;
-	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
-	gap: 2rem;
+	gap: 1rem;
+	justify-content: center; /* Center if fewer than 10 */
+}
+
+/* Hide elements beyond the first 10 */
+.shortcutsContainer > *:nth-child(n+11) {
+	display: none !important;
 }
 
 .shortcutsContainer::before {
@@ -2450,8 +2448,20 @@ input:checked + .toggle:before {
 #newShortcutButton {
 	fill: var(--textColorDark-blue);
 	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background: none;
 	cursor: pointer;
+}
+
+.rotate-animation {
+	animation: rotate-button 0.5s ease;
+}
+
+@keyframes rotate-button {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(-360deg); }
 }
 
 #newShortcutButton svg {
@@ -2487,10 +2497,21 @@ input:checked + .toggle:before {
 	font-style: italic;
 }
 
+.shortcut-drag{
+	height: 70px;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+}
+
 .shortcutSettingsEntry {
+	overflow: hidden;
 	width: 100%;
 	display: flex;
 	height: 68px;
+	gap: 1rem;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 16px;
