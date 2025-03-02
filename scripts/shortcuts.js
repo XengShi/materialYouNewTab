@@ -45,9 +45,9 @@ const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer
                 mix-blend-mode: screen;
                 }`;
 
-// List used in Settings
+// Shortcut List's parent container used in Settings
 const shortcutListElement = document.getElementById("shortcutList");
-// List used in HomePage
+// Shortcut List's parent container used in HomePage
 const homePageShortcutListElement = document.getElementById("shortcutsContainer");
 
 const shortcutSection = document.getElementById("shortcuts-section");
@@ -61,7 +61,6 @@ const resetButton = document.getElementById("resetButton");
 
 // On DOM Load
 document.addEventListener("DOMContentLoaded", () => {
-
     // Sorting, Drag n Drop and DOM manipulation is done by Sortable JS
     // Sortable for Settings List
     new Sortable(shortcutListElement, {
@@ -84,13 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // load button states and listeners
-    loadButtonStates();
-    // Load shortcuts from storage
-    loadShortcuts();
-
     // LOAD Shortcuts
     function loadShortcuts() {
+
+        // migrate saved shortcuts
+        const shortcutAmount = parseInt(localStorage.getItem("shortcutAmount"), 10) || 0;
+
+        if(shortcutAmount > 0) {
+            console.log("Migrating shortcuts from last version...");
+            migrateShortcutsFromLastVersion(shortcutAmount);
+            localStorage.removeItem("shortcutAmount");
+        }
+
         const encodedList = localStorage.getItem("shortcuts");
         const shortcutList = JSON.parse(encodedList) ?? [];
 
@@ -111,10 +115,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
         } else {
-            // todo : create a function for migration
             console.log("No shortcuts found.", "Adding Default shortcuts...");
             resetToDefaultShortcuts();
         }
+    }
+
+    // only for testing
+    // function dummyDataForMigration(shortcutAmount){
+    //     for (let i = 0; i < shortcutAmount; i++) {
+    //         localStorage.setItem(`shortcutName${i}`,`shortcutName${i}`);
+    //         localStorage.setItem(`shortcutURL${i}`,`shortcutURL${i}`);
+    //         console.log("Added: ",i);
+    //     }
+    // }
+
+    function migrateShortcutsFromLastVersion(shortcutAmount) {
+        //dummyDataForMigration(shortcutAmount);
+
+        let shortcuts = new Map(DEFAULT_SHORTCUTS.map(shortcut => [shortcut.url, { name: shortcut.name, url: shortcut.url }]));
+
+        if (shortcutAmount > 0) {
+            for (let i = 0; i < shortcutAmount; i++) {
+                const name = localStorage.getItem(`shortcutName${i}`);
+                const url = localStorage.getItem(`shortcutURL${i}`);
+
+                if (name && url && !shortcuts.has(url)) {
+                    shortcuts.set(url, { name, url });
+                    console.log("Migrated: ",{ name, url });
+                }
+
+                localStorage.removeItem(`shortcutName${i}`);
+                localStorage.removeItem(`shortcutURL${i}`);
+            }
+        }
+
+        const uniqueShortcuts = Array.from(shortcuts.values());
+
+        localStorage.setItem("shortcuts", JSON.stringify(uniqueShortcuts));
     }
 
     // DELETE Shortcut
@@ -173,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadShortcuts();
     }
 
-    // CREATE ShortcutList item container Element [Settings]
+    // CREATE shortcut element for [shortcutList] container used in settings
     function createShortcutContainerElement(shortcut) {
         const shortcutElement = document.createElement("div");
         shortcutElement.className = "shortcutSettingsEntry";
@@ -236,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return shortcutElement;
     }
 
-    //
+    // CREATE shortcut element for [shortcutsContainer] container used in HomePage
     function createHomePageShortcutElement(shortcut){
         const validShortcut = getValidShortcut(shortcut);
 
@@ -267,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return shortcutContainer;
     }
 
-    //
+    // Get Icon for Shortcut URL
     function getIcon(url){
         function getCustomLogo() {
 
@@ -312,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return icon;
     }
 
-    // Return a validated SHORTCUT
+    // Validate a shortcut
     function getValidShortcut(shortcut) {
 
         let {url, name} = shortcut;
@@ -417,11 +454,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function loadButtonStates(){
-        const adaptiveToggled = localStorage.getItem("adaptiveIconToggle") ?? "checked";
 
-        if(adaptiveToggled === "checked"){
-            adaptiveIconToggle.checked = true;
-        }
+        const adaptiveToggled = localStorage.getItem("adaptiveIconToggle") ?? "unchecked";
+        adaptiveIconToggle.checked = (adaptiveToggled === "checked");
 
         // Shortcut Toggle Button in Settings
         shortcutsCheckbox.addEventListener("change", () => {
@@ -465,4 +500,9 @@ document.addEventListener("DOMContentLoaded", () => {
         loadActiveStatus("adaptiveIconField", adaptiveIconField);
         loadDisplayStatus("shortcutsDisplayStatus", shortcuts);
     }
+
+    // load button states and listeners
+    loadButtonStates();
+    // Load shortcuts from storage
+    loadShortcuts();
 });

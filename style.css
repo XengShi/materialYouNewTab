@@ -1877,7 +1877,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	max-width: var(--max-shortcut-bar-width);
 	padding: var(--shortcut-bar-gap-and-padding);
 	width: fit-content;
-	gap: 1rem;
+	gap: 30px;
 	justify-content: center; /* Center if fewer than 10 */
 }
 
