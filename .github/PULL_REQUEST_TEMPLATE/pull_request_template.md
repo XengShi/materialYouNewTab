@@ -10,7 +10,7 @@ If applicable, attach relevant screenshots or screen recordings showcasing the m
 
 ## ✅ Checklist
 - [ ] I have read and followed the [Contributing Guidelines](https://github.com/XengShi/materialYouNewTab/blob/main/CONTRIBUTING.md).
-- [ ] I have tested my changes thoroughly to ensure expected behavior.
+- [ ] I have tested my changes by installing them as an extension (not just running via localhost or opening as a file) to ensure expected behavior.
 - [ ] I have verified compatibility across Chrome and Firefox (additional browsers if applicable).
 - [ ] I have attached relevant visual evidence (screenshots/videos) if applicable.
 - [ ] My code follows the project's coding style and conventions.
