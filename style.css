@@ -244,7 +244,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 .centerDiv:has(.resultBox.show) ~ #shortcuts-section,
 .centerDiv:has(.dropdown-content[style="display: block;"])
-	~ #shortcuts-section {
+~ #shortcuts-section {
 	z-index: -1;
 }
 
@@ -715,11 +715,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	cursor: pointer;
 }
 .bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:checked)
-	~ #bookmarkViewGrid,
+#bookmarkGridCheckbox:is(:checked)
+~ #bookmarkViewGrid,
 .bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:not(:checked))
-	~ #bookmarkViewList {
+#bookmarkGridCheckbox:is(:not(:checked))
+~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -1460,7 +1460,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 40px;
 	background-size: 66%;
 	background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center
-		center;
+	center;
 	right: 0;
 	border-radius: 100%;
 }
@@ -1789,7 +1789,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 16px 0 10px;
+	margin: 0 15px 0 10px;
 	cursor: pointer;
 }
 
@@ -1799,12 +1799,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	background-color: var(--whitishColor-blue);
-	width: 22px;
-	height: 22px;
+	width: 19px;
+	height: 19px;
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
-	margin-right: 8px;
+	margin-right: 7px;
 	cursor: pointer;
 	/* transition: 0.2s; */
 }
@@ -1814,7 +1814,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .search-engine input[type="radio"] {
-	transition: 0.2s;
+	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1863,7 +1863,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: absolute;
 	/* This is the standard height of one row */
 	height: calc(
-		var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding)
+			var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding)
 	);
 	visibility: hidden;
 }
@@ -2927,8 +2927,8 @@ input:checked + .toggle:before {
 	border-radius: 50%;
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow: inset 0 0 0 4px var(--darkColor-blue),
-		inset 0 0 0 9.7px var(--accentLightTint-blue),
-		inset 0 0 0 40px var(--darkColor-blue);
+	inset 0 0 0 9.7px var(--accentLightTint-blue),
+	inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
 }
 
@@ -3197,7 +3197,7 @@ input:checked + .toggle:before {
 		width: 100%;
 	}
 	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked)
-		.shortcutsContainer {
+	.shortcutsContainer {
 		margin-top: 0;
 		flex-wrap: nowrap;
 	}
@@ -3690,7 +3690,7 @@ input:checked + .toggle:before {
 .dark-theme #menuButton {
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow: inset 0 0 0 4px #858585,
-		inset 0 0 0 9.7px var(--accentLightTint-blue), inset 0 0 0 40px #bfbfbf;
+	inset 0 0 0 9.7px var(--accentLightTint-blue), inset 0 0 0 40px #bfbfbf;
 }
 
 .dark-theme #menuCloseButton,
