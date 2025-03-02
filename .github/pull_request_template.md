@@ -1,4 +1,4 @@
-## 📌 Pull Request Description
+## 📌 Description
 Please provide a clear and concise description of the changes introduced in this PR and their purpose.
 
 ## 🎨 Visual Changes (Screenshots / Videos)
