@@ -3190,6 +3190,7 @@ input:checked + .toggle:before {
 		overflow-y: clip;
 	}
 	.shortcutsContainer {
+		display: flex;
 		max-width: none;
 		flex-wrap: nowrap;
 	}
