@@ -63,8 +63,8 @@ body:
         - Brave
         - Opera
         - Other (mention below)
-      validations:
-        required: true
+    validations:
+      required: true
 
   - type: input
     id: browser-name
