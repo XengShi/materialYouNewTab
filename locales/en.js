@@ -66,7 +66,7 @@ const en = {
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
-    "PrivacyPolicyButton": "Privacy policy",
+    "PrivacyPolicy": "Privacy policy",
 
     // Weather
     "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate

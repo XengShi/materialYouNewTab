@@ -131,6 +131,8 @@ function applyLanguage(lang) {
         'UserLocText',
         'UserLocSubtext',
         'useGPS',
+        'useGPSInfo',
+        'PrivacyPolicy',
         'WeatherApiText',
         'WeatherApiSubtext',
         'LearnMoreButton',
