@@ -2376,15 +2376,10 @@ input:checked + .toggle:before {
 }
 
 .bottom {
-	/* background-color: #17a638; */
 	display: flex;
 	justify-content: space-between;
 	margin-top: 12px;
 }
-
-/* .bottom:has(:only-child) {
-	justify-content: flex-end;
-} */
 
 .bottom a {
 	text-decoration: none;
