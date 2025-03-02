@@ -8,10 +8,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting an issue with **Material You NewTab**!  
-        Before submitting, please check if the issue already exists in the [issues list](https://github.com/XengShi/materialYouNewTab/issues).  
-        If you need help, feel free to ask in our [Telegram support group](https://t.me/+i-ekvlM7yoU1Yjc1).  
-        Make sure to follow our [Contribution Guidelines](https://github.com/XengShi/materialYouNewTab/blob/main/CONTRIBUTING.md).
+        Thanks for reporting an issue with **Material You NewTab**!
+        Before submitting, please check if the issue already exists in the [issues list](https://github.com/XengShi/materialYouNewTab/issues).
+        If you need help, feel free to ask in our [Telegram support group](https://t.me/+i-ekvlM7yoU1Yjc1).
 
   - type: input
     id: contact
@@ -28,7 +27,7 @@ body:
       label: What happened?
       description: Describe the issue clearly. Also, tell us what you expected to happen.
       placeholder: Describe the bug and expected behavior.
-      value: "A bug happened!"
+      value: "### Bug Description\n\n### Expected Behavior\n\n### Actual Behavior"
     validations:
       required: true
 
@@ -38,12 +37,21 @@ body:
       label: Extension Version
       description: What version of Material You NewTab are you using?
       options:
-        - Latest stable release
-        - Beta/Preview version
-        - Manually built from source
+        - Latest stable release (Chrome Web Store)
+        - Development build (main branch)
+        - Other (mention below)
       default: 0
     validations:
       required: true
+
+  - type: input
+    id: extension-version-id
+    attributes:
+      label: Extension Version
+      description: If you selected "Other" above, mention your extention version.
+      placeholder: ex. v3, v2.4, etc.
+    validations:
+      required: false
 
   - type: dropdown
     id: browsers
@@ -59,11 +67,11 @@ body:
         - Other (mention below)
 
   - type: input
-    id: browser-version
+    id: browser-name
     attributes:
-      label: Browser Version
-      description: Mention your browser version (e.g., Chrome 122.0.0).
-      placeholder: ex. Chrome 122.0.0
+      label: Browser Name
+      description: If you selected "Other" above, mention your browser name.
+      placeholder: ex. Vivaldi, Safari, etc.
     validations:
       required: true
 
