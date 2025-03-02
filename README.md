@@ -25,6 +25,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-installation-guide">Installation Guide</a> •
+  <a href="#download">Download</a> •
   <a href="#-currently-supported-languages-23">Currently Supported Languages</a> •
   <a href="#-usage">Usage</a>
 <br>
