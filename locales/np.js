@@ -25,7 +25,7 @@ const np = {
     googleAppsMenuInfo: "गुगल एप्सका लागि सर्टकटहरू देखाउनुहोस्",
     googleAppsHover: "गुगल एप्स",
 
-    // Todo List
+    // To-do List
     todoListText: "गर्नुपर्ने कार्यहरु",
     todoListInfo: "दैनिक गर्नुपर्ने कार्यहरु देखाउनुहोस ",
     todoListHover: "गर्नुपर्ने कार्यहरु",

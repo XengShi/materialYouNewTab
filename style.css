@@ -1458,9 +1458,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	content: "";
 	height: 100%;
 	width: 40px;
+	background-color: var(--darkColor-blue);
+	background-image: url("./svgs/humidity.svg");
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: 66%;
-	background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center
-		center;
 	right: 0;
 	border-radius: 100%;
 }
