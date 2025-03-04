@@ -1789,7 +1789,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 15px 0 10px;
+	margin: 0 16px 0 10px;
 	cursor: pointer;
 }
 
@@ -1799,12 +1799,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	background-color: var(--whitishColor-blue);
-	width: 19px;
-	height: 19px;
+	width: 22px;
+	height: 22px;
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
-	margin-right: 7px;
+	margin-right: 8px;
 	cursor: pointer;
 	/* transition: 0.2s; */
 }
@@ -1814,7 +1814,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .search-engine input[type="radio"] {
-	transition: background-color 0.2s ease, border 0.2s ease;
+	transition: 0.2s;
 }
 
 /* -----------end of Radio Button Customizing------------ */
@@ -1869,21 +1869,23 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .shortcutsContainer {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); /* Adjust size as needed */
 	pointer-events: auto;
 	transition: transform 0.5s;
 	margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
-	max-width: var(--max-shortcut-bar-width);
+	max-width: calc(
+			var(--max-shortcut-bar-width) -
+			mod(
+			var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
+			var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
+			)
+	);
+	display: flex;
+	flex-wrap: wrap;
 	padding: var(--shortcut-bar-gap-and-padding);
+	justify-content: center;
 	width: fit-content;
-	gap: 30px;
-	justify-content: center; /* Center if fewer than 10 */
-}
-
-/* Hide elements beyond the first 10 */
-.shortcutsContainer > *:nth-child(n+11) {
-	display: none !important;
+	/* gap: var(--gap) var(--shortcut-bar-gap-and-padding); */
+	gap: 2rem;
 }
 
 .shortcutsContainer::before {

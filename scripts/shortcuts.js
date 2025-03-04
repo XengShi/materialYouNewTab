@@ -87,15 +87,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Sortable for HomePage List
-    new Sortable(homePageShortcutListElement, {
-        animation: 150,
-        ghostClass: 'dragging',
-        onEnd: () => {
-            saveHomePageShortcutList();
-            loadShortcuts();
-        }
-    });
+    // disable drag behaviour of HomePage shortcuts on small screens
+    if(window.innerWidth > 500) {
+        // Sortable for HomePage List
+        new Sortable(homePageShortcutListElement, {
+            animation: 150,
+            ghostClass: 'dragging',
+            onEnd: () => {
+                saveHomePageShortcutList();
+                loadShortcuts();
+            }
+        });
+    }
 
     // LOAD Shortcuts
     function loadShortcuts() {
