@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ---------------------------- Search Suggestions ----------------------------
+
+const resultBox = document.getElementById("resultBox");
+
 // Show the result box
 function showResultBox() {
     resultBox.classList.add("show");
@@ -80,7 +83,6 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
         };
         const query = this.value;
-        const resultBox = document.getElementById("resultBox");
 
         if (query.length > 0) {
             try {
@@ -100,8 +102,21 @@ document.getElementById("searchQ").addEventListener("input", async function () {
                         resultItem.textContent = suggestion;
                         resultItem.setAttribute("data-index", index);
                         resultItem.onclick = () => {
-                            var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
-                            window.location.href = resultlink;
+                            if (selectedOption === "engine0") {
+                                try {
+                                    if (isFirefox) {
+                                        browser.search.query({ text: suggestion });
+                                    } else {
+                                        chrome.search.query({ text: suggestion });
+                                    }
+                                } catch (error) {
+                                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(suggestion);
+                                    window.location.href = fallbackUrl;
+                                }
+                            } else {
+                                var resultlink = searchEngines[selectedOption] + encodeURIComponent(suggestion);
+                                window.location.href = resultlink;
+                            }
                         };
                         resultBox.appendChild(resultItem);
                     });
@@ -188,6 +203,7 @@ async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
     var searchEnginesapi = {
+        engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
@@ -227,8 +243,6 @@ async function getAutocompleteSuggestions(query) {
 
 // Hide results when clicking outside
 document.addEventListener("click", function (event) {
-    const searchbar = document.getElementById("searchbar");
-
     if (!searchbar.contains(event.target)) {
         hideResultBox();
     }
@@ -244,9 +258,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // This function shows the proxy disclaimer.
     async function showProxyDisclaimer() {
         const message = translations[currentLanguage]?.ProxyDisclaimer || translations["en"].ProxyDisclaimer;
-        const agreeText = translations[currentLanguage]?.agreeText || translations["en"].agreeText;
-        const cancelText = translations[currentLanguage]?.cancelText || translations["en"].cancelText;
-
         return await confirmPrompt(message, agreeText, cancelText);
     }
 

@@ -6,6 +6,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+// Get the current language from localStorage
+const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+
 // Create modal container if not already present
 (function setupCustomModal() {
     if (document.getElementById("prompt-modal-container")) return;
@@ -146,3 +150,8 @@ function alertPrompt(message, isAlert = true, okText, cancelText) {
 function confirmPrompt(message, okText, cancelText) {
     return alertPrompt(message, false, okText, cancelText);
 }
+
+const agreeText = translations[currentLanguage]?.agreeText || translations["en"].agreeText;
+const cancelText = translations[currentLanguage]?.cancelText || translations["en"].cancelText;
+//const saveText = translations[currentLanguage]?.saveAPI || translations["en"].saveAPI;
+//const deleteText = translations[currentLanguage]?.deleteText || translations["en"].deleteText;

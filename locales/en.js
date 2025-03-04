@@ -63,10 +63,12 @@ const en = {
     "HostproxyButton": "Host your own proxy",
 
     // Location
+    "useGPS": "Use GPS",
+    "useGPSInfo": "Enable GPS for live location updates",
     "UserLocText": "Enter your Location",
     "UserLocSubtext": "If the weather location isn't correct",
     "userLoc": "Your City or Coordinates (Latitude, Longitude)",
-    "useGPS": "Use GPS",
+    "PrivacyPolicy": "Privacy policy",
 
     // Weather
     "WeatherApiText": "Enter your WeatherAPI key",    // For 'WeatherAPI' string, only transliterate
@@ -110,6 +112,7 @@ const en = {
     },
 
     // Search Engines
+    "defaultEngine": "Default",
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
@@ -125,7 +128,6 @@ const en = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    //"firefly": "Adobe Firefly",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
@@ -152,6 +154,7 @@ const en = {
     "Nobackgroundset": "No background image is currently set.",
     "clearbackgroundimage": "Are you sure you want to clear the background image?",
     "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
+    "GPSDisclaimer": "Your location data is used solely to provide accurate weather updates. It is temporarily stored within the browser and neither shared with any third-party services nor accessible to us.\n\nBy enabling GPS, you consent to sharing your location with the extension locally.",
     "failedbackup": "Backup failed: ",
     "restorecompleted": "Restore completed successfully!",
     "restorefailed": "Restore failed: ",

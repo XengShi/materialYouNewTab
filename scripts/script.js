@@ -18,6 +18,7 @@
 
 // Showing border or outline when you click on the searchbar
 const searchbar = document.getElementById("searchbar");
+const searchInput = document.getElementById("searchQ");
 searchbar.addEventListener("click", function (event) {
     event.stopPropagation(); // Stop the click event from propagating to the document
     searchbar.classList.add("active");
@@ -99,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const enterBTN = document.getElementById("enterBtn");
-    const searchInput = document.getElementById("searchQ");
     const searchEngineRadio = document.getElementsByName("search-engine");
     const searchDropdowns = document.querySelectorAll('[id$="-dropdown"]:not(*[data-default])');
     const defaultEngine = document.querySelector('#default-dropdown-item div[id$="-dropdown"]');
@@ -162,9 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
             localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
 
-            const searchBar = document.querySelector(".searchbar");
             searchInput.focus();
-            searchBar.classList.add("active");
+            searchbar.classList.add("active");
         });
     });
 
@@ -204,8 +203,22 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         if (searchTerm !== "") {
-            var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
-            window.location.href = searchUrl;
+            if (selectedOption === "engine0") {
+                try {
+                    if (isFirefox) {
+                        browser.search.query({ text: searchTerm });
+                    } else {
+                        chrome.search.query({ text: searchTerm });
+                    }
+                } catch (error) {
+                    // Fallback to Google if an error occurs
+                    var fallbackUrl = searchEngines.engine1 + encodeURIComponent(searchTerm);
+                    window.location.href = fallbackUrl;
+                }
+            } else {
+                var searchUrl = searchEngines[selectedOption] + encodeURIComponent(searchTerm);
+                window.location.href = searchUrl;
+            }
         }
     }
 
@@ -277,9 +290,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (event.key === "ArrowDown") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex + 1) % dropdownItems.length; // Move down, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "ArrowUp") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
+
+                // Scroll the newly selected item into view
+                const activeElement = dropdownItems[selectedIndex];
+                activeElement.scrollIntoView({ block: "nearest" });
             } else if (event.key === "Enter") {
                 const selectedItem = document.querySelector(".dropdown-content .selected");
                 const engine = selectedItem.getAttribute("data-engine");
@@ -612,8 +633,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("keydown", function (event) {
-    const searchInput = document.getElementById("searchQ");
-    const searchBar = document.querySelector(".searchbar");
     const modalContainer = document.getElementById("prompt-modal-container");
 
     // Prevent if modal is open
@@ -627,7 +646,7 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "/" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         event.preventDefault();
         searchInput.focus();
-        searchBar.classList.add("active");
+        searchbar.classList.add("active");
     }
 });
 

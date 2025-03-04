@@ -4,6 +4,9 @@ const ur = {
     "github": "گٹ ہب",
 
     // Shortcuts
+    "shortcutsText": "شارٹ کٹس",
+    "enableShortcutsText": "محفوظ کردہ شارٹ کٹس دکھائیں",
+    "editShortcutsText": "شارٹ کٹس میں ترمیم کریں",
     "shortcutsInfoText": "انتخاب کریں کہ کون سے شارٹ کٹس دکھائے جائیں",
     "editShortcutsList": "محفوظ کردہ شارٹ کٹس",
     "editShortcutsListInfo": "آپ '+' آئیکن پر کلک کرکے نئے شارٹ کٹس شامل کرسکتے ہیں، یا موجودہ شارٹ کٹس کے نام یا یو آر ایل پر کلک کرکے ترمیم کرسکتے ہیں۔",
@@ -101,9 +104,11 @@ const ur = {
 
     // Wallpaper and settings
     "uploadWallpaperText": "وال پیپر اپلوڈ کریں",
+    "rangColor": "رنگ چنیں",
     "backupText": "بیک اپ",
     "restoreText": "بحال کریں",
-    "rangColor": "رنگ چنیں",
+    "resetsettings": "ترتیبات ری سیٹ کریں",
+    "menuCloseText": "بند کریں",
 
     // Dialog boxes (alerts)
     "confirmWallpaper": "کیا آپ آج کے لیے ایک نئی تصویر کو وال پیپر کے طور پر سیٹ کرنا چاہتے ہیں؟",

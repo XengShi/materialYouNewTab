@@ -53,7 +53,8 @@ async function getWeatherData() {
     const userLocInput = document.getElementById("userLoc");
     const saveAPIButton = document.getElementById("saveAPI");
     const saveLocButton = document.getElementById("saveLoc");
-    const useGPSButton = document.getElementById("useGPS");
+    const gpsToggle = document.getElementById("useGPScheckbox");
+    const locationCont = document.getElementById("locationCont");
 
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -82,11 +83,22 @@ async function getWeatherData() {
         location.reload();
     });
 
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
+    // Handle GPS toggle change
+    gpsToggle.addEventListener("change", async () => {
+        if (gpsToggle.checked) {
+            const message = translations[currentLanguage]?.GPSDisclaimer || translations["en"].GPSDisclaimer;
+            const confirmGPS = await confirmPrompt(message, agreeText, cancelText);
+
+            if (!confirmGPS) {
+                gpsToggle.checked = false; // Revert toggle if user cancels
+                return;
+            }
+            localStorage.setItem("useGPS", true);
+            locationCont.classList.add("inactive");
+        } else {
+            localStorage.setItem("useGPS", false);
+            locationCont.classList.remove("inactive");
+        }
         location.reload();
     });
 
@@ -121,8 +133,11 @@ async function getWeatherData() {
     // Determine the location to use
     let currentUserLocation = savedLocation;
 
-    // Flag indicating whether to use GPS
-    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
+    // Load the saved GPS state from localStorage
+    const useGPS = JSON.parse(localStorage.getItem("useGPS")) || false;
+    gpsToggle.checked = useGPS;
+    if (useGPS) locationCont.classList.add("inactive");
+
 
     // Function to fetch GPS-based location
     async function fetchGPSLocation() {
@@ -136,7 +151,7 @@ async function getWeatherData() {
                         });
                     },
                     (error) => reject(error),
-                    { timeout: 4000 }
+                    { timeout: 6000 }
                 );
             });
         };

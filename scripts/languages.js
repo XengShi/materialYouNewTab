@@ -133,6 +133,8 @@ function applyLanguage(lang) {
         'UserLocText',
         'UserLocSubtext',
         'useGPS',
+        'useGPSInfo',
+        'PrivacyPolicy',
         'WeatherApiText',
         'WeatherApiSubtext',
         'LearnMoreButton',
@@ -143,6 +145,7 @@ function applyLanguage(lang) {
         'humidityLevel',
         'feelsLike',
         'location',
+        'defaultEngine',
         'googleEngine',
         'duckEngine',
         'bingEngine',
@@ -189,6 +192,7 @@ function applyLanguage(lang) {
     // Mapping of elements and their different translation keys
     const elementsMap = [
         { id: 'todoListHeading', key: 'todoListText' },
+        { id: 'defaultEngineDD', key: 'defaultEngine' },
         { id: 'googleEngineDD', key: 'googleEngine' },
         { id: 'duckEngineDD', key: 'duckEngine' },
         { id: 'bingEngineDD', key: 'bingEngine' },

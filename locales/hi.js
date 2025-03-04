@@ -3,8 +3,6 @@ const hi = {
     // Menu Items
     "github": "गिटहब",
     "feedback": "प्रतिक्रिया",
-    "resetsettings": "सेटिंग्स रीसेट करें",
-    "menuCloseText": "बंद करें",
 
     // Shortcuts
     "shortcutsText": "शॉर्टकट्स",
@@ -91,7 +89,6 @@ const hi = {
     "editBookmarkHeading": "बुकमार्क संपादित करें",
     "editBookmarkName": "बुकमार्क नाम",
     "editBookmarkURL": "बुकमार्क URL",
-    "cancelBookmarkEdit": "रद्द करें",
 
     // New Tab Item
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
@@ -112,6 +109,7 @@ const hi = {
     },
 
     // Search Engines
+    "defaultEngine": "डिफ़ॉल्ट",
     "googleEngine": "गूगल",
     "duckEngine": "डकडकगो",
     "bingEngine": "बिंग",
@@ -131,11 +129,13 @@ const hi = {
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करें",
+    "rangColor": "रंग चुनें",
     "backupText": "बैकअप करें",
     "restoreText": "रिस्टोर करें",
-    "rangColor": "रंग चुनें",
+    "resetsettings": "सेटिंग्स रीसेट करें",
+    "menuCloseText": "बंद करें",
 
     // Dialog boxes (alerts)
     "okText": "ठीक है",
