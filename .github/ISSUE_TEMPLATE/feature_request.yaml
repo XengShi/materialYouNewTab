@@ -74,9 +74,9 @@ body:
     id: agreement
     attributes:
       label: Agreement
-      description: By submitting this feature request, you acknowledge the following:
+      description: By submitting this issue, you agree to follow the project's [Code of Conduct](https://github.com/XengShi/materialYouNewTab/blob/main/CODE_OF_CONDUCT.md).
       options:
-        - label: I have checked the existing issues to ensure this feature hasn’t been requested before.
+        - label: I have searched for existing issues and checked the FAQs before submitting this.
           required: true
-        - label: I agree to follow this project's [Code of Conduct](https://github.com/XengShi/materialYouNewTab/blob/main/CODE_OF_CONDUCT.md).
+        - label: I agree to follow this project's Code of Conduct.
           required: true
