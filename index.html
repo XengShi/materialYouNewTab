@@ -1182,42 +1182,6 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
-                                <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
-                                <div class="infoText" id="hideWeatherInfo">Disable the weather widgets
-                                </div>
-                            </div>
-
-                            <label class="switch">
-                                <input id="hideWeatherCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-
-                        <div class="ttcont weather">
-                            <div class="texts">
-                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
-                                <div class="infoText" id="hideWeatherBoxInfo">Show only temperature pill</div>
-                            </div>
-                            <label class="switch">
-                                <input id="hideWeatherCard" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-
-                        <div class="ttcont weather">
-                            <div class="texts">
-                                <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
-                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="fahrenheitCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-                        <!-- ---🟡--- -->
-                        <div class="ttcont">
-                            <div class="texts">
                                 <div class="bigText" id="micIconTitle">Hide Microphone Icon</div>
                                 <div class="infoText" id="micIconInfo">If voice typing is not working
                                 </div>
@@ -1292,8 +1256,44 @@
                                 <button class="savebtn" id="saveproxy">Save</button>
                             </div>
                         </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
+                                <div class="infoText" id="hideWeatherInfo">Disable the weather widgets
+                                </div>
+                            </div>
 
-                        <div class="ttcont unflex weather" style="margin-top: 95px;">
+                            <label class="switch">
+                                <input id="hideWeatherCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
+                                <div class="infoText" id="hideWeatherBoxInfo">Show only temperature pill</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideWeatherCard" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
+                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="fahrenheitCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont unflex weather" id="locationCont">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
@@ -1302,12 +1302,24 @@
                             <input id="userLoc" placeholder="Your City or Coordinates (Latitude, Longitude)"
                                 type="text">
                             <div class="bottom">
-                                <button class="savebtn" id="useGPS">Use GPS</button>
+                                <a href="https://xengshi.github.io/materialYouNewTab/privacy-policy.html"
+                                    id="PrivacyPolicy" target="_blank">Privacy policy</a>
                                 <button class="savebtn" id="saveLoc">Save</button>
                             </div>
                         </div>
 
-                        <div class="ttcont unflex weather" style="margin-top: 110px;">
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="useGPS">Use GPS</div>
+                                <div class="infoText" id="useGPSInfo">Enable GPS for live location updates</div>
+                            </div>
+                            <label class="switch">
+                                <input id="useGPScheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont unflex weather">
                             <div class="texts">
                                 <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
                                 <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
@@ -1324,7 +1336,7 @@
 
                     </div>
                     <br>
-                    <div class="divider" style="margin-top: 90px;"></div>
+                    <div class="divider" id="divider2"></div>
                     <!-- start of languageSelector -->
                     <div class="languageSection">
                         <div class="languageIcon">

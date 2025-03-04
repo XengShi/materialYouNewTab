@@ -253,9 +253,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // This function shows the proxy disclaimer.
     async function showProxyDisclaimer() {
         const message = translations[currentLanguage]?.ProxyDisclaimer || translations["en"].ProxyDisclaimer;
-        const agreeText = translations[currentLanguage]?.agreeText || translations["en"].agreeText;
-        const cancelText = translations[currentLanguage]?.cancelText || translations["en"].cancelText;
-
         return await confirmPrompt(message, agreeText, cancelText);
     }
 

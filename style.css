@@ -2261,6 +2261,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: 20px auto;
 }
 
+#divider2 {
+	margin-top: 0px;
+}
+
 /* --- 🔴⚪🟡style for toggle buttons---- */
 .switch {
 	position: relative;
@@ -2341,7 +2345,7 @@ input:checked + .toggle:before {
 
 .toggleTextsCont .ttcont {
 	display: flex;
-	height: 50px;
+	min-height: 50px;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 20px;
@@ -2380,7 +2384,6 @@ input:checked + .toggle:before {
 }
 
 .bottom {
-	/* background-color: #17a638; */
 	display: flex;
 	justify-content: space-between;
 	margin-top: 12px;
