@@ -3,8 +3,6 @@ const pt = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Feedback",
-    "resetsettings": "Redefinir Configurações",
-    "menuCloseText": "Fechar",
 
     // Shortcuts
     "shortcutsText": "Atalhos",
@@ -42,6 +40,12 @@ const pt = {
     "userTextInfo": "Mostrar texto personalizado abaixo do relógio",
     "fahrenheitCelsiusCheckbox": "Mudar para Fahrenheit",
     "fahrenheitCelsiusText": "Atualize a página para aplicar as mudanças",
+    "hideWeatherTitle": "Ocultar Cartão do Tempo",
+    "hideWeatherInfo": "Desativar os widgets do clima",
+    "hideWeatherBox": "Ocultar Cartão do Tempo",
+    "hideWeatherBoxInfo": "Mostrar apenas o pílula de temperatura",
+
+    // Search
     "micIconTitle": "Ocultar Ícone do Microfone",
     "micIconInfo": "Se o ditado por voz não estiver funcionando",
     "hideSearchWith": "Ocultar o Motor de Busca",
@@ -55,14 +59,14 @@ const pt = {
     "ProxyText": "Proxy de Bypass CORS",
     "ProxySubtext": "Adicione seu próprio proxy de bypass CORS",
     "HostproxyButton": "Hospede seu próprio proxy",
-    "saveproxy": "Salvar",
 
     // Location
+    "useGPS": "Usar GPS",
+    "useGPSInfo": "Ativar GPS para atualização de localização",
     "UserLocText": "Digite sua Localização",
     "UserLocSubtext": "Se a localização do clima não estiver correta",
     "userLoc": "Sua Cidade ou Coordenadas (Latitude, Longitude)",
-    "useGPS": "Usar GPS",
-    "saveLoc": "Salvar",
+    "PrivacyPolicy": "Política de Privacidade",
 
     // Weather
     "WeatherApiText": "Digite sua chave WeatherAPI",
@@ -70,9 +74,6 @@ const pt = {
     "userAPI": "Sua chave weatherAPI",
     "LearnMoreButton": "Saiba mais",
     "saveAPI": "Salvar",
-    "hideWeatherBox": "Ocultar Cartão do Tempo",
-    "hideWeatherBoxInfo": "Mostrar apenas o pílula de temperatura",
-
 
     // Body Items
     // Calendar
@@ -85,6 +86,9 @@ const pt = {
     "bookmarkViewGrid": "Grade",
     "bookmarkViewList": "Lista",
     "bookmarkSearch": "Pesquisar favorito",
+    "editBookmarkHeading": "Editar Favorito",
+    "editBookmarkName": "Nome do Favorito",
+    "editBookmarkURL": "URL do Favorito",
 
     // New Tab Item
     "conditionText": "Olá! Como você está hoje?",
@@ -105,6 +109,7 @@ const pt = {
     },
 
     // Search Engines
+    "defaultEngine": "Padrão",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
@@ -118,7 +123,7 @@ const pt = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
     // Theme
@@ -127,16 +132,23 @@ const pt = {
 
     // Wallpaper and misc
     "uploadWallpaperText": "Enviar Papel de Parede",
+    "rangColor": "Escolher cor",
     "backupText": "Backup",
     "restoreText": "Restaurar",
-    "rangColor": "Escolher cor",
+    "resetsettings": "Redefinir Configurações",
+    "menuCloseText": "Fechar",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Sim",
+    "noText": "Não",
+    "agreeText": "Concordo",
+    "cancelText": "Cancelar",
     "confirmWallpaper": "Você gostaria de definir uma nova imagem como seu papel de parede para o dia?",
     "confirmRestore": "Você tem certeza de que deseja redefinir suas configurações? Esta ação não pode ser desfeita.",
     "Nobackgroundset": "Nenhuma imagem de fundo está atualmente definida.",
     "clearbackgroundimage": "Você tem certeza de que deseja limpar a imagem de fundo?",
-    "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
+    "GPSDisclaimer": "Os dados da sua localização são usados exclusivamente para fornecer atualizações precisas sobre o clima. Eles são armazenados temporariamente no navegador e não são compartilhados com nenhum serviço de terceiros nem acessíveis a nós.\n\nAo habilitar o GPS, você consente em compartilhar sua localização localmente com a extensão.", "ProxyDisclaimer": "Todos os recursos de proxy estão desativados por padrão.\n\nSe você ativar sugestões de pesquisa e o proxy de contorno CORS, é altamente recomendável hospedar seu próprio proxy para maior privacidade.\n\nPor padrão, o proxy será definido como https://mynt-proxy.rhythmcorehq.com, o que significa que todos os seus dados passarão por este serviço, o que pode levantar preocupações de privacidade.",
     "failedbackup": "Falha no backup: ",
     "restorecompleted": "Restauração concluída com sucesso!",
     "restorefailed": "Restauração falhou: ",
