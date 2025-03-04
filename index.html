@@ -251,19 +251,8 @@
         </a>
         <a href="https://maps.google.com/" class="icon-item">
             <div class="menuicon">
-                <svg width="67px" height="67px" viewBox="4 2 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="currentColor">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M24 12.8116L23.9999 12.8541C23.9998 12.872 23.9996 12.8899 23.9994 12.9078C23.9998 12.9287 24 12.9498 24 12.971C24 16.3073 21.4007 19.2604 19.6614 21.2367C19.1567 21.8101 18.7244 22.3013 18.449 22.6957C17.4694 24.0986 16.9524 25.6184 16.8163 26.2029C16.8163 26.6431 16.4509 27 16 27C15.5491 27 15.1837 26.6431 15.1837 26.2029C15.0476 25.6184 14.5306 24.0986 13.551 22.6957C13.2756 22.3013 12.8433 21.8101 12.3386 21.2367C10.5993 19.2604 8 16.3073 8 12.971C8 12.9498 8.0002 12.9287 8.0006 12.9078C8.0002 12.8758 8 12.8437 8 12.8116C8 8.49736 11.5817 5 16 5C20.4183 5 24 8.49736 24 12.8116ZM16 15.6812C17.7132 15.6812 19.102 14.325 19.102 12.6522C19.102 10.9793 17.7132 9.62319 16 9.62319C14.2868 9.62319 12.898 10.9793 12.898 12.6522C12.898 14.325 14.2868 15.6812 16 15.6812Z" />
-                        <path
-                            d="M23.1054 9.21856C22.1258 7.37546 20.4161 5.96177 18.3504 5.34277L13.7559 10.5615C14.3208 9.98352 15.1174 9.62346 16.0002 9.62346C17.7134 9.62346 19.1022 10.9796 19.1022 12.6524C19.1022 13.3349 18.8711 13.9646 18.4811 14.4711L23.1054 9.21856Z" />
-                        <path
-                            d="M12.4311 21.3425C12.4004 21.3076 12.3695 21.2725 12.3383 21.2371C11.1918 19.9344 9.67162 18.2073 8.76855 16.2257L13.5439 10.8018C13.1387 11.3136 12.8976 11.9556 12.8976 12.6526C12.8976 14.3254 14.2865 15.6816 15.9997 15.6816C16.8675 15.6816 17.6521 15.3336 18.2151 14.7727L12.4311 21.3425Z" />
-                        <path
-                            d="M9.89288 7.76562C8.71207 9.12685 8 10.8881 8 12.8117C8 12.8438 8.0002 12.8759 8.0006 12.9079C8.0002 12.9288 8 12.9499 8 12.9711C8 14.1082 8.30196 15.2009 8.76889 16.2254L13.5362 10.8106L9.89288 7.76562Z" />
-                        <path
-                            d="M18.3499 5.34254C17.6068 5.11988 16.8176 5 15.9997 5C13.5514 5 11.36 6.07387 9.89258 7.76553L13.5359 10.8105L13.5438 10.8015C13.6101 10.7178 13.6807 10.6375 13.7554 10.5611L18.3499 5.34254Z" />
-                    </g>
+                <svg width="36" height="36" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="m 8 0 c -3.3125 0 -6 2.6875 -6 6 c 0.007812 0.710938 0.136719 1.414062 0.386719 2.078125 l -0.015625 -0.003906 c 0.636718 1.988281 3.78125 5.082031 5.625 6.929687 h 0.003906 v -0.003906 c 1.507812 -1.507812 3.878906 -3.925781 5.046875 -5.753906 c 0.261719 -0.414063 0.46875 -0.808594 0.585937 -1.171875 l -0.019531 0.003906 c 0.25 -0.664063 0.382813 -1.367187 0.386719 -2.078125 c 0 -3.3125 -2.683594 -6 -6 -6 z m 0 3.691406 c 1.273438 0 2.308594 1.035156 2.308594 2.308594 s -1.035156 2.308594 -2.308594 2.308594 c -1.273438 -0.003906 -2.304688 -1.035156 -2.304688 -2.308594 c -0.003906 -1.273438 1.03125 -2.304688 2.304688 -2.308594 z m 0 0"/>
                 </svg>
             </div>
             <div class="label short">Maps</div>
@@ -687,10 +676,24 @@
                 <div class="searchIcon">
                     <!-- Dropdown Button -->
                     <div class="dropdown search-dropdown">
+                        <!-- Default Search Engine -->
                         <button id="default-dropdown-item" style="cursor: pointer;" role="button" class="dropdown-btn">
-                            <div id="google-dropdown" data-default data-engine-name="google" data-engine="1"
+                            <div id="default-dropdown" data-default data-engine-name="default" data-engine="0"
                                 class="dropdown-item">
-                                <!-- Default Google Icon -->
+                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.86); transform-origin: center;"
+                                        d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                                </svg>
+                                <span class="engine-name" id="defaultEngineDD">
+                                    Default
+                                </span>
+                            </div>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- Default Google Icon -->
+                            <div id="google-dropdown" data-engine-name="google" data-engine="1" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect class="accentColor" height="28" rx="14" width="28" />
@@ -703,8 +706,6 @@
                                     Google
                                 </span>
                             </div>
-                        </button>
-                        <div class="dropdown-content">
                             <!-- Duck -->
                             <div data-engine="2" data-engine-name="duck" id="duck-dropdown" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
@@ -787,8 +788,18 @@
                 <div class="hint bgLightTint" id="searchWithHint">Search With</div>
 
                 <div class="searchEnginesContainer">
+
+                    <div class="search-engine bgLightTint" data-category="search-with">
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="darkIconForDarkTheme" fill="white"
+                                style="transform: scale(0.95); transform-origin: center;"
+                                d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                        </svg>
+                        <label class="engine-name" id="defaultEngine">Default</label>
+                        <input checked class="radio-button" name="search-engine" type="radio" value="engine0">
+                    </div>
+
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -796,11 +807,10 @@
                                 fill="white" />
                         </svg>
                         <label class="engine-name" id="googleEngine">Google</label>
-                        <input checked class="radio-button" name="search-engine" type="radio" value="engine1">
+                        <input class="radio-button" name="search-engine" type="radio" value="engine1">
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/duck.svg" alt="D" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF00ff" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -812,7 +822,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/bing.svg" alt="B" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -824,7 +833,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/brave.svg" alt="B" class="logo"> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -0.5 24 24">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme" fill-rule="evenodd"
@@ -836,7 +844,6 @@
                     </div>
 
                     <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/youtube.svg" alt="Y" class="logo"> -->
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"

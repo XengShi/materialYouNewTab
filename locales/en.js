@@ -107,6 +107,7 @@ const en = {
     },
 
     // Search Engines
+    "defaultEngine": "Default",
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
@@ -120,7 +121,6 @@ const en = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    //"firefly": "Adobe Firefly",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
