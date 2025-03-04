@@ -1789,7 +1789,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 16px 0 10px;
+	margin: 0 14px 0 10px;
 	cursor: pointer;
 }
 
@@ -1799,8 +1799,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	background-color: var(--whitishColor-blue);
-	width: 22px;
-	height: 22px;
+	width: 18px;
+	height: 18px;
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
@@ -3003,8 +3003,35 @@ input:checked + .toggle:before {
 	z-index: 1;
 	top: 50px;
 	left: -15px;
-	overflow: hidden;
+	overflow-y: auto;
 	max-height: 192px;
+}
+
+.dropdown-content::-webkit-scrollbar {
+	width: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+	background-color: transparent;
+	margin: 7px 0;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 2px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 2px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+	.dropdown-content {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 .dropdown-content .dropdown-item {
