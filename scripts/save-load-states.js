@@ -13,6 +13,7 @@ function saveCheckboxState(key, checkbox) {
     localStorage.setItem(key, checkbox.checked ? "checked" : "unchecked");
 }
 
+const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 // Function to load and apply checkbox state from localStorage
 function loadCheckboxState(key, checkbox) {
     const savedState = localStorage.getItem(key);

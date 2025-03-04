@@ -3,6 +3,7 @@
 	"name": "Material You NewTab",
 	"version": "3.0.40",
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
+	"permissions": ["search"],
 	"optional_permissions": ["bookmarks"],
 	"host_permissions": [
 		"https://www.google.com/complete/search*",
