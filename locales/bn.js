@@ -3,8 +3,6 @@ const bn = {
     // Menu Items
     "github": "গিটহাব",
     "feedback": "মতামত",
-    "resetsettings": "সেটিংস পুনরায় সেট করুন",
-    "menuCloseText": "বন্ধ করুন",
 
     // Shortcuts
     "shortcutsText": "শর্টকাট",
@@ -12,7 +10,7 @@ const bn = {
     "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
     "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
     "editShortcutsList": "সংরক্ষিত শর্টকাট",
-    "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
+    "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL-এ ক্লিক করে সম্পাদনা করুন।",
     "adaptiveIconText": "অ্যাডাপ্টিভ আইকন",
     "adaptiveIconInfoText": "শর্টকাট আইকন থিম রঙের সাথে মিলে ছোট আকারে প্রদর্শিত হবে",
     "bookmarksText": "বুকমার্কস",
@@ -91,7 +89,6 @@ const bn = {
     "editBookmarkHeading": "বুকমার্ক সম্পাদনা করুন",
     "editBookmarkName": "বুকমার্কের নাম",
     "editBookmarkURL": "বুকমার্কের URL",
-    "cancelBookmarkEdit": "বাতিল করুন",
 
     // New Tab Item
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
@@ -130,13 +127,20 @@ const bn = {
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",
+    "rangColor": "রঙ নির্বাচন করুন",
     "backupText": "ব্যাকআপ করুন",
     "restoreText": "পুনরুদ্ধার করুন",
-    "rangColor": "রঙ নির্বাচন করুন",
+    "resetsettings": "সেটিংস পুনরায় সেট করুন",
+    "menuCloseText": "বন্ধ করুন",
 
     // Dialog boxes (alerts)
+    "okText": "ঠিক আছে",
+    "yesText": "হ্যাঁ",
+    "noText": "না",
+    "agreeText": "আমি রাজি",
+    "cancelText": "বাতিল করুন",
     "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
     "confirmRestore": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।",
     "Nobackgroundset": "বর্তমানে কোন ব্যাকগ্রাউন্ড ইমেজ সেট করা হয়নি।",
