@@ -1748,13 +1748,13 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint {
-	flex: 0 0 auto; /* Prevents it from growing */
-	width: 140px; /* Fixed width */
+	min-width: 128px;
+	max-width: 156px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
+	padding: 14px;
 	position: relative;
 	margin-right: 16px;
 	border-radius: var(--round);
@@ -1778,10 +1778,6 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont .hint:active {
 	scale: 0.98;
-}
-
-.searchWithCont .hint:active::after {
-	transform: none;
 }
 
 .searchEnginesContainer {
