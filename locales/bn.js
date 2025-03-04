@@ -3,8 +3,6 @@ const bn = {
     // Menu Items
     "github": "গিটহাব",
     "feedback": "মতামত",
-    "resetsettings": "সেটিংস পুনরায় সেট করুন",
-    "menuCloseText": "বন্ধ করুন",
 
     // Shortcuts
     "shortcutsText": "শর্টকাট",
@@ -12,7 +10,7 @@ const bn = {
     "editShortcutsText": "শর্টকাট সম্পাদনা করুন",
     "shortcutsInfoText": "যে শর্টকাটগুলো দেখাতে চান তা নির্বাচন করুন",
     "editShortcutsList": "সংরক্ষিত শর্টকাট",
-    "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL এ ক্লিক করে সম্পাদনা করুন।",
+    "editShortcutsListInfo": "\"+\" আইকনে ক্লিক করে নতুন শর্টকাট যোগ করুন অথবা বিদ্যমান শর্টকাটের নাম বা URL-এ ক্লিক করে সম্পাদনা করুন।",
     "adaptiveIconText": "অ্যাডাপ্টিভ আইকন",
     "adaptiveIconInfoText": "শর্টকাট আইকন থিম রঙের সাথে মিলে ছোট আকারে প্রদর্শিত হবে",
     "bookmarksText": "বুকমার্কস",
@@ -42,6 +40,12 @@ const bn = {
     "userTextInfo": "ঘড়ির নিচে কাস্টম টেক্সট দেখান",
     "fahrenheitCelsiusCheckbox": "ফারেনহাইটে পরিবর্তন করুন",
     "fahrenheitCelsiusText": "পরিবর্তন প্রয়োগ করতে পেজ রিফ্রেশ করুন",
+    "hideWeatherTitle": "আবহাওয়া লুকান",
+    "hideWeatherInfo": "আবহাওয়া উইজেট বন্ধ করুন",
+    "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
+    "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
+
+    // Search
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
     "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
     "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
@@ -55,14 +59,12 @@ const bn = {
     "ProxyText": "CORS বাইপাস প্রক্সি",
     "ProxySubtext": "নিজস্ব CORS বাইপাস প্রক্সি যোগ করুন",
     "HostproxyButton": "নিজস্ব প্রক্সি হোস্ট করুন",
-    "saveproxy": "সংরক্ষণ করুন",
 
     // Location
     "UserLocText": "আপনার অবস্থান লিখুন",
     "UserLocSubtext": "যদি আবহাওয়া অবস্থান সঠিক না হয়",
     "userLoc": "আপনার শহর বা স্থানাঙ্ক (অক্ষাংশ, দ্রাঘিমাংশ)",
     "useGPS": "জিপিএস ব্যবহার করুন",
-    "saveLoc": "সংরক্ষণ করুন",
 
     // Weather
     "WeatherApiText": "আপনার WeatherAPI কী লিখুন",
@@ -70,8 +72,6 @@ const bn = {
     "userAPI": "আপনার WeatherAPI কী",
     "LearnMoreButton": "আরও জানুন",
     "saveAPI": "সংরক্ষণ করুন",
-    "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
-    "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
 
     // Body Items
     // Calendar
@@ -86,6 +86,9 @@ const bn = {
     "bookmarkViewGrid": "গ্রিড",
     "bookmarkViewList": "লিস্ট",
     "bookmarkSearch": "বুকমার্ক সার্চ করুন",
+    "editBookmarkHeading": "বুকমার্ক সম্পাদনা করুন",
+    "editBookmarkName": "বুকমার্কের নাম",
+    "editBookmarkURL": "বুকমার্কের URL",
 
     // New Tab Item
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
@@ -106,6 +109,7 @@ const bn = {
     },
 
     // Search Engines
+    "defaultEngine": "ডিফল্ট",
     "googleEngine": "গুগল",
     "duckEngine": "ডাকডাকগো",
     "bingEngine": "বিং",
@@ -119,16 +123,24 @@ const bn = {
     "copilot": "কোপাইলট",
     "claude": "ক্লড",
     "perplexity": "পারপ্লেক্সিটি",
-    "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+    // "firefly": "অ্যাডোবি ফায়ারফ্লাই",
+    "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",
+    "rangColor": "রঙ নির্বাচন করুন",
     "backupText": "ব্যাকআপ করুন",
     "restoreText": "পুনরুদ্ধার করুন",
-    "rangColor": "রঙ নির্বাচন করুন",
+    "resetsettings": "সেটিংস পুনরায় সেট করুন",
+    "menuCloseText": "বন্ধ করুন",
 
     // Dialog boxes (alerts)
+    "okText": "ঠিক আছে",
+    "yesText": "হ্যাঁ",
+    "noText": "না",
+    "agreeText": "আমি রাজি",
+    "cancelText": "বাতিল করুন",
     "confirmWallpaper": "আপনি কি আজকের জন্য একটি নতুন ছবি ওয়ালপেপার হিসেবে সেট করতে চান?",
     "confirmRestore": "আপনি কি নিশ্চিত যে আপনি আপনার সেটিংস রিসেট করতে চান? এটি পূর্বাবস্থায় ফেরানো যাবে না।",
     "Nobackgroundset": "বর্তমানে কোন ব্যাকগ্রাউন্ড ইমেজ সেট করা হয়নি।",

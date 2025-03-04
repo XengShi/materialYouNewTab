@@ -6,13 +6,55 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", function () {
+    const hideWeather = document.getElementById("hideWeather");
+    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+
+    // Select all elements that need to be disabled
+    const elementsToDisable = document.querySelectorAll(".weather");
+
+    // Retrieve saved state from localStorage (default: false if null)
+    const savedState = localStorage.getItem("hideWeatherVisible") === "true";
+    hideWeatherCheckbox.checked = savedState;
+    hideWeather.style.visibility = savedState ? "hidden" : "visible";
+
+    // Function to toggle the 'inactive' class
+    function toggleInactiveState(isInactive) {
+        elementsToDisable.forEach(element => {
+            element.classList.toggle("inactive", isInactive);
+        });
+    }
+
+    // Apply initial state
+    toggleInactiveState(savedState);
+
+    // Show weather widgets only if toggle is unchecked
+    if (!savedState) {
+        getWeatherData();
+    }
+
+    hideWeatherCheckbox.addEventListener("change", () => {
+        const isChecked = hideWeatherCheckbox.checked;
+        hideWeather.style.visibility = isChecked ? "hidden" : "visible";
+        localStorage.setItem("hideWeatherVisible", isChecked);
+
+        // Apply inactive class to disable elements visually
+        toggleInactiveState(isChecked);
+
+        if (!isChecked) {
+            getWeatherData();
+        }
+    });
+});
+
+async function getWeatherData() {
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
     const saveAPIButton = document.getElementById("saveAPI");
     const saveLocButton = document.getElementById("saveLoc");
-    const useGPSButton = document.getElementById("useGPS");
+    const gpsToggle = document.getElementById("useGPScheckbox");
+    const locationCont = document.getElementById("locationCont");
 
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -41,6 +83,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         location.reload();
     });
 
+    // Handle GPS toggle change
+    gpsToggle.addEventListener("change", async () => {
+        if (gpsToggle.checked) {
+            const message = translations[currentLanguage]?.GPSDisclaimer || translations["en"].GPSDisclaimer;
+            const confirmGPS = await confirmPrompt(message, agreeText, cancelText);
+
+            if (!confirmGPS) {
+                gpsToggle.checked = false; // Revert toggle if user cancels
+                return;
+            }
+            localStorage.setItem("useGPS", true);
+            locationCont.classList.add("inactive");
+        } else {
+            localStorage.setItem("useGPS", false);
+            locationCont.classList.remove("inactive");
+        }
+        location.reload();
+    });
+
+    // Handle manual location input
+    saveLocButton.addEventListener("click", () => {
+        const userLocation = userLocInput.value.trim();
+        localStorage.setItem("weatherLocation", userLocation);
+        localStorage.setItem("useGPS", false);
+        userLocInput.value = "";
+        fetchWeather();
+        location.reload();
+    });
+
     // Default Weather API key
     const weatherApiKeys = [
         "d36ce712613d4f21a6083436240910",
@@ -62,8 +133,58 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Determine the location to use
     let currentUserLocation = savedLocation;
 
-    // Flag indicating whether to use GPS
-    const useGPS = JSON.parse(localStorage.getItem("useGPS"));
+    // Load the saved GPS state from localStorage
+    const useGPS = JSON.parse(localStorage.getItem("useGPS")) || false;
+    gpsToggle.checked = useGPS;
+    if (useGPS) locationCont.classList.add("inactive");
+
+
+    // Function to fetch GPS-based location
+    async function fetchGPSLocation() {
+        const getLocationFromGPS = () => {
+            return new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                        });
+                    },
+                    (error) => reject(error),
+                    { timeout: 6000 }
+                );
+            });
+        };
+
+        try {
+            const { latitude, longitude } = await getLocationFromGPS();
+            return `${latitude},${longitude}`;
+        } catch (error) {
+            console.error("Failed to retrieve GPS Location:", error);
+        }
+    }
+
+    // Fetch location based on user preference
+    await (async function initializeLocation() {
+        try {
+            if (useGPS) currentUserLocation = await fetchGPSLocation();
+
+            if (!currentUserLocation) {
+                // Fallback to IP-based location if no manual input
+                const ipInfo = "https://ipinfo.io/json/";
+                const locationData = await fetch(ipInfo);
+                const ipLocation = await locationData.json();
+                currentUserLocation = ipLocation.loc;
+            }
+
+            // Fetch weather data
+            fetchWeather();
+        } catch (error) {
+            console.error("Failed to retrieve IP-based location:", error);
+            currentUserLocation = "auto:ip";
+            fetchWeather();
+        }
+    })();
 
     // Fetch weather data based on a location
     async function fetchWeather() {
@@ -129,9 +250,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
                 const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
+                // Check if language is RTL
+                const isRTL = rtlLanguages.includes(currentLanguage);
+
                 // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel; // Fallback to English if translation is missing
-                document.getElementById("humidityLevel").textContent = `${humidityLabel} ${localizedHumidity}%`;
+                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+                document.getElementById("humidityLevel").textContent = isRTL
+                    ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
+                    : `${humidityLabel} ${localizedHumidity}%`;
 
                 // Event Listener for the Fahrenheit toggle
                 const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
@@ -153,7 +279,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                         // Update feels like
                         const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
                     } else {
                         // Update temperature
                         tempElement.textContent = localizedTempCelsius;
@@ -164,14 +292,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                         // Update feels like
                         const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
-                        feelsLikeElement.textContent = `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        feelsLikeElement.textContent = isRTL
+                            ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
+                            : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
                     }
                 };
                 updateTemperatureDisplay();
 
                 // Setting weather Icon
                 const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn", "https://cdn");
+                const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
                 document.getElementById("wIcon").src = weatherIcon;
 
                 // Define minimum width for the slider based on the language
@@ -200,94 +330,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Error fetching weather data:", error);
         }
     }
-
-    // Function to fetch GPS-based location
-    async function fetchGPSLocation() {
-        try {
-            const getLocationFromGPS = () => {
-                return new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            resolve({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        },
-                        (error) => reject(error),
-                        { timeout: 4000 }
-                    );
-                });
-            };
-
-            const { latitude, longitude } = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
-        } catch (error) {
-            console.error("GPS Location retrieval failed: ", error);
-        }
-    }
-
-    // Fetch location dynamically based on user preference
-    await (async function initializeLocation() {
-        try {
-            if (useGPS) {
-                try {
-                    // Use GPS for dynamic location
-                    currentUserLocation = await fetchGPSLocation();
-                } catch {
-                    console.log("Failed to use GPS for location:", error);
-                }
-            }
-
-            if (!currentUserLocation) {
-                // Fallback to IP-based location if no manual input
-                const geoLocation = "https://ipinfo.io/json/";
-                const locationData = await fetch(geoLocation);
-                const parsedLocation = await locationData.json();
-                currentUserLocation = parsedLocation.loc;
-            }
-
-            // Fetch weather data
-            fetchWeather(currentUserLocation);
-        } catch (error) {
-            console.error("Failed to determine location:", error);
-            currentUserLocation = "auto:ip";
-            fetchWeather(currentUserLocation);
-        }
-    })();
-
-    // Handle "Use GPS" button click
-    useGPSButton.addEventListener("click", () => {
-        // Set the flag to use GPS dynamically and remove manual location
-        localStorage.setItem("useGPS", true);
-        localStorage.removeItem("weatherLocation");
-        location.reload();
-    });
-
-    // Handle manual location input
-    saveLocButton.addEventListener("click", () => {
-        const userLocation = userLocInput.value.trim();
-        localStorage.setItem("weatherLocation", userLocation);
-        localStorage.setItem("useGPS", false);
-        userLocInput.value = "";
-        fetchWeather(userLocation);
-        location.reload();
-    });
-});
+}
 
 
 // Save and load toggle state
 document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCheckbox = document.getElementById("hideWeatherCheckbox");
+    const hideWeatherCard = document.getElementById("hideWeatherCard");
     const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCheckbox.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    hideWeatherCard.addEventListener("change", function () {
+        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
     });
 
     fahrenheitCheckbox.addEventListener("change", function () {
         saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
     });
 
-    loadCheckboxState("hideWeatherCheckboxState", hideWeatherCheckbox);
+    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
     loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
 });

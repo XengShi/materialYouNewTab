@@ -16,6 +16,14 @@ const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
 const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
 const bookmarkViewList = document.getElementById("bookmarkViewList");
 
+const editBookmarkModal = document.getElementById("editBookmarkModal");
+const editBookmarkName = document.getElementById("editBookmarkName");
+const editBookmarkURL = document.getElementById("editBookmarkURL");
+const editBookmarkFavicon = document.getElementById("editBookmarkFavicon");
+const saveBookmarkChanges = document.getElementById("saveBookmarkChanges");
+const cancelBookmarkEdit = document.getElementById("cancelBookmarkEdit");
+let currentBookmarkId = null;
+
 var bookmarksAPI;
 if (isFirefox) {
     bookmarksAPI = browser.bookmarks;
@@ -39,11 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function (event) {
-        if (!bookmarkSidebar.contains(event.target) && !bookmarkButton.contains(event.target) && bookmarkSidebar.classList.contains("open")) {
+        const modalContainer = document.getElementById("prompt-modal-container");
+        // If modal is open, don't close the sidebar
+        if (modalContainer && modalContainer.style.display === "flex") {
+            return;
+        }
+
+        if (
+            !bookmarkSidebar.contains(event.target) &&
+            !bookmarkButton.contains(event.target) &&
+            !editBookmarkModal.contains(event.target) &&
+            bookmarkSidebar.classList.contains("open")
+        ) {
             toggleBookmarkSidebar();
+
+            if (editBookmarkModal.style.display !== "none") {
+                editBookmarkModal.style.display = "none";
+            }
         }
     });
 
+    // Search Functionality
     bookmarkSearch.addEventListener("input", function () {
         const searchTerm = bookmarkSearch.value.toLowerCase();
         const bookmarks = bookmarkList.querySelectorAll("li[data-url], li.folder"); // Include both bookmarks and folders
@@ -198,11 +222,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const sortedNodes = [...folders, ...bookmarks];
 
         for (let node of sortedNodes) {
-            if (node.id === "1") {
-                continue;
-            }
+            if (node.id === "1") continue;
+
             if (node.children && node.children.length > 0) {
                 let folderItem = document.createElement("li");
+
+                folderItem.dataset.id = node.id; // Add ID as dataset for context menu
 
                 // Use the SVG icon from HTML
                 const folderIcon = document.getElementById("folderIconTemplate").cloneNode(true);
@@ -229,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 list.appendChild(folderItem);
             } else if (node.url) {
                 let item = document.createElement("li");
+                item.dataset.id = node.id; // Add ID as dataset for context menu
                 item.dataset.url = node.url; // Add URL as dataset for search functionality
                 let link = document.createElement("a");
                 link.href = node.url;
@@ -247,11 +273,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 deleteButton.textContent = "✖";
                 deleteButton.classList.add("bookmark-delete-button");
 
-                deleteButton.addEventListener("click", function (event) {
+                deleteButton.addEventListener("click", async function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark).replace("{title}", node.title || node.url)}`)) {
+                    const confirmMessage = (translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)
+                        .replace("{title}", node.title || node.url);
+
+                    if (await confirmPrompt(confirmMessage)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -308,6 +337,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return list;
     }
+
+    // Right-click (context menu) event
+    bookmarkList.addEventListener("contextmenu", function (event) {
+        event.preventDefault(); // Prevent default right-click menu
+
+        const bookmarkItem = event.target.closest("li[data-id]");
+        if (!bookmarkItem) return;
+
+        currentBookmarkId = bookmarkItem.dataset.id;
+        const bookmarkTitle = bookmarkItem.querySelector("a").textContent.trim();
+        const bookmarkURL = bookmarkItem.dataset.url;
+
+        const faviconURL = `https://www.google.com/s2/favicons?domain=${new URL(bookmarkURL).hostname}&sz=256`;
+
+        // Populate modal fields
+        editBookmarkName.value = bookmarkTitle;
+        editBookmarkURL.value = bookmarkURL;
+        editBookmarkFavicon.src = faviconURL;
+        editBookmarkFavicon.onerror = () => {
+            editBookmarkFavicon.src = "./svgs/shortcuts_icons/offline.svg";
+        };
+
+        // Show modal
+        editBookmarkModal.style.display = "block";
+    });
+
+    // Disable save button if URL is empty
+    editBookmarkURL.addEventListener("input", () => {
+        saveBookmarkChanges.disabled = editBookmarkURL.value.trim() === "";
+    });
+
+    // Save button action
+    saveBookmarkChanges.onclick = function () {
+        if (!currentBookmarkId) return;
+
+        const updatedTitle = editBookmarkName.value.trim();
+        const updatedURL = encodeURI(editBookmarkURL.value.trim());
+
+        const updatedData = { title: updatedTitle, url: updatedURL };
+
+        if (isFirefox) {
+            bookmarksAPI.update(currentBookmarkId, updatedData).then(() => {
+                updateBookmark(currentBookmarkId, updatedTitle, updatedURL);
+                editBookmarkModal.style.display = "none";
+            }).catch(err => {
+                console.error("Error updating bookmark:", err);
+            });
+        } else {
+            bookmarksAPI.update(currentBookmarkId, updatedData, function () {
+                if (chrome.runtime.lastError) {
+                    console.error("Error updating bookmark:", chrome.runtime.lastError);
+                    return;
+                }
+                updateBookmark(currentBookmarkId, updatedTitle, updatedURL);
+                editBookmarkModal.style.display = "none";
+            });
+        }
+
+        loadBookmarks();
+    };
+
+    // Cancel button action
+    cancelBookmarkEdit.onclick = function () {
+        editBookmarkModal.style.display = "none";
+    };
+
+    // Function to update after edit
+    function updateBookmark(bookmarkId, title, url) {
+        const bookmarkItem = document.querySelector(`li[data-id="${bookmarkId}"]`);
+        if (bookmarkItem) {
+            const link = bookmarkItem.querySelector("a");
+            link.textContent = title;
+            link.href = url;
+            bookmarkItem.dataset.url = url;
+        }
+    }
+
+    // Move focus to URL field when Enter is pressed in Name field
+    editBookmarkName.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            editBookmarkURL.focus();
+        }
+    });
+
+    // Trigger Save button when Enter is pressed in URL field
+    editBookmarkURL.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (!saveBookmarkChanges.disabled) {
+                saveBookmarkChanges.click();
+            }
+        }
+    });
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
@@ -315,9 +438,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 
-    bookmarksCheckbox.addEventListener("change", function () {
+    bookmarksCheckbox.addEventListener("change", async function () {
         let bookmarksPermission;
         if (isFirefox) {
             bookmarksPermission = browser.permissions;
@@ -355,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
         } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            await alertPrompt(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
@@ -374,10 +496,18 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-})
+});
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
+    // Prevent if modal is open
+    const modalContainer = document.getElementById("prompt-modal-container");
+    if (modalContainer?.style.display === "flex") return;
+
+    if (menuBar.style.display !== "none") {
+        return;
+    }
+
     if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
         if (bookmarksCheckbox.checked) {
             bookmarkButton.click();

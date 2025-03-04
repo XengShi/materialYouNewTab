@@ -66,8 +66,8 @@ function updateDate() {
             cs: `${dayName}, ${dayOfMonth}. ${monthName}`,
             hi: `${dayName}, ${dayOfMonth} ${monthName}`,
             it: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName.substring(0, 3)}`,
-            ja: `${dayName.substring(0, 1)}, ${monthName}${dayOfMonth}`,
-            ko: `${dayName.substring(0, 1)}, ${monthName} ${dayOfMonth}일`,
+            ja: `${monthName} ${dayOfMonth}日(${dayName.substring(0, 1)})`,
+            ko: `${monthName} ${dayOfMonth}일(${dayName.substring(0, 1)})`,
             pt: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             ru: `${dayName.substring(0, 2)}, ${dayOfMonth} ${monthName.substring(0, 4)}.`,
             es: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
@@ -79,6 +79,7 @@ function updateDate() {
             az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
             sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
             hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
+            ur: `${dayName}، ${dayOfMonth} ${monthName}`,
             default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
         };
         document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -117,7 +118,7 @@ function updateanalogclock() {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(361deg)`;
         secondreset = true;
-    } else if (secondreset !== true) {
+    } else {
         document.getElementById("second").style.transition = "transform 1s ease";
         document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     }
@@ -192,14 +193,15 @@ function updatedigiClock() {
         zh_TW: `${dayOfMonth}日${dayName}`,
         cs: `${dayName}, ${dayOfMonth}.`,
         hi: `${dayName}, ${dayOfMonth}`,
-        ja: `${dayOfMonth} ${dayName.substring(0, 1)}`,
-        ko: `${dayOfMonth} ${dayName.substring(0, 1)}`,
+        ja: `${dayOfMonth}日 (${dayName[0]})`,
+        ko: `${dayOfMonth}일 (${dayName[0]})`,
         pt: `${dayName}, ${dayOfMonth}`,
         ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
         vi: `${dayOfMonth} ${dayName}`,
         idn: `${dayOfMonth} ${dayName}`,
         fr: `${dayName} ${dayOfMonth}`, // Mardi 11
         hu: `${dayName} ${dayOfMonth}`, // Kedd 11
+        ur: `${dayName}، ${dayOfMonth}`,
         default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
     };
     const dateString = dateFormats[currentLanguage] || dateFormats.default;
