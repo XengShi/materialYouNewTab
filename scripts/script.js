@@ -52,7 +52,7 @@ searchWith.addEventListener('click', function (event) {
 
 function toggleSearchEngines(category) {
     const defaultItems = {
-        'search-with': "engine1",
+        'search-with': "engine0",
         'search-on': "engine5",
     }
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
