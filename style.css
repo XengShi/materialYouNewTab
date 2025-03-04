@@ -200,11 +200,11 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 		:has(#darkTheme:checked)
 	)
-> *:not(.menuBar, #bookmarksContainer),
+	> *:not(.menuBar, #bookmarksContainer),
 body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 		:has(#darkTheme:checked)
 	)
-:is(.menuCont, .bookmark-sidebar) {
+	:is(.menuCont, .bookmark-sidebar) {
 	filter: invert(1) hue-rotate(180deg);
 	-webkit-filter: invert(1) hue-rotate(180deg);
 	& #darkTheme,
@@ -244,7 +244,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 .centerDiv:has(.resultBox.show) ~ #shortcuts-section,
 .centerDiv:has(.dropdown-content[style="display: block;"])
-~ #shortcuts-section {
+	~ #shortcuts-section {
 	z-index: -1;
 }
 
@@ -719,11 +719,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	cursor: pointer;
 }
 .bookmark-view-as-container
-#bookmarkGridCheckbox:is(:checked)
-~ #bookmarkViewGrid,
+	#bookmarkGridCheckbox:is(:checked)
+	~ #bookmarkViewGrid,
 .bookmark-view-as-container
-#bookmarkGridCheckbox:is(:not(:checked))
-~ #bookmarkViewList {
+	#bookmarkGridCheckbox:is(:not(:checked))
+	~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -1869,7 +1869,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: absolute;
 	/* This is the standard height of one row */
 	height: calc(
-			var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding)
+		var(--shortcut-size) + var(--gap) + var(--shortcut-bar-gap-and-padding)
 	);
 	visibility: hidden;
 }
@@ -1879,10 +1879,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: transform 0.5s;
 	margin-top: calc(var(--gap) - var(--shortcut-bar-gap-and-padding));
 	max-width: calc(
-			var(--max-shortcut-bar-width) -
+		var(--max-shortcut-bar-width) -
 			mod(
-			var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
-			var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
+				var(--max-shortcut-bar-width) - var(--shortcut-bar-gap-and-padding),
+				var(--shortcut-size) + var(--shortcut-bar-gap-and-padding)
 			)
 	);
 	display: flex;
@@ -2475,8 +2475,12 @@ input:checked + .toggle:before {
 }
 
 @keyframes rotate-button {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(-360deg); }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
 }
 
 #newShortcutButton svg {
@@ -2485,11 +2489,6 @@ input:checked + .toggle:before {
 
 #newShortcutButton:active svg {
 	transform: scale(1.2);
-}
-
-.rotateResetButton {
-	transform: rotate(-360deg);
-	transition: transform 0.3s ease;
 }
 
 #newShortcutButton.inactive {
@@ -2512,7 +2511,7 @@ input:checked + .toggle:before {
 	font-style: italic;
 }
 
-.shortcut-drag{
+.shortcut-drag {
 	height: 70px;
 	width: 70px;
 	display: flex;
@@ -2942,8 +2941,8 @@ input:checked + .toggle:before {
 	border-radius: 50%;
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow: inset 0 0 0 4px var(--darkColor-blue),
-	inset 0 0 0 9.7px var(--accentLightTint-blue),
-	inset 0 0 0 40px var(--darkColor-blue);
+		inset 0 0 0 9.7px var(--accentLightTint-blue),
+		inset 0 0 0 40px var(--darkColor-blue);
 	cursor: pointer;
 }
 
@@ -3240,7 +3239,7 @@ input:checked + .toggle:before {
 		width: 100%;
 	}
 	#shortcuts-section:has(~ .menuBar #shortcut_switchcheckbox:checked)
-	.shortcutsContainer {
+		.shortcutsContainer {
 		margin-top: 0;
 		flex-wrap: nowrap;
 	}
@@ -3733,7 +3732,7 @@ input:checked + .toggle:before {
 .dark-theme #menuButton {
 	border: 6px solid var(--accentLightTint-blue);
 	box-shadow: inset 0 0 0 4px #858585,
-	inset 0 0 0 9.7px var(--accentLightTint-blue), inset 0 0 0 40px #bfbfbf;
+		inset 0 0 0 9.7px var(--accentLightTint-blue), inset 0 0 0 40px #bfbfbf;
 }
 
 .dark-theme #menuCloseButton,
