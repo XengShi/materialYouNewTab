@@ -43,7 +43,7 @@ searchWith.addEventListener('click', function (event) {
     toggleSearchEngines(activeSearchMode);
 
     event.stopPropagation();
-    searchBar.classList.add("active");
+    searchbar.classList.add("active");
 
     setTimeout(() => {
         searchEnginesContainer.classList.remove('show');
