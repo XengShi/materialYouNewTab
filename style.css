@@ -1789,7 +1789,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 15px 0 10px;
+	margin: 0 16px 0 10px;
 	cursor: pointer;
 }
 
@@ -1799,8 +1799,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	background-color: var(--whitishColor-blue);
-	width: 19px;
-	height: 19px;
+	width: 22px;
+	height: 22px;
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
