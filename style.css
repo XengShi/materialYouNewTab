@@ -506,7 +506,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	height: 100%;
 	top: 0;
 	right: 0;
-	z-index: 2;
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
@@ -575,7 +574,8 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
+	padding: 30px 20px 50px 20px;
+	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar.open {
@@ -586,11 +586,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
 	right: 412px;
 	z-index: 5;
-}
-
-.bookmark-sidebar-header {
-	padding: 30px 20px 50px 20px;
-	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar-header h2 {
@@ -610,7 +605,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	background-color: var(--accentLightTint-blue);
 	margin-top: -30px;
-	position: relative;
 }
 
 .bookmark-search-container::after {
@@ -1993,15 +1987,12 @@ body #bookmarkButton.bookmark-button.rotate {
 .aiToolsCont {
 	height: 50px;
 	width: fit-content;
-	/* background-color: yellow; */
-	overflow-x: hidden;
 	border-radius: 100px;
 	position: fixed;
 	left: var(--gap);
 	bottom: var(--gap);
 	margin: auto;
 	display: flex;
-
 	max-width: calc(100% - 140px);
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -3200,7 +3191,6 @@ input:checked + .toggle:before {
 		--gap: 1rem;
 	}
 	#shortcuts-section {
-		max-width: 30rem;
 		position: fixed;
 		bottom: 62px;
 		width: 100%;
