@@ -2534,6 +2534,11 @@ input:checked + .toggle:before {
 	padding: 15px 10px 15px 6px;
 }
 
+.dragging {
+	opacity: 0.5;
+	transform: scale(1.05);
+}
+
 .shortcutSettingsEntry:last-child {
 	margin-bottom: 0;
 }
