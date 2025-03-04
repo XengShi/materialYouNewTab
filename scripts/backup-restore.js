@@ -42,9 +42,7 @@ async function backupData() {
 
         console.log("Backup completed successfully!");
     } catch (error) {
-        await alertPrompt(
-            (translations[currentLanguage]?.failedbackup || translations["en"].failedbackup) + error.message
-        );
+        await alertPrompt((translations[currentLanguage]?.failedbackup || translations["en"].failedbackup) + error.message);
     }
 }
 

@@ -102,7 +102,7 @@ const es = {
 
     // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "DuckDuckGo",
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",

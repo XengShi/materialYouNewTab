@@ -1,0 +1,120 @@
+name: Bug Report
+description: Report a bug in Material You NewTab.
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue with **Material You NewTab**!
+        Before submitting, please check if the issue already exists in the [issues list](https://github.com/XengShi/materialYouNewTab/issues).
+        If you need help, feel free to ask in our [Telegram support group](https://t.me/+i-ekvlM7yoU1Yjc1).
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we reach you if we need more info?
+      placeholder: ex. Your Telegram username, email, or GitHub profile (optional)
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the issue clearly, including what you expected to happen versus what actually happened.
+      placeholder: "### Bug Description\n\n### Expected Behavior\n\n### Actual Behavior"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: extension-version
+    attributes:
+      label: Extension Version
+      description: What version of Material You NewTab are you using?
+      options:
+        - Latest Stable Release (Chrome Web Store)
+        - Development Build (Main Branch)
+        - Other (Mention Below)
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: extension-version-id
+    attributes:
+      label: Extension Version ID
+      description: If you selected "Other" above, mention your extension version.
+      placeholder: ex. v3, v2.4, etc.
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browser are you using?
+      multiple: true
+      options:
+        - Google Chrome
+        - Mozilla Firefox
+        - Microsoft Edge
+        - Brave
+        - Opera
+        - Other (mention below)
+    validations:
+      required: true
+
+  - type: input
+    id: browser-name
+    attributes:
+      label: Browser Name
+      description: If you selected "Other" above, mention your browser name.
+      placeholder: ex. Vivaldi, Safari, etc.
+    validations:
+      required: false
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: Which OS are you using?
+      placeholder: ex. Windows 10, macOS 14, Ubuntu 22.04
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how to reproduce the bug step by step.
+      placeholder: |
+        1. Open the new tab
+        2. Enable a specific feature
+        3. Observe the error or issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console Errors / Logs
+      description: If applicable, provide any console errors or logs. (Open DevTools → Console and copy errors)
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If possible, attach screenshots or screen recordings of the bug.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      description: By submitting this issue, you agree to follow the project's [Code of Conduct](https://github.com/XengShi/materialYouNewTab/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I have searched for existing issues and checked the FAQs before submitting this.
+          required: true
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
