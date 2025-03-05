@@ -113,6 +113,8 @@ function applyLanguage(lang) {
         'micIconInfo',
         'hideSearchWith',
         'hideSearchWithInfo',
+        'motivationalQuotesText',
+        'motivationalQuotesInfo',
         'search_suggestions_button',
         'search_suggestions_text',
         'digitalclocktitle',

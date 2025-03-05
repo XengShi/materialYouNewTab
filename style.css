@@ -1823,7 +1823,52 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-/* -----------end of Radio Button Customizing------------ */
+/* ----------- Quotes ------------ */
+.quotesCont {
+	margin-top: var(--gap);
+	position: relative;
+	display: flex;
+	font-size: 1rem;
+}
+
+.quotesContainer {
+	position: relative;
+	background-color: var(--accentLightTint-blue);
+	height: 100px;
+	width: 100%;
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 28px;
+}
+
+.authorName {
+	background: var(--bg-color-blue);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 6px 16px;
+	height: 40px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.authorName .qtRounder {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: -20px;
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+.authorName .qtRounder2 {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 0;
+	transform: rotate(90deg);
+	top: -20px;
+}
 
 /* ----------Shortcuts----------------- */
 
