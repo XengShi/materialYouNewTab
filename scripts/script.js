@@ -43,6 +43,7 @@ searchWith.addEventListener('click', function (event) {
     toggleSearchEngines(activeSearchMode);
 
     event.stopPropagation();
+    searchInput.focus();
     searchbar.classList.add("active");
 
     setTimeout(() => {
@@ -65,7 +66,13 @@ function toggleSearchEngines(category) {
         } else {
             engine.style.display = 'none';
         }
-        if (engine.lastElementChild.value === checkeditem) { engine.lastElementChild.click() }
+        if (engine.lastElementChild.value === checkeditem && !engine.lastElementChild.checked) {
+            engine.lastElementChild.click(); // Click only if it's not already selected
+
+            if (document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+        }
     });
 }
 

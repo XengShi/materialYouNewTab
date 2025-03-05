@@ -99,6 +99,7 @@ const hi = {
     "searchPlaceholder": "यहाँ लिखें...",
     "listenPlaceholder": "सुन रहे हैं...",
     "searchWithHint": "खोज माध्यम",
+    "searchOnHint": "खोज स्रोत",
     "userText": "यहाँ अपना टेक्स्ट लिखें",
 
     // Greeting
