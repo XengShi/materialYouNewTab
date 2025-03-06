@@ -99,45 +99,47 @@ function refreshQuoteIfNeeded() {
     }
 }
 
-// Initial load
-if (localStorage.getItem("motivationalQuotesVisible") !== "false") {
-    refreshQuoteIfNeeded(); // Display a quote immediately if possible
-    setInterval(refreshQuoteIfNeeded, 60 * 1000); // Check every minute
-}
 
 document.addEventListener("DOMContentLoaded", () => {
-    const hideSearchWith = document.getElementById("shortcut-switchcheckbox");
-    const quotesToggle = document.querySelector(".quotesToggle");
+    const hideSearchWith = document.getElementById("shortcut_switchcheckbox");
+    const quotesToggle = document.getElementById("quotesToggle");
     const motivationalQuotesCont = document.getElementById("motivationalQuotesCont");
     const motivationalQuotesCheckbox = document.getElementById("motivationalQuotesCheckbox");
     const searchWithContainer = document.getElementById("search-with-container");
 
-    // Load and apply the checkbox state
-    const ismotivationalQuotesVisible = localStorage.getItem("motivationalQuotesVisible") !== "false";
-    motivationalQuotesCheckbox.checked = ismotivationalQuotesVisible;
-    motivationalQuotesCont.style.visibility = ismotivationalQuotesVisible ? "visible" : "hidden";
+    // Load states from localStorage
+    hideSearchWith.checked = localStorage.getItem("showShortcutSwitch") === "true";
+    motivationalQuotesCheckbox.checked = localStorage.getItem("motivationalQuotesVisible") !== "false";
 
-    searchWithContainer.style.display = ismotivationalQuotesVisible ? "none" : "flex";
+    // Function to update quotes visibility based on both checkboxes
+    const updateMotivationalQuotesState = () => {
+        const isHideSearchWithEnabled = hideSearchWith.checked;
+        const isMotivationalQuotesEnabled = motivationalQuotesCheckbox.checked;
 
-    // Toggle Motivational Quotes display based on checkbox state
-    motivationalQuotesCheckbox.addEventListener("change", () => {
-        const isVisible = motivationalQuotesCheckbox.checked;
-        motivationalQuotesCont.style.visibility = isVisible ? "visible" : "hidden";
-        searchWithContainer.style.display = isVisible ? "none" : "flex";
-        localStorage.setItem("motivationalQuotesVisible", isVisible);
-        fetchAndDisplayQuote();
-    });
+        // Save state to localStorage
+        localStorage.setItem("motivationalQuotesVisible", isMotivationalQuotesEnabled);
 
-    // Add or remove 'inactive' class based on hideSearchWith state
-    const updateQuotesToggleState = () => {
-        if (hideSearchWith.checked) {
-            quotesToggle.classList.remove("inactive");
-        } else {
+        if (!isHideSearchWithEnabled) {
             quotesToggle.classList.add("inactive");
+            motivationalQuotesCont.style.visibility = "hidden";
+            return
+        }
+
+        quotesToggle.classList.remove("inactive");
+        searchWithContainer.style.display = isMotivationalQuotesEnabled ? "none" : "flex";
+        motivationalQuotesCont.style.visibility = isMotivationalQuotesEnabled ? "visible" : "hidden";
+
+
+        if (isMotivationalQuotesEnabled) {
+            refreshQuoteIfNeeded(); // Display a quote immediately if possible
+            setInterval(refreshQuoteIfNeeded, 60 * 1000); // Check every minute
         }
     };
 
-    // Apply initial state and listen for changes
-    updateQuotesToggleState();
-    hideSearchWith.addEventListener("change", updateQuotesToggleState);
+    // Apply initial state
+    updateMotivationalQuotesState();
+
+    // Event Listeners
+    hideSearchWith.addEventListener("change", updateMotivationalQuotesState);
+    motivationalQuotesCheckbox.addEventListener("change", updateMotivationalQuotesState);
 });
