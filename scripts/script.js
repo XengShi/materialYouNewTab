@@ -401,12 +401,7 @@ function changeFaviconColor() {
     favicon.href = encodedSvg;
     favicon.setAttribute('type', 'image/svg+xml');
 }
-
-// Set default color on first page load
-if (!localStorage.getItem('newFavicon')) {
-    changeFaviconColor();
-    localStorage.setItem('newFavicon', 'true');
-}
+changeFaviconColor();
 
 
 // ----Color Picker || ColorPicker----
