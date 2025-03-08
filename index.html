@@ -148,17 +148,18 @@
                 <button id="clearSearchButton">✖</button>
             </div>
             <!-- Adding Sorting buttons along with View Container -->
-            <div class="bookmark-sort-view-container">
-                <div class="bookmark-sort-container">
-                    <h3 id="bookmarkSortBy">Sort by</h3>
-                    <div>
-                        <button id="sortAlphabetical" class="bookmark-sort-button">A-Z</button>
+            <div class="bookmark-controls-container">
+                <div class="bookmark-control-group">
+                    <h3>Sort by</h3>
+                    <div class="button-group">
+                        <button id="sortAlphabetical" class="bookmark-sort-button active">A-Z</button>
                         <button id="sortTimeAdded" class="bookmark-sort-button">Old-New</button>
                     </div>
                 </div>
-                <div class="bookmark-view-as-container">
-                    <h3 id="bookmarkViewAs">View as</h3>
-                    <div>
+                
+                <div class="bookmark-control-group">
+                    <h3>View as</h3>
+                    <div class="button-group">
                         <input type="checkbox" id="bookmarkGridCheckbox" hidden />
                         <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
                         <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
