@@ -694,43 +694,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-.bookmark-view-as-container {
-	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px 32px;
-	& h3 {
-		font-size: 1rem;
-		color: var(--darkerColor-blue);
-	}
-}
-
-/* Combined controls container */
-.bookmark-sort-view-container {
+/* Updated CSS */
+.bookmark-controls-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 32px; /* Space between Sort by and View as sections */
     padding: 8px 32px;
-    gap: 20px; /* Space between sort and view sections */
 }
 
-/* Sort container styling */
-.bookmark-sort-container {
+.bookmark-control-group {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.bookmark-sort-container h3 {
+.bookmark-control-group h3 {
     font-size: 1rem;
     color: var(--darkerColor-blue);
     margin: 0;
+    white-space: nowrap;
 }
 
-/* Sort buttons - matching view button styling */
-.bookmark-sort-button {
+.button-group {
+    display: flex;
+    gap: 8px; /* Space between buttons */
+}
+
+/* Shared button styling */
+.bookmark-sort-button,
+.bookmark-view-as-button {
     background: transparent;
     border-radius: 20px;
     border: 2px solid var(--darkColor-blue);
@@ -742,18 +733,12 @@ body #bookmarkButton.bookmark-button.rotate {
     transition: all 0.2s ease;
 }
 
-/* Active state for sort buttons */
-.bookmark-sort-button.active {
+/* Active states */
+.bookmark-sort-button.active,
+#bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
+#bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
     background: var(--darkColor-blue);
     color: white;
-}
-
-/* Existing view container - keep as is */
-.bookmark-view-as-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0;
 }
 
 #bookmarkList ul {
