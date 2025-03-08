@@ -37,8 +37,8 @@ if (isFirefox) {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize sort buttons
-    updateSortButtons();    
-    
+    updateSortButtons();
+
     bookmarkButton.addEventListener("click", function () {
         toggleBookmarkSidebar();
         bookmarkSearchClearButton.click();
@@ -132,16 +132,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Sorting functionality
-    sortAlphabetical.addEventListener("click", function() { 
-    if (!this.classList.contains("active")) {
-        currentSortMethod = 'title';
-        localStorage.setItem("bookmarkSortMethod", "title");
-        updateSortButtons();
-        loadBookmarks();
-    }
+    sortAlphabetical.addEventListener("click", function () {
+        if (!this.classList.contains("active")) {
+            currentSortMethod = 'title';
+            localStorage.setItem("bookmarkSortMethod", "title");
+            updateSortButtons();
+            loadBookmarks();
+        }
     });
 
-    sortTimeAdded.addEventListener("click", function() {
+    sortTimeAdded.addEventListener("click", function () {
         if (!this.classList.contains("active")) {
             currentSortMethod = 'date';
             localStorage.setItem("bookmarkSortMethod", "date");
@@ -241,11 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
         const bookmarks = bookmarkNodes.filter(node => node.url);
 
-        // Sort folders and bookmarks separately
-        folders.sort((a, b) => a.title.localeCompare(b.title));
-        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
-
-         // Sorting folders and bookmarks separately by dateAdded
+        // Sorting folders and bookmarks separately by title or dateAdded
         if (currentSortMethod === 'title') {
             folders.sort((a, b) => a.title.localeCompare(b.title));
             bookmarks.sort((a, b) => a.title.localeCompare(b.title));
@@ -253,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
             folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
             bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
         }
-        
+
         // Combine folders and bookmarks, placing folders first
         const sortedNodes = [...folders, ...bookmarks];
 
@@ -470,6 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
+
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
