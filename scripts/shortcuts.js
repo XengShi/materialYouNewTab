@@ -86,8 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // disable drag behaviour of HomePage shortcuts on small screens
-    if (window.innerWidth > 500) {
+    // Disable drag behaviour of HomePage shortcuts on touch screens
+    if (navigator.maxTouchPoints === 0) {
         // Sortable for HomePage List
         new Sortable(homePageShortcutListElement, {
             animation: 150,
