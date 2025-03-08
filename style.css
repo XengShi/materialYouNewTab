@@ -1748,27 +1748,18 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint {
-	min-width: 128px;
+	min-width: 124px;
 	max-width: 156px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 14px;
+	padding: 13px;
 	position: relative;
-	margin-right: 16px;
+	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
+	cursor: pointer;
 	transition: transform 0.4s ease;
-}
-
-.searchWithCont .hint::after {
-	content: "";
-	position: absolute;
-	width: 6px;
-	height: 100%;
-	background-color: var(--accentLightTint-blue);
-	border-radius: 3px;
-	right: -20px;
 }
 
 .searchWithCont .hint:hover {
@@ -1779,6 +1770,16 @@ body #bookmarkButton.bookmark-button.rotate {
 .searchWithCont .hint:active {
 	scale: 0.98;
 }
+
+/* .searchWithCont .hint::after {
+	content: "";
+	position: absolute;
+	width: 6px;
+	height: 100%;
+	background-color: var(--accentLightTint-blue);
+	border-radius: 3px;
+	right: -20px;
+} */
 
 .searchEnginesContainer {
 	position: relative;
