@@ -24,6 +24,10 @@ const saveBookmarkChanges = document.getElementById("saveBookmarkChanges");
 const cancelBookmarkEdit = document.getElementById("cancelBookmarkEdit");
 let currentBookmarkId = null;
 
+const sortAlphabetical = document.getElementById("sortAlphabetical");
+const sortTimeAdded = document.getElementById("sortTimeAdded");
+let currentSortMethod = localStorage.getItem("bookmarkSortMethod") || 'title';
+
 var bookmarksAPI;
 if (isFirefox) {
     bookmarksAPI = browser.bookmarks;
@@ -32,7 +36,9 @@ if (isFirefox) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    // Initialize sort buttons
+    updateSortButtons();    
+    
     bookmarkButton.addEventListener("click", function () {
         toggleBookmarkSidebar();
         bookmarkSearchClearButton.click();
@@ -125,6 +131,31 @@ document.addEventListener("DOMContentLoaded", function () {
         bookmarkSearchClearButton.style.display = searchTerm ? "inline" : "none";
     });
 
+    // Sorting functionality
+    sortAlphabetical.addEventListener("click", function() { 
+    if (!this.classList.contains("active")) {
+        currentSortMethod = 'title';
+        localStorage.setItem("bookmarkSortMethod", "title");
+        updateSortButtons();
+        loadBookmarks();
+    }
+    });
+
+    sortTimeAdded.addEventListener("click", function() {
+        if (!this.classList.contains("active")) {
+            currentSortMethod = 'date';
+            localStorage.setItem("bookmarkSortMethod", "date");
+            updateSortButtons();
+            loadBookmarks();
+        }
+    });
+
+    function updateSortButtons() {
+        sortAlphabetical.classList.toggle("active", currentSortMethod === 'title');
+        sortTimeAdded.classList.toggle("active", currentSortMethod === 'date');
+    }
+
+
     bookmarkSearchClearButton.addEventListener("click", function () {
         bookmarkSearch.value = "";
         bookmarkSearch.dispatchEvent(new Event("input")); // Trigger input event to clear search results
@@ -214,10 +245,15 @@ document.addEventListener("DOMContentLoaded", function () {
         folders.sort((a, b) => a.title.localeCompare(b.title));
         bookmarks.sort((a, b) => a.title.localeCompare(b.title));
 
-        // Sort folders and bookmarks separately by dateAdded
-        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-
+         // Sorting folders and bookmarks separately by dateAdded
+        if (currentSortMethod === 'title') {
+            folders.sort((a, b) => a.title.localeCompare(b.title));
+            bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+        } else {
+            folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+            bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        }
+        
         // Combine folders and bookmarks, placing folders first
         const sortedNodes = [...folders, ...bookmarks];
 
@@ -434,7 +470,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ------------------------ End of Bookmark System -----------------------------------
-
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
