@@ -657,7 +657,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	height: calc(100% - 230px);
+	height: calc(100% - 250px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
@@ -3662,7 +3662,6 @@ input:checked + .toggle:before {
 	color: #888888;
 }
 
-/* Dark theme overrides */
 .dark-theme .bookmark-view-as-button,
 .dark-theme .bookmark-sort-button {
 	color: var(--darkerColor-dark);
