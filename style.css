@@ -690,49 +690,49 @@ body #bookmarkButton.bookmark-button.rotate {
 
 /* Updated CSS */
 .bookmark-controls-container {
-    display: flex;
-    gap: 32px; /* Space between Sort by and View as sections */
-    padding: 8px 32px;
+	display: flex;
+	gap: 32px; /* Space between Sort by and View as sections */
+	padding: 8px 32px;
 }
 
 .bookmark-control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .bookmark-control-group h3 {
-    font-size: 1rem;
-    color: var(--darkerColor-blue);
-    margin: 0;
-    white-space: nowrap;
+	font-size: 1rem;
+	color: var(--darkerColor-blue);
+	margin: 0;
+	white-space: nowrap;
 }
 
 .button-group {
-    display: flex;
-    gap: 8px; /* Space between buttons */
+	display: flex;
+	gap: 8px; /* Space between buttons */
 }
 
 /* Shared button styling */
 .bookmark-sort-button,
 .bookmark-view-as-button {
-    background: transparent;
-    border-radius: 20px;
-    border: 2px solid var(--darkColor-blue);
-    color: var(--darkColor-blue);
-    min-width: 60px;
-    font-size: 12px;
-    padding: 2px 9px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+	background: transparent;
+	border-radius: 20px;
+	border: 2px solid var(--darkColor-blue);
+	color: var(--darkColor-blue);
+	min-width: 60px;
+	font-size: 12px;
+	padding: 2px 9px;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 /* Active states */
 .bookmark-sort-button.active,
 #bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
 #bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
-    background: var(--darkColor-blue);
-    color: white;
+	background: var(--darkColor-blue);
+	color: white;
 }
 
 #bookmarkList ul {
@@ -3663,17 +3663,17 @@ input:checked + .toggle:before {
 }
 
 /* Dark theme overrides */
-.dark-theme .bookmark-view-as-container .bookmark-view-as-button,
+.dark-theme .bookmark-view-as-button,
 .dark-theme .bookmark-sort-button {
-    color: var(--textColorDark-blue) !important;
-    border-color: var(--darkColor-blue);
+	color: var(--darkerColor-dark);
+	border-color: var(--darkColor-blue);
 }
 
-.dark-theme .bookmark-view-as-container #bookmarkViewGrid.active,
-.dark-theme .bookmark-view-as-container #bookmarkViewList.active,
+.dark-theme #bookmarkViewGrid.active,
+.dark-theme #bookmarkViewList.active,
 .dark-theme .bookmark-sort-button.active {
-    background: var(--darkColor-blue);
-    color: white !important;
+	background: var(--darkColor-blue);
+	color: white !important;
 }
 
 .dark-theme #bookmarkSearch {
