@@ -657,7 +657,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	height: calc(100% - 250px);
+	height: calc(100% - 260px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
