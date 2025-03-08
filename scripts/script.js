@@ -55,10 +55,10 @@ function toggleSearchEngines(category) {
     const defaultItems = {
         'search-with': "engine0",
         'search-on': "engine5",
-    }
+    };
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
     const searchModeName = category === "search-with" ? "searchWithHint" : "searchOnHint";
-    searchWith.innerText = translations[currentLanguage][searchModeName] || translations["en"][searchModeName]
+    searchWith.innerText = translations[currentLanguage][searchModeName] || translations["en"][searchModeName];
 
     searchEngines.forEach(engine => {
         if (engine.getAttribute('data-category') === category) {
