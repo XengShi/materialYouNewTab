@@ -580,7 +580,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("showShortcutSwitch", false);
     }
 
-    initShortCutSwitch(element);
+    initShortCutSwitch(hideSearchWith);
 });
 
 document.addEventListener("keydown", function (event) {
