@@ -63,10 +63,12 @@ const fr = {
     "HostproxyButton": "Hébergez votre propre proxy",
 
     // Location
+    "useGPS": "Utiliser le GPS",
+    "useGPSInfo": "Activer le GPS pour des mises à jour en temps réel de la localisation",
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    "useGPS": "Utiliser le GPS",
+    "PrivacyPolicy": "Politique de confidentialité",
 
     // Weather
     "WeatherApiText": "Entrez votre clé WeatherAPI",
@@ -109,6 +111,7 @@ const fr = {
     },
 
     // Search Engines
+    "defaultEngine": "Par défaut",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
@@ -148,6 +151,7 @@ const fr = {
     "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
     "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
     "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
+    "GPSDisclaimer": "Vos données de localisation sont utilisées uniquement pour fournir des mises à jour météorologiques précises. Elles sont stockées temporairement dans le navigateur et ne sont ni partagées avec des services tiers, ni accessibles à nous.\n\nEn activant le GPS, vous consentez à partager localement votre localisation avec l'extension.",
     "failedbackup": "Échec de la sauvegarde: ",
     "restorecompleted": "Restauration terminée avec succès!",
     "restorefailed": "Échec de la restauration: ",

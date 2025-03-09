@@ -136,11 +136,14 @@ Below are screenshots of the process to guide you through each step visually.
 
 <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-2. **To Update the Homepage**:
+2. **Update the Homepage**:
 
-   - Open Firefox **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
+   - Open Firefox and **obtain the UUID**:
+      - Hover over the New Tab button (next to the tab close button). A tooltip will display the extension's unique ID, which looks like this: `0f31e1c1-d63c-4660-b950-8bfbda3bb20a`. Copy or note this ID.
+      - Alternatively, type `about:debugging#/runtime/this-firefox` in the address bar and find the extension's UUID there.
+   - Open **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
    - Under the **Homepage and new windows** section, select **Custom URLs...**.
-   - Paste the following URL:
+   - Paste the following URL, replacing the ID with your actual UUID:
      ```text
      moz-extension://e31d6701-f699-414f-bb4c-8fde495c432e/index.html
      ```
