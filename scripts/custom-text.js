@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Remove placeholder text when the user starts editing
-    userTextDiv.addEventListener("focus", function () {
+    userTextDiv.addEventListener("click", function () {
         if (userTextDiv.textContent === userTextDiv.dataset.placeholder) {
             userTextDiv.textContent = "";  // Clear the placeholder when focused
         }

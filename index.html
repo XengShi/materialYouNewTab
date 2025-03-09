@@ -31,6 +31,7 @@
     <script defer src="scripts/custom-text.js"></script>
     <script defer src="scripts/browser-utils.js"></script>
     <!-- <script defer src="scripts/search.js"></script> -->
+    <script defer src="scripts/quotes.js"></script>
     <script defer src="scripts/shortcuts.js"></script>
     <script defer src="scripts/script.js"></script>
     <script defer src="scripts/search-suggestions.js"></script>
@@ -868,6 +869,44 @@
                 </div>
             </div>
             <!-- ----------end of search with------------- -->
+            <div class="quotesCont" id="motivationalQuotesCont">
+                <div class="quotesContainer">
+                    Discover possibilities, spark creativity, and embrace the joy of browsing with every new tab you
+                    open!
+                </div>
+                <div class="authorName">
+                    <div class="qtRounder">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="qtRounder2">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span>XengShi</span>
+                </div>
+            </div>
+
         </div>
         <!-- --------end of rightDiv---------------------- -->
     </div>
@@ -1213,6 +1252,18 @@
                             </div>
                             <label class="switch">
                                 <input id="shortcut_switchcheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont" id="quotesToggle">
+                            <div class="texts">
+                                <div class="bigText" id="motivationalQuotesText">Motivational Quotes</div>
+                                <div class="infoText" id="motivationalQuotesInfo">Show quotes below the searchbar
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="motivationalQuotesCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>

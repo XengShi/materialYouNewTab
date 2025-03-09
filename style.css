@@ -1307,8 +1307,7 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ---------------------- */
 .ttteexxtt {
 	position: relative;
-	top: 2rem;
-	left: 10px;
+	top: 1.6rem;
 }
 
 #digitalClock[style="display: block;"] + .ttteexxtt {
@@ -1317,16 +1316,20 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #userText {
 	font-family: var(--main-font-family);
-	font-size: 1.4rem;
+	font-size: 1.36rem;
 	display: block;
 	word-wrap: break-word;
 	max-width: 18.75rem;
-	max-height: 4.2rem;
+	max-height: 4.3rem;
 	overflow-x: clip;
 	overflow-y: scroll;
 	text-overflow: ellipsis;
 	scrollbar-width: none;
 	margin-bottom: 10px;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 #userText::-webkit-scrollbar {
@@ -1334,7 +1337,11 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #date {
-	font-size: 1.4rem;
+	font-size: 1.36rem;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 .digidate {
@@ -1830,7 +1837,52 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-/* -----------end of Radio Button Customizing------------ */
+/* ----------- Quotes ------------ */
+.quotesCont {
+	margin-top: var(--gap);
+	position: relative;
+	display: flex;
+	font-size: 1rem;
+}
+
+.quotesContainer {
+	position: relative;
+	background-color: var(--accentLightTint-blue);
+	height: 100px;
+	width: 100%;
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 28px;
+}
+
+.authorName {
+	background: var(--bg-color-blue);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 6px 16px;
+	height: 40px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.authorName .qtRounder {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: -20px;
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+.authorName .qtRounder2 {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 0;
+	transform: rotate(90deg);
+	top: -20px;
+}
 
 /* ----------Shortcuts----------------- */
 
