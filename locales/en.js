@@ -82,6 +82,9 @@ const en = {
 
     // Bookmarks
     "bookmarksHeading": "Bookmarks",
+    "bookmarkSortBy": "Sort by",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Old-New",
     "bookmarkViewAs": "View as",
     "bookmarkViewGrid": "Grid",    // Keep this shorter
     "bookmarkViewList": "List",    // Keep this shorter
