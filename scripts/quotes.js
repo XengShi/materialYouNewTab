@@ -111,7 +111,21 @@ document.addEventListener("DOMContentLoaded", () => {
     hideSearchWith.checked = localStorage.getItem("showShortcutSwitch") === "true";
     motivationalQuotesCheckbox.checked = localStorage.getItem("motivationalQuotesVisible") !== "false";
 
-    // Function to update quotes visibility based on both checkboxes
+    let quoteInterval = null;
+    const clearQuotes = () => {
+        quotesContainer.textContent = "";
+        authorName.textContent = "";
+        localStorage.removeItem("currentQuote"); // Remove stored quote
+        localStorage.removeItem("lastQuoteUpdate");
+        localStorage.removeItem("defaultQuoteIndex");
+
+        if (quoteInterval) {
+            clearInterval(quoteInterval);
+            quoteInterval = null;
+        }
+    }
+
+    // Function to update quotes visibility
     const updateMotivationalQuotesState = () => {
         const isHideSearchWithEnabled = hideSearchWith.checked;
         const isMotivationalQuotesEnabled = motivationalQuotesCheckbox.checked;
@@ -121,19 +135,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!isHideSearchWithEnabled) {
             quotesToggle.classList.add("inactive");
-            motivationalQuotesCont.style.visibility = "hidden";
-            return
+            motivationalQuotesCont.style.display = "none";
+            clearQuotes();
+            return;
         }
 
         quotesToggle.classList.remove("inactive");
         searchWithContainer.style.display = isMotivationalQuotesEnabled ? "none" : "flex";
-        motivationalQuotesCont.style.visibility = isMotivationalQuotesEnabled ? "visible" : "hidden";
+        motivationalQuotesCont.style.display = isMotivationalQuotesEnabled ? "block" : "none";
 
 
         if (isMotivationalQuotesEnabled) {
-            refreshQuoteIfNeeded(); // Display a quote immediately if possible
-            setInterval(refreshQuoteIfNeeded, 60 * 1000); // Check every minute
-        }
+            refreshQuoteIfNeeded();
+
+            if (!quoteInterval) {
+                quoteInterval = setInterval(refreshQuoteIfNeeded, 60 * 1000);
+            }
+        } else clearQuotes();
     };
 
     // Apply initial state
