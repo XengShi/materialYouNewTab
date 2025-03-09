@@ -101,6 +101,7 @@ const hi = {
     "searchPlaceholder": "यहाँ लिखें...",
     "listenPlaceholder": "सुन रहे हैं...",
     "searchWithHint": "खोज माध्यम",
+    "searchOnHint": "खोज स्रोत",
     "userText": "यहाँ अपना टेक्स्ट लिखें",
 
     // Greeting
@@ -117,6 +118,8 @@ const hi = {
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज़्स",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI उपकरण",
