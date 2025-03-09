@@ -113,8 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let quoteInterval = null;
     const clearQuotes = () => {
-        quotesContainer.textContent = "";
-        authorName.textContent = "";
         localStorage.removeItem("currentQuote"); // Remove stored quote
         localStorage.removeItem("lastQuoteUpdate");
         localStorage.removeItem("defaultQuoteIndex");
