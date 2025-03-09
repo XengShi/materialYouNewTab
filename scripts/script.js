@@ -561,10 +561,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Hiding Search Icon And Search With Options for Search switch shortcut
-    const element = document.getElementById("shortcut_switchcheckbox");
-    element.addEventListener("change", (e) => {
+    const hideSearchWith = document.getElementById("shortcut_switchcheckbox");
+    hideSearchWith.addEventListener("change", (e) => {
         initShortCutSwitch(e.target);
-    })
+    });
 
     // Intialize shortcut switch
     if (localStorage.getItem("showShortcutSwitch")) {

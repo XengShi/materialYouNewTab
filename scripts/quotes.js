@@ -142,8 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         quotesToggle.classList.remove("inactive");
         searchWithContainer.style.display = isMotivationalQuotesEnabled ? "none" : "flex";
-        motivationalQuotesCont.style.display = isMotivationalQuotesEnabled ? "block" : "none";
-
+        motivationalQuotesCont.style.display = isMotivationalQuotesEnabled ? "flex" : "none";
 
         if (isMotivationalQuotesEnabled) {
             refreshQuoteIfNeeded();
@@ -158,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
     updateMotivationalQuotesState();
 
     // Event Listeners
-    hideSearchWith.addEventListener("change", updateMotivationalQuotesState);
+    hideSearchWith.addEventListener("change", () => {
+        searchWithContainer.style.display = "flex";
+        updateMotivationalQuotesState();
+    });
     motivationalQuotesCheckbox.addEventListener("change", updateMotivationalQuotesState);
 });
