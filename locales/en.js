@@ -52,6 +52,8 @@ const en = {
     "switchSearchModesInfo": "Click on ‘Search With’ to change the mode",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
+    "motivationalQuotesText": "Motivational Quotes",
+    "motivationalQuotesInfo": "Show quotes below the searchbar",
     "search_suggestions_button": "Search Suggestions",
     "search_suggestions_text": "Enable search suggestions",
 
@@ -84,6 +86,9 @@ const en = {
 
     // Bookmarks
     "bookmarksHeading": "Bookmarks",
+    "bookmarkSortBy": "Sort by",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Old-New",
     "bookmarkViewAs": "View as",
     "bookmarkViewGrid": "Grid",    // Keep this shorter
     "bookmarkViewList": "List",    // Keep this shorter

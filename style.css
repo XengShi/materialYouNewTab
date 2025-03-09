@@ -506,7 +506,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	height: 100%;
 	top: 0;
 	right: 0;
-	z-index: 2;
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
@@ -575,7 +574,8 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
+	padding: 30px 20px 50px 20px;
+	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar.open {
@@ -586,11 +586,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
 	right: 412px;
 	z-index: 5;
-}
-
-.bookmark-sidebar-header {
-	padding: 30px 20px 50px 20px;
-	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar-header h2 {
@@ -610,7 +605,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	background-color: var(--accentLightTint-blue);
 	margin-top: -30px;
-	position: relative;
 }
 
 .bookmark-search-container::after {
@@ -663,7 +657,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	height: calc(100% - 230px);
+	height: calc(100% - 260px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
@@ -694,20 +688,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-.bookmark-view-as-container {
+/* Updated CSS */
+.bookmark-controls-container {
 	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	justify-content: space-between;
-	align-items: center;
+	gap: 32px; /* Space between Sort by and View as sections */
 	padding: 8px 32px;
-	& h3 {
-		font-size: 1rem;
-		color: var(--darkerColor-blue);
-	}
 }
 
-.bookmark-view-as-container .bookmark-view-as-button {
+.bookmark-control-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.bookmark-control-group h3 {
+	font-size: 1rem;
+	color: var(--darkerColor-blue);
+	margin: 0;
+	white-space: nowrap;
+}
+
+.button-group {
+	display: flex;
+	gap: 8px; /* Space between buttons */
+}
+
+/* Shared button styling */
+.bookmark-sort-button,
+.bookmark-view-as-button {
 	background: transparent;
 	border-radius: 20px;
 	border: 2px solid var(--darkColor-blue);
@@ -715,15 +723,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	min-width: 60px;
 	font-size: 12px;
 	padding: 2px 9px;
-	margin-left: 10px;
 	cursor: pointer;
+	transition: all 0.2s ease;
 }
-.bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:checked)
-	~ #bookmarkViewGrid,
-.bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:not(:checked))
-	~ #bookmarkViewList {
+
+/* Active states */
+.bookmark-sort-button.active,
+#bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
+#bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -1300,8 +1307,7 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ---------------------- */
 .ttteexxtt {
 	position: relative;
-	top: 2rem;
-	left: 10px;
+	top: 1.6rem;
 }
 
 #digitalClock[style="display: block;"] + .ttteexxtt {
@@ -1310,16 +1316,20 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #userText {
 	font-family: var(--main-font-family);
-	font-size: 1.4rem;
+	font-size: 1.36rem;
 	display: block;
 	word-wrap: break-word;
 	max-width: 18.75rem;
-	max-height: 4.2rem;
+	max-height: 4.3rem;
 	overflow-x: clip;
 	overflow-y: scroll;
 	text-overflow: ellipsis;
 	scrollbar-width: none;
 	margin-bottom: 10px;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 #userText::-webkit-scrollbar {
@@ -1327,7 +1337,11 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #date {
-	font-size: 1.4rem;
+	font-size: 1.36rem;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 .digidate {
@@ -1856,7 +1870,52 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-/* -----------end of Radio Button Customizing------------ */
+/* ----------- Quotes ------------ */
+.quotesCont {
+	margin-top: var(--gap);
+	position: relative;
+	display: flex;
+	font-size: 1rem;
+}
+
+.quotesContainer {
+	position: relative;
+	background-color: var(--accentLightTint-blue);
+	height: 100px;
+	width: 100%;
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 28px;
+}
+
+.authorName {
+	background: var(--bg-color-blue);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 6px 16px;
+	height: 40px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.authorName .qtRounder {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: -20px;
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+.authorName .qtRounder2 {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 0;
+	transform: rotate(90deg);
+	top: -20px;
+}
 
 /* ----------Shortcuts----------------- */
 
@@ -2026,15 +2085,12 @@ body #bookmarkButton.bookmark-button.rotate {
 .aiToolsCont {
 	height: 50px;
 	width: fit-content;
-	/* background-color: yellow; */
-	overflow-x: hidden;
 	border-radius: 100px;
 	position: fixed;
 	left: var(--gap);
 	bottom: var(--gap);
 	margin: auto;
 	display: flex;
-
 	max-width: calc(100% - 140px);
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -3233,7 +3289,6 @@ input:checked + .toggle:before {
 		--gap: 1rem;
 	}
 	#shortcuts-section {
-		max-width: 30rem;
 		position: fixed;
 		bottom: 62px;
 		width: 100%;
@@ -3692,8 +3747,17 @@ input:checked + .toggle:before {
 	color: #888888;
 }
 
-.dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-	color: var(--textColorDark-blue) !important;
+.dark-theme .bookmark-view-as-button,
+.dark-theme .bookmark-sort-button {
+	color: var(--darkerColor-dark);
+	border-color: var(--darkColor-blue);
+}
+
+.dark-theme #bookmarkViewGrid.active,
+.dark-theme #bookmarkViewList.active,
+.dark-theme .bookmark-sort-button.active {
+	background: var(--darkColor-blue);
+	color: white !important;
 }
 
 .dark-theme #bookmarkSearch {
