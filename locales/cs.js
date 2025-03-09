@@ -82,6 +82,9 @@ const cs = {
 
     // Bookmarks
     "bookmarksHeading": "Záložky",
+    "bookmarkSortBy": "Seřadit podle",
+    "sortAlphabetical": "A–Ž",
+    "sortTimeAdded": "Stáří",
     "bookmarkViewAs": "Způsob zobrazení",
     "bookmarkViewGrid": "Mřížka",
     "bookmarkViewList": "Seznam",
