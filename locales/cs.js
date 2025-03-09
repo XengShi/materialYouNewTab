@@ -107,6 +107,7 @@ const cs = {
     },
 
     // Search Engines
+    "defaultEngine": "Výchozí",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
