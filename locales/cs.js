@@ -46,6 +46,8 @@ const cs = {
     "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
     "hideSearchWith": "Skrýt vyhledávače",
     "hideSearchWithInfo": "Mezi vyhledávači přepnete klepnutím na jejich ikonky",
+    "motivationalQuotesText": "Motivační citáty",
+    "motivationalQuotesInfo": "Zobrazí citáty pod vyhledávacím polem",
     "search_suggestions_button": "Návrhy ve vyhledávání",
     "search_suggestions_text": "Zapne návrhy vyhledávání",
 
@@ -57,10 +59,12 @@ const cs = {
     "HostproxyButton": "Provozování vlastní proxy",
 
     // Location
+    "useGPS": "Použít GPS",
+    "useGPSInfo": "Zapne GPS pro průběžné aktualizace polohy",
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
-    "useGPS": "Použít GPS",
+    "PrivacyPolicy": "Ochrana osobních údajů",
 
     // Weather
     "WeatherApiText": "Zadejte svůj klíč k WeatherAPI",
@@ -80,6 +84,9 @@ const cs = {
 
     // Bookmarks
     "bookmarksHeading": "Záložky",
+    "bookmarkSortBy": "Seřadit podle",
+    "sortAlphabetical": "A–Ž",
+    "sortTimeAdded": "Stáří",
     "bookmarkViewAs": "Způsob zobrazení",
     "bookmarkViewGrid": "Mřížka",
     "bookmarkViewList": "Seznam",
@@ -107,6 +114,7 @@ const cs = {
     },
 
     // Search Engines
+    "defaultEngine": "Výchozí",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
@@ -144,6 +152,7 @@ const cs = {
     "Nobackgroundset": "Aktuálně nemáte nastavený žádný obrázek na pozadí.",
     "clearbackgroundimage": "Opravdu si přejete smazat obrázek na pozadí?",
     "ProxyDisclaimer": "Všechny funkce proxy jsou ve výchozím nastavení vypnuté.\n\nPokud zapnete našeptávání ve vyhledávání s proxy pro obcházení CORS, pro lepší zabezpečení vám důrazně doporučujeme hostovat si vlastní proxy.\n\nVe výchozím nastavení je proxy nastavena na https://mynt-proxy.rhythmcorehq.com, což znamená, že všechna vaše data procházejí skrz tuto službu. To může vyvolat obavy o soukromí.",
+    "GPSDisclaimer": "Data o poloze jsou využívána pouze pro poskytování odpovídajících aktualizací počasí. Jsou dočasně uložena v prohlížeči, přičemž nejsou ani sdílena se třetími stanami, ani přístupná pro nás.\n\nPovolením GPS souhlasíte s tím, že bude poloha lokálně využita tímto rozšířením.",
     "failedbackup": "Zálohování selhalo: ",
     "restorecompleted": "Obnova ze zálohy byla úspěšně dokončena!",
     "restorefailed": "Obnova ze zálohy selhala: ",
