@@ -48,6 +48,8 @@ const idn = {
     "micIconInfo": "Jika voice typing tidak berfungsi",
     "hideSearchWith": "Sembunyikan Mesin Pencarian",
     "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
+    "motivationalQuotesText": "Kata-kata Motivasi",
+    "motivationalQuotesInfo": "Tampilkan kata-kata dibawah kotak pencarian",
     "search_suggestions_button": "Saran Pencarian",
     "search_suggestions_text": "Mengaktifkan saran pencarian",
 
@@ -82,6 +84,9 @@ const idn = {
 
     // Bookmarks
     "bookmarksHeading": "Markah Buku",
+    "bookmarkSortBy": "Urutkan berdasarkan",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Lama-Baru",
     "bookmarkViewAs": "Lihat sebagai",
     "bookmarkViewGrid": "Kisi-kisi",
     "bookmarkViewList": "Daftar",
