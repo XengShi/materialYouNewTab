@@ -197,6 +197,9 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 	& .menuBar {
 		background-color: #0000001f;
 	}
+	& #prompt-modal-blur {
+		background-color: #0000001f;
+	}
 	--whitishColor-blue: #f2f2f2;
 }
 
@@ -1755,20 +1758,19 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont {
 	margin-top: var(--gap);
-	border-radius: var(--round);
 	position: relative;
 	display: flex;
 	font-size: 1rem;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
+	min-width: 120px;
+	max-width: 150px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
+	padding: 12px;
 	position: relative;
 	margin-right: 16px;
 	border-radius: var(--round);
