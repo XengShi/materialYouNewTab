@@ -137,7 +137,7 @@ const en = {
     "metaAI": "Meta AI",
 
     // Theme
-    "enableDarkMode": "Dark Mode",
+    "enableDarkMode": "Dark Mode (Experimental)",
     "enableDarkModeInfo": "Enable dark mode themes",
 
     // Wallpaper and settings
