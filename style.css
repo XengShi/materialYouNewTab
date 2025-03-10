@@ -194,6 +194,9 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
+	& .menuBar {
+		background-color: #0000001f;
+	}
 	--whitishColor-blue: #f2f2f2;
 }
 
