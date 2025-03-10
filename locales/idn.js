@@ -46,6 +46,8 @@ const idn = {
     "hideWeatherInfo": "Menonaktifkan widget cuaca",
     "micIconTitle": "Sembunyikan Ikon Microfon",
     "micIconInfo": "Jika voice typing tidak berfungsi",
+    "switchSearchModes": "Ubah Mode Pencarian",
+    "switchSearchModesInfo": "Klik pada ‘Cari Dengan’ untuk mengubah mode",
     "hideSearchWith": "Sembunyikan Mesin Pencarian",
     "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
     "motivationalQuotesText": "Kata-kata Motivasi",
@@ -104,6 +106,7 @@ const idn = {
     "searchPlaceholder": "Ketik disini...",
     "listenPlaceholder": "Mendengarkan...",
     "searchWithHint": "Cari Dengan",
+    "searchOnHint": "Cari Pada",
     "userText": "Klik disini untuk mengubah tulisan",
 
     // Greeting
@@ -120,6 +123,8 @@ const idn = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Gambar",
+    "wikipediaEngine": "Wikipedia",
 
     // AI Tools
     "ai_tools": "Utilitas AI",
