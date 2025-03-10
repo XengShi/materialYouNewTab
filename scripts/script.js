@@ -401,12 +401,7 @@ function changeFaviconColor() {
     favicon.href = encodedSvg;
     favicon.setAttribute('type', 'image/svg+xml');
 }
-
-// Set default color on first page load
-if (!localStorage.getItem('newFavicon')) {
-    changeFaviconColor();
-    localStorage.setItem('newFavicon', 'true');
-}
+changeFaviconColor();
 
 
 // ----Color Picker || ColorPicker----
@@ -561,10 +556,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Hiding Search Icon And Search With Options for Search switch shortcut
-    const element = document.getElementById("shortcut_switchcheckbox");
-    element.addEventListener("change", (e) => {
+    const hideSearchWith = document.getElementById("shortcut_switchcheckbox");
+    hideSearchWith.addEventListener("change", (e) => {
         initShortCutSwitch(e.target);
-    })
+    });
 
     // Intialize shortcut switch
     if (localStorage.getItem("showShortcutSwitch")) {
@@ -580,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("showShortcutSwitch", false);
     }
 
-    initShortCutSwitch(element);
+    initShortCutSwitch(hideSearchWith);
 });
 
 document.addEventListener("keydown", function (event) {

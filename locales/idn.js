@@ -48,6 +48,8 @@ const idn = {
     "micIconInfo": "Jika voice typing tidak berfungsi",
     "hideSearchWith": "Sembunyikan Mesin Pencarian",
     "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
+    "motivationalQuotesText": "Kata-kata Motivasi",
+    "motivationalQuotesInfo": "Tampilkan kata-kata dibawah kotak pencarian",
     "search_suggestions_button": "Saran Pencarian",
     "search_suggestions_text": "Mengaktifkan saran pencarian",
 
@@ -55,19 +57,21 @@ const idn = {
     "useproxytitletext": "Pemintas Proksi",
     "useproxyText": "Jika saran pencarian tidak berfungsi",
     "ProxyText": "Pemintas proksi CORS",
-    "ProxySubtext": "Tambahkan pemintas proksi CORS anda sendiri",
-    "HostproxyButton": "Host proksi anda sendiri",
+    "ProxySubtext": "Tambahkan pemintas proksi CORS Anda sendiri",
+    "HostproxyButton": "Host proksi Anda sendiri",
 
     // Location
     "UserLocText": "Masukkan Lokasi Anda",
     "UserLocSubtext": "Jika lokasi cuaca tidak berfungsi",
-    "userLoc": "Kota atau Koordinat anda (Lintang, Bujur)",
+    "userLoc": "Kota atau Koordinat Anda (Lintang, Bujur)",
     "useGPS": "Gunakan GPS",
+    "useGPSInfo": "Mengaktifkan GPS untuk pembaruan lokasi secara langsung",
+    "PrivacyPolicy": "Kebijakan privasi",
 
     // Weather
-    "WeatherApiText": "Masukkan kunci WeatherAPI anda",
+    "WeatherApiText": "Masukkan kunci WeatherAPI Anda",
     "WeatherApiSubtext": "Jika fungsionalitas cuaca tidak berfungsi",
-    "userAPI": "Kunci weatherAPI anda",
+    "userAPI": "Kunci weatherAPI Anda",
     "LearnMoreButton": "Pelajari lebih lanjut",
     "saveAPI": "Simpan",
     "hideWeatherBox": "Sembunyikan Kartu Cuaca", // Toggle for mobile devices only
@@ -80,6 +84,9 @@ const idn = {
 
     // Bookmarks
     "bookmarksHeading": "Markah Buku",
+    "bookmarkSortBy": "Urutkan berdasarkan",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Lama-Baru",
     "bookmarkViewAs": "Lihat sebagai",
     "bookmarkViewGrid": "Kisi-kisi",
     "bookmarkViewList": "Daftar",
@@ -107,6 +114,7 @@ const idn = {
     },
 
     // Search Engines
+    "defaultEngine": "Default",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
@@ -140,15 +148,16 @@ const idn = {
     "noText": "Tidak",
     "agreeText": "Saya Setuju",
     "cancelText": "Batalkan",
-    "confirmWallpaper": "Apakah anda ingin memasang gambar baru sebagai wallpaper harian anda?",
-    "confirmRestore": "Apakah anda yakin ingin mengatur ulang setelan anda? Tindakan ini tidak dapat dibatalkan.",
+    "confirmWallpaper": "Apakah Anda ingin memasang gambar baru sebagai wallpaper harian Anda?",
+    "confirmRestore": "Apakah Anda yakin ingin mengatur ulang setelan Anda? Tindakan ini tidak dapat dibatalkan.",
     "Nobackgroundset": "Tidak ada gambar latar belakang yang dipasang saat ini.",
-    "clearbackgroundimage": "Apakah anda yakin ingin menghapus gambar latar belakang?",
-    "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+    "clearbackgroundimage": "Apakah Anda yakin ingin menghapus gambar latar belakang?",
+    "ProxyDisclaimer": "Semua fitur proxy dimatikan secara default.\n\nJika Anda mengaktifkan saran pencarian dan proxy bypass CORS, sangat disarankan untuk meng-host proxy Anda sendiri untuk privasi yang lebih baik.\n\nSecara default, proxy akan diatur ke https://mynt-proxy.rhythmcorehq.com, yang berarti semua data Anda akan melewati layanan ini, yang mungkin saja dapat menimbulkan kekhawatiran privasi.",
+    "GPSDisclaimer": "Data lokasi Anda digunakan hanya untuk memberikan pembaruan cuaca yang akurat. Ini tersimpan sementara pada browser dan tidak juga dibagikan pada layanan pihak ketiga apapun dan juga tidak dapat diakses oleh Kita.\n\nDengan mengaktifkan GPS, Anda setuju untuk membagikan lokasi Anda dengan ekstensi ini secara lokal.",
     "failedbackup": "Pencadangan gagal: ",
     "restorecompleted": "Pemulihan berhasil dengan sukses!",
     "restorefailed": "Pemulihan gagal: ",
     "invalidBackup": "File cadangan tidak valid terpilih",
-    "deleteBookmark": "Apakah anda yakin untuk menghapus markah buku \"{title}\"?",
-    "UnsupportedBrowser": "Markah buku tidak didukung oleh browser anda",
+    "deleteBookmark": "Apakah Anda yakin untuk menghapus markah buku \"{title}\"?",
+    "UnsupportedBrowser": "Markah buku tidak didukung oleh browser Anda",
 };

@@ -134,21 +134,9 @@ function updateTextBackground(hasWallpaper) {
         document.body.setAttribute('data-bg', 'color')
     }
 
-    // Update styles for userText and date
+    // Change bg-color for userText and date
     [userText, date].forEach(element => {
-        if (hasWallpaper) {
-            element.style.backgroundColor = "var(--accentLightTint-blue)";
-            element.style.padding = "2px 12px";
-            element.style.width = "fit-content";
-            element.style.borderRadius = "10px";
-            element.style.fontSize = "1.32rem";
-        } else {
-            element.style.backgroundColor = ""; // Reset to default
-            element.style.padding = "";
-            element.style.width = "";
-            element.style.borderRadius = "";
-            element.style.fontSize = "";
-        }
+        element.style.backgroundColor = hasWallpaper ? "var(--accentLightTint-blue)" : "";
     });
 
     // Update styles for shortcuts
