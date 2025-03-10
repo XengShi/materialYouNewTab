@@ -48,6 +48,8 @@ const en = {
     // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
+    "switchSearchModes": "Switch Search Modes",
+    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
     "motivationalQuotesText": "Motivational Quotes",
@@ -104,6 +106,7 @@ const en = {
     "searchPlaceholder": "Type here...",
     "listenPlaceholder": "Listening...",
     "searchWithHint": "Search With",
+    "searchOnHint": "Search On",
     "userText": "Click here to edit",
 
     // Greeting
@@ -120,6 +123,8 @@ const en = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Images",
+    "wikipediaEngine": "Wikipedia",
 
     // AI Tools
     "ai_tools": "AI Tools",

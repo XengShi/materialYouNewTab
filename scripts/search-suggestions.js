@@ -68,6 +68,7 @@ function hideResultBox() {
 showResultBox();
 hideResultBox();
 
+const languageCode = (localStorage.getItem("selectedLanguage") || "en").slice(0, 2);
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -77,7 +78,9 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             engine2: "https://duckduckgo.com/?q=",
             engine3: "https://bing.com/?q=",
             engine4: "https://search.brave.com/search?q=",
-            engine5: "https://www.youtube.com/results?search_query="
+            engine5: "https://www.youtube.com/results?search_query=",
+            engine6: "https://www.google.com/search?tbm=isch&q=",
+            engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
         };
         const query = this.value;
 
@@ -205,7 +208,9 @@ async function getAutocompleteSuggestions(query) {
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`,
+        engine6: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
+        engine7: `https://${languageCode}.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&format=json`
     };
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     let apiUrl = searchEnginesapi[selectedOption];
