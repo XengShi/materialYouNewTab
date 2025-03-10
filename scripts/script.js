@@ -703,6 +703,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 applyCustomTheme(storedCustomColor);
             };
             browser.theme.onUpdated.removeListener(applyBrowserTheme);
+            location.reload();
         }
     });
 
