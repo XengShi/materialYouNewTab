@@ -194,6 +194,12 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
+	& .menuBar {
+		background-color: #0000001f;
+	}
+	& #prompt-modal-blur {
+		background-color: #0000001f;
+	}
 	--whitishColor-blue: #f2f2f2;
 }
 
@@ -1752,26 +1758,40 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont {
 	margin-top: var(--gap);
-	border-radius: var(--round);
+	border-radius: 20px;
 	position: relative;
 	display: flex;
 	font-size: 1rem;
+	z-index: 2; /* Ensures it's above the engines container */
+	overflow: hidden; /* Prevents child elements from overflowing outside */
+	max-width: 100%;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
+	min-width: 120px;
+	max-width: 150px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
+	padding: 12px;
 	position: relative;
-	margin-right: 16px;
+	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
+	cursor: pointer;
+	transition: transform 0.4s ease;
 }
 
-.searchWithCont .hint::after {
+.searchWithCont .hint:hover {
+	background-color: var(--darkColor-blue);
+	color: #fff;
+}
+
+.searchWithCont .hint:active {
+	scale: 0.98;
+}
+
+/* .searchWithCont .hint::after {
 	content: "";
 	position: absolute;
 	width: 6px;
@@ -1779,17 +1799,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 3px;
 	right: -20px;
-}
+} */
 
 .searchEnginesContainer {
+	position: relative;
+	z-index: 1;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 	padding-left: 20px;
+	opacity: 1;
+	transform: translateX(0);
+}
+.searchEnginesContainer.show {
+	animation: slideIn 0.3s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+		opacity: 0.2;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 .searchEnginesContainer .search-engine {
-	/* background-color: var(--accentLightTint-blue); */
 	border-radius: 20px;
 	height: 40px;
 	display: flex;
@@ -1797,6 +1834,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	position: relative;
 	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .searchEnginesContainer .search-engine svg {

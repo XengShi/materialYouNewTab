@@ -31,6 +31,51 @@ document.addEventListener("click", function (event) {
     }
 });
 
+// Search mode function
+const searchWith = document.getElementById('searchWithHint');
+const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
+const searchEnginesContainer = document.querySelector('.searchEnginesContainer');
+let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
+
+searchWith.addEventListener('click', function (event) {
+    activeSearchMode = (activeSearchMode === 'search-with') ? 'search-on' : 'search-with';
+    searchEnginesContainer.classList.toggle('show');
+    toggleSearchEngines(activeSearchMode);
+
+    event.stopPropagation();
+    searchInput.focus();
+    searchbar.classList.add("active");
+
+    setTimeout(() => {
+        searchEnginesContainer.classList.remove('show');
+    }, 300);
+});
+
+function toggleSearchEngines(category) {
+    const defaultItems = {
+        'search-with': "engine0",
+        'search-on': "engine5",
+    };
+    const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
+    const searchModeName = category === "search-with" ? "searchWithHint" : "searchOnHint";
+    searchWith.innerText = translations[currentLanguage][searchModeName] || translations["en"][searchModeName];
+
+    searchEngines.forEach(engine => {
+        if (engine.getAttribute('data-category') === category) {
+            engine.style.display = 'flex';
+        } else {
+            engine.style.display = 'none';
+        }
+        if (engine.lastElementChild.value === checkeditem && !engine.lastElementChild.checked) {
+            engine.lastElementChild.click(); // Click only if it's not already selected
+
+            if (document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+        }
+    });
+}
+
 // Search function
 document.addEventListener("DOMContentLoaded", () => {
     const dropdown = document.querySelector(".dropdown-content");
@@ -100,7 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown()
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
         });
     });
 
@@ -120,7 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
             swapDropdown(selector);
             sortDropdown();
 
-            localStorage.setItem("selectedSearchEngine", radioButton.value);
+            localStorage.setItem(`selectedSearchEngine-${radioButton.parentElement.dataset.category}`, radioButton.value);
+            localStorage.setItem(`activeSearchMode`, radioButton.parentElement.dataset.category);
 
             searchInput.focus();
             searchbar.classList.add("active");
@@ -151,12 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function performSearch() {
         var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
         var searchTerm = searchInput.value;
+        const languageCode = (localStorage.getItem("selectedLanguage") || "en").slice(0, 2);
         var searchEngines = {
             engine1: "https://www.google.com/search?q=",
             engine2: "https://duckduckgo.com/?q=",
             engine3: "https://bing.com/?q=",
             engine4: "https://search.brave.com/search?q=",
-            engine5: "https://www.youtube.com/results?search_query="
+            engine5: "https://www.youtube.com/results?search_query=",
+            engine6: "https://www.google.com/search?tbm=isch&q=",
+            engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
         };
 
         if (searchTerm !== "") {
@@ -189,7 +239,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Set selected search engine from local storage
-    const storedSearchEngine = localStorage.getItem("selectedSearchEngine");
+    let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
+    const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+
+    if (activeSearchMode) {
+        toggleSearchEngines(activeSearchMode);
+    }
 
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
@@ -280,8 +335,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for search engine radio buttons
     searchEngineRadio.forEach((radio) => {
         radio.addEventListener("change", () => {
-            const selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
-            localStorage.setItem("selectedSearchEngine", selectedOption);
+            const selectedOption = document.querySelector('input[name="search-engine"]:checked');
+            localStorage.setItem(`selectedSearchEngine-${selectedOption.parentElement.dataset.category}`, selectedOption.value);
+            localStorage.setItem(`activeSearchMode`, selectedOption.parentElement.dataset.category);
         });
     });
 
