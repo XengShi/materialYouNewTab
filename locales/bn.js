@@ -107,8 +107,8 @@ const bn = {
     "enterBtn": "সার্চ করুন",
     "searchPlaceholder": "এখানে টাইপ করুন...",
     "listenPlaceholder": "শোনা হচ্ছে...",
-    "searchWithHint": "সার্চের মাধ্যম",
-    "searchOnHint": "সার্চের মাধ্যম",
+    "searchWithHint": "দিয়ে সার্চ করুন",
+    "searchOnHint": "এ সার্চ করুন",
     "userText": "এডিট করতে এখানে ক্লিক করুন",
 
     // Greeting
