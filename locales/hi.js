@@ -128,7 +128,6 @@ const hi = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    // "firefly": "एडोबी फायरफ्लाई",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
