@@ -233,9 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
     const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
 
-    if (activeSearchMode) {
-        toggleSearchEngines(activeSearchMode);
-    }
+    toggleSearchEngines(activeSearchMode);
 
     if (storedSearchEngine) {
         // Find Serial Number - SN with the help of charAt.
@@ -381,13 +379,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("keydown", function (event) {
+    // Prevent shortcut if modal, menu, or bookmarks sidebar is open
     const modalContainer = document.getElementById("prompt-modal-container");
-
-    // Prevent if modal is open
-    if (modalContainer?.style.display === "flex") return;
-
-    // Prevent shortcut if the menu is open or bookmarks sidebar is open
-    if (menuBar.style.display !== "none" || bookmarkSidebar.classList.contains("open")) {
+    if (
+        modalContainer?.style.display === "flex" ||
+        menuBar.style.display !== "none" ||
+        bookmarkSidebar.classList.contains("open")
+    ) {
         return;
     }
 
