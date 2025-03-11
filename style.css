@@ -2176,16 +2176,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	transform: translateX(100%);
 	background-color: var(--accentLightTint-blue);
 	border-bottom-left-radius: var(--round);
-}
-
-.menuBar .menuCont .topRounder {
-	width: var(--round);
-	/*30px*/
-	height: var(--round);
-	/* background-color: #17a638; */
-	position: absolute;
-	left: -30px;
-	/* transform: translateX(-100%); */
+	border-top-left-radius: var(--round);
 }
 
 .menuCont .topDiv {
@@ -2194,6 +2185,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	/*🚦🛺 🚜*/
 	background-color: var(--bg-color-blue);
 	position: relative;
+	border-top-left-radius: var(--round);
 }
 
 .menuCont .topDiv::after {
