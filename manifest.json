@@ -1,14 +1,15 @@
 {
 	"manifest_version": 3,
 	"name": "Material You NewTab",
-	"version": "3.0.40",
+	"version": "3.1",
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
 	"permissions": ["search"],
 	"optional_permissions": ["bookmarks"],
 	"host_permissions": [
 		"https://www.google.com/complete/search*",
 		"https://duckduckgo.com/ac/*",
-		"https://search.brave.com/api/suggest*"
+		"https://search.brave.com/api/suggest*",
+		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
 	],
 	"icons": {
 		"16": "favicon/icon16.png",
