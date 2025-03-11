@@ -128,7 +128,6 @@ const hi = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    // "firefly": "एडोबी फायरफ्लाई",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
@@ -158,5 +157,4 @@ const hi = {
     "invalidBackup": "अमान्य बैकअप फ़ाइल चयनित है।",
     "deleteBookmark": "क्या आप \"{title}\" बुकमार्क डिलीट करना चाहते हैं?",
     "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं।",
-    "minOneshortcut": "आपको कम से कम एक शॉर्टकट रखना होगा।"
 };
