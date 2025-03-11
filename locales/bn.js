@@ -117,6 +117,8 @@ const bn = {
     "bingEngine": "বিং",
     "braveEngine": "ব্রেভ",
     "youtubeEngine": "ইউটিউব",
+    "gImagesEngine": "ছবি",
+    "wikipediaEngine": "উইকিপিডিয়া",
 
     // AI Tools
     "ai_tools": "এআই টুলস",
