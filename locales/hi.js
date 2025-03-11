@@ -48,8 +48,12 @@ const hi = {
     // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
     "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
+    "switchSearchModes": "खोज मोड बदलें",
+    "switchSearchModesInfo": "मोड बदलने के लिए ‘खोज माध्यम’ पर क्लिक करें",
     "hideSearchWith": "सर्च इंजन छिपाएँ",
     "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
+    "motivationalQuotesText": "प्रेरणादायक उद्धरण",
+    "motivationalQuotesInfo": "खोज बार के नीचे उद्धरण दिखाएँ",
     "search_suggestions_button": "खोज सुझाव",
     "search_suggestions_text": "खोज सुझाव सक्षम करें",
 
@@ -84,6 +88,9 @@ const hi = {
 
     // Bookmarks
     "bookmarksHeading": "बुकमार्क्स",
+    "bookmarkSortBy": "क्रमबद्ध करें",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "पुराना-नया",
     "bookmarkViewAs": "इस रूप में देखें",
     "bookmarkViewGrid": "ग्रिड",
     "bookmarkViewList": "लिस्ट",
@@ -118,7 +125,7 @@ const hi = {
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव",
     "youtubeEngine": "यूट्यूब",
-    "gImagesEngine": "इमेज़्स",
+    "gImagesEngine": "इमेज",
     "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
@@ -130,6 +137,10 @@ const hi = {
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
+
+    // Theme - delete later
+    "enableDarkMode": "डार्क मोड",
+    "enableDarkModeInfo": "डार्क मोड की थीम सक्षम करें (प्रायोगिक)",
 
     // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करें",
