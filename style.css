@@ -3997,17 +3997,18 @@ input:checked + .toggle:before {
 	display: grid;
 	gap: 12px;
 	background-color: var(--bg-color-blue);
-	padding: 18px;
+	padding: 18px 20px;
 	border-radius: 20px;
 }
 
 #dontShowTips {
 	border: none;
 	display: block;
-	padding: 6px 16px;
+	padding: 6px 10px;
 	background-color: var(--darkColor-blue);
 	color: white;
 	border-radius: 10px;
+	margin-top: 5px;
 }
 
 #dontShowTips:hover {
