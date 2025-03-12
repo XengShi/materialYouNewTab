@@ -1777,7 +1777,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
 	cursor: pointer;
-	transition: all 0.4s;
+	transition: border-radius 0.4s, margin-left 0.4s;
 }
 
 .searchWithCont .hint:hover {
