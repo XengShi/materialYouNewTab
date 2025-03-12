@@ -117,14 +117,14 @@ const ru = {
     },
 
     // Search Engines
-    "defaultEngine": "Default",
+    "defaultEngine": "По умолчанию",
     "googleEngine": "Google",
     "duckEngine": "Duck",    // DuckDuckGo
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
-    "wikipediaEngine": "Wikipedia",
+    "gImagesEngine": "Картинки",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "wikipediaEngine": "Википедия",
 
     // AI Tools
     "ai_tools": "Нейросети",
