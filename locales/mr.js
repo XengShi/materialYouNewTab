@@ -122,7 +122,6 @@ const mr = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    // "firefly": "अडोबी फायरफ्लाय",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 

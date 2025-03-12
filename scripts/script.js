@@ -258,3 +258,34 @@ function ApplyLoadingColor() {
     let LoadingScreenColor = getComputedStyle(document.body).getPropertyValue("background-color");
     localStorage.setItem("LoadingScreenColor", LoadingScreenColor);
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const adjustZoomInfo = document.getElementById("adjustZoomInfo");
+
+    // Detect macOS
+    const isMac = navigator.platform.toUpperCase().includes("MAC");
+
+    // Show the zoom message in all browsers
+    let text = "Press " + (isMac ? "⌘" : "Ctrl") + " + '+' or " + (isMac ? "⌘" : "Ctrl") + " + '-' to adjust the zoom.";
+    adjustZoomInfo.textContent = text;
+
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+        document.getElementById("changeBrowserThemeInfo").innerHTML =
+            'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches your extension.';
+    }
+    const tips = document.getElementById("tips");
+    const dontShowButton = document.getElementById("dontShowTips");
+
+    // Check if the user has previously disabled tips
+    if (localStorage.getItem("hideTips") === "true") {
+        tips.style.display = "none";
+    }
+
+    // Hide tips and save preference when button is clicked
+    dontShowButton.addEventListener("click", function () {
+        tips.style.display = "none";
+        localStorage.setItem("hideTips", "true"); // Save preference
+    });
+});
+

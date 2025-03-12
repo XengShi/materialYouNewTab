@@ -48,8 +48,12 @@ const bn = {
     // Search
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
     "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
+    "switchSearchModes": "সার্চ মোড পরিবর্তন করুন",
+    "switchSearchModesInfo": "মোড পরিবর্তন করতে ‘সার্চের মাধ্যম’ এ ক্লিক করুন",
     "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
     "hideSearchWithInfo": "সার্চ ইঞ্জিনের আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
+    "motivationalQuotesText": "অনুপ্রেরণামূলক উক্তি",
+    "motivationalQuotesInfo": "সার্চবারের নিচে উক্তি দেখান",
     "search_suggestions_button": "সার্চ সাজেশন",
     "search_suggestions_text": "সার্চ সাজেশন সক্রিয় করুন",
 
@@ -84,6 +88,9 @@ const bn = {
 
     // Bookmarks
     "bookmarksHeading": "বুকমার্কস",
+    "bookmarkSortBy": "অনুসারে সাজান",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "পুরাতন-নতুন",
     "bookmarkViewAs": "এইভাবে দেখুন",
     "bookmarkViewGrid": "গ্রিড",
     "bookmarkViewList": "লিস্ট",
@@ -100,8 +107,9 @@ const bn = {
     "enterBtn": "সার্চ করুন",
     "searchPlaceholder": "এখানে টাইপ করুন...",
     "listenPlaceholder": "শোনা হচ্ছে...",
-    "searchWithHint": "সার্চের মাধ্যম",
-    "userText": "এখানে আপনার টেক্সট লিখুন",
+    "searchWithHint": "দিয়ে সার্চ করুন",
+    "searchOnHint": "এ সার্চ করুন",
+    "userText": "এডিট করতে এখানে ক্লিক করুন",
 
     // Greeting
     greeting: {
@@ -117,6 +125,8 @@ const bn = {
     "bingEngine": "বিং",
     "braveEngine": "ব্রেভ",
     "youtubeEngine": "ইউটিউব",
+    "gImagesEngine": "ছবি",
+    "wikipediaEngine": "উইকিপিডিয়া",
 
     // AI Tools
     "ai_tools": "এআই টুলস",
@@ -125,9 +135,12 @@ const bn = {
     "copilot": "কোপাইলট",
     "claude": "ক্লড",
     "perplexity": "পারপ্লেক্সিটি",
-    // "firefly": "অ্যাডোবি ফায়ারফ্লাই",
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
+
+    // Theme
+    "enableDarkMode": "ডার্ক মোড (পরীক্ষামূলক)",
+    "enableDarkModeInfo": "ডার্ক মোড থিম সক্রিয় করুন",
 
     // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",

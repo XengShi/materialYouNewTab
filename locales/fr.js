@@ -125,7 +125,6 @@ const fr = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    //"firefly": "Adobe Firefly",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
