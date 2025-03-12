@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteButtonContainer.addEventListener("click", async () => {
             // Check the condition right at the moment of clicking
             if (shortcutListElement.children.length <= 1) {
-                await alertPrompt(translations[currentLanguage]?.minOneshortcut || translations["en"].minOneshortcut);
+                await alertPrompt(translations[currentLanguage]?.minOneShortcut || translations["en"].minOneShortcut);
                 return;
             }
 
