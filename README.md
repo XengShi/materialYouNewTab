@@ -230,7 +230,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
    - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
+   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Deepseek, and Meta AI are integrated for quick, AI-driven assistance or tasks.
 
 7. **Wallpaper Management**:
    - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.

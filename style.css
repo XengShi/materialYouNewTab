@@ -1779,7 +1779,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
 	cursor: pointer;
-	transition: transform 0.4s ease;
+	transition: all 0.4s;
+
 }
 
 .searchWithCont .hint:hover {
@@ -1788,8 +1789,11 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchWithCont .hint:active {
-	scale: 0.98;
+    /* transform: scale(0.98); */
+	border-radius: 20px;
+	margin-left: 5px;
 }
+
 
 /* .searchWithCont .hint::after {
 	content: "";
@@ -4008,3 +4012,29 @@ input:checked + .toggle:before {
 	outline-offset: 3px;
 }
 /* ---------------- End of Alert & Confirm Modal ---------------- */
+
+.tips{
+    /* margin-bottom: 30px; */
+	display: grid;
+	gap: 12px;
+	background-color: var(--bg-color-blue);
+	padding: 16px;
+	border-radius: 20px;
+}
+#dontShowTips{
+	border: none;
+    display: block;
+    padding: 6px 16px;
+    background-color: var(--darkColor-blue);
+    color: white;
+    border-radius: 10px;
+}
+#dontShowTips:hover{
+	background-color: var(--darkerColor-blue);
+}
+.tips .ttcont .texts .bigText{
+	font-size: 1rem;
+}
+.tips .ttcont .texts .infoText{
+	font-size: 0.8rem;
+}

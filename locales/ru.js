@@ -55,13 +55,11 @@ const ru = {
     "ProxyText": "CORS обход прокси",
     "ProxySubtext": "Добавьте свой CORS-прокси",
     "HostproxyButton": "Разместить свой прокси",
-    "saveproxy": "Сохранить",
 
     // Location
     "UserLocText": "Введите ваше местоположение",
     "UserLocSubtext": "Если местоположение для погоды неверно",
     "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
-    "saveLoc": "Сохранить",
 
     // Weather
     "WeatherApiText": "Введите свой ключ WeatherAPI",
@@ -114,7 +112,6 @@ const ru = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc
