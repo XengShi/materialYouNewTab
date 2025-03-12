@@ -260,20 +260,29 @@ function ApplyLoadingColor() {
 }
 
 
+// ------------------------------------ Tips ------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
+    // Hide tips that are not relevant to mobile
+    if (!isDesktop) {
+        document.querySelectorAll('.hideOnMobile').forEach(el => el.style.display = 'none');
+    }
+
+    // Determine the correct key for adjustZoomInfo based on OS
     const adjustZoomInfo = document.getElementById("adjustZoomInfo");
+    let adjustZoomInfoText = translations[currentLanguage]?.adjustZoomInfo || translations["en"].adjustZoomInfo;
 
-    // Detect macOS
-    const isMac = navigator.platform.toUpperCase().includes("MAC");
+    if (isMac) {
+        adjustZoomInfoText = adjustZoomInfoText.replace(/Ctrl/g, "⌘");
+    }
+    adjustZoomInfo.textContent = adjustZoomInfoText;
 
-    // Show the zoom message in all browsers
-    let text = "Press " + (isMac ? "⌘" : "Ctrl") + " + '+' or " + (isMac ? "⌘" : "Ctrl") + " + '-' to adjust the zoom.";
-    adjustZoomInfo.textContent = text;
-
+    // Change browser theme info based on the user's browser
     if (navigator.userAgent.toLowerCase().includes("firefox")) {
         document.getElementById("changeBrowserThemeInfo").innerHTML =
             'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches your extension.';
     }
+
+    // Hide tips 
     const tips = document.getElementById("tips");
     const dontShowButton = document.getElementById("dontShowTips");
 

@@ -48,8 +48,6 @@ const hi = {
     // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
     "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-    "switchSearchModes": "खोज मोड बदलें",
-    "switchSearchModesInfo": "मोड बदलने के लिए ‘खोज माध्यम’ पर क्लिक करें",
     "hideSearchWith": "सर्च इंजन छिपाएँ",
     "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
     "motivationalQuotesText": "प्रेरणादायक उद्धरण",
@@ -149,6 +147,12 @@ const hi = {
     "restoreText": "रिस्टोर करें",
     "resetsettings": "सेटिंग्स रीसेट करें",
     "menuCloseText": "बंद करें",
+
+    // Tips
+    "switchSearchModes": "खोज मोड बदलें",
+    "switchSearchModesInfo": "मोड बदलने के लिए ‘खोज माध्यम’ पर क्लिक करें।",
+    "adjustZoom": "ज़ूम समायोजित करें",
+    "adjustZoomInfo": "ज़ूम समायोजित करने के लिए Ctrl + \"+\" या Ctrl + \"-\" दबाएँ।",
 
     // Dialog boxes (alerts)
     "okText": "ठीक है",

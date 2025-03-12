@@ -49,7 +49,7 @@ const bn = {
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
     "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
     "switchSearchModes": "সার্চ মোড পরিবর্তন করুন",
-    "switchSearchModesInfo": "মোড পরিবর্তন করতে ‘সার্চের মাধ্যম’ এ ক্লিক করুন",
+    "switchSearchModesInfo": "মোড পরিবর্তন করতে ‘দিয়ে সার্চ করুন’ এ ক্লিক করুন",
     "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
     "hideSearchWithInfo": "সার্চ ইঞ্জিনের আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
     "motivationalQuotesText": "অনুপ্রেরণামূলক উক্তি",

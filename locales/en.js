@@ -48,8 +48,6 @@ const en = {
     // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
-    "switchSearchModes": "Switch Search Modes",
-    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
     "motivationalQuotesText": "Motivational Quotes",
@@ -147,6 +145,12 @@ const en = {
     "restoreText": "Restore",
     "resetsettings": "Reset Settings",
     "menuCloseText": "Close",
+
+    // Tips
+    "switchSearchModes": "Switch Search Modes",
+    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode.",
+    "adjustZoom": "Adjust Zoom",
+    "adjustZoomInfo": "Press Ctrl + \"+\" or Ctrl + \"-\" to adjust the zoom.",
 
     // Dialog boxes (alerts)
     "okText": "OK",

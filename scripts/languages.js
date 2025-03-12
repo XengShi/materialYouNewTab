@@ -111,8 +111,6 @@ function applyLanguage(lang) {
         'hideWeatherBoxInfo',
         'micIconTitle',
         'micIconInfo',
-        'switchSearchModes',
-        'switchSearchModesInfo',
         'hideSearchWith',
         'hideSearchWithInfo',
         'motivationalQuotesText',
@@ -181,6 +179,8 @@ function applyLanguage(lang) {
         'editBookmarkHeading',
         'enableDarkMode',
         'enableDarkModeInfo',
+        'switchSearchModes',
+        'switchSearchModesInfo',
     ];
 
     // Specific mapping for placeholders
