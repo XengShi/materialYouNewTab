@@ -181,6 +181,9 @@ function applyLanguage(lang) {
         'enableDarkModeInfo',
         'switchSearchModes',
         'switchSearchModesInfo',
+        'adjustZoom',
+        'changeBrowserTheme',
+        'dontShowTips'
     ];
 
     // Specific mapping for placeholders

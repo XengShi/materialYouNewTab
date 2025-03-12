@@ -153,6 +153,10 @@ const hi = {
     "switchSearchModesInfo": "मोड बदलने के लिए ‘खोज माध्यम’ पर क्लिक करें।",
     "adjustZoom": "ज़ूम समायोजित करें",
     "adjustZoomInfo": "ज़ूम समायोजित करने के लिए Ctrl + \"+\" या Ctrl + \"-\" दबाएँ।",
+    "changeBrowserTheme": "ब्राउज़र थीम बदलें",
+    "chromeThemeInfo": "तीन बिंदु (⋮) पर क्लिक करें > अधिक टूल्स > क्रोम को कस्टमाइज़ करें, फिर अपने एक्सटेंशन थीम से मेल खाने वाला रंग चुनें।",
+    "firefoxThemeInfo": '<a href="https://addons.mozilla.org/firefox/themes/" target="_blank">फ़ायरफ़ॉक्स थीम्स</a> पर जाएँ, अपनी पसंद की थीम डाउनलोड करें और उसे लागू करें।',
+    "dontShowTips": "इसे फिर से न दिखाएँ",
 
     // Dialog boxes (alerts)
     "okText": "ठीक है",

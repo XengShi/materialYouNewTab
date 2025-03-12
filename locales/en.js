@@ -151,6 +151,10 @@ const en = {
     "switchSearchModesInfo": "Click on ‘Search With’ to change the mode.",
     "adjustZoom": "Adjust Zoom",
     "adjustZoomInfo": "Press Ctrl + \"+\" or Ctrl + \"-\" to adjust the zoom.",
+    "changeBrowserTheme": "Change Browser Theme",
+    "chromeThemeInfo": "Click the three dots (⋮) > More tools > Customize Chrome, then choose a color that matches your extension theme.",
+    "firefoxThemeInfo": 'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches the extension.',
+    "dontShowTips": "Don't show it again",
 
     // Dialog boxes (alerts)
     "okText": "OK",

@@ -270,16 +270,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Determine the correct key for adjustZoomInfo based on OS
     const adjustZoomInfo = document.getElementById("adjustZoomInfo");
     let adjustZoomInfoText = translations[currentLanguage]?.adjustZoomInfo || translations["en"].adjustZoomInfo;
-
     if (isMac) {
         adjustZoomInfoText = adjustZoomInfoText.replace(/Ctrl/g, "⌘");
     }
     adjustZoomInfo.textContent = adjustZoomInfoText;
 
     // Change browser theme info based on the user's browser
+    const changeBrowserThemeInfo = document.getElementById("changeBrowserThemeInfo");
     if (navigator.userAgent.toLowerCase().includes("firefox")) {
-        document.getElementById("changeBrowserThemeInfo").innerHTML =
-            'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches your extension.';
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.firefoxThemeInfo || translations["en"].firefoxThemeInfo;
+    } else {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.chromeThemeInfo || translations["en"].chromeThemeInfo;
     }
 
     // Hide tips 
