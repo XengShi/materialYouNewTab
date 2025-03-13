@@ -12,11 +12,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Translations` - for updates related to translations or internationalization (i18n).
 - `New Contributors` - for listing new contributors to the project.
 
-## [Unreleased]
+## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
 
 ### Added
-- Added GPS-based location option ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
-- Added Claude to AI tools ([@prem-k-r](https://github.com/prem-k-r)) ([#424](https://github.com/XengShi/materialYouNewTab/pull/424))
+- GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
+- Claude to the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#424](https://github.com/XengShi/materialYouNewTab/pull/424))
+
+### Fixed
+- Issue where search suggestions were partially hidden behind shortcuts on smaller screen heights ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#407](https://github.com/XengShi/materialYouNewTab/pull/407))
+- Issue where keyboard shortcuts were active in custom text box ([@prem-k-r](https://github.com/prem-k-r)) ([fa30642](https://github.com/XengShi/materialYouNewTab/pull/413/commits/fa3064253c45cdedb0d95618a97e66ce39a67ad3))
+
+
+
+--------
+not
+
 - Added Tint to Shortcut Icons ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#435](https://github.com/XengShi/materialYouNewTab/pull/435))
 - Added Dark Mode for All Existing Color Themes ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#465](https://github.com/XengShi/materialYouNewTab/pull/465))
 - Enabled vertical scroll for horizontal movement in AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#495](https://github.com/XengShi/materialYouNewTab/pull/495))
@@ -34,7 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Tips and fixed bugs ([@prem-k-r](https://github.com/prem-k-r)) ([#585](https://github.com/XengShi/materialYouNewTab/pull/585))
 
 ### Changed
-- Reduced height of Search Dropdown ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#407](https://github.com/XengShi/materialYouNewTab/pull/407))
 - Changed GPS button to toggle ([@prem-k-r](https://github.com/prem-k-r)) ([#560](https://github.com/XengShi/materialYouNewTab/pull/560))
 
 ### Improved
