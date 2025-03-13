@@ -8,7 +8,7 @@
 
 // When User click on "AI-Tools"
 const aiToolName = document.getElementById("toolsCont");
-const shortcuts = document.getElementById("shortcutsContainer");
+const shortcuts = document.getElementById("shortcuts-section");
 
 function toggleShortcuts(event) {
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
