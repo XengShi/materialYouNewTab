@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Improved` - for enhancements or optimizations in existing functionality.
 - `Removed` - for features that have been removed.
 - `Fixed` - for any bug fixes.
-- `Other` - for technical updates.
 - `Language-related` - for updates related to translations, localization, or internationalization.
+- `Other` - for technical updates.
 
 
 ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
@@ -33,12 +33,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Added Wikipedia and Google Images to the list of search engines ([@prem-k-r](https://github.com/prem-k-r)) ([43aaf55](https://github.com/XengShi/materialYouNewTab/pull/474/commits/43aaf55f61affffa9fe5133d9ad1507e2c14a660))
 -  Added Tips ([@prem-k-r](https://github.com/prem-k-r)) ([0190dee](https://github.com/XengShi/materialYouNewTab/commit/0190dee9e0adfb5e4f68afa8529317eb6810d311)) ([#585](https://github.com/XengShi/materialYouNewTab/pull/585)) ([#589](https://github.com/XengShi/materialYouNewTab/pull/589))
 
+
 ### Changed
 - Weather retention time set to 2 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
 - Changed default Vietnamese font to *Be Vietnam Pro* ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
 - Improved date format for Japanese and Korean ([@prem-k-r](https://github.com/prem-k-r)), ([@dempavof](https://github.com/dempavof)) ([#529](https://github.com/XengShi/materialYouNewTab/pull/529))
 - Updated switch design per MD3 guidelines, adjusting inner thumb size based on state and reduced animation speed [@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Reduced radio buttons size in serch engines ([@vchib1](https://github.com/vchib1)), ([@prem-k-r](https://github.com/prem-k-r))
+
 
 ### Improved
 - Adaptive icon now matches the theme color ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#435](https://github.com/XengShi/materialYouNewTab/pull/435)), ([@prem-k-r](https://github.com/prem-k-r)) ([#477](https://github.com/XengShi/materialYouNewTab/pull/477))
@@ -54,10 +56,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Styled each shortcut as a separate card with a background color in the Edit Shortcuts list ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
 - Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
 
+
 ### Removed
 - Removed extension icon change ([@XengShi](https://github.com/XengShi))
 - Removed Instagram shortcut ([@prem-k-r](https://github.com/prem-k-r)) ([185a981](https://github.com/XengShi/materialYouNewTab/pull/523/commits/185a98128ab0a066d0002c074df1bfb6212c638d))
 - Removed Adobe Firefly from the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#544](https://github.com/XengShi/materialYouNewTab/pull/544))
+
 
 ### Fixed
 - Fixed issue where search suggestions were partially hidden behind shortcuts on smaller screen heights ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#407](https://github.com/XengShi/materialYouNewTab/pull/407))
@@ -73,6 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fixed bug where shortcut reset animation occurred only alternately; now it works every time ([@prem-k-r](https://github.com/prem-k-r)) ([c4cdd6c](https://github.com/XengShi/materialYouNewTab/pull/536/commits/c4cdd6c8719937b9fa93afc76cd111a94cf61350))
 -  Corrected off-center Google menu icon alignment on certain devices ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 -  Fixed delayed radio button animation when hiding search engines ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
+
 
 ### Language-related
 - Added support for Hungarian ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
@@ -91,6 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Turkish ([@kerimlcr](https://github.com/kerimlcr))
   - Portuguese (Brazil) ([@MestreWalla](https://github.com/MestreWalla))
   - Russian ([@giwih](https://github.com/giwih))
+
 
 ### Other
 - Updated documentations ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@ZiClaud](https://github.com/ZiClaud))
