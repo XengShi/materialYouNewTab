@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Removed` - for features that have been removed.
 - `Fixed` - for any bug fixes.
 - `Other` - for technical updates.
-- `Translations` - for updates related to translations or internationalization (i18n).
-- `New Contributors` - for listing new contributors to the project.
+- `Language-related` - for updates related to translations, localization, or internationalization.
+
 
 ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
+
+<!-- [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 13, 2025 -->
 
 ### Added
 - Added GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
@@ -95,3 +97,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactored codes ([@ZiClaud](https://github.com/ZiClaud)), ([@prem-k-r](https://github.com/prem-k-r))
 - Chores ([@XengShi](https://github.com/XengShi)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@prem-k-r](https://github.com/prem-k-r))
 
+---
+
+## [v3](https://github.com/XengShi/materialYouNewTab/compare/v2.4...v3) - Dec 28, 2024
+
+## [v2.4](https://github.com/XengShi/materialYouNewTab/compare/v2.3...v2.4) - Nov 26, 2024
+
+## [v2.3](https://github.com/XengShi/materialYouNewTab/compare/v2.2...v2.3) - Nov 1, 2024
+
+## [v2.2](https://github.com/XengShi/materialYouNewTab/compare/v2.....v2.2) - Oct 23, 2024
+
+## [v2.0](https://github.com/XengShi/materialYouNewTab/compare/v1.1...v2.0) - Oct 11, 2024
+
+## v1.1
