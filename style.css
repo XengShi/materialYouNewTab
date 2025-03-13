@@ -1700,11 +1700,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-right: 2px solid var(--darkColor-blue);
 	border-top: 2px dashed var(--darkerColor-blue);
 	border-bottom: 2px dashed var(--darkerColor-blue);
-	transition: all 0.5s ease-in-out;
-}
-
-.micActive::after {
 	animation: micAnimation 1s ease-in-out infinite;
+	transition: all 0.5s ease-in-out;
 }
 
 @keyframes micAnimation {
