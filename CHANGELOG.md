@@ -105,7 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.3](https://github.com/XengShi/materialYouNewTab/compare/v2.2...v2.3) - Nov 1, 2024
 
-## [v2.2](https://github.com/XengShi/materialYouNewTab/compare/v2.....v2.2) - Oct 23, 2024
+## [v2.2](https://github.com/XengShi/materialYouNewTab/compare/v2.0...v2.2) - Oct 23, 2024
 
 ## [v2.0](https://github.com/XengShi/materialYouNewTab/compare/v1.1...v2.0) - Oct 11, 2024
 
