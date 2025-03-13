@@ -4,143 +4,136 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - `Added` - for new features.
-- `Changed ` - for changes in existing functionality.
-- `Improved` - for enhancement or optimization in existing functionality.
-- `Removed` - for now removed features.
+- `Changed` - for changes in existing functionality.
+- `Improved` - for enhancements or optimizations in existing functionality.
+- `Removed` - for features that have been removed.
 - `Fixed` - for any bug fixes.
-- `Other` - for technical stuff.
+- `Other` - for technical updates.
 - `Translations` - for updates related to translations or internationalization (i18n).
+- `New Contributors` - for listing new contributors to the project.
 
 ## [Unreleased]
 
 ### Added
-
-- Added GPS based location option by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/331
-- Added Claude to AI tools by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/424
-- Added Tint to Shortcut Icons by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/435
-- Dark Mode for All Existing Color Themes by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/465
-- Enabled vertical scroll for horizontal movement in AI Tools by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/495
-- Added Feature Hide Whole Weather Section to give more customization by @Viral-Sachde in https://github.com/XengShi/materialYouNewTab/pull/535
-- Add background color to Edit Shortcuts List by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/536
-- Option to edit bookmark name and url by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/541
-- Add DeepSeek to the list of AI Tools, Remove Firefly by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/544
-- Added Browser's default search engine by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/479
-- Added option for sorting by date added in bookmarks #398 by @hasanakhiar in https://github.com/XengShi/materialYouNewTab/pull/571
-- Motivational Quotes feature in main branch  by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/570
-- Search mode categorization by @ashesbloom in https://github.com/XengShi/materialYouNewTab/pull/474
-- v3.1 by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/574
-- Split Search by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/575
+- Added GPS-based location option ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
+- Added Claude to AI tools ([@prem-k-r](https://github.com/prem-k-r)) ([#424](https://github.com/XengShi/materialYouNewTab/pull/424))
+- Added Tint to Shortcut Icons ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#435](https://github.com/XengShi/materialYouNewTab/pull/435))
+- Added Dark Mode for All Existing Color Themes ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#465](https://github.com/XengShi/materialYouNewTab/pull/465))
+- Enabled vertical scroll for horizontal movement in AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#495](https://github.com/XengShi/materialYouNewTab/pull/495))
+- Added feature to hide the whole Weather section for more customization ([@Viral-Sachde](https://github.com/Viral-Sachde)) ([#535](https://github.com/XengShi/materialYouNewTab/pull/535))
+- Added background color to Edit Shortcuts List ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
+- Added option to edit bookmark name and URL ([@prem-k-r](https://github.com/prem-k-r)) ([#541](https://github.com/XengShi/materialYouNewTab/pull/541))
+- Added DeepSeek to the list of AI Tools, removed Firefly ([@prem-k-r](https://github.com/prem-k-r)) ([#544](https://github.com/XengShi/materialYouNewTab/pull/544))
+- Added Browser's default search engine ([@prem-k-r](https://github.com/prem-k-r)) ([#479](https://github.com/XengShi/materialYouNewTab/pull/479))
+- Added option for sorting by date added in bookmarks ([@hasanakhiar](https://github.com/hasanakhiar)) ([#571](https://github.com/XengShi/materialYouNewTab/pull/571))
+- Added Motivational Quotes feature ([@prem-k-r](https://github.com/prem-k-r)) ([#570](https://github.com/XengShi/materialYouNewTab/pull/570))
+- Added search mode categorization ([@ashesbloom](https://github.com/ashesbloom)) ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
+- Added v3.1 ([@prem-k-r](https://github.com/prem-k-r)) ([#574](https://github.com/XengShi/materialYouNewTab/pull/574))
+- Added Split Search ([@prem-k-r](https://github.com/prem-k-r)) ([#575](https://github.com/XengShi/materialYouNewTab/pull/575))
+- Added hide clock button ([@XengShi](https://github.com/XengShi))
+- Added Tips and fixed bugs ([@prem-k-r](https://github.com/prem-k-r)) ([#585](https://github.com/XengShi/materialYouNewTab/pull/585))
 
 ### Changed
-
-- Reduced height of Search Dropdown by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/407
-- Changed GPS button to toggle by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/560
+- Reduced height of Search Dropdown ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#407](https://github.com/XengShi/materialYouNewTab/pull/407))
+- Changed GPS button to toggle ([@prem-k-r](https://github.com/prem-k-r)) ([#560](https://github.com/XengShi/materialYouNewTab/pull/560))
 
 ### Improved
-
-- Changed Weather retention time and download section of Readme.md by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/428
-- Massive Code Cleanup - pt1 by @ZiClaud in https://github.com/XengShi/materialYouNewTab/pull/429
-- Massive Code Cleanup - pt2 by @ZiClaud in https://github.com/XengShi/materialYouNewTab/pull/444
-- Massive Code Cleanup - pt3 (bookmarks and added TODOs) by @ZiClaud in https://github.com/XengShi/materialYouNewTab/pull/462
-- Updated Adaptive Icon css for Better Favicon Visibility by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/477
-- Code splitting: Clock by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/470
-- Code Splitting: Voice search, wallpaper, backup restore settings by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/463
-- Code splitting: ToDo list by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/469
-- Refactored Color Picker and Changed Shades for custom color by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/493
-- Code Split: Weather, UserText, browser-utils by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/494
-- Changed Grey theme name to Peach theme and Improved CSS code by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/496
-- Moved Dark theme css to style.css by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/508
-- Delete favicon directory by @XengShi in https://github.com/XengShi/materialYouNewTab/pull/525
-- Update index.html by @XengShi in https://github.com/XengShi/materialYouNewTab/pull/526
-- Update script.js by @XengShi in https://github.com/XengShi/materialYouNewTab/pull/527
-- Favicon enhancement by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/528
-- Seperated `Shortcuts` code, Removed Instagram and Added Discord by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/523
-- Update date format for `ja` and `ko` by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/529
-- Better weather icons by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/533
-- Seperated Proxy and Search Suggestions from `script.js` by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/531
-- Added Throttle in Color Picker input for performance optimization by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/511
-- Minor changes in weather.js code by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/540
-- Update PageNotFound page by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/538
-- Replaced alert and confirm dialog box with custom modal by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/545
-
-### Removed
-
-
+- Changed Weather retention time and download section of README.md ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
+- Massive Code Cleanup - pt1 ([@ZiClaud](https://github.com/ZiClaud)) ([#429](https://github.com/XengShi/materialYouNewTab/pull/429))
+- Massive Code Cleanup - pt2 ([@ZiClaud](https://github.com/ZiClaud)) ([#444](https://github.com/XengShi/materialYouNewTab/pull/444))
+- Massive Code Cleanup - pt3 (bookmarks and added TODOs) ([@ZiClaud](https://github.com/ZiClaud)) ([#462](https://github.com/XengShi/materialYouNewTab/pull/462))
+- Updated Adaptive Icon CSS for Better Favicon Visibility ([@prem-k-r](https://github.com/prem-k-r)) ([#477](https://github.com/XengShi/materialYouNewTab/pull/477))
+- Code splitting: Clock ([@prem-k-r](https://github.com/prem-k-r)) ([#470](https://github.com/XengShi/materialYouNewTab/pull/470))
+- Code Splitting: Voice search, wallpaper, backup restore settings ([@prem-k-r](https://github.com/prem-k-r)) ([#463](https://github.com/XengShi/materialYouNewTab/pull/463))
+- Code splitting: To-Do list ([@prem-k-r](https://github.com/prem-k-r)) ([#469](https://github.com/XengShi/materialYouNewTab/pull/469))
+- Refactored Color Picker and Changed Shades for custom color ([@prem-k-r](https://github.com/prem-k-r)) ([#493](https://github.com/XengShi/materialYouNewTab/pull/493))
+- Code Split: Weather, UserText, browser-utils ([@prem-k-r](https://github.com/prem-k-r)) ([#494](https://github.com/XengShi/materialYouNewTab/pull/494))
+- Changed Grey theme name to Peach theme and Improved CSS code ([@prem-k-r](https://github.com/prem-k-r)) ([#496](https://github.com/XengShi/materialYouNewTab/pull/496))
+- Moved Dark theme CSS to style.css ([@prem-k-r](https://github.com/prem-k-r)) ([#508](https://github.com/XengShi/materialYouNewTab/pull/508))
+- Deleted favicon directory ([@XengShi](https://github.com/XengShi)) ([#525](https://github.com/XengShi/materialYouNewTab/pull/525))
+- Updated index.html ([@XengShi](https://github.com/XengShi)) ([#526](https://github.com/XengShi/materialYouNewTab/pull/526))
+- Updated script.js ([@XengShi](https://github.com/XengShi)) ([#527](https://github.com/XengShi/materialYouNewTab/pull/527))
+- Enhanced favicon ([@prem-k-r](https://github.com/prem-k-r)) ([#528](https://github.com/XengShi/materialYouNewTab/pull/528))
+- Separated `Shortcuts` code, Removed Instagram and Added Discord ([@prem-k-r](https://github.com/prem-k-r)) ([#523](https://github.com/XengShi/materialYouNewTab/pull/523))
+- Updated date format for `ja` and `ko` ([@prem-k-r](https://github.com/prem-k-r)) ([#529](https://github.com/XengShi/materialYouNewTab/pull/529))
+- Improved weather icons ([@prem-k-r](https://github.com/prem-k-r)) ([#533](https://github.com/XengShi/materialYouNewTab/pull/533))
+- Separated Proxy and Search Suggestions from `script.js` ([@prem-k-r](https://github.com/prem-k-r)) ([#531](https://github.com/XengShi/materialYouNewTab/pull/531))
+- Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
+- Minor changes in weather.js code ([@prem-k-r](https://github.com/prem-k-r)) ([#540](https://github.com/XengShi/materialYouNewTab/pull/540))
+- Updated PageNotFound page ([@prem-k-r](https://github.com/prem-k-r)) ([#538](https://github.com/XengShi/materialYouNewTab/pull/538))
+- Replaced alert and confirm dialog box with custom modal ([@prem-k-r](https://github.com/prem-k-r)) ([#545](https://github.com/XengShi/materialYouNewTab/pull/545))
 
 ### Fixed
-
-- Fix GPS error fallback by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/458
-- Fix: Hide Mic Icon Visibility by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/450
-- White/Black Border Fixes by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/454
-- hotfix: Blue theme color issue by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/464
-- Fix/responsiveness by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/453
-- Fixed User Text Position by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/467
-- Fix keydown event for Search engines dropdown by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/483
-- Fixed Shortcuts Title Overflow by @Thunder-Blaze in https://github.com/XengShi/materialYouNewTab/pull/497
-- Fixed AM/PM Display Error by @shmps40802 in https://github.com/XengShi/materialYouNewTab/pull/500
-- Fix live preview by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/506
-- Fix restore wallpaper bug by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/515
-- Fixing Security Vulnerability for shortcuts by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/539
-- Fix security warnings by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/554
-- Fixed google menu icon alignment and Changed Switch button design by @vchib1 in https://github.com/XengShi/materialYouNewTab/pull/558
-- [Fix]Search radio button hide delay by @vchib1 in https://github.com/XengShi/materialYouNewTab/pull/559
+- Fixed GPS error fallback ([@prem-k-r](https://github.com/prem-k-r)) ([#458](https://github.com/XengShi/materialYouNewTab/pull/458))
+- Fixed: Hide Mic Icon Visibility ([@prem-k-r](https://github.com/prem-k-r)) ([#450](https://github.com/XengShi/materialYouNewTab/pull/450))
+- Fixed White/Black Border issues ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#454](https://github.com/XengShi/materialYouNewTab/pull/454))
+- Hotfix: Blue theme color issue ([@prem-k-r](https://github.com/prem-k-r)) ([#464](https://github.com/XengShi/materialYouNewTab/pull/464))
+- Fixed responsiveness issues ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#453](https://github.com/XengShi/materialYouNewTab/pull/453))
+- Fixed User Text Position ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#467](https://github.com/XengShi/materialYouNewTab/pull/467))
+- Fixed keydown event for Search engines dropdown ([@prem-k-r](https://github.com/prem-k-r)) ([#483](https://github.com/XengShi/materialYouNewTab/pull/483))
+- Fixed Shortcuts Title Overflow ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#497](https://github.com/XengShi/materialYouNewTab/pull/497))
+- Fixed AM/PM Display Error ([@shmps40802](https://github.com/shmps40802)) ([#500](https://github.com/XengShi/materialYouNewTab/pull/500))
+- Fixed live preview ([@prem-k-r](https://github.com/prem-k-r)) ([#506](https://github.com/XengShi/materialYouNewTab/pull/506))
+- Fixed restore wallpaper bug ([@prem-k-r](https://github.com/prem-k-r)) ([#515](https://github.com/XengShi/materialYouNewTab/pull/515))
+- Fixed Security Vulnerability for shortcuts ([@itz-rj-here](https://github.com/itz-rj-here)) ([#539](https://github.com/XengShi/materialYouNewTab/pull/539))
+- Fixed security warnings ([@prem-k-r](https://github.com/prem-k-r)) ([#554](https://github.com/XengShi/materialYouNewTab/pull/554))
+- Fixed Google menu icon alignment and Changed Switch button design ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
+- Fixed search radio button hide delay ([@vchib1](https://github.com/vchib1)) ([#559](https://github.com/XengShi/materialYouNewTab/pull/559))
 
 ### Other
-
-- Year changed by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/413
-- Updated README.md by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/426
-- Update README.md by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/445
-- Updated PR template and fixed link by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/448
-- Updated Documentations by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/510
-- Improved PR Template and Added Updated Issues Templates (Bug Report, Feature Request, General Question/Help Needed) with Contact Links by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/561
-- Fix Feature Request Template by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/565
+- Updated the year ([@prem-k-r](https://github.com/prem-k-r)) ([#413](https://github.com/XengShi/materialYouNewTab/pull/413))
+- Updated README.md ([@itz-rj-here](https://github.com/itz-rj-here)) ([#426](https://github.com/XengShi/materialYouNewTab/pull/426))
+- Updated README.md ([@prem-k-r](https://github.com/prem-k-r)) ([#445](https://github.com/XengShi/materialYouNewTab/pull/445))
+- Updated PR template and fixed link ([@prem-k-r](https://github.com/prem-k-r)) ([#448](https://github.com/XengShi/materialYouNewTab/pull/448))
+- Updated documentation ([@prem-k-r](https://github.com/prem-k-r)) ([#510](https://github.com/XengShi/materialYouNewTab/pull/510))
+- Improved PR Template and Updated Issues Templates (Bug Report, Feature Request, General Question/Help Needed) with Contact Links ([@itz-rj-here](https://github.com/itz-rj-here)) ([#561](https://github.com/XengShi/materialYouNewTab/pull/561))
+- Fixed Feature Request Template ([@itz-rj-here](https://github.com/itz-rj-here)) ([#565](https://github.com/XengShi/materialYouNewTab/pull/565))
 
 ### Translations
-
-- Languages Enchantmets by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/401
-- Added Hungarian language by @Zan1456 in https://github.com/XengShi/materialYouNewTab/pull/420
-- Replaced font for Vietnamese by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/442
-- Update vi.js by @Tuan1-2-3 in https://github.com/XengShi/materialYouNewTab/pull/443
-- feat: add translation - np (Nepali) by @sthaB-kash in https://github.com/XengShi/materialYouNewTab/pull/452
-- New translations added by @iamwinner422 in https://github.com/XengShi/materialYouNewTab/pull/456
-- Updated Italian and minor fixes by @ZiClaud in https://github.com/XengShi/materialYouNewTab/pull/459
-- Updated italian by @ZiClaud in https://github.com/XengShi/materialYouNewTab/pull/461
-- l10n: Update Czech translation by @ceskyDJ in https://github.com/XengShi/materialYouNewTab/pull/466
-- Update IDN Translation by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/488
-- Update translations (hi and bn) by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/475
-- New language translation: Traditional Chinese by @shmps40802 in https://github.com/XengShi/materialYouNewTab/pull/499
-- Update translations: hi, bn, mr by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/507
-- Update for Turkish language support by @kerimlcr in https://github.com/XengShi/materialYouNewTab/pull/513
-- Update IDN Translation by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/514
-- New translations added for French Language by @iamwinner422 in https://github.com/XengShi/materialYouNewTab/pull/516
-- l10n: Update Czech translation strings by @ceskyDJ in https://github.com/XengShi/materialYouNewTab/pull/518
-- Translations for latest new strings (hi, bn, mr) by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/542
-- l10n: Update Czech translation by @ceskyDJ in https://github.com/XengShi/materialYouNewTab/pull/543
-- New language: Urdu by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/548
-- l10n: Update Czech translation by @ceskyDJ in https://github.com/XengShi/materialYouNewTab/pull/550
-- Update translation : hi, bn, mr by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/551
-- Update IDN Translation by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/552
-- Update traditional chinese translation by @shmps40802 in https://github.com/XengShi/materialYouNewTab/pull/553
-- New french translations by @iamwinner422 in https://github.com/XengShi/materialYouNewTab/pull/555
-- New french translations by @iamwinner422 in https://github.com/XengShi/materialYouNewTab/pull/566
-- Update IDN Translation by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/567
-- PT-BR TRANSLATION by @MestreWalla in https://github.com/XengShi/materialYouNewTab/pull/568
-- Translation: hindi and bangla, and CSS redundant delete by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/569
-- l10n: Update Czech translation by @ceskyDJ in https://github.com/XengShi/materialYouNewTab/pull/572
-- Update IDN Translations by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/573
-- Update IDN Translations by @Ayyas-RF in https://github.com/XengShi/materialYouNewTab/pull/578
-- Removed all extra strings from locales by @itz-rj-here in https://github.com/XengShi/materialYouNewTab/pull/580
-- Update Translations: Hindi and Bengali by @prem-k-r in https://github.com/XengShi/materialYouNewTab/pull/581
-- Update russian translation. by @giwih in https://github.com/XengShi/materialYouNewTab/pull/583
-- I10n: Update French translations with new search modes and motivational quotes by @iamwinner422 in https://github.com/XengShi/materialYouNewTab/pull/586
+- Language Enhancements ([@itz-rj-here](https://github.com/itz-rj-here)) ([#401](https://github.com/XengShi/materialYouNewTab/pull/401))
+- Added Hungarian language ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
+- Replaced font for Vietnamese ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
+- Updated vi.js ([@Tuan1-2-3](https://github.com/Tuan1-2-3)) ([#443](https://github.com/XengShi/materialYouNewTab/pull/443))
+- Added translation for Nepali (np) ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
+- Added new translations ([@iamwinner422](https://github.com/iamwinner422)) ([#456](https://github.com/XengShi/materialYouNewTab/pull/456))
+- Updated Italian and made minor fixes ([@ZiClaud](https://github.com/ZiClaud)) ([#459](https://github.com/XengShi/materialYouNewTab/pull/459))
+- Updated Italian ([@ZiClaud](https://github.com/ZiClaud)) ([#461](https://github.com/XengShi/materialYouNewTab/pull/461))
+- Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#466](https://github.com/XengShi/materialYouNewTab/pull/466))
+- Updated Indonesian Translation ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#488](https://github.com/XengShi/materialYouNewTab/pull/488))
+- Updated translations for Hindi and Bengali ([@prem-k-r](https://github.com/prem-k-r)) ([#475](https://github.com/XengShi/materialYouNewTab/pull/475))
+- Added translation for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
+- Updated translations for Hindi, Bengali, and Marathi ([@prem-k-r](https://github.com/prem-k-r)) ([#507](https://github.com/XengShi/materialYouNewTab/pull/507))
+- Updated Turkish language support ([@kerimlcr](https://github.com/kerimlcr)) ([#513](https://github.com/XengShi/materialYouNewTab/pull/513))
+- Updated Indonesian Translation ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#514](https://github.com/XengShi/materialYouNewTab/pull/514))
+- Added new translations for French ([@iamwinner422](https://github.com/iamwinner422)) ([#516](https://github.com/XengShi/materialYouNewTab/pull/516))
+- Updated Czech translation strings ([@ceskyDJ](https://github.com/ceskyDJ)) ([#518](https://github.com/XengShi/materialYouNewTab/pull/518))
+- Added translations for latest strings (Hindi, Bengali, Marathi) ([@prem-k-r](https://github.com/prem-k-r)) ([#542](https://github.com/XengShi/materialYouNewTab/pull/542))
+- Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#543](https://github.com/XengShi/materialYouNewTab/pull/543))
+- Added translation for Urdu ([@prem-k-r](https://github.com/prem-k-r)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
+- Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#550](https://github.com/XengShi/materialYouNewTab/pull/550))
+- Updated translations for Hindi, Bengali, and Marathi ([@prem-k-r](https://github.com/prem-k-r)) ([#551](https://github.com/XengShi/materialYouNewTab/pull/551))
+- Updated Indonesian Translation ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#552](https://github.com/XengShi/materialYouNewTab/pull/552))
+- Updated Traditional Chinese translation ([@shmps40802](https://github.com/shmps40802)) ([#553](https://github.com/XengShi/materialYouNewTab/pull/553))
+- Added new French translations ([@iamwinner422](https://github.com/iamwinner422)) ([#555](https://github.com/XengShi/materialYouNewTab/pull/555))
+- Added new French translations ([@iamwinner422](https://github.com/iamwinner422)) ([#566](https://github.com/XengShi/materialYouNewTab/pull/566))
+- Updated Indonesian Translation ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#567](https://github.com/XengShi/materialYouNewTab/pull/567))
+- Added PT-BR Translation ([@MestreWalla](https://github.com/MestreWalla)) ([#568](https://github.com/XengShi/materialYouNewTab/pull/568))
+- Updated translations for Hindi and Bengali, and removed redundant CSS ([@prem-k-r](https://github.com/prem-k-r)) ([#569](https://github.com/XengShi/materialYouNewTab/pull/569))
+- Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#572](https://github.com/XengShi/materialYouNewTab/pull/572))
+- Updated Indonesian Translations ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#573](https://github.com/XengShi/materialYouNewTab/pull/573))
+- Updated Indonesian Translations ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#578](https://github.com/XengShi/materialYouNewTab/pull/578))
+- Removed all extra strings from locales ([@itz-rj-here](https://github.com/itz-rj-here)) ([#580](https://github.com/XengShi/materialYouNewTab/pull/580))
+- Updated translations for Hindi and Bengali ([@prem-k-r](https://github.com/prem-k-r)) ([#581](https://github.com/XengShi/materialYouNewTab/pull/581))
+- Updated Russian translation ([@giwih](https://github.com/giwih)) ([#583](https://github.com/XengShi/materialYouNewTab/pull/583))
+- Updated French translations with new search modes and motivational quotes ([@iamwinner422](https://github.com/iamwinner422)) ([#586](https://github.com/XengShi/materialYouNewTab/pull/586))
 
 ### New Contributors
-- @Zan1456 made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/420
-- @Tuan1-2-3 made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/443
-- @sthaB-kash made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/452
-- @shmps40802 made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/499
-- @kerimlcr made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/513
-- @Viral-Sachde made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/535
-- @vchib1 made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/558
-- @hasanakhiar made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/571
-- @ashesbloom made their first contribution in https://github.com/XengShi/materialYouNewTab/pull/474
+- [@Zan1456](https://github.com/Zan1456) made their first contribution ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
+- [@Tuan1-2-3](https://github.com/Tuan1-2-3) made their first contribution ([#443](https://github.com/XengShi/materialYouNewTab/pull/443))
+- [@sthaB-kash](https://github.com/sthaB-kash) made their first contribution ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
+- [@shmps40802](https://github.com/shmps40802) made their first contribution ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
+- [@kerimlcr](https://github.com/kerimlcr) made their first contribution ([#513](https://github.com/XengShi/materialYouNewTab/pull/513))
+- [@Viral-Sachde](https://github.com/Viral-Sachde) made their first contribution ([#535](https://github.com/XengShi/materialYouNewTab/pull/535))
+- [@vchib1](https://github.com/vchib1) made their first contribution ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
+- [@hasanakhiar](https://github.com/hasanakhiar) made their first contribution ([#571](https://github.com/XengShi/materialYouNewTab/pull/571))
+- [@ashesbloom](https://github.com/ashesbloom) made their first contribution ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
