@@ -382,4 +382,29 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("hourcheckboxState", hourcheckbox);
     loadActiveStatus("timeformatField", timeformatField);
     loadActiveStatus("greetingField", greetingField);
+
+    // -----Hiding clock func----
+    const hideClockCheckbox = document.getElementById("hideClock");
+    // Retrieve saved state from localStorage
+    const savedState = localStorage.getItem("hideClockVisible") === "true";
+    hideClockCheckbox.checked = savedState;
+
+    // Select elements
+    const leftDiv = document.getElementById("leftDiv");
+    const rightDiv = document.getElementById("rightDiv");
+
+    // Apply initial state
+    function applyClockState(isHidden) {
+        leftDiv.style.display = isHidden ? "none" : "block";
+        rightDiv.style.transform = isHidden ? "none" : "translateX(100px)";
+    }
+
+    applyClockState(savedState);
+
+    hideClockCheckbox.addEventListener("change", function () {
+        const isChecked = hideClockCheckbox.checked;
+        localStorage.setItem("hideClockVisible", isChecked);
+        applyClockState(isChecked);
+    });
+    // ----- End of Hiding clock func----
 });
