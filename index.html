@@ -577,7 +577,7 @@
     <!-- ________________ End of Google App Menu ________________ -->
 
     <div class="centerDiv">
-        <div class="leftDiv">
+        <div class="leftDiv" id="leftDiv">
 
             <!-- ____________clock___________ -->
             <div class="clock" id="analogClock">
@@ -624,7 +624,7 @@
         </div>
         <!-- ---------end of leftDiv--------------- -->
 
-        <div class="rightDiv">
+        <div class="rightDiv" id="rightDiv">
             <!-- ---weather stuff--------- -->
             <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
@@ -1353,6 +1353,19 @@
                             </div>
                         </div>
                         <!-- ---🟡--- -->
+
+                        <div class="ttcont clock">
+                            <div class="texts">
+                                <div class="bigText" id="hideClockBox">Hide Clock</div>
+                                <div class="infoText" id="hideClockBoxInfo">This will hide date and clock</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideClock" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+
                         <div class="ttcont">
                             <div class="texts">
                                 <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
@@ -1365,7 +1378,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-
+ 
                         <div class="ttcont weather">
                             <div class="texts">
                                 <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
