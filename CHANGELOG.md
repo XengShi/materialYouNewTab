@@ -17,6 +17,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
 - Claude to the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#424](https://github.com/XengShi/materialYouNewTab/pull/424))
+-
+
+### Changed
+- Weather retention time set to 2 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
+- Changed default Vietnamese font to *Be Vietnam Pro* ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
+- 
+
+### Improved
+- Adaptive icon now matches the theme color ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#435](https://github.com/XengShi/materialYouNewTab/pull/435))
+- Mic icon now hides properly, providing more space for queries ([@prem-k-r](https://github.com/prem-k-r)) ([#450](https://github.com/XengShi/materialYouNewTab/pull/450))
+- 
 
 ### Fixed
 - Issue where search suggestions were partially hidden behind shortcuts on smaller screen heights ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#407](https://github.com/XengShi/materialYouNewTab/pull/407))
@@ -24,10 +35,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+### Language-related
+- Added support for Hungarian ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
+- Added
+- Updated translations:
+  - Hindi ([@prem-k-r](https://github.com/prem-k-r))
+  - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))
+  - Vietnamese ([@Tuan1-2-3](https://github.com/Tuan1-2-3))
+
+### Other
+- Updated documentations ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@ZiClaud](https://github.com/ZiClaud))
+- 
+
+
 --------
 not
 
-- Added Tint to Shortcut Icons ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#435](https://github.com/XengShi/materialYouNewTab/pull/435))
 - Added Dark Mode for All Existing Color Themes ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#465](https://github.com/XengShi/materialYouNewTab/pull/465))
 - Enabled vertical scroll for horizontal movement in AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#495](https://github.com/XengShi/materialYouNewTab/pull/495))
 - Added feature to hide the whole Weather section for more customization ([@Viral-Sachde](https://github.com/Viral-Sachde)) ([#535](https://github.com/XengShi/materialYouNewTab/pull/535))
@@ -47,8 +70,6 @@ not
 - Changed GPS button to toggle ([@prem-k-r](https://github.com/prem-k-r)) ([#560](https://github.com/XengShi/materialYouNewTab/pull/560))
 
 ### Improved
-- Changed Weather retention time and download section of README.md ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
-- Massive Code Cleanup - pt1 ([@ZiClaud](https://github.com/ZiClaud)) ([#429](https://github.com/XengShi/materialYouNewTab/pull/429))
 - Massive Code Cleanup - pt2 ([@ZiClaud](https://github.com/ZiClaud)) ([#444](https://github.com/XengShi/materialYouNewTab/pull/444))
 - Massive Code Cleanup - pt3 (bookmarks and added TODOs) ([@ZiClaud](https://github.com/ZiClaud)) ([#462](https://github.com/XengShi/materialYouNewTab/pull/462))
 - Updated Adaptive Icon CSS for Better Favicon Visibility ([@prem-k-r](https://github.com/prem-k-r)) ([#477](https://github.com/XengShi/materialYouNewTab/pull/477))
@@ -73,8 +94,6 @@ not
 - Replaced alert and confirm dialog box with custom modal ([@prem-k-r](https://github.com/prem-k-r)) ([#545](https://github.com/XengShi/materialYouNewTab/pull/545))
 
 ### Fixed
-- Fixed GPS error fallback ([@prem-k-r](https://github.com/prem-k-r)) ([#458](https://github.com/XengShi/materialYouNewTab/pull/458))
-- Fixed: Hide Mic Icon Visibility ([@prem-k-r](https://github.com/prem-k-r)) ([#450](https://github.com/XengShi/materialYouNewTab/pull/450))
 - Fixed White/Black Border issues ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#454](https://github.com/XengShi/materialYouNewTab/pull/454))
 - Hotfix: Blue theme color issue ([@prem-k-r](https://github.com/prem-k-r)) ([#464](https://github.com/XengShi/materialYouNewTab/pull/464))
 - Fixed responsiveness issues ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#453](https://github.com/XengShi/materialYouNewTab/pull/453))
@@ -90,19 +109,11 @@ not
 - Fixed search radio button hide delay ([@vchib1](https://github.com/vchib1)) ([#559](https://github.com/XengShi/materialYouNewTab/pull/559))
 
 ### Other
-- Updated the year ([@prem-k-r](https://github.com/prem-k-r)) ([#413](https://github.com/XengShi/materialYouNewTab/pull/413))
-- Updated README.md ([@itz-rj-here](https://github.com/itz-rj-here)) ([#426](https://github.com/XengShi/materialYouNewTab/pull/426))
-- Updated README.md ([@prem-k-r](https://github.com/prem-k-r)) ([#445](https://github.com/XengShi/materialYouNewTab/pull/445))
-- Updated PR template and fixed link ([@prem-k-r](https://github.com/prem-k-r)) ([#448](https://github.com/XengShi/materialYouNewTab/pull/448))
 - Updated documentation ([@prem-k-r](https://github.com/prem-k-r)) ([#510](https://github.com/XengShi/materialYouNewTab/pull/510))
 - Improved PR Template and Updated Issues Templates (Bug Report, Feature Request, General Question/Help Needed) with Contact Links ([@itz-rj-here](https://github.com/itz-rj-here)) ([#561](https://github.com/XengShi/materialYouNewTab/pull/561))
 - Fixed Feature Request Template ([@itz-rj-here](https://github.com/itz-rj-here)) ([#565](https://github.com/XengShi/materialYouNewTab/pull/565))
 
 ### Translations
-- Language Enhancements ([@itz-rj-here](https://github.com/itz-rj-here)) ([#401](https://github.com/XengShi/materialYouNewTab/pull/401))
-- Added Hungarian language ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
-- Replaced font for Vietnamese ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
-- Updated vi.js ([@Tuan1-2-3](https://github.com/Tuan1-2-3)) ([#443](https://github.com/XengShi/materialYouNewTab/pull/443))
 - Added translation for Nepali (np) ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
 - Added new translations ([@iamwinner422](https://github.com/iamwinner422)) ([#456](https://github.com/XengShi/materialYouNewTab/pull/456))
 - Updated Italian and made minor fixes ([@ZiClaud](https://github.com/ZiClaud)) ([#459](https://github.com/XengShi/materialYouNewTab/pull/459))
