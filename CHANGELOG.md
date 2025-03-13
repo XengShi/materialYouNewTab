@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
 - Claude to the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#424](https://github.com/XengShi/materialYouNewTab/pull/424))
 - Dark Mode for all Color Themes ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#465](https://github.com/XengShi/materialYouNewTab/pull/465))
-- 
+- Enabled vertical scroll to also control horizontal scrolling for AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#495](https://github.com/XengShi/materialYouNewTab/pull/495))
 
 ### Changed
 - Weather retention time set to 2 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
@@ -44,11 +44,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed display issue when there are fewer than five search suggestions ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#453](https://github.com/XengShi/materialYouNewTab/pull/453))
 - Custom text no longer overlaps the clock and is now limited to 3 lines, becoming scrollable beyond that ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#467](https://github.com/XengShi/materialYouNewTab/pull/467))
 - Resolved issues where weather details sometimes failed to display properly ([@prem-k-r](https://github.com/prem-k-r))
+- Centered shortcut names correctly when the width is 1–2 characters [06bb4ca](https://github.com/XengShi/materialYouNewTab/pull/496/commits/06bb4cabe66b278a517483358519cc3c66232b90)
+- Limited shortcut title width to prevent overflow onto other shortcuts ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#497](https://github.com/XengShi/materialYouNewTab/pull/497))
+- Fixed AM/PM display error in certain languages when 12-hour format is enabled ([@shmps40802](https://github.com/shmps40802)) ([#500](https://github.com/XengShi/materialYouNewTab/pull/500))
+- 
 
 
 ### Language-related
 - Added support for Hungarian ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
 - Added support for Nepali ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
+- Added support for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
 - Updated translations:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))
@@ -57,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Italian ([@ZiClaud](https://github.com/ZiClaud))
   - Czech ([@ceskyDJ](https://github.com/ceskyDJ))
   - Indonesian ([@Ayyas-RF](https://github.com/Ayyas-RF))
-  - 
+  - Marathi ([@prem-k-r](https://github.com/prem-k-r))
+  - Turkish ([@kerimlcr](https://github.com/kerimlcr))
 
 ### Other
 - Updated documentations ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@ZiClaud](https://github.com/ZiClaud))
@@ -67,7 +73,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 --------
 not
 
-- Enabled vertical scroll for horizontal movement in AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#495](https://github.com/XengShi/materialYouNewTab/pull/495))
 - Added feature to hide the whole Weather section for more customization ([@Viral-Sachde](https://github.com/Viral-Sachde)) ([#535](https://github.com/XengShi/materialYouNewTab/pull/535))
 - Added background color to Edit Shortcuts List ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
 - Added option to edit bookmark name and URL ([@prem-k-r](https://github.com/prem-k-r)) ([#541](https://github.com/XengShi/materialYouNewTab/pull/541))
@@ -85,8 +90,6 @@ not
 - Changed GPS button to toggle ([@prem-k-r](https://github.com/prem-k-r)) ([#560](https://github.com/XengShi/materialYouNewTab/pull/560))
 
 ### Improved
-- Changed Grey theme name to Peach theme and Improved CSS code ([@prem-k-r](https://github.com/prem-k-r)) ([#496](https://github.com/XengShi/materialYouNewTab/pull/496))
-- Moved Dark theme CSS to style.css ([@prem-k-r](https://github.com/prem-k-r)) ([#508](https://github.com/XengShi/materialYouNewTab/pull/508))
 - Deleted favicon directory ([@XengShi](https://github.com/XengShi)) ([#525](https://github.com/XengShi/materialYouNewTab/pull/525))
 - Updated index.html ([@XengShi](https://github.com/XengShi)) ([#526](https://github.com/XengShi/materialYouNewTab/pull/526))
 - Updated script.js ([@XengShi](https://github.com/XengShi)) ([#527](https://github.com/XengShi/materialYouNewTab/pull/527))
@@ -101,29 +104,16 @@ not
 - Replaced alert and confirm dialog box with custom modal ([@prem-k-r](https://github.com/prem-k-r)) ([#545](https://github.com/XengShi/materialYouNewTab/pull/545))
 
 ### Fixed
-- Fixed Shortcuts Title Overflow ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#497](https://github.com/XengShi/materialYouNewTab/pull/497))
-- Fixed AM/PM Display Error ([@shmps40802](https://github.com/shmps40802)) ([#500](https://github.com/XengShi/materialYouNewTab/pull/500))
-- Fixed live preview ([@prem-k-r](https://github.com/prem-k-r)) ([#506](https://github.com/XengShi/materialYouNewTab/pull/506))
-- Fixed restore wallpaper bug ([@prem-k-r](https://github.com/prem-k-r)) ([#515](https://github.com/XengShi/materialYouNewTab/pull/515))
 - Fixed Security Vulnerability for shortcuts ([@itz-rj-here](https://github.com/itz-rj-here)) ([#539](https://github.com/XengShi/materialYouNewTab/pull/539))
 - Fixed security warnings ([@prem-k-r](https://github.com/prem-k-r)) ([#554](https://github.com/XengShi/materialYouNewTab/pull/554))
 - Fixed Google menu icon alignment and Changed Switch button design ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Fixed search radio button hide delay ([@vchib1](https://github.com/vchib1)) ([#559](https://github.com/XengShi/materialYouNewTab/pull/559))
 
 ### Other
-- Updated documentation ([@prem-k-r](https://github.com/prem-k-r)) ([#510](https://github.com/XengShi/materialYouNewTab/pull/510))
 - Improved PR Template and Updated Issues Templates (Bug Report, Feature Request, General Question/Help Needed) with Contact Links ([@itz-rj-here](https://github.com/itz-rj-here)) ([#561](https://github.com/XengShi/materialYouNewTab/pull/561))
 - Fixed Feature Request Template ([@itz-rj-here](https://github.com/itz-rj-here)) ([#565](https://github.com/XengShi/materialYouNewTab/pull/565))
 
 ### Translations
-- Added translation for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
-- Updated translations for Hindi, Bengali, and Marathi ([@prem-k-r](https://github.com/prem-k-r)) ([#507](https://github.com/XengShi/materialYouNewTab/pull/507))
-- Updated Turkish language support ([@kerimlcr](https://github.com/kerimlcr)) ([#513](https://github.com/XengShi/materialYouNewTab/pull/513))
-- Updated Indonesian Translation ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#514](https://github.com/XengShi/materialYouNewTab/pull/514))
-- Added new translations for French ([@iamwinner422](https://github.com/iamwinner422)) ([#516](https://github.com/XengShi/materialYouNewTab/pull/516))
-- Updated Czech translation strings ([@ceskyDJ](https://github.com/ceskyDJ)) ([#518](https://github.com/XengShi/materialYouNewTab/pull/518))
-- Added translations for latest strings (Hindi, Bengali, Marathi) ([@prem-k-r](https://github.com/prem-k-r)) ([#542](https://github.com/XengShi/materialYouNewTab/pull/542))
-- Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#543](https://github.com/XengShi/materialYouNewTab/pull/543))
 - Added translation for Urdu ([@prem-k-r](https://github.com/prem-k-r)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
 - Updated Czech translation ([@ceskyDJ](https://github.com/ceskyDJ)) ([#550](https://github.com/XengShi/materialYouNewTab/pull/550))
 - Updated translations for Hindi, Bengali, and Marathi ([@prem-k-r](https://github.com/prem-k-r)) ([#551](https://github.com/XengShi/materialYouNewTab/pull/551))
