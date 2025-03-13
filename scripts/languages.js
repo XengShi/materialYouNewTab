@@ -183,6 +183,7 @@ function applyLanguage(lang) {
         'switchSearchModesInfo',
         'adjustZoom',
         'changeBrowserTheme',
+        'updateFirefoxHomepage',
         'dontShowTips'
     ];
 
