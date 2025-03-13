@@ -57,12 +57,11 @@ function toggleSearchEngines(category) {
         } else {
             engine.style.display = 'none';
         }
-        if (engine.lastElementChild.value === checkeditem && !engine.lastElementChild.checked) {
-            engine.lastElementChild.click(); // Click only if it's not already selected
 
-            if (document.activeElement === searchInput) {
-                searchInput.blur();
-            }
+        if (engine.lastElementChild.value === checkeditem) {
+            const radioBtn = engine.querySelector('input[type="radio"]');
+            radioBtn.checked = true;
+            radioBtn.dispatchEvent(new Event("change"));
         }
     });
 }
@@ -359,6 +358,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const hideSearchWith = document.getElementById("shortcut_switchcheckbox");
     hideSearchWith.addEventListener("change", (e) => {
         initShortCutSwitch(e.target);
+
+        // Fetch active search mode from storage
+        let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
+        toggleSearchEngines(activeSearchMode);
+
+        // Get the selected search engine from localStorage
+        const storedSearchEngine = localStorage.getItem(`selectedSearchEngine-${activeSearchMode}`);
+
+        // Find the corresponding radio button
+        const selectedRadioButton = document.querySelector(`input[name="search-engine"][value="${storedSearchEngine}"]`);
+        selectedRadioButton.checked = true;
+
+        // Ensure UI is updated properly
+        const storedSearchEngineSN = storedSearchEngine.charAt(storedSearchEngine.length - 1);
+        const selector = `*[data-engine="${storedSearchEngineSN}"]`;
+
+        swapDropdown(selector);
+        sortDropdown();
     });
 
     // Intialize shortcut switch
