@@ -1317,6 +1317,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	text-align: center;
 }
 
 #digitalClock[style="display: block;"] + .ttteexxtt {
