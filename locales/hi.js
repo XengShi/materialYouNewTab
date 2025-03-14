@@ -124,6 +124,7 @@ const hi = {
     "braveEngine": "ब्रेव",
     "youtubeEngine": "यूट्यूब",
     "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
     "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools

@@ -196,7 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
             engine4: "https://search.brave.com/search?q=",
             engine5: "https://www.youtube.com/results?search_query=",
             engine6: "https://www.google.com/search?tbm=isch&q=",
-            engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
+            engine7: "https://www.reddit.com/search/?q=",
+            engine8: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
         };
 
         if (searchTerm !== "") {

@@ -126,6 +126,7 @@ const bn = {
     "braveEngine": "ব্রেভ",
     "youtubeEngine": "ইউটিউব",
     "gImagesEngine": "ছবি",
+    "redditEngine": "রেডিট",
     "wikipediaEngine": "উইকিপিডিয়া",
 
     // AI Tools
