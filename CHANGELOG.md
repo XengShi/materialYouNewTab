@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Improved` - for enhancements or optimizations in existing functionality.
 - `Removed` - for features that have been removed.
 - `Fixed` - for any bug fixes.
-- `Language-related` - for updates related to translations, localization, or internationalization.
+- `Localized ` - for updates related to translations, localization, or internationalization.
 - `Other` - for technical updates.
 
 
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Set the browser's current default search engine as the selectable engine ([@prem-k-r](https://github.com/prem-k-r)) ([#479](https://github.com/XengShi/materialYouNewTab/pull/479))
 -  Added option for sorting by date added in bookmarks ([@hasanakhiar](https://github.com/hasanakhiar)) ([#571](https://github.com/XengShi/materialYouNewTab/pull/571))
 -  Added Motivational Quotes feature ([@prem-k-r](https://github.com/prem-k-r)), ([@XengShi](https://github.com/XengShi)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)), ([@itz-rj-here](https://github.com/itz-rj-here)) ([#570](https://github.com/XengShi/materialYouNewTab/pull/570))
--  Added search mode categorization ([@ashesbloom](https://github.com/ashesbloom)), ([@prem-k-r](https://github.com/prem-k-r)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)), ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
+-  Added search mode categorization ([@ashesbloom](https://github.com/ashesbloom)), ([@prem-k-r](https://github.com/prem-k-r)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
 -  Added Wikipedia and Google Images to the list of search engines ([@prem-k-r](https://github.com/prem-k-r)) ([43aaf55](https://github.com/XengShi/materialYouNewTab/pull/474/commits/43aaf55f61affffa9fe5133d9ad1507e2c14a660))
 -  Added Tips ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([0190dee](https://github.com/XengShi/materialYouNewTab/commit/0190dee9e0adfb5e4f68afa8529317eb6810d311)) ([#585](https://github.com/XengShi/materialYouNewTab/pull/585)) ([#589](https://github.com/XengShi/materialYouNewTab/pull/589))
 
@@ -38,8 +38,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Weather retention time set to 2 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
 - Changed default Vietnamese font to *Be Vietnam Pro* ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
 - Improved date format for Japanese and Korean ([@prem-k-r](https://github.com/prem-k-r)), ([@dempavof](https://github.com/dempavof)) ([#529](https://github.com/XengShi/materialYouNewTab/pull/529))
-- Updated switch design per MD3 guidelines, adjusting inner thumb size based on state and reduced animation speed [@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
-- Reduced radio buttons size in serch engines ([@vchib1](https://github.com/vchib1)), ([@prem-k-r](https://github.com/prem-k-r))
+- Updated toggle switch design; adjusted the inner thumb size based on state and reduced animation speed ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
+- Reduced radio buttons size in search engines ([@vchib1](https://github.com/vchib1)), ([@prem-k-r](https://github.com/prem-k-r))
 
 
 ### Improved
@@ -79,12 +79,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Fixed delayed radio button animation when hiding search engines ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 
 
-### Language-related
+### Localized 
 - Added support for Hungarian ([@Zan1456](https://github.com/Zan1456)) ([#420](https://github.com/XengShi/materialYouNewTab/pull/420))
 - Added support for Nepali ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
 - Added support for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
 - Added support for Urdu ([@prem-k-r](https://github.com/prem-k-r)), ([@asfand-dev](https://github.com/asfand-dev)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
-- Updated translations:
+- Translation updates for:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))
   - Vietnamese ([@Tuan1-2-3](https://github.com/Tuan1-2-3))
@@ -100,7 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Other
 - Updated documentations ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@ZiClaud](https://github.com/ZiClaud))
-- Refactored codes ([@ZiClaud](https://github.com/ZiClaud)), ([@prem-k-r](https://github.com/prem-k-r))
+- Refactored code ([@ZiClaud](https://github.com/ZiClaud)), ([@prem-k-r](https://github.com/prem-k-r))
 - Chores ([@XengShi](https://github.com/XengShi)), ([@itz-rj-here](https://github.com/itz-rj-here)), ([@prem-k-r](https://github.com/prem-k-r))
 
 ---
