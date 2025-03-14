@@ -13,6 +13,10 @@ const searchInput = document.getElementById("searchQ");
 searchbar.addEventListener("click", function (event) {
     event.stopPropagation();
     searchbar.classList.add("active");
+
+    if (!event.target.closest(".dropdown-btn")) {
+        searchInput.focus();
+    }
 });
 
 document.addEventListener("click", function (event) {
