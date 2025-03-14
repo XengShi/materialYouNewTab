@@ -48,6 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function getWeatherData() {
+    // Weather texts
+    document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
+    document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
+    document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -196,7 +202,11 @@ async function getWeatherData() {
 
             const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
 
-            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+            if (!parsedData ||
+                ((Date.now() - weatherParsedTime) > retentionTime) ||
+                (weatherParsedLocation !== currentUserLocation) ||
+                (weatherParsedLang !== currentLanguage)) {
+
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
                 let data = await fetch(weatherApi);
@@ -226,105 +236,112 @@ async function getWeatherData() {
                     localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
                     localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-                UpdateWeather();
-            } else {
-                setTimeout(UpdateWeather, 50);
             }
+
+            // Update weather data
+            UpdateWeather();
 
             function UpdateWeather() {
                 // Weather data
-                const conditionText = parsedData.current.condition.text;
-                const tempCelsius = Math.round(parsedData.current.temp_c);
-                const tempFahrenheit = Math.round(parsedData.current.temp_f);
-                const humidity = parsedData.current.humidity;
-                const feelsLikeCelsius = parsedData.current.feelslike_c;
-                const feelsLikeFahrenheit = parsedData.current.feelslike_f;
+                try {
+                    const conditionText = parsedData.current.condition.text;
+                    const tempCelsius = Math.round(parsedData.current.temp_c);
+                    const tempFahrenheit = Math.round(parsedData.current.temp_f);
+                    const humidity = parsedData.current.humidity;
+                    const feelsLikeCelsius = parsedData.current.feelslike_c;
+                    const feelsLikeFahrenheit = parsedData.current.feelslike_f;
 
-                // Update DOM elements with the weather data
-                document.getElementById("conditionText").textContent = conditionText;
+                    // Update DOM elements with the weather data
+                    document.getElementById("conditionText").textContent = conditionText;
 
-                // Localize and display temperature and humidity
-                const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
-                const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
-                const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
-                const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
-                const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
+                    // Localize and display temperature and humidity
+                    const localizedHumidity = localizeNumbers(humidity.toString(), currentLanguage);
+                    const localizedTempCelsius = localizeNumbers(tempCelsius.toString(), currentLanguage);
+                    const localizedFeelsLikeCelsius = localizeNumbers(feelsLikeCelsius.toString(), currentLanguage);
+                    const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
+                    const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
-                // Check if language is RTL
-                const isRTL = rtlLanguages.includes(currentLanguage);
+                    // Check if language is RTL
+                    const isRTL = rtlLanguages.includes(currentLanguage);
 
-                // Set humidity level
-                const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
-                document.getElementById("humidityLevel").textContent = isRTL
-                    ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
-                    : `${humidityLabel} ${localizedHumidity}%`;
+                    // Set humidity level
+                    const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+                    document.getElementById("humidityLevel").textContent = isRTL
+                        ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
+                        : `${humidityLabel} ${localizedHumidity}%`;
 
-                // Event Listener for the Fahrenheit toggle
-                const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
-                const updateTemperatureDisplay = () => {
-                    const tempElement = document.getElementById("temp");
-                    const feelsLikeElement = document.getElementById("feelsLike");
-                    const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
+                    // Event Listener for the Fahrenheit toggle
+                    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+                    const updateTemperatureDisplay = () => {
+                        const tempElement = document.getElementById("temp");
+                        const feelsLikeElement = document.getElementById("feelsLike");
+                        const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
 
-                    // List of languages where a space before °F or °C is required
-                    const langWithSpaceBeforeDegree = ['cs'];
+                        // List of languages where a space before °F or °C is required
+                        const langWithSpaceBeforeDegree = ['cs'];
 
-                    if (fahrenheitCheckbox.checked) {
-                        // Update temperature
-                        tempElement.textContent = localizedTempFahrenheit;
-                        const tempUnitF = document.createElement("span");
-                        tempUnitF.className = "tempUnit";
-                        tempUnitF.textContent = "°F";
-                        tempElement.appendChild(tempUnitF);
+                        if (fahrenheitCheckbox.checked) {
+                            // Update temperature
+                            tempElement.textContent = localizedTempFahrenheit;
+                            const tempUnitF = document.createElement("span");
+                            tempUnitF.className = "tempUnit";
+                            tempUnitF.textContent = "°F";
+                            tempElement.appendChild(tempUnitF);
 
-                        // Update feels like
-                        const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
-                        feelsLikeElement.textContent = isRTL
-                            ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
-                            : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
-                    } else {
-                        // Update temperature
-                        tempElement.textContent = localizedTempCelsius;
-                        const tempUnitC = document.createElement("span");
-                        tempUnitC.className = "tempUnit";
-                        tempUnitC.textContent = "°C";
-                        tempElement.appendChild(tempUnitC);
+                            // Update feels like
+                            const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
+                            feelsLikeElement.textContent = isRTL
+                                ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
+                                : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        } else {
+                            // Update temperature
+                            tempElement.textContent = localizedTempCelsius;
+                            const tempUnitC = document.createElement("span");
+                            tempUnitC.className = "tempUnit";
+                            tempUnitC.textContent = "°C";
+                            tempElement.appendChild(tempUnitC);
 
-                        // Update feels like
-                        const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
-                        feelsLikeElement.textContent = isRTL
-                            ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
-                            : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                            // Update feels like
+                            const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
+                            feelsLikeElement.textContent = isRTL
+                                ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
+                                : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        }
+                    };
+                    updateTemperatureDisplay();
+
+                    // Setting weather Icon
+                    const newWIcon = parsedData.current.condition.icon;
+                    const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
+                    document.getElementById("wIcon").src = weatherIcon;
+
+                    // Define minimum width for the slider based on the language
+                    const humidityMinWidth = {
+                        idn: "47%",
+                        hu: "48%",
+                        en: "42%", // Default for English and others
+                    };
+                    const slider = document.getElementById("slider");
+                    slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];
+
+                    // Set slider width based on humidity
+                    if (humidity > 40) {
+                        slider.style.width = `calc(${humidity}% - 60px)`;
                     }
-                };
-                updateTemperatureDisplay();
 
-                // Setting weather Icon
-                const newWIcon = parsedData.current.condition.icon;
-                const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
-                document.getElementById("wIcon").src = weatherIcon;
-
-                // Define minimum width for the slider based on the language
-                const humidityMinWidth = {
-                    idn: "47%",
-                    hu: "48%",
-                    en: "42%", // Default for English and others
-                };
-                const slider = document.getElementById("slider");
-                slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];
-
-                // Set slider width based on humidity
-                if (humidity > 40) {
-                    slider.style.width = `calc(${humidity}% - 60px)`;
+                    // Update location
+                    var city = parsedData.location.name;
+                    // var city = "Thiruvananthapuram";
+                    var maxLength = 10;
+                    var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
+                    document.getElementById("location").textContent = limitedText;
                 }
-
-                // Update location
-                var city = parsedData.location.name;
-                // var city = "Thiruvananthapuram";
-                var maxLength = 10;
-                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-                document.getElementById("location").textContent = limitedText;
-
+                catch {
+                    document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
+                    document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+                    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
+                    document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+                }
             }
         } catch (error) {
             console.error("Error fetching weather data:", error);
