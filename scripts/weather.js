@@ -47,12 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-async function getWeatherData() {
-    // Weather texts
+function updateWeatherTexts() {
     document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
     document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
     document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
     document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+}
+
+async function getWeatherData() {
+    updateWeatherTexts();
 
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
@@ -337,10 +340,7 @@ async function getWeatherData() {
                     document.getElementById("location").textContent = limitedText;
                 }
                 catch {
-                    document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
-                    document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
-                    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
-                    document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+                    updateWeatherTexts();
                 }
             }
         } catch (error) {
