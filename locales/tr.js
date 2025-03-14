@@ -107,6 +107,8 @@ const tr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Görseller",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Yapay Zeka Araçları",
