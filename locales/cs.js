@@ -135,7 +135,7 @@ const cs = {
 
     // Theme
     "enableDarkMode": "Tmavý režim",
-    "enableDarkModeInfo": "Zapne motivy v tmavém režimu",
+    "enableDarkModeInfo": "Zapne tmavý režim aktivního motivu",
 
     // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
