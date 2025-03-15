@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
 
-<!-- [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 13, 2025 -->
+<!-- [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 16, 2025 -->
 
 ### Added
 - Added GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
@@ -29,9 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Set the browser's current default search engine as the selectable engine ([@prem-k-r](https://github.com/prem-k-r)) ([#479](https://github.com/XengShi/materialYouNewTab/pull/479))
 -  Added option for sorting by date added in bookmarks ([@hasanakhiar](https://github.com/hasanakhiar)) ([#571](https://github.com/XengShi/materialYouNewTab/pull/571))
 -  Added Motivational Quotes feature ([@prem-k-r](https://github.com/prem-k-r)), ([@XengShi](https://github.com/XengShi)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)), ([@itz-rj-here](https://github.com/itz-rj-here)) ([#570](https://github.com/XengShi/materialYouNewTab/pull/570))
--  Added search mode categorization ([@ashesbloom](https://github.com/ashesbloom)), ([@prem-k-r](https://github.com/prem-k-r)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
+-  Added search mode categorization: 'Search With' search engines and 'Search On' platforms ([@ashesbloom](https://github.com/ashesbloom)), ([@prem-k-r](https://github.com/prem-k-r)), ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#474](https://github.com/XengShi/materialYouNewTab/pull/474))
 -  Added Wikipedia and Google Images to the list of search engines ([@prem-k-r](https://github.com/prem-k-r)) ([43aaf55](https://github.com/XengShi/materialYouNewTab/pull/474/commits/43aaf55f61affffa9fe5133d9ad1507e2c14a660))
 -  Added Tips ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([0190dee](https://github.com/XengShi/materialYouNewTab/commit/0190dee9e0adfb5e4f68afa8529317eb6810d311)), ([#585](https://github.com/XengShi/materialYouNewTab/pull/585)), ([#589](https://github.com/XengShi/materialYouNewTab/pull/589))
+-  Added Reddit and Quora as Search Platforms ([@prem-k-r](https://github.com/prem-k-r)) ([#593](https://github.com/XengShi/materialYouNewTab/pull/593))
 
 
 ### Changed
