@@ -3,8 +3,6 @@ const cs = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Zpětná vazba",
-    "resetsettings": "Resetovat nastavení",
-    "menuCloseText": "Zavřít",
 
     // Shortcuts
     "shortcutsText": "Zkratky",
@@ -42,6 +40,12 @@ const cs = {
     "userTextInfo": "Zobrazí upravitelný text pod hodinami",
     "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
     "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
+    "hideWeatherTitle": "Skrýt počasí",
+    "hideWeatherInfo": "Vypne widgety s počasím",
+    "hideWeatherBox": "Skrýt kartu s počasím",
+    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
+
+    // Search
     "micIconTitle": "Skrýt ikonu mikrofonu",
     "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
     "hideSearchWith": "Skrýt vyhledávače",
@@ -72,10 +76,6 @@ const cs = {
     "userAPI": "Váš klíč k WeatherAPI",
     "LearnMoreButton": "Zjistit více",
     "saveAPI": "Uložit",
-    "hideWeatherTitle": "Skrýt počasí",
-    "hideWeatherInfo": "Vypne widgety s počasím",
-    "hideWeatherBox": "Skrýt kartu s počasím",
-    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
 
     // Body Items
     // Calendar
@@ -137,11 +137,13 @@ const cs = {
     "enableDarkMode": "Tmavý režim",
     "enableDarkModeInfo": "Zapne motivy v tmavém režimu",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
+    "rangColor": "Vybrat barvu",
     "backupText": "Zálohovat",
     "restoreText": "Obnovit",
-    "rangColor": "Vybrat barvu",
+    "resetsettings": "Resetovat nastavení",
+    "menuCloseText": "Zavřít",
 
     // Dialog boxes (alerts)
     "okText": "Budiž",
