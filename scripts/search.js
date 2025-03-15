@@ -13,6 +13,10 @@ const searchInput = document.getElementById("searchQ");
 searchbar.addEventListener("click", function (event) {
     event.stopPropagation();
     searchbar.classList.add("active");
+
+    if (!event.target.closest(".dropdown-btn")) {
+        searchInput.focus();
+    }
 });
 
 document.addEventListener("click", function (event) {
@@ -196,7 +200,9 @@ document.addEventListener("DOMContentLoaded", () => {
             engine4: "https://search.brave.com/search?q=",
             engine5: "https://www.youtube.com/results?search_query=",
             engine6: "https://www.google.com/search?tbm=isch&q=",
-            engine7: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
+            engine7: "https://www.reddit.com/search/?q=",
+            engine8: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`,
+            engine9: "https://www.quora.com/search?q="
         };
 
         if (searchTerm !== "") {

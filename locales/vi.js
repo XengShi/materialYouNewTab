@@ -105,6 +105,7 @@ const vi = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Hình ảnh",
 
     // AI Tools
     "ai_tools": "Công cụ AI",

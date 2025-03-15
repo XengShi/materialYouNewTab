@@ -6,10 +6,11 @@
 	"permissions": ["search"],
 	"optional_permissions": ["bookmarks"],
 	"host_permissions": [
-		"https://www.google.com/complete/search*",
-		"https://duckduckgo.com/ac/*",
-		"https://search.brave.com/api/suggest*",
-		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
+		"https://www.google.com/complete/search?client=*",
+		"https://duckduckgo.com/ac/?q=*",
+		"https://search.brave.com/api/suggest?q=*",
+		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*",
+		"https://www.reddit.com/search.json?q=*"
 	],
 	"icons": {
 		"16": "favicon/icon16.png",

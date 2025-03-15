@@ -120,6 +120,8 @@ const cs = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Obrázky",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "AI nástroje",

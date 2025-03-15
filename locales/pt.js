@@ -115,6 +115,8 @@ const pt = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Imagens",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Ferramentas de IA",

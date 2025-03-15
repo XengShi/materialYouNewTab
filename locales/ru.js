@@ -42,7 +42,7 @@ const ru = {
     "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
     "hideWeatherTitle": "Скрыть погоду",
     "hideWeatherInfo": "Отключить виджеты погоды",
-    "hideWeatherBox": "Скрыть карту погоды",    // Toggle for mobile devices only
+    "hideWeatherBox": "Скрыть карту погоды",
     "hideWeatherBoxInfo": "Показать только температуру",
 
     // Search
@@ -119,11 +119,11 @@ const ru = {
     // Search Engines
     "defaultEngine": "По умолчанию",
     "googleEngine": "Google",
-    "duckEngine": "Duck",    // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Картинки",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "gImagesEngine": "Картинки",
     "wikipediaEngine": "Википедия",
 
     // AI Tools
