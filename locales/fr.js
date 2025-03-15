@@ -50,8 +50,12 @@ const fr = {
     // Search
     "micIconTitle": "Masquer l'Icône du Microphone",
     "micIconInfo": "Si la saisie vocale ne fonctionne pas",
+    "switchSearchModes": "Changer de mode de Recherche",
+    "switchSearchModesInfo": "Cliquez sur ‘Rechercher avec’ pour changer le mode",
     "hideSearchWith": "Masquer les Moteurs de Recherche",
     "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
+    "motivationalQuotesText": "Citations de motivation",
+    "motivationalQuotesInfo": "Afficher les citations sous la barre de recherche",
     "search_suggestions_button": "Suggestions de Recherche",
     "search_suggestions_text": "Activer les suggestions de recherche",
 
@@ -84,6 +88,9 @@ const fr = {
 
     // Bookmarks
     "bookmarksHeading": "Favoris",
+    "bookmarkSortBy": "Trier par",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Plus vieux",
     "bookmarkViewAs": "Afficher en",
     "bookmarkViewGrid": "Grille",
     "bookmarkViewList": "Liste",
@@ -101,6 +108,7 @@ const fr = {
     "searchPlaceholder": "Saisissez ici...",
     "listenPlaceholder": "Écoute...",
     "searchWithHint": "Rechercher avec",
+    "searchOnHint": "Rechercher sur",
     "userText": "Cliquez ici pour modifier",
 
     // Greeting
@@ -117,6 +125,8 @@ const fr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Images",  
+    "wikipediaEngine": "Wikipedia",
 
     // AI Tools
     "ai_tools": "Outils IA",
@@ -125,7 +135,6 @@ const fr = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    //"firefly": "Adobe Firefly",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
