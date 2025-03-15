@@ -122,7 +122,9 @@ const en = {
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI Tools",

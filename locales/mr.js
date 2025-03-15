@@ -114,6 +114,9 @@ const mr = {
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव्ह",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI साधने",
