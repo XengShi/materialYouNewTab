@@ -122,7 +122,9 @@ const en = {
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI Tools",
@@ -153,7 +155,11 @@ const en = {
     "adjustZoomInfo": "Press Ctrl + \"+\" or Ctrl + \"-\" to adjust the zoom.",
     "changeBrowserTheme": "Change Browser Theme",
     "chromeThemeInfo": "Click the three dots (⋮) > More tools > Customize Chrome, then choose a color that matches the extension theme.",
+    "edgeThemeInfo": "Goto Settings > Appearance, then choose a color that matches the extension theme.",
+    "braveThemeInfo": 'Visit <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, download and apply the theme that matches the extension.',
     "firefoxThemeInfo": 'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches the extension.',
+    "updateFirefoxHomepage": "Update Homepage",
+    "updateFirefoxHomepageInfo": "To change your homepage like the new tab as well, visit <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">this link</a> and follow the instructions.",
     "dontShowTips": "Don't show it again",
 
     // Dialog boxes (alerts)

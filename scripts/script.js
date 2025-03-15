@@ -279,8 +279,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const changeBrowserThemeInfo = document.getElementById("changeBrowserThemeInfo");
     if (navigator.userAgent.toLowerCase().includes("firefox")) {
         changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.firefoxThemeInfo || translations["en"].firefoxThemeInfo;
+    } else if (isEdge) {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.edgeThemeInfo || translations["en"].edgeThemeInfo;
+    } else if (isBrave) {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.braveThemeInfo || translations["en"].braveThemeInfo;
     } else {
         changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.chromeThemeInfo || translations["en"].chromeThemeInfo;
+    }
+
+    const firefoxHomepage = document.getElementById("firefoxHomepage");
+    const updateFirefoxHomepageInfo = document.getElementById("updateFirefoxHomepageInfo");
+    if (isFirefox) {
+        firefoxHomepage.style.display = "block";
+        updateFirefoxHomepageInfo.innerHTML = translations[currentLanguage]?.updateFirefoxHomepageInfo || translations["en"].updateFirefoxHomepageInfo;
     }
 
     // Hide tips 
