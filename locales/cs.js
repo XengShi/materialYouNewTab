@@ -64,7 +64,7 @@ const cs = {
 
     // Location
     "useGPS": "Použít GPS",
-    "useGPSInfo": "Zapne GPS pro průběžné aktualizace polohy",
+    "useGPSInfo": "Zapne GPS pro průběžnou aktualizaci polohy",
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
