@@ -148,6 +148,20 @@ const cs = {
     "resetsettings": "Resetovat nastavení",
     "menuCloseText": "Zavřít",
 
+    // Tips
+    "switchSearchModes": "Změna způsobu vyhledávání",
+    "switchSearchModesInfo": "Pro změnu způsobu vyhledávání klepněte na „Vyhledat prostřednictvím“.",
+    "adjustZoom": "Přizpůsobení přiblížení",
+    "adjustZoomInfo": "Pro přizpůsobení přiblížení stiskněte Ctrl + „+“ nebo Ctrl + „-“.",
+    "changeBrowserTheme": "Změna motivu prohlížeče",
+    "chromeThemeInfo": "Klepněte na tři tečky (⋮) > Další nástroje > Přizpůsobení Chrome, následně zvolte barvu, která sedí k motivu rozšíření.",
+    "edgeThemeInfo": "Běžte do Nastavení > Vzhled, následně zvolte barvu, která sedí k motivu rozšíření.",
+    "braveThemeInfo": 'Navštivte <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Obchod s motivy pro Chrome</a>, stáhněte a aktivujte motiv, který sedí k rozšíření.',
+    "firefoxThemeInfo": 'Navštivte <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Motivy vzhledu Firefox</a>, stáhněte a aktivujte motiv, který sedí k rozšíření.',
+    "updateFirefoxHomepage": "Aktualizace domovské stránky",
+    "updateFirefoxHomepageInfo": "Pro změnu domovské stránky, stejně jako nové karty, navštivte <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">tento odkaz</a> a následujte instrukce (anglicky).",
+    "dontShowTips": "Již nezobrazovat",
+
     // Dialog boxes (alerts)
     "okText": "Budiž",
     "yesText": "Ano",
