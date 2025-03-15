@@ -104,6 +104,7 @@ const cs = {
     "searchPlaceholder": "Zadejte hledaný výraz…",
     "listenPlaceholder": "Poslouchám…",
     "searchWithHint": "Vyhledávat prostřednictvím",
+    "searchOnHint": "Vyhledávat na",
     "userText": "Upravíte po kliknutí",
 
     // Greeting
@@ -122,6 +123,8 @@ const cs = {
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Obrázky",
     "redditEngine": "Reddit",
+    "wikipediaEngine": "Wikipedie",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI nástroje",
