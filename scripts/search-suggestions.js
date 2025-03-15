@@ -81,7 +81,8 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             engine5: "https://www.youtube.com/results?search_query=",
             engine6: "https://www.google.com/search?tbm=isch&q=",
             engine7: "https://www.reddit.com/search/?q=",
-            engine8: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`
+            engine8: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`,
+            engine9: "https://www.quora.com/search?q="
         };
         const query = this.value;
 
@@ -207,15 +208,14 @@ async function getAutocompleteSuggestions(query) {
         engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
         engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`,
-        engine6: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine7: `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&sort=relevance&limit=15`,
         engine8: `https://${languageCode}.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&format=json`
     };
+
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
-    let apiUrl = searchEnginesapi[selectedOption];
+    let apiUrl = searchEnginesapi[selectedOption] || searchEnginesapi["engine1"];
     if (useproxyCheckbox.checked) {
         if (selectedOption === "engine7") {
             apiUrl = searchEnginesapi["engine1"];

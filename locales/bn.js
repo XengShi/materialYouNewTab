@@ -128,6 +128,7 @@ const bn = {
     "gImagesEngine": "ছবি",
     "redditEngine": "রেডিট",
     "wikipediaEngine": "উইকিপিডিয়া",
+    "quoraEngine": "কোরা",
 
     // AI Tools
     "ai_tools": "এআই টুলস",

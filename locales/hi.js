@@ -126,6 +126,7 @@ const hi = {
     "gImagesEngine": "इमेज",
     "redditEngine": "रेडिट",
     "wikipediaEngine": "विकिपीडिया",
+    "quoraEngine": "क्वोरा",
 
     // AI Tools
     "ai_tools": "AI उपकरण",
