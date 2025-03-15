@@ -137,7 +137,7 @@ const cs = {
     "metaAI": "Meta AI",
 
     // Theme
-    "enableDarkMode": "Tmavý režim",
+    "enableDarkMode": "Tmavý režim (experimentální)",
     "enableDarkModeInfo": "Zapne tmavý režim aktivního motivu",
 
     // Wallpaper and settings
