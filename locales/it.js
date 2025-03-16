@@ -55,14 +55,12 @@ const it = {
     "ProxyText": "Proxy di Bypass CORS",
     "ProxySubtext": "Aggiungi il tuo Proxy di Bypass CORS",
     "HostproxyButton": "Hosta il Tuo Proxy",
-    "saveproxy": "Salva",
 
     // Location
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
     "useGPS": "Usa il GPS",
-    "saveLoc": "Salva",
 
     // Weather
     "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
@@ -107,6 +105,8 @@ const it = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Immagini",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Strumenti IA",
@@ -115,7 +115,6 @@ const it = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc

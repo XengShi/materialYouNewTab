@@ -45,13 +45,11 @@ const ur = {
     "ProxyText": "CORS بائی پاس پراکسی",
     "ProxySubtext": "اپنی CORS بائی پاس پراکسی شامل کریں",
     "HostproxyButton": "اپنی پراکسی ہوسٹ کریں",
-    "saveproxy": "محفوظ کریں",
 
     // Location
     "UserLocText": "اپنا مقام درج کریں",
     "UserLocSubtext": "اگر موسم کا مقام درست نہیں ہے",
     "userLoc": "آپ کا شہر یا نقاط (عرض البلد، طول البلد)",
-    "saveLoc": "محفوظ کریں",
 
     // Weather
     "WeatherApiText": "اپنی WeatherAPI کلید درج کریں",
@@ -99,7 +97,6 @@ const ur = {
     "gemini": "جیمنائی",
     "copilot": "کوپائلٹ",
     "perplexity": "پرپلکسیٹی",
-    "firefly": "اڈوب فائر فلائی",
     "metaAI": "میٹا اے آئی",
 
     // Wallpaper and settings

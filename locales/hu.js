@@ -54,13 +54,11 @@ const hu = {
     "ProxyText": "CORS megkerülő proxy",
     "ProxySubtext": "Saját CORS megkerülő proxy hozzáadása",
     "HostproxyButton": "Saját proxy üzemeltetése",
-    "saveproxy": "Mentés",
 
     // Location
     "UserLocText": "Add meg a tartózkodási helyed",
     "UserLocSubtext": "Ha az időjárás helye nem megfelelő",
     "userLoc": "A városod vagy koordinátáid (földrajzi szélesség, hosszúság)",
-    "saveLoc": "Mentés",
 
     // Weather
     "WeatherApiText": "Add meg a WeatherAPI kulcsodat",
@@ -115,7 +113,6 @@ const hu = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
     "github": "GitHub",
 

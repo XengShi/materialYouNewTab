@@ -114,6 +114,9 @@ const mr = {
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव्ह",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI साधने",
@@ -122,7 +125,6 @@ const mr = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    // "firefly": "अडोबी फायरफ्लाय",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 

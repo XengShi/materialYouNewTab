@@ -532,11 +532,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
-    // Prevent if modal is open
+    // Prevent shortcut if modal or menu is open
     const modalContainer = document.getElementById("prompt-modal-container");
-    if (modalContainer?.style.display === "flex") return;
-
-    if (menuBar.style.display !== "none") {
+    if (modalContainer?.style.display === "flex" || menuBar.style.display !== "none") {
         return;
     }
 
