@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const googleAppsCheckbox = document.getElementById("googleAppsCheckbox");
 
     // Replace Chrome Web Store with Firefox Add-ons in Firefox
-    if (isFirefox) {
+    if (isFirefoxAll) {
         const chromeWebStoreLink = document.getElementById("chromeWebstoreLink");
         // Update the href to Firefox Add-ons
         chromeWebStoreLink.href = "https://addons.mozilla.org/en-US/firefox/";
