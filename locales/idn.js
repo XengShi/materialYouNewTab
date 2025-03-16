@@ -48,6 +48,16 @@ const idn = {
     "micIconInfo": "Jika voice typing tidak berfungsi",
     "switchSearchModes": "Ubah Mode Pencarian",
     "switchSearchModesInfo": "Klik pada ‘Cari Dengan’ untuk mengubah mode",
+    "adjustZoom": "Atur Zoom",
+    "adjustZoomInfo": "Tekan Ctrl + \"+\" atau Ctrl + \"-\" untuk mengatur zoom.",
+    "changeBrowserTheme": "Ubah Tema Browser",
+    "chromeThemeInfo": "Klik pada tiga titik (⋮) > Lainnya > Kustomisasi Chrome, lalu pilih warna yang cocok dengan tema ekstensi.",
+    "edgeThemeInfo": "Pergi ke Setelan > Tampilan, lalu pilih warna yang cocok dengan tema ekstensi.",
+    "braveThemeInfo": 'Kunjungi <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, unduh dan terapkan tema yang cocok dengan ekstensi.',
+    "firefoxThemeInfo": 'Kunjungi <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, unduh dan terapkan tema yang cocok dengan ekstensi.',
+    "updateFirefoxHomepage": "Perbarui Beranda",
+    "updateFirefoxHomepageInfo": "Untuk mengubah beranda Anda seperti tab baru juga, kunjungi <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">tautan ini</a> dan ikuti intruksi-nya.",
+    "dontShowTips": "Jangan tampilkan lagi",
     "hideSearchWith": "Sembunyikan Mesin Pencarian",
     "hideSearchWithInfo": "Ubah mesin pencarian dengan cara mengeklik ikon",
     "motivationalQuotesText": "Kata-kata Motivasi",
@@ -124,7 +134,9 @@ const idn = {
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Gambar",
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "Utilitas AI",
@@ -135,11 +147,11 @@ const idn = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
-    
+
     // Theme
     "enableDarkMode": "Mode Gelap",
     "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
-    
+
     // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",
