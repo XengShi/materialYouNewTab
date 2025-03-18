@@ -27,7 +27,9 @@ const bn = {
     "todoListHover": "টু ডু লিস্ট",
     "todoPlaceholder": "টাস্ক যোগ করুন...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "ঘড়ি লুকান",
+    "hideClockBoxInfo": "ঘড়ি এবং তারিখ দেখান বা লুকান",
     "digitalclocktitle": "ডিজিটাল ঘড়ি",
     "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
     "timeformattitle": "১২-ঘণ্টা ফরম্যাট",
