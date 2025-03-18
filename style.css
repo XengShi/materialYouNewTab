@@ -194,9 +194,7 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
-	& .menuBar {
-		background-color: #0000001f;
-	}
+	& .menuBar,
 	& #prompt-modal-blur {
 		background-color: #0000001f;
 	}
@@ -1380,6 +1378,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	50% {
 		opacity: 0;
 	}
+}
+
+.clockArea {
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 /* __________end of clock___________________ */
@@ -3486,6 +3488,9 @@ input:checked + .toggle:before {
 	}
 	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
 		display: flex;
+	}
+	.toggleTextsCont .ttcont:has(#hideClock) {
+		display: none;
 	}
 	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
 		display: none;
