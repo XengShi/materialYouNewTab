@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Added Wikipedia and Google Images to the list of search engines ([@prem-k-r](https://github.com/prem-k-r)) ([43aaf55](https://github.com/XengShi/materialYouNewTab/pull/474/commits/43aaf55f61affffa9fe5133d9ad1507e2c14a660))
 -  Added Tips ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([0190dee](https://github.com/XengShi/materialYouNewTab/commit/0190dee9e0adfb5e4f68afa8529317eb6810d311)), ([#585](https://github.com/XengShi/materialYouNewTab/pull/585)), ([#589](https://github.com/XengShi/materialYouNewTab/pull/589))
 -  Added Reddit and Quora as Search Platforms ([@prem-k-r](https://github.com/prem-k-r)) ([#593](https://github.com/XengShi/materialYouNewTab/pull/593))
+-  Added option to hide Clock ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([23cd5a8](https://github.com/XengShi/materialYouNewTab/commit/23cd5a86759d11944f447f4f448a710ccfe4d9fc)), ([#599](https://github.com/XengShi/materialYouNewTab/pull/599))
 
 
 ### Changed
