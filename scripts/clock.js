@@ -30,7 +30,7 @@ else {
     function applyClockState(isHidden) {
         leftDiv.style.display = isHidden ? "none" : "block";
         if (window.innerWidth > 1200) {
-            rightDiv.style.transform = isHidden ? "none" : "translateX(100px)";
+            rightDiv.style.transform = isHidden ? "translateX(30px)" : "translateX(100px)";
         } else {
             rightDiv.style.paddingTop = isHidden ? "60px" : "";
         }
