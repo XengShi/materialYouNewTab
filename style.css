@@ -1380,8 +1380,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-.clockArea {
+.clockRegion {
 	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.clock-hidden-left {
+	display: none;
 }
 
 /* __________end of clock___________________ */
@@ -3250,6 +3254,10 @@ input:checked + .toggle:before {
 		margin-bottom: var(--gap);
 	}
 
+	.clock-padding-adjusted {
+		padding-top: 100px;
+	}
+
 	.rightDiv {
 		/* position: relative;
         width: 640px; */
@@ -3288,6 +3296,16 @@ input:checked + .toggle:before {
 		display: none;
 	}
 }
+
+@media screen and (min-width: 1201px) {
+	.clock-shifted-right {
+		transform: translateX(30px);
+	}
+	.clock-shifted-right-wide {
+		transform: translateX(100px);
+	}
+}
+
 @media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
@@ -3330,6 +3348,9 @@ input:checked + .toggle:before {
 		justify-content: center;
 		position: relative;
 		top: 30px;
+	}
+	.clock-hidden-left {
+		display: none;
 	}
 	.rightDiv {
 		scale: 0.75;
@@ -3407,6 +3428,7 @@ input:checked + .toggle:before {
 		max-width: calc(100% - 30px);
 	}
 	.leftDiv {
+		display: flex;
 		width: calc(100vw / 0.5);
 		top: 0;
 		scale: 0.5;

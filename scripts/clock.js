@@ -7,79 +7,79 @@
  */
 
 // ---------------------- Hiding clock func ----------------------
-const elementsToHide = document.querySelectorAll(".clockArea");
-if (window.innerWidth <= 500) {
-    initializeClock();
+// Select elements
+const leftDiv = document.getElementById("leftDiv");
+const rightDiv = document.getElementById("rightDiv");
+const hideClockCheckbox = document.getElementById("hideClock");
+const elementsToHide = document.querySelectorAll(".clockRegion");
 
+function toggleHideState(isHidden) {
     elementsToHide.forEach(element => {
-        element.style.display = "flex";
+        if (isHidden) {
+            element.style.transform = "translateY(-30px)";
+            element.style.opacity = "0";
+            setTimeout(() => {
+                element.style.display = "none";
+            }, 300);
+        } else {
+            element.style.display = "flex";
+            setTimeout(() => {
+                element.style.transform = "translateY(0)";
+                element.style.opacity = "1";
+            }, 10);
+        }
     });
 }
 
-else {
-    // Select elements
-    const leftDiv = document.getElementById("leftDiv");
-    const rightDiv = document.getElementById("rightDiv");
-    const hideClockCheckbox = document.getElementById("hideClock");
+function applyClockState(isHidden) {
+    leftDiv.classList.toggle("clock-hidden-left", isHidden);
+    rightDiv.classList.toggle("clock-shifted-right", isHidden);
+    rightDiv.classList.toggle("clock-shifted-right-wide", !isHidden);
+    rightDiv.classList.toggle("clock-padding-adjusted", isHidden);
+}
 
-    // Retrieve saved state from localStorage
-    const isClockHidden = localStorage.getItem("hideClockVisible") === "true";
-    hideClockCheckbox.checked = isClockHidden;
+function handleClockVisibility() {
+    if (window.matchMedia("(max-width: 500px)").matches) {
+        initializeClock();
 
-    // Apply initial state
-    function applyClockState(isHidden) {
-        leftDiv.style.display = isHidden ? "none" : "block";
-        if (window.innerWidth > 1200) {
-            rightDiv.style.transform = isHidden ? "translateX(30px)" : "translateX(100px)";
-        } else {
-            rightDiv.style.paddingTop = isHidden ? "60px" : "";
-        }
-    }
-
-    applyClockState(isClockHidden);
-
-    // Hide/show elements
-    function toggleHideState(isInactive) {
         elementsToHide.forEach(element => {
-            if (isInactive) {
-                element.style.transform = "translateY(-30px)";
-                element.style.opacity = "0";
-                setTimeout(() => {
-                    element.style.display = "none";
-                }, 300);
-            } else {
-                element.style.display = "flex";
-                setTimeout(() => {
-                    element.style.transform = "translateY(0)";
-                    element.style.opacity = "1";
-                }, 10);
+            element.style.display = "flex";
+        });
+        rightDiv.classList.remove("clock-padding-adjusted");
+    }
+    else {
+        // Retrieve saved state from localStorage
+        const isClockHidden = localStorage.getItem("hideClockVisible") === "true";
+        hideClockCheckbox.checked = isClockHidden;
+
+        // Apply initial state
+        applyClockState(isClockHidden);
+        toggleHideState(isClockHidden);
+
+        if (!isClockHidden) {
+            initializeClock();
+        }
+
+        hideClockCheckbox.addEventListener("change", function () {
+            const isChecked = hideClockCheckbox.checked;
+            localStorage.setItem("hideClockVisible", isChecked);
+            applyClockState(isChecked);
+            toggleHideState(isChecked);
+
+            if (!isChecked) {
+                initializeClock();
             }
         });
     }
-
-    toggleHideState(isClockHidden);
-
-    if (!isClockHidden) {
-        initializeClock();
-    }
-
-    hideClockCheckbox.addEventListener("change", function () {
-        const isChecked = hideClockCheckbox.checked;
-        localStorage.setItem("hideClockVisible", isChecked);
-        applyClockState(isChecked);
-
-        toggleHideState(isChecked);
-
-        if (!isChecked) {
-            initializeClock();
-        }
-    });
 }
+
+handleClockVisibility();
+// Update on window resize
+window.addEventListener("resize", handleClockVisibility);
 
 // ---------------------- Clock func ----------------------
 async function initializeClock() {
     let clocktype;
-    let hourformat;
     // Retrieve current time and calculate initial angles
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
