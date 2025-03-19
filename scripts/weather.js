@@ -18,13 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     hideWeatherCheckbox.checked = savedState;
 
     function applyVisibilityState(isHidden) {
-        if (window.innerWidth > 1200 || window.innerWidth < 500) {
-            hideWeather.style.visibility = isHidden ? "hidden" : "visible";
-            hideWeather.style.display = "";
-        } else {
-            hideWeather.style.display = isHidden ? "none" : "flex";
-            hideWeather.style.visibility = "";
-        }
+        hideWeather.classList.toggle("weather-hidden", isHidden);
     }
 
     // Function to toggle the 'inactive' class

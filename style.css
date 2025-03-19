@@ -3281,11 +3281,26 @@ input:checked + .toggle:before {
 	}
 }
 
+@media screen and (min-width: 1201px), screen and (max-width: 500px) {
+	.weather-hidden {
+		visibility: hidden !important;
+		display: flex !important;
+	}
+}
+
+@media screen and (min-width: 501px) and (max-width: 1200px) {
+	.weather-hidden {
+		display: none !important;
+		visibility: visible;
+	}
+}
+
 @media screen and (max-width: 1200px) and (min-width: 501px) {
 	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
 		display: none;
 	}
 }
+
 @media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
