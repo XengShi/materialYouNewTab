@@ -117,6 +117,8 @@ function applyLanguage(lang) {
         'motivationalQuotesInfo',
         'search_suggestions_button',
         'search_suggestions_text',
+        'hideClockBox',
+        'hideClockBoxInfo',
         'digitalclocktitle',
         'digitalclockinfo',
         'timeformattitle',
