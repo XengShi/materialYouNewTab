@@ -16,17 +16,15 @@ const elementsToHide = document.querySelectorAll(".clockRegion");
 function toggleHideState(isHidden) {
     elementsToHide.forEach(element => {
         if (isHidden) {
-            element.style.transform = "translateY(-30px)";
-            element.style.opacity = "0";
+            element.style.transform = "translateY(-20px)";
             setTimeout(() => {
                 element.style.display = "none";
-            }, 300);
+            }, 250);
         } else {
             element.style.display = "flex";
             setTimeout(() => {
                 element.style.transform = "translateY(0)";
-                element.style.opacity = "1";
-            }, 10);
+            }, 50);
         }
     });
 }
@@ -44,6 +42,7 @@ function handleClockVisibility() {
 
         elementsToHide.forEach(element => {
             element.style.display = "flex";
+            element.style.transform = "translateY(0)";
         });
         rightDiv.classList.remove("clock-padding-adjusted");
     }
@@ -80,6 +79,7 @@ window.addEventListener("resize", handleClockVisibility);
 // ---------------------- Clock func ----------------------
 async function initializeClock() {
     let clocktype;
+    let intervalId;
     // Retrieve current time and calculate initial angles
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
@@ -95,11 +95,6 @@ async function initializeClock() {
     document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
     document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
     document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-
-    let intervalId;
-    let secondreset = false;
-    let hourreset = false;
-    let minreset = false;
 
     function initializeClockType() {
         const savedClockType = localStorage.getItem("clocktype");
@@ -163,11 +158,15 @@ async function initializeClock() {
         var initialSeconds = currentTime.getSeconds();
         var initialMinutes = currentTime.getMinutes();
         var initialHours = currentTime.getHours();
+        let secondreset = false;
+        let hourreset = false;
+        let minreset = false;
 
         // Initialize cumulative rotations
         let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
         let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
         let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
+
         if (secondreset) {
             document.getElementById("second").style.transition = "none";
             document.getElementById("second").style.transform = `rotate(0deg)`;

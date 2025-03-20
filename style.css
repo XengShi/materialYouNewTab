@@ -1381,7 +1381,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .clockRegion {
-	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	transition: transform 0.25s ease-in-out;
 }
 
 .clock-hidden-left {
