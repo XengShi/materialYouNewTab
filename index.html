@@ -577,7 +577,7 @@
     <!-- ________________ End of Google App Menu ________________ -->
 
     <div class="centerDiv">
-        <div class="leftDiv">
+        <div class="leftDiv" id="leftDiv">
 
             <!-- ____________clock___________ -->
             <div class="clock" id="analogClock">
@@ -624,7 +624,7 @@
         </div>
         <!-- ---------end of leftDiv--------------- -->
 
-        <div class="rightDiv">
+        <div class="rightDiv" id="rightDiv">
             <!-- ---weather stuff--------- -->
             <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
@@ -1282,6 +1282,17 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
+                                <div class="bigText" id="hideClockBox">Hide Clock</div>
+                                <div class="infoText" id="hideClockBoxInfo">Show or hide the clock and date</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideClock" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont clockRegion">
+                            <div class="texts">
                                 <div class="bigText" id="digitalclocktitle">Digital Clock</div>
                                 <div class="infoText" id="digitalclockinfo">Switch to the digital clock</div>
                             </div>
@@ -1290,7 +1301,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="timeformatField">
+                        <div class="ttcont clockRegion" id="timeformatField">
                             <div class="texts">
                                 <div class="bigText" id="timeformattitle">12-Hour Format</div>
                                 <div class="infoText" id="timeformatinfo">Use 12-hour time format</div>
@@ -1300,7 +1311,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="greetingField">
+                        <div class="ttcont clockRegion" id="greetingField">
                             <div class="texts">
                                 <div class="bigText" id="greetingtitle">Greeting</div>
                                 <div class="infoText" id="greetinginfo">Show greeting below custom text</div>
@@ -1311,7 +1322,7 @@
                             </label>
                         </div>
                         <!-- ---🟡--- -->
-                        <div class="ttcont">
+                        <div class="ttcont clockRegion">
                             <div class="texts">
                                 <div class="bigText" id="userTextTitle">Customizable Text</div>
                                 <div class="infoText" id="userTextInfo">Show custom text below the clock
