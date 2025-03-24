@@ -105,6 +105,8 @@ const it = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Immagini",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Strumenti IA",

@@ -27,7 +27,9 @@ const bn = {
     "todoListHover": "টু ডু লিস্ট",
     "todoPlaceholder": "টাস্ক যোগ করুন...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "ঘড়ি লুকান",
+    "hideClockBoxInfo": "ঘড়ি এবং তারিখ দেখান বা লুকান",
     "digitalclocktitle": "ডিজিটাল ঘড়ি",
     "digitalclockinfo": "ডিজিটাল ঘড়িতে পরিবর্তন করুন",
     "timeformattitle": "১২-ঘণ্টা ফরম্যাট",
@@ -48,8 +50,6 @@ const bn = {
     // Search
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
     "micIconInfo": "যদি ভয়েস টাইপিং কাজ না করে",
-    "switchSearchModes": "সার্চ মোড পরিবর্তন করুন",
-    "switchSearchModesInfo": "মোড পরিবর্তন করতে ‘সার্চের মাধ্যম’ এ ক্লিক করুন",
     "hideSearchWith": "সার্চ ইঞ্জিন লুকান",
     "hideSearchWithInfo": "সার্চ ইঞ্জিনের আইকনে ক্লিক করে সার্চ ইঞ্জিন পরিবর্তন করুন",
     "motivationalQuotesText": "অনুপ্রেরণামূলক উক্তি",
@@ -126,7 +126,9 @@ const bn = {
     "braveEngine": "ব্রেভ",
     "youtubeEngine": "ইউটিউব",
     "gImagesEngine": "ছবি",
+    "redditEngine": "রেডিট",
     "wikipediaEngine": "উইকিপিডিয়া",
+    "quoraEngine": "কোরা",
 
     // AI Tools
     "ai_tools": "এআই টুলস",
@@ -149,6 +151,20 @@ const bn = {
     "restoreText": "পুনরুদ্ধার করুন",
     "resetsettings": "সেটিংস পুনরায় সেট করুন",
     "menuCloseText": "বন্ধ করুন",
+
+    // Tips
+    "switchSearchModes": "সার্চ মোড পরিবর্তন করুন",
+    "switchSearchModesInfo": "মোড পরিবর্তন করতে ‘দিয়ে সার্চ করুন’ এ ক্লিক করুন",
+    "adjustZoom": "জুম সমন্বয় করুন",
+    "adjustZoomInfo": "জুম সমন্বয় করতে Ctrl + \"+\" বা Ctrl + \"-\" চাপুন।",
+    "changeBrowserTheme": "ব্রাউজারের থিম পরিবর্তন করুন",
+    "chromeThemeInfo": "তিনটি ডট (⋮) এ ক্লিক করুন > আরও টুলস > ক্রোম কাস্টমাইজ করুন, তারপর এক্সটেনশনের থিমের সাথে মিলিয়ে একটি রঙ নির্বাচন করুন।",
+    "edgeThemeInfo": "সেটিংসে যান > রূপ, তারপর এক্সটেনশনের থিমের সাথে মিলিয়ে একটি রঙ নির্বাচন করুন।",
+    "braveThemeInfo": '<a href="https://chromewebstore.google.com/category/themes/" target="_blank">ক্রোম থিম স্টোর</a> এ যান, থিম ডাউনলোড করুন এবং এক্সটেনশনের থিমের সাথে মিলিয়ে একটি রঙ নির্বাচন করুন।',
+    "firefoxThemeInfo": '<a href="https://addons.mozilla.org/firefox/themes/" target="_blank">ফায়ারফক্স থিম</a> এ যান, থিম ডাউনলোড করুন এবং এক্সটেনশনের থিমের সাথে মিলিয়ে একটি রঙ নির্বাচন করুন।',
+    "updateFirefoxHomepage": "হোমপেজ আপডেট করুন",
+    "updateFirefoxHomepageInfo": "আপনার হোমপেজকে নতুন ট্যাবের মতো পরিবর্তন করতে, <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">এই লিংকে</a> যান এবং নির্দেশিকা অনুসরণ করুন।",
+    "dontShowTips": "এটি আর দেখাবেন না",
 
     // Dialog boxes (alerts)
     "okText": "ঠিক আছে",

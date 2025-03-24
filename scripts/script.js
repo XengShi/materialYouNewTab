@@ -260,20 +260,41 @@ function ApplyLoadingColor() {
 }
 
 
+// ------------------------------------ Tips ------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-    const adjustZoomInfo = document.getElementById("adjustZoomInfo");
-
-    // Detect macOS
-    const isMac = navigator.platform.toUpperCase().includes("MAC");
-
-    // Show the zoom message in all browsers
-    let text = "Press " + (isMac ? "⌘" : "Ctrl") + " + '+' or " + (isMac ? "⌘" : "Ctrl") + " + '-' to adjust the zoom.";
-    adjustZoomInfo.textContent = text;
-
-    if (navigator.userAgent.toLowerCase().includes("firefox")) {
-        document.getElementById("changeBrowserThemeInfo").innerHTML =
-            'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches your extension.';
+    // Hide tips that are not relevant to mobile
+    if (!isDesktop) {
+        document.querySelectorAll('.hideOnMobile').forEach(el => el.style.display = 'none');
     }
+
+    // Determine the correct key for adjustZoomInfo based on OS
+    const adjustZoomInfo = document.getElementById("adjustZoomInfo");
+    let adjustZoomInfoText = translations[currentLanguage]?.adjustZoomInfo || translations["en"].adjustZoomInfo;
+    if (isMac) {
+        adjustZoomInfoText = adjustZoomInfoText.replace(/Ctrl/g, "⌘");
+    }
+    adjustZoomInfo.textContent = adjustZoomInfoText;
+
+    // Change browser theme info based on the user's browser
+    const changeBrowserThemeInfo = document.getElementById("changeBrowserThemeInfo");
+    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.firefoxThemeInfo || translations["en"].firefoxThemeInfo;
+    } else if (isEdge) {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.edgeThemeInfo || translations["en"].edgeThemeInfo;
+    } else if (isBrave) {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.braveThemeInfo || translations["en"].braveThemeInfo;
+    } else {
+        changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.chromeThemeInfo || translations["en"].chromeThemeInfo;
+    }
+
+    const firefoxHomepage = document.getElementById("firefoxHomepage");
+    const updateFirefoxHomepageInfo = document.getElementById("updateFirefoxHomepageInfo");
+    if (isFirefox) {
+        firefoxHomepage.style.display = "block";
+        updateFirefoxHomepageInfo.innerHTML = translations[currentLanguage]?.updateFirefoxHomepageInfo || translations["en"].updateFirefoxHomepageInfo;
+    }
+
+    // Hide tips 
     const tips = document.getElementById("tips");
     const dontShowButton = document.getElementById("dontShowTips");
 
