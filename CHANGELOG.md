@@ -12,9 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Other` - for technical updates.
 
 
-## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
+<!-- ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)-->
 
-<!-- [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 16, 2025 -->
+## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 25, 2025
 
 ### Added
 - Added GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
@@ -54,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved keyboard and mouse interactions: clearing selected state when dropdown opens, preventing scrolling with arrow keys, ensuring Enter and clicks switch search engines, close the dropdown, and focus on the search input, including for the search engine radio buttons. ([@prem-k-r](https://github.com/prem-k-r)) ([#483](https://github.com/XengShi/materialYouNewTab/pull/483))
 - Updated color picker shades for custom colors ([@prem-k-r](https://github.com/prem-k-r)) ([#493](https://github.com/XengShi/materialYouNewTab/pull/493))
 - Updated new tab favicon ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r))
-- Enhanced weather icons by using 128x128 px images instead of 64x64 px ([@prem-k-r](https://github.com/prem-k-r)), ([@ceskyDJ](https://github.com/ceskyDJ)) ([#533](https://github.com/XengShi/materialYouNewTab/pull/533))
+- Enhanced weather icons by using 128x128px images instead of 64x64px ([@prem-k-r](https://github.com/prem-k-r)), ([@ceskyDJ](https://github.com/ceskyDJ)) ([#533](https://github.com/XengShi/materialYouNewTab/pull/533))
 - Styled each shortcut as a separate card with a background color in the Edit Shortcuts list ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
 - Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
 
@@ -87,7 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for Nepali ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
 - Added support for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
 - Added support for Urdu ([@prem-k-r](https://github.com/prem-k-r)), ([@asfand-dev](https://github.com/asfand-dev)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
-- Translation updates for:
+- Translation updated for:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))
   - Vietnamese ([@Tuan1-2-3](https://github.com/Tuan1-2-3))
