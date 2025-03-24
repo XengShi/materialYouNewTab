@@ -3251,7 +3251,11 @@ input:checked + .toggle:before {
 	.leftDiv {
 		transform: translateX(0px);
 		/* background-color: green; */
-		margin-bottom: var(--gap);
+		margin: var(--gap) 0;
+	}
+
+	.clock-padding-adjusted {
+		padding-top: 100px;
 	}
 
 	.clock-padding-adjusted {
@@ -3288,6 +3292,20 @@ input:checked + .toggle:before {
 		max-width: 40rem;
 		left: 0;
 		bottom: 0;
+	}
+}
+
+@media screen and (min-width: 1201px), screen and (max-width: 500px) {
+	.weather-hidden {
+		visibility: hidden !important;
+		display: flex !important;
+	}
+}
+
+@media screen and (min-width: 501px) and (max-width: 1200px) {
+	.weather-hidden {
+		display: none !important;
+		visibility: visible;
 	}
 }
 
@@ -3517,6 +3535,13 @@ input:checked + .toggle:before {
 	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
 		display: none;
 	}
+	.toggleTextsCont .ttcont:has(#motivationalQuotesCheckbox) {
+		display: none;
+	}
+	.quotesContainer,
+	.authorName {
+		display: none;
+	}
 	.searchbar .searchIcon:nth-of-type(1) {
 		display: none !important;
 	}
@@ -3553,6 +3578,9 @@ input:checked + .toggle:before {
 		transform: translateY(36px);
 	}
 	.searchWithCont {
+		display: none !important;
+	}
+	.searchEnginesContainer {
 		display: none;
 	}
 	.shortcutsContainer[style="display: none;"] {

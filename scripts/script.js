@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Change browser theme info based on the user's browser
     const changeBrowserThemeInfo = document.getElementById("changeBrowserThemeInfo");
-    if (navigator.userAgent.toLowerCase().includes("firefox")) {
+    if (isFirefoxAll) {
         changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.firefoxThemeInfo || translations["en"].firefoxThemeInfo;
     } else if (isEdge) {
         changeBrowserThemeInfo.innerHTML = translations[currentLanguage]?.edgeThemeInfo || translations["en"].edgeThemeInfo;
