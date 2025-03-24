@@ -3574,6 +3574,9 @@ input:checked + .toggle:before {
 		transform: translateY(36px);
 	}
 	.searchWithCont {
+		display: none !important;
+	}
+	.searchEnginesContainer {
 		display: none;
 	}
 	.shortcutsContainer[style="display: none;"] {
