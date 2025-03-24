@@ -27,7 +27,9 @@ const en = {
     "todoListHover": "ToDo List",    // Keep this short
     "todoPlaceholder": "Add task...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Hide Clock",
+    "hideClockBoxInfo": "Show or hide the clock and date",
     "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Switch to the digital clock",
     "timeformattitle": "12-Hour Format",
