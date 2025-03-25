@@ -68,6 +68,7 @@ function hideResultBox() {
 showResultBox();
 hideResultBox();
 
+const languageCode = (localStorage.getItem("selectedLanguage") || "en").slice(0, 2);
 document.getElementById("searchQ").addEventListener("input", async function () {
     const searchsuggestionscheckbox = document.getElementById("searchsuggestionscheckbox");
     if (searchsuggestionscheckbox.checked) {
@@ -77,7 +78,11 @@ document.getElementById("searchQ").addEventListener("input", async function () {
             engine2: "https://duckduckgo.com/?q=",
             engine3: "https://bing.com/?q=",
             engine4: "https://search.brave.com/search?q=",
-            engine5: "https://www.youtube.com/results?search_query="
+            engine5: "https://www.youtube.com/results?search_query=",
+            engine6: "https://www.google.com/search?tbm=isch&q=",
+            engine7: "https://www.reddit.com/search/?q=",
+            engine8: `https://${languageCode}.wikipedia.org/wiki/Special:Search?search=`,
+            engine9: "https://www.quora.com/search?q="
         };
         const query = this.value;
 
@@ -203,13 +208,18 @@ async function getAutocompleteSuggestions(query) {
         engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine3: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
         engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`
+        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`,
+        engine7: `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&sort=relevance&limit=15`,
+        engine8: `https://${languageCode}.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&format=json`
     };
+
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
-    let apiUrl = searchEnginesapi[selectedOption];
+    let apiUrl = searchEnginesapi[selectedOption] || searchEnginesapi["engine1"];
     if (useproxyCheckbox.checked) {
+        if (selectedOption === "engine7") {
+            apiUrl = searchEnginesapi["engine1"];
+        }
         apiUrl = proxyurl + encodeURIComponent(apiUrl);
     }
 
@@ -225,6 +235,17 @@ async function getAutocompleteSuggestions(query) {
                     return item.q;
                 }
             });
+            return suggestions;
+        } else if (selectedOption === "engine7" && useproxyCheckbox.checked === false) {
+            const suggestions = [];
+            if (data && data.data && data.data.children) {
+                data.data.children.forEach(post => {
+                    if (post.data && post.data.title) {
+                        const subreddit = post.data.subreddit_name_prefixed;
+                        suggestions.push(`${post.data.title} (${subreddit})`);
+                    }
+                });
+            }
             return suggestions;
         } else {
 

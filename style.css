@@ -194,7 +194,8 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
-	& .menuBar {
+	& .menuBar,
+	& #prompt-modal-blur {
 		background-color: #0000001f;
 	}
 	--whitishColor-blue: #f2f2f2;
@@ -1379,6 +1380,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
+.clockRegion {
+	transition: transform 0.25s ease-in-out;
+}
+
+.clock-hidden-left {
+	display: none;
+}
+
 /* __________end of clock___________________ */
 .leftDiv {
 	/* padding-right: 100px; */
@@ -1673,7 +1682,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 3px;
 	box-sizing: border-box;
 	background-color: var(--whitishColor-blue);
-	/* transition: all 0.5s; */
 	border: 2px solid transparent;
 }
 
@@ -1684,12 +1692,12 @@ body #bookmarkButton.bookmark-button.rotate {
 .micIcon::after {
 	content: "";
 	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 100%;
+	top: -3px;
+	left: -3px;
+	right: -3px;
+	bottom: -3px;
+	border-radius: 50%;
 	border: 2px solid transparent;
-	top: -4px;
-	left: -4px;
 }
 
 .micActive::after,
@@ -1699,11 +1707,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-top: 2px dashed var(--darkerColor-blue);
 	border-bottom: 2px dashed var(--darkerColor-blue);
 	animation: micAnimation 1s ease-in-out infinite;
-	transition: all 0.5s;
-}
-
-.micIcon:hover {
-	background-color: #fffffff2;
+	transition: all 0.5s ease-in-out;
 }
 
 @keyframes micAnimation {
@@ -1755,26 +1759,41 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont {
 	margin-top: var(--gap);
-	border-radius: var(--round);
+	border-radius: 20px;
 	position: relative;
 	display: flex;
 	font-size: 1rem;
+	z-index: 2; /* Ensures it's above the engines container */
+	overflow: hidden; /* Prevents child elements from overflowing outside */
+	max-width: 100%;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
+	min-width: 120px;
+	max-width: 150px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
+	padding: 12px;
 	position: relative;
-	margin-right: 16px;
+	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
+	cursor: pointer;
+	transition: border-radius 0.4s, margin-left 0.4s;
 }
 
-.searchWithCont .hint::after {
+.searchWithCont .hint:hover {
+	background-color: var(--darkColor-blue);
+	color: #fff;
+}
+
+.searchWithCont .hint:active {
+	border-radius: 20px;
+	margin-left: 5px;
+}
+
+/* .searchWithCont .hint::after {
 	content: "";
 	position: absolute;
 	width: 6px;
@@ -1782,17 +1801,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 3px;
 	right: -20px;
-}
+} */
 
 .searchEnginesContainer {
+	position: relative;
+	z-index: 1;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 	padding-left: 20px;
+	opacity: 1;
+	transform: translateX(0);
+}
+.searchEnginesContainer.show {
+	animation: slideIn 0.3s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+		opacity: 0.2;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 .searchEnginesContainer .search-engine {
-	/* background-color: var(--accentLightTint-blue); */
 	border-radius: 20px;
 	height: 40px;
 	display: flex;
@@ -1800,6 +1836,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	position: relative;
 	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .searchEnginesContainer .search-engine svg {
@@ -3216,6 +3254,10 @@ input:checked + .toggle:before {
 		margin-bottom: var(--gap);
 	}
 
+	.clock-padding-adjusted {
+		padding-top: 100px;
+	}
+
 	.rightDiv {
 		/* position: relative;
         width: 640px; */
@@ -3254,6 +3296,16 @@ input:checked + .toggle:before {
 		display: none;
 	}
 }
+
+@media screen and (min-width: 1201px) {
+	.clock-shifted-right {
+		transform: translateX(30px);
+	}
+	.clock-shifted-right-wide {
+		transform: translateX(100px);
+	}
+}
+
 @media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
@@ -3296,6 +3348,9 @@ input:checked + .toggle:before {
 		justify-content: center;
 		position: relative;
 		top: 30px;
+	}
+	.clock-hidden-left {
+		display: none;
 	}
 	.rightDiv {
 		scale: 0.75;
@@ -3373,6 +3428,7 @@ input:checked + .toggle:before {
 		max-width: calc(100% - 30px);
 	}
 	.leftDiv {
+		display: flex;
 		width: calc(100vw / 0.5);
 		top: 0;
 		scale: 0.5;
@@ -3454,6 +3510,9 @@ input:checked + .toggle:before {
 	}
 	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
 		display: flex;
+	}
+	.toggleTextsCont .ttcont:has(#hideClock) {
+		display: none;
 	}
 	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
 		display: none;
@@ -3847,6 +3906,18 @@ input:checked + .toggle:before {
 .dark-theme .prompt-modal-button:focus {
 	outline: 2px solid black;
 }
+
+.dark-theme .tips {
+	background-color: var(--darkColor-dark);
+}
+
+.dark-theme #dontShowTips {
+	background-color: var(--bg-color-dark);
+}
+
+.dark-theme #dontShowTips:hover {
+	background-color: var(--accentLightTint-dark);
+}
 /* ---------------- End of Dark(Black) theme ---------------- */
 
 /* Alert & Confirm Modal */
@@ -3942,3 +4013,35 @@ input:checked + .toggle:before {
 	outline-offset: 3px;
 }
 /* ---------------- End of Alert & Confirm Modal ---------------- */
+
+.tips {
+	margin-top: 30px;
+	display: grid;
+	gap: 12px;
+	background-color: var(--bg-color-blue);
+	padding: 18px 20px;
+	border-radius: 20px;
+}
+
+#dontShowTips {
+	border: none;
+	display: block;
+	padding: 6px 10px;
+	background-color: var(--darkColor-blue);
+	color: white;
+	border-radius: 10px;
+	margin-top: 5px;
+}
+
+#dontShowTips:hover {
+	background-color: var(--darkerColor-blue);
+}
+.tips .ttcont .texts .bigText {
+	font-size: 1rem;
+}
+
+.tips .ttcont .texts .infoText {
+	font-size: 0.8rem;
+}
+
+/* ------------ End of Tips---------- */

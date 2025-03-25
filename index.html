@@ -30,7 +30,7 @@
     <script defer src="scripts/weather.js"></script>
     <script defer src="scripts/custom-text.js"></script>
     <script defer src="scripts/browser-utils.js"></script>
-    <!-- <script defer src="scripts/search.js"></script> -->
+    <script defer src="scripts/search.js"></script>
     <script defer src="scripts/quotes.js"></script>
     <script defer src="scripts/shortcuts.js"></script>
     <script defer src="scripts/script.js"></script>
@@ -577,7 +577,7 @@
     <!-- ________________ End of Google App Menu ________________ -->
 
     <div class="centerDiv">
-        <div class="leftDiv">
+        <div class="leftDiv" id="leftDiv">
 
             <!-- ____________clock___________ -->
             <div class="clock" id="analogClock">
@@ -624,11 +624,11 @@
         </div>
         <!-- ---------end of leftDiv--------------- -->
 
-        <div class="rightDiv">
+        <div class="rightDiv" id="rightDiv">
             <!-- ---weather stuff--------- -->
             <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
-                    <div id="conditionText">Hello! How are you today?</div>
+                    <div id="conditionText"></div>
                     <div class="cconnt">
                         <div class="humidityBar">
                             <div class="thinLine"></div>
@@ -747,6 +747,7 @@
                                     Bing
                                 </span>
                             </div>
+
                             <div data-engine="4" data-engine-name="brave" id="brave-dropdown" class="dropdown-item">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <rect class="accentColor" height="24" rx="12" width="24" />
@@ -759,6 +760,7 @@
                                     Brave
                                 </span>
                             </div>
+
                             <div data-engine="5" data-engine-name="youtube" id="youtube-dropdown" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -772,6 +774,50 @@
                                     YouTube
                                 </span>
                             </div>
+
+                            <div data-engine="6" data-engine-name="gImages" id="gImages-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.8); transform-origin: center;"
+                                        d="M 24.84375 0 C 24.351563 0.078125 23.992188 0.503906 24 1 L 24 11 L 13 11 C 12.96875 11 12.9375 11 12.90625 11 C 12.65625 11.019531 12.421875 11.128906 12.25 11.3125 L 12.25 11.34375 C 12.226563 11.363281 12.207031 11.382813 12.1875 11.40625 L 0.25 24.3125 C -0.0273438 24.605469 -0.101563 25.039063 0.0625 25.40625 C 0.226563 25.777344 0.597656 26.007813 1 26 L 11 26 L 11 37 C 10.992188 37.28125 11.105469 37.554688 11.3125 37.75 L 24.3125 49.75 C 24.605469 50.027344 25.039063 50.101563 25.40625 49.9375 C 25.777344 49.773438 26.007813 49.402344 26 49 L 26 39 L 37 39 C 37.28125 39.007813 37.554688 38.894531 37.75 38.6875 L 49.75 25.6875 C 50.027344 25.394531 50.101563 24.960938 49.9375 24.59375 C 49.773438 24.222656 49.402344 23.992188 49 24 L 39 24 L 39 13 C 39.007813 12.71875 38.894531 12.445313 38.6875 12.25 L 25.6875 0.25 C 25.460938 0.0390625 25.148438 -0.0507813 24.84375 0 Z M 26 3.3125 L 36.5 13 L 27.25 22.25 C 26.480469 21.363281 26 20.210938 26 18.9375 L 26 12 C 26 11.96875 26 11.9375 26 11.90625 Z M 13 13.5 L 22.25 22.75 C 21.363281 23.519531 20.210938 24 18.9375 24 L 3.3125 24 Z M 25 22.5625 C 25.597656 23.558594 26.441406 24.402344 27.4375 25 C 26.441406 25.597656 25.597656 26.441406 25 27.4375 C 24.402344 26.441406 23.558594 25.597656 22.5625 25 C 23.558594 24.402344 24.402344 23.558594 25 22.5625 Z M 31.0625 26 L 46.6875 26 L 37 36.5 L 27.75 27.25 C 28.636719 26.480469 29.789063 26 31.0625 26 Z M 22.75 27.75 C 23.519531 28.636719 24 29.789063 24 31.0625 L 24 38 C 24 38.03125 24 38.0625 24 38.09375 L 24 46.6875 L 13.5 37 Z" />
+                                </svg>
+                                <span class="engine-name" id="gImagesEngineDD">Images</span>
+                            </div>
+
+                            <div data-engine="7" data-engine-name="reddit" id="reddit-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 0 256 256"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(1.1); transform-origin: center;"
+                                        d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981l27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667c7.324 0 13.275-5.95 13.275-13.278c0-7.324-5.95-13.275-13.275-13.275c-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458c-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617c0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036c41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275c7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768c-5.188 0-22.584-.765-31.59-9.768c-1.371-1.373-1.371-3.51 0-4.883c1.374-1.371 3.51-1.371 4.884 0c5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0c1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275c0 7.17-5.95 13.275-13.277 13.275" />
+                                </svg>
+                                <span class="engine-name" id="redditEngineDD">Reddit</span>
+                            </div>
+
+                            <div data-engine="8" data-engine-name="wikipedia" id="wikipedia-dropdown"
+                                class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 -0.7 32 32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.85); transform-origin: center;"
+                                        d="M30 9.215a.31.31 0 0 1-.313.308h-1.68l-7.616 16.215a.31.31 0 0 1-.278.18h-.004a.31.31 0 0 1-.28-.172l-3.614-7.168l-3.902 7.18a.313.313 0 0 1-.555-.016L4.055 9.523H2.313A.31.31 0 0 1 2 9.215V8.39a.31.31 0 0 1 .313-.309h6.21a.31.31 0 0 1 .313.309v.824a.31.31 0 0 1-.313.308H7.188l5.316 12.262l2.766-5.168l-3.508-7.09h-.844a.313.313 0 0 1-.313-.312v-.82c0-.172.141-.313.313-.313h4.598a.31.31 0 0 1 .308.313v.82a.307.307 0 0 1-.308.308h-.813l2.02 4.415l2.402-4.415h-1.473a.31.31 0 0 1-.312-.308v-.82a.31.31 0 0 1 .312-.313h4.465a.31.31 0 0 1 .309.313v.82a.307.307 0 0 1-.309.308h-.98l-3.504 6.372l2.855 5.875L26 9.523h-1.746a.31.31 0 0 1-.313-.308v-.82c0-.172.141-.313.313-.313h5.433a.31.31 0 0 1 .313.313z" />
+                                </svg>
+                                <span class="engine-name" id="wikipediaEngineDD">Wikipedia</span>
+                            </div>
+
+                            <div data-engine="9" data-engine-name="quora" id="quora-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.76); transform-origin: center;"
+                                        d="M29 23.86h-2a1.72 1.72 0 0 1-1.73 1.72c-1.15 0-1.82-.86-2.58-2a11 11 0 0 0 4.79-9.1c.09-7.19-5.85-11.89-12.17-11.89S3 7.37 3 14.37s6 11.79 12.17 11.79a10.7 10.7 0 0 0 3.07-.48c1.15 2.11 2.59 3.74 5.46 3.74a5 5 0 0 0 5.3-5.56m-8.14-3.45a6.31 6.31 0 0 0-5.56-3.16a6 6 0 0 0-3.74 1.15l.64 1.6a2.6 2.6 0 0 1 .86-.1c1.82 0 3 1.53 4.12 3.64a7.6 7.6 0 0 1-1.91.19C10.86 23.76 9 20.6 9 14.47s1.91-9.3 6.23-9.3s6.32 3.16 6.32 9.3a20.7 20.7 0 0 1-.72 5.94Z" />
+                                </svg>
+                                <span class="engine-name" id="quoraEngineDD">Quora</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -798,7 +844,7 @@
             <!-- ----------search with------------------- -->
             <div class="searchWithCont" style="visibility: hidden;" id="search-with-container">
 
-                <div class="hint bgLightTint" id="searchWithHint">Search With</div>
+                <div class="hint bgLightTint" id="searchWithHint"></div>
 
                 <div class="searchEnginesContainer">
 
@@ -812,7 +858,7 @@
                         <input checked class="radio-button" name="search-engine" type="radio" value="engine0">
                     </div>
 
-                    <div class="search-engine bgLightTint">
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -823,7 +869,7 @@
                         <input class="radio-button" name="search-engine" type="radio" value="engine1">
                     </div>
 
-                    <div class="search-engine bgLightTint">
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF00ff" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -834,18 +880,18 @@
                         <input class="radio-button" name="search-engine" type="radio" value="engine2">
                     </div>
 
-                    <div class="search-engine bgLightTint">
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
                                 d="M22.9991 13.1645C22.9954 13.0734 22.9651 12.9855 22.9119 12.9118C22.8588 12.8382 22.7853 12.7822 22.7007 12.751L13.8694 9.98251C13.7046 9.93107 13.6294 10.0197 13.7018 10.1788L15.3442 13.8304C15.4167 13.9904 15.604 14.18 15.7602 14.2524L18.0135 15.2966C18.1697 15.369 18.1735 15.4957 18.021 15.5776L8.40754 20.7525C8.25601 20.8345 8.23624 20.8059 8.36425 20.6887L12.0575 17.3219C12.197 17.1796 12.28 16.9905 12.291 16.7904L12.2947 6.58526C12.291 6.49394 12.2606 6.40578 12.2073 6.33199C12.154 6.25821 12.0803 6.20212 11.9954 6.17084L8.2993 5.01334C8.13459 4.9619 8 5.06383 8 5.24008V20.7211C8 20.8974 8.11483 21.1241 8.25601 21.2251L12.0114 23.9183C12.1526 24.0193 12.3879 24.0279 12.5357 23.9373L22.7308 17.723C22.8093 17.6688 22.8744 17.597 22.921 17.5133C22.9677 17.4295 22.9947 17.336 23 17.24V13.1645H22.9991Z"
                                 fill="white" />
                         </svg>
-                        <label class="engine-name" id="bingEngine">Bing</label>
+                        <label class="engine-name" id="bingEngine" data-category="search-with">Bing</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine3">
                     </div>
 
-                    <div class="search-engine bgLightTint">
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -0.5 24 24">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme" fill-rule="evenodd"
@@ -856,7 +902,7 @@
                         <input class="radio-button" name="search-engine" type="radio" value="engine4">
                     </div>
 
-                    <div class="search-engine bgLightTint">
+                    <div class="search-engine bgLightTint" data-category="search-on">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -866,6 +912,51 @@
                         <label class="engine-name" id="youtubeEngine">YouTube</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine5">
                     </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.92); transform-origin: center;"
+                                d="M 24.84375 0 C 24.351563 0.078125 23.992188 0.503906 24 1 L 24 11 L 13 11 C 12.96875 11 12.9375 11 12.90625 11 C 12.65625 11.019531 12.421875 11.128906 12.25 11.3125 L 12.25 11.34375 C 12.226563 11.363281 12.207031 11.382813 12.1875 11.40625 L 0.25 24.3125 C -0.0273438 24.605469 -0.101563 25.039063 0.0625 25.40625 C 0.226563 25.777344 0.597656 26.007813 1 26 L 11 26 L 11 37 C 10.992188 37.28125 11.105469 37.554688 11.3125 37.75 L 24.3125 49.75 C 24.605469 50.027344 25.039063 50.101563 25.40625 49.9375 C 25.777344 49.773438 26.007813 49.402344 26 49 L 26 39 L 37 39 C 37.28125 39.007813 37.554688 38.894531 37.75 38.6875 L 49.75 25.6875 C 50.027344 25.394531 50.101563 24.960938 49.9375 24.59375 C 49.773438 24.222656 49.402344 23.992188 49 24 L 39 24 L 39 13 C 39.007813 12.71875 38.894531 12.445313 38.6875 12.25 L 25.6875 0.25 C 25.460938 0.0390625 25.148438 -0.0507813 24.84375 0 Z M 26 3.3125 L 36.5 13 L 27.25 22.25 C 26.480469 21.363281 26 20.210938 26 18.9375 L 26 12 C 26 11.96875 26 11.9375 26 11.90625 Z M 13 13.5 L 22.25 22.75 C 21.363281 23.519531 20.210938 24 18.9375 24 L 3.3125 24 Z M 25 22.5625 C 25.597656 23.558594 26.441406 24.402344 27.4375 25 C 26.441406 25.597656 25.597656 26.441406 25 27.4375 C 24.402344 26.441406 23.558594 25.597656 22.5625 25 C 23.558594 24.402344 24.402344 23.558594 25 22.5625 Z M 31.0625 26 L 46.6875 26 L 37 36.5 L 27.75 27.25 C 28.636719 26.480469 29.789063 26 31.0625 26 Z M 22.75 27.75 C 23.519531 28.636719 24 29.789063 24 31.0625 L 24 38 C 24 38.03125 24 38.0625 24 38.09375 L 24 46.6875 L 13.5 37 Z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="gImagesEngine">Images</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine6">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg fill="none" height="28" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(1.24); transform-origin: center;"
+                                d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981l27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667c7.324 0 13.275-5.95 13.275-13.278c0-7.324-5.95-13.275-13.275-13.275c-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458c-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617c0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036c41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275c7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768c-5.188 0-22.584-.765-31.59-9.768c-1.371-1.373-1.371-3.51 0-4.883c1.374-1.371 3.51-1.371 4.884 0c5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0c1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275c0 7.17-5.95 13.275-13.277 13.275"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="redditEngine">Reddit</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine7">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 -0.5 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.95); transform-origin: center;"
+                                d="M30 9.215a.31.31 0 0 1-.313.308h-1.68l-7.616 16.215a.31.31 0 0 1-.278.18h-.004a.31.31 0 0 1-.28-.172l-3.614-7.168l-3.902 7.18a.313.313 0 0 1-.555-.016L4.055 9.523H2.313A.31.31 0 0 1 2 9.215V8.39a.31.31 0 0 1 .313-.309h6.21a.31.31 0 0 1 .313.309v.824a.31.31 0 0 1-.313.308H7.188l5.316 12.262l2.766-5.168l-3.508-7.09h-.844a.313.313 0 0 1-.313-.312v-.82c0-.172.141-.313.313-.313h4.598a.31.31 0 0 1 .308.313v.82a.307.307 0 0 1-.308.308h-.813l2.02 4.415l2.402-4.415h-1.473a.31.31 0 0 1-.312-.308v-.82a.31.31 0 0 1 .312-.313h4.465a.31.31 0 0 1 .309.313v.82a.307.307 0 0 1-.309.308h-.98l-3.504 6.372l2.855 5.875L26 9.523h-1.746a.31.31 0 0 1-.313-.308v-.82c0-.172.141-.313.313-.313h5.433a.31.31 0 0 1 .313.313z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="wikipediaEngine">Wikipedia</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine8">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.86); transform-origin: center;"
+                                d="M29 23.86h-2a1.72 1.72 0 0 1-1.73 1.72c-1.15 0-1.82-.86-2.58-2a11 11 0 0 0 4.79-9.1c.09-7.19-5.85-11.89-12.17-11.89S3 7.37 3 14.37s6 11.79 12.17 11.79a10.7 10.7 0 0 0 3.07-.48c1.15 2.11 2.59 3.74 5.46 3.74a5 5 0 0 0 5.3-5.56m-8.14-3.45a6.31 6.31 0 0 0-5.56-3.16a6 6 0 0 0-3.74 1.15l.64 1.6a2.6 2.6 0 0 1 .86-.1c1.82 0 3 1.53 4.12 3.64a7.6 7.6 0 0 1-1.91.19C10.86 23.76 9 20.6 9 14.47s1.91-9.3 6.23-9.3s6.32 3.16 6.32 9.3a20.7 20.7 0 0 1-.72 5.94Z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="quoraEngine">Quora</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine9">
+                    </div>
+
                 </div>
             </div>
             <!-- ----------end of search with------------- -->
@@ -1190,6 +1281,17 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
+                                <div class="bigText" id="hideClockBox">Hide Clock</div>
+                                <div class="infoText" id="hideClockBoxInfo">Show or hide the clock and date</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideClock" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont clockRegion">
+                            <div class="texts">
                                 <div class="bigText" id="digitalclocktitle">Digital Clock</div>
                                 <div class="infoText" id="digitalclockinfo">Switch to the digital clock</div>
                             </div>
@@ -1198,7 +1300,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="timeformatField">
+                        <div class="ttcont clockRegion" id="timeformatField">
                             <div class="texts">
                                 <div class="bigText" id="timeformattitle">12-Hour Format</div>
                                 <div class="infoText" id="timeformatinfo">Use 12-hour time format</div>
@@ -1208,7 +1310,7 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="greetingField">
+                        <div class="ttcont clockRegion" id="greetingField">
                             <div class="texts">
                                 <div class="bigText" id="greetingtitle">Greeting</div>
                                 <div class="infoText" id="greetinginfo">Show greeting below custom text</div>
@@ -1219,7 +1321,7 @@
                             </label>
                         </div>
                         <!-- ---🟡--- -->
-                        <div class="ttcont">
+                        <div class="ttcont clockRegion">
                             <div class="texts">
                                 <div class="bigText" id="userTextTitle">Customizable Text</div>
                                 <div class="infoText" id="userTextInfo">Show custom text below the clock
@@ -1264,19 +1366,6 @@
                             </div>
                             <label class="switch">
                                 <input id="motivationalQuotesCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-
-                        <div class="ttcont">
-                            <div class="texts">
-                                <div class="bigText" id="enableDarkMode">Dark Mode</div>
-                                <div class="infoText" id="enableDarkModeInfo">
-                                    Enable dark mode themes
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="enableDarkModeCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
@@ -1394,6 +1483,19 @@
                                     id="LearnMoreButton" target="_blank">Learn more</a>
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
+                        </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="enableDarkMode">Dark Mode</div>
+                                <div class="infoText" id="enableDarkModeInfo">
+                                    Enable dark mode themes
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="enableDarkModeCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
                         </div>
                         <!-- ---🟡--- -->
 
@@ -1541,6 +1643,49 @@
 
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
+
+                    <!-- ----------Tips---------- -->
+                    <div class="tips" id="tips">
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="switchSearchModes">Switch Search Modes</div>
+                                <div class="infoText" id="switchSearchModesInfo">Click on ‘Search With’ to change the
+                                    mode.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile">
+                            <div class="texts">
+                                <div class="bigText" id="adjustZoom">Adjust Zoom</div>
+                                <div class="infoText" id="adjustZoomInfo">Press Ctrl + "+" or Ctrl + "-" to adjust the
+                                    zoom.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile">
+                            <div class="texts">
+                                <div class="bigText" id="changeBrowserTheme">Change Browser Theme</div>
+                                <div class="infoText" id="changeBrowserThemeInfo">Click the three dots (⋮) > More tools
+                                    > Customize Chrome, then choose a color that matches the extension theme.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile" id="firefoxHomepage" style="display: none;">
+                            <div class="texts">
+                                <div class="bigText" id="updateFirefoxHomepage">Update Homepage</div>
+                                <div class="infoText" id="updateFirefoxHomepageInfo">To change your homepage like the
+                                    new tab as well, visit <a
+                                        href="https://github.com/XengShi/materialYouNewTab#-firefox"
+                                        target="_blank">this link</a> and follow the instructions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="dontShowTips">Don't show it again</button>
+                    </div>
+
+                    <!-- ----------end of tips----- -->
+
                     <div id="menuCloseButton">
                         <!-- <img src="./svgs/x.svg" alt=""> -->
                         <div class="icon">
@@ -1554,6 +1699,7 @@
                         <!-- <span>Close</span> -->
                     </div>
                     <!-- ------------------ -->
+
 
                 </div>
                 <!-- end of page 1 -->

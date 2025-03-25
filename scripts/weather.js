@@ -48,6 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function getWeatherData() {
+    // Display texts 
+    document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
+    document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
+    document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -196,7 +202,11 @@ async function getWeatherData() {
 
             const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
 
-            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+            if (!parsedData ||
+                ((Date.now() - weatherParsedTime) > retentionTime) ||
+                (weatherParsedLocation !== currentUserLocation) ||
+                (weatherParsedLang !== currentLanguage)) {
+
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
                 let data = await fetch(weatherApi);
@@ -226,10 +236,10 @@ async function getWeatherData() {
                     localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
                     localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-                UpdateWeather();
-            } else {
-                setTimeout(UpdateWeather, 50);
             }
+
+            // Update weather data
+            UpdateWeather();
 
             function UpdateWeather() {
                 // Weather data
@@ -324,7 +334,6 @@ async function getWeatherData() {
                 var maxLength = 10;
                 var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
                 document.getElementById("location").textContent = limitedText;
-
             }
         } catch (error) {
             console.error("Error fetching weather data:", error);

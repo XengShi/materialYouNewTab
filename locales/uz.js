@@ -55,13 +55,11 @@ const uz = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "O'zingizning CORS bypass proxyni qo'shing",
     "HostproxyButton": "O'zingizning proxyni joylash",
-    "saveproxy": "Saqlash",
 
     // Location
     "UserLocText": "O'zingizning joylashganligingizni kiriting",
     "UserLocSubtext": "Agar havo joylashuvi noto'g'ri bo'lsa",
     "userLoc": "O'zingizning shahringiz yoki koordinatalaringiz (Kenglik, Uzunlik)",
-    "saveLoc": "Saqlash",
 
     // Weather
     "WeatherApiText": "O'zingizning WeatherAPI kalitini kiriting",
@@ -114,7 +112,6 @@ const uz = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc

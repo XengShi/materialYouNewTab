@@ -51,10 +51,11 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 ### Download
 
-1. **Development Version** (v3.0.*)
+1. **Development Version** (v3.1.*)
 
     - **Clone the Repository**:
       Use the following command to clone the repository:
+
        ```bash
        git clone https://github.com/XengShi/materialYouNewTab.git
        ```
@@ -65,10 +66,10 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
     - You can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
 
-2. **Stable Release** (v3.0)
+2. **Stable Release** (v3.1)
 
 <p align="center">
-    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
+    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.1.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
     <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn"><img src="https://github.com/user-attachments/assets/20a6e44b-fd46-4e6c-8ea6-aad436035753" alt="Download from Chrome Web Store" height="48" /></a>
     <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://github.com/user-attachments/assets/c0e99e6b-97cf-4af2-9737-099db7d3538b" alt="Download from Mozilla Add-ons" height="48" /></a>
     <!-- <a href="https://microsoftedge.microsoft.com/addons/detail/glloabhodjfmeoccmdngmhkpmdlakfbn"><img height="48" src="https://github.com/user-attachments/assets/204157eb-4cae-4c0e-b2cb-db514419fd9e" alt="Download from the Edge Add-ons" /></a> -->
@@ -110,15 +111,16 @@ Material You NewTab is a versatile browser extension that personalizes your New 
    - **Load Unpacked Extension**:
      - Click on **Load unpacked** and select your extracted extension folder.
 
-3. **Additional Steps ONLY for  ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
+3. **Additional Steps ONLY for ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
 
-     - Go to the **Settings** of Opera or Opera GX.
-     - Scroll to the **On startup** section.
-     - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-     - Add the following to the **Site URL**:
-       ```text
-       chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
-       ```
+   - Go to the **Settings** of Opera or Opera GX.
+   - Scroll to the **On startup** section.
+   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+   - Add the following to the **Site URL**:
+
+      ```text
+      chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+      ```
 
 Below are screenshots of the process to guide you through each step visually.
 
@@ -144,9 +146,11 @@ Below are screenshots of the process to guide you through each step visually.
    - Open **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
    - Under the **Homepage and new windows** section, select **Custom URLs...**.
    - Paste the following URL, replacing the ID with your actual UUID:
+
      ```text
      moz-extension://e31d6701-f699-414f-bb4c-8fde495c432e/index.html
      ```
+
    - This will update both your homepage and new tab to the extension.
 
 3. **Manual Installation (Temporary)**:
@@ -226,7 +230,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
    - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
+   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Deepseek, and Meta AI are integrated for quick, AI-driven assistance or tasks.
 
 7. **Wallpaper Management**:
    - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
@@ -262,7 +266,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
 14. **Language Selector**:
     - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
     - This feature supports multilingual customization, enhancing accessibility for users worldwide.
-   
+
 </details>
 
 ## 🤝 Contributing
@@ -287,7 +291,6 @@ Here is the star history chart for the **Material You NewTab** repository. It sh
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date" />
  </picture>
 </a>
-
 
 ## ❓ Issues and Support
 
