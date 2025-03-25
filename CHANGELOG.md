@@ -72,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed slight white boundaries around shortcut icons and the Close button ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#454](https://github.com/XengShi/materialYouNewTab/pull/454))
 - Fixed issue with bookmarks toggle on unsupported devices ([@Thunder-Blaze](https://github.com/Thunder-Blaze)), ([@prem-k-r](https://github.com/prem-k-r))
 - Fixed display issue when there are fewer than five search suggestions ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#453](https://github.com/XengShi/materialYouNewTab/pull/453))
-- Custom text no longer overlaps the clock and is now limited to 3 lines, becoming scrollable beyond that ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#467](https://github.com/XengShi/materialYouNewTab/pull/467))
+- Custom text no longer overlaps the clock and is now limited to 2 lines, becoming scrollable beyond that ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#467](https://github.com/XengShi/materialYouNewTab/pull/467))
 - Resolved issues where weather details sometimes failed to display properly ([@prem-k-r](https://github.com/prem-k-r))
 - Centered shortcut names correctly when the width is 1–2 characters ([@prem-k-r](https://github.com/prem-k-r)) ([06bb4ca](https://github.com/XengShi/materialYouNewTab/pull/496/commits/06bb4cabe66b278a517483358519cc3c66232b90)
 - Limited shortcut title width to prevent overflow onto other shortcuts ([@Thunder-Blaze](https://github.com/Thunder-Blaze)) ([#497](https://github.com/XengShi/materialYouNewTab/pull/497))
