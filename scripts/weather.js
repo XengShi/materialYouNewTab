@@ -272,17 +272,9 @@ async function getWeatherData() {
         updateActiveSuggestion();
     });
 
-    // Prevent scrolling the page when scrolling the suggestions box
-    locationSuggestions.addEventListener("wheel", (e) => {
-        if (locationSuggestions.scrollHeight > locationSuggestions.clientHeight) {
-            e.preventDefault();
-            locationSuggestions.scrollTop += e.deltaY;
-        }
-    }, { passive: false });
-
     // Hide suggestions when clicking outside
     document.addEventListener("click", (e) => {
-        if (!locationCont.contains(e.target)) {
+        if (!locationSuggestions.contains(e.target) && !userLocInput.contains(e.target)) {
             locationSuggestions.style.display = "none";
             suggestions = [];
             toggleAutocomplete();
