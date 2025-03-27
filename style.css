@@ -2509,6 +2509,68 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
+.location-suggestion-box {
+	position: absolute;
+	margin-right: var(--gap);
+	width: -webkit-fill-available;
+	width: -moz-available;
+	background-color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
+	border-radius: 10px;
+	margin-top: 3px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	overflow-y: auto;
+	max-height: 138px;
+	display: none;
+	z-index: 1000;
+}
+
+.location-suggestion-box::-webkit-scrollbar {
+	width: 5px;
+}
+
+.location-suggestion-box::-webkit-scrollbar-track {
+	background-color: transparent;
+	margin: 5px 0;
+}
+
+.location-suggestion-box::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+.location-suggestion-box::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
+@-moz-document url-prefix() {
+	.location-suggestion-box {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
+}
+
+.location-suggestion-item {
+	padding: 8px 11px;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.location-suggestion-item:hover,
+.location-suggestion-item.active {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+.location-suggestion-item:first-child {
+	border-radius: 10px 10px 0 0;
+}
+
+.location-suggestion-item:last-child {
+	border-radius: 0 0 10px 10px;
+}
+
 .resetbtn {
 	width: -webkit-fill-available;
 	width: -moz-available;
