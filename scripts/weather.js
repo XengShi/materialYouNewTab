@@ -134,7 +134,12 @@ async function getWeatherData() {
         "cd148ebb1b784212b74140622240312",
         "7ae67e219af54df2840140801240312",
         "0a6bc8a404224c8d89953341241912",
-        "f59e58d7735d4739ae953115241912"
+        "f59e58d7735d4739ae953115241912",
+        "17859d22a346495c988115334252703",
+        "97cc2ef3bc4f45b3b0d120816252703",
+        "51348f046e3f47ee99d120933252703",
+        "ddbba7cc66044f96b43121046252703",
+        "ab1b595515084775be2121201252703"
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
