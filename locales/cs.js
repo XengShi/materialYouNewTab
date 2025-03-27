@@ -3,8 +3,6 @@ const cs = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Zpětná vazba",
-    "resetsettings": "Resetovat nastavení",
-    "menuCloseText": "Zavřít",
 
     // Shortcuts
     "shortcutsText": "Zkratky",
@@ -42,6 +40,12 @@ const cs = {
     "userTextInfo": "Zobrazí upravitelný text pod hodinami",
     "fahrenheitCelsiusCheckbox": "Přepnout na stupně Fahrenheita",
     "fahrenheitCelsiusText": "Změny se projeví po obnovení stránky",
+    "hideWeatherTitle": "Skrýt počasí",
+    "hideWeatherInfo": "Vypne widgety s počasím",
+    "hideWeatherBox": "Skrýt kartu s počasím",
+    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
+
+    // Search
     "micIconTitle": "Skrýt ikonu mikrofonu",
     "micIconInfo": "Pokud nefunguje hlasové vyhledávání",
     "hideSearchWith": "Skrýt vyhledávače",
@@ -60,7 +64,7 @@ const cs = {
 
     // Location
     "useGPS": "Použít GPS",
-    "useGPSInfo": "Zapne GPS pro průběžné aktualizace polohy",
+    "useGPSInfo": "Zapne GPS pro průběžnou aktualizaci polohy",
     "UserLocText": "Zadejte svou polohu",
     "UserLocSubtext": "Pokud není správná poloha počasí",
     "userLoc": "Město nebo souřadnice (šířka, délka)",
@@ -72,10 +76,6 @@ const cs = {
     "userAPI": "Váš klíč k WeatherAPI",
     "LearnMoreButton": "Zjistit více",
     "saveAPI": "Uložit",
-    "hideWeatherTitle": "Skrýt počasí",
-    "hideWeatherInfo": "Vypne widgety s počasím",
-    "hideWeatherBox": "Skrýt kartu s počasím",
-    "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
 
     // Body Items
     // Calendar
@@ -104,6 +104,7 @@ const cs = {
     "searchPlaceholder": "Zadejte hledaný výraz…",
     "listenPlaceholder": "Poslouchám…",
     "searchWithHint": "Vyhledávat prostřednictvím",
+    "searchOnHint": "Vyhledávat na",
     "userText": "Upravíte po kliknutí",
 
     // Greeting
@@ -120,6 +121,10 @@ const cs = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Obrázky",
+    "redditEngine": "Reddit",
+    "wikipediaEngine": "Wikipedie",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI nástroje",
@@ -132,14 +137,30 @@ const cs = {
     "metaAI": "Meta AI",
 
     // Theme
-    "enableDarkMode": "Tmavý režim",
-    "enableDarkModeInfo": "Zapne motivy v tmavém režimu",
+    "enableDarkMode": "Tmavý režim (experimentální)",
+    "enableDarkModeInfo": "Zapne tmavý režim aktivního motivu",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
+    "rangColor": "Vybrat barvu",
     "backupText": "Zálohovat",
     "restoreText": "Obnovit",
-    "rangColor": "Vybrat barvu",
+    "resetsettings": "Resetovat nastavení",
+    "menuCloseText": "Zavřít",
+
+    // Tips
+    "switchSearchModes": "Změna způsobu vyhledávání",
+    "switchSearchModesInfo": "Pro změnu způsobu vyhledávání klepněte na „Vyhledat prostřednictvím“.",
+    "adjustZoom": "Přizpůsobení přiblížení",
+    "adjustZoomInfo": "Pro přizpůsobení přiblížení stiskněte Ctrl + „+“ nebo Ctrl + „-“.",
+    "changeBrowserTheme": "Změna motivu prohlížeče",
+    "chromeThemeInfo": "Klepněte na tři tečky (⋮) > Další nástroje > Přizpůsobení Chrome, následně zvolte barvu, která sedí k motivu rozšíření.",
+    "edgeThemeInfo": "Běžte do Nastavení > Vzhled, následně zvolte barvu, která sedí k motivu rozšíření.",
+    "braveThemeInfo": 'Navštivte <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Obchod s motivy pro Chrome</a>, stáhněte a aktivujte motiv, který sedí k rozšíření.',
+    "firefoxThemeInfo": 'Navštivte <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Motivy vzhledu Firefox</a>, stáhněte a aktivujte motiv, který sedí k rozšíření.',
+    "updateFirefoxHomepage": "Aktualizace domovské stránky",
+    "updateFirefoxHomepageInfo": "Pro změnu domovské stránky, stejně jako nové karty, navštivte <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">tento odkaz</a> a následujte instrukce (anglicky).",
+    "dontShowTips": "Již nezobrazovat",
 
     // Dialog boxes (alerts)
     "okText": "Budiž",

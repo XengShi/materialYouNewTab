@@ -55,13 +55,11 @@ const ja = {
     "ProxyText": "デフォルトCORSプロキシ",
     "ProxySubtext": "独自のCORSプロキシを追加",
     "HostproxyButton": "独自のプロキシをホスト",
-    "saveproxy": "保存",
 
     // Location
     "UserLocText": "場所を入力",
     "UserLocSubtext": "天気の地域が正しくない場合",
     "userLoc": "都市または座標（緯度、経度）",
-    "saveLoc": "保存",
 
     // Weather
     "WeatherApiText": "WeatherAPIキーを入力",
@@ -113,7 +111,6 @@ const ja = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     // "metaAI": "Meta AI",
 
     // Wallpaper and misc

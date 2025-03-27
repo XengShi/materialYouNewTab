@@ -7,11 +7,10 @@ let iconUpdated = false;
 const updateExtensionIcon = () => {
     if (iconUpdated) return;
 
-    if (isFirefox && browser.browserAction) {
+    if (typeof browser !== "undefined" && browser.browserAction) {
         browser.browserAction.setIcon({ path: iconPath });
-    } else {
-        if (chrome.action)
-            chrome.action.setIcon({ path: iconPath });
+    } else if (typeof chrome !== "undefined" && chrome.action) {
+        chrome.action.setIcon({ path: iconPath });
     }
     iconUpdated = true;
 };

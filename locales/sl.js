@@ -55,13 +55,11 @@ const sl = {
     "ProxyText": "Proxy obid za CORS",
     "ProxySubtext": "Dodajte svoj proxy obid za CORS",
     "HostproxyButton": "Gostite svoj proxy",
-    "saveproxy": "Shrani",
 
     // Location
     "UserLocText": "Vnesite svojo lokacijo",
     "UserLocSubtext": "Če lokacija vremena ni pravilna",
     "userLoc": "Vaše mesto ali koordinate (geografska širina, dolžina)",
-    "saveLoc": "Shrani",
 
     // Weather
     "WeatherApiText": "Vnesite svoj WeatherAPI ključ",
@@ -114,7 +112,6 @@ const sl = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc

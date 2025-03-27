@@ -27,7 +27,9 @@ const en = {
     "todoListHover": "ToDo List",    // Keep this short
     "todoPlaceholder": "Add task...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Hide Clock",
+    "hideClockBoxInfo": "Show or hide the clock and date",
     "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Switch to the digital clock",
     "timeformattitle": "12-Hour Format",
@@ -48,8 +50,6 @@ const en = {
     // Search
     "micIconTitle": "Hide Microphone Icon",
     "micIconInfo": "If voice typing is not working",
-    "switchSearchModes": "Switch Search Modes",
-    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode",
     "hideSearchWith": "Hide Search Engines",
     "hideSearchWithInfo": "Switch between search engines by clicking its icon",
     "motivationalQuotesText": "Motivational Quotes",
@@ -123,8 +123,10 @@ const en = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",
+    "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI Tools",
@@ -147,6 +149,20 @@ const en = {
     "restoreText": "Restore",
     "resetsettings": "Reset Settings",
     "menuCloseText": "Close",
+
+    // Tips
+    "switchSearchModes": "Switch Search Modes",
+    "switchSearchModesInfo": "Click on ‘Search With’ to change the mode.",
+    "adjustZoom": "Adjust Zoom",
+    "adjustZoomInfo": "Press Ctrl + \"+\" or Ctrl + \"-\" to adjust the zoom.",
+    "changeBrowserTheme": "Change Browser Theme",
+    "chromeThemeInfo": "Click the three dots (⋮) > More tools > Customize Chrome, then choose a color that matches the extension theme.",
+    "edgeThemeInfo": "Goto Settings > Appearance, then choose a color that matches the extension theme.",
+    "braveThemeInfo": 'Visit <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, download and apply the theme that matches the extension.',
+    "firefoxThemeInfo": 'Visit <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, download and apply the theme that matches the extension.',
+    "updateFirefoxHomepage": "Update Homepage",
+    "updateFirefoxHomepageInfo": "To change your homepage like the new tab as well, visit <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">this link</a> and follow the instructions.",
+    "dontShowTips": "Don't show it again",
 
     // Dialog boxes (alerts)
     "okText": "OK",

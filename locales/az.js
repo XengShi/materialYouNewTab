@@ -55,13 +55,11 @@ const az = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "Öz CORS Bypass Proxy əlavə et",
     "HostproxyButton": "Öz Proxyinizi Host edin",
-    "saveproxy": "Saxla",
 
     // Location
     "UserLocText": "Məkanınızı daxil edin",
     "UserLocSubtext": "Hava yeri düzgün deyilsə",
     "userLoc": "Məkanınız (Şəhər/Enlem, Boylam)",
-    "saveLoc": "Saxla",
 
     // Weather
     "WeatherApiText": "Öz WeatherAPI açarınızı daxil edin",
@@ -114,7 +112,6 @@ const az = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc

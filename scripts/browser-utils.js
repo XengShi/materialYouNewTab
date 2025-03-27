@@ -11,6 +11,8 @@
 // Check if the browser is Firefox
 const isFirefox = typeof browser !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
 
+const isFirefoxAll = navigator.userAgent.toLowerCase().includes("firefox"); // For website and live preview
+
 // Check if the browser is Chromium-based
 const isChromiumBased = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime) && !isFirefox;
 
