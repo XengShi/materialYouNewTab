@@ -117,15 +117,15 @@ const pt = {
     },
 
     // Search Engines
-    "defaultEngine": "Default",
+    "defaultEngine": "Padrão",
     "googleEngine": "Google",
-    "duckEngine": "Duck",    // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "gImagesEngine": "Imagens",
     "redditEngine": "Reddit",
-    "wikipediaEngine": "Wikipedia",
+    "wikipediaEngine": "Wikipédia",
     "quoraEngine": "Quora",
 
     // AI Tools
