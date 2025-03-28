@@ -3963,7 +3963,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .location-suggestion-box {
-	background-color: var(--darkColor-dark);
+	background-color: #272727;
 }
 
 .dark-theme .location-suggestion-item.active {

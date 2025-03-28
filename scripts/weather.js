@@ -230,9 +230,10 @@ async function getWeatherData() {
 
     // Select location from suggestions
     function selectLocation(index) {
-        userLocInput.value = suggestions[index].name; // Save only city name
+        const selectedLocation = suggestions[index];
+        userLocInput.value = `${selectedLocation.name}, ${selectedLocation.region}, ${selectedLocation.country}`;
         locationSuggestions.style.display = "none";
-        localStorage.setItem("weatherLocation", suggestions[index].name);
+        localStorage.setItem("weatherLocation", JSON.stringify(selectedLocation));
         saveLocButton.click();
         suggestions = [];
         toggleAutocomplete();
@@ -345,7 +346,7 @@ async function getWeatherData() {
             const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
             const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
+            const retentionTime = savedApiKey ? 435000 : 960000; // 7.25 min for user-entered API key, 16 min otherwise
 
             if (!parsedData ||
                 ((Date.now() - weatherParsedTime) > retentionTime) ||
