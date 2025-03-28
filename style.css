@@ -2519,7 +2519,7 @@ input:checked + .toggle:before {
 	border-radius: 10px;
 	margin-top: 3px;
 	overflow-y: auto;
-	max-height: 111px;
+	max-height: 131px;
 	display: none;
 	z-index: 1000;
 }
@@ -2555,7 +2555,7 @@ input:checked + .toggle:before {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	padding: 8px 11px;
+	padding: 6px 11px;
 	cursor: pointer;
 	transition: background-color 0.2s ease-in-out;
 }
