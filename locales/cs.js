@@ -53,7 +53,7 @@ const cs = {
     "hideSearchWith": "Skrýt vyhledávače",
     "hideSearchWithInfo": "Mezi vyhledávači přepnete klepnutím na jejich ikonky",
     "motivationalQuotesText": "Motivační citáty",
-    "motivationalQuotesInfo": "Zobrazí citáty pod vyhledávacím polem",
+    "motivationalQuotesInfo": "Zobrazí citáty (zatím v angličtině) pod vyhledávacím polem",
     "search_suggestions_button": "Návrhy ve vyhledávání",
     "search_suggestions_text": "Zapne návrhy vyhledávání",
 
