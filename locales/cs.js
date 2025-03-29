@@ -27,7 +27,9 @@ const cs = {
     "todoListHover": "Seznam úkolů",
     "todoPlaceholder": "Přidat úkol…",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Skrýt hodiny",
+    "hideClockBoxInfo": "Skryje hodiny a datum",
     "digitalclocktitle": "Digitální hodiny",
     "digitalclockinfo": "Přepne hodiny na digitální",
     "timeformattitle": "12hodinový formát",
