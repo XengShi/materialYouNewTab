@@ -105,6 +105,8 @@ function applyLanguage(lang) {
         'todoListInfo',
         'fahrenheitCelsiusCheckbox',
         'fahrenheitCelsiusText',
+        'minMaxTempText',
+        'minMaxTempSubText',
         'hideWeatherTitle',
         'hideWeatherInfo',
         'hideWeatherBox',
