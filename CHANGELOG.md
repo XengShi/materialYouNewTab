@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)-->
 
-## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 25, 2025
+## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 29, 2025
 
 ### Added
 - Added GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
