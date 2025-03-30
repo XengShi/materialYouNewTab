@@ -12,30 +12,30 @@ const tr = {
     "editShortcutsText": "Kısayolları Düzenle",
     "shortcutsInfoText": "Hangi kısayolların gösterileceğini seçin",
     "editShortcutsList": "Kaydedilen Kısayollar",
-    // "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
+    "editShortcutsListInfo": "\"+\" simgesine tıklayarak yeni kısayollar ekleyebilir veya kısayol adına ya da URL'ye tıklayarak mevcut kısayolları düzenleyebilirsiniz.",
     "adaptiveIconText": "Uyarlanabilir İkon Şekilleri",
-    "adaptiveIconInfoText": "Kısayol ikonları yuvarlak görünecek",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
-    "ai_tools_button": "AI Araçları",
-    "enable_ai_tools": "AI Araçları kısayollarını göster",
+    "adaptiveIconInfoText": "Kısayol ikonları tema rengine göre uyarlanacak ve daha küçük görünecektir",
+    "bookmarksText": "Yer İmleri",
+    "bookmarksInfo": "Yer imleri kenar çubuğunu göster",
+    "ai_tools_button": "Yapay Zeka Araçları",
+    "enable_ai_tools": "Yapay zeka araçları kısayollarını göster",
     "googleAppsMenuText": "Google Uygulamaları",
-    "googleAppsMenuInfo": "Google Uygulamaları için kısayollarını göster",
-    // "googleAppsHover": "Google Apps",   // Keep this shorter
+    "googleAppsMenuInfo": "Google uygulamaları için kısayollarını göster",
+    "googleAppsHover": "Google Apps",
 
     // To-do List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",    // Keep this short
-    // "todoPlaceholder": "Add task...",
+    "todoListText": "Yapılacaklar Listesi",
+    "todoListInfo": "Yapılacaklar listesini göster",
+    "todoListHover": "Yapılacaklar",
+    "todoPlaceholder": "Görev ekle",
 
     // Digital Clock
-    "digitalclocktittle": "Dijital Saat",
+    "digitalclocktitle": "Dijital Saat",
     "digitalclockinfo": "Dijital saate geçiş yap",
-    "timeformattittle": "12 Saat Formatı",
+    "timeformattitle": "12 Saat Formatı",
     "timeformatinfo": "12 saat zaman formatını kullanın",
-    "greetingtittle": "Hoşgeldiniz",
-    "greetinginfo": "Özel metinin altında hoşgeldiniz mesajını göster",
+    "greetingtitle": "Karşılama",
+    "greetinginfo": "Özel metinin altında karşılama mesajını göster",
 
     // Misc
     "userTextTitle": "Özelleştirilebilir Metin",
@@ -44,31 +44,32 @@ const tr = {
     "fahrenheitCelsiusText": "Güncellemeleri görmek için sayfayı yenileyin",
     "micIconTitle": "Mikrofon Simgesini Gizle",
     "micIconInfo": "Eğer sesli yazma çalışmıyorsa",
-    // "hideSearchWith": "Arama Motorlarını Gizle",
-    // "hideSearchWithInfo": "İkonuna tıklayarak arama motorları arasında geçiş yapın",
+    "hideSearchWith": "Arama Motorlarını Gizle",
+    "hideSearchWithInfo": "İkonuna tıklayarak arama motorları arasında geçiş yapın",
     "search_suggestions_button": "Arama Önerileri",
-    "search_suggestions_text": "Arama Önerilerini etkinleştir",
+    "search_suggestions_text": "Arama önerilerini etkinleştir",
 
     // Proxy
     "useproxytitletext": "Proxy Atlatma",
-    "useproxyText": "Eğer arama önerileri çalışmıyorsa",
+    "useproxyText": "Arama önerileri çalışmıyorsa",
     "ProxyText": "CORS Atlatma Proxy",
-    "ProxySubtext": "Kendi CORS Atlatma Proxy'nizi ekleyin",
+    "ProxySubtext": "Kendi proxy'nizi ekleyin",
     "HostproxyButton": "Kendi Proxy'nizi Barındırın",
-    "saveproxy": "Kaydet",
 
     // Location
     "UserLocText": "Konumunuzu girin",
     "UserLocSubtext": "Hava durumu konumu doğru değilse",
-    "userLoc": "Konumunuz (Şehir/Enlem,Boylam)",
-    "saveLoc": "Kaydet",
+    "userLoc": "Bulunduğunuz şehir veya Koordinatlarınız (Enlem, Boylam)",
+    "useGPS": "GPS Kullan",
 
     // Weather
-    "WeatherApiText": "Kendi WeatherAPI anahtarınızı girin",
+    "WeatherApiText": "WeatherAPI anahtarınızı girin",
     "WeatherApiSubtext": "Hava durumu işlevi çalışmıyorsa",
     "userAPI": "WeatherAPI anahtarınız",
     "LearnMoreButton": "Daha Fazla Bilgi Edinin",
     "saveAPI": "Kaydet",
+    "hideWeatherBox": "Hava Durumu Kartını Gizle",
+    "hideWeatherBoxInfo": "Sıcaklığı sadece mobilde göster",
 
     // Body Items
     // Calendar
@@ -76,11 +77,11 @@ const tr = {
     "months": ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
 
     // Bookmarks
-    // "bookmarksHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewGrid": "Grid",    // Keep this shorter
-    // "bookmarkViewList": "List",    // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarksHeading": "Yer imleri",
+    "bookmarkViewAs": "Görünüm",
+    "bookmarkViewGrid": "Izgara",
+    "bookmarkViewList": "Liste",
+    "bookmarkSearch": "Yer imlerinde ara",
 
     // New Tab Item
     "conditionText": "Merhaba! Bugün nasılsın?",
@@ -88,15 +89,15 @@ const tr = {
     "feelsLike": "Hissediyor",
     "location": "Dünya",
     "enterBtn": "Arama Yap",
-    "searchPlaceholder": "Aramanız...",
-    "listenPlaceholder": "Dinliyor...",
+    "searchPlaceholder": "Buraya yazın...",
+    "listenPlaceholder": "Dinleniyor...",
     "searchWithHint": "ile Ara",
-    "userText": "Buraya tıklayarak düzenleyin",
+    "userText": "Düzenlemek için buraya tıklayın",
 
     // Greeting
     greeting: {
         "morning": "Günaydın!",
-        "afternoon": "İyi öğleden sonra!",
+        "afternoon": "Tünaydın!",
         "evening": "İyi akşamlar!"
     },
 
@@ -106,33 +107,38 @@ const tr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Görseller",
+    "redditEngine": "Reddit",
 
     // AI Tools
-    "ai_tools": "AI Araçları",
+    "ai_tools": "Yapay Zeka Araçları",
     "chatGPT": "ChatGPT",
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
-    // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
-    // "backupText": "Backup",
-    // "restoreText": "Restore",
-    // "rangColor": "Pick color",    // Keep this short
+    // Theme
+    "enableDarkMode": "Karanlık Mod",
+    "enableDarkModeInfo": "Karanlık moda geç",
+
+    // Wallpaper and misc
+    "uploadWallpaperText": "Duvar Kağıdı Yükle",
+    "backupText": "Yedekleme",
+    "restoreText": "Kurtarma",
+    "rangColor": "Renk seç",
 
     // Dialog boxes (alerts)
-    // "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
-    // "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
-    // "Nobackgroundset": "No background image is currently set.",
-    // "clearbackgroundimage": "Are you sure you want to clear the background image?",
-    // "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
-    // "failedbackup": "Backup failed: ",
-    // "restorecompleted": "Restore completed successfully!",
-    // "restorefailed": "Restore failed: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "confirmWallpaper": "Bugün için yeni bir duvar kağıdı ayarlamak ister misiniz?",
+    "confirmRestore": "Ayarlarınızı sıfırlamak istediğinizden emin misiniz? Bu eylem geri alınamaz.",
+    "Nobackgroundset": "Şu anda hiçbir arka plan resmi ayarlanmamış.",
+    "clearbackgroundimage": "Arka plan resmini temizlemek istediğinizden emin misiniz?",
+    "ProxyDisclaimer": "Tüm proxy özellikleri varsayılan olarak kapalıdır.\n\nArama önerilerini ve CORS bypass proxy'sini etkinleştirirseniz, gelişmiş gizlilik için kendi proxy'nizi barındırmanız şiddetle önerilir.\n\nVarsayılan olarak https://mynt-proxy.rhythmcorehq.com ayarlanacaktır, yani tüm verileriniz bu hizmet üzerinden geçecektir, bu da gizlilik endişeleri yaratabilir.",
+    "failedbackup": "Yedekleme başarısız oldu: ",
+    "restorecompleted": "Geri yükleme başarıyla tamamlandı!",
+    "restorefailed": "Geri yükleme başarısız oldu: ",
+    "invalidBackup": "Geçersiz yedekleme dosyası seçildi.",
+    "deleteBookmark": "\"{title}\" yer imini silmek istediğinizden emin misiniz?",
+    "UnsupportedBrowser": "Yer imleri tarayıcınızda desteklenmiyor.",
 };

@@ -1,4 +1,4 @@
-// Uzbek -> uz
+// Uzbek
 const uz = {
     // Menu Items
     "github": "GitHub",
@@ -30,11 +30,11 @@ const uz = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Digital Clock",
+    "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Digital Clockga o'tish",
-    "timeformattittle": "12-soat format",
+    "timeformattitle": "12-soat format",
     "timeformatinfo": "12-soat formatni qo'llang",
-    "greetingtittle": "Salomlashish",
+    "greetingtitle": "Salomlashish",
     "greetinginfo": "Savatchadagi text pastdagi salomlashishni ko'rsatish",
 
     // Misc
@@ -55,13 +55,11 @@ const uz = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "O'zingizning CORS bypass proxyni qo'shing",
     "HostproxyButton": "O'zingizning proxyni joylash",
-    "saveproxy": "Saqlash",
 
     // Location
     "UserLocText": "O'zingizning joylashganligingizni kiriting",
     "UserLocSubtext": "Agar havo joylashuvi noto'g'ri bo'lsa",
     "userLoc": "O'zingizning shahringiz yoki koordinatalaringiz (Kenglik, Uzunlik)",
-    "saveLoc": "Saqlash",
 
     // Weather
     "WeatherApiText": "O'zingizning WeatherAPI kalitini kiriting",
@@ -102,7 +100,7 @@ const uz = {
 
     // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "DuckDuckGo",
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
@@ -114,10 +112,9 @@ const uz = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     // "backupText": "Backup",
     // "restoreText": "Restore",
@@ -132,7 +129,7 @@ const uz = {
     // "failedbackup": "Backup failed: ",
     // "restorecompleted": "Restore completed successfully!",
     // "restorefailed": "Restore failed: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "invalidBackup": "Invalid backup file selected.",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

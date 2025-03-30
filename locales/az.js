@@ -1,4 +1,4 @@
-// Azerbaijani -> az
+// Azerbaijani
 const az = {
     // Menu Items
     "github": "GitHub",
@@ -30,11 +30,11 @@ const az = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Rəqəmsal saat",
+    "digitalclocktitle": "Rəqəmsal saat",
     "digitalclockinfo": "Rəqəmsal saata keç",
-    "timeformattittle": "12 Saat Format",
+    "timeformattitle": "12 Saat Format",
     "timeformatinfo": "12 saatlıq vaxt formatından istifadə edin",
-    "greetingtittle": "Xoş gəlmisiniz",
+    "greetingtitle": "Xoş gəlmisiniz",
     "greetinginfo": "Fərdi mətnin altında salamlama mesajını göstər",
 
     // Misc
@@ -55,13 +55,11 @@ const az = {
     "ProxyText": "CORS Bypass Proxy",
     "ProxySubtext": "Öz CORS Bypass Proxy əlavə et",
     "HostproxyButton": "Öz Proxyinizi Host edin",
-    "saveproxy": "Saxla",
 
     // Location
     "UserLocText": "Məkanınızı daxil edin",
     "UserLocSubtext": "Hava yeri düzgün deyilsə",
     "userLoc": "Məkanınız (Şəhər/Enlem, Boylam)",
-    "saveLoc": "Saxla",
 
     // Weather
     "WeatherApiText": "Öz WeatherAPI açarınızı daxil edin",
@@ -114,10 +112,9 @@ const az = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Divar kağızı yükləyin",
     "backupText": "Yedək",
     "restoreText": "Bərpa et",
@@ -132,7 +129,7 @@ const az = {
     "failedbackup": "Yedəkləmə uğursuz oldu: ",
     "restorecompleted": "Bərpa uğurla tamamlandı!",
     "restorefailed": "Bərpa uğursuz oldu: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "invalidBackup": "Invalid backup file selected.",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

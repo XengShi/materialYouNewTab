@@ -1,0 +1,82 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Material You NewTab.
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a feature for **Material You NewTab**! 
+        Before submitting, please ensure that your feature isn’t already requested in the [issues list](https://github.com/XengShi/materialYouNewTab/issues).
+        If you need further discussion, feel free to join our [Telegram support group](https://t.me/+i-ekvlM7yoU1Yjc1).
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we reach you if we need more information?
+      placeholder: ex. Telegram username or email (optional)
+    validations:
+      required: false
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe the Feature
+      description: Clearly explain what feature or improvement you are suggesting.
+      placeholder: Provide a detailed description of your idea.
+      value: "### Feature Description\n\n### Why is this needed?\n\n### Possible Implementation"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: What kind of feature is this?
+      options:
+        - UI/UX Improvement
+        - New Functionality
+        - Performance Enhancement
+        - Other (mention below)
+    validations:
+      required: true
+
+  - type: input
+    id: feature-type-other
+    attributes:
+      label: Specify Feature Type (if "Other")
+      description: If your feature does not fit into the categories above, specify here.
+      placeholder: ex. Accessibility improvement, Customization option
+    validations:
+      required: false
+
+  - type: textarea
+    id: potential-benefits
+    attributes:
+      label: Benefits of This Feature
+      description: Explain how this feature would improve the extension for users.
+      placeholder: Describe how it enhances usability, functionality, or performance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Context
+      description: Add any relevant information, references, or screenshots.
+      placeholder: ex. Related features, links, or alternative approaches.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: agreement
+    attributes:
+      label: Agreement
+      description: By submitting this issue, you agree to follow the project's [Code of Conduct](https://github.com/XengShi/materialYouNewTab/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I have searched for existing issues and checked the FAQs before submitting this.
+          required: true
+        - label: I agree to follow this project's Code of Conduct.
+          required: true

@@ -1,4 +1,4 @@
-// Slovenian -> sl
+// Slovenian
 const sl = {
     // Menu Items
     "github": "GitHub",
@@ -30,11 +30,11 @@ const sl = {
     "todoPlaceholder": "Dodaj nalogo...",
 
     // Digital Clock
-    "digitalclocktittle": "Digitalna ura",
+    "digitalclocktitle": "Digitalna ura",
     "digitalclockinfo": "Preklopi na digitalno uro",
-    "timeformattittle": "12-urni format",
+    "timeformattitle": "12-urni format",
     "timeformatinfo": "Uporabi 12-urni časovni format",
-    "greetingtittle": "Pozdrav",
+    "greetingtitle": "Pozdrav",
     "greetinginfo": "Prikaži pozdrav pod prilagojenim besedilom",
 
     // Misc
@@ -55,13 +55,11 @@ const sl = {
     "ProxyText": "Proxy obid za CORS",
     "ProxySubtext": "Dodajte svoj proxy obid za CORS",
     "HostproxyButton": "Gostite svoj proxy",
-    "saveproxy": "Shrani",
 
     // Location
     "UserLocText": "Vnesite svojo lokacijo",
     "UserLocSubtext": "Če lokacija vremena ni pravilna",
     "userLoc": "Vaše mesto ali koordinate (geografska širina, dolžina)",
-    "saveLoc": "Shrani",
 
     // Weather
     "WeatherApiText": "Vnesite svoj WeatherAPI ključ",
@@ -114,10 +112,9 @@ const sl = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Naloži ozadje",
     "backupText": "Varnostna kopija",
     "restoreText": "Obnovi",
@@ -133,6 +130,6 @@ const sl = {
     "restorecompleted": "Obnovitev je bila uspešna!",
     "restorefailed": "Obnovitev ni uspela: ",
     "invalidBackup": "Neveljavna datoteka za varnostno kopijo",
-    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek?",
+    "deleteBookmark": "Ali ste prepričani, da želite odstraniti zaznamek \"{title}\"?",
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

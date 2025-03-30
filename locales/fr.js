@@ -1,4 +1,4 @@
-// French -> fr
+// French
 const fr = {
     // Menu Items
     "github": "GitHub",
@@ -30,11 +30,11 @@ const fr = {
     "todoPlaceholder": "Ajouter une tâche...",
 
     // Digital Clock
-    "digitalclocktittle": "Horloge Numérique",
+    "digitalclocktitle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
-    "timeformattittle": "Format 12h",
+    "timeformattitle": "Format 12h",
     "timeformatinfo": "Utiliser le format 12h",
-    "greetingtittle": "Salutation",
+    "greetingtitle": "Salutation",
     "greetinginfo": "Afficher la salutation sous le texte personnalisé",
 
     // Misc
@@ -42,10 +42,20 @@ const fr = {
     "userTextInfo": "Afficher le texte personnalisé sous l'horloge",
     "fahrenheitCelsiusCheckbox": "Passer à Fahrenheit",
     "fahrenheitCelsiusText": "Actualiser la page pour appliquer les changements",
+    "hideWeatherTitle": "Masquer la météo",
+    "hideWeatherInfo": "Désactiver les widgets de météo",
+    "hideWeatherBox": "Masquer la carte météo",
+    "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
+
+    // Search
     "micIconTitle": "Masquer l'Icône du Microphone",
     "micIconInfo": "Si la saisie vocale ne fonctionne pas",
+    "switchSearchModes": "Changer de mode de Recherche",
+    "switchSearchModesInfo": "Cliquez sur ‘Rechercher avec’ pour changer le mode",
     "hideSearchWith": "Masquer les Moteurs de Recherche",
     "hideSearchWithInfo": "Passez d'un moteur de recherche à l'autre en cliquant sur son icône",
+    "motivationalQuotesText": "Citations de motivation",
+    "motivationalQuotesInfo": "Afficher les citations sous la barre de recherche",
     "search_suggestions_button": "Suggestions de Recherche",
     "search_suggestions_text": "Activer les suggestions de recherche",
 
@@ -55,14 +65,14 @@ const fr = {
     "ProxyText": "Proxy de contournement CORS",
     "ProxySubtext": "Ajouter votre propre proxy de contournement CORS",
     "HostproxyButton": "Hébergez votre propre proxy",
-    "saveproxy": "Enregistrer",
 
     // Location
+    "useGPS": "Utiliser le GPS",
+    "useGPSInfo": "Activer le GPS pour des mises à jour en temps réel de la localisation",
     "UserLocText": "Saisissez votre localisation",
     "UserLocSubtext": "Si la localisation de la météo n'est pas correct",
     "userLoc": "Votre ville ou vos coordonnées (Latitude, Longitude)",
-    "useGPS": "Utiliser le GPS",
-    "saveLoc": "Enregistrer",
+    "PrivacyPolicy": "Politique de confidentialité",
 
     // Weather
     "WeatherApiText": "Entrez votre clé WeatherAPI",
@@ -78,10 +88,16 @@ const fr = {
 
     // Bookmarks
     "bookmarksHeading": "Favoris",
+    "bookmarkSortBy": "Trier par",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Plus vieux",
     "bookmarkViewAs": "Afficher en",
     "bookmarkViewGrid": "Grille",
     "bookmarkViewList": "Liste",
     "bookmarkSearch": "Rechercher un favori",
+    "editBookmarkHeading": "Modifier un favori",
+    "editBookmarkName": "Nom du favori",
+    "editBookmarkURL": "URL du favori",
 
     // New Tab Item
     "conditionText": "Bonjour, comment allez-vous?",
@@ -92,6 +108,7 @@ const fr = {
     "searchPlaceholder": "Saisissez ici...",
     "listenPlaceholder": "Écoute...",
     "searchWithHint": "Rechercher avec",
+    "searchOnHint": "Rechercher sur",
     "userText": "Cliquez ici pour modifier",
 
     // Greeting
@@ -102,11 +119,14 @@ const fr = {
     },
 
     // Search Engines
+    "defaultEngine": "Par défaut",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Images",  
+    "wikipediaEngine": "Wikipedia",
 
     // AI Tools
     "ai_tools": "Outils IA",
@@ -115,26 +135,36 @@ const fr = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Theme
+    "enableDarkMode": "Mode Sombre",
+    "enableDarkModeInfo": "Activer le mode sombre des thèmes",
+
+
+    // Wallpaper and misc
     "uploadWallpaperText": "Uploader un fond d'ecran",
     "backupText": "Sauvegarder",
     "restoreText": "Restaurer",
     "rangColor": "Choisir la couleur",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Oui",
+    "noText": "Non",
+    "agreeText": "J'accepte",
+    "cancelText": "Annuler",
     "confirmWallpaper": "Souhaitez-vous définir une nouvelle image comme fond d'écran pour la journée?",
     "confirmRestore": "Êtes-vous sûr de vouloir réinitialiser vos paramètres? Cette action ne peut être annulée.",
     "Nobackgroundset": "Aucune image de fond n'est actuellement définie.",
     "clearbackgroundimage": "Êtes-vous sûr de vouloir effacer l'image de fond?",
     "ProxyDisclaimer": "Toutes les fonctions du proxy sont désactivées par défaut.\n\nSi vous activez les suggestions de recherche et le proxy de contournement CORS, il est fortement recommandé d'héberger votre propre proxy pour une meilleure confidentialité.\n\nPar défaut, le proxy sera réglé sur https://mynt-proxy.rhythmcorehq.com, ce qui signifie que toutes vos données passeront par ce service, ce qui peut poser des problèmes de confidentialité.",
+    "GPSDisclaimer": "Vos données de localisation sont utilisées uniquement pour fournir des mises à jour météorologiques précises. Elles sont stockées temporairement dans le navigateur et ne sont ni partagées avec des services tiers, ni accessibles à nous.\n\nEn activant le GPS, vous consentez à partager localement votre localisation avec l'extension.",
     "failedbackup": "Échec de la sauvegarde: ",
     "restorecompleted": "Restauration terminée avec succès!",
     "restorefailed": "Échec de la restauration: ",
     "invalidBackup": "Fichier de sauvegarde invalide",
-    "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori?",
+    "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori \"{title}\"?",
     "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
-    "BookmarksDenied": "L'autorisation pour les favoris n'a pas été accordée."
 };

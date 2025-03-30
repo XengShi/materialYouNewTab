@@ -1,10 +1,8 @@
-// Russian -> ru
+// Russian
 const ru = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Отзывы",
-    "resetsettings": "Сброс настроек",
-    "menuCloseText": "Закрыть",
 
     // Shortcuts
     "shortcutsText": "Ярлыки",
@@ -30,11 +28,11 @@ const ru = {
     "todoPlaceholder": "Добавить задачу...",
 
     // Digital Clock
-    "digitalclocktittle": "Цифровые часы",
+    "digitalclocktitle": "Цифровые часы",
     "digitalclockinfo": "Включить/Отключить цифровые часы",
-    "timeformattittle": "12-часовой формат",
+    "timeformattitle": "12-часовой формат",
     "timeformatinfo": "Использовать 12-часовой формат времени",
-    "greetingtittle": "Приветствие",
+    "greetingtitle": "Приветствие",
     "greetinginfo": "Показать приветствие под вашим текстом",
 
     // Misc
@@ -42,10 +40,20 @@ const ru = {
     "userTextInfo": "Отображение текста под часами",
     "fahrenheitCelsiusCheckbox": "Использовать Фаренгейт",
     "fahrenheitCelsiusText": "Обновите страницу, чтобы применить",
+    "hideWeatherTitle": "Скрыть погоду",
+    "hideWeatherInfo": "Отключить виджеты погоды",
+    "hideWeatherBox": "Скрыть карту погоды",
+    "hideWeatherBoxInfo": "Показать только температуру",
+
+    // Search
     "micIconTitle": "Скрыть значок микрофона",
     "micIconInfo": "Если голосовой ввод не работает",
+    "switchSearchModes": "Переключение режимов поиска",
+    "switchSearchModesInfo": "Нажмите на ‘Поиск с’, чтобы изменить режим",
     "hideSearchWith": "Скрыть поисковые системы",
     "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
+    "motivationalQuotesText": "Мотивационные цитаты",
+    "motivationalQuotesInfo": "Показывать мотивационный цитаты под панелью поиска",
     "search_suggestions_button": "Поисковые подсказки",
     "search_suggestions_text": "Включить/Отключить поисковые подсказки",
 
@@ -55,13 +63,14 @@ const ru = {
     "ProxyText": "CORS обход прокси",
     "ProxySubtext": "Добавьте свой CORS-прокси",
     "HostproxyButton": "Разместить свой прокси",
-    "saveproxy": "Сохранить",
 
     // Location
+    "useGPS": "Использывать GPS",
+    "useGPSInfo": "Включите GPS для обновления местоположения в режиме реального времени",
     "UserLocText": "Введите ваше местоположение",
     "UserLocSubtext": "Если местоположение для погоды неверно",
-    "userLoc": "Ваше местоположение (Город/Широта,Долгота)",
-    "saveLoc": "Сохранить",
+    "userLoc": "Ваш город или координаты (Широта, Долгота)",
+    "PrivacyPolicy": "Конфиденциальность",
 
     // Weather
     "WeatherApiText": "Введите свой ключ WeatherAPI",
@@ -77,10 +86,16 @@ const ru = {
 
     // Bookmarks
     "bookmarksHeading": "Закладки",
+    "bookmarkSortBy": "Сортировка",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "От старых",
     "bookmarkViewAs": "Отображение",
     "bookmarkViewGrid": "Сетка",
     "bookmarkViewList": "Лист",
     "bookmarkSearch": "Поиск закладки",
+    "editBookmarkHeading": "Редактировать закладку",
+    "editBookmarkName": "Имя закладки",
+    "editBookmarkURL": "URL закладки",
 
     // New Tab Item
     "conditionText": "Привет! Как ты сегодня?",
@@ -90,7 +105,8 @@ const ru = {
     "enterBtn": "Поиск",
     "searchPlaceholder": "Ваш запрос...",
     "listenPlaceholder": "Слушаю...",
-    "searchWithHint": "Искать с",
+    "searchWithHint": "Поиск с",
+    "searchOnHint": "Искать по",
     "userText": "Нажмите здесь, чтобы редактировать",
 
     // Greeting
@@ -101,11 +117,14 @@ const ru = {
     },
 
     // Search Engines
+    "defaultEngine": "По умолчанию",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Картинки",
+    "wikipediaEngine": "Википедия",
 
     // AI Tools
     "ai_tools": "Нейросети",
@@ -114,25 +133,37 @@ const ru = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Theme
+    "enableDarkMode": "Чёрная тема (Эксперимент)",
+    "enableDarkModeInfo": "Включить чёрную тему",
+
+    // Wallpaper and settings
     "uploadWallpaperText": "Загрузить обои",
+    "rangColor": "Выбрать цвет",
     "backupText": "Экспорт",
     "restoreText": "Восстановить",
-    "rangColor": "Выбрать цвет",
+    "resetsettings": "Сброс настроек",
+    "menuCloseText": "Закрыть",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Да",
+    "noText": "Нет",
+    "agreeText": "Согласен",
+    "cancelText": "Отмена",
     "confirmWallpaper": "Хотите установить новое изображение в качестве обоев на весь день?",
     "confirmRestore": "Вы уверены, что хотите сбросить настройки? Это действие нельзя отменить.",
     "Nobackgroundset": "В настоящее время обои не установлены.",
     "clearbackgroundimage": "Вы уверены что хотите убрать обои?",
     "ProxyDisclaimer": "По умолчанию все функции прокси отключены.\n\nЕсли вы включите поисковые предложения и прокси для обхода CORS, настоятельно рекомендуется разместить собственный прокси для повышения конфиденциальности.\n\nПо умолчанию прокси будет установлен на https://mynt-proxy.rhythmcorehq.com, то есть все ваши данные будут проходить через этот сервис, что может вызвать проблемы с конфиденциальностью.",
+    "GPSDisclaimer": "Данные о вашем местоположении используются исключительно для предоставления точных обновлений погоды. Они временно хранятся в браузере, не передаются сторонним службам и не доступны нам.\n\n Включая GPS, вы соглашаетесь на передачу данных о вашем местоположении расширению на месте.",
     "failedbackup": "Резервное копирование не удалось: ",
     "restorecompleted": "Восстановление настроек успешно завершено!",
     "restorefailed": "Восстановление настроек не удалось: ",
     "invalidBackup": "Недопустимый файл резервной копии.",
-    "deleteBookmark": "Вы уверены, что хотите удалить эту закладку?",
+    "deleteBookmark": "Вы уверены, что хотите удалить эту закладку \"{title}\"?",
     "UnsupportedBrowser": "Закладки не поддерживаются в вашем браузере.",
 };

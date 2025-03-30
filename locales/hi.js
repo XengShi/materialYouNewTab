@@ -3,8 +3,6 @@ const hi = {
     // Menu Items
     "github": "गिटहब",
     "feedback": "प्रतिक्रिया",
-    "resetsettings": "सेटिंग्स रीसेट करें",
-    "menuCloseText": "बंद करें",
 
     // Shortcuts
     "shortcutsText": "शॉर्टकट्स",
@@ -29,12 +27,14 @@ const hi = {
     "todoListHover": "कार्य सूची",
     "todoPlaceholder": "कार्य जोड़ें...",
 
-    // Digital Clock
-    "digitalclocktittle": "डिजिटल घड़ी",
+    // Clock
+    "hideClockBox": "घड़ी छिपाएँ",
+    "hideClockBoxInfo": "घड़ी और तारीख दिखाएँ या छिपाएँ",
+    "digitalclocktitle": "डिजिटल घड़ी",
     "digitalclockinfo": "डिजिटल घड़ी पर स्विच करें",
-    "timeformattittle": "12 घंटे का प्रारूप",
+    "timeformattitle": "12 घंटे का प्रारूप",
     "timeformatinfo": "12 घंटे का समय प्रारूप उपयोग करें",
-    "greetingtittle": "अभिवादन",
+    "greetingtitle": "अभिवादन",
     "greetinginfo": "कस्टम टेक्स्ट के नीचे अभिवादन दिखाएँ",
 
     // Misc
@@ -42,10 +42,18 @@ const hi = {
     "userTextInfo": "घड़ी के नीचे कस्टम टेक्स्ट दिखाएँ",
     "fahrenheitCelsiusCheckbox": "तापमान फ़ारेनहाइट में बदलें",
     "fahrenheitCelsiusText": "बदलाव के लिए पृष्ठ को रीफ्रेश करें",
+    "hideWeatherTitle": "मौसम छिपाएँ",
+    "hideWeatherInfo": "मौसम विजेट्स को अक्षम करें",
+    "hideWeatherBox": "मौसम कार्ड छिपाएँ",
+    "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएँ",
+
+    // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
     "micIconInfo": "अगर वॉइस टाइपिंग काम नहीं कर रहा है",
-    "hideSearchWith": "सर्च इंजन छिपाएं",
+    "hideSearchWith": "सर्च इंजन छिपाएँ",
     "hideSearchWithInfo": "आइकन पर क्लिक करके सर्च इंजन बदलें",
+    "motivationalQuotesText": "प्रेरणादायक उद्धरण",
+    "motivationalQuotesInfo": "खोज बार के नीचे उद्धरण दिखाएँ",
     "search_suggestions_button": "खोज सुझाव",
     "search_suggestions_text": "खोज सुझाव सक्षम करें",
 
@@ -55,14 +63,14 @@ const hi = {
     "ProxyText": "CORS बायपास प्रॉक्सी",
     "ProxySubtext": "अपना CORS बायपास प्रॉक्सी जोड़ें",
     "HostproxyButton": "अपना प्रॉक्सी संचालित करें",
-    "saveproxy": "सहेजें",
 
     // Location
+    "useGPS": "GPS का उपयोग करें",
+    "useGPSInfo": "लाइव स्थान अपडेट के लिए GPS सक्षम करें",
     "UserLocText": "अपना स्थान दर्ज करें",
     "UserLocSubtext": "यदि मौसम का स्थान सही नहीं है",
     "userLoc": "आपका शहर या निर्देशांक (अक्षांश, देशांतर)",
-    "useGPS": "GPS का उपयोग करें",
-    "saveLoc": "सहेजें",
+    "PrivacyPolicy": "गोपनीयता नीति",
 
     // Weather
     "WeatherApiText": "अपनी WeatherAPI कुंजी दर्ज करें",
@@ -80,10 +88,16 @@ const hi = {
 
     // Bookmarks
     "bookmarksHeading": "बुकमार्क्स",
+    "bookmarkSortBy": "क्रमबद्ध करें",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "पुराना-नया",
     "bookmarkViewAs": "इस रूप में देखें",
     "bookmarkViewGrid": "ग्रिड",
     "bookmarkViewList": "लिस्ट",
     "bookmarkSearch": "बुकमार्क खोजें",
+    "editBookmarkHeading": "बुकमार्क संपादित करें",
+    "editBookmarkName": "बुकमार्क नाम",
+    "editBookmarkURL": "बुकमार्क URL",
 
     // New Tab Item
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
@@ -94,6 +108,7 @@ const hi = {
     "searchPlaceholder": "यहाँ लिखें...",
     "listenPlaceholder": "सुन रहे हैं...",
     "searchWithHint": "खोज माध्यम",
+    "searchOnHint": "खोज स्रोत",
     "userText": "यहाँ अपना टेक्स्ट लिखें",
 
     // Greeting
@@ -104,11 +119,16 @@ const hi = {
     },
 
     // Search Engines
+    "defaultEngine": "डिफ़ॉल्ट",
     "googleEngine": "गूगल",
     "duckEngine": "डकडकगो",
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
+    "wikipediaEngine": "विकिपीडिया",
+    "quoraEngine": "क्वोरा",
 
     // AI Tools
     "ai_tools": "AI उपकरण",
@@ -117,25 +137,52 @@ const hi = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    "firefly": "एडोबी फायरफ्लाई",
+    "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and alerts
+    // Theme - delete later
+    "enableDarkMode": "डार्क मोड",
+    "enableDarkModeInfo": "डार्क मोड की थीम सक्षम करें (प्रायोगिक)",
+
+    // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करें",
+    "rangColor": "रंग चुनें",
     "backupText": "बैकअप करें",
     "restoreText": "रिस्टोर करें",
-    "rangColor": "रंग चुनें",
+    "resetsettings": "सेटिंग्स रीसेट करें",
+    "menuCloseText": "बंद करें",
+
+    // Tips
+    "switchSearchModes": "खोज मोड बदलें",
+    "switchSearchModesInfo": "मोड बदलने के लिए ‘खोज माध्यम’ पर क्लिक करें।",
+    "adjustZoom": "ज़ूम समायोजित करें",
+    "adjustZoomInfo": "ज़ूम समायोजित करने के लिए Ctrl + \"+\" या Ctrl + \"-\" दबाएँ।",
+    "changeBrowserTheme": "ब्राउज़र थीम बदलें",
+    "chromeThemeInfo": "तीन बिंदु (⋮) पर क्लिक करें > अधिक टूल्स > क्रोम को कस्टमाइज़ करें, फिर एक्सटेंशन थीम से मेल खाने वाला रंग चुनें।",
+    "edgeThemeInfo": "सेटिंग्स > रूपरंग (Appearance) पर जाएं, फिर एक्सटेंशन थीम से मेल खाने वाला रंग चुनें।",
+    "braveThemeInfo": ' <a href="https://chromewebstore.google.com/category/themes/" target="_blank">क्रोम थीम स्टोर</a> पर जाएं, उपयुक्त थीम डाउनलोड करें और लागू करें।',
+    "firefoxThemeInfo": '<a href="https://addons.mozilla.org/firefox/themes/" target="_blank">फ़ायरफ़ॉक्स थीम्स</a> पर जाएँ, अपनी पसंद की थीम डाउनलोड करें और उसे लागू करें।',
+    "updateFirefoxHomepage": "होमपेज अपडेट करें",
+    "updateFirefoxHomepageInfo": 'अपने होमपेज को भी नए टैब की तरह बदलने के लिए, <a href="https://github.com/XengShi/materialYouNewTab#-firefox\" target="_blank">इस लिंक</a> पर जाएं और दिए गए निर्देशों का पालन करें।',
+    "dontShowTips": "इसे फिर से न दिखाएँ",
 
     // Dialog boxes (alerts)
+    "okText": "ठीक है",
+    "yesText": "हाँ",
+    "noText": "नहीं",
+    "agreeText": "मैं सहमत हूँ",
+    "cancelText": "रद्द करें",
     "confirmWallpaper": "क्या आप आज के लिए एक नई छवि को वॉलपेपर के रूप में सेट करना चाहेंगे?",
     "confirmRestore": "क्या आप अपनी सेटिंग्स रीसेट करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
     "Nobackgroundset": "कोई बैकग्राउंड छवि वर्तमान में सेट नहीं है।",
     "clearbackgroundimage": "क्या आप बैकग्राउंड छवि को हटाना चाहते हैं?",
     "ProxyDisclaimer": "सभी प्रॉक्सी फीचर डिफ़ॉल्ट रूप से बंद रहते हैं।\n\nयदि आप खोज सुझाव और CORS बायपास प्रॉक्सी सक्षम करते हैं, तो गोपनीयता बढ़ाने के लिए अपना प्रॉक्सी होस्ट करना अत्यधिक अनुशंसित है।\n\nडिफ़ॉल्ट रूप से प्रॉक्सी को https://mynt-proxy.rhythmcorehq.com पर सेट किया जाएगा, जिसका अर्थ है कि आपका सारा डेटा इस सेवा से गुजरेगा, जिससे गोपनीयता संबंधित चिंताएँ हो सकती हैं।",
+    "GPSDisclaimer": "आपका स्थान का डेटा केवल सटीक मौसम अपडेट प्रदान करने के लिए उपयोग किया जाता है। इसे अस्थायी रूप से ब्राउज़र में संग्रहीत किया जाता है और न तो किसी तृतीय-पक्ष सेवा के साथ साझा किया जाता है और न ही हमारे लिए सुलभ है।\n\nGPS सक्षम करके, आप एक्सटेंशन के साथ स्थानीय रूप से अपना स्थान साझा करने की सहमति देते हैं।",
     "failedbackup": "बैकअप विफल: ",
     "restorecompleted": "पुनर्स्थापना सफलतापूर्वक पूरी हुई!",
     "restorefailed": "पुनर्स्थापना विफल: ",
-    "invalidBackup": "अमान्य बैकअप फ़ाइल",
-    "deleteBookmark": "क्या आप बुकमार्क डिलीट करना चाहते हैं?",
-    "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं",
+    "invalidBackup": "अमान्य बैकअप फ़ाइल चयनित है।",
+    "deleteBookmark": "क्या आप \"{title}\" बुकमार्क डिलीट करना चाहते हैं?",
+    "UnsupportedBrowser": "आपके ब्राउज़र में बुकमार्क समर्थित नहीं हैं।",
+    "minOneshortcut": "आपको कम से कम एक शॉर्टकट रखना होगा।"
 };

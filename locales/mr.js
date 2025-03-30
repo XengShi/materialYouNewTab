@@ -3,8 +3,6 @@ const mr = {
     // Menu Items
     "github": "गिटहब",
     "feedback": "प्रतिसाद",
-    "resetsettings": "सेटिंग्ज रीसेट करा",
-    "menuCloseText": "बंद करा",
 
     // Shortcuts
     "shortcutsText": "शॉर्टकट्स",
@@ -15,8 +13,8 @@ const mr = {
     'editShortcutsListInfo': 'आपण "+" आयकॉनवर क्लिक करून नवीन शॉर्टकट्स जोडू शकता किंवा शॉर्टकटच्या नावावर किंवा URL वर क्लिक करून विद्यमान शॉर्टकट्स संपादित करू शकता.',
     "adaptiveIconText": "अनुकूल आयकॉन आकार",
     "adaptiveIconInfoText": "शॉर्टकट आयकॉन छोटे दिसतील",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
+    "bookmarksText": "बुकमार्क्स",
+    "bookmarksInfo": "बुकमार्क्स साइडबार दाखवा",
     "ai_tools_button": "AI साधने",
     "enable_ai_tools": "AI साधनांसाठी शॉर्टकट्स दाखवा",
     "googleAppsMenuText": "गुगल ॲप्स",
@@ -24,17 +22,17 @@ const mr = {
     "googleAppsHover": "गुगल ॲप्स",
 
     // To-do List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",   // Keep this short
-    // "todoPlaceholder": "Add task...",
+    "todoListText": "कार्य सूची",
+    "todoListInfo": "दैनिक कार्यांची सूची पहा",
+    "todoListHover": "कार्य सूची",
+    "todoPlaceholder": "कार्य जोडा...",
 
     // Digital Clock
-    "digitalclocktittle": "डिजिटल घड्याळ",
+    "digitalclocktitle": "डिजिटल घड्याळ",
     "digitalclockinfo": "डिजिटल घड्याळावर स्विच करा",
-    "timeformattittle": "१२-तासांचा फॉरमॅट",
+    "timeformattitle": "१२-तासांचा फॉरमॅट",
     "timeformatinfo": "१२-तासांचा वेळ फॉरमॅट वापरा",
-    "greetingtittle": "शुभेच्छा",
+    "greetingtitle": "शुभेच्छा",
     "greetinginfo": "सानुकूल मजकुराखाली शुभेच्छा दाखवा",
 
     // Misc
@@ -42,6 +40,12 @@ const mr = {
     "userTextInfo": "घड्याळाखाली सानुकूल मजकूर दाखवा",
     "fahrenheitCelsiusCheckbox": "फॅरेनहाइटमध्ये बदल करा",
     "fahrenheitCelsiusText": "बदल लागू करण्यासाठी पृष्ठ रीफ्रेश करा",
+    "hideWeatherTitle": "हवामान लपवा",
+    "hideWeatherInfo": "हवामान विजेट अक्षम करा",
+    "hideWeatherBox": "हवामान कार्ड लपवा",
+    "hideWeatherBoxInfo": "केवळ तापमान पिल दाखवा",
+
+    // Search
     "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
     "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
     "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
@@ -55,18 +59,17 @@ const mr = {
     "ProxyText": "CORS बायपास प्रॉक्सी",
     "ProxySubtext": "आपला स्वतःचा CORS बायपास प्रॉक्सी जोडा",
     "HostproxyButton": "आपला प्रॉक्सी होस्ट करा",
-    "saveproxy": "जतन करा",
 
     // Location
     "UserLocText": "आपले स्थान प्रविष्ट करा",
     "UserLocSubtext": "जर हवामानाचे स्थान बरोबर नसेल",
     "userLoc": "आपले शहर किंवा समन्वय (अक्षांश, रेखांश)",
-    "saveLoc": "जतन करा",
 
     // Weather
     "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
     "WeatherApiSubtext": "जर हवामान कार्यरत नसेल",
     "userAPI": "आपली WeatherAPI कळी",
+    "useGPS": "GPS वापरा",
     "LearnMoreButton": "अधिक जाणून घ्या",
     "saveAPI": "जतन करा",
 
@@ -77,11 +80,14 @@ const mr = {
     "months": ['जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून', 'जुलै', 'ऑगस्ट', 'सप्टेंबर', 'ऑक्टोबर', 'नोव्हेंबर', 'डिसेंबर'],
 
     // Bookmarks
-    // "bookmarksHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewGrid": "Grid",    // Keep this shorter
-    // "bookmarkViewList": "List",    // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarksHeading": "बुकमार्क्स",
+    "bookmarkViewAs": "या रूपात पाहा",
+    "bookmarkViewGrid": "ग्रिड",
+    "bookmarkViewList": "लिस्ट",
+    "bookmarkSearch": "बुकमार्क शोधा",
+    "editBookmarkHeading": "बुकमार्क संपादित करा",
+    "editBookmarkName": "बुकमार्क नाव",
+    "editBookmarkURL": "बुकमार्क URL",
 
     // New Tab Item
     "conditionText": "नमस्कार! तुम्ही आज कसे आहात?",
@@ -102,11 +108,15 @@ const mr = {
     },
 
     // Search Engines
+    "defaultEngine": "डिफॉल्ट",
     "googleEngine": "गुगल",
     "duckEngine": "डकडकगो",
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव्ह",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI साधने",
@@ -115,16 +125,23 @@ const mr = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    "firefly": "अडोबी फायरफ्लाय",
+    "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करा",
+    "rangColor": "रंग निवडा",
     "backupText": "बॅकअप करा",
     "restoreText": "पुनर्संचयित करा",
-    "rangColor": "रंग निवडा",
+    "resetsettings": "सेटिंग्ज रीसेट करा",
+    "menuCloseText": "बंद करा",
 
     // Dialog boxes (alerts)
+    "okText": "ठीक आहे",
+    "yesText": "होय",
+    "noText": "नाही",
+    "agreeText": "मी सहमत आहे",
+    "cancelText": "रद्द करा",
     "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
     "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
     "Nobackgroundset": "सद्यस्थितीत कोणतीही पार्श्वभूमी सेट केलेली नाही.",
@@ -133,7 +150,7 @@ const mr = {
     "failedbackup": "बॅकअप अयशस्वी: ",
     "restorecompleted": "पुनर्संचयित यशस्वी झाले!",
     "restorefailed": "पुनर्संचयित अयशस्वी: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "invalidBackup": "अवैध बॅकअप फाइल निवडली आहे.",
+    "deleteBookmark": "तुम्हाला \"{title}\" बुकमार्क डिलीट करायचा आहे का?",
+    "UnsupportedBrowser": "तुमच्या ब्राउझरमध्ये बुकमार्क्सला समर्थन नाही.",
 };

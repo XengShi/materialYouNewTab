@@ -6,53 +6,53 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// when User click on "AI-Tools"
-const element = document.getElementById("toolsCont");
+// When User click on "AI-Tools"
+const aiToolName = document.getElementById("toolsCont");
 const shortcuts = document.getElementById("shortcutsContainer");
 
 function toggleShortcuts(event) {
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
 
     if (shortcutsCheckbox.checked) {
-        if (element.style.display === "flex") {
+        if (aiToolName.style.display === "flex") {
             shortcuts.style.display = "flex";
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
+            aiToolName.style.opacity = "0";
+            aiToolName.style.gap = "0";
+            aiToolName.style.transform = "translateX(-100%)";
 
             setTimeout(() => {
-                element.style.display = "none";
+                aiToolName.style.display = "none";
                 shortcuts.style.display = "flex";
             }, 500);
         } else {
             shortcuts.style.display = "none";
-            element.style.display = "flex";
+            aiToolName.style.display = "flex";
             setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
+                aiToolName.style.opacity = "1";
+                aiToolName.style.transform = "translateX(0)";
             }, 1);
             setTimeout(() => {
-                element.style.gap = "12px";
+                aiToolName.style.gap = "12px";
             }, 300);
         }
     } else {
-        if (element.style.display === "flex") {
+        if (aiToolName.style.display === "flex") {
             shortcuts.style.display = "none";
-            element.style.opacity = "0";
-            element.style.gap = "0";
-            element.style.transform = "translateX(-100%)";
+            aiToolName.style.opacity = "0";
+            aiToolName.style.gap = "0";
+            aiToolName.style.transform = "translateX(-100%)";
             setTimeout(() => {
-                element.style.display = "none";
+                aiToolName.style.display = "none";
             }, 500);
         } else {
             shortcuts.style.display = "none";
-            element.style.display = "flex";
+            aiToolName.style.display = "flex";
             setTimeout(() => {
-                element.style.opacity = "1";
-                element.style.transform = "translateX(0)";
+                aiToolName.style.opacity = "1";
+                aiToolName.style.transform = "translateX(0)";
             }, 1);
             setTimeout(() => {
-                element.style.gap = "12px";
+                aiToolName.style.gap = "12px";
             }, 300);
         }
     }
@@ -60,19 +60,31 @@ function toggleShortcuts(event) {
     if (event) event.stopPropagation();
 }
 
+// Allow horizontal scrolling with the mouse wheel
+const scrollContainer = document.getElementById('aiToolsCont');
+
+// Add a listener for the wheel event
+scrollContainer.addEventListener('wheel', (event) => {
+    // Check if the container is scrollable in x-axis
+    if (scrollContainer.scrollWidth > scrollContainer.clientWidth) {
+        if (event.deltaY !== 0) {
+            event.preventDefault(); // Prevent vertical scrolling
+            // Apply the deltaY from the wheel event to horizontal scroll
+            scrollContainer.scrollLeft += event.deltaY;
+        }
+    }
+}, { passive: false });
 
 // Collapse when clicking outside toolsCont
 document.addEventListener("click", (event) => {
-    if (!element.contains(event.target) && element.style.display === "flex") {
+    if (!aiToolName.contains(event.target) && aiToolName.style.display === "flex") {
         toggleShortcuts();
     }
 });
 
-document.getElementById("0NIHK").onclick = toggleShortcuts;
+document.getElementById("aiToolsIcon").onclick = toggleShortcuts;
 
-//
-
-
+// Save and load checkbox state
 document.addEventListener("DOMContentLoaded", function () {
     const aiToolsCont = document.getElementById("aiToolsCont");
     const aiToolsCheckbox = document.getElementById("aiToolsCheckbox");

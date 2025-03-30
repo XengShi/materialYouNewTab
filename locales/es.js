@@ -1,4 +1,4 @@
-// Spanish -> es
+// Spanish
 const es = {
     // Menu Items
     "github": "GitHub",
@@ -30,11 +30,11 @@ const es = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "Reloj digital",
+    "digitalclocktitle": "Reloj digital",
     "digitalclockinfo": "Cambiar a reloj digital",
-    "timeformattittle": "Formato de 12 horas",
+    "timeformattitle": "Formato de 12 horas",
     "timeformatinfo": "Usar formato de 12 horas",
-    "greetingtittle": "Saludo",
+    "greetingtitle": "Saludo",
     "greetinginfo": "Mostrar saludo debajo del texto personalizado",
 
     // Misc
@@ -55,13 +55,11 @@ const es = {
     "ProxyText": "Proxy CORS por defecto",
     "ProxySubtext": "Añade tu propio proxy CORS",
     "HostproxyButton": "Aloja tu propio proxy",
-    "saveproxy": "Guardar",
 
     // Location
     "UserLocText": "Ingresa tu ubicación",
     "UserLocSubtext": "Si la ubicación del clima es incorrecta",
     "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
-    "saveLoc": "Guardar",
 
     // Weather
     "WeatherApiText": "Ingresa tu clave de WeatherAPI",
@@ -102,7 +100,7 @@ const es = {
 
     // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "DuckDuckGo",
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
@@ -114,10 +112,9 @@ const es = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     // "backupText": "Backup",
     // "restoreText": "Restore",
@@ -132,7 +129,7 @@ const es = {
     // "failedbackup": "Backup failed: ",
     // "restorecompleted": "Restore completed successfully!",
     // "restorefailed": "Restore failed: ",
-    // "invalidBackup": "Invalid backup file",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark?",
+    // "invalidBackup": "Invalid backup file selected.",
+    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
 };

@@ -30,11 +30,11 @@ const it = {
     "todoPlaceholder": "Aggiungi attività...",
 
     // Digital Clock
-    "digitalclocktittle": "Orologio Digitale",
+    "digitalclocktitle": "Orologio Digitale",
     "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
-    "timeformattittle": "Usa formato 12h",
+    "timeformattitle": "Usa formato 12h",
     "timeformatinfo": "Usa formato orario a 12 ore",
-    "greetingtittle": "Saluto",
+    "greetingtitle": "Saluto",
     "greetinginfo": "Mostra il saluto sotto il testo personalizzato",
 
     // Misc
@@ -55,14 +55,12 @@ const it = {
     "ProxyText": "Proxy di Bypass CORS",
     "ProxySubtext": "Aggiungi il tuo Proxy di Bypass CORS",
     "HostproxyButton": "Hosta il Tuo Proxy",
-    "saveproxy": "Salva",
 
     // Location
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
     "useGPS": "Usa il GPS",
-    "saveLoc": "Salva",
 
     // Weather
     "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
@@ -107,6 +105,8 @@ const it = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Immagini",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Strumenti IA",
@@ -115,10 +115,9 @@ const it = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
-    // Wallpaper and alerts
+    // Wallpaper and misc
     "uploadWallpaperText": "Carica immagine",
     "backupText": "Backup",
     "restoreText": "Ripristina",
@@ -134,7 +133,6 @@ const it = {
     "restorecompleted": "Ripristino completato con successo!",
     "restorefailed": "Ripristino fallito: ",
     "invalidBackup": "File di backup non valido",
-    "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro?",
-    "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser",
-    "BookmarksDenied": "Il permesso per i segnalibri non è stato concesso.",
+    "deleteBookmark": "Sei sicuro di voler eliminare il segnalibro",
+    "UnsupportedBrowser": "I segnalibri non sono supportati nel tuo browser \"{title}\"?",
 };
