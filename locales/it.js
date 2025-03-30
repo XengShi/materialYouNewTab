@@ -28,8 +28,8 @@ const it = {
     "todoPlaceholder": "Aggiungi attività...",
 
     // Clock
-    "hideClockBox": "Hide Clock",
-    "hideClockBoxInfo": "Show or hide the clock and date",
+    "hideClockBox": "Nascondi Orologio",
+    "hideClockBoxInfo": "Mostra e nascodi orologio e ora",
     "digitalclocktitle": "Orologio Digitale",
     "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
     "timeformattitle": "Usa formato 12h",
@@ -106,6 +106,7 @@ const it = {
     "searchPlaceholder": "Cerca...",
     "listenPlaceholder": "Ascoltando...",
     "searchWithHint": "Cerca con",
+    "searchOnHint": "Cerca su",
     "userText": "Clicca qui per modificare",
 
     // Greeting
