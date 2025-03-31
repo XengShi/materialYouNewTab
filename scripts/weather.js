@@ -352,18 +352,17 @@ async function getWeatherData() {
 
 
 // Save and load toggle state
-document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCard = document.getElementById("hideWeatherCard");
-    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+const hideWeatherCard = document.getElementById("hideWeatherCard");
+const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCard.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
-    });
-
-    fahrenheitCheckbox.addEventListener("change", function () {
-        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    });
-
-    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+hideWeatherCard.addEventListener("change", function () {
+    saveCheckboxState("hideWeatherCardState", hideWeatherCard);
 });
+
+fahrenheitCheckbox.addEventListener("change", function () {
+    saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+});
+
+loadCheckboxState("hideWeatherCardState", hideWeatherCard);
+loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+
