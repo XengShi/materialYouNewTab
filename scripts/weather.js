@@ -192,7 +192,13 @@ async function getWeatherData() {
         locations.forEach((location, index) => {
             const div = document.createElement("div");
             div.classList.add("location-suggestion-item");
-            div.textContent = `${location.name}, ${location.region}, ${location.country}`;
+
+            // Format text without extra comma if region is empty
+            const locationText = location.region
+                ? `${location.name}, ${location.region}, ${location.country}`
+                : `${location.name}, ${location.country}`;
+            div.textContent = locationText;
+
             div.dataset.index = index;
 
             // Mouse click selects location and saves
@@ -231,7 +237,12 @@ async function getWeatherData() {
     // Select location from suggestions
     function selectLocation(index) {
         const selectedLocation = suggestions[index];
-        userLocInput.value = `${selectedLocation.name}, ${selectedLocation.region}, ${selectedLocation.country}`;
+
+        const locationText = selectedLocation.region
+            ? `${selectedLocation.name}, ${selectedLocation.region}, ${selectedLocation.country}`
+            : `${selectedLocation.name}, ${selectedLocation.country}`;
+        userLocInput.value = locationText;
+
         locationSuggestions.style.display = "none";
         localStorage.setItem("weatherLocation", JSON.stringify(selectedLocation));
         saveLocButton.click();
