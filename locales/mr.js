@@ -3,8 +3,6 @@ const mr = {
     // Menu Items
     "github": "गिटहब",
     "feedback": "प्रतिसाद",
-    "resetsettings": "सेटिंग्ज रीसेट करा",
-    "menuCloseText": "बंद करा",
 
     // Shortcuts
     "shortcutsText": "शॉर्टकट्स",
@@ -42,6 +40,12 @@ const mr = {
     "userTextInfo": "घड्याळाखाली सानुकूल मजकूर दाखवा",
     "fahrenheitCelsiusCheckbox": "फॅरेनहाइटमध्ये बदल करा",
     "fahrenheitCelsiusText": "बदल लागू करण्यासाठी पृष्ठ रीफ्रेश करा",
+    "hideWeatherTitle": "हवामान लपवा",
+    "hideWeatherInfo": "हवामान विजेट अक्षम करा",
+    "hideWeatherBox": "हवामान कार्ड लपवा",
+    "hideWeatherBoxInfo": "केवळ तापमान पिल दाखवा",
+
+    // Search
     "micIconTitle": "मायक्रोफोन आयकॉन लपवा",
     "micIconInfo": "जर व्हॉइस टायपिंग कार्यरत नसेल",
     "hideSearchWith": "सर्च इंजिन सिलेक्टर लपवा",
@@ -55,13 +59,11 @@ const mr = {
     "ProxyText": "CORS बायपास प्रॉक्सी",
     "ProxySubtext": "आपला स्वतःचा CORS बायपास प्रॉक्सी जोडा",
     "HostproxyButton": "आपला प्रॉक्सी होस्ट करा",
-    "saveproxy": "जतन करा",
 
     // Location
     "UserLocText": "आपले स्थान प्रविष्ट करा",
     "UserLocSubtext": "जर हवामानाचे स्थान बरोबर नसेल",
     "userLoc": "आपले शहर किंवा समन्वय (अक्षांश, रेखांश)",
-    "saveLoc": "जतन करा",
 
     // Weather
     "WeatherApiText": "आपली WeatherAPI की प्रविष्ट करा",
@@ -70,8 +72,6 @@ const mr = {
     "useGPS": "GPS वापरा",
     "LearnMoreButton": "अधिक जाणून घ्या",
     "saveAPI": "जतन करा",
-    "hideWeatherBox": "हवामान कार्ड लपवा",
-    "hideWeatherBoxInfo": "केवळ तापमान पिल दाखवा",
 
     // Body Items
     // Calendar
@@ -85,6 +85,9 @@ const mr = {
     "bookmarkViewGrid": "ग्रिड",
     "bookmarkViewList": "लिस्ट",
     "bookmarkSearch": "बुकमार्क शोधा",
+    "editBookmarkHeading": "बुकमार्क संपादित करा",
+    "editBookmarkName": "बुकमार्क नाव",
+    "editBookmarkURL": "बुकमार्क URL",
 
     // New Tab Item
     "conditionText": "नमस्कार! तुम्ही आज कसे आहात?",
@@ -105,11 +108,15 @@ const mr = {
     },
 
     // Search Engines
+    "defaultEngine": "डिफॉल्ट",
     "googleEngine": "गुगल",
     "duckEngine": "डकडकगो",
     "bingEngine": "बिंग",
     "braveEngine": "ब्रेव्ह",
     "youtubeEngine": "यूट्यूब",
+    "gImagesEngine": "इमेज",
+    "redditEngine": "रेडिट",
+    "wikipediaEngine": "विकिपीडिया",
 
     // AI Tools
     "ai_tools": "AI साधने",
@@ -118,16 +125,23 @@ const mr = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "perplexity": "पर्प्लेक्सिटी",
-    "firefly": "अडोबी फायरफ्लाय",
+    "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करा",
+    "rangColor": "रंग निवडा",
     "backupText": "बॅकअप करा",
     "restoreText": "पुनर्संचयित करा",
-    "rangColor": "रंग निवडा",
+    "resetsettings": "सेटिंग्ज रीसेट करा",
+    "menuCloseText": "बंद करा",
 
     // Dialog boxes (alerts)
+    "okText": "ठीक आहे",
+    "yesText": "होय",
+    "noText": "नाही",
+    "agreeText": "मी सहमत आहे",
+    "cancelText": "रद्द करा",
     "confirmWallpaper": "तुम्हाला आजचा वॉलपेपर बदलायचा आहे का?",
     "confirmRestore": "तुम्हाला तुमचे सेटिंग्स रीसेट करायचे आहेत का? हि क्रिया परत केली जाऊ शकत नाही.",
     "Nobackgroundset": "सद्यस्थितीत कोणतीही पार्श्वभूमी सेट केलेली नाही.",

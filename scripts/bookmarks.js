@@ -24,6 +24,10 @@ const saveBookmarkChanges = document.getElementById("saveBookmarkChanges");
 const cancelBookmarkEdit = document.getElementById("cancelBookmarkEdit");
 let currentBookmarkId = null;
 
+const sortAlphabetical = document.getElementById("sortAlphabetical");
+const sortTimeAdded = document.getElementById("sortTimeAdded");
+let currentSortMethod = localStorage.getItem("bookmarkSortMethod") || 'title';
+
 var bookmarksAPI;
 if (isFirefox) {
     bookmarksAPI = browser.bookmarks;
@@ -32,6 +36,8 @@ if (isFirefox) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Initialize sort buttons
+    updateSortButtons();
 
     bookmarkButton.addEventListener("click", function () {
         toggleBookmarkSidebar();
@@ -47,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("click", function (event) {
+        const modalContainer = document.getElementById("prompt-modal-container");
+        // If modal is open, don't close the sidebar
+        if (modalContainer && modalContainer.style.display === "flex") {
+            return;
+        }
+
         if (
             !bookmarkSidebar.contains(event.target) &&
             !bookmarkButton.contains(event.target) &&
@@ -118,6 +130,31 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show or hide the clear button based on the search term
         bookmarkSearchClearButton.style.display = searchTerm ? "inline" : "none";
     });
+
+    // Sorting functionality
+    sortAlphabetical.addEventListener("click", function () {
+        if (!this.classList.contains("active")) {
+            currentSortMethod = 'title';
+            localStorage.setItem("bookmarkSortMethod", "title");
+            updateSortButtons();
+            loadBookmarks();
+        }
+    });
+
+    sortTimeAdded.addEventListener("click", function () {
+        if (!this.classList.contains("active")) {
+            currentSortMethod = 'date';
+            localStorage.setItem("bookmarkSortMethod", "date");
+            updateSortButtons();
+            loadBookmarks();
+        }
+    });
+
+    function updateSortButtons() {
+        sortAlphabetical.classList.toggle("active", currentSortMethod === 'title');
+        sortTimeAdded.classList.toggle("active", currentSortMethod === 'date');
+    }
+
 
     bookmarkSearchClearButton.addEventListener("click", function () {
         bookmarkSearch.value = "";
@@ -204,13 +241,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const folders = bookmarkNodes.filter(node => node.children && node.children.length > 0);
         const bookmarks = bookmarkNodes.filter(node => node.url);
 
-        // Sort folders and bookmarks separately
-        folders.sort((a, b) => a.title.localeCompare(b.title));
-        bookmarks.sort((a, b) => a.title.localeCompare(b.title));
-
-        // Sort folders and bookmarks separately by dateAdded
-        // folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
-        // bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        // Sorting folders and bookmarks separately by title or dateAdded
+        if (currentSortMethod === 'title') {
+            folders.sort((a, b) => a.title.localeCompare(b.title));
+            bookmarks.sort((a, b) => a.title.localeCompare(b.title));
+        } else {
+            folders.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+            bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
+        }
 
         // Combine folders and bookmarks, placing folders first
         const sortedNodes = [...folders, ...bookmarks];
@@ -267,11 +305,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 deleteButton.textContent = "✖";
                 deleteButton.classList.add("bookmark-delete-button");
 
-                deleteButton.addEventListener("click", function (event) {
+                deleteButton.addEventListener("click", async function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
-                    if (confirm(`${(translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark).replace("{title}", node.title || node.url)}`)) {
+                    const confirmMessage = (translations[currentLanguage]?.deleteBookmark || translations["en"].deleteBookmark)
+                        .replace("{title}", node.title || node.url);
+
+                    if (await confirmPrompt(confirmMessage)) {
                         if (isFirefox) {
                             // Firefox API (Promise-based)
                             bookmarksAPI.remove(node.id).then(() => {
@@ -364,7 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!currentBookmarkId) return;
 
         const updatedTitle = editBookmarkName.value.trim();
-        const updatedURL = editBookmarkURL.value.trim();
+        const updatedURL = encodeURI(editBookmarkURL.value.trim());
 
         const updatedData = { title: updatedTitle, url: updatedURL };
 
@@ -429,9 +470,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
     const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-    const bookmarkGridCheckbox = document.getElementById("bookmarkGridCheckbox");
 
-    bookmarksCheckbox.addEventListener("change", function () {
+    bookmarksCheckbox.addEventListener("change", async function () {
         let bookmarksPermission;
         if (isFirefox) {
             bookmarksPermission = browser.permissions;
@@ -469,7 +509,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             }
         } else {
-            alert(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
+            await alertPrompt(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
             bookmarksCheckbox.checked = false;
             saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
             return;
@@ -488,11 +528,13 @@ document.addEventListener("DOMContentLoaded", function () {
     loadCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
     loadDisplayStatus("bookmarksDisplayStatus", bookmarkButton);
     loadCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
-})
+});
 
 // Keyboard shortcut for bookmarks
 document.addEventListener("keydown", function (event) {
-    if (menuBar.style.display !== "none") {
+    // Prevent shortcut if modal or menu is open
+    const modalContainer = document.getElementById("prompt-modal-container");
+    if (modalContainer?.style.display === "flex" || menuBar.style.display !== "none") {
         return;
     }
 

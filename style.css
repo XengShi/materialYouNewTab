@@ -7,7 +7,6 @@
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
 
 @font-face {
 	font-family: "poppins";
@@ -195,6 +194,10 @@ html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
 		filter: invert(1) hue-rotate(180deg);
 		-webkit-filter: invert(1) hue-rotate(180deg);
 	}
+	& .menuBar,
+	& #prompt-modal-blur {
+		background-color: #0000001f;
+	}
 	--whitishColor-blue: #f2f2f2;
 }
 
@@ -229,7 +232,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	scrollbar-width: none;
 	/* Initially hidden */
 	opacity: 0;
-	z-index: -1000;
+	z-index: -100;
 	transform: translateY(-70px);
 	transition: opacity 0.5s ease, transform 0.5s ease, z-index 0.5s ease;
 	pointer-events: none;
@@ -265,7 +268,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
-	z-index: 1000;
+	z-index: 100;
 	pointer-events: all;
 }
 
@@ -385,8 +388,9 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	top: 85px;
 	right: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
+	width: fit-content;
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
-	overflow-y: auto;
+	overflow-x: hidden;
 	/* Add vertical scrollbar when needed */
 	box-sizing: border-box;
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
@@ -394,6 +398,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 /* Individual Icon Item Styling */
 .icon-item {
+	gap: 0.5rem; /* Item Gap*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -415,7 +420,9 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	color: var(--darkColor-blue);
 	width: 40px;
 	height: 40px;
-	margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Label Styling */
@@ -503,7 +510,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	height: 100%;
 	top: 0;
 	right: 0;
-	z-index: 2;
 	opacity: 0;
 	transition: all 0.5s;
 	pointer-events: none;
@@ -572,7 +578,8 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
+	padding: 30px 20px 50px 20px;
+	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar.open {
@@ -583,11 +590,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--accentLightTint-blue);
 	right: 412px;
 	z-index: 5;
-}
-
-.bookmark-sidebar-header {
-	padding: 30px 20px 50px 20px;
-	background-color: var(--bg-color-blue);
 }
 
 .bookmark-sidebar-header h2 {
@@ -607,7 +609,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	background-color: var(--accentLightTint-blue);
 	margin-top: -30px;
-	position: relative;
 }
 
 .bookmark-search-container::after {
@@ -660,7 +661,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	height: calc(100% - 230px);
+	height: calc(100% - 260px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	overflow-x: hidden;
 }
@@ -691,20 +692,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-.bookmark-view-as-container {
+/* Updated CSS */
+.bookmark-controls-container {
 	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	justify-content: space-between;
-	align-items: center;
+	gap: 32px; /* Space between Sort by and View as sections */
 	padding: 8px 32px;
-	& h3 {
-		font-size: 1rem;
-		color: var(--darkerColor-blue);
-	}
 }
 
-.bookmark-view-as-container .bookmark-view-as-button {
+.bookmark-control-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.bookmark-control-group h3 {
+	font-size: 1rem;
+	color: var(--darkerColor-blue);
+	margin: 0;
+	white-space: nowrap;
+}
+
+.button-group {
+	display: flex;
+	gap: 8px; /* Space between buttons */
+}
+
+/* Shared button styling */
+.bookmark-sort-button,
+.bookmark-view-as-button {
 	background: transparent;
 	border-radius: 20px;
 	border: 2px solid var(--darkColor-blue);
@@ -712,15 +727,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	min-width: 60px;
 	font-size: 12px;
 	padding: 2px 9px;
-	margin-left: 10px;
 	cursor: pointer;
+	transition: all 0.2s ease;
 }
-.bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:checked)
-	~ #bookmarkViewGrid,
-.bookmark-view-as-container
-	#bookmarkGridCheckbox:is(:not(:checked))
-	~ #bookmarkViewList {
+
+/* Active states */
+.bookmark-sort-button.active,
+#bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
+#bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
 	background: var(--darkColor-blue);
 	color: white;
 }
@@ -1297,8 +1311,7 @@ body #bookmarkButton.bookmark-button.rotate {
 /* ---------------------- */
 .ttteexxtt {
 	position: relative;
-	top: 2rem;
-	left: 10px;
+	top: 1.6rem;
 }
 
 #digitalClock[style="display: block;"] + .ttteexxtt {
@@ -1307,16 +1320,20 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #userText {
 	font-family: var(--main-font-family);
-	font-size: 1.4rem;
+	font-size: 1.36rem;
 	display: block;
 	word-wrap: break-word;
 	max-width: 18.75rem;
-	max-height: 4.2rem;
+	max-height: 4.3rem;
 	overflow-x: clip;
 	overflow-y: scroll;
 	text-overflow: ellipsis;
 	scrollbar-width: none;
 	margin-bottom: 10px;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 #userText::-webkit-scrollbar {
@@ -1324,7 +1341,11 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #date {
-	font-size: 1.4rem;
+	font-size: 1.36rem;
+	background-color: var(--bg-color-blue);
+	padding: 3px 10px;
+	width: fit-content;
+	border-radius: 10px;
 }
 
 .digidate {
@@ -1357,6 +1378,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	50% {
 		opacity: 0;
 	}
+}
+
+.clockRegion {
+	transition: transform 0.25s ease-in-out;
+}
+
+.clock-hidden-left {
+	display: none;
 }
 
 /* __________end of clock___________________ */
@@ -1459,9 +1488,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	content: "";
 	height: 100%;
 	width: 40px;
+	background-color: var(--darkColor-blue);
+	background-image: url("./svgs/humidity.svg");
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: 66%;
-	background: var(--darkColor-blue) url("./svgs/humidity.svg") no-repeat center
-		center;
 	right: 0;
 	border-radius: 100%;
 }
@@ -1497,6 +1528,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: auto;
 	left: 20px;
 	height: fit-content;
+}
+
+#feelsLike {
+	padding-right: 12px;
 }
 
 /* End of _____________________- */
@@ -1556,6 +1591,19 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-left: -30px;
 }
 
+.lang-ur .rightDiv .topDiv .rAndakar .wInfo {
+	height: 95%;
+}
+
+.lang-ur #temp {
+	font-size: 3.3rem;
+}
+
+.lang-ur #wIcon {
+	width: 70px;
+	height: 70px;
+}
+
 /* ------------End of Weather Pill------------- */
 
 /* ________________________________________________________ */
@@ -1610,11 +1658,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: #757575;
 }
 
-/* Placeholder color when the condition is met */
-/* #searchQ.darker-placeholder::placeholder {
-	color: #3c3c3c;
-} */
-
 .searchControls {
 	margin-left: 10px;
 	right: 10px;
@@ -1639,7 +1682,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 3px;
 	box-sizing: border-box;
 	background-color: var(--whitishColor-blue);
-	/* transition: all 0.5s; */
 	border: 2px solid transparent;
 }
 
@@ -1650,12 +1692,12 @@ body #bookmarkButton.bookmark-button.rotate {
 .micIcon::after {
 	content: "";
 	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 100%;
+	top: -3px;
+	left: -3px;
+	right: -3px;
+	bottom: -3px;
+	border-radius: 50%;
 	border: 2px solid transparent;
-	top: -4px;
-	left: -4px;
 }
 
 .micActive::after,
@@ -1665,11 +1707,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-top: 2px dashed var(--darkerColor-blue);
 	border-bottom: 2px dashed var(--darkerColor-blue);
 	animation: micAnimation 1s ease-in-out infinite;
-	transition: all 0.5s;
-}
-
-.micIcon:hover {
-	background-color: #fffffff2;
+	transition: all 0.5s ease-in-out;
 }
 
 @keyframes micAnimation {
@@ -1721,26 +1759,41 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .searchWithCont {
 	margin-top: var(--gap);
-	border-radius: var(--round);
+	border-radius: 20px;
 	position: relative;
 	display: flex;
 	font-size: 1rem;
+	z-index: 2; /* Ensures it's above the engines container */
+	overflow: hidden; /* Prevents child elements from overflowing outside */
+	max-width: 100%;
 }
 
 .searchWithCont .hint {
-	/* background-color: var(--accentLightTint-blue); */
-	width: 200px;
+	min-width: 120px;
+	max-width: 150px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px;
+	padding: 12px;
 	position: relative;
-	margin-right: 16px;
+	margin-right: 5px; /* 16px */
 	border-radius: var(--round);
+	cursor: pointer;
+	transition: border-radius 0.4s, margin-left 0.4s;
 }
 
-.searchWithCont .hint::after {
+.searchWithCont .hint:hover {
+	background-color: var(--darkColor-blue);
+	color: #fff;
+}
+
+.searchWithCont .hint:active {
+	border-radius: 20px;
+	margin-left: 5px;
+}
+
+/* .searchWithCont .hint::after {
 	content: "";
 	position: absolute;
 	width: 6px;
@@ -1748,17 +1801,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 3px;
 	right: -20px;
-}
+} */
 
 .searchEnginesContainer {
+	position: relative;
+	z-index: 1;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 	padding-left: 20px;
+	opacity: 1;
+	transform: translateX(0);
+}
+.searchEnginesContainer.show {
+	animation: slideIn 0.3s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+		opacity: 0.2;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 .searchEnginesContainer .search-engine {
-	/* background-color: var(--accentLightTint-blue); */
 	border-radius: 20px;
 	height: 40px;
 	display: flex;
@@ -1766,6 +1836,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-content: center;
 	position: relative;
 	cursor: pointer;
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .searchEnginesContainer .search-engine svg {
@@ -1778,7 +1850,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 16px 0 10px;
+	margin: 0 14px 0 10px;
 	cursor: pointer;
 }
 
@@ -1788,8 +1860,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	background-color: var(--whitishColor-blue);
-	width: 22px;
-	height: 22px;
+	width: 18px;
+	height: 18px;
 	border-radius: 50%;
 	border: 2px solid var(--whitishColor-blue);
 	outline: none;
@@ -1803,10 +1875,55 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .theme-transition .search-engine input[type="radio"] {
-	transition: 0.2s;
+	transition: background-color 0.2s ease, border 0.2s ease;
 }
 
-/* -----------end of Radio Button Customizing------------ */
+/* ----------- Quotes ------------ */
+.quotesCont {
+	margin-top: var(--gap);
+	position: relative;
+	display: flex;
+	font-size: 1rem;
+}
+
+.quotesContainer {
+	position: relative;
+	background-color: var(--accentLightTint-blue);
+	height: 100px;
+	width: 100%;
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 28px;
+}
+
+.authorName {
+	background: var(--bg-color-blue);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 6px 16px;
+	height: 40px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.authorName .qtRounder {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	left: -20px;
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+.authorName .qtRounder2 {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 0;
+	transform: rotate(90deg);
+	top: -20px;
+}
 
 /* ----------Shortcuts----------------- */
 
@@ -1976,15 +2093,12 @@ body #bookmarkButton.bookmark-button.rotate {
 .aiToolsCont {
 	height: 50px;
 	width: fit-content;
-	/* background-color: yellow; */
-	overflow-x: hidden;
 	border-radius: 100px;
 	position: fixed;
 	left: var(--gap);
 	bottom: var(--gap);
 	margin: auto;
 	display: flex;
-
 	max-width: calc(100% - 140px);
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -2085,7 +2199,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 100%;
 	top: 0;
 	right: 0;
-	z-index: 9999;
+	z-index: 999;
 	opacity: 0;
 	/*we are increasing opacity in js file*/
 	transition: all 0.5s;
@@ -2246,6 +2360,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: 20px auto;
 }
 
+#divider2 {
+	margin-top: 0px;
+}
+
 /* --- 🔴⚪🟡style for toggle buttons---- */
 .switch {
 	position: relative;
@@ -2278,13 +2396,13 @@ body #bookmarkButton.bookmark-button.rotate {
 .toggle:before {
 	position: absolute;
 	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
+	height: 16px;
+	width: 16px;
+	left: 9px;
+	bottom: 9px;
 	background-color: var(--accentLightTint-blue);
 	/* Slider color when on */
-	transition: 0.4s;
+	transition: 0.175s;
 	border-radius: 50%;
 }
 
@@ -2315,6 +2433,10 @@ input:checked + .toggle {
 }
 
 input:checked + .toggle:before {
+	height: 24px;
+	width: 24px;
+	left: 5px;
+	bottom: 5px;
 	transform: translateX(26px);
 }
 
@@ -2322,7 +2444,7 @@ input:checked + .toggle:before {
 
 .toggleTextsCont .ttcont {
 	display: flex;
-	height: 50px;
+	min-height: 50px;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 20px;
@@ -2361,7 +2483,6 @@ input:checked + .toggle:before {
 }
 
 .bottom {
-	/* background-color: #17a638; */
 	display: flex;
 	justify-content: space-between;
 	margin-top: 12px;
@@ -2419,7 +2540,7 @@ input:checked + .toggle:before {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 1000;
+	z-index: 100;
 	background-color: var(--accentLightTint-blue);
 }
 
@@ -2736,6 +2857,7 @@ input:checked + .toggle:before {
 	align-items: center;
 }
 
+/* --------- Styling for Upload/Random/Clear Buttons --------- */
 /* Upload/Clear Buttons */
 .uploadClearContainer {
 	display: flex;
@@ -2744,7 +2866,6 @@ input:checked + .toggle:before {
 	gap: 10px;
 }
 
-/* --------- Styling for Upload/Random/Clear Buttons --------- */
 .uploadButton {
 	font-size: 0.95rem;
 	display: flex;
@@ -2757,8 +2878,8 @@ input:checked + .toggle:before {
 	width: -moz-available;
 	padding: 10px 12px;
 	/*white-space: nowrap; */
+	border: none;
 	border-radius: 23px;
-	border: 2px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
 }
@@ -2769,8 +2890,8 @@ input:checked + .toggle:before {
 	justify-content: center;
 	background-color: var(--whitishColor-blue);
 	color: var(--darkColor-blue);
+	border: none;
 	border-radius: 26px;
-	border: 2px solid transparent;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
 	padding: 10px;
@@ -2783,7 +2904,7 @@ input:checked + .toggle:before {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid transparent;
+	border: none;
 	border-radius: 26px;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
@@ -2961,11 +3082,6 @@ input:checked + .toggle:before {
 	transition: all 0.4s ease;
 }
 
-/* #menuCloseButton .icon:hover{
-    transition: all 0.2s;
-    transform: rotate(90deg);
-} */
-
 #menuCloseButton:hover .icon {
 	transform: translateX(0) rotate(90deg);
 }
@@ -2997,8 +3113,35 @@ input:checked + .toggle:before {
 	z-index: 1;
 	top: 50px;
 	left: -15px;
-	overflow: hidden;
+	overflow-y: auto;
 	max-height: 192px;
+}
+
+.dropdown-content::-webkit-scrollbar {
+	width: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+	background-color: transparent;
+	margin: 7px 0;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 2px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 2px;
+}
+
+/* For Firefox */
+@-moz-document url-prefix() {
+	.dropdown-content {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
 }
 
 .dropdown-content .dropdown-item {
@@ -3108,7 +3251,11 @@ input:checked + .toggle:before {
 	.leftDiv {
 		transform: translateX(0px);
 		/* background-color: green; */
-		margin-bottom: var(--gap);
+		margin: var(--gap) 0;
+	}
+
+	.clock-padding-adjusted {
+		padding-top: 100px;
 	}
 
 	.rightDiv {
@@ -3144,17 +3291,40 @@ input:checked + .toggle:before {
 	}
 }
 
+@media screen and (min-width: 1201px), screen and (max-width: 500px) {
+	.weather-hidden {
+		visibility: hidden !important;
+		display: flex !important;
+	}
+}
+
+@media screen and (min-width: 501px) and (max-width: 1200px) {
+	.weather-hidden {
+		display: none !important;
+		visibility: visible;
+	}
+}
+
 @media screen and (max-width: 1200px) and (min-width: 501px) {
 	.centerDiv:has(~ .menuBar #shortcut_switchcheckbox:checked) .searchWithCont {
 		display: none;
 	}
 }
+
+@media screen and (min-width: 1201px) {
+	.clock-shifted-right {
+		transform: translateX(30px);
+	}
+	.clock-shifted-right-wide {
+		transform: translateX(100px);
+	}
+}
+
 @media screen and (max-width: 720px) {
 	:root {
 		--gap: 1rem;
 	}
 	#shortcuts-section {
-		max-width: 30rem;
 		position: fixed;
 		bottom: 62px;
 		width: 100%;
@@ -3192,6 +3362,9 @@ input:checked + .toggle:before {
 		justify-content: center;
 		position: relative;
 		top: 30px;
+	}
+	.clock-hidden-left {
+		display: none;
 	}
 	.rightDiv {
 		scale: 0.75;
@@ -3269,6 +3442,7 @@ input:checked + .toggle:before {
 		max-width: calc(100% - 30px);
 	}
 	.leftDiv {
+		display: flex;
 		width: calc(100vw / 0.5);
 		top: 0;
 		scale: 0.5;
@@ -3351,7 +3525,17 @@ input:checked + .toggle:before {
 	.toggleTextsCont .ttcont:has(#hideWeatherBox) {
 		display: flex;
 	}
+	.toggleTextsCont .ttcont:has(#hideClock) {
+		display: none;
+	}
 	.toggleTextsCont .ttcont:has(#shortcut_switchcheckbox) {
+		display: none;
+	}
+	.toggleTextsCont .ttcont:has(#motivationalQuotesCheckbox) {
+		display: none;
+	}
+	.quotesContainer,
+	.authorName {
 		display: none;
 	}
 	.searchbar .searchIcon:nth-of-type(1) {
@@ -3390,6 +3574,9 @@ input:checked + .toggle:before {
 		transform: translateY(36px);
 	}
 	.searchWithCont {
+		display: none !important;
+	}
+	.searchEnginesContainer {
 		display: none;
 	}
 	.shortcutsContainer[style="display: none;"] {
@@ -3430,6 +3617,9 @@ input:checked + .toggle:before {
 	#shortcuts-section .wrapper {
 		width: 100%;
 	}
+	#prompt-modal-container {
+		width: 86% !important;
+	}
 }
 
 @media screen and (max-width: 425px) and (max-height: 700px) {
@@ -3450,11 +3640,11 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .colorsContainer {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #themeButton {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #themeIconSvg,
@@ -3464,7 +3654,7 @@ input:checked + .toggle:before {
 
 .dark-theme .languageIcon,
 .dark-theme .languageSelector {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 	scrollbar-color: var(--darkerColor-blue) transparent;
 }
 
@@ -3478,7 +3668,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .ttcont input {
-	background-color: #212121 !important;
+	background-color: var(--darkColor-dark) !important;
 }
 
 .dark-theme input:checked + .toggle {
@@ -3526,7 +3716,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .tilesContainer .tiles {
-	background-color: #212121;
+	background-color: var(--darkColor-dark);
 }
 
 .dark-theme #darkFeelsLikeIcon {
@@ -3547,7 +3737,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .shorcutDarkColor {
-	fill: #3c3c3c !important;
+	fill: var(--accentLightTint-dark) !important;
 }
 
 .dark-theme #darkLightTint {
@@ -3572,7 +3762,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .clearButton {
-	color: #d6d6d6;
+	color: var(--textColorDark-dark);
 }
 
 .dark-theme .clearButton:hover {
@@ -3610,12 +3800,21 @@ input:checked + .toggle:before {
 	color: #888888;
 }
 
-.dark-theme .bookmark-view-as-container .bookmark-view-as-button {
-	color: var(--textColorDark-blue) !important;
+.dark-theme .bookmark-view-as-button,
+.dark-theme .bookmark-sort-button {
+	color: var(--darkerColor-dark);
+	border-color: var(--darkColor-blue);
+}
+
+.dark-theme #bookmarkViewGrid.active,
+.dark-theme #bookmarkViewList.active,
+.dark-theme .bookmark-sort-button.active {
+	background: var(--darkColor-blue);
+	color: white !important;
 }
 
 .dark-theme #bookmarkSearch {
-	background-color: #212121 !important;
+	background-color: var(--darkColor-dark) !important;
 }
 
 .dark-theme .bookmark-search-container::after {
@@ -3699,7 +3898,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .shortcutSettingsEntry {
-	background-color: #171615;
+	background-color: var(--bg-color-dark);
 }
 
 .dark-theme .delete button {
@@ -3709,4 +3908,164 @@ input:checked + .toggle:before {
 .dark-theme .delete button:hover {
 	background: #404040;
 }
+
+.dark-theme .prompt-modal-ok {
+	background: var(--bg-color-dark);
+	color: var(--textColorDark-dark);
+}
+
+.dark-theme .prompt-modal-cancel {
+	background: var(--darkColor-dark);
+	color: var(--textColorDark-dark);
+}
+
+.dark-theme .prompt-modal-ok:hover {
+	background: black;
+}
+
+.dark-theme .prompt-modal-cancel:hover {
+	background: var(--bg-color-dark);
+}
+
+.dark-theme .prompt-modal-button:focus {
+	outline: 2px solid black;
+}
+
+.dark-theme .tips {
+	background-color: var(--darkColor-dark);
+}
+
+.dark-theme #dontShowTips {
+	background-color: var(--bg-color-dark);
+}
+
+.dark-theme #dontShowTips:hover {
+	background-color: var(--accentLightTint-dark);
+}
 /* ---------------- End of Dark(Black) theme ---------------- */
+
+/* Alert & Confirm Modal */
+#prompt-modal-container {
+	display: none;
+	position: fixed;
+	z-index: 1001;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: var(--accentLightTint-blue);
+	color: var(--textColorDark-blue);
+	border-radius: var(--round);
+	filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3));
+	padding: 30px 35px;
+}
+
+/* Background blur overlay */
+#prompt-modal-blur {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/* backdrop-filter: blur(8px); */
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 1000; /* Behind the modal */
+}
+
+/* Modal Content */
+#prompt-modal-box {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 13px;
+	align-items: center;
+}
+
+/* Modal Message */
+#prompt-modal-message {
+	/* text-align: center; */
+	font-size: 0.94rem;
+	color: var(--textColorDark-blue);
+	margin-bottom: 15px;
+}
+
+/* Modal Buttons */
+#prompt-modal-buttons {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	gap: 20px;
+}
+
+/* Button Styling */
+.prompt-modal-button {
+	min-width: 80px;
+	padding: 8px 18px;
+	font-size: 0.9rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	border-radius: var(--round);
+	text-align: center;
+}
+
+/* OK/Yes Button */
+.prompt-modal-ok {
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+.prompt-modal-ok:hover {
+	background: var(--darkerColor-blue);
+}
+
+/* Cancel/No Button */
+.prompt-modal-cancel {
+	background: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+}
+
+.prompt-modal-cancel:hover {
+	background: var(--darkColor-blue);
+	color: white;
+}
+
+.prompt-modal-button:focus {
+	outline: 2px solid var(--darkerColor-blue);
+	outline-offset: 3px;
+}
+/* ---------------- End of Alert & Confirm Modal ---------------- */
+
+.tips {
+	margin-top: 30px;
+	display: grid;
+	gap: 12px;
+	background-color: var(--bg-color-blue);
+	padding: 18px 20px;
+	border-radius: 20px;
+}
+
+#dontShowTips {
+	border: none;
+	display: block;
+	padding: 6px 10px;
+	background-color: var(--darkColor-blue);
+	color: white;
+	border-radius: 10px;
+	margin-top: 5px;
+}
+
+#dontShowTips:hover {
+	background-color: var(--darkerColor-blue);
+}
+.tips .ttcont .texts .bigText {
+	font-size: 1rem;
+}
+
+.tips .ttcont .texts .infoText {
+	font-size: 0.8rem;
+}
+
+/* ------------ End of Tips---------- */

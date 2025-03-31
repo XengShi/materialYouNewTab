@@ -55,14 +55,12 @@ const tr = {
     "ProxyText": "CORS Atlatma Proxy",
     "ProxySubtext": "Kendi proxy'nizi ekleyin",
     "HostproxyButton": "Kendi Proxy'nizi Barındırın",
-    "saveproxy": "Kaydet",
 
     // Location
     "UserLocText": "Konumunuzu girin",
     "UserLocSubtext": "Hava durumu konumu doğru değilse",
     "userLoc": "Bulunduğunuz şehir veya Koordinatlarınız (Enlem, Boylam)",
     "useGPS": "GPS Kullan",
-    "saveLoc": "Kaydet",
 
     // Weather
     "WeatherApiText": "WeatherAPI anahtarınızı girin",
@@ -109,6 +107,8 @@ const tr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Görseller",
+    "redditEngine": "Reddit",
 
     // AI Tools
     "ai_tools": "Yapay Zeka Araçları",
@@ -117,7 +117,6 @@ const tr = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Theme

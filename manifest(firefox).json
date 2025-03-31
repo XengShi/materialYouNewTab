@@ -1,13 +1,16 @@
 {
 	"manifest_version": 2,
 	"name": "Material You NewTab",
-	"version": "3.0.33",
+	"version": "3.1",
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
 	"permissions": [
+		"search",
 		"bookmarks",
-		"https://www.google.com/complete/search*",
-		"https://duckduckgo.com/ac/*",
-		"https://search.brave.com/api/suggest*"
+		"https://www.google.com/complete/search?client=*",
+		"https://duckduckgo.com/ac/?q=*",
+		"https://search.brave.com/api/suggest?q=*",
+		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*",
+		"https://www.reddit.com/search.json?q=*"
 	],
 	"background": {
 		"scripts": ["scripts/background.js"],
@@ -23,5 +26,6 @@
 	},
 	"chrome_url_overrides": {
 		"newtab": "index.html"
-	}
+	},
+	"incognito": "spanning"
 }

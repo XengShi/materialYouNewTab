@@ -6,8 +6,6 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Get the current language from localStorage
-const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
 
 // -------------------------- Wallpaper -----------------------------
 const dbName = "ImageDB";
@@ -105,7 +103,9 @@ document.getElementById("imageUpload").addEventListener("change", function (even
 const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
 
 async function applyRandomImage(showConfirmation = true) {
-    if (showConfirmation && !confirm(translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper)) {
+    if (showConfirmation && !(await confirmPrompt(
+        translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper
+    ))) {
         return;
     }
     try {
@@ -116,7 +116,7 @@ async function applyRandomImage(showConfirmation = true) {
         document.body.style.setProperty("--bg-image", `url(${imageUrl})`);
         await saveImageToIndexedDB(blob, true);
         updateTextBackground(true);
-        setTimeout(() => URL.revokeObjectURL(imageUrl), 1500); // Delay URL revocation
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 2000); // Delay URL revocation
     } catch (error) {
         console.error("Error fetching random image:", error);
     }
@@ -134,21 +134,9 @@ function updateTextBackground(hasWallpaper) {
         document.body.setAttribute('data-bg', 'color')
     }
 
-    // Update styles for userText and date
+    // Change bg-color for userText and date
     [userText, date].forEach(element => {
-        if (hasWallpaper) {
-            element.style.backgroundColor = "var(--accentLightTint-blue)";
-            element.style.padding = "2px 12px";
-            element.style.width = "fit-content";
-            element.style.borderRadius = "10px";
-            element.style.fontSize = "1.32rem";
-        } else {
-            element.style.backgroundColor = ""; // Reset to default
-            element.style.padding = "";
-            element.style.width = "";
-            element.style.borderRadius = "";
-            element.style.fontSize = "";
-        }
+        element.style.backgroundColor = hasWallpaper ? "var(--accentLightTint-blue)" : "";
     });
 
     // Update styles for shortcuts
@@ -200,25 +188,31 @@ function checkAndUpdateImage() {
 }
 
 // Event listeners for buttons
-document.getElementById("uploadTrigger").addEventListener("click", () => document.getElementById("imageUpload").click());
-document.getElementById("clearImage").addEventListener("click", function () {
-    loadImageAndDetails()
-        .then(([blob]) => {
-            if (!blob) {
-                alert(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
-                return;
+document.getElementById("uploadTrigger").addEventListener("click", () =>
+    document.getElementById("imageUpload").click()
+);
+
+document.getElementById("clearImage").addEventListener("click", async function () {
+    try {
+        const [blob] = await loadImageAndDetails();
+        if (!blob) {
+            await alertPrompt(translations[currentLanguage]?.Nobackgroundset || translations["en"].Nobackgroundset);
+            return;
+        }
+
+        const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
+        if (await confirmPrompt(confirmationMessage)) {
+            try {
+                await clearImageFromIndexedDB();
+                document.body.style.removeProperty("--bg-image");
+                updateTextBackground(false);
+            } catch (error) {
+                console.error(error);
             }
-            const confirmationMessage = translations[currentLanguage]?.clearbackgroundimage || translations["en"].clearbackgroundimage;
-            if (confirm(confirmationMessage)) {
-                clearImageFromIndexedDB()
-                    .then(() => {
-                        document.body.style.removeProperty("--bg-image");
-                        updateTextBackground(false);
-                    })
-                    .catch((error) => console.error(error));
-            }
-        })
-        .catch((error) => console.error(error));
+        }
+    } catch (error) {
+        console.error(error);
+    }
 });
 document.getElementById("randomImageTrigger").addEventListener("click", applyRandomImage);
 

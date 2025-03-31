@@ -3,8 +3,6 @@ const zh_TW = {
     // Menu Items
     "github": "GitHub",
     "feedback": "意見回饋",
-    "resetsettings": "重設設定",
-    "menuCloseText": "關閉",
 
     // Shortcuts
     "shortcutsText": "捷徑",
@@ -42,6 +40,12 @@ const zh_TW = {
     "userTextInfo": "在時鐘下方顯示自訂文字",
     "fahrenheitCelsiusCheckbox": "切換到華氏溫度",
     "fahrenheitCelsiusText": "重新整理頁面以套用變更",
+    "hideWeatherTitle": "隱藏天氣",
+    "hideWeatherInfo": "停用天氣小工具",
+    "hideWeatherBox": "隱藏天氣卡片",
+    "hideWeatherBoxInfo": "只在裝置上顯示溫度",
+
+    // Search
     "micIconTitle": "隱藏麥克風圖示",
     "micIconInfo": "如果語音輸入無法使用",
     "hideSearchWith": "隱藏搜尋引擎",
@@ -55,14 +59,12 @@ const zh_TW = {
     "ProxyText": "CORS 繞過代理",
     "ProxySubtext": "新增您的地址以繞過 CORS 限制",
     "HostproxyButton": "托管您自己的代理",
-    "saveproxy": "儲存",
 
     // Location
     "UserLocText": "輸入您的位置",
     "UserLocSubtext": "如果天氣位置不正確",
     "userLoc": "您的城市或座標（緯度，經度）",
     "useGPS": "使用 GPS",
-    "saveLoc": "儲存",
 
     // Weather
     "WeatherApiText": "輸入您的 WeatherAPI 密鑰",
@@ -70,8 +72,6 @@ const zh_TW = {
     "userAPI": "您的 WeatherAPI 密鑰",
     "LearnMoreButton": "了解更多",
     "saveAPI": "儲存",
-    "hideWeatherBox": "隱藏天氣卡片",
-    "hideWeatherBoxInfo": "只在裝置上顯示溫度",
 
     // Body Items
     // Calendar
@@ -84,6 +84,9 @@ const zh_TW = {
     "bookmarkViewGrid": "網格",
     "bookmarkViewList": "列表",
     "bookmarkSearch": "搜尋書籤",
+    "editBookmarkHeading": "編輯書籤",
+    "editBookmarkName": "書籤名稱",
+    "editBookmarkURL": "書籤網址",
 
     // New Tab Item
     "conditionText": "你好！今天感覺怎麼樣？",
@@ -117,20 +120,27 @@ const zh_TW = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
     // Theme
     "enableDarkMode": "深色模式",
     "enableDarkModeInfo": "啟用深色模式主題",
 
-    // Wallpaper and misc
+    // Wallpaper and settings
     "uploadWallpaperText": "上傳桌布",
+    "rangColor": "選擇顏色",
     "backupText": "備份",
     "restoreText": "還原",
-    "rangColor": "選擇顏色",
+    "resetsettings": "重設設定",
+    "menuCloseText": "關閉",
 
     // Dialog boxes (alerts)
+    "okText": "確定",
+    "yesText": "是",
+    "noText": "否",
+    "agreeText": "我同意",
+    "cancelText": "取消",
     "confirmWallpaper": "您想要將新的影像設定為今日的桌布嗎？",
     "confirmRestore": "您確定要重設設定嗎？此動作無法恢復。",
     "Nobackgroundset": "目前尚未設定背景圖片。",

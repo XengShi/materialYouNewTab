@@ -24,12 +24,13 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <p align="center">
   <a href="#-features">Features</a> •
-  <a href="#-currently-supported-languages-22">Currently Supported Languages</a> •
+  <a href="#-installation-guide">Installation Guide</a> •
   <a href="#download">Download</a> •
-  <a href="#-installation-guide">Installation Guide</a>
+  <a href="#-currently-supported-languages-23">Currently Supported Languages</a> •
+  <a href="#-usage">Usage</a>
 <br>
-  <a href="#-usage">Usage</a> •
   <a href="#-contributing">Contributing</a> •
+  <a href="#-star-history">Star History</a> •
   <a href="#-issues-and-support">Issues and Support</a> •
   <a href="#-privacy-policy">Privacy Policy</a> •
   <a href="#-license">License</a>
@@ -50,10 +51,11 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 ### Download
 
-1. **Development Version** (v3.0.*)
+1. **Development Version** (v3.1.*)
 
     - **Clone the Repository**:
       Use the following command to clone the repository:
+
        ```bash
        git clone https://github.com/XengShi/materialYouNewTab.git
        ```
@@ -64,10 +66,10 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
     - You can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
 
-2. **Stable Release** (v3.0)
+2. **Stable Release** (v3.1)
 
 <p align="center">
-    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
+    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.1.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
     <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn"><img src="https://github.com/user-attachments/assets/20a6e44b-fd46-4e6c-8ea6-aad436035753" alt="Download from Chrome Web Store" height="48" /></a>
     <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://github.com/user-attachments/assets/c0e99e6b-97cf-4af2-9737-099db7d3538b" alt="Download from Mozilla Add-ons" height="48" /></a>
     <!-- <a href="https://microsoftedge.microsoft.com/addons/detail/glloabhodjfmeoccmdngmhkpmdlakfbn"><img height="48" src="https://github.com/user-attachments/assets/204157eb-4cae-4c0e-b2cb-db514419fd9e" alt="Download from the Edge Add-ons" /></a> -->
@@ -109,15 +111,16 @@ Material You NewTab is a versatile browser extension that personalizes your New 
    - **Load Unpacked Extension**:
      - Click on **Load unpacked** and select your extracted extension folder.
 
-3. **Additional Steps ONLY for  ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
+3. **Additional Steps ONLY for ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
 
-     - Go to the **Settings** of Opera or Opera GX.
-     - Scroll to the **On startup** section.
-     - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-     - Add the following to the **Site URL**:
-       ```text
-       chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
-       ```
+   - Go to the **Settings** of Opera or Opera GX.
+   - Scroll to the **On startup** section.
+   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+   - Add the following to the **Site URL**:
+
+      ```text
+      chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+      ```
 
 Below are screenshots of the process to guide you through each step visually.
 
@@ -135,14 +138,19 @@ Below are screenshots of the process to guide you through each step visually.
 
 <img src="https://i.postimg.cc/bPW2fHX7/FireFox.png" alt="Screenshot" width="569">
 
-2. **To Update the Homepage**:
+2. **Update the Homepage**:
 
-   - Open Firefox **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
+   - Open Firefox and **obtain the UUID**:
+      - Hover over the New Tab button (next to the tab close button). A tooltip will display the extension's unique ID, which looks like this: `0f31e1c1-d63c-4660-b950-8bfbda3bb20a`. Copy or note this ID.
+      - Alternatively, type `about:debugging#/runtime/this-firefox` in the address bar and find the extension's UUID there.
+   - Open **Settings** and navigate to **Home**, or type `about:preferences#home` in the address bar.
    - Under the **Homepage and new windows** section, select **Custom URLs...**.
-   - Paste the following URL:
+   - Paste the following URL, replacing the ID with your actual UUID:
+
      ```text
      moz-extension://e31d6701-f699-414f-bb4c-8fde495c432e/index.html
      ```
+
    - This will update both your homepage and new tab to the extension.
 
 3. **Manual Installation (Temporary)**:
@@ -167,7 +175,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
 
-## 🌐 Currently Supported Languages (22)
+## 🌐 Currently Supported Languages (23)
 
 | Language                                                                                     | Code  | Translator(s)                                                                         |
 | -------------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
@@ -191,12 +199,14 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina           | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español                 | es-ES | [XengShi](https://github.com/XengShi/)                                                |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                  |  tr   | [Nobody](https://github.com/Nobody9512), [Kerim Ölçer](https://github.com/kerimlcr)   |
+| <img src='https://flagcdn.com/pk.svg' width=20> &nbsp; **Urdu** - اردو                        |  ur   | [Asfandiyar Khan](https://github.com/asfand-dev)                                      |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                    |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt           |  vn   | [Diep](https://github.com/diepdo1810/), [Tuan](https://github.com/Tuan1-2-3)          |
 
 Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
 
-## 📖 Usage
+<details>
+<summary><h2>📖 Usage</h2></summary>
 
 1. **Welcome Greeting**:
    - The extension greets you with a personalized message, like "Hello! It’z RJ," and displays the current date. This feature can be customized in the settings to show your name or preferred text, making your browsing experience feel more personal.
@@ -220,7 +230,7 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
    - Users can also **add their own shortcuts** to the menu settings for more personalized quick access.
 
 6. **AI Tools Button**:
-   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Adobe Firefly, and Meta AI are integrated for quick, AI-driven assistance or tasks.
+   - On the bottom left, an "AI Tools" button is available, providing access to AI-powered tools directly from the New Tab page. Tools like ChatGPT, Gemini, Copilot, Perplexity, Deepseek, and Meta AI are integrated for quick, AI-driven assistance or tasks.
 
 7. **Wallpaper Management**:
    - Users can upload their own wallpapers via the **new wallpaper management section** in the menu settings.
@@ -257,6 +267,8 @@ Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/
     - A language selector is included in the menu settings, enabling users to choose their preferred language for the extension interface.
     - This feature supports multilingual customization, enhancing accessibility for users worldwide.
 
+</details>
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you’d like to contribute:
@@ -267,6 +279,18 @@ Contributions are welcome! If you’d like to contribute:
 4. Commit your changes: `git commit -m 'Add Your Feature'`.
 5. Push to the branch: `git push origin feature/YourFeature`.
 6. Open a pull request.
+
+## ⭐ Star History
+
+Here is the star history chart for the **Material You NewTab** repository. It shows the growth of stars over time, reflecting the increasing interest and support for the project.
+
+<a href="https://star-history.com/#XengShi/materialYouNewTab&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=XengShi/materialYouNewTab&type=Date" />
+ </picture>
+</a>
 
 ## ❓ Issues and Support
 

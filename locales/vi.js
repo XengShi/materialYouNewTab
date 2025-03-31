@@ -55,14 +55,12 @@ const vi = {
     "ProxyText": "Proxy bỏ qua CORS",
     "ProxySubtext": "Thiết lập proxy bỏ qua CORS của bạn.",
     "HostproxyButton": "Lưu trữ proxy của riêng bạn",
-    "saveproxy": "Lưu",
 
     // Location
     "UserLocText": "Nhập vị trí của bạn",
     "UserLocSubtext": "Nếu vị trí thời tiết không chính xác",
     "userLoc": "Thành phố hoặc tọa độ của bạn (Vĩ độ, Kinh độ)",
     "useGPS": "Sử dụng GPS",
-    "saveLoc": "Lưu",
 
     // Weather
     "WeatherApiText": "Nhập khóa WeatherAPI của bạn",
@@ -103,10 +101,11 @@ const vi = {
 
     // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "DuckDuckGo",
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "Hình ảnh",
 
     // AI Tools
     "ai_tools": "Công cụ AI",
@@ -115,7 +114,6 @@ const vi = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc
