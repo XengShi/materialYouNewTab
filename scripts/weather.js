@@ -386,25 +386,23 @@ async function getWeatherData() {
 
 
 // Save and load toggle state
-document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCard = document.getElementById("hideWeatherCard");
-    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+const hideWeatherCard = document.getElementById("hideWeatherCard");
+const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCard.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
-    });
+hideWeatherCard.addEventListener("change", function () {
+    saveCheckboxState("hideWeatherCardState", hideWeatherCard);
+});
 
-    fahrenheitCheckbox.addEventListener("change", function () {
-        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    });
+fahrenheitCheckbox.addEventListener("change", function () {
+    saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+});
 
-    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+loadCheckboxState("hideWeatherCardState", hideWeatherCard);
+loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
 
-    // Handle min-max temp checkbox state change
-    minMaxTempCheckbox.addEventListener("change", () => {
-        const isChecked = minMaxTempCheckbox.checked;
-        localStorage.setItem("minMaxTempEnabled", isChecked);
-        location.reload();
-    });
+// Handle min-max temp checkbox state change
+minMaxTempCheckbox.addEventListener("change", () => {
+    const isChecked = minMaxTempCheckbox.checked;
+    localStorage.setItem("minMaxTempEnabled", isChecked);
+    location.reload();
 });
