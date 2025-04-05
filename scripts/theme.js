@@ -6,6 +6,15 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+document.addEventListener("DOMContentLoaded", () => {
+    // it is necessary for some elements not to blink when the page is reloaded
+    setTimeout(() => {
+        document.documentElement.classList.add("theme-transition");
+        // Remove Loading Screen When the DOM and the Theme has Loaded
+        document.getElementById("LoadingScreen").style.display = "none";
+    }, 25);
+});
+
 //  🔴🟠🟡🟢🔵🟣⚫️⚪️🟤
 let storedTheme = localStorage.getItem("selectedTheme");
 if (!storedTheme) {

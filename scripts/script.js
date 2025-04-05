@@ -7,16 +7,6 @@
  */
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    // it is necessary for some elements not to blink when the page is reloaded
-    setTimeout(() => {
-        document.documentElement.classList.add("theme-transition");
-        // Remove Loading Screen When the DOM and the Theme has Loaded
-        document.getElementById("LoadingScreen").style.display = "none";
-    }, 25);
-});
-
-
 // ------------------------------------ Tips ------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
     // Hide tips that are not relevant to mobile
