@@ -128,10 +128,6 @@ const pt = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "Modo Escuro",
-    "enableDarkModeInfo": "Ativar temas em modo escuro",
-
     // Wallpaper and misc
     "uploadWallpaperText": "Enviar Papel de Parede",
     "rangColor": "Escolher cor",

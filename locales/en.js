@@ -138,10 +138,6 @@ const en = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "Dark Mode (Experimental)",
-    "enableDarkModeInfo": "Enable dark mode themes",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     "rangColor": "Pick color",    // Keep this short

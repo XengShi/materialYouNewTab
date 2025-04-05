@@ -140,10 +140,6 @@ const bn = {
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
 
-    // Theme
-    "enableDarkMode": "ডার্ক মোড (পরীক্ষামূলক)",
-    "enableDarkModeInfo": "ডার্ক মোড থিম সক্রিয় করুন",
-
     // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",
     "rangColor": "রঙ নির্বাচন করুন",

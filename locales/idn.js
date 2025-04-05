@@ -147,11 +147,7 @@ const idn = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
-    
-    // Theme
-    "enableDarkMode": "Mode Gelap",
-    "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
-    
+
     // Wallpaper and misc
     "uploadWallpaperText": "Unggah Wallpaper",
     "backupText": "Cadangkan",

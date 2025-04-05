@@ -125,7 +125,7 @@ const fr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  
+    "gImagesEngine": "Images",
     "wikipediaEngine": "Wikipedia",
 
     // AI Tools
@@ -137,11 +137,6 @@ const fr = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
-
-    // Theme
-    "enableDarkMode": "Mode Sombre",
-    "enableDarkModeInfo": "Activer le mode sombre des thèmes",
-
 
     // Wallpaper and misc
     "uploadWallpaperText": "Uploader un fond d'ecran",

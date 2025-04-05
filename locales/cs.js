@@ -136,10 +136,6 @@ const cs = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "Tmavý režim (experimentální)",
-    "enableDarkModeInfo": "Zapne tmavý režim aktivního motivu",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
     "rangColor": "Vybrat barvu",

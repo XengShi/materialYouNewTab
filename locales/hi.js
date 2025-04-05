@@ -140,10 +140,6 @@ const hi = {
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
 
-    // Theme - delete later
-    "enableDarkMode": "डार्क मोड",
-    "enableDarkModeInfo": "डार्क मोड की थीम सक्षम करें (प्रायोगिक)",
-
     // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करें",
     "rangColor": "रंग चुनें",

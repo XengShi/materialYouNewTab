@@ -123,10 +123,6 @@ const zh_TW = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "深色模式",
-    "enableDarkModeInfo": "啟用深色模式主題",
-
     // Wallpaper and settings
     "uploadWallpaperText": "上傳桌布",
     "rangColor": "選擇顏色",

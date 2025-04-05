@@ -59,8 +59,8 @@ const applySelectedTheme = (colorValue) => {
     document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = false;
 
     // if (themeColorMapping.includes(colorValue)&&(!enableDarkModeCheckbox.checked==false)) {
-    if ((colorValue in themeColorMapping)&&(enableDarkModeCheckbox.checked==false)||colorValue=="dark"||colorValue=="peach") {
-        if (colorValue=="dark"||colorValue=="peach"){
+    if ((colorValue in themeColorMapping) && (enableDarkModeCheckbox.checked == false) || colorValue == "dark" || colorValue == "peach") {
+        if (colorValue == "dark" || colorValue == "peach") {
             document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
         }
         if (colorValue != "blue") {
@@ -84,7 +84,7 @@ const applySelectedTheme = (colorValue) => {
     } else if (colorValue in themeColorMapping) {
         applyCustomTheme(themeColorMapping[colorValue], true);
         document.getElementById("rangColor").style.borderColor = "transparent";
-    } else  {
+    } else {
         applyCustomTheme(colorValue, enableDarkModeCheckbox.checked);
         saveThemeColors();
         UpdateCustomThemeModal();
@@ -92,34 +92,28 @@ const applySelectedTheme = (colorValue) => {
     }
     saveThemeColors();
     UpdateCustomThemeModal();
-
-    // Change the extension icon based on the selected theme
-    const iconPaths = ["blue", "yellow", "red", "green", "cyan", "orange", "purple", "pink", "brown", "silver", "peach", "dark"]
-        .reduce((acc, color) => {
-            acc[color] = `./favicon/${color}.png`;
-            return acc;
-        }, {});
-
-    // Function to update the extension icon based on browser
-    const updateExtensionIcon = (colorValue) => {
-        if (isFirefox) {
-            browser.browserAction.setIcon({ path: iconPaths[colorValue] });
-        } else if (isChromiumBased) {
-            chrome.action.setIcon({ path: iconPaths[colorValue] });
-        } else if (isSafari) {
-            safari.extension.setToolbarIcon({ path: iconPaths[colorValue] });
-        }
-    };
-    updateExtensionIcon(colorValue);
-
-    // Change the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']");
-    if (faviconLink && iconPaths[colorValue]) {
-        faviconLink.href = iconPaths[colorValue];
-    }
-    
+    changeFaviconColor();
     ApplyLoadingColor();
 };
+
+function changeFaviconColor() {
+    // Fetch colors from CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    const darkColor = rootStyles.getPropertyValue("--darkColor-blue");
+    //const bgColor = rootStyles.getPropertyValue("--bg-color-blue");
+
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="${darkColor}" style="transform: scale(1.2); transform-origin: center;"
+            d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1" />
+    </svg>
+    `;
+    const encodedSvg = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    const favicon = document.getElementById("favicon");
+    favicon.href = encodedSvg;
+    favicon.setAttribute('type', 'image/svg+xml');
+}
+changeFaviconColor();
 
 // ----Color Picker || ColorPicker----
 function generateFullyNormalizedShades(color, numShades = 16) {
@@ -173,17 +167,18 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
     let modif = isDarkTheme ? 15 : 0;
     let themeShades = generateFullyNormalizedShades(color);
 
-    document.documentElement.style.setProperty("--bg-color-blue", `rgb(${themeShades[Math.abs(modif-12)].join(',')})`);
-    document.documentElement.style.setProperty("--accentLightTint-blue", `rgb(${themeShades[Math.abs(modif-14)].join(',')})`);
-    document.documentElement.style.setProperty("--darkerColor-blue", `rgb(${themeShades[Math.abs(modif-6)].join(',')})`);
-    document.documentElement.style.setProperty("--darkColor-blue", `rgb(${themeShades[Math.abs(modif-8)].join(',')})`);
-    document.documentElement.style.setProperty("--textColorDark-blue", `rgb(${themeShades[Math.abs(modif-1)].join(',')})`);
-    document.documentElement.style.setProperty("--whitishColor-blue", `rgb(${themeShades[Math.abs(modif-15)].join(',')})`);
-    if (localStorage.getItem("selectedTheme").slice(0,1)==='#') {
+    document.documentElement.style.setProperty("--bg-color-blue", `rgb(${themeShades[Math.abs(modif - 12)].join(',')})`);
+    document.documentElement.style.setProperty("--accentLightTint-blue", `rgb(${themeShades[Math.abs(modif - 14)].join(',')})`);
+    document.documentElement.style.setProperty("--darkerColor-blue", `rgb(${themeShades[Math.abs(modif - 6)].join(',')})`);
+    document.documentElement.style.setProperty("--darkColor-blue", `rgb(${themeShades[Math.abs(modif - 8)].join(',')})`);
+    document.documentElement.style.setProperty("--textColorDark-blue", `rgb(${themeShades[Math.abs(modif - 1)].join(',')})`);
+    document.documentElement.style.setProperty("--whitishColor-blue", `rgb(${themeShades[Math.abs(modif - 15)].join(',')})`);
+    if (localStorage.getItem("selectedTheme").slice(0, 1) === '#') {
         document.getElementById("rangColor").style.borderColor = color;
         document.getElementById("dfChecked").checked = false;
     }
 
+    changeFaviconColor();
     ApplyLoadingColor();
 };
 
@@ -198,7 +193,7 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
         document.documentElement.style.setProperty("--darkColor-blue", themeColors["--darkColor-blue"]);
         document.documentElement.style.setProperty("--textColorDark-blue", themeColors["--textColorDark-blue"]);
         document.documentElement.style.setProperty("--whitishColor-blue", themeColors["--whitishColor-blue"]);
-        if (storedTheme==='customTheme') {
+        if (storedTheme === 'customTheme') {
             document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
             document.getElementById("dfChecked").checked = false;
             return;
@@ -206,12 +201,12 @@ const applyCustomTheme = (color, isDarkTheme = true) => {
     }
     const selectedRadioButton = document.querySelector(`.colorPlate[value="${storedTheme}"]`);
     if (selectedRadioButton) {
-        if (storedTheme=="dark"||storedTheme=="peach"){
+        if (storedTheme == "dark" || storedTheme == "peach") {
             document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
         }
         selectedRadioButton.checked = true;
     }
-    if (storedTheme.slice(0,1)==='#') {
+    if (storedTheme.slice(0, 1) === '#') {
         document.getElementById("rangColor").style.borderColor = storedTheme;
         document.getElementById("dfChecked").checked = false;
     }
@@ -252,9 +247,29 @@ const handleColorPickerChange = function (event) {
     });
 };
 
+// Throttle for performance optimization
+const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
+    return (...args) => {
+        if (!lastRan) {
+            func(...args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(() => {
+                if (Date.now() - lastRan >= limit) {
+                    func(...args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    };
+};
+
 // Add listeners for color picker
 colorPicker.removeEventListener("input", handleColorPickerChange); // Ensure no duplicate listeners
-colorPicker.addEventListener("input", handleColorPickerChange);
+colorPicker.addEventListener("input", throttle(handleColorPickerChange, 10));
 
 // End of Function to apply the selected theme
 
@@ -263,12 +278,6 @@ colorPicker.addEventListener("input", handleColorPickerChange);
 document.getElementById("darkModeSwitch").addEventListener("click", function () {
     enableDarkModeCheckbox.click();
 });
-
-
-
-
-
-
 
 
 
@@ -306,7 +315,7 @@ saveCustomTheme.addEventListener("click", () => {
     document.documentElement.style.setProperty("--accentLightTint-blue", accentColorPicker.value || "#E2EEFF");
     document.documentElement.style.setProperty("--darkerColor-blue", secondaryColorPicker.value || "#3569b2");
     document.documentElement.style.setProperty("--darkColor-blue", primaryColorPicker.value || "#4382EC");
-    document.documentElement.style.setProperty("--textColorDark-blue",textColorPicker.value || "#1b3041" );
+    document.documentElement.style.setProperty("--textColorDark-blue", textColorPicker.value || "#1b3041");
     document.documentElement.style.setProperty("--whitishColor-blue", highlightColorPicker.value || "#ffffff");
     document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
     document.getElementById("dfChecked").checked = true;
@@ -317,7 +326,7 @@ saveCustomTheme.addEventListener("click", () => {
 });
 
 function rgbToHex(rgbString) {
-    if (rgbString.slice(0,1)==='#') {
+    if (rgbString.slice(0, 1) === '#') {
         return rgbString;
     }
     const match = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
