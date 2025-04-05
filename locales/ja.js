@@ -30,11 +30,11 @@ const ja = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "デジタル時計",
+    "digitalclocktitle": "デジタル時計",
     "digitalclockinfo": "デジタル時計に変更",
-    "timeformattittle": "12時間形式",
+    "timeformattitle": "12時間形式",
     "timeformatinfo": "12時間形式を使用",
-    "greetingtittle": "あいさつ",
+    "greetingtitle": "あいさつ",
     "greetinginfo": "カスタムテキストの下にあいさつを表示",
 
     // Misc
@@ -55,13 +55,11 @@ const ja = {
     "ProxyText": "デフォルトCORSプロキシ",
     "ProxySubtext": "独自のCORSプロキシを追加",
     "HostproxyButton": "独自のプロキシをホスト",
-    "saveproxy": "保存",
 
     // Location
     "UserLocText": "場所を入力",
     "UserLocSubtext": "天気の地域が正しくない場合",
     "userLoc": "都市または座標（緯度、経度）",
-    "saveLoc": "保存",
 
     // Weather
     "WeatherApiText": "WeatherAPIキーを入力",
@@ -102,7 +100,7 @@ const ja = {
 
     // Search Engines
     "googleEngine": "Google",
-    "duckEngine": "DuckDuckGo",
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
@@ -113,7 +111,6 @@ const ja = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     // "metaAI": "Meta AI",
 
     // Wallpaper and misc

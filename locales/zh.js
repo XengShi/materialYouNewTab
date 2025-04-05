@@ -30,11 +30,11 @@ const zh = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "数字时钟",
+    "digitalclocktitle": "数字时钟",
     "digitalclockinfo": "切换到数字时钟",
-    "timeformattittle": "12 小时制",
+    "timeformattitle": "12 小时制",
     "timeformatinfo": "使用 12 小时制时间格式",
-    "greetingtittle": "问候语",
+    "greetingtitle": "问候语",
     "greetinginfo": "在自定义文本下显示问候语",
 
     // Misc
@@ -55,13 +55,11 @@ const zh = {
     "ProxyText": "CORS 绕过代理",
     "ProxySubtext": "添加您的地址以绕过CORS限制",
     "HostproxyButton": "托管您自己的代理",
-    "saveproxy": "保存",
 
     // Location
     "UserLocText": "输入您的位置",
     "UserLocSubtext": "如果天气位置不正确",
     "userLoc": "您的城市或坐标（纬度，经度）",
-    "saveLoc": "保存",
 
     // Weather
     "WeatherApiText": "输入您的 WeatherAPI 密钥",
@@ -114,7 +112,6 @@ const zh = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc

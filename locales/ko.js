@@ -30,11 +30,11 @@ const ko = {
     // "todoPlaceholder": "Add task...",
 
     // Digital Clock
-    "digitalclocktittle": "디지털 시계",
+    "digitalclocktitle": "디지털 시계",
     "digitalclockinfo": "디지털 시계로 전환",
-    "timeformattittle": "12시간 형식",
+    "timeformattitle": "12시간 형식",
     "timeformatinfo": "12시간 형식 사용",
-    "greetingtittle": "인사말",
+    "greetingtitle": "인사말",
     "greetinginfo": "사용자 정의 텍스트 아래에 인사말 표시",
 
     // Misc
@@ -55,13 +55,11 @@ const ko = {
     "ProxyText": "CORS 우회 프록시",
     "ProxySubtext": "자신의 CORS 우회 프록시 추가",
     "HostproxyButton": "자신의 프록시 호스팅",
-    "saveproxy": "저장",
 
     // Location
     "UserLocText": "위치 입력",
     "UserLocSubtext": "날씨 위치가 정확하지 않으면",
     "userLoc": "당신의 도시 또는 좌표 (위도, 경도)",
-    "saveLoc": "저장",
 
     // Weather
     "WeatherApiText": "WeatherAPI 키 입력",
@@ -113,7 +111,6 @@ const ko = {
     "gemini": "제미니",
     "copilot": "코파일럿",
     "perplexity": "퍼플렉시티",
-    "firefly": "어도비 파이어플라이",
     // "metaAI": "Meta AI",
 
     // Wallpaper and misc

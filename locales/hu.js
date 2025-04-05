@@ -29,11 +29,11 @@ const hu = {
     "todoPlaceholder": "Feladat hozzáadása...",
 
     // Digital Clock
-    "digitalclocktittle": "Digitális óra",
+    "digitalclocktitle": "Digitális óra",
     "digitalclockinfo": "Váltás a digitális órára",
-    "timeformattittle": "12 órás formátum",
+    "timeformattitle": "12 órás formátum",
     "timeformatinfo": "12 órás időformátum használata",
-    "greetingtittle": "Üdvözlés",
+    "greetingtitle": "Üdvözlés",
     "greetinginfo": "Üdvözlet megjelenítése az egyéni szöveg alatt",
 
     // Misc
@@ -54,13 +54,11 @@ const hu = {
     "ProxyText": "CORS megkerülő proxy",
     "ProxySubtext": "Saját CORS megkerülő proxy hozzáadása",
     "HostproxyButton": "Saját proxy üzemeltetése",
-    "saveproxy": "Mentés",
 
     // Location
     "UserLocText": "Add meg a tartózkodási helyed",
     "UserLocSubtext": "Ha az időjárás helye nem megfelelő",
     "userLoc": "A városod vagy koordinátáid (földrajzi szélesség, hosszúság)",
-    "saveLoc": "Mentés",
 
     // Weather
     "WeatherApiText": "Add meg a WeatherAPI kulcsodat",
@@ -115,7 +113,6 @@ const hu = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
     "github": "GitHub",
 

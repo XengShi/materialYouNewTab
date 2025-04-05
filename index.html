@@ -15,26 +15,33 @@
     <meta name="google-site-verification" content="f80bboVVkBBgR-pRl_jZR6dnG7tuaYD4Fv4fSr3IhZE" />
     <title>New Tab</title>
     <link href="style.css" rel="stylesheet">
-    <link href="./favicon/icon.ico" rel="icon" type="image/x-icon">
+    <link href="./favicon/icon48.png" id="favicon" rel="icon" type="image/png">
     <style id="iconStyle"></style>
 
     <!-- SCRIPTS -->
     <script src="scripts/preload.js"></script>
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
-    <script defer src="scripts/browser-utils.js"></script>
+    <script defer src="scripts/menu-shortcut-page.js"></script>
     <script defer src="scripts/theme.js"></script>
+    <script defer src="scripts/alert-modal.js"></script>
     <script defer src="scripts/wallpaper.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/weather.js"></script>
     <script defer src="scripts/custom-text.js"></script>
+    <script defer src="scripts/browser-utils.js"></script>
+    <script defer src="scripts/search.js"></script>
+    <script defer src="scripts/quotes.js"></script>
+    <script defer src="scripts/shortcuts.js"></script>
     <script defer src="scripts/script.js"></script>
+    <script defer src="scripts/search-suggestions.js"></script>
     <script defer src="scripts/ai-tools.js"></script>
     <script defer src="scripts/bookmarks.js"></script>
     <script defer src="scripts/todo-list.js"></script>
     <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
+    <script defer src="scripts/revert-extension-icon.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -59,14 +66,15 @@
     <script src="locales/fr.js"></script>
     <script src="locales/az.js"></script>
     <script src="locales/sl.js"></script>
+    <script src="locales/ur.js"></script>
 
 </head>
 
 <body>
-    <!----------------------- Loading Screen Starting ----------------------->
+    <!-- --------------------- Loading Screen Starting --------------------- -->
     <img src="./images/Loading.png" id="LoadingScreen" fetchpriority="high" />
 
-    <!----------------------- ToDo List Setup Starting ----------------------->
+    <!-- --------------------- ToDo List Setup Starting --------------------- -->
     <!-- ToDo Icon -->
     <div class="todoListCont" id="todoListCont">
         <svg id="todoIcon" xmlns="http://www.w3.org/2000/svg" class="dot-icon" width="36" height="36"
@@ -99,7 +107,7 @@
         </ul>
     </div>
 
-    <!----------------------- Bookmark System ----------------------->
+    <!-- --------------------- Bookmark System --------------------- -->
     <div style="display: none;">
         <svg id="folderIconTemplate" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -140,17 +148,46 @@
                 <input type="text" id="bookmarkSearch" placeholder="Search bookmark" />
                 <button id="clearSearchButton">✖</button>
             </div>
-            <div class="bookmark-view-as-container">
-                <h3 id="bookmarkViewAs">View as</h3>
-                <div>
-                    <input type="checkbox" id="bookmarkGridCheckbox" hidden />
-                    <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
-                    <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
+            <!-- Adding Sorting buttons along with View Container -->
+            <div class="bookmark-controls-container">
+                <div class="bookmark-control-group">
+                    <h3 id="bookmarkSortBy">Sort by</h3>
+                    <div class="button-group">
+                        <button id="sortAlphabetical" class="bookmark-sort-button active">A-Z</button>
+                        <button id="sortTimeAdded" class="bookmark-sort-button">Old-New</button>
+                    </div>
+                </div>
+
+                <div class="bookmark-control-group">
+                    <h3 id="bookmarkViewAs">View as</h3>
+                    <div class="button-group">
+                        <input type="checkbox" id="bookmarkGridCheckbox" hidden />
+                        <button id="bookmarkViewGrid" class="bookmark-view-as-button">Grid</button>
+                        <button id="bookmarkViewList" class="bookmark-view-as-button">List</button>
+                    </div>
                 </div>
             </div>
             <ul id="bookmarkList"></ul>
         </div>
     </div>
+
+    <!-- Edit Bookmark Modal -->
+    <div id="editBookmarkModal">
+        <div class="modal-content">
+            <h2 id="editBookmarkHeading">Edit Bookmark</h2>
+
+            <img id="editBookmarkFavicon" src="" alt="Favicon">
+
+            <input type="text" id="editBookmarkName" placeholder="Bookmark Name">
+            <input type="url" id="editBookmarkURL" placeholder="Bookmark URL">
+
+            <div class="modal-buttons">
+                <button id="saveBookmarkChanges">Save</button>
+                <button id="cancelBookmarkEdit">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!----------------------- End of Bookmark System ----------------------->
 
     <!----------------------- Google App Menu Setup Starting ----------------------->
@@ -226,19 +263,9 @@
         </a>
         <a href="https://maps.google.com/" class="icon-item">
             <div class="menuicon">
-                <svg width="67px" height="67px" viewBox="4 2 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="currentColor">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M24 12.8116L23.9999 12.8541C23.9998 12.872 23.9996 12.8899 23.9994 12.9078C23.9998 12.9287 24 12.9498 24 12.971C24 16.3073 21.4007 19.2604 19.6614 21.2367C19.1567 21.8101 18.7244 22.3013 18.449 22.6957C17.4694 24.0986 16.9524 25.6184 16.8163 26.2029C16.8163 26.6431 16.4509 27 16 27C15.5491 27 15.1837 26.6431 15.1837 26.2029C15.0476 25.6184 14.5306 24.0986 13.551 22.6957C13.2756 22.3013 12.8433 21.8101 12.3386 21.2367C10.5993 19.2604 8 16.3073 8 12.971C8 12.9498 8.0002 12.9287 8.0006 12.9078C8.0002 12.8758 8 12.8437 8 12.8116C8 8.49736 11.5817 5 16 5C20.4183 5 24 8.49736 24 12.8116ZM16 15.6812C17.7132 15.6812 19.102 14.325 19.102 12.6522C19.102 10.9793 17.7132 9.62319 16 9.62319C14.2868 9.62319 12.898 10.9793 12.898 12.6522C12.898 14.325 14.2868 15.6812 16 15.6812Z" />
-                        <path
-                            d="M23.1054 9.21856C22.1258 7.37546 20.4161 5.96177 18.3504 5.34277L13.7559 10.5615C14.3208 9.98352 15.1174 9.62346 16.0002 9.62346C17.7134 9.62346 19.1022 10.9796 19.1022 12.6524C19.1022 13.3349 18.8711 13.9646 18.4811 14.4711L23.1054 9.21856Z" />
-                        <path
-                            d="M12.4311 21.3425C12.4004 21.3076 12.3695 21.2725 12.3383 21.2371C11.1918 19.9344 9.67162 18.2073 8.76855 16.2257L13.5439 10.8018C13.1387 11.3136 12.8976 11.9556 12.8976 12.6526C12.8976 14.3254 14.2865 15.6816 15.9997 15.6816C16.8675 15.6816 17.6521 15.3336 18.2151 14.7727L12.4311 21.3425Z" />
-                        <path
-                            d="M9.89288 7.76562C8.71207 9.12685 8 10.8881 8 12.8117C8 12.8438 8.0002 12.8759 8.0006 12.9079C8.0002 12.9288 8 12.9499 8 12.9711C8 14.1082 8.30196 15.2009 8.76889 16.2254L13.5362 10.8106L9.89288 7.76562Z" />
-                        <path
-                            d="M18.3499 5.34254C17.6068 5.11988 16.8176 5 15.9997 5C13.5514 5 11.36 6.07387 9.89258 7.76553L13.5359 10.8105L13.5438 10.8015C13.6101 10.7178 13.6807 10.6375 13.7554 10.5611L18.3499 5.34254Z" />
-                    </g>
+                <svg width="36" height="36" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                        d="m 8 0 c -3.3125 0 -6 2.6875 -6 6 c 0.007812 0.710938 0.136719 1.414062 0.386719 2.078125 l -0.015625 -0.003906 c 0.636718 1.988281 3.78125 5.082031 5.625 6.929687 h 0.003906 v -0.003906 c 1.507812 -1.507812 3.878906 -3.925781 5.046875 -5.753906 c 0.261719 -0.414063 0.46875 -0.808594 0.585937 -1.171875 l -0.019531 0.003906 c 0.25 -0.664063 0.382813 -1.367187 0.386719 -2.078125 c 0 -3.3125 -2.683594 -6 -6 -6 z m 0 3.691406 c 1.273438 0 2.308594 1.035156 2.308594 2.308594 s -1.035156 2.308594 -2.308594 2.308594 c -1.273438 -0.003906 -2.304688 -1.035156 -2.304688 -2.308594 c -0.003906 -1.273438 1.03125 -2.304688 2.304688 -2.308594 z m 0 0" />
                 </svg>
             </div>
             <div class="label short">Maps</div>
@@ -550,7 +577,7 @@
     <!-- ________________ End of Google App Menu ________________ -->
 
     <div class="centerDiv">
-        <div class="leftDiv">
+        <div class="leftDiv" id="leftDiv">
 
             <!-- ____________clock___________ -->
             <div class="clock" id="analogClock">
@@ -597,11 +624,11 @@
         </div>
         <!-- ---------end of leftDiv--------------- -->
 
-        <div class="rightDiv">
+        <div class="rightDiv" id="rightDiv">
             <!-- ---weather stuff--------- -->
-            <div class="topDiv">
+            <div class="topDiv" id="hideWeather">
                 <div class="lrectangle bgLightTint">
-                    <div id="conditionText">Hello! How are you today?</div>
+                    <div id="conditionText"></div>
                     <div class="cconnt">
                         <div class="humidityBar">
                             <div class="thinLine"></div>
@@ -621,17 +648,11 @@
                                     </svg>
 
                                 </div>
-                                <span id="feelsLike" style="padding-inline-end: 12px;"></span>
+                                <span id="feelsLike"></span>
                             </div>
                             <div class="tiles location">
                                 <div class="icon">
-                                    <svg fill="none" height="24" viewBox="0 0 29 29" width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M14.5 2C18.4306 2 21.625 5.29333 21.625 9.36667C21.625 14.8886 14.5 23.0476 14.5 23.0476C14.5 23.0476 7.375 14.8886 7.375 9.36667C7.375 5.29333 10.5694 2 14.5 2ZM14.5 6.95238C13.8701 6.95238 13.266 7.21326 12.8206 7.67764C12.3752 8.14202 12.125 8.77185 12.125 9.42857C12.125 10.0853 12.3752 10.7151 12.8206 11.1795C13.266 11.6439 13.8701 11.9048 14.5 11.9048C15.1299 11.9048 15.734 11.6439 16.1794 11.1795C16.6248 10.7151 16.875 10.0853 16.875 9.42857C16.875 8.77185 16.6248 8.14202 16.1794 7.67764C15.734 7.21326 15.1299 6.95238 14.5 6.95238ZM24 23.0476C24 25.7838 19.7488 28 14.5 28C9.25125 28 5 25.7838 5 23.0476C5 21.4505 6.44875 20.0267 8.69313 19.1229L9.45312 20.2495C8.17062 20.8067 7.375 21.5743 7.375 22.4286C7.375 24.1371 10.5694 25.5238 14.5 25.5238C18.4306 25.5238 21.625 24.1371 21.625 22.4286C21.625 21.5743 20.8294 20.8067 19.5469 20.2495L20.3069 19.1229C22.5512 20.0267 24 21.4505 24 23.0476Z"
-                                            fill="currentColor" />
-                                    </svg>
-
+                                    <img src="./svgs/location.svg" alt="">
                                 </div>
                                 <span class="location_spn" id="location"></span>
                             </div>
@@ -642,7 +663,6 @@
 
                 <!-- -----rAndakar-------- -->
                 <div class="rAndakar">
-                    <!-- <img src="./svgs/andakar.svg" alt=""> this is below svg -->
                     <svg fill="none" height="100%" viewBox="0 0 288 288" width="100%"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect class="bgLightTint" fill="#E2EEFF" height="304.742" rx="123.401"
@@ -669,10 +689,24 @@
                 <div class="searchIcon">
                     <!-- Dropdown Button -->
                     <div class="dropdown search-dropdown">
+                        <!-- Default Search Engine -->
                         <button id="default-dropdown-item" style="cursor: pointer;" role="button" class="dropdown-btn">
-                            <div id="google-dropdown" data-default data-engine-name="google" data-engine="1"
+                            <div id="default-dropdown" data-default data-engine-name="default" data-engine="0"
                                 class="dropdown-item">
-                                <!-- Default Google Icon -->
+                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.86); transform-origin: center;"
+                                        d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                                </svg>
+                                <span class="engine-name" id="defaultEngineDD">
+                                    Default
+                                </span>
+                            </div>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- Default Google Icon -->
+                            <div id="google-dropdown" data-engine-name="google" data-engine="1" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect class="accentColor" height="28" rx="14" width="28" />
@@ -685,8 +719,6 @@
                                     Google
                                 </span>
                             </div>
-                        </button>
-                        <div class="dropdown-content">
                             <!-- Duck -->
                             <div data-engine="2" data-engine-name="duck" id="duck-dropdown" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
@@ -715,6 +747,7 @@
                                     Bing
                                 </span>
                             </div>
+
                             <div data-engine="4" data-engine-name="brave" id="brave-dropdown" class="dropdown-item">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <rect class="accentColor" height="24" rx="12" width="24" />
@@ -727,6 +760,7 @@
                                     Brave
                                 </span>
                             </div>
+
                             <div data-engine="5" data-engine-name="youtube" id="youtube-dropdown" class="dropdown-item">
                                 <svg fill="none" height="28" viewBox="0 0 28 28" width="28"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -740,6 +774,51 @@
                                     YouTube
                                 </span>
                             </div>
+
+                            <div data-engine="6" data-engine-name="gImages" id="gImages-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.8); transform-origin: center;"
+                                        d="M 24.84375 0 C 24.351563 0.078125 23.992188 0.503906 24 1 L 24 11 L 13 11 C 12.96875 11 12.9375 11 12.90625 11 C 12.65625 11.019531 12.421875 11.128906 12.25 11.3125 L 12.25 11.34375 C 12.226563 11.363281 12.207031 11.382813 12.1875 11.40625 L 0.25 24.3125 C -0.0273438 24.605469 -0.101563 25.039063 0.0625 25.40625 C 0.226563 25.777344 0.597656 26.007813 1 26 L 11 26 L 11 37 C 10.992188 37.28125 11.105469 37.554688 11.3125 37.75 L 24.3125 49.75 C 24.605469 50.027344 25.039063 50.101563 25.40625 49.9375 C 25.777344 49.773438 26.007813 49.402344 26 49 L 26 39 L 37 39 C 37.28125 39.007813 37.554688 38.894531 37.75 38.6875 L 49.75 25.6875 C 50.027344 25.394531 50.101563 24.960938 49.9375 24.59375 C 49.773438 24.222656 49.402344 23.992188 49 24 L 39 24 L 39 13 C 39.007813 12.71875 38.894531 12.445313 38.6875 12.25 L 25.6875 0.25 C 25.460938 0.0390625 25.148438 -0.0507813 24.84375 0 Z M 26 3.3125 L 36.5 13 L 27.25 22.25 C 26.480469 21.363281 26 20.210938 26 18.9375 L 26 12 C 26 11.96875 26 11.9375 26 11.90625 Z M 13 13.5 L 22.25 22.75 C 21.363281 23.519531 20.210938 24 18.9375 24 L 3.3125 24 Z M 25 22.5625 C 25.597656 23.558594 26.441406 24.402344 27.4375 25 C 26.441406 25.597656 25.597656 26.441406 25 27.4375 C 24.402344 26.441406 23.558594 25.597656 22.5625 25 C 23.558594 24.402344 24.402344 23.558594 25 22.5625 Z M 31.0625 26 L 46.6875 26 L 37 36.5 L 27.75 27.25 C 28.636719 26.480469 29.789063 26 31.0625 26 Z M 22.75 27.75 C 23.519531 28.636719 24 29.789063 24 31.0625 L 24 38 C 24 38.03125 24 38.0625 24 38.09375 L 24 46.6875 L 13.5 37 Z" />
+                                </svg>
+                                <span class="engine-name" id="gImagesEngineDD">Images</span>
+                            </div>
+
+                            <div data-engine="7" data-engine-name="reddit" id="reddit-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 0 256 256"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(1.1); transform-origin: center;"
+                                        d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981l27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667c7.324 0 13.275-5.95 13.275-13.278c0-7.324-5.95-13.275-13.275-13.275c-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458c-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617c0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036c41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275c7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768c-5.188 0-22.584-.765-31.59-9.768c-1.371-1.373-1.371-3.51 0-4.883c1.374-1.371 3.51-1.371 4.884 0c5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0c1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275c0 7.17-5.95 13.275-13.277 13.275" />
+                                </svg>
+                                <span class="engine-name" id="redditEngineDD">Reddit</span>
+                            </div>
+
+                            <div data-engine="8" data-engine-name="wikipedia" id="wikipedia-dropdown"
+                                class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 -0.7 32 32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.85); transform-origin: center;"
+                                        d="M30 9.215a.31.31 0 0 1-.313.308h-1.68l-7.616 16.215a.31.31 0 0 1-.278.18h-.004a.31.31 0 0 1-.28-.172l-3.614-7.168l-3.902 7.18a.313.313 0 0 1-.555-.016L4.055 9.523H2.313A.31.31 0 0 1 2 9.215V8.39a.31.31 0 0 1 .313-.309h6.21a.31.31 0 0 1 .313.309v.824a.31.31 0 0 1-.313.308H7.188l5.316 12.262l2.766-5.168l-3.508-7.09h-.844a.313.313 0 0 1-.313-.312v-.82c0-.172.141-.313.313-.313h4.598a.31.31 0 0 1 .308.313v.82a.307.307 0 0 1-.308.308h-.813l2.02 4.415l2.402-4.415h-1.473a.31.31 0 0 1-.312-.308v-.82a.31.31 0 0 1 .312-.313h4.465a.31.31 0 0 1 .309.313v.82a.307.307 0 0 1-.309.308h-.98l-3.504 6.372l2.855 5.875L26 9.523h-1.746a.31.31 0 0 1-.313-.308v-.82c0-.172.141-.313.313-.313h5.433a.31.31 0 0 1 .313.313z" />
+                                </svg>
+                                <span class="engine-name" id="wikipediaEngineDD">Wikipedia</span>
+                            </div>
+
+                            <div data-engine="9" data-engine-name="quora" id="quora-dropdown" class="dropdown-item">
+                                <svg height="100%" width="100%" viewBox="0 -0.5 32 32"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect class="accentColor" height="100%" rx="50%" width="100%" />
+                                    <path class="darkIconForDarkTheme" fill="#fffffff0"
+                                        style="transform: scale(0.73); transform-origin: center;"
+                                        d="M29 23.86h-2a1.72 1.72 0 0 1-1.73 1.72c-1.15 0-1.82-.86-2.58-2a11 11 0 0 0 4.79-9.1c.09-7.19-5.85-11.89-12.17-11.89S3 7.37 3 14.37s6 11.79 12.17 11.79a10.7 10.7 0 0 0 3.07-.48c1.15 2.11 2.59 3.74 5.46 3.74a5 5 0 0 0 5.3-5.56m-8.14-3.45a6.31 6.31 0 0 0-5.56-3.16a6 6 0 0 0-3.74 1.15l.64 1.6a2.6 2.6 0 0 1 .86-.1c1.82 0 3 1.53 4.12 3.64a7.6 7.6 0 0 1-1.91.19C10.86 23.76 9 20.6 9 14.47s1.91-9.3 6.23-9.3s6.32 3.16 6.32 9.3a20.7 20.7 0 0 1-.72 5.94Z" />
+                                </svg>
+                                <span class="engine-name" id="quoraEngineDD">Quora</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -766,11 +845,21 @@
             <!-- ----------search with------------------- -->
             <div class="searchWithCont" style="visibility: hidden;" id="search-with-container">
 
-                <div class="hint bgLightTint" id="searchWithHint">Search With</div>
+                <div class="hint bgLightTint" id="searchWithHint"></div>
 
                 <div class="searchEnginesContainer">
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/google.svg" alt="G" class="logo"> -->
+
+                    <div class="search-engine bgLightTint" data-category="search-with">
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="darkIconForDarkTheme" fill="white"
+                                style="transform: scale(0.95); transform-origin: center;"
+                                d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
+                        </svg>
+                        <label class="engine-name" id="defaultEngine">Default</label>
+                        <input checked class="radio-button" name="search-engine" type="radio" value="engine0">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -778,11 +867,10 @@
                                 fill="white" />
                         </svg>
                         <label class="engine-name" id="googleEngine">Google</label>
-                        <input checked class="radio-button" name="search-engine" type="radio" value="engine1">
+                        <input class="radio-button" name="search-engine" type="radio" value="engine1">
                     </div>
 
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/duck.svg" alt="D" class="logo"> -->
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF00ff" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -793,20 +881,18 @@
                         <input class="radio-button" name="search-engine" type="radio" value="engine2">
                     </div>
 
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/bing.svg" alt="B" class="logo"> -->
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
                                 d="M22.9991 13.1645C22.9954 13.0734 22.9651 12.9855 22.9119 12.9118C22.8588 12.8382 22.7853 12.7822 22.7007 12.751L13.8694 9.98251C13.7046 9.93107 13.6294 10.0197 13.7018 10.1788L15.3442 13.8304C15.4167 13.9904 15.604 14.18 15.7602 14.2524L18.0135 15.2966C18.1697 15.369 18.1735 15.4957 18.021 15.5776L8.40754 20.7525C8.25601 20.8345 8.23624 20.8059 8.36425 20.6887L12.0575 17.3219C12.197 17.1796 12.28 16.9905 12.291 16.7904L12.2947 6.58526C12.291 6.49394 12.2606 6.40578 12.2073 6.33199C12.154 6.25821 12.0803 6.20212 11.9954 6.17084L8.2993 5.01334C8.13459 4.9619 8 5.06383 8 5.24008V20.7211C8 20.8974 8.11483 21.1241 8.25601 21.2251L12.0114 23.9183C12.1526 24.0193 12.3879 24.0279 12.5357 23.9373L22.7308 17.723C22.8093 17.6688 22.8744 17.597 22.921 17.5133C22.9677 17.4295 22.9947 17.336 23 17.24V13.1645H22.9991Z"
                                 fill="white" />
                         </svg>
-                        <label class="engine-name" id="bingEngine">Bing</label>
+                        <label class="engine-name" id="bingEngine" data-category="search-with">Bing</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine3">
                     </div>
 
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/brave.svg" alt="B" class="logo"> -->
+                    <div class="search-engine bgLightTint" data-category="search-with">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -0.5 24 24">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme" fill-rule="evenodd"
@@ -817,8 +903,7 @@
                         <input class="radio-button" name="search-engine" type="radio" value="engine4">
                     </div>
 
-                    <div class="search-engine bgLightTint">
-                        <!-- <img src="./svgs/youtube.svg" alt="Y" class="logo"> -->
+                    <div class="search-engine bgLightTint" data-category="search-on">
                         <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
                             <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
                             <path class="darkIconForDarkTheme"
@@ -828,9 +913,92 @@
                         <label class="engine-name" id="youtubeEngine">YouTube</label>
                         <input class="radio-button" name="search-engine" type="radio" value="engine5">
                     </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.92); transform-origin: center;"
+                                d="M 24.84375 0 C 24.351563 0.078125 23.992188 0.503906 24 1 L 24 11 L 13 11 C 12.96875 11 12.9375 11 12.90625 11 C 12.65625 11.019531 12.421875 11.128906 12.25 11.3125 L 12.25 11.34375 C 12.226563 11.363281 12.207031 11.382813 12.1875 11.40625 L 0.25 24.3125 C -0.0273438 24.605469 -0.101563 25.039063 0.0625 25.40625 C 0.226563 25.777344 0.597656 26.007813 1 26 L 11 26 L 11 37 C 10.992188 37.28125 11.105469 37.554688 11.3125 37.75 L 24.3125 49.75 C 24.605469 50.027344 25.039063 50.101563 25.40625 49.9375 C 25.777344 49.773438 26.007813 49.402344 26 49 L 26 39 L 37 39 C 37.28125 39.007813 37.554688 38.894531 37.75 38.6875 L 49.75 25.6875 C 50.027344 25.394531 50.101563 24.960938 49.9375 24.59375 C 49.773438 24.222656 49.402344 23.992188 49 24 L 39 24 L 39 13 C 39.007813 12.71875 38.894531 12.445313 38.6875 12.25 L 25.6875 0.25 C 25.460938 0.0390625 25.148438 -0.0507813 24.84375 0 Z M 26 3.3125 L 36.5 13 L 27.25 22.25 C 26.480469 21.363281 26 20.210938 26 18.9375 L 26 12 C 26 11.96875 26 11.9375 26 11.90625 Z M 13 13.5 L 22.25 22.75 C 21.363281 23.519531 20.210938 24 18.9375 24 L 3.3125 24 Z M 25 22.5625 C 25.597656 23.558594 26.441406 24.402344 27.4375 25 C 26.441406 25.597656 25.597656 26.441406 25 27.4375 C 24.402344 26.441406 23.558594 25.597656 22.5625 25 C 23.558594 24.402344 24.402344 23.558594 25 22.5625 Z M 31.0625 26 L 46.6875 26 L 37 36.5 L 27.75 27.25 C 28.636719 26.480469 29.789063 26 31.0625 26 Z M 22.75 27.75 C 23.519531 28.636719 24 29.789063 24 31.0625 L 24 38 C 24 38.03125 24 38.0625 24 38.09375 L 24 46.6875 L 13.5 37 Z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="gImagesEngine">Images</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine6">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg fill="none" height="28" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="28" rx="14" width="28" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(1.24); transform-origin: center;"
+                                d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981l27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667c7.324 0 13.275-5.95 13.275-13.278c0-7.324-5.95-13.275-13.275-13.275c-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458c-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617c0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036c41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275c7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768c-5.188 0-22.584-.765-31.59-9.768c-1.371-1.373-1.371-3.51 0-4.883c1.374-1.371 3.51-1.371 4.884 0c5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0c1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275c0 7.17-5.95 13.275-13.277 13.275"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="redditEngine">Reddit</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine7">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 -0.5 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.95); transform-origin: center;"
+                                d="M30 9.215a.31.31 0 0 1-.313.308h-1.68l-7.616 16.215a.31.31 0 0 1-.278.18h-.004a.31.31 0 0 1-.28-.172l-3.614-7.168l-3.902 7.18a.313.313 0 0 1-.555-.016L4.055 9.523H2.313A.31.31 0 0 1 2 9.215V8.39a.31.31 0 0 1 .313-.309h6.21a.31.31 0 0 1 .313.309v.824a.31.31 0 0 1-.313.308H7.188l5.316 12.262l2.766-5.168l-3.508-7.09h-.844a.313.313 0 0 1-.313-.312v-.82c0-.172.141-.313.313-.313h4.598a.31.31 0 0 1 .308.313v.82a.307.307 0 0 1-.308.308h-.813l2.02 4.415l2.402-4.415h-1.473a.31.31 0 0 1-.312-.308v-.82a.31.31 0 0 1 .312-.313h4.465a.31.31 0 0 1 .309.313v.82a.307.307 0 0 1-.309.308h-.98l-3.504 6.372l2.855 5.875L26 9.523h-1.746a.31.31 0 0 1-.313-.308v-.82c0-.172.141-.313.313-.313h5.433a.31.31 0 0 1 .313.313z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="wikipediaEngine">Wikipedia</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine8">
+                    </div>
+
+                    <div class="search-engine bgLightTint" data-category="search-on">
+                        <svg height="100%" width="100%" viewBox="0 -0.7 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="accentColor" fill="#FF000F" height="100%" rx="50%" width="100%" />
+                            <path class="darkIconForDarkTheme" style="transform: scale(0.84); transform-origin: center;"
+                                d="M29 23.86h-2a1.72 1.72 0 0 1-1.73 1.72c-1.15 0-1.82-.86-2.58-2a11 11 0 0 0 4.79-9.1c.09-7.19-5.85-11.89-12.17-11.89S3 7.37 3 14.37s6 11.79 12.17 11.79a10.7 10.7 0 0 0 3.07-.48c1.15 2.11 2.59 3.74 5.46 3.74a5 5 0 0 0 5.3-5.56m-8.14-3.45a6.31 6.31 0 0 0-5.56-3.16a6 6 0 0 0-3.74 1.15l.64 1.6a2.6 2.6 0 0 1 .86-.1c1.82 0 3 1.53 4.12 3.64a7.6 7.6 0 0 1-1.91.19C10.86 23.76 9 20.6 9 14.47s1.91-9.3 6.23-9.3s6.32 3.16 6.32 9.3a20.7 20.7 0 0 1-.72 5.94Z"
+                                fill="white" />
+                        </svg>
+                        <label class="engine-name" id="quoraEngine">Quora</label>
+                        <input class="radio-button" name="search-engine" type="radio" value="engine9">
+                    </div>
+
                 </div>
             </div>
             <!-- ----------end of search with------------- -->
+            <div class="quotesCont" id="motivationalQuotesCont">
+                <div class="quotesContainer">
+                    Discover possibilities, spark creativity, and embrace the joy of browsing with every new tab you
+                    open!
+                </div>
+                <div class="authorName">
+                    <div class="qtRounder">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="qtRounder2">
+                        <svg fill="none" height="100%" viewBox="0 0 30 30" width="100%"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_208_15)">
+                                <path class="lessDark" clip-rule="evenodd"
+                                    d="M30 0L0 0C16.5685 0 30 13.4315 30 30L30 0Z" fill="#FF429D" fill-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_208_15">
+                                    <rect fill="white" height="30" width="30" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span>XengShi</span>
+                </div>
+            </div>
+
         </div>
         <!-- --------end of rightDiv---------------------- -->
     </div>
@@ -853,7 +1021,7 @@
         <div class="hangno" id="aiToolsIcon">
             <div class="icon">
                 <svg fill="none" height="100%" viewBox="0 0 280 280" width="100%" xmlns="http://www.w3.org/2000/svg">
-                    <path class="accentColor" clip-rule="evenodd"
+                    <path id="aiIcon" class="accentColor" clip-rule="evenodd"
                         d="M152 178C152 163.641 163.641 152 178 152H254C268.359 152 280.275 163.76 277.393 177.827C267.155 227.797 227.797 267.155 177.827 277.393C163.76 280.275 152 268.359 152 254V178ZM128 183.26C128 206.423 99.9943 218.024 83.6152 201.645L8.78205 126.811C3.43206 121.461 0.529946 114.017 1.78833 106.556C10.5659 54.5162 50.7487 13.1442 102.17 2.60743C116.237 -0.275091 128 11.6406 128 26V183.26ZM0 214.74C0 191.577 28.0057 179.976 44.3847 196.355L127.994 279.964C127.998 279.968 128 279.974 128 279.979V279.979C128 279.991 127.991 280 127.979 280H26C11.6406 280 0 268.359 0 254V214.74ZM152 26C152 11.6406 163.641 0 178 0H254C268.359 0 280 11.6406 280 26V102C280 116.359 268.359 128 254 128H178C163.641 128 152 116.359 152 102V26Z"
                         fill="white" fill-rule="evenodd" />
                 </svg>
@@ -933,7 +1101,7 @@
                 <div class="tLabel" id="perplexity">Perplexity</div>
             </a>
             <!-- ---------------- -->
-            <a href="https://firefly.adobe.com/">
+            <!-- <a href="https://firefly.adobe.com/">
                 <div class="tIcon">
                     <svg fill="none" height="100%" viewBox="0 0 32 32" width="100%" xmlns="http://www.w3.org/2000/svg">
                         <rect class="accentColor aiDarkIcons" fill="#FF4545" height="32" rx="16" width="32" />
@@ -943,6 +1111,17 @@
                     </svg>
                 </div>
                 <div class="tLabel" id="firefly">Adobe Firefly</div>
+            </a> -->
+            <a href="https://chat.deepseek.com/">
+                <div class="tIcon">
+                    <svg height="100%" width="100%" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="accentColor aiDarkIcons" width="100%" height="100%" rx="50%" />
+                        <path class="bgLightTint" style="transform: scale(0.76); transform-origin: center;"
+                            d="M23.748 4.482c-.254-.124-.364.113-.512.234-.051.039-.094.09-.137.136-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.156-.708-.311-.955-.65-.172-.241-.219-.51-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.093.172.187.129.323-.082.28-.18.552-.266.833-.055.179-.137.217-.329.14a5.526 5.526 0 01-1.736-1.18c-.857-.828-1.631-1.742-2.597-2.458a11.365 11.365 0 00-.689-.471c-.985-.957.13-1.743.388-1.836.27-.098.093-.432-.779-.428-.872.004-1.67.295-2.687.684a3.055 3.055 0 01-.465.137 9.597 9.597 0 00-2.883-.102c-1.885.21-3.39 1.102-4.497 2.623C.082 8.606-.231 10.684.152 12.85c.403 2.284 1.569 4.175 3.36 5.653 1.858 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.133-.284 4.994-1.86.47.234.962.327 1.78.397.63.059 1.236-.03 1.705-.128.735-.156.684-.837.419-.961-2.155-1.004-1.682-.595-2.113-.926 1.096-1.296 2.746-2.642 3.392-7.003.05-.347.007-.565 0-.845-.004-.17.035-.237.23-.256a4.173 4.173 0 001.545-.475c1.396-.763 1.96-2.015 2.093-3.517.02-.23-.004-.467-.247-.588zM11.581 18c-2.089-1.642-3.102-2.183-3.52-2.16-.392.024-.321.471-.235.763.09.288.207.486.371.739.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.167-1.361-.802-2.5-1.86-3.301-3.307-.774-1.393-1.224-2.887-1.298-4.482-.02-.386.093-.522.477-.592a4.696 4.696 0 011.529-.039c2.132.312 3.946 1.265 5.468 2.774.868.86 1.525 1.887 2.202 2.891.72 1.066 1.494 2.082 2.48 2.914.348.292.625.514.891.677-.802.09-2.14.11-3.054-.614zm1-6.44a.306.306 0 01.415-.287.302.302 0 01.2.288.306.306 0 01-.31.307.303.303 0 01-.304-.308zm3.11 1.596c-.2.081-.399.151-.59.16a1.245 1.245 0 01-.798-.254c-.274-.23-.47-.358-.552-.758a1.73 1.73 0 01.016-.588c.07-.327-.008-.537-.239-.727-.187-.156-.426-.199-.688-.199a.559.559 0 01-.254-.078c-.11-.054-.2-.19-.114-.358.028-.054.16-.186.192-.21.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.391.451.462.576.685.914.176.265.336.537.445.848.067.195-.019.354-.25.452z"
+                            fill="#4D6BFE" />
+                    </svg>
+                </div>
+                <div class="tLabel" id="deepseek">DeepSeek</div>
             </a>
             <!-- ---------------- -->
             <a href="https://www.meta.ai/">
@@ -1103,7 +1282,18 @@
                         <!-- ---🟡--- -->
                         <div class="ttcont">
                             <div class="texts">
-                                <div class="bigText" id="digitalclocktittle">Digital Clock</div>
+                                <div class="bigText" id="hideClockBox">Hide Clock</div>
+                                <div class="infoText" id="hideClockBoxInfo">Show or hide the clock and date</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideClock" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont clockRegion">
+                            <div class="texts">
+                                <div class="bigText" id="digitalclocktitle">Digital Clock</div>
                                 <div class="infoText" id="digitalclockinfo">Switch to the digital clock</div>
                             </div>
                             <label class="switch">
@@ -1111,9 +1301,9 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="timeformatField">
+                        <div class="ttcont clockRegion" id="timeformatField">
                             <div class="texts">
-                                <div class="bigText" id="timeformattittle">12-Hour Format</div>
+                                <div class="bigText" id="timeformattitle">12-Hour Format</div>
                                 <div class="infoText" id="timeformatinfo">Use 12-hour time format</div>
                             </div>
                             <label class="switch">
@@ -1121,9 +1311,9 @@
                                 <span class="toggle"></span>
                             </label>
                         </div>
-                        <div class="ttcont" id="greetingField">
+                        <div class="ttcont clockRegion" id="greetingField">
                             <div class="texts">
-                                <div class="bigText" id="greetingtittle">Greeting</div>
+                                <div class="bigText" id="greetingtitle">Greeting</div>
                                 <div class="infoText" id="greetinginfo">Show greeting below custom text</div>
                             </div>
                             <label class="switch">
@@ -1132,7 +1322,7 @@
                             </label>
                         </div>
                         <!-- ---🟡--- -->
-                        <div class="ttcont">
+                        <div class="ttcont clockRegion">
                             <div class="texts">
                                 <div class="bigText" id="userTextTitle">Customizable Text</div>
                                 <div class="infoText" id="userTextInfo">Show custom text below the clock
@@ -1140,18 +1330,6 @@
                             </div>
                             <label class="switch">
                                 <input id="userTextCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-                        <!-- ---🟡--- -->
-                        <div class="ttcont">
-                            <div class="texts">
-                                <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
-                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="fahrenheitCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
@@ -1181,15 +1359,14 @@
                             </label>
                         </div>
 
-                        <div class="ttcont">
+                        <div class="ttcont" id="quotesToggle">
                             <div class="texts">
-                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
-                                <div class="infoText" id="hideWeatherBoxInfo">
-                                    Only show temperature on mobile
+                                <div class="bigText" id="motivationalQuotesText">Motivational Quotes</div>
+                                <div class="infoText" id="motivationalQuotesInfo">Show quotes below the searchbar
                                 </div>
                             </div>
                             <label class="switch">
-                                <input id="hideWeatherCheckbox" type="checkbox">
+                                <input id="motivationalQuotesCheckbox" type="checkbox">
                                 <span class="toggle"></span>
                             </label>
                         </div>
@@ -1232,8 +1409,44 @@
                                 <button class="savebtn" id="saveproxy">Save</button>
                             </div>
                         </div>
+                        <!-- ---🟡--- -->
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherTitle">Hide Weather</div>
+                                <div class="infoText" id="hideWeatherInfo">Disable the weather widgets
+                                </div>
+                            </div>
 
-                        <div class="ttcont unflex" style="margin-top: 95px;">
+                            <label class="switch">
+                                <input id="hideWeatherCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="hideWeatherBox">Hide Weather Card</div>
+                                <div class="infoText" id="hideWeatherBoxInfo">Show only temperature pill</div>
+                            </div>
+                            <label class="switch">
+                                <input id="hideWeatherCard" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
+                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply changes
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input id="fahrenheitCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont unflex weather" id="locationCont">
                             <div class="texts">
                                 <div class="bigText" id="UserLocText">Enter your Location</div>
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
@@ -1242,12 +1455,24 @@
                             <input id="userLoc" placeholder="Your City or Coordinates (Latitude, Longitude)"
                                 type="text">
                             <div class="bottom">
-                                <button class="savebtn" id="useGPS">Use GPS</button>
+                                <a href="https://xengshi.github.io/materialYouNewTab/privacy-policy.html"
+                                    id="PrivacyPolicy" target="_blank">Privacy policy</a>
                                 <button class="savebtn" id="saveLoc">Save</button>
                             </div>
                         </div>
 
-                        <div class="ttcont unflex" style="margin-top: 110px;">
+                        <div class="ttcont weather">
+                            <div class="texts">
+                                <div class="bigText" id="useGPS">Use GPS</div>
+                                <div class="infoText" id="useGPSInfo">Enable GPS for live location updates</div>
+                            </div>
+                            <label class="switch">
+                                <input id="useGPScheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
+                        <div class="ttcont unflex weather">
                             <div class="texts">
                                 <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
                                 <div class="infoText" id="WeatherApiSubtext">If the weather functionality isn't working
@@ -1260,11 +1485,10 @@
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
                         </div>
-                        <!-- ---🟡--- -->
 
                     </div>
                     <br>
-                    <div class="divider" style="margin-top: 90px;"></div>
+                    <div class="divider" id="divider2"></div>
                     <!-- start of languageSelector -->
                     <div class="languageSection">
                         <div class="languageIcon">
@@ -1278,30 +1502,31 @@
                             </svg>
                         </div>
 
-                        <!-- Language selection button -->
+                        <!-- LANGUAGE SELECTION OPTIONS -->
                         <select class="languageSelector" id="languageSelector">
                             <option value="en">English</option>
-                            <option value="az">Azərbaycanca (Azerbaijani)</option>
-                            <option value="bn">বাংলা (Bangla)</option>
-                            <option value="zh">简体中文 (Simplified Chinese)</option>
-                            <option value="zh_TW">繁體中文 (Traditional Chinese)</option>
-                            <option value="cs">Čeština (Czech)</option>
-                            <option value="fr">Français (French)</option>
-                            <option value="hi">हिन्दी (Hindi)</option>
-                            <option value="hu">Magyar (Hungarian)</option>
-                            <option value="idn">Bahasa Indonesia (Indonesian)</option>
-                            <option value="it">Italiano (Italian)</option>
-                            <option value="ja">日本語 (Japanese)</option>
-                            <option value="ko">한국어 (Korean)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="np">नेपाली (Nepali)</option>
-                            <option value="pt">Português (Portuguese)</option>
-                            <option value="ru">Русский (Russian)</option>
-                            <option value="sl">Slovenščina (Slovenian)</option>
-                            <option value="es">Español (Spanish)</option>
-                            <option value="tr">Türkçe (Turkish)</option>
-                            <option value="uz">O'zbek (Uzbek)</option>
-                            <option value="vi">Tiếng Việt (Vietnamese)</option>
+                            <option value="az">Azerbaijani (Azərbaycanca)</option>
+                            <option value="bn">Bangla (বাংলা)</option>
+                            <option value="zh">Chinese (Simplified) (简体中文)</option>
+                            <option value="zh_TW">Chinese (Traditional) (繁體中文)</option>
+                            <option value="cs">Czech (Čeština)</option>
+                            <option value="fr">French (Français)</option>
+                            <option value="hi">Hindi (हिन्दी)</option>
+                            <option value="hu">Hungarian (Magyar)</option>
+                            <option value="idn">Indonesian (Bahasa Indonesia)</option>
+                            <option value="it">Italian (Italiano)</option>
+                            <option value="ja">Japanese (日本語)</option>
+                            <option value="ko">Korean (한국어)</option>
+                            <option value="mr">Marathi (मराठी)</option>
+                            <option value="np">Nepali (नेपाली)</option>
+                            <option value="pt">Portuguese (Brazil) (Português)</option>
+                            <option value="ru">Russian (Русский)</option>
+                            <option value="sl">Slovenian (Slovenščina)</option>
+                            <option value="es">Spanish (Español)</option>
+                            <option value="tr">Turkish (Türkçe)</option>
+                            <option value="ur">Urdu (اردو)</option>
+                            <option value="uz">Uzbek (O'zbek)</option>
+                            <option value="vi">Vietnamese (Tiếng Việt)</option>
                             <!-- Place new language alphabetically -->
                         </select>
                         <!-- end of languageSelector -->
@@ -1350,8 +1575,9 @@
                             <input class="colorPlate" name="color" type="radio" value="peach">
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
-                             <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" for="colorPicker" class="colorPlate colorPickerLabel">Change Hue</label>
+                            <!-- ----Color Picker || ColorPicker---- -->
+                            <label id="rangColor" for="colorPicker" class="colorPlate colorPickerLabel">Change
+                                Hue</label>
                             <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
                         </div>
@@ -1415,6 +1641,49 @@
 
                     <div class="spacer"></div>
                     <button class="resetbtn" id="resetsettings">Reset Settings</button>
+
+                    <!-- ----------Tips---------- -->
+                    <div class="tips" id="tips">
+                        <div class="ttcont">
+                            <div class="texts">
+                                <div class="bigText" id="switchSearchModes">Switch Search Modes</div>
+                                <div class="infoText" id="switchSearchModesInfo">Click on ‘Search With’ to change the
+                                    mode.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile">
+                            <div class="texts">
+                                <div class="bigText" id="adjustZoom">Adjust Zoom</div>
+                                <div class="infoText" id="adjustZoomInfo">Press Ctrl + "+" or Ctrl + "-" to adjust the
+                                    zoom.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile">
+                            <div class="texts">
+                                <div class="bigText" id="changeBrowserTheme">Change Browser Theme</div>
+                                <div class="infoText" id="changeBrowserThemeInfo">Click the three dots (⋮) > More tools
+                                    > Customize Chrome, then choose a color that matches the extension theme.</div>
+                            </div>
+                        </div>
+
+                        <div class="ttcont hideOnMobile" id="firefoxHomepage" style="display: none;">
+                            <div class="texts">
+                                <div class="bigText" id="updateFirefoxHomepage">Update Homepage</div>
+                                <div class="infoText" id="updateFirefoxHomepageInfo">To change your homepage like the
+                                    new tab as well, visit <a
+                                        href="https://github.com/XengShi/materialYouNewTab#-firefox"
+                                        target="_blank">this link</a> and follow the instructions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="dontShowTips">Don't show it again</button>
+                    </div>
+
+                    <!-- ----------end of tips----- -->
+
                     <div id="menuCloseButton">
                         <!-- <img src="./svgs/x.svg" alt=""> -->
                         <div class="icon">
@@ -1428,6 +1697,7 @@
                         <!-- <span>Close</span> -->
                     </div>
                     <!-- ------------------ -->
+
 
                 </div>
                 <!-- end of page 1 -->
@@ -1470,7 +1740,7 @@
         <div class="modalContent">
             <div class="modalHeader">
                 <h2>Custom Theme</h2>
-                
+
             </div>
             <div class="modalBody">
                 <div class="modalBodyContentItem">
