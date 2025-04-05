@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Retrieve saved state from localStorage (default: false if null)
     const savedState = localStorage.getItem("hideWeatherVisible") === "true";
     hideWeatherCheckbox.checked = savedState;
-    hideWeather.style.visibility = savedState ? "hidden" : "visible";
+
+    function applyVisibilityState(isHidden) {
+        hideWeather.classList.toggle("weather-hidden", isHidden);
+    }
 
     // Function to toggle the 'inactive' class
     function toggleInactiveState(isInactive) {
@@ -27,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Apply initial state
     toggleInactiveState(savedState);
+    applyVisibilityState(savedState);
 
     // Show weather widgets only if toggle is unchecked
     if (!savedState) {
@@ -35,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideWeatherCheckbox.addEventListener("change", () => {
         const isChecked = hideWeatherCheckbox.checked;
-        hideWeather.style.visibility = isChecked ? "hidden" : "visible";
+        applyVisibilityState(isChecked);
         localStorage.setItem("hideWeatherVisible", isChecked);
 
         // Apply inactive class to disable elements visually
@@ -48,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function getWeatherData() {
+    // Display texts 
+    document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
+    document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
+    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
+    document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
+
     // Cache DOM elements
     const userAPIInput = document.getElementById("userAPI");
     const userLocInput = document.getElementById("userLoc");
@@ -123,7 +133,12 @@ async function getWeatherData() {
         "cd148ebb1b784212b74140622240312",
         "7ae67e219af54df2840140801240312",
         "0a6bc8a404224c8d89953341241912",
-        "f59e58d7735d4739ae953115241912"
+        "f59e58d7735d4739ae953115241912",
+        "17859d22a346495c988115334252703",
+        "97cc2ef3bc4f45b3b0d120816252703",
+        "51348f046e3f47ee99d120933252703",
+        "ddbba7cc66044f96b43121046252703",
+        "ab1b595515084775be2121201252703"
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
@@ -196,7 +211,11 @@ async function getWeatherData() {
 
             const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
 
-            if (!parsedData || ((Date.now() - weatherParsedTime) > retentionTime) || (weatherParsedLocation !== currentUserLocation) || (weatherParsedLang !== currentLanguage)) {
+            if (!parsedData ||
+                ((Date.now() - weatherParsedTime) > retentionTime) ||
+                (weatherParsedLocation !== currentUserLocation) ||
+                (weatherParsedLang !== currentLanguage)) {
+
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
                 let data = await fetch(weatherApi);
@@ -226,10 +245,10 @@ async function getWeatherData() {
                     localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
                     localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
                 }
-                UpdateWeather();
-            } else {
-                setTimeout(UpdateWeather, 50);
             }
+
+            // Update weather data
+            UpdateWeather();
 
             function UpdateWeather() {
                 // Weather data
@@ -324,7 +343,6 @@ async function getWeatherData() {
                 var maxLength = 10;
                 var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
                 document.getElementById("location").textContent = limitedText;
-
             }
         } catch (error) {
             console.error("Error fetching weather data:", error);
@@ -334,18 +352,17 @@ async function getWeatherData() {
 
 
 // Save and load toggle state
-document.addEventListener("DOMContentLoaded", function () {
-    const hideWeatherCard = document.getElementById("hideWeatherCard");
-    const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
+const hideWeatherCard = document.getElementById("hideWeatherCard");
+const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
 
-    hideWeatherCard.addEventListener("change", function () {
-        saveCheckboxState("hideWeatherCardState", hideWeatherCard);
-    });
-
-    fahrenheitCheckbox.addEventListener("change", function () {
-        saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
-    });
-
-    loadCheckboxState("hideWeatherCardState", hideWeatherCard);
-    loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+hideWeatherCard.addEventListener("change", function () {
+    saveCheckboxState("hideWeatherCardState", hideWeatherCard);
 });
+
+fahrenheitCheckbox.addEventListener("change", function () {
+    saveCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+});
+
+loadCheckboxState("hideWeatherCardState", hideWeatherCard);
+loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+

@@ -55,13 +55,11 @@ const es = {
     "ProxyText": "Proxy CORS por defecto",
     "ProxySubtext": "Añade tu propio proxy CORS",
     "HostproxyButton": "Aloja tu propio proxy",
-    "saveproxy": "Guardar",
 
     // Location
     "UserLocText": "Ingresa tu ubicación",
     "UserLocSubtext": "Si la ubicación del clima es incorrecta",
     "userLoc": "Tu ciudad o coordenadas (Latitud, Longitud)",
-    "saveLoc": "Guardar",
 
     // Weather
     "WeatherApiText": "Ingresa tu clave de WeatherAPI",
@@ -114,7 +112,6 @@ const es = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
-    "firefly": "Adobe Firefly",
     "metaAI": "Meta AI",
 
     // Wallpaper and misc
