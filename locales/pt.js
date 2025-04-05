@@ -27,7 +27,9 @@ const pt = {
     "todoListHover": "Lista de Tarefas",
     "todoPlaceholder": "Adicionar tarefa...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Ocultar Relógio",
+    "hideClockBoxInfo": "Mostrar ou ocultar o relogio e data",
     "digitalclocktitle": "Relógio Digital",
     "digitalclockinfo": "Mudar para o relógio digital",
     "timeformattitle": "Formato 12 Horas",
@@ -50,6 +52,8 @@ const pt = {
     "micIconInfo": "Se o ditado por voz não estiver funcionando",
     "hideSearchWith": "Ocultar o Motor de Busca",
     "hideSearchWithInfo": "Alternar entre os motores de busca clicando no ícone",
+    "motivationalQuotesText": "Frases Motivacionais",
+    "motivationalQuotesInfo": "Mostrar frases motivacionais abaixo do texto personalizado",
     "search_suggestions_button": "Sugestões de Pesquisa",
     "search_suggestions_text": "Ativar sugestões de pesquisa",
 
@@ -82,6 +86,9 @@ const pt = {
 
     // Bookmarks
     "bookmarksHeading": "Favoritos",
+    "bookmarkSortBy": "Ordenar por",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Antigo-Novo",
     "bookmarkViewAs": "Visualizar como",
     "bookmarkViewGrid": "Grade",
     "bookmarkViewList": "Lista",
@@ -99,6 +106,7 @@ const pt = {
     "searchPlaceholder": "Digite aqui...",
     "listenPlaceholder": "Ouvindo...",
     "searchWithHint": "Pesquisar Com",
+    "searchOnHint": "Pesquisar Em",
     "userText": "Clique aqui para editar",
 
     // Greeting
@@ -117,6 +125,8 @@ const pt = {
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Imagens",
     "redditEngine": "Reddit",
+    "wikipediaEngine": "Wikipédia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "Ferramentas de IA",
@@ -140,6 +150,20 @@ const pt = {
     "resetsettings": "Redefinir Configurações",
     "menuCloseText": "Fechar",
 
+    // Tips
+    "switchSearchModes": "Mudar modo de pesquisa",
+    "switchSearchModesInfo": "Clique no ‘Pesquisar Com’ para mudar o modo.",
+    "adjustZoom": "Ajustar Zoom",
+    "adjustZoomInfo": "Aperte Ctrl + \"+\" or Ctrl + \"-\" para ajustar o zoom.",
+    "changeBrowserTheme": "Mudar Tema do Navegador",
+    "chromeThemeInfo": "Clique nos tres pontos (⋮) > Mais ferramentas > Personalizar Chrome, depois escolha uma cor que corresponde ao tema da extensão.",
+    "edgeThemeInfo": "Va para Configurações > Aparencia, depois escolha uma cor que corresponde ao tema da extensão.",
+    "braveThemeInfo": 'Visite <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, Baixe e aplique o tema que corresponde ao tema da extensão.',
+    "firefoxThemeInfo": 'Visite <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, Baixe e aplique o tema que corresponde ao tema da extensão.',
+    "updateFirefoxHomepage": "Atualizar Pagina Inicial",
+    "updateFirefoxHomepageInfo": "Para mudar sua página inicial como o NewTab, visite <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">este link</a> e siga as instruções.",
+    "dontShowTips": "Não mostrar novamente",
+    
     // Dialog boxes (alerts)
     "okText": "OK",
     "yesText": "Sim",
