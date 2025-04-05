@@ -384,7 +384,6 @@ async function getWeatherData() {
     }
 }
 
-
 // Save and load toggle state
 const hideWeatherCard = document.getElementById("hideWeatherCard");
 const fahrenheitCheckbox = document.getElementById("fahrenheitCheckbox");
