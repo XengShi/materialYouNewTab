@@ -55,7 +55,6 @@ async function getWeatherData() {
     // Display texts 
     document.getElementById("conditionText").textContent = translations[currentLanguage]?.conditionText || translations["en"].conditionText;
     document.getElementById("humidityLevel").textContent = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
-    document.getElementById("feelsLike").textContent = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
     document.getElementById("location").textContent = translations[currentLanguage]?.location || translations["en"].location;
 
     // Cache DOM elements
@@ -74,6 +73,14 @@ async function getWeatherData() {
     // Pre-fill input fields with saved data
     if (savedLocation) userLocInput.value = savedLocation;
     if (savedApiKey) userAPIInput.value = savedApiKey;
+
+    const minMaxTempCheckbox = document.getElementById("minMaxTempCheckbox");
+    const isMinMaxEnabled = localStorage.getItem("minMaxTempEnabled") === "true";
+    minMaxTempCheckbox.checked = isMinMaxEnabled;
+
+    document.getElementById("feelsLike").textContent = isMinMaxEnabled
+        ? translations[currentLanguage]?.minMaxTemp || translations["en"].minMaxTemp
+        : translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
 
     // Function to simulate button click on Enter key press
     function handleEnterPress(event, buttonId) {
@@ -365,7 +372,8 @@ async function getWeatherData() {
                 (weatherParsedLang !== currentLanguage)) {
 
                 // Fetch weather data using Weather API
-                let weatherApi = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${currentUserLocation}&aqi=no&lang=${currentLanguage}`;
+                let weatherApi = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${currentUserLocation}&days=1&aqi=no&alerts=no&lang=${currentLanguage}`;
+
                 let data = await fetch(weatherApi);
                 parsedData = await data.json();
                 if (!parsedData.error) {
@@ -385,6 +393,18 @@ async function getWeatherData() {
                             feelslike_c: parsedData.current.feelslike_c,
                             feelslike_f: parsedData.current.feelslike_f,
                         },
+                        forecast: {
+                            forecastday: [
+                                {
+                                    day: {
+                                        mintemp_c: parsedData.forecast.forecastday[0].day.mintemp_c,
+                                        maxtemp_c: parsedData.forecast.forecastday[0].day.maxtemp_c,
+                                        mintemp_f: parsedData.forecast.forecastday[0].day.mintemp_f,
+                                        maxtemp_f: parsedData.forecast.forecastday[0].day.maxtemp_f
+                                    }
+                                }
+                            ]
+                        }
                     };
 
                     // Save filtered weather data to localStorage
@@ -417,6 +437,15 @@ async function getWeatherData() {
                 const localizedTempFahrenheit = localizeNumbers(tempFahrenheit.toString(), currentLanguage);
                 const localizedFeelsLikeFahrenheit = localizeNumbers(feelsLikeFahrenheit.toString(), currentLanguage);
 
+                const minTempC = parsedData.forecast.forecastday[0].day.mintemp_c;
+                const maxTempC = parsedData.forecast.forecastday[0].day.maxtemp_c;
+                const minTempF = parsedData.forecast.forecastday[0].day.mintemp_f;
+                const maxTempF = parsedData.forecast.forecastday[0].day.maxtemp_f;
+                const localizedMinTempC = localizeNumbers(minTempC.toString(), currentLanguage);
+                const localizedMaxTempC = localizeNumbers(maxTempC.toString(), currentLanguage);
+                const localizedMinTempF = localizeNumbers(minTempF.toString(), currentLanguage);
+                const localizedMaxTempF = localizeNumbers(maxTempF.toString(), currentLanguage);
+
                 // Check if language is RTL
                 const isRTL = rtlLanguages.includes(currentLanguage);
 
@@ -444,11 +473,16 @@ async function getWeatherData() {
                         tempUnitF.textContent = "°F";
                         tempElement.appendChild(tempUnitF);
 
-                        // Update feels like
+                        // Update feels like or Min-Max temp
                         const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
-                        feelsLikeElement.textContent = isRTL
-                            ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
-                            : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        if (isMinMaxEnabled) {
+                            feelsLikeElement.textContent = `${localizedMinTempF} ~ ${localizedMaxTempF}${feelsLikeFUnit}`;
+                        }
+                        else {
+                            feelsLikeElement.textContent = isRTL
+                                ? `${localizedFeelsLikeFahrenheit}${feelsLikeFUnit} ${feelsLikeLabel}`
+                                : `${feelsLikeLabel} ${localizedFeelsLikeFahrenheit}${feelsLikeFUnit}`;
+                        }
                     } else {
                         // Update temperature
                         tempElement.textContent = localizedTempCelsius;
@@ -457,11 +491,16 @@ async function getWeatherData() {
                         tempUnitC.textContent = "°C";
                         tempElement.appendChild(tempUnitC);
 
-                        // Update feels like
+                        // Update feels like or Min-Max temp
                         const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
-                        feelsLikeElement.textContent = isRTL
-                            ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
-                            : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        if (isMinMaxEnabled) {
+                            feelsLikeElement.textContent = `${localizedMinTempC} ~ ${localizedMaxTempC}${feelsLikeCUnit}`;
+                        }
+                        else {
+                            feelsLikeElement.textContent = isRTL
+                                ? `${localizedFeelsLikeCelsius}${feelsLikeCUnit} ${feelsLikeLabel}`
+                                : `${feelsLikeLabel} ${localizedFeelsLikeCelsius}${feelsLikeCUnit}`;
+                        }
                     }
                 };
                 updateTemperatureDisplay();
@@ -512,3 +551,10 @@ fahrenheitCheckbox.addEventListener("change", function () {
 
 loadCheckboxState("hideWeatherCardState", hideWeatherCard);
 loadCheckboxState("fahrenheitCheckboxState", fahrenheitCheckbox);
+
+// Handle min-max temp checkbox state change
+minMaxTempCheckbox.addEventListener("change", () => {
+    const isChecked = minMaxTempCheckbox.checked;
+    localStorage.setItem("minMaxTempEnabled", isChecked);
+    location.reload();
+});

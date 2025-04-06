@@ -46,6 +46,8 @@ const en = {
     "hideWeatherInfo": "Disable the weather widgets",
     "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
     "hideWeatherBoxInfo": "Show only temperature pill",
+    "minMaxTempText": "Min-Max Temperature",
+    "minMaxTempSubText": "Replace 'Feels Like' with minimum and maximum temperature",
 
     // Search
     "micIconTitle": "Hide Microphone Icon",
@@ -101,6 +103,7 @@ const en = {
     "conditionText": "Hello! How are you today?",
     "humidityLevel": "Humidity",
     "feelsLike": "Feels",
+    "minMaxTemp": "Min ~ Max",
     "location": "Earth",
     "enterBtn": "Search",
     "searchPlaceholder": "Type here...",
