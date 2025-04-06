@@ -46,6 +46,8 @@ const cs = {
     "hideWeatherInfo": "Vypne widgety s počasím",
     "hideWeatherBox": "Skrýt kartu s počasím",
     "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
+    "minMaxTempText": "Teplota daná rozsahem",
+    "minMaxTempSubText": "Nahradí pocitovou teplotu rozsahem minimální a maximální teploty",
 
     // Search
     "micIconTitle": "Skrýt ikonu mikrofonu",
@@ -101,6 +103,7 @@ const cs = {
     "conditionText": "Dobrý den! Jak se máte?",
     "humidityLevel": "Vlhkost",
     "feelsLike": "Pocitová teplota",
+    "minMaxTemp": "min až max",
     "location": "Země",
     "enterBtn": "Vyhledat",
     "searchPlaceholder": "Zadejte hledaný výraz…",
