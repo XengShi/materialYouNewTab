@@ -2509,6 +2509,71 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
+.location-suggestion-box {
+	position: absolute;
+	margin-right: var(--gap);
+	width: -webkit-fill-available;
+	width: -moz-available;
+	background-color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
+	border-radius: 10px;
+	margin-top: 3px;
+	overflow-y: auto;
+	max-height: 131px;
+	display: none;
+	z-index: 1000;
+}
+
+.location-suggestion-box::-webkit-scrollbar {
+	width: 4px;
+}
+
+.location-suggestion-box::-webkit-scrollbar-track {
+	background-color: transparent;
+	margin: 4px 0;
+}
+
+.location-suggestion-box::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 2px;
+}
+
+.location-suggestion-box::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 2px;
+}
+
+@-moz-document url-prefix() {
+	.location-suggestion-box {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
+}
+
+.location-suggestion-item {
+	font-size: 0.84rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 6px 11px;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.location-suggestion-item:hover,
+.location-suggestion-item.active {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+.location-suggestion-item:first-child {
+	border-radius: 10px 10px 0 0;
+}
+
+.location-suggestion-item:last-child {
+	border-radius: 0 0 10px 10px;
+}
+
 .resetbtn {
 	width: -webkit-fill-available;
 	width: -moz-available;
@@ -3895,6 +3960,14 @@ input:checked + .toggle:before {
 
 .dark-theme .resultItem.active {
 	background-color: var(--darkColor-dark);
+}
+
+.dark-theme .location-suggestion-box {
+	background-color: #272727;
+}
+
+.dark-theme .location-suggestion-item.active {
+	background-color: var(--bg-color-dark);
 }
 
 .dark-theme .shortcutSettingsEntry {

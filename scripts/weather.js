@@ -65,6 +65,7 @@ async function getWeatherData() {
     const saveLocButton = document.getElementById("saveLoc");
     const gpsToggle = document.getElementById("useGPScheckbox");
     const locationCont = document.getElementById("locationCont");
+    const locationSuggestions = document.getElementById("locationSuggestions");
 
     // Load saved data from localStorage
     const savedApiKey = localStorage.getItem("weatherApiKey");
@@ -133,12 +134,164 @@ async function getWeatherData() {
         "cd148ebb1b784212b74140622240312",
         "7ae67e219af54df2840140801240312",
         "0a6bc8a404224c8d89953341241912",
-        "f59e58d7735d4739ae953115241912"
+        "f59e58d7735d4739ae953115241912",
+        "17859d22a346495c988115334252703",
+        "97cc2ef3bc4f45b3b0d120816252703",
+        "51348f046e3f47ee99d120933252703",
+        "ddbba7cc66044f96b43121046252703",
+        "ab1b595515084775be2121201252703"
     ];
     const defaultApiKey = weatherApiKeys[Math.floor(Math.random() * weatherApiKeys.length)];
 
     // Determine which API key to use
     const apiKey = savedApiKey || defaultApiKey;
+
+    let activeIndex = -1; // Track keyboard navigation index
+    let suggestions = []; // Store fetched location suggestions
+
+    // Hide/show browser autocomplete based on suggestion state
+    function toggleAutocomplete() {
+        if (suggestions.length > 0) {
+            userLocInput.setAttribute("autocomplete", "off");
+        } else {
+            userLocInput.removeAttribute("autocomplete");
+        }
+    }
+
+    // Fetch location suggestions from weatherAPI
+    async function fetchLocationSuggestions(query) {
+        if (!savedApiKey || query.length < 3) {
+            suggestions = [];
+            locationSuggestions.style.display = "none";
+            toggleAutocomplete();
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api.weatherapi.com/v1/search.json?key=${savedApiKey}&q=${query}`);
+            suggestions = await response.json();
+
+            if (suggestions.length > 0) {
+                displaySuggestions(suggestions);
+                toggleAutocomplete();
+            } else {
+                locationSuggestions.style.display = "none";
+                toggleAutocomplete();
+            }
+        } catch (error) {
+            console.error("Error fetching location suggestions:", error);
+            suggestions = [];
+            toggleAutocomplete();
+        }
+    }
+
+    // Display location suggestions in the dropdown
+    function displaySuggestions(locations) {
+        locationSuggestions.innerHTML = "";
+
+        locations.forEach((location, index) => {
+            const div = document.createElement("div");
+            div.classList.add("location-suggestion-item");
+
+            // Format text without extra comma if region is empty
+            const locationText = location.region
+                ? `${location.name}, ${location.region}, ${location.country}`
+                : `${location.name}, ${location.country}`;
+            div.textContent = locationText;
+
+            div.dataset.index = index;
+
+            // Mouse click selects location and saves
+            div.addEventListener("click", () => {
+                selectLocation(index);
+                locationSuggestions.style.display = "none";
+                suggestions = [];
+                toggleAutocomplete();
+            });
+
+            // Mouse hover highlights
+            div.addEventListener("mouseenter", () => {
+                activeIndex = index;
+                updateActiveSuggestion();
+            });
+
+            locationSuggestions.appendChild(div);
+        });
+
+        locationSuggestions.style.display = "block";
+        activeIndex = -1; // Reset selection
+    }
+
+    // Update active suggestion highlight
+    function updateActiveSuggestion() {
+        const items = locationSuggestions.querySelectorAll(".location-suggestion-item");
+
+        items.forEach((item, i) => {
+            item.classList.toggle("active", i === activeIndex);
+            if (i === activeIndex) {
+                item.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            }
+        });
+    }
+
+    // Select location from suggestions
+    function selectLocation(index) {
+        const selectedLocation = suggestions[index];
+
+        const locationText = selectedLocation.region
+            ? `${selectedLocation.name}, ${selectedLocation.region}, ${selectedLocation.country}`
+            : `${selectedLocation.name}, ${selectedLocation.country}`;
+        userLocInput.value = locationText;
+
+        locationSuggestions.style.display = "none";
+        localStorage.setItem("weatherLocation", JSON.stringify(selectedLocation));
+        saveLocButton.click();
+        suggestions = [];
+        toggleAutocomplete();
+    }
+
+    // Handle user input (fetch locations on change)
+    userLocInput.addEventListener("input", () => {
+        fetchLocationSuggestions(userLocInput.value)
+    });
+
+    // Display suggestions when input is focused
+    userLocInput.addEventListener("focus", () => {
+        if (userLocInput.value.length >= 3) {
+            fetchLocationSuggestions(userLocInput.value);
+        }
+    });
+
+    // Handle keyboard navigation for suggestions
+    userLocInput.addEventListener("keydown", (e) => {
+        const items = locationSuggestions.querySelectorAll(".location-suggestion-item");
+
+        if (items.length === 0) return;
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            activeIndex = (activeIndex + 1) % items.length;
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+        } else if (e.key === "Enter" && activeIndex >= 0) {
+            e.preventDefault();
+            selectLocation(activeIndex);
+            locationSuggestions.style.display = "none";
+            return;
+        }
+
+        updateActiveSuggestion();
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!locationSuggestions.contains(e.target) && !userLocInput.contains(e.target)) {
+            locationSuggestions.style.display = "none";
+            suggestions = [];
+            toggleAutocomplete();
+        }
+    });
 
     // Determine the location to use
     let currentUserLocation = savedLocation;
@@ -204,7 +357,7 @@ async function getWeatherData() {
             const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
             const weatherParsedLang = localStorage.getItem("weatherParsedLang");
 
-            const retentionTime = savedApiKey ? 120000 : 960000; // 2 min for user-entered API key, 16 min otherwise
+            const retentionTime = savedApiKey ? 435000 : 960000; // 7.25 min for user-entered API key, 16 min otherwise
 
             if (!parsedData ||
                 ((Date.now() - weatherParsedTime) > retentionTime) ||
