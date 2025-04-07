@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)-->
 
-## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Mar 29, 2025
+## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 7, 2025
 
 ### Added
 - Added GPS-based dynamic location option for weather updates ([@prem-k-r](https://github.com/prem-k-r)) ([#331](https://github.com/XengShi/materialYouNewTab/pull/331))
@@ -34,10 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -  Added Tips ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([0190dee](https://github.com/XengShi/materialYouNewTab/commit/0190dee9e0adfb5e4f68afa8529317eb6810d311)), ([#585](https://github.com/XengShi/materialYouNewTab/pull/585)), ([#589](https://github.com/XengShi/materialYouNewTab/pull/589))
 -  Added Reddit and Quora as Search Platforms ([@prem-k-r](https://github.com/prem-k-r)) ([#593](https://github.com/XengShi/materialYouNewTab/pull/593))
 -  Added option to hide Clock ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([23cd5a8](https://github.com/XengShi/materialYouNewTab/commit/23cd5a86759d11944f447f4f448a710ccfe4d9fc)), ([#599](https://github.com/XengShi/materialYouNewTab/pull/599))
+-  Added location suggestion dropdown with real-time search feature ([@prem-k-r](https://github.com/prem-k-r)) ([#609](https://github.com/XengShi/materialYouNewTab/pull/609))
+-  Added option to show Minimun-Maximum temperature instead of Feels like ([@prem-k-r](https://github.com/prem-k-r)) ([#615](https://github.com/XengShi/materialYouNewTab/pull/615))
 
 
 ### Changed
-- Weather retention time set to 2 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
+- Weather retention time set to 7.25 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
 - Changed default Vietnamese font to 'Be Vietnam Pro' ([@prem-k-r](https://github.com/prem-k-r)) ([#442](https://github.com/XengShi/materialYouNewTab/pull/442))
 - Improved date format for Japanese and Korean ([@prem-k-r](https://github.com/prem-k-r)), ([@dempavof](https://github.com/dempavof)) ([#529](https://github.com/XengShi/materialYouNewTab/pull/529))
 - Updated toggle switch design; adjusted the inner thumb size based on state and reduced animation speed ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
@@ -57,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced weather icons by using 128x128px images instead of 64x64px ([@prem-k-r](https://github.com/prem-k-r)), ([@ceskyDJ](https://github.com/ceskyDJ)) ([#533](https://github.com/XengShi/materialYouNewTab/pull/533))
 - Styled each shortcut as a separate card with a background color in the Edit Shortcuts list ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
 - Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
+- Added 5 more shared WeatherAPI keys ([@prem-k-r](https://github.com/prem-k-r)) ([916e3d6](https://github.com/XengShi/materialYouNewTab/pull/609/commits/916e3d6bd49c10fde9c2f24ac61a0570922c5c3a))
 
 
 ### Removed
