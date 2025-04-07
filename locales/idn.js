@@ -88,6 +88,8 @@ const idn = {
     "saveAPI": "Simpan",
     "hideWeatherBox": "Sembunyikan Kartu Cuaca", // Toggle for mobile devices only
     "hideWeatherBoxInfo": "Hanya tampilkan kapsul suhu",
+    "minMaxTempText": "Suhu Min-Maks",
+    "minMaxTempSubText": "Ganti 'Terasa Seperti' dengan suhu minimum dan maksimum",
 
     // Body Items
     // Calendar
@@ -112,6 +114,7 @@ const idn = {
     "humidityLevel": "Kelembapan",
     "feelsLike": "Terasa",
     "location": "Bumi",
+    "minMaxTemp": "Min ~ Maks",
     "enterBtn": "Telusuri",
     "searchPlaceholder": "Ketik disini...",
     "listenPlaceholder": "Mendengarkan...",
