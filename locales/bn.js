@@ -46,6 +46,8 @@ const bn = {
     "hideWeatherInfo": "আবহাওয়া উইজেট বন্ধ করুন",
     "hideWeatherBox": "আবহাওয়া কার্ড লুকান",
     "hideWeatherBoxInfo": "শুধুমাত্র তাপমাত্রা পিল দেখান",
+    "minMaxTempText": "সর্বনিম্ন-সর্বাধিক তাপমাত্রা",
+    "minMaxTempSubText": "অনুভূত তাপমাত্রার পরিবর্তে সর্বনিম্ন ও সর্বাধিক তাপমাত্রা দেখান",
 
     // Search
     "micIconTitle": "মাইক্রোফোন আইকন লুকান",
@@ -103,6 +105,7 @@ const bn = {
     "conditionText": "হ্যালো! আজ আপনি কেমন আছেন?",
     "humidityLevel": "আর্দ্রতা",
     "feelsLike": "অনুভূতি হয়",
+    "minMaxTemp": "নিম্ন ~ উচ্চ",
     "location": "পৃথিবী",
     "enterBtn": "সার্চ করুন",
     "searchPlaceholder": "এখানে টাইপ করুন...",
