@@ -68,7 +68,7 @@ const applySelectedTheme = (colorValue) => {
     document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = false;
 
     // if (themeColorMapping.includes(colorValue)&&(!enableDarkModeCheckbox.checked==false)) {
-    if ((colorValue in themeColorMapping) && (enableDarkModeCheckbox.checked == false) || colorValue == "dark" || colorValue == "peach") {
+    if ((colorValue in themeColorMapping) && (enableDarkModeCheckbox.checked == false) || (colorValue == "dark") || (colorValue == "peach")) {
         if (colorValue == "dark" || colorValue == "peach") {
             document.querySelector('.darkmodeswitch #enableDarkModeCheckbox').disabled = true;
         }
