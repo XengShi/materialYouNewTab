@@ -7,11 +7,12 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // it is necessary for some elements not to blink when the page is reloaded
+    // Remove Loading Screen When the DOM and the Theme has Loaded
+    document.getElementById("LoadingScreen").style.display = "none";
+
+    // Stop blinking of some elements when the page is reloaded
     setTimeout(() => {
         document.documentElement.classList.add("theme-transition");
-        // Remove Loading Screen When the DOM and the Theme has Loaded
-        document.getElementById("LoadingScreen").style.display = "none";
     }, 25);
 });
 
