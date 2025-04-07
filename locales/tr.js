@@ -119,10 +119,6 @@ const tr = {
     "perplexity": "Perplexity",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "Karanlık Mod",
-    "enableDarkModeInfo": "Karanlık moda geç",
-
     // Wallpaper and misc
     "uploadWallpaperText": "Duvar Kağıdı Yükle",
     "backupText": "Yedekleme",
