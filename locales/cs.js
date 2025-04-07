@@ -103,7 +103,7 @@ const cs = {
     "conditionText": "Dobrý den! Jak se máte?",
     "humidityLevel": "Vlhkost",
     "feelsLike": "Pocitová teplota",
-    "minMaxTemp": "min až max",
+    "minMaxTemp": "Min až max",
     "location": "Země",
     "enterBtn": "Vyhledat",
     "searchPlaceholder": "Zadejte hledaný výraz…",
