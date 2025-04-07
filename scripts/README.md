@@ -29,7 +29,7 @@
     - Implement your functionality within the script. Write clean, maintainable code and follow any existing coding standards used in the project.
 
 5. **Update the changelog**
-    - Edit [CHANGELOG.md](https://github.com/XengShi/materialYouNewTab/blob/main/CHANGELOG.md) and add your changes under the [Unreleased] section.
+    - Edit [CHANGELOG.md](../CHANGELOG.md) and add your changes under the [Unreleased] section.
     - Group all your changes under the most appropriate categories.
 
 ---
