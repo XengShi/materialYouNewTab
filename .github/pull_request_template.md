@@ -14,3 +14,4 @@ If applicable, attach relevant screenshots or screen recordings showcasing the m
 - [ ] I have verified compatibility across Chrome and Firefox (additional browsers if applicable).
 - [ ] I have attached relevant visual evidence (screenshots/videos) if applicable.
 - [ ] My code follows the project's coding style and conventions.
+- [ ] I have updated the [CHANGELOG.md](https://github.com/XengShi/materialYouNewTab/blob/main/CHANGELOG.md) under the appropriate categories with all my changes in this PR.
