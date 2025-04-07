@@ -46,6 +46,8 @@ const hi = {
     "hideWeatherInfo": "मौसम विजेट्स को अक्षम करें",
     "hideWeatherBox": "मौसम कार्ड छिपाएँ",
     "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएँ",
+    "minMaxTempText": "न्यूनतम-अधिकतम तापमान",
+    "minMaxTempSubText": "अनुभूत तापमान की जगह न्यूनतम और अधिकतम तापमान दिखाएँ",
 
     // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
@@ -103,6 +105,7 @@ const hi = {
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
     "humidityLevel": "नमी",
     "feelsLike": "महसूस",
+    "minMaxTemp": "न्यून ~ अधिक",
     "location": "पृथ्वी",
     "enterBtn": "सर्च करें",
     "searchPlaceholder": "यहाँ लिखें...",

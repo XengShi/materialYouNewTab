@@ -41,7 +41,6 @@
     <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
-    <script defer src="scripts/revert-extension-icon.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -1434,6 +1433,18 @@
                             </label>
                         </div>
 
+                        <div class="ttcont weather" id="minMaxTempCont">
+                            <div class="texts">
+                                <div class="bigText" id="minMaxTempText">Min-Max Temperature</div>
+                                <div class="infoText" id="minMaxTempSubText">Replace 'Feels Like' with minimum and
+                                    maximum temperature</div>
+                            </div>
+                            <label class="switch">
+                                <input id="minMaxTempCheckbox" type="checkbox">
+                                <span class="toggle"></span>
+                            </label>
+                        </div>
+
                         <div class="ttcont weather">
                             <div class="texts">
                                 <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit</div>
@@ -1452,8 +1463,12 @@
                                 <div class="infoText" id="UserLocSubtext">If the weather location isn't correct
                                 </div>
                             </div>
+
                             <input id="userLoc" placeholder="Your City or Coordinates (Latitude, Longitude)"
                                 type="text">
+
+                            <div id="locationSuggestions" class="location-suggestion-box"></div>
+
                             <div class="bottom">
                                 <a href="https://xengshi.github.io/materialYouNewTab/privacy-policy.html"
                                     id="PrivacyPolicy" target="_blank">Privacy policy</a>
