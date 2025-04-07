@@ -29,7 +29,9 @@ const idn = {
     "todoListHover": "To-Do List",
     "todoPlaceholder": "Tambah tugas...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Sembunyikan Jam",
+    "hideClockBoxInfo": "Tampilkan atau sembunyikan jam dan tanggal",
     "digitalclocktitle": "Jam Digital",
     "digitalclockinfo": "Ubah menjadi jam digital",
     "timeformattitle": "Format 12-Jam",
@@ -88,6 +90,8 @@ const idn = {
     "saveAPI": "Simpan",
     "hideWeatherBox": "Sembunyikan Kartu Cuaca", // Toggle for mobile devices only
     "hideWeatherBoxInfo": "Hanya tampilkan kapsul suhu",
+    "minMaxTempText": "Suhu Min-Maks",
+    "minMaxTempSubText": "Ganti 'Terasa Seperti' dengan suhu minimum dan maksimum",
 
     // Body Items
     // Calendar
@@ -112,6 +116,7 @@ const idn = {
     "humidityLevel": "Kelembapan",
     "feelsLike": "Terasa",
     "location": "Bumi",
+    "minMaxTemp": "Min ~ Maks",
     "enterBtn": "Telusuri",
     "searchPlaceholder": "Ketik disini...",
     "listenPlaceholder": "Mendengarkan...",
