@@ -29,7 +29,9 @@ const idn = {
     "todoListHover": "To-Do List",
     "todoPlaceholder": "Tambah tugas...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Sembunyikan Jam",
+    "hideClockBoxInfo": "Tampilkan atau sembunyikan jam dan tanggal",
     "digitalclocktitle": "Jam Digital",
     "digitalclockinfo": "Ubah menjadi jam digital",
     "timeformattitle": "Format 12-Jam",
