@@ -465,6 +465,14 @@ async function getWeatherData() {
                     // List of languages where a space before °F or °C is required
                     const langWithSpaceBeforeDegree = ['cs'];
 
+                    // Range separator for min-max temperature
+                    const rangeSeparator = {
+                        cs: "až",
+                        // Add more languages as needed
+                        default: "~"
+                    };
+                    const separator = rangeSeparator[currentLanguage] || rangeSeparator.default;
+
                     if (fahrenheitCheckbox.checked) {
                         // Update temperature
                         tempElement.textContent = localizedTempFahrenheit;
@@ -476,7 +484,7 @@ async function getWeatherData() {
                         // Update feels like or Min-Max temp
                         const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
                         if (isMinMaxEnabled) {
-                            feelsLikeElement.textContent = `${localizedMinTempF} ~ ${localizedMaxTempF}${feelsLikeFUnit}`;
+                            feelsLikeElement.textContent = `${localizedMinTempF} ${separator} ${localizedMaxTempF}${feelsLikeFUnit}`;
                         }
                         else {
                             feelsLikeElement.textContent = isRTL
@@ -494,7 +502,7 @@ async function getWeatherData() {
                         // Update feels like or Min-Max temp
                         const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
                         if (isMinMaxEnabled) {
-                            feelsLikeElement.textContent = `${localizedMinTempC} ~ ${localizedMaxTempC}${feelsLikeCUnit}`;
+                            feelsLikeElement.textContent = `${localizedMinTempC} ${separator} ${localizedMaxTempC}${feelsLikeCUnit}`;
                         }
                         else {
                             feelsLikeElement.textContent = isRTL
