@@ -2165,7 +2165,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 16px;
+	padding: 0 16px 0 12px;
 	border-radius: 100px;
 	text-decoration: none;
 	color: var(--textColorDark-blue);
@@ -2182,10 +2182,9 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .aiToolsCont .toolsCont .tIcon {
-	width: 26px;
-	height: 26px;
-	/* background-color: turquoise; */
-	margin-right: 12px;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
 }
 
 /* -----------End of Ai-Tools---------- */
