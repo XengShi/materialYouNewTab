@@ -136,6 +136,7 @@ const bn = {
     "gemini": "জেমিনি",
     "copilot": "কোপাইলট",
     "claude": "ক্লড",
+    "grok": "গ্রোক",
     "perplexity": "পারপ্লেক্সিটি",
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",

@@ -159,6 +159,7 @@ function applyLanguage(lang) {
         'gemini',
         'copilot',
         'claude',
+        'grok',
         'perplexity',
         'deepseek',
         'metaAI',
