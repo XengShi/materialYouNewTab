@@ -139,6 +139,7 @@ const hi = {
     "gemini": "जेमिनी",
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
+    "grok": "ग्रोक",
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
