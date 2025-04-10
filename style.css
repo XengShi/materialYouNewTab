@@ -501,7 +501,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 /* ----------------- End of Google App Menu ----------------- */
 
 /* ----------------- Start of Bookmark System ----------------- */
-
 #bookmarksContainer {
 	background-color: #0000004f;
 	backdrop-filter: blur(15px) saturate(160%);
@@ -782,9 +781,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 2px;
 	flex-direction: column;
 }
+
 #bookmarkList:is(.grid-view) li a .favicon {
 	margin: 20px auto 24px auto;
 }
+
 #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	content: "";
@@ -800,6 +801,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	box-sizing: border-box;
 	border-radius: 32px;
 }
+
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	background: var(--bg-color-blue);
 	width: 36px;
@@ -981,11 +983,9 @@ body #bookmarkButton.bookmark-button.rotate {
 #editBookmarkModal button:hover {
 	background: var(--darkerColor-blue);
 }
-
 /* ----------------- End of Bookmark System ----------------- */
 
 /* ------------------ To Do List Section -------------------- */
-
 .todoListCont {
 	position: fixed;
 	display: inline-block;
@@ -1192,6 +1192,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-top-left-radius: 18px;
 	border-top-right-radius: 18px;
 }
+
 .todolistitem:last-child {
 	border-bottom-left-radius: 18px;
 	border-bottom-right-radius: 18px;
@@ -1813,6 +1814,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 1;
 	transform: translateX(0);
 }
+
 .searchEnginesContainer.show {
 	animation: slideIn 0.3s ease-in-out forwards;
 }
@@ -1942,6 +1944,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	scrollbar-width: none;
 	margin: auto;
 }
+
 #shortcuts-section::-webkit-scrollbar {
 	display: none;
 }
@@ -2112,7 +2115,6 @@ body #bookmarkButton.bookmark-button.rotate {
 .aiToolsCont .hangno {
 	background-color: var(--accentLightTint-blue);
 	height: 100%;
-	/* width: 131px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2137,9 +2139,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .aiToolsCont .toolsCont {
-	/* display: flex; */
 	display: none;
-	/* background-color: orange; */
 	position: relative;
 	margin-left: 30px;
 	transition: all 500ms;
@@ -2165,7 +2165,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 16px 0 12px;
+	padding: 0 17px 0 12px;
 	border-radius: 100px;
 	text-decoration: none;
 	color: var(--textColorDark-blue);
@@ -2177,7 +2177,6 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .aiToolsCont .toolsCont a:hover {
-	background-color: var(--bg-color-blue);
 	box-shadow: inset 0 0 0 1px var(--darkColor-blue);
 }
 
@@ -3048,6 +3047,7 @@ input:checked + .toggle:before {
 #colorPicker {
 	display: none;
 }
+
 .colorPickerLabel {
 	grid-column: span 3;
 	width: 100%;
@@ -3063,6 +3063,7 @@ input:checked + .toggle:before {
 	border: 2px solid transparent;
 	transition: background-color 0.3s ease;
 }
+
 .colorPickerLabel:hover {
 	background: var(--bg-color-blue);
 }
@@ -3088,8 +3089,6 @@ input:checked + .toggle:before {
 /* ---------------------- */
 #menuCloseButton {
 	position: relative;
-	/* position: absolute; */
-	/* bottom: var(--gap); */
 	width: 42px;
 	height: 42px;
 	min-width: 42px;
