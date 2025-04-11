@@ -125,6 +125,7 @@ const mr = {
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
     "grok": "ग्रोक",
+    "qwen": "क्वेन",
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",

@@ -15,8 +15,10 @@ const en = {
     "adaptiveIconInfoText": "Shortcut icons will match the theme color and appear smaller",
     "bookmarksText": "Bookmarks",
     "bookmarksInfo": "Show bookmarks sidebar",
-    "ai_tools_button": "AI-Tools",
+    "ai_tools_button": "AI Tools",
     "enable_ai_tools": "Show shortcuts for AI tools",
+    "aiToolsSettingsText": "AI Tools Settings",
+    "aiToolsSettingsInfo": "Manage AI tools shortcuts",
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "Show shortcuts for Google Apps",
     "googleAppsHover": "Google Apps",    // Keep this shorter
@@ -138,9 +140,13 @@ const en = {
     "copilot": "Copilot",
     "claude": "Claude",
     "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Select which AI tools to display",
+    "aiSettingsNote": "Scroll to view the full list of AI shortcuts.",
+    "resetAISettingsBtn": "Reset",
 
     // Theme
     "enableDarkMode": "Dark Mode (Experimental)",
