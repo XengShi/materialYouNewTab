@@ -15,8 +15,10 @@ const en = {
     "adaptiveIconInfoText": "Shortcut icons will match the theme color and appear smaller",
     "bookmarksText": "Bookmarks",
     "bookmarksInfo": "Show bookmarks sidebar",
-    "ai_tools_button": "AI-Tools",
+    "ai_tools_button": "AI Tools",
     "enable_ai_tools": "Show shortcuts for AI tools",
+    "aiToolsSettingsText": "AI Tools Settings",
+    "aiToolsSettingsInfo": "Manage AI tools shortcuts",
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "Show shortcuts for Google Apps",
     "googleAppsHover": "Google Apps",    // Keep this shorter
@@ -46,6 +48,8 @@ const en = {
     "hideWeatherInfo": "Disable the weather widgets",
     "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
     "hideWeatherBoxInfo": "Show only temperature pill",
+    "minMaxTempText": "Min-Max Temperature",
+    "minMaxTempSubText": "Replace 'Feels Like' with minimum and maximum temperature",
 
     // Search
     "micIconTitle": "Hide Microphone Icon",
@@ -101,6 +105,7 @@ const en = {
     "conditionText": "Hello! How are you today?",
     "humidityLevel": "Humidity",
     "feelsLike": "Feels",
+    "minMaxTemp": "Min ~ Max",
     "location": "Earth",
     "enterBtn": "Search",
     "searchPlaceholder": "Type here...",
@@ -134,9 +139,14 @@ const en = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Select which AI tools to display",
+    "aiSettingsNote": "Scroll to view the full list of AI shortcuts.",
+    "resetAISettingsBtn": "Reset",
 
     // Theme
     "enableDarkMode": "Dark Mode (Experimental)",

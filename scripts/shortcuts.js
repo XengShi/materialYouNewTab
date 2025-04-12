@@ -352,9 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (hostname === "github.com") {
                 logo.src = "./svgs/shortcuts_icons/github-shortcut.svg";
-            } else if (url === "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html") {
-                // Special case for invalid URLs
-                logo.src = "./svgs/shortcuts_icons/invalid-url.svg";
             } else {
                 logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
@@ -380,15 +377,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function getValidShortcut(shortcut) {
 
         let { url, name } = shortcut;
-
-        function isValidUrl(url) {
-            const pattern = /^(https:\/\/|http:\/\/)?(([a-zA-Z\d-]+\.)+[a-zA-Z]{2,}|(\d{1,3}\.){3}\d{1,3})(\/[^\s]*)?$/i;
-            return pattern.test(url);
-        }
-
-        if (!isValidUrl(url)) {
-            url = "https://xengshi.github.io/materialYouNewTab/docs/PageNotFound.html";
-        }
 
         const normalizedUrl = encodeURI(
             url.startsWith('https://') || url.startsWith('http://') ? url : 'https://' + url

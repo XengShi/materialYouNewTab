@@ -15,8 +15,10 @@ const hi = {
     "adaptiveIconInfoText": "शॉर्टकट आइकन थीम रंग से मेल खाते हुए छोटे आकार में दिखेंगे",
     "bookmarksText": "बुकमार्क्स",
     "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
-    "ai_tools_button": "AI-उपकरण",
+    "ai_tools_button": "AI उपकरण",
     "enable_ai_tools": "AI उपकरणों के शॉर्टकट्स प्रदर्शित करें",
+    "aiToolsSettingsText": "AI उपकरण सेटिंग्स",
+    "aiToolsSettingsInfo": "AI उपकरणों के शॉर्टकट्स प्रबंधित करें",
     "googleAppsMenuText": "गूगल ऐप्स",
     "googleAppsMenuInfo": "गूगल ऐप्स के शॉर्टकट्स प्रदर्शित करें",
     "googleAppsHover": "गूगल ऐप्स",
@@ -46,6 +48,8 @@ const hi = {
     "hideWeatherInfo": "मौसम विजेट्स को अक्षम करें",
     "hideWeatherBox": "मौसम कार्ड छिपाएँ",
     "hideWeatherBoxInfo": "केवल तापमान पिल दिखाएँ",
+    "minMaxTempText": "न्यूनतम-अधिकतम तापमान",
+    "minMaxTempSubText": "अनुभूत तापमान की जगह न्यूनतम और अधिकतम तापमान दिखाएँ",
 
     // Search
     "micIconTitle": "माइक्रोफोन आइकन छिपाएँ",
@@ -103,6 +107,7 @@ const hi = {
     "conditionText": "नमस्ते! आप आज कैसे हैं?",
     "humidityLevel": "नमी",
     "feelsLike": "महसूस",
+    "minMaxTemp": "न्यून ~ अधिक",
     "location": "पृथ्वी",
     "enterBtn": "सर्च करें",
     "searchPlaceholder": "यहाँ लिखें...",
@@ -136,9 +141,14 @@ const hi = {
     "gemini": "जेमिनी",
     "copilot": "कोपायलट",
     "claude": "क्लॉड",
+    "grok": "ग्रोक",
+    "qwen": "क्वेन",
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
+    "aiSettingsIntro": "चुनें की कौन से AI शॉर्टकट्स रखने हैं",
+    "aiSettingsNote": "सभी AI शॉर्टकट्स की सूची देखने के लिए नीचे स्क्रॉल करें।",
+    "resetAISettingsBtn": "रीसेट करें",
 
     // Theme - delete later
     "enableDarkMode": "डार्क मोड",

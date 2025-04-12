@@ -3,8 +3,6 @@ const it = {
     // Menu Items
     "github": "GitHub",
     "feedback": "Feedback",
-    "resetsettings": "Reimposta Impostazioni",
-    "menuCloseText": "Chiudi",
 
     // Shortcuts
     "shortcutsText": "Scorciatoie",
@@ -29,7 +27,9 @@ const it = {
     "todoListHover": "Lista ToDo",    // Keep this short
     "todoPlaceholder": "Aggiungi attività...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Nascondi Orologio",
+    "hideClockBoxInfo": "Mostra e nascodi orologio e ora",
     "digitalclocktitle": "Orologio Digitale",
     "digitalclockinfo": "Abilita/disabilita Orologio Digitale",
     "timeformattitle": "Usa formato 12h",
@@ -42,10 +42,18 @@ const it = {
     "userTextInfo": "Mostra il testo personalizzato sotto l'orologio",
     "fahrenheitCelsiusCheckbox": "Passa a Fahrenheit",
     "fahrenheitCelsiusText": "Ricarica la pagina per vedere gli aggiornamenti",
+    "hideWeatherTitle": "Nascondi Meteo",
+    "hideWeatherInfo": "Disabilita i widget meteo",
+    "hideWeatherBox": "Nascondi Scheda Meteo",    // Toggle for mobile devices only
+    "hideWeatherBoxInfo": "Mostra solo l'indicatore della temperatura",
+
+    // Search
     "micIconTitle": "Nascondi icona del microfono",
     "micIconInfo": "Se la digitazione vocale non funziona",
     "hideSearchWith": "Nascondi motori di ricerca",
     "hideSearchWithInfo": "Scegli tra i motori di ricerca cliccando l'icona",
+    "motivationalQuotesText": "Frasi Motivazionali",
+    "motivationalQuotesInfo": "Mostra frasi sotto la barra di ricerca",
     "search_suggestions_button": "Suggerimenti di Ricerca",
     "search_suggestions_text": "Abilita/disabilita Suggerimenti di Ricerca",
 
@@ -57,10 +65,12 @@ const it = {
     "HostproxyButton": "Hosta il Tuo Proxy",
 
     // Location
+    "useGPS": "Usa il GPS",
+    "useGPSInfo": "Abilita il GPS per aggiornamenti in tempo reale sulla posizione",
     "UserLocText": "Inserisci la tua posizione",
     "UserLocSubtext": "Se la posizione meteo non è corretta",
     "userLoc": "La tua posizione (Città/Latitudine,Longitudine)",
-    "useGPS": "Usa il GPS",
+    "PrivacyPolicy": "Informativa sulla privacy",
 
     // Weather
     "WeatherApiText": "Inserisci la tua chiave WeatherAPI",
@@ -74,12 +84,18 @@ const it = {
     "days": ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
     "months": ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
 
-    // Bookmarks
+    // Bookmarks ---------
     "bookmarksHeading": "Segnalibri",
+    "bookmarkSortBy": "Ordina per",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "Old-New",
     "bookmarkViewAs": "Visualizza come",
     "bookmarkViewGrid": "Griglia",      // Keep this shorter
     "bookmarkViewList": "Elenco",       // Keep this shorter
     "bookmarkSearch": "Cerca segnalibro",
+    "editBookmarkHeading": "Modifica Segnalibro",
+    "editBookmarkName": "Nome del Segnalibro",
+    "editBookmarkURL": "URL del Segnalibro",
 
     // New Tab Item
     "conditionText": "Ciao! Come stai oggi?",
@@ -90,6 +106,7 @@ const it = {
     "searchPlaceholder": "Cerca...",
     "listenPlaceholder": "Ascoltando...",
     "searchWithHint": "Cerca con",
+    "searchOnHint": "Cerca su",
     "userText": "Clicca qui per modificare",
 
     // Greeting
@@ -100,6 +117,7 @@ const it = {
     },
 
     // Search Engines
+    "defaultEngine": "Default",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
@@ -107,6 +125,8 @@ const it = {
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Immagini",
     "redditEngine": "Reddit",
+    "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "Strumenti IA",
@@ -115,20 +135,47 @@ const it = {
     "copilot": "Copilot",
     "claude": "Claude",
     "perplexity": "Perplexity",
+    "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+
+    // Theme
+    "enableDarkMode": "Modalità Scura (Sperimentale)",
+    "enableDarkModeInfo": "Abilita i temi in modalità scura",
 
     // Wallpaper and misc
     "uploadWallpaperText": "Carica immagine",
     "backupText": "Backup",
     "restoreText": "Ripristina",
     "rangColor": "Scegli colore",
+    "resetsettings": "Reimposta Impostazioni",
+    "menuCloseText": "Chiudi",
+
+    // Tips
+    "switchSearchModes": "Cambia modalità di ricerca",
+    "switchSearchModesInfo": "Clicca su ‘Cerca con’ per cambiare modalità.",
+    "adjustZoom": "Regola lo zoom",
+    "adjustZoomInfo": "Premi Ctrl + \" +\" o Ctrl + \" -\" per regolare lo zoom.",
+    "changeBrowserTheme": "Cambia il tema del browser",
+    "chromeThemeInfo": "Clicca sui tre puntini (⋮) > Altri strumenti > Personalizza Chrome, quindi scegli un colore che si abbini al tema dell'estensione.",
+    "edgeThemeInfo": "Vai su Impostazioni > Aspetto, quindi scegli un colore che si abbini al tema dell'estensione.",
+    "braveThemeInfo": "Visita <a href=\"https://chromewebstore.google.com/category/themes/\" target=\"_blank\">Chrome Theme Store</a>, scarica e applica il tema che corrisponde all'estensione.",
+    "firefoxThemeInfo": "Visita <a href=\"https://addons.mozilla.org/firefox/themes/\" target=\"_blank\">Temi di Firefox</a>, scarica e applica il tema che corrisponde all'estensione.",
+    "updateFirefoxHomepage": "Aggiorna Homepage",
+    "updateFirefoxHomepageInfo": "Per cambiare la tua homepage come la nuova scheda, visita <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">questo link</a> e segui le istruzioni.",
+    "dontShowTips": "Non mostrarlo di nuovo",
 
     // Dialog boxes (alerts)
+    "okText": "OK",
+    "yesText": "Yes",
+    "noText": "No",
+    "agreeText": "Accetto",
+    "cancelText": "Annulla",
     "confirmWallpaper": "Vuoi impostare una nuova immagine come sfondo per oggi?",
     "confirmRestore": "Sei sicuro di voler reimpostare le impostazioni? Questa azione non può essere annullata.",
     "Nobackgroundset": "Nessuna immagine di sfondo è attualmente impostata.",
     "clearbackgroundimage": "Sei sicuro di voler rimuovere l'immagine di sfondo?",
     "ProxyDisclaimer": "Tutte le funzionalità del proxy sono disattivate di default.\n\nSe abiliti i suggerimenti di ricerca e il proxy per il bypass CORS, è fortemente consigliato usare un proprio proxy per una maggiore privacy.\n\nIl proxy predefinito sarà configurato su https://mynt-proxy.rhythmcorehq.com, il che significa che tutti i tuoi dati passeranno attraverso questo servizio, con possibili rischi per la privacy.",
+    "GPSDisclaimer": "I dati sulla tua posizione vengono utilizzati esclusivamente per fornire aggiornamenti meteo accurati. Sono temporaneamente memorizzati all'interno del browser e non vengono condivisi con servizi di terze parti né sono accessibili da noi.\n\nAbilitando il GPS, acconsenti alla condivisione della tua posizione con l'estensione a livello locale.",
     "failedbackup": "Backup fallito: ",
     "restorecompleted": "Ripristino completato con successo!",
     "restorefailed": "Ripristino fallito: ",
