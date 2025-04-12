@@ -2314,7 +2314,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	background: color-mix(in srgb, var(--whitishColor-blue) 50%, transparent);
 	color: var(--darkColor-blue);
 	border: 1px solid var(--darkColor-blue);
-	border-radius: 5px;
+	border-radius: 6px;
 	width: 26px;
 	height: 22px;
 	font-size: 0.8rem;
