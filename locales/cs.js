@@ -17,6 +17,8 @@ const cs = {
     "bookmarksInfo": "Zobrazí boční panel se záložkami",
     "ai_tools_button": "AI nástroje",
     "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
+    "aiToolsSettingsText": "Nastavení AI nástrojů",
+    "aiToolsSettingsInfo": "Nastavte si zkratky AI nástrojů",
     "googleAppsMenuText": "Google aplikace",
     "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
     "googleAppsHover": "Google aplikace",
@@ -137,9 +139,14 @@ const cs = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Vyberte, jaké AI nástroje budou zobrazeny",
+    "aiSettingsNote": "K celému seznamu AI nástrojů se dostanete pomocí skrolování.",
+    "resetAISettingsBtn": "Resetovat",
 
     // Theme
     "enableDarkMode": "Tmavý režim (experimentální)",
