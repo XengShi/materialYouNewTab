@@ -501,7 +501,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 /* ----------------- End of Google App Menu ----------------- */
 
 /* ----------------- Start of Bookmark System ----------------- */
-
 #bookmarksContainer {
 	background-color: #0000004f;
 	backdrop-filter: blur(15px) saturate(160%);
@@ -782,9 +781,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 2px;
 	flex-direction: column;
 }
+
 #bookmarkList:is(.grid-view) li a .favicon {
 	margin: 20px auto 24px auto;
 }
+
 #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	content: "";
@@ -800,6 +801,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	box-sizing: border-box;
 	border-radius: 32px;
 }
+
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	background: var(--bg-color-blue);
 	width: 36px;
@@ -981,11 +983,9 @@ body #bookmarkButton.bookmark-button.rotate {
 #editBookmarkModal button:hover {
 	background: var(--darkerColor-blue);
 }
-
 /* ----------------- End of Bookmark System ----------------- */
 
 /* ------------------ To Do List Section -------------------- */
-
 .todoListCont {
 	position: fixed;
 	display: inline-block;
@@ -1192,6 +1192,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-top-left-radius: 18px;
 	border-top-right-radius: 18px;
 }
+
 .todolistitem:last-child {
 	border-bottom-left-radius: 18px;
 	border-bottom-right-radius: 18px;
@@ -1813,6 +1814,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 1;
 	transform: translateX(0);
 }
+
 .searchEnginesContainer.show {
 	animation: slideIn 0.3s ease-in-out forwards;
 }
@@ -1942,6 +1944,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	scrollbar-width: none;
 	margin: auto;
 }
+
 #shortcuts-section::-webkit-scrollbar {
 	display: none;
 }
@@ -2105,6 +2108,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
 }
+
 .aiToolsCont::-webkit-scrollbar {
 	display: none; /* Chrome, Safari, Edge, Opera */
 }
@@ -2112,7 +2116,6 @@ body #bookmarkButton.bookmark-button.rotate {
 .aiToolsCont .hangno {
 	background-color: var(--accentLightTint-blue);
 	height: 100%;
-	/* width: 131px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2137,9 +2140,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .aiToolsCont .toolsCont {
-	/* display: flex; */
 	display: none;
-	/* background-color: orange; */
 	position: relative;
 	margin-left: 30px;
 	transition: all 500ms;
@@ -2165,7 +2166,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 16px;
+	padding: 0 17px 0 12px;
 	border-radius: 100px;
 	text-decoration: none;
 	color: var(--textColorDark-blue);
@@ -2177,17 +2178,162 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .aiToolsCont .toolsCont a:hover {
-	background-color: var(--bg-color-blue);
 	box-shadow: inset 0 0 0 1px var(--darkColor-blue);
 }
 
 .aiToolsCont .toolsCont .tIcon {
-	width: 26px;
-	height: 26px;
-	/* background-color: turquoise; */
-	margin-right: 12px;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
 }
 
+/* Settings Modal Styles */
+.ai-settings-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--bg-color-blue);
+	color: var(--textColorDark-blue);
+	border-radius: 20px;
+	padding: 30px 35px;
+	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+	z-index: 1001;
+	width: 380px;
+}
+
+.ai-settings-modal .ai-modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+	font-size: 1.1rem;
+}
+
+.ai-settings-modal .ai-close-button {
+	cursor: pointer;
+	margin: 5px 0;
+	color: var(--darkerColor-blue);
+}
+
+.ai-settings-modal #aiSettingsIntro {
+	font-size: 0.9rem;
+	margin-bottom: 2px;
+}
+
+.ai-settings-modal #aiSettingsNote {
+	margin-bottom: 20px;
+	font-size: 0.9rem;
+	opacity: 0.8;
+}
+
+.ai-settings-modal .ai-tools-list {
+	max-height: 240px;
+	overflow-y: auto;
+}
+
+.ai-settings-modal .ai-tools-list::-webkit-scrollbar {
+	width: 5px;
+}
+
+.ai-settings-modal .ai-tools-list::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.ai-settings-modal .ai-tools-list::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+.ai-settings-modal .ai-tools-list::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
+	border-radius: 3px;
+}
+
+@-moz-document url-prefix() {
+	.ai-settings-modal .ai-tools-list {
+		scrollbar-width: thin;
+		scrollbar-color: var(--darkColor-blue) transparent;
+	}
+}
+
+.ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option {
+	margin: 0 5px 10px 0;
+	padding: 10px 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--accentLightTint-blue);
+	border: none;
+	border-radius: 10px;
+	font-size: 0.95rem;
+}
+
+.ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option:last-child {
+	margin-bottom: 0;
+}
+
+#aiToolsForm .ai-tool-option input[type="checkbox"] {
+	vertical-align: middle;
+	margin-right: 8px;
+	accent-color: var(--darkColor-blue);
+	height: 15px;
+	width: 15px;
+}
+
+.ai-settings-modal .ai-modal-footer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 22px;
+}
+
+.ai-settings-modal .ai-reset-button,
+.ai-settings-modal .ai-save-button {
+	min-width: 110px;
+	padding: 10px 15px;
+	font-size: 0.9rem;
+	border-radius: 10px;
+	background: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+	border: none;
+	cursor: pointer;
+}
+
+.ai-settings-modal .ai-reset-button:hover,
+.ai-settings-modal .ai-save-button:hover {
+	background: var(--darkerColor-blue);
+}
+
+#aiToolsForm .ai-tool-reorder {
+	display: flex;
+	flex-direction: row;
+	gap: 7px;
+}
+
+#aiToolsForm .ai-tool-reorder button {
+	background: color-mix(in srgb, var(--whitishColor-blue) 50%, transparent);
+	color: var(--darkColor-blue);
+	border: 1px solid var(--darkColor-blue);
+	border-radius: 5px;
+	width: 26px;
+	height: 22px;
+	font-size: 0.8rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#aiToolsForm .ai-tool-reorder button:hover {
+	color: var(--darkerColor-blue);
+	border-color: var(--darkerColor-blue);
+}
+
+#aiToolsForm .ai-tool-reorder button:active {
+	transform: scale(0.95);
+}
 /* -----------End of Ai-Tools---------- */
 
 /* ---------------Menu-bar-css---------------- */
@@ -2406,7 +2552,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 50%;
 }
 
-#shortcutEditButton {
+#shortcutEditButton,
+#aiToolsEditButton {
 	fill: var(--darkerColor-blue);
 	display: flex;
 	align-items: center;
@@ -3049,6 +3196,7 @@ input:checked + .toggle:before {
 #colorPicker {
 	display: none;
 }
+
 .colorPickerLabel {
 	grid-column: span 3;
 	width: 100%;
@@ -3064,6 +3212,7 @@ input:checked + .toggle:before {
 	border: 2px solid transparent;
 	transition: background-color 0.3s ease;
 }
+
 .colorPickerLabel:hover {
 	background: var(--bg-color-blue);
 }
@@ -3089,8 +3238,6 @@ input:checked + .toggle:before {
 /* ---------------------- */
 #menuCloseButton {
 	position: relative;
-	/* position: absolute; */
-	/* bottom: var(--gap); */
 	width: 42px;
 	height: 42px;
 	min-width: 42px;
@@ -3895,8 +4042,14 @@ input:checked + .toggle:before {
 	background: var(--darkColor-dark);
 }
 
-.dark-theme #editBookmarkModal button:hover {
-	background: #1d1d1d;
+.dark-theme #editBookmarkModal button:hover,
+.dark-theme .ai-settings-modal .ai-reset-button:hover,
+.dark-theme .ai-settings-modal .ai-save-button:hover {
+	background: #353535;
+}
+
+.dark-theme .aiToolsCont .toolsCont a:hover {
+	box-shadow: inset 0 0 0 1px var(--darkerColor-dark);
 }
 
 .dark-theme .favicon {
@@ -4034,16 +4187,19 @@ input:checked + .toggle:before {
 }
 
 /* Background blur overlay */
-#prompt-modal-blur {
-	display: none;
+#prompt-modal-blur,
+.ai-modal-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	/* backdrop-filter: blur(8px); */
 	background: rgba(0, 0, 0, 0.3);
-	z-index: 1000; /* Behind the modal */
+	z-index: 1000;
+}
+
+#prompt-modal-blur {
+	display: none;
 }
 
 /* Modal Content */
