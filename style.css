@@ -2250,7 +2250,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 3px;
 }
 
-/* For Firefox */
 @-moz-document url-prefix() {
 	.ai-settings-modal .ai-tools-list {
 		scrollbar-width: thin;
@@ -2260,7 +2259,10 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option {
 	margin: 0 5px 10px 0;
-	padding: 10px 15px;
+	padding: 10px 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	background-color: var(--accentLightTint-blue);
 	border: none;
 	border-radius: 10px;
@@ -2273,8 +2275,10 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #aiToolsForm .ai-tool-option input[type="checkbox"] {
 	vertical-align: middle;
-	margin-right: 6px;
+	margin-right: 8px;
 	accent-color: var(--darkColor-blue);
+	height: 15px;
+	width: 15px;
 }
 
 .ai-settings-modal .ai-modal-footer {
@@ -2298,6 +2302,37 @@ body #bookmarkButton.bookmark-button.rotate {
 .ai-settings-modal .ai-reset-button:hover,
 .ai-settings-modal .ai-save-button:hover {
 	background: var(--darkerColor-blue);
+}
+
+#aiToolsForm .ai-tool-reorder {
+	display: flex;
+	flex-direction: row;
+	gap: 7px;
+}
+
+#aiToolsForm .ai-tool-reorder button {
+	background: color-mix(in srgb, var(--whitishColor-blue) 50%, transparent);
+	color: var(--darkColor-blue);
+	border: 1px solid var(--darkColor-blue);
+	border-radius: 5px;
+	width: 26px;
+	height: 22px;
+	font-size: 0.8rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#aiToolsForm .ai-tool-reorder button:hover {
+	color: var(--darkerColor-blue);
+	border-color: var(--darkerColor-blue);
+}
+
+#aiToolsForm .ai-tool-reorder button:active {
+	transform: scale(0.95);
 }
 /* -----------End of Ai-Tools---------- */
 
