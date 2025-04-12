@@ -148,10 +148,6 @@ const en = {
     "aiSettingsNote": "Scroll to view the full list of AI shortcuts.",
     "resetAISettingsBtn": "Reset",
 
-    // Theme
-    "enableDarkMode": "Dark Mode (Experimental)",
-    "enableDarkModeInfo": "Enable dark mode themes",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
     "rangColor": "Pick color",    // Keep this short

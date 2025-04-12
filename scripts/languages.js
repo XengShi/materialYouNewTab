@@ -183,8 +183,6 @@ function applyLanguage(lang) {
         "bookmarkViewGrid",
         "bookmarkViewList",
         "editBookmarkHeading",
-        "enableDarkMode",
-        "enableDarkModeInfo",
         "switchSearchModes",
         "switchSearchModesInfo",
         "adjustZoom",

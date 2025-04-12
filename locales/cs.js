@@ -148,10 +148,6 @@ const cs = {
     "aiSettingsNote": "K celému seznamu AI nástrojů se dostanete pomocí skrolování.",
     "resetAISettingsBtn": "Resetovat",
 
-    // Theme
-    "enableDarkMode": "Tmavý režim (experimentální)",
-    "enableDarkModeInfo": "Zapne tmavý režim aktivního motivu",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
     "rangColor": "Vybrat barvu",
