@@ -17,6 +17,8 @@ const cs = {
     "bookmarksInfo": "Zobrazí boční panel se záložkami",
     "ai_tools_button": "AI nástroje",
     "enable_ai_tools": "Zobrazí zkratky AI nástrojů",
+    "aiToolsSettingsText": "Nastavení AI nástrojů",
+    "aiToolsSettingsInfo": "Nastavte si zkratky AI nástrojů",
     "googleAppsMenuText": "Google aplikace",
     "googleAppsMenuInfo": "Zobrazí zkratky Google aplikací",
     "googleAppsHover": "Google aplikace",
@@ -46,6 +48,8 @@ const cs = {
     "hideWeatherInfo": "Vypne widgety s počasím",
     "hideWeatherBox": "Skrýt kartu s počasím",
     "hideWeatherBoxInfo": "Zobrazí pouze pilulku s teplotou",
+    "minMaxTempText": "Teplota daná rozsahem",
+    "minMaxTempSubText": "Nahradí pocitovou teplotu rozsahem minimální a maximální teploty",
 
     // Search
     "micIconTitle": "Skrýt ikonu mikrofonu",
@@ -101,6 +105,7 @@ const cs = {
     "conditionText": "Dobrý den! Jak se máte?",
     "humidityLevel": "Vlhkost",
     "feelsLike": "Pocitová teplota",
+    "minMaxTemp": "Min až max",
     "location": "Země",
     "enterBtn": "Vyhledat",
     "searchPlaceholder": "Zadejte hledaný výraz…",
@@ -134,9 +139,14 @@ const cs = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Vyberte, jaké AI nástroje budou zobrazeny",
+    "aiSettingsNote": "K celému seznamu AI nástrojů se dostanete pomocí skrolování.",
+    "resetAISettingsBtn": "Resetovat",
 
     // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
