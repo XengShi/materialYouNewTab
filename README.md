@@ -36,7 +36,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-license">License</a>
 </p>
 
-<img src="https://i.ibb.co/M1cJHcx/Material-You-New-Tab-Preview.jpg" alt="Screenshot 1" width="100%">
+<img src="https://i.postimg.cc/CF43Yzj1/material-you-new-Tab-poster.webp" alt="Screenshot 1" width="100%">
 
 #### 🔴 🟡 🟢 Test live: [https://xengshi.github.io/materialYouNewTab/](https://xengshi.github.io/materialYouNewTab/)
 
