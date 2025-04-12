@@ -13,7 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Localized` - for updates related to translations, localization, or internationalization.
 - `Other` - for technical updates.
 
-<!-- ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)-->
+## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
+
+### Localized
+
+- Updated translation for:
+    - Czech (@ceskyDJ)
 
 ## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 8, 2025
 
