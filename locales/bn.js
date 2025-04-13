@@ -146,7 +146,7 @@ const bn = {
     "perplexity": "পারপ্লেক্সিটি",
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
-    "aiSettingsIntro": "যে এআই টুলগুলো দেখাতে চান তা চয়ন করুন",
+    "aiSettingsIntro": "যে এআই টুলগুলো দেখাতে চান তা নির্বাচন করুন",
     "aiSettingsNote": "এআই শর্টকাটের পূর্ণ তালিকা দেখতে স্ক্রল করুন।",
     "resetAISettingsBtn": "রিসেট করুন",
 
