@@ -217,10 +217,9 @@ async function getAutocompleteSuggestions(query) {
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     let apiUrl = searchEnginesapi[selectedOption] || searchEnginesapi["engine1"];
     if (useproxyCheckbox.checked) {
-        if (selectedOption === "engine7") {
-            apiUrl = searchEnginesapi["engine1"];
+        if (selectedOption !== "engine7") {
+            apiUrl = proxyurl + encodeURIComponent(apiUrl);
         }
-        apiUrl = proxyurl + encodeURIComponent(apiUrl);
     }
 
     try {
@@ -236,7 +235,7 @@ async function getAutocompleteSuggestions(query) {
                 }
             });
             return suggestions;
-        } else if (selectedOption === "engine7" && useproxyCheckbox.checked === false) {
+        } else if (selectedOption === "engine7") {
             const suggestions = [];
             if (data && data.data && data.data.children) {
                 data.data.children.forEach(post => {
