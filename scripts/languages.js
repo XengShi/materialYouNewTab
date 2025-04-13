@@ -192,7 +192,6 @@ function applyLanguage(lang) {
         "updateFirefoxHomepage",
         "dontShowTips",
         "aiSettingsIntro",
-        "aiSettingsNote",
         "resetAISettingsBtn"
     ];
 

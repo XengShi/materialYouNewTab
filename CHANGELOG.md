@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated translation for:
   - Czech (@ceskyDJ)
 
-## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 13, 2025
+## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 2025
 
 ### Added
 
