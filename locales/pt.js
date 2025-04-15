@@ -17,6 +17,8 @@ const pt = {
     "bookmarksInfo": "Mostrar barra lateral de favoritos",
     "ai_tools_button": "Ferramentas de IA",
     "enable_ai_tools": "Mostrar atalhos para ferramentas de IA",
+    "aiToolsSettingsText": "Configurações de IA",
+    "aiToolsSettingsInfo": "Gerenciar atalhos de ferramentas de IA",
     "googleAppsMenuText": "Apps Google",
     "googleAppsMenuInfo": "Mostrar atalhos para Apps Google",
     "googleAppsHover": "Apps do Google",
@@ -46,6 +48,8 @@ const pt = {
     "hideWeatherInfo": "Desativar os widgets do clima",
     "hideWeatherBox": "Ocultar Cartão do Tempo",
     "hideWeatherBoxInfo": "Mostrar apenas o pílula de temperatura",
+    "minMaxTempText": "Temperatura Min-Max",
+    "minMaxTempSubText": "Substitua 'Sensação' por 'Min-Max'",
 
     // Search
     "micIconTitle": "Ocultar Ícone do Microfone",
@@ -101,6 +105,7 @@ const pt = {
     "conditionText": "Olá! Como você está hoje?",
     "humidityLevel": "Umidade",
     "feelsLike": "Sensação de",
+    "minMaxTemp": "Min ~ Max",
     "location": "Terra",
     "enterBtn": "Pesquisar",
     "searchPlaceholder": "Digite aqui...",
@@ -134,9 +139,14 @@ const pt = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Selecione quais ferramentas de IA exibir",
+    "aiSettingsNote": "Deslize para ver a lista completa de atalhos de IA.",
+    "resetAISettingsBtn": "Redefinir",
 
     // Theme
     "enableDarkMode": "Modo Escuro",
