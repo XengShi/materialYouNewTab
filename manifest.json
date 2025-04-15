@@ -9,8 +9,7 @@
 		"https://www.google.com/complete/search?client=*",
 		"https://duckduckgo.com/ac/?q=*",
 		"https://search.brave.com/api/suggest?q=*",
-		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*",
-		"https://www.reddit.com/search.json?q=*"
+		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
 	],
 	"icons": {
 		"16": "favicon/icon16.png",

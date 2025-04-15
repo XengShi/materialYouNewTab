@@ -2206,8 +2206,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 5px;
 	font-size: 1.1rem;
+	opacity: 0.96;
 }
 
 .ai-settings-modal .ai-close-button {
@@ -2218,17 +2218,11 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .ai-settings-modal #aiSettingsIntro {
 	font-size: 0.9rem;
-	margin-bottom: 2px;
-}
-
-.ai-settings-modal #aiSettingsNote {
 	margin-bottom: 20px;
-	font-size: 0.9rem;
-	opacity: 0.8;
 }
 
 .ai-settings-modal .ai-tools-list {
-	max-height: 240px;
+	max-height: 260px;
 	overflow-y: auto;
 }
 
@@ -2258,7 +2252,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option {
-	margin: 0 5px 10px 0;
+	margin: 0 4px 10px 0;
 	padding: 10px 16px;
 	display: flex;
 	justify-content: space-between;
@@ -2307,14 +2301,14 @@ body #bookmarkButton.bookmark-button.rotate {
 #aiToolsForm .ai-tool-reorder {
 	display: flex;
 	flex-direction: row;
-	gap: 7px;
+	gap: 6px;
 }
 
 #aiToolsForm .ai-tool-reorder button {
-	background: color-mix(in srgb, var(--whitishColor-blue) 50%, transparent);
+	background: color-mix(in srgb, var(--whitishColor-blue) 60%, transparent);
 	color: var(--darkColor-blue);
 	border: 1px solid var(--darkColor-blue);
-	border-radius: 5px;
+	border-radius: 6px;
 	width: 26px;
 	height: 22px;
 	font-size: 0.8rem;
