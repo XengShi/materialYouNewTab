@@ -130,6 +130,7 @@ const mr = {
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
+    "resetAISettingsBtn": "रीसेट करा",
 
     // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करा",
