@@ -145,7 +145,6 @@ const pt = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
     "aiSettingsIntro": "Selecione quais ferramentas de IA exibir",
-    "aiSettingsNote": "Deslize para ver a lista completa de atalhos de IA.",
     "resetAISettingsBtn": "Redefinir",
 
     // Theme
@@ -173,7 +172,7 @@ const pt = {
     "updateFirefoxHomepage": "Atualizar Pagina Inicial",
     "updateFirefoxHomepageInfo": "Para mudar sua página inicial como o NewTab, visite <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">este link</a> e siga as instruções.",
     "dontShowTips": "Não mostrar novamente",
-    
+
     // Dialog boxes (alerts)
     "okText": "OK",
     "yesText": "Sim",

@@ -50,7 +50,7 @@ const idn = {
     "hideWeatherBoxInfo": "Hanya tampilkan kapsul suhu",
     "minMaxTempText": "Suhu Min-Maks",
     "minMaxTempSubText": "Ganti 'Terasa Seperti' dengan suhu minimum dan maksimum",
-    
+
     // Search
     "micIconTitle": "Sembunyikan Ikon Microfon",
     "micIconInfo": "Jika voice typing tidak berfungsi",
@@ -60,7 +60,7 @@ const idn = {
     "motivationalQuotesInfo": "Tampilkan kata-kata dibawah kotak pencarian",
     "search_suggestions_button": "Saran Pencarian",
     "search_suggestions_text": "Mengaktifkan saran pencarian",
-    
+
     // Proxy
     "useproxytitletext": "Pemintas Proksi",
     "useproxyText": "Jika saran pencarian tidak berfungsi",
@@ -145,13 +145,12 @@ const idn = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
     "aiSettingsIntro": "Pilih utilitas AI mana yang ditampilkan",
-    "aiSettingsNote": "Gulir untuk melihat daftar lengkap pintasan AI.",
     "resetAISettingsBtn": "Atur Ulang",
-    
+
     // Theme
     "enableDarkMode": "Mode Gelap (Eksperimental)",
     "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
-    
+
     // Wallpaper and settings
     "uploadWallpaperText": "Unggah Wallpaper",
     "rangColor": "Pilih warna",
@@ -159,7 +158,7 @@ const idn = {
     "restoreText": "Pulihkan",
     "resetsettings": "Atur Ulang Setelan",
     "menuCloseText": "Tutup",
-    
+
     // Tips
     "switchSearchModes": "Ubah Mode Pencarian",
     "switchSearchModesInfo": "Klik pada ‘Cari Dengan’ untuk mengubah mode",

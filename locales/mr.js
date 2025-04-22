@@ -117,6 +117,7 @@ const mr = {
     "gImagesEngine": "इमेज",
     "redditEngine": "रेडिट",
     "wikipediaEngine": "विकिपीडिया",
+    "quoraEngine": "क्वोरा",
 
     // AI Tools
     "ai_tools": "AI साधने",
