@@ -130,7 +130,7 @@ const zh_TW = {
     "youtubeEngine": "YouTube",
     "gImagesEngine": "圖片",
     "redditEngine": "Reddit",
-    "wikipediaEngine": "Wikipedia",
+    "wikipediaEngine": "維基百科",
     "quoraEngine": "Quora",
 
     // AI Tools
