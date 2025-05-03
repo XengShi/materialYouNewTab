@@ -694,7 +694,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .bookmark-controls-container {
 	display: flex;
 	justify-content: space-between;
-	gap: 32px; /* Space between Sort by and View as sections */
+	gap: 26px; /* Space between Sort by and View as sections */
 	padding: 6px 32px 13px;
 }
 
@@ -705,7 +705,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .bookmark-control-group h3 {
-	font-size: 1rem;
+	font-size: 0.96rem;
 	color: var(--darkerColor-blue);
 	margin: 0;
 	white-space: nowrap;
@@ -716,7 +716,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: inline-flex;
 	border: 2px solid var(--bg-color-blue);
 	border-radius: 100px;
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: rgba(255, 255, 255, 0.8);
 	padding: 2px;
 }
 
@@ -726,13 +726,19 @@ body #bookmarkButton.bookmark-button.rotate {
 	background: transparent;
 	border: none;
 	border-radius: 100px;
-	font-size: 0.7rem;
+	font-size: 0.75rem;
 	cursor: pointer;
-	/* min-width: 55px; */
-	width: 65px;
-	padding: 4px 6px;
+	width: 70px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 4px 8px;
 	color: var(--darkColor-blue);
 	transition: background-color 0.2s, color 0.2s;
+}
+
+.bookmark-sort-button:hover {
+	white-space: normal;
 }
 
 /* Active states */
