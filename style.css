@@ -4068,6 +4068,10 @@ input:checked + .toggle:before {
 	fill: var(--textColorDark-blue);
 }
 
+.dark-theme .button-group {
+	background-color: #555555;
+}
+
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	background: var(--darkColor-dark);
