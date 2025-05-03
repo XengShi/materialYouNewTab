@@ -691,12 +691,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-/* Updated CSS */
 .bookmark-controls-container {
 	display: flex;
+	justify-content: space-between;
 	gap: 32px; /* Space between Sort by and View as sections */
-	padding: 8px 32px;
-	margin-bottom: 5px;
+	padding: 6px 32px 13px;
 }
 
 .bookmark-control-group {
@@ -710,32 +709,37 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--darkerColor-blue);
 	margin: 0;
 	white-space: nowrap;
+	text-align: center;
 }
 
 .button-group {
-	display: flex;
-	gap: 8px; /* Space between buttons */
+	display: inline-flex;
+	border: 2px solid var(--bg-color-blue);
+	border-radius: 100px;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 2px;
 }
 
-/* Shared button styling */
 .bookmark-sort-button,
 .bookmark-view-as-button {
+	flex: 1;
 	background: transparent;
-	border-radius: 20px;
-	border: 2px solid var(--darkColor-blue);
-	color: var(--darkColor-blue);
-	min-width: 60px;
-	font-size: 12px;
-	padding: 2px 9px;
+	border: none;
+	border-radius: 100px;
+	font-size: 0.7rem;
 	cursor: pointer;
-	transition: all 0.2s ease;
+	/* min-width: 55px; */
+	width: 65px;
+	padding: 4px 6px;
+	color: var(--darkColor-blue);
+	transition: background-color 0.2s, color 0.2s;
 }
 
 /* Active states */
 .bookmark-sort-button.active,
 #bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
 #bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
-	background: var(--darkColor-blue);
+	background-color: var(--darkColor-blue);
 	color: white;
 }
 
@@ -918,7 +922,7 @@ body #bookmarkButton.bookmark-button.rotate {
 #editBookmarkModal .modal-content {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 20px;
 }
 
 #editBookmarkModal h2 {
@@ -928,6 +932,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-top: 5px;
 }
 
+#editBookmarkFavicon {
+	display: block;
+	margin: 0 auto 5px;
+	width: 32px;
+	height: 32px;
+	border-radius: 2px;
+}
+
 .floating-label-field {
 	position: relative;
 	margin-top: 12px;
@@ -935,7 +947,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .floating-label-field input {
 	width: 100%;
-	padding: 14px 16px 12px;
+	padding: 12px 16px;
 	font-size: 0.9rem;
 	border: 1px solid var(--bg-color-blue);
 	border-radius: 14px;
@@ -954,10 +966,10 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .floating-label-field label {
 	position: absolute;
-	left: 16px;
+	left: 14px;
 	top: 14px;
 	padding: 0 5px;
-	color: color-mix(in srgb, var(--darkColor-blue) 75%, transparent);
+	color: color-mix(in srgb, var(--darkColor-blue) 75%, white);
 	font-size: 0.9rem;
 	border-radius: 5px;
 	transition: 0.2s ease all;
@@ -967,24 +979,17 @@ body #bookmarkButton.bookmark-button.rotate {
 /* Float label when focused or has content */
 .floating-label-field input:focus + label,
 .floating-label-field input:not(:placeholder-shown) + label {
-	top: -12px;
-	font-size: 0.75rem;
-	color: color-mix(in srgb, var(--darkColor-blue) 90%, white);
+	top: -19px;
+	left: 12px;
+	font-size: 0.8rem;
+	color: var(--darkColor-blue);
 	background-color: var(--bg-color-blue);
-}
-
-#editBookmarkFavicon {
-	display: block;
-	margin: 7px auto;
-	width: 32px;
-	height: 32px;
-	border-radius: 2px;
 }
 
 #editBookmarkModal .modal-buttons {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 11px;
+	margin-top: 4px;
 	gap: 20px;
 }
 
