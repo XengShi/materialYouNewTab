@@ -694,7 +694,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .bookmark-controls-container {
 	display: flex;
 	justify-content: space-between;
-	gap: 26px; /* Space between Sort by and View as sections */
+	gap: 40px; /* Space between Sort by and View as sections */
 	padding: 6px 32px 13px;
 }
 
@@ -722,13 +722,12 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .bookmark-sort-button,
 .bookmark-view-as-button {
-	flex: 1;
 	background: transparent;
 	border: none;
 	border-radius: 100px;
 	font-size: 0.75rem;
 	cursor: pointer;
-	width: 70px;
+	width: 64px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -737,7 +736,16 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: background-color 0.2s, color 0.2s;
 }
 
-.bookmark-sort-button:hover {
+#sortAlphabetical {
+	width: 45px;
+}
+
+#sortTimeAdded {
+	width: 90px;
+}
+
+.bookmark-sort-button:hover,
+.bookmark-view-as-button:hover {
 	white-space: normal;
 }
 
@@ -973,7 +981,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .floating-label-field label {
 	position: absolute;
 	left: 14px;
-	top: 14px;
+	top: 13.4px;
 	padding: 0 5px;
 	color: color-mix(in srgb, var(--darkColor-blue) 75%, white);
 	font-size: 0.9rem;
@@ -4069,7 +4077,7 @@ input:checked + .toggle:before {
 }
 
 .dark-theme .button-group {
-	background-color: #555555;
+	background-color: #333333;
 }
 
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
