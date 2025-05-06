@@ -19,6 +19,8 @@ const fr = {
     "bookmarksInfo": "Afficher la barre latérale des favoris",
     "ai_tools_button": "Outils IA",
     "enable_ai_tools": "Afficher les raccourcis pour les Outils IA",
+    "aiToolsSettingsText": "Paramètres des Outils IA",
+    "aiToolsSettingsInfo": "Gérer les raccourcis des Outils IA",
     "googleAppsMenuText": "Apps Google",
     "googleAppsMenuInfo": "Afficher les raccourcis pour les Applications Google",
     "googleAppsHover": "Apps Google",
@@ -30,6 +32,8 @@ const fr = {
     "todoPlaceholder": "Ajouter une tâche...",
 
     // Digital Clock
+    "hideClockBox": "Masquer l'horloge",
+    "hideClockBoxInfo": "Afficher ou masquer l'horloge et la date",
     "digitalclocktitle": "Horloge Numérique",
     "digitalclockinfo": "Passer à l'horloge numérique",
     "timeformattitle": "Format 12h",
@@ -46,6 +50,8 @@ const fr = {
     "hideWeatherInfo": "Désactiver les widgets de météo",
     "hideWeatherBox": "Masquer la carte météo",
     "hideWeatherBoxInfo": "Afficher uniquement la température sur mobile",
+    "minMaxTempText": "Température Min-Max",
+    "minMaxTempSubText": "Remplacer 'Ressenti' par la température minimale et maximale",
 
     // Search
     "micIconTitle": "Masquer l'Icône du Microphone",
@@ -103,6 +109,7 @@ const fr = {
     "conditionText": "Bonjour, comment allez-vous?",
     "humidityLevel": "Humidité",
     "feelsLike": "Ressenti",
+    "minMaxTemp": "Min ~ Max",
     "location": "Terre",
     "enterBtn": "Rechercher",
     "searchPlaceholder": "Saisissez ici...",
@@ -126,7 +133,9 @@ const fr = {
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Images",  
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "Outils IA",
@@ -134,9 +143,13 @@ const fr = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "Sélectionnez les outils IA à afficher",
+    "resetAISettingsBtn": "Réinitialiser",
 
     // Theme
     "enableDarkMode": "Mode Sombre",
@@ -148,6 +161,20 @@ const fr = {
     "backupText": "Sauvegarder",
     "restoreText": "Restaurer",
     "rangColor": "Choisir la couleur",
+
+    // Tips
+    "switchSearchModes": "Changer de mode de recherche",
+    "switchSearchModesInfo": "Cliquer sur ‘Rechercher avec’ pour changer de mode.",
+    "adjustZoom": "Ajuster le zoom",
+    "adjustZoomInfo": "Appuyez Ctrl + \"+\" ou Ctrl + \"-\" pour ajuster le zoom.",
+    "changeBrowserTheme": "Changer le thème du navigateur",
+    "chromeThemeInfo": "Clquez sur les trois points (⋮) > Plus d'outils > Personnaliser Chrome, puis choisissez une couleur qui correspond au thème de l'extension.",
+    "edgeThemeInfo": "Aller dans Paramètres > Apparence, puis choisissez une couleur qui correspond au thème de l'extension.",
+    "braveThemeInfo": 'Visitez <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, telecharger et appliquer le thème qui correspond au thème de l\'extension.',
+    "firefoxThemeInfo": 'Visitez <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, telecharger et appliquer le thème qui correspond au thème de l\'extension.',
+    "updateFirefoxHomepage": "Mettre à jour la page d'accueil",
+    "updateFirefoxHomepageInfo": "Pour changer votre page d'accueil comme le nouvel onglet, visitez <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">ce lien</a> et suivez les instructions.",
+    "dontShowTips": "Ne plus afficher",
 
     // Dialog boxes (alerts)
     "okText": "OK",

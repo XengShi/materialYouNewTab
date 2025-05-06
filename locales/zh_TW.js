@@ -12,11 +12,13 @@ const zh_TW = {
     "editShortcutsList": "已儲存的捷徑",
     "editShortcutsListInfo": "您可以透過點擊“+”圖示新增新的捷徑，或透過點擊捷徑名稱或 URL 來編輯現有捷徑",
     "adaptiveIconText": "自適應圖示形狀",
-    "adaptiveIconInfoText": "捷徑圖示將顯示為圓形",
+    "adaptiveIconInfoText": "捷徑圖示將依主題色顯示，且以較小尺寸呈現",
     "bookmarksText": "書籤",
     "bookmarksInfo": "顯示書籤側邊欄",
     "ai_tools_button": "AI 工具",
     "enable_ai_tools": "顯示 AI 工具捷徑",
+    "aiToolsSettingsText": "AI 工具設定",
+    "aiToolsSettingsInfo": "管理 AI 工具捷徑",
     "googleAppsMenuText": "Google 應用程式",
     "googleAppsMenuInfo": "顯示 Google 應用程式的捷徑",
     "googleAppsHover": "Google 應用程式",
@@ -27,7 +29,9 @@ const zh_TW = {
     "todoListHover": "待辦清單",
     "todoPlaceholder": "新增任務...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "隱藏時鐘",
+    "hideClockBoxInfo": "顯示或隱藏時鐘和日期",
     "digitalclocktitle": "數位時鐘",
     "digitalclockinfo": "切換到數位時鐘",
     "timeformattitle": "12 小時制",
@@ -44,12 +48,16 @@ const zh_TW = {
     "hideWeatherInfo": "停用天氣小工具",
     "hideWeatherBox": "隱藏天氣卡片",
     "hideWeatherBoxInfo": "只在裝置上顯示溫度",
+    "minMaxTempText": "最低-最高溫度",
+    "minMaxTempSubText": "將「體感溫度」替換為最低和最高溫度",
 
     // Search
     "micIconTitle": "隱藏麥克風圖示",
     "micIconInfo": "如果語音輸入無法使用",
     "hideSearchWith": "隱藏搜尋引擎",
     "hideSearchWithInfo": "透過點擊圖示切換搜尋引擎",
+    "motivationalQuotesText": "勵志語錄",
+    "motivationalQuotesInfo": "在搜尋列下方顯示語錄",
     "search_suggestions_button": "搜尋建議",
     "search_suggestions_text": "啟用搜尋建議",
 
@@ -61,10 +69,12 @@ const zh_TW = {
     "HostproxyButton": "托管您自己的代理",
 
     // Location
+    "useGPS": "使用 GPS",
+    "useGPSInfo": "啟用 GPS 以獲取即時位置更新",
     "UserLocText": "輸入您的位置",
     "UserLocSubtext": "如果天氣位置不正確",
     "userLoc": "您的城市或座標（緯度，經度）",
-    "useGPS": "使用 GPS",
+    "PrivacyPolicy": "隱私權政策",
 
     // Weather
     "WeatherApiText": "輸入您的 WeatherAPI 密鑰",
@@ -80,7 +90,10 @@ const zh_TW = {
 
     // Bookmarks
     "bookmarksHeading": "書籤",
-    "bookmarkViewAs": "檢視為",
+    "bookmarkSortBy": "排序方式",
+    "sortAlphabetical": "A-Z",
+    "sortTimeAdded": "由舊到新",
+    "bookmarkViewAs": "檢視方式",
     "bookmarkViewGrid": "網格",
     "bookmarkViewList": "列表",
     "bookmarkSearch": "搜尋書籤",
@@ -92,11 +105,13 @@ const zh_TW = {
     "conditionText": "你好！今天感覺怎麼樣？",
     "humidityLevel": "濕度",
     "feelsLike": "體感溫度",
+    "minMaxTemp": "最低 ~ 最高",
     "location": "地球",
     "enterBtn": "搜尋",
     "searchPlaceholder": "輸入搜尋內容...",
     "listenPlaceholder": "正在聆聽...",
     "searchWithHint": "搜尋引擎",
+    "searchOnHint": "搜尋網站",
     "userText": "點擊這裡以編輯",
 
     // Greeting
@@ -107,11 +122,16 @@ const zh_TW = {
     },
 
     // Search Engines
+    "defaultEngine": "預設",
     "googleEngine": "Google",
     "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
+    "gImagesEngine": "圖片",
+    "redditEngine": "Reddit",
+    "wikipediaEngine": "維基百科",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "AI 工具",
@@ -119,12 +139,16 @@ const zh_TW = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "aiSettingsIntro": "選擇要顯示的 AI 工具",
+    "resetAISettingsBtn": "重設",
 
     // Theme
-    "enableDarkMode": "深色模式",
+    "enableDarkMode": "深色模式（實驗性）",
     "enableDarkModeInfo": "啟用深色模式主題",
 
     // Wallpaper and settings
@@ -134,6 +158,20 @@ const zh_TW = {
     "restoreText": "還原",
     "resetsettings": "重設設定",
     "menuCloseText": "關閉",
+
+    // Tips
+    "switchSearchModes": "切換搜尋模式",
+    "switchSearchModesInfo": "點擊「搜尋引擎」以更改模式。",
+    "adjustZoom": "調整縮放比例",
+    "adjustZoomInfo": "按下 Ctrl + 加號鍵或 Ctrl + 減號鍵來調整縮放比例。",
+    "changeBrowserTheme": "更改瀏覽器主題",
+    "chromeThemeInfo": "點擊右上角的三個點 (⋮) > 更多工具 > 自訂 Chrome，然後選擇與擴充套件主題相符的顏色。",
+    "edgeThemeInfo": "前往設定 > 外觀，然後選擇與擴充套件主題相符的顏色。",
+    "braveThemeInfo": '造訪 <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome 主題商店</a>，下載並套用與擴充套件相符的主題。',
+    "firefoxThemeInfo": '造訪 <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox 主題</a>，下載並套用與擴充套件相符的主題。',
+    "updateFirefoxHomepage": "更新首頁",
+    "updateFirefoxHomepageInfo": "若要將首頁更改為與新分頁相同，請造訪 <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">此連結</a> 並按照指示操作。",
+    "dontShowTips": "不要再顯示此提示",
 
     // Dialog boxes (alerts)
     "okText": "確定",
@@ -146,6 +184,7 @@ const zh_TW = {
     "Nobackgroundset": "目前尚未設定背景圖片。",
     "clearbackgroundimage": "確定要清除背景圖片嗎？",
     "ProxyDisclaimer": "所有代理功能預設為關閉。\n\n如果啟用搜尋建議和 CORS 繞過代理，強烈建議自行代管代理伺服器以提升隱私。\n\n預設情況下，代理會設定為 https://mynt-proxy.rhythmcorehq.com，這表示您的所有資料都會通過此服務，可能會出現隱私疑慮。",
+    "GPSDisclaimer": "您的位置資料僅用於提供準確的天氣更新。資料會暫時儲存在瀏覽器內，不會與任何第三方共享或供我們存取。\n\n啟用 GPS 即表示您同意與擴充功能共享您的位置資料。",
     "failedbackup": "備份失敗：",
     "restorecompleted": "還原成功！",
     "restorefailed": "還原失敗：",

@@ -393,6 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show modal
         editBookmarkModal.style.display = "block";
+        saveBookmarkChanges.disabled = false;
     });
 
     // Disable save button if URL is empty
@@ -538,11 +539,12 @@ document.addEventListener("keydown", function (event) {
         return;
     }
 
-    if (event.key === "ArrowRight" && event.target.tagName !== "INPUT" && event.target.tagName !== "TEXTAREA" && event.target.isContentEditable !== true) {
-        if (bookmarksCheckbox.checked) {
-            bookmarkButton.click();
-        } else {
-            bookmarksCheckbox.click();
-        }
+    if (bookmarksCheckbox.checked &&
+        event.key === "ArrowRight" &&
+        event.target.tagName !== "INPUT" &&
+        event.target.tagName !== "TEXTAREA" &&
+        event.target.isContentEditable !== true
+    ) {
+        bookmarkButton.click();
     }
 });

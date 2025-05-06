@@ -17,6 +17,8 @@ const bn = {
     "bookmarksInfo": "বুকমার্কস সাইডবার দেখুন",
     "ai_tools_button": "এআই সরঞ্জাম",
     "enable_ai_tools": "এআই সরঞ্জামের শর্টকাট প্রদর্শন করুন",
+    "aiToolsSettingsText": "এআই সরঞ্জাম সেটিংস",
+    "aiToolsSettingsInfo": "এআই সরঞ্জামের শর্টকাট পরিচালনা করুন",
     "googleAppsMenuText": "গুগল অ্যাপস",
     "googleAppsMenuInfo": "গুগল অ্যাপসের শর্টকাট প্রদর্শন করুন",
     "googleAppsHover": "গুগল অ্যাপস",
@@ -144,6 +146,8 @@ const bn = {
     "perplexity": "পারপ্লেক্সিটি",
     "deepseek": "ডিপসিক",
     "metaAI": "মেটা এআই",
+    "aiSettingsIntro": "যে এআই টুলগুলো দেখাতে চান তা নির্বাচন করুন",
+    "resetAISettingsBtn": "রিসেট করুন",
 
     // Theme
     "enableDarkMode": "ডার্ক মোড (পরীক্ষামূলক)",

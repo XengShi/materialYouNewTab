@@ -147,7 +147,6 @@ const hi = {
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
     "aiSettingsIntro": "चुनें की कौन से AI शॉर्टकट्स रखने हैं",
-    "aiSettingsNote": "सभी AI शॉर्टकट्स की सूची देखने के लिए नीचे स्क्रॉल करें।",
     "resetAISettingsBtn": "रीसेट करें",
 
     // Theme - delete later

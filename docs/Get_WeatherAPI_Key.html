@@ -72,6 +72,11 @@
             text-decoration: underline;
         }
 
+        .no-underline {
+            text-decoration: none;
+            color: inherit;
+        }
+
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: #121212;
@@ -97,7 +102,9 @@
 </head>
 
 <body>
-    <h1>How to Obtain a WeatherAPI's API Key</h1>
+    <a href="https://www.youtube.com/watch?v=KMI_tpQ8BnU" target="_blank" class="no-underline">
+        <h1>How to Obtain a WeatherAPI's API Key</h1>
+    </a>
 
     <section>
         <h2>Step 1: Visit the WeatherAPI Website</h2>
@@ -177,7 +184,7 @@
         <h3>Why do I need an API key?</h3>
         <p>An API key serves as a unique identifier for managing access and monitoring usage.</p>
         <ul>
-            <li>Our extension currently uses <b>shared</b> API keys that allow up to 10,000,000 calls per month. With
+            <li>Our extension currently uses <b>shared</b> API keys that allow up to 15,000,000 calls per month. With
                 over 300,000 active users, these shared keys can reach their limit quickly. Once the limit is reached,
                 weather data will no longer be accessible until the limit resets the following month.</li>
             <li>Using your <b>own API key</b> ensures that weather data remains accessible.</li>
@@ -188,6 +195,8 @@
         <ul>
             <li><strong>No Disruption:</strong> Using your own API key helps you avoid unexpected limits and ensures
                 there are no disruptions in service, keeping your access to weather data uninterrupted.</li>
+            <li><strong>Location Suggestions::</strong> Enable location search suggestions in the location input field,
+                allowing you to quickly find and select accurate location options as you type.</li>
             <li><strong>Analytics:</strong> Access detailed insights into your API usage with comprehensive reports
                 available through your account dashboard.</li>
             <li><strong>Privacy:</strong> Your API activity is securely tied only to your account, ensuring that your
