@@ -524,7 +524,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     newShortcutButton.addEventListener("click", () => {
-        newShortcut()
+        newShortcut();
 
         // Scroll to the new shortcut and focus on the URL input
         const allEntries = document.querySelectorAll('.shortcutSettingsEntry');
