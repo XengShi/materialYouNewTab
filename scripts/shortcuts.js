@@ -532,11 +532,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const urlInput = lastEntry.querySelector('input.URL');
 
         urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
-        urlInput.focus();
+        setTimeout(() => {
+            urlInput.focus();
+        }, 900);
     });
 
     resetShortcutsButton.addEventListener("click", () => {
         resetShortcuts();
+
+        // If newShortcutButton was previously inactive, reactivate it
+        if (newShortcutButton.classList.contains("inactive")) {
+            newShortcutButton.classList.remove("inactive");
+        }
 
         // Animate the reset button
         const svgElement = resetShortcutsButton.querySelector("svg");
