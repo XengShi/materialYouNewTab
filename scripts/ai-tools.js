@@ -26,7 +26,7 @@ const aiTools = aiToolsRaw.map(tool => ({
 
 // DOM Elements
 const aiToolName = document.getElementById("toolsCont");
-const shortcuts = document.getElementById("shortcutsContainer");
+const shortcuts = document.getElementById("shortcuts-section");
 const aiToolsIcon = document.getElementById("aiToolsIcon");
 const aiToolsSettingsModal = document.getElementById("aiToolsSettingsModal");
 const aiToolsSettingsOverlay = document.getElementById("aiToolsSettingsOverlay");
