@@ -2227,6 +2227,7 @@ body #bookmarkButton.bookmark-button.rotate {
 .ai-settings-modal .ai-tools-list {
 	max-height: 260px;
 	overflow-y: auto;
+	scroll-behavior: smooth;
 }
 
 .ai-settings-modal .ai-tools-list::-webkit-scrollbar {
@@ -2415,15 +2416,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	transform: translateX(100%);
 	opacity: 0;
 	overflow-y: scroll;
-	/* Allow vertical scrolling only */
 	overflow-x: hidden;
-	/* Hide horizontal overflow */
 }
 
 .menuCont .optCont .page {
 	width: 100%;
 	padding: 0 var(--gap) var(--gap) var(--gap);
 	position: absolute;
+	scroll-behavior: smooth;
 	transition: all 0.6s;
 }
 
