@@ -177,8 +177,15 @@
 
             <img id="editBookmarkFavicon" src="" alt="Favicon">
 
-            <input type="text" id="editBookmarkName" placeholder="Bookmark Name">
-            <input type="url" id="editBookmarkURL" placeholder="Bookmark URL">
+            <div class="floating-label-field">
+                <input type="text" id="editBookmarkName" autocomplete="off" />
+                <label for="editBookmarkName" id="editBookmarkNameLabel">Bookmark Name</label>
+            </div>
+
+            <div class="floating-label-field">
+                <input type="url" id="editBookmarkURL" autocomplete="off" />
+                <label for="editBookmarkURL" id="editBookmarkURLLabel">Bookmark URL</label>
+            </div>
 
             <div class="modal-buttons">
                 <button id="saveBookmarkChanges">Save</button>

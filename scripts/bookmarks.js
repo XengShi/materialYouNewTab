@@ -393,6 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show modal
         editBookmarkModal.style.display = "block";
+        saveBookmarkChanges.disabled = false;
     });
 
     // Disable save button if URL is empty

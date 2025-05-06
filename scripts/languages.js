@@ -226,6 +226,8 @@ function applyLanguage(lang) {
         { id: "cancelBookmarkEdit", key: "cancelText" },
         { id: "aiSettingsHeader", key: "aiToolsSettingsText" },
         { id: "saveAISettingsBtn", key: "saveAPI" },
+        { id: "editBookmarkNameLabel", key: "editBookmarkName" },
+        { id: "editBookmarkURLLabel", key: "editBookmarkURL" }
     ];
 
     // Function to apply translations
