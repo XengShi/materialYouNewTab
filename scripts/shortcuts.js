@@ -523,7 +523,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    newShortcutButton.addEventListener("click", () => newShortcut());
+    newShortcutButton.addEventListener("click", () => {
+        newShortcut()
+
+        // Scroll to the new shortcut and focus on the URL input
+        const allEntries = document.querySelectorAll('.shortcutSettingsEntry');
+        const lastEntry = allEntries[allEntries.length - 1];
+        const urlInput = lastEntry.querySelector('input.URL');
+
+        urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        urlInput.focus();
+    });
 
     resetShortcutsButton.addEventListener("click", () => {
         resetShortcuts();

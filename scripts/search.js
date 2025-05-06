@@ -294,14 +294,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Scroll the newly selected item into view
                 const activeElement = dropdownItems[selectedIndex];
-                activeElement.scrollIntoView({ block: "nearest" });
+                activeElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
             } else if (event.key === "ArrowUp") {
                 event.preventDefault();  // Prevent the page from scrolling
                 selectedIndex = (selectedIndex - 1 + dropdownItems.length) % dropdownItems.length; // Move up, loop around
 
                 // Scroll the newly selected item into view
                 const activeElement = dropdownItems[selectedIndex];
-                activeElement.scrollIntoView({ block: "nearest" });
+                activeElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
             } else if (event.key === "Enter") {
                 const selectedItem = document.querySelector(".dropdown-content .selected");
                 const engine = selectedItem.getAttribute("data-engine");

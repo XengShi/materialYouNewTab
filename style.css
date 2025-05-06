@@ -391,7 +391,8 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	width: fit-content;
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
 	overflow-x: hidden;
-	/* Add vertical scrollbar when needed */
+	overflow-y: scroll;
+	scroll-behavior: smooth;
 	box-sizing: border-box;
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
@@ -662,6 +663,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	text-align: left;
 	height: calc(100% - 260px);
 	overflow-y: auto; /* Add vertical scrollbar */
+	scroll-behavior: smooth;
 	overflow-x: hidden;
 }
 
@@ -1021,6 +1023,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	left: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	overflow-y: auto;
+	scroll-behavior: smooth;
 	box-sizing: border-box;
 	z-index: 3;
 }
