@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateFirefoxHomepageInfo.innerHTML = translations[currentLanguage]?.updateFirefoxHomepageInfo || translations["en"].updateFirefoxHomepageInfo;
     }
 
-    // Hide tips 
+    // Hide tips
     const tips = document.getElementById("tips");
     const dontShowButton = document.getElementById("dontShowTips");
 
