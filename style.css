@@ -693,11 +693,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-/* Updated CSS */
 .bookmark-controls-container {
 	display: flex;
-	gap: 32px; /* Space between Sort by and View as sections */
-	padding: 8px 32px;
+	justify-content: space-between;
+	gap: 40px; /* Space between Sort by and View as sections */
+	padding: 6px 32px 13px;
 }
 
 .bookmark-control-group {
@@ -707,36 +707,55 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .bookmark-control-group h3 {
-	font-size: 1rem;
+	font-size: 0.96rem;
 	color: var(--darkerColor-blue);
 	margin: 0;
 	white-space: nowrap;
+	text-align: center;
 }
 
 .button-group {
-	display: flex;
-	gap: 8px; /* Space between buttons */
+	display: inline-flex;
+	border: 2px solid var(--bg-color-blue);
+	border-radius: 100px;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 2px;
 }
 
-/* Shared button styling */
 .bookmark-sort-button,
 .bookmark-view-as-button {
 	background: transparent;
-	border-radius: 20px;
-	border: 2px solid var(--darkColor-blue);
-	color: var(--darkColor-blue);
-	min-width: 60px;
-	font-size: 12px;
-	padding: 2px 9px;
+	border: none;
+	border-radius: 100px;
+	font-size: 0.75rem;
 	cursor: pointer;
-	transition: all 0.2s ease;
+	width: 64px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 4px 8px;
+	color: var(--darkColor-blue);
+	transition: background-color 0.2s, color 0.2s;
+}
+
+#sortAlphabetical {
+	width: 45px;
+}
+
+#sortTimeAdded {
+	width: 90px;
+}
+
+.bookmark-sort-button:hover,
+.bookmark-view-as-button:hover {
+	white-space: normal;
 }
 
 /* Active states */
 .bookmark-sort-button.active,
 #bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
 #bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
-	background: var(--darkColor-blue);
+	background-color: var(--darkColor-blue);
 	color: white;
 }
 
@@ -916,14 +935,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 20px;
 }
 
-/* Modal Content */
 #editBookmarkModal .modal-content {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 20px;
 }
 
-/* Modal Header */
 #editBookmarkModal h2 {
 	text-align: center;
 	font-size: 1.5rem;
@@ -931,36 +948,64 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-top: 5px;
 }
 
-/* Input Fields */
-#editBookmarkModal input {
-	width: 100%;
-	padding: 10px 14px;
-	font-size: 0.9rem;
-	border: 1px solid var(--accentLightTint-blue);
-	border-radius: 14px;
-	outline: none;
-	transition: 0.2s;
-}
-
-#editBookmarkModal input:focus {
-	border-color: var(--darkColor-blue);
-	box-shadow: 0 0 3px var(--darkColor-blue);
-}
-
-/* Favicon Display */
 #editBookmarkFavicon {
 	display: block;
-	margin: 7px auto;
+	margin: 0 auto 5px;
 	width: 32px;
 	height: 32px;
 	border-radius: 2px;
 }
 
-/* Modal Buttons */
+.floating-label-field {
+	position: relative;
+	margin-top: 12px;
+}
+
+.floating-label-field input {
+	width: 100%;
+	padding: 12px 16px;
+	font-size: 0.9rem;
+	border: 1px solid var(--bg-color-blue);
+	border-radius: 14px;
+	outline: none;
+	background-color: var(--accentLightTint-blue);
+	transition: border-color 0.2s;
+}
+
+.floating-label-field input:focus {
+	border-color: var(--darkColor-blue);
+}
+
+.floating-label-field input::placeholder {
+	color: transparent;
+}
+
+.floating-label-field label {
+	position: absolute;
+	left: 14px;
+	top: 13.4px;
+	padding: 0 5px;
+	color: color-mix(in srgb, var(--darkColor-blue) 75%, white);
+	font-size: 0.9rem;
+	border-radius: 5px;
+	transition: 0.2s ease all;
+	pointer-events: none;
+}
+
+/* Float label when focused or has content */
+.floating-label-field input:focus + label,
+.floating-label-field input:not(:placeholder-shown) + label {
+	top: -19px;
+	left: 12px;
+	font-size: 0.8rem;
+	color: var(--darkColor-blue);
+	background-color: var(--bg-color-blue);
+}
+
 #editBookmarkModal .modal-buttons {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 11px;
+	margin-top: 4px;
 	gap: 20px;
 }
 
@@ -1850,12 +1895,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 30px;
 	background-color: var(--darkColor-blue);
 	border-radius: 100%;
-	margin-left: 4px;
+	margin-left: 5px;
 	padding: 3px;
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 14px 0 10px;
+	margin: 0 13px 0 10px;
 	cursor: pointer;
 }
 
@@ -4034,12 +4079,15 @@ input:checked + .toggle:before {
 	fill: var(--textColorDark-blue);
 }
 
+.dark-theme .button-group {
+	background-color: #333333;
+}
+
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
 .dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
 	background: var(--darkColor-dark);
 }
 
-.dark-theme #editBookmarkModal button:hover,
 .dark-theme .ai-settings-modal .ai-reset-button:hover,
 .dark-theme .ai-settings-modal .ai-save-button:hover {
 	background: #353535;
@@ -4053,8 +4101,22 @@ input:checked + .toggle:before {
 	filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }
 
-.dark-theme .micIcon {
+.dark-theme .micIcon,
+.dark-theme .floating-label-field input {
 	background-color: var(--whitishColor-dark);
+}
+
+.dark-theme .floating-label-field input:focus + label,
+.dark-theme .floating-label-field input:not(:placeholder-shown) + label {
+	color: var(--textColorDark-dark);
+}
+
+.dark-theme #editBookmarkModal button {
+	background-color: var(--accentLightTint-dark);
+}
+
+.dark-theme #editBookmarkModal button:hover {
+	background-color: #353535;
 }
 
 .dark-theme #minute,
