@@ -49,6 +49,10 @@
             text-align: justify;
         }
 
+        li {
+            margin-bottom: 12px;
+        }
+
         a {
             color: #6200ea;
             text-decoration: none;
@@ -63,37 +67,121 @@
 <body>
 
     <div class="container">
-        <h1>Privacy Policy for "Material You NewTab" Extension</h1>
+        <h1>Privacy Policy for Material You NewTab Extension</h1>
 
         <h2>Introduction</h2>
         <p>"Material You NewTab" is an open-source extension designed to enhance the appearance of your browser’s
-            default home page and new tab. This extension was originally created as a personal project using HTML, CSS,
-            and JavaScript. Due to positive feedback, it was later made available on Firefox and Chrome stores.</p>
+            default home page and new tab. It was originally developed as a personal project using HTML, CSS, and
+            JavaScript. Due to positive feedback, it was later made available on both the Firefox and Chrome Web Stores.
+        </p>
 
         <h2>Community Contributions</h2>
-        <p>Since its release, many talented developers have contributed to improving the extension through GitHub. These
-            contributors have added new features and fixed bugs, making the extension even better. Each pull request is
-            carefully reviewed, tested, and verified to ensure it meets our standards before merging.</p>
+        <p>Since its release, talented developers from the community have contributed to improving the extension through
+            GitHub. These contributors have added new features and fixed bugs, making the extension even better. Each
+            pull request is carefully reviewed, tested, and verified to ensure it meets our standards before merging.
+        </p>
 
         <h2>Data Collection and Permissions</h2>
-        <p>This extension does not require any permissions and does not collect, store, or share any user data. Our team
-            has no intention to track or collect any personal information; this is a project focused solely on providing
-            a better browsing experience.</p>
+        <p>Material You NewTab prioritizes your privacy and is focused solely on providing a better browsing experience.
+            This extension does <strong>not collect</strong>, <strong>store</strong>, or <strong>share</strong> any
+            personal data. All processing is done locally within your browser. No analytics, tracking scripts, or remote
+            logging systems are included.</p>
 
-        <h3>About Voice Search and Microphone Permission</h3>
-        <p>The extension uses the Web Speech API for voice search. When you click the microphone icon, the browser will
-            prompt for microphone access, which is managed entirely by the browser. The microphone is used solely for
-            speech-to-text functionality during searches, and you will be notified by the browser whenever the
-            microphone is accessed.</p>
+        <h3>Permissions</h3>
+        <p> We only request the minimal permissions needed to deliver a
+            rich, dynamic browsing experience. Below is a breakdown of the permissions used and what they are for:</p>
+
+        <ul>
+            <li><strong>search:</strong> Enables integration with the browser’s default search engine.</li>
+            <li><strong>bookmarks (optional):</strong> If granted, allows optional display of your bookmarks directly on
+                the new tab page.</li>
+        </ul>
+
+        <h3>Browser APIs</h3>
+        <ul>
+            <li><strong>SpeechRecognition (Web Speech API):</strong> Enables voice search. Microphone access is
+                triggered only when the mic icon is clicked and handled entirely by your browser. No voice data is
+                collected or stored.</li>
+            <li><strong>Geolocation:</strong> Used to improve weather accuracy. Access is browser-managed and not
+                tracked or shared.</li>
+        </ul>
+
+        <h3>External APIs</h3>
+        <p>We use the following external services to improve user experience:</p>
+        <ul>
+            <li><strong>Search Suggestions:</strong>
+                <ul>
+                    <li>Google: <code>https://www.google.com/complete/search?client=*</code></li>
+                    <li>DuckDuckGo: <code>https://duckduckgo.com/ac/?q=*</code></li>
+                    <li>Brave: <code>https://search.brave.com/api/suggest?q=*</code></li>
+                    <li>Wikipedia: <code>https://*.wikipedia.org/w/api.php?action=opensearch&search=*</code></li>
+                </ul>
+                <p>These are used to provide auto-complete suggestions while typing in the search bar. You can control
+                    which sites the extension can access from browser settings.</p>
+            </li>
+
+            <li><strong>Location Detection (<a href="https://ipinfo.io/" target="_blank">IPinfo</a>):</strong>
+                <ul>
+                    <li><code>https://ipinfo.io/json</code> – fetches approximate city-level location based on your IP
+                        for local weather display.</li>
+                </ul>
+            </li>
+
+            <li><strong>Weather Updates (<a href="https://www.weatherapi.com/" target="_blank">WeatherAPI</a>):</strong>
+                <ul>
+                    <li><code>https://api.weatherapi.com/v1/forecast.json?key=*</code> – retrieves daily forecasts based
+                        on your location and language preferences.</li>
+
+                    <li><code>https://api.weatherapi.com/v1/search.json?key=*</code> – used to fetch location
+                        suggestions when searching for a city.</li>
+                </ul>
+            </li>
+
+            <li><strong>Random Wallpapers (<a href="https://picsum.photos/" target="_blank">Lorem Picsum</a>):</strong>
+                <ul>
+                    <li><code>https://picsum.photos/1920/1080</code> – used to fetch high-quality random images.</li>
+                </ul>
+            </li>
+
+            <li><strong>Quotes (<a href="https://github.com/well300/quotes-api" target="_blank">well300's Quotes
+                        API</a>):</strong>
+                <ul>
+                    <li><code>https://quotes-api-self.vercel.app/quote/</code> – provides motivational quotes.</li>
+                </ul>
+            </li>
+
+            <li><strong>Favicon Fetching (Google's Favicon API):</strong>
+                <ul>
+                    <li><code>https://s2.googleusercontent.com/s2/favicons*</code></li>
+                    <li><code>https://www.google.com/s2/favicons*</code></li>
+                </ul>
+                These are used to fetch favicons of websites for shortcuts and bookmarks.
+            </li>
+        </ul>
+
+        <h3>Proxy Server (Optional)</h3>
+        <p>
+            Material You NewTab includes an optional proxy feature that is <strong>disabled by default</strong>. This
+            feature can be used to bypass CORS restrictions when fetching search suggestions.
+        </p>
+        <p>
+            For users who wish to enable this feature, we <strong>highly recommend <a
+                    href="https://github.com/Minuga-RC/MYNT-CORS-Bypass-Proxy" target="_blank">hosting your own
+                    proxy server</a></strong> to maintain full control and ensure maximum privacy.
+        </p>
+        <p>
+            If enabled and left at the default setting, search suggestion requests will be routed through the public
+            proxy at: <code>https://mynt-proxy.rhythmcorehq.com</code>.
+        </p>
 
         <h2>Transparency and Security</h2>
-        <p>While we strive to keep our code secure, we acknowledge that no project is 100% immune to potential issues.
-            In rare cases, unintended code or errors could be introduced through contributions. We encourage users to
-            review the source code directly on GitHub for peace of mind. Use this extension only when you are fully
-            comfortable with its contents.</p>
+        <p>While we strive to keep our code secure, we acknowledge that no project is entirely immune to potential
+            issues. In rare cases, unintended code or errors could be introduced through contributions. We encourage
+            users to review the source code directly on GitHub for peace of mind. Use this extension only when you are
+            fully comfortable with its contents.</p>
 
         <h2>Thank You</h2>
-        <p>Thank you for your trust in the "Material You NewTab" extension, and we hope it enhances your browsing
+        <p>Thank you for your trust in the Material You NewTab extension, and we hope it enhances your browsing
             experience with every new tab you open!</p>
 
     </div>
