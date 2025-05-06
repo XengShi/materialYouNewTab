@@ -1054,8 +1054,9 @@ body #bookmarkButton.bookmark-button.rotate {
 .todo-container {
 	display: grid;
 	gap: 10px;
-	padding: 10px 5px;
-	background-color: var(--bg-color-blue);
+	padding: 12px 6px 6px 6px;
+	background-color: var(--accentLightTint-blue);
+	opacity: 0.95;
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
@@ -1144,7 +1145,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todo-container .searchbar-content {
-	background: var(--accentLightTint-blue);
+	background: var(--bg-color-blue);
 	padding: 0;
 	border-radius: 20px;
 	width: 100%;
