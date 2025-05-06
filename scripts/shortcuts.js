@@ -523,6 +523,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    let focusTimeoutId;
     newShortcutButton.addEventListener("click", () => {
         newShortcut();
 
@@ -532,9 +533,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const urlInput = lastEntry.querySelector('input.URL');
 
         urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => {
+
+        clearTimeout(focusTimeoutId);
+        focusTimeoutId = setTimeout(() => {
             urlInput.focus();
-        }, 900);
+        }, 800);
     });
 
     resetShortcutsButton.addEventListener("click", () => {
