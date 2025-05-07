@@ -308,7 +308,6 @@ async function getWeatherData() {
     gpsToggle.checked = useGPS;
     if (useGPS) locationCont.classList.add("inactive");
 
-
     // Function to fetch GPS-based location
     async function fetchGPSLocation() {
         const getLocationFromGPS = () => {
@@ -327,17 +326,34 @@ async function getWeatherData() {
         };
 
         try {
-            const { latitude, longitude } = await getLocationFromGPS();
-            return `${latitude},${longitude}`;
+            const position = await getLocationFromGPS();
+
+            const key = await getKey();
+            const encrypted = await encryptData(
+                `${position.latitude},${position.longitude}`,
+                key
+            );
+            return JSON.stringify(encrypted);
         } catch (error) {
             console.error("Failed to retrieve GPS Location:", error);
         }
     }
 
+    let usingGPS;
     // Fetch location based on user preference
     await (async function initializeLocation() {
         try {
-            if (useGPS) currentUserLocation = await fetchGPSLocation();
+            if (useGPS) {
+                usingGPS = true;
+                let encryptedData = await fetchGPSLocation();
+
+                if (encryptedData) {
+                    const key = await getKey();
+                    const { cipherText, iv } = JSON.parse(encryptedData);
+                    currentUserLocation = await decryptData(cipherText, iv, key);
+                }
+            }
+            usingGPS = false;
 
             if (!currentUserLocation) {
                 // Fallback to IP-based location if no manual input
@@ -361,8 +377,14 @@ async function getWeatherData() {
         try {
             let parsedData = JSON.parse(localStorage.getItem("weatherParsedData"));
             const weatherParsedTime = parseInt(localStorage.getItem("weatherParsedTime"));
-            const weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
+            let weatherParsedLocation = localStorage.getItem("weatherParsedLocation");
             const weatherParsedLang = localStorage.getItem("weatherParsedLang");
+
+            if (weatherParsedLocation && weatherParsedLocation.startsWith("{") && usingGPS) {
+                const { cipherText, iv } = JSON.parse(weatherParsedLocation);
+                const key = await getKey();
+                weatherParsedLocation = await decryptData(cipherText, iv, key);
+            }
 
             const retentionTime = savedApiKey ? 435000 : 960000; // 7.25 min for user-entered API key, 16 min otherwise
 
@@ -410,8 +432,15 @@ async function getWeatherData() {
                     // Save filtered weather data to localStorage
                     localStorage.setItem("weatherParsedData", JSON.stringify(filteredData));
                     localStorage.setItem("weatherParsedTime", Date.now()); // Save time of last fetching
-                    localStorage.setItem("weatherParsedLocation", currentUserLocation); // Save user location
                     localStorage.setItem("weatherParsedLang", currentLanguage); // Save language preference
+
+                    if (usingGPS) {
+                        const key = await getKey();
+                        const encrypted = await encryptData(currentUserLocation, key);
+                        localStorage.setItem("weatherParsedLocation", JSON.stringify(encrypted));
+                    } else {
+                        localStorage.setItem("weatherParsedLocation", currentUserLocation);
+                    }
                 }
             }
 
