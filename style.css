@@ -2929,17 +2929,6 @@ input:checked + .toggle:before {
 
 /* ---------------Menu-bar-css---------------- */
 
-/* --------------Theming stuff------------------ */
-.themingStuff {
-	margin-top: 11px;
-	position: relative;
-	width: 100%;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	gap: var(--gap);
-}
-
 .languageSection {
 	width: 100%;
 	height: 50px;
@@ -2954,30 +2943,19 @@ input:checked + .toggle:before {
 	align-items: center;
 	justify-content: center;
 	height: fit-content;
-	/* width: 80%; */
 	width: 240px;
 	border: 2px solid transparent;
-	/* adding transparent border on focus it will be turned to theme color*/
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	/* 5 divs in the first row */
-	grid-auto-rows: auto;
-	grid-gap: 10px;
 	padding: 12px;
 	color: var(--textColorDark-blue);
-	/* padding-right: 0px; */
 	border-radius: 26px;
 	appearance: none;
-	/* Remove default browser styles */
 	-webkit-appearance: none;
-	/* For Safari */
 	-moz-appearance: none;
-	/* For Firefox */
 	cursor: pointer;
 	padding-left: 13px;
-
+	/* Scrollbar styles for Firefox */
 	@-moz-document url-prefix() {
-		/* Scrollbar styles for Firefox */
 		scrollbar-width: thin;
 		scrollbar-color: var(--darkColor-blue) transparent;
 	}
@@ -2990,6 +2968,7 @@ input:checked + .toggle:before {
 
 .languageSelector::-webkit-scrollbar-track {
 	background-color: transparent;
+	margin: 6px 0;
 }
 
 .languageSelector::-webkit-scrollbar-thumb {
@@ -2998,10 +2977,39 @@ input:checked + .toggle:before {
 }
 
 .languageSelector:focus {
+	z-index: 1;
 	border: 2px solid var(--darkColor-blue);
-	/* color matching border on focus */
 	outline: none;
-	/* Removes the default outline */
+	padding: 0;
+	border-radius: 16px;
+}
+
+.languageSection select option {
+	font-size: 0.8rem;
+	padding: 10px 15px;
+	border-radius: 10px;
+}
+
+.languageSection select option:hover {
+	background-color: color-mix(in srgb, var(--darkColor-blue) 95%, transparent);
+	color: white;
+}
+
+.languageSection select option:checked {
+	box-shadow: 0 0 10px 100px var(--darkColor-blue) inset;
+	/* bg color not working in edge, so the box-shadow is also used */
+	background-color: var(--darkColor-blue);
+}
+
+/* --------------Theming stuff------------------ */
+.themingStuff {
+	margin-top: 11px;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	gap: var(--gap);
 }
 
 .colorsContainer {
@@ -3010,14 +3018,12 @@ input:checked + .toggle:before {
 	justify-content: center;
 	height: fit-content;
 	width: fit-content;
-
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	/* 5 divs in the first row */
 	grid-auto-rows: auto;
 	grid-gap: 10px;
 	padding: 10px;
-	/* padding-right: 0px; */
 	border-radius: 26px;
 }
 
@@ -3030,7 +3036,6 @@ input:checked + .toggle:before {
 	width: 36px;
 	border-radius: 18px;
 	outline: none;
-	/* margin-right: 10px; */
 	cursor: pointer;
 }
 

@@ -260,6 +260,22 @@ function ApplyLoadingColor() {
 }
 
 
+// Limit language selector to 6 options
+const languageSelector = document.getElementById("languageSelector");
+
+languageSelector.addEventListener("focus", () => {
+    languageSelector.size = 6;
+});
+
+languageSelector.addEventListener("blur", () => {
+    languageSelector.size = 0;
+});
+
+languageSelector.addEventListener("change", () => {
+    languageSelector.size = 1;
+    languageSelector.blur();
+});
+
 // ------------------------------------ Tips ------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
     // Hide tips that are not relevant to mobile
@@ -309,4 +325,3 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("hideTips", "true"); // Save preference
     });
 });
-
