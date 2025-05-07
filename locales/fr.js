@@ -132,7 +132,7 @@ const fr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  
+    "gImagesEngine": "Images",
     "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
     "quoraEngine": "Quora",
@@ -150,11 +150,6 @@ const fr = {
     "metaAI": "Meta AI",
     "aiSettingsIntro": "Sélectionnez les outils IA à afficher",
     "resetAISettingsBtn": "Réinitialiser",
-
-    // Theme
-    "enableDarkMode": "Mode Sombre",
-    "enableDarkModeInfo": "Activer le mode sombre des thèmes",
-
 
     // Wallpaper and misc
     "uploadWallpaperText": "Uploader un fond d'ecran",
