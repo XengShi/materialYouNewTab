@@ -377,6 +377,8 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	gap: 10px;
 	padding: 20px 10px;
 	background-color: var(--accentLightTint-blue);
+	background-color: color-mix(in srgb, var(--accentLightTint-blue) 70%, transparent);
+	backdrop-filter: blur(14px) saturate(180%);
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
@@ -411,7 +413,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	position: relative;
 	min-width: 100px;
 	/* Ensure consistent width */
-	background-color: var(--accentLightTint-blue);
+	/* background-color: var(--accentLightTint-blue); */
 	/* Default background */
 }
 
@@ -450,9 +452,9 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 /* Hover Effect for Icon Item */
 .icon-item:hover {
-	background-color: var(--bg-color-blue);
-	transform: scale(1.1);
-	/* Add zoom-in effect */
+	/* background-color: var(--bg-color-blue); */
+	/* background-color: color-mix(in srgb, var(--bg-color-blue) 20%, transparent); */
+	transform: translateY(-4px);
 }
 
 /* Show Full Label on Hover for Multi-word Labels */
@@ -1055,8 +1057,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: grid;
 	gap: 10px;
 	padding: 12px 6px 6px 6px;
-	background-color: var(--accentLightTint-blue);
-	opacity: 0.95;
+	/* background-color: var(--accentLightTint-blue);
+	opacity: 0.95; */
+	
+	background-color: color-mix(in srgb, var(--accentLightTint-blue) 69%, transparent);
+	backdrop-filter: blur(4px) saturate(180%);
+
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
@@ -1163,7 +1169,8 @@ body #bookmarkButton.bookmark-button.rotate {
 .todolistitem {
 	width: 100%;
 	display: flex;
-	background-color: var(--darkColor-blue);
+	/* background-color: var(--darkColor-blue); */
+	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
 	color: var(--whitishColor-blue);
 	border-radius: 8px;
 	list-style-type: none;
