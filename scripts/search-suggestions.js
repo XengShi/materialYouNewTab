@@ -173,7 +173,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
         } else if (e.key === "ArrowUp") {
             e.preventDefault();
             if (activeItem) {
@@ -184,7 +184,7 @@ document.getElementById("searchQ").addEventListener("keydown", function (e) {
 
             // Ensure the active item is visible within the result box
             const activeElement = resultBox.children[currentIndex];
-            activeElement.scrollIntoView({ block: "nearest" });
+            activeElement.scrollIntoView({ behavior: "smooth", block: "nearest" });
         } else if (e.key === "Enter" && activeItem) {
             e.preventDefault();
             activeItem.click();
@@ -201,9 +201,21 @@ function getClientParam() {
     return "firefox"; // Default to Firefox if the browser is not recognized
 }
 
+let lastRedditRequestTime = 0;
+
 async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
     var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
+
+    // 🔒 Throttle Reddit API calls
+    const now = Date.now();
+    if (selectedOption === "engine7" && now - lastRedditRequestTime < 1000) {
+        return []; // skip call if within 1 second
+    }
+    if (selectedOption === "engine7") {
+        lastRedditRequestTime = now;
+    }
+
     var searchEnginesapi = {
         engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
         engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
@@ -216,10 +228,7 @@ async function getAutocompleteSuggestions(query) {
 
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
     let apiUrl = searchEnginesapi[selectedOption] || searchEnginesapi["engine1"];
-    if (useproxyCheckbox.checked) {
-        if (selectedOption === "engine7") {
-            apiUrl = searchEnginesapi["engine1"];
-        }
+    if (useproxyCheckbox.checked && selectedOption !== "engine7") {
         apiUrl = proxyurl + encodeURIComponent(apiUrl);
     }
 
@@ -236,7 +245,7 @@ async function getAutocompleteSuggestions(query) {
                 }
             });
             return suggestions;
-        } else if (selectedOption === "engine7" && useproxyCheckbox.checked === false) {
+        } else if (selectedOption === "engine7") {
             const suggestions = [];
             if (data && data.data && data.data.children) {
                 data.data.children.forEach(post => {

@@ -18,9 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Localized
 
 - Updated translation for:
-    - Czech (@ceskyDJ)
+  - Czech (@ceskyDJ)
 
-## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 8, 2025
+## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 2025
 
 ### Added
 
@@ -43,6 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added option to hide Clock ([@XengShi](https://github.com/XengShi)), ([@prem-k-r](https://github.com/prem-k-r)) ([23cd5a8](https://github.com/XengShi/materialYouNewTab/commit/23cd5a86759d11944f447f4f448a710ccfe4d9fc)), ([#599](https://github.com/XengShi/materialYouNewTab/pull/599))
 - Added location suggestion dropdown with real-time search feature ([@prem-k-r](https://github.com/prem-k-r)) ([#609](https://github.com/XengShi/materialYouNewTab/pull/609))
 - Added option to show Minimun-Maximum temperature instead of Feels like ([@prem-k-r](https://github.com/prem-k-r)) ([#615](https://github.com/XengShi/materialYouNewTab/pull/615))
+- Added Grok and Qwen to the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#624](https://github.com/XengShi/materialYouNewTab/pull/624))
+- Added the ability to choose which AI shortcuts to display and set the order in which they appear ([@prem-k-r](https://github.com/prem-k-r)) ([#624](https://github.com/XengShi/materialYouNewTab/pull/624))
 
 ### Changed
 
@@ -51,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved date format for Japanese and Korean ([@prem-k-r](https://github.com/prem-k-r)), ([@dempavof](https://github.com/dempavof)) ([#529](https://github.com/XengShi/materialYouNewTab/pull/529))
 - Updated toggle switch design; adjusted the inner thumb size based on state and reduced animation speed ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Reduced radio buttons size in search engines ([@vchib1](https://github.com/vchib1)), ([@prem-k-r](https://github.com/prem-k-r))
+- Added throttle to Reddit search suggestions to prevent hitting rate limits during rapid typing ([@prem-k-r](https://github.com/prem-k-r)) ([#626](https://github.com/XengShi/materialYouNewTab/pull/626))
 
 ### Improved
 
@@ -67,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Styled each shortcut as a separate card with a background color in the Edit Shortcuts list ([@prem-k-r](https://github.com/prem-k-r)) ([#536](https://github.com/XengShi/materialYouNewTab/pull/536))
 - Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
 - Added 5 more shared WeatherAPI keys ([@prem-k-r](https://github.com/prem-k-r)) ([916e3d6](https://github.com/XengShi/materialYouNewTab/pull/609/commits/916e3d6bd49c10fde9c2f24ac61a0570922c5c3a))
+- Made AI tools shortcut icons a bit larger ([@prem-k-r](https://github.com/prem-k-r)) ([27c592f](https://github.com/XengShi/materialYouNewTab/pull/624/commits/27c592fecbdf0c440fc750ea7503c060e4c4deaf))
 
 ### Removed
 
@@ -74,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed Instagram shortcut ([@prem-k-r](https://github.com/prem-k-r)) ([185a981](https://github.com/XengShi/materialYouNewTab/pull/523/commits/185a98128ab0a066d0002c074df1bfb6212c638d))
 - Removed Adobe Firefly from the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#544](https://github.com/XengShi/materialYouNewTab/pull/544))
 - Removed the vertical line that was present after 'Search With' ([@prem-k-r](https://github.com/prem-k-r))
-- Removed invalid url syntax check for shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#622](https://github.com/XengShi/materialYouNewTab/pull/622))
+- Removed the invalid URL syntax check for shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([aa63c4a](https://github.com/XengShi/materialYouNewTab/pull/622/commits/aa63c4a0ee10c44baf63c22acf637ffb11621416))
 
 ### Fixed
 

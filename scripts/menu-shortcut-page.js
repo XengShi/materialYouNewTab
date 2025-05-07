@@ -38,6 +38,15 @@ const closeMenuBar = () => {
         });
     }, 14);
     setTimeout(() => {
+        // Disable smooth scroll temporarily
+        menuCont.style.scrollBehavior = "auto";
+        menuCont.scrollTop = 0;
+
+        // Restore smooth scroll
+        requestAnimationFrame(() => {
+            menuCont.style.scrollBehavior = "smooth";
+        });
+
         menuBar.style.display = "none";
     }, 555);
 }

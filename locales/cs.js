@@ -145,7 +145,6 @@ const cs = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
     "aiSettingsIntro": "Vyberte, jaké AI nástroje budou zobrazeny",
-    "aiSettingsNote": "K celému seznamu AI nástrojů se dostanete pomocí skrolování.",
     "resetAISettingsBtn": "Resetovat",
 
     // Wallpaper and settings

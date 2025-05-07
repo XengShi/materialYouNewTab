@@ -190,7 +190,6 @@ function applyLanguage(lang) {
         "updateFirefoxHomepage",
         "dontShowTips",
         "aiSettingsIntro",
-        "aiSettingsNote",
         "resetAISettingsBtn"
     ];
 
@@ -225,6 +224,8 @@ function applyLanguage(lang) {
         { id: "cancelBookmarkEdit", key: "cancelText" },
         { id: "aiSettingsHeader", key: "aiToolsSettingsText" },
         { id: "saveAISettingsBtn", key: "saveAPI" },
+        { id: "editBookmarkNameLabel", key: "editBookmarkName" },
+        { id: "editBookmarkURLLabel", key: "editBookmarkURL" }
     ];
 
     // Function to apply translations
@@ -258,7 +259,7 @@ function applyLanguage(lang) {
     if (translations[lang]) {
         const placeholder = translations[lang]?.userText || translations["en"].userText;
         userTextDiv.dataset.placeholder = placeholder; // Update the placeholder in data attribute
-        // Only set the text content if there"s nothing in localStorage
+        // Only set the text content if there's nothing in localStorage
         if (!localStorage.getItem("userText")) {
             userTextDiv.innerText = placeholder;
         }

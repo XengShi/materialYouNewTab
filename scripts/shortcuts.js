@@ -523,10 +523,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    newShortcutButton.addEventListener("click", () => newShortcut());
+    let focusTimeoutId;
+    newShortcutButton.addEventListener("click", () => {
+        newShortcut();
+
+        // Scroll to the new shortcut and focus on the URL input
+        const allEntries = document.querySelectorAll('.shortcutSettingsEntry');
+        const lastEntry = allEntries[allEntries.length - 1];
+        const urlInput = lastEntry.querySelector('input.URL');
+
+        urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        clearTimeout(focusTimeoutId);
+        focusTimeoutId = setTimeout(() => {
+            urlInput.focus();
+        }, 800);
+    });
 
     resetShortcutsButton.addEventListener("click", () => {
         resetShortcuts();
+
+        // If newShortcutButton was previously inactive, reactivate it
+        if (newShortcutButton.classList.contains("inactive")) {
+            newShortcutButton.classList.remove("inactive");
+        }
 
         // Animate the reset button
         const svgElement = resetShortcutsButton.querySelector("svg");

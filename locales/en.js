@@ -145,7 +145,6 @@ const en = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
     "aiSettingsIntro": "Select which AI tools to display",
-    "aiSettingsNote": "Scroll to view the full list of AI shortcuts.",
     "resetAISettingsBtn": "Reset",
 
     // Wallpaper and settings

@@ -356,7 +356,8 @@ body {
 	width: fit-content;
 	/* Limit to 12 icons (3 rows * icon size + gaps) */
 	overflow-x: hidden;
-	/* Add vertical scrollbar when needed */
+	overflow-y: scroll;
+	scroll-behavior: smooth;
 	box-sizing: border-box;
 	z-index: 3; /* This should be higher that z-index of [.googleAppsCont] */
 }
@@ -627,6 +628,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	text-align: left;
 	height: calc(100% - 260px);
 	overflow-y: auto; /* Add vertical scrollbar */
+	scroll-behavior: smooth;
 	overflow-x: hidden;
 }
 
@@ -656,11 +658,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
-/* Updated CSS */
 .bookmark-controls-container {
 	display: flex;
-	gap: 32px; /* Space between Sort by and View as sections */
-	padding: 8px 32px;
+	justify-content: space-between;
+	gap: 40px; /* Space between Sort by and View as sections */
+	padding: 6px 32px 13px;
 }
 
 .bookmark-control-group {
@@ -670,36 +672,55 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .bookmark-control-group h3 {
-	font-size: 1rem;
+	font-size: 0.96rem;
 	color: var(--darkerColor-blue);
 	margin: 0;
 	white-space: nowrap;
+	text-align: center;
 }
 
 .button-group {
-	display: flex;
-	gap: 8px; /* Space between buttons */
+	display: inline-flex;
+	border: 2px solid var(--bg-color-blue);
+	border-radius: 100px;
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 2px;
 }
 
-/* Shared button styling */
 .bookmark-sort-button,
 .bookmark-view-as-button {
 	background: transparent;
-	border-radius: 20px;
-	border: 2px solid var(--darkColor-blue);
-	color: var(--darkColor-blue);
-	min-width: 60px;
-	font-size: 12px;
-	padding: 2px 9px;
+	border: none;
+	border-radius: 100px;
+	font-size: 0.75rem;
 	cursor: pointer;
-	transition: all 0.2s ease;
+	width: 64px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 4px 8px;
+	color: var(--darkColor-blue);
+	transition: background-color 0.2s, color 0.2s;
+}
+
+#sortAlphabetical {
+	width: 45px;
+}
+
+#sortTimeAdded {
+	width: 90px;
+}
+
+.bookmark-sort-button:hover,
+.bookmark-view-as-button:hover {
+	white-space: normal;
 }
 
 /* Active states */
 .bookmark-sort-button.active,
 #bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
 #bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
-	background: var(--darkColor-blue);
+	background-color: var(--darkColor-blue);
 	color: var(--whitishColor-blue);
 }
 
@@ -879,14 +900,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 20px;
 }
 
-/* Modal Content */
 #editBookmarkModal .modal-content {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 20px;
 }
 
-/* Modal Header */
 #editBookmarkModal h2 {
 	text-align: center;
 	font-size: 1.5rem;
@@ -894,36 +913,64 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-top: 5px;
 }
 
-/* Input Fields */
-#editBookmarkModal input {
-	width: 100%;
-	padding: 10px 14px;
-	font-size: 0.9rem;
-	border: 1px solid var(--accentLightTint-blue);
-	border-radius: 14px;
-	outline: none;
-	transition: 0.2s;
-}
-
-#editBookmarkModal input:focus {
-	border-color: var(--darkColor-blue);
-	box-shadow: 0 0 3px var(--darkColor-blue);
-}
-
-/* Favicon Display */
 #editBookmarkFavicon {
 	display: block;
-	margin: 7px auto;
+	margin: 0 auto 5px;
 	width: 32px;
 	height: 32px;
 	border-radius: 2px;
 }
 
-/* Modal Buttons */
+.floating-label-field {
+	position: relative;
+	margin-top: 12px;
+}
+
+.floating-label-field input {
+	width: 100%;
+	padding: 12px 16px;
+	font-size: 0.9rem;
+	border: 1px solid var(--bg-color-blue);
+	border-radius: 14px;
+	outline: none;
+	background-color: var(--accentLightTint-blue);
+	transition: border-color 0.2s;
+}
+
+.floating-label-field input:focus {
+	border-color: var(--darkColor-blue);
+}
+
+.floating-label-field input::placeholder {
+	color: transparent;
+}
+
+.floating-label-field label {
+	position: absolute;
+	left: 14px;
+	top: 13.4px;
+	padding: 0 5px;
+	color: color-mix(in srgb, var(--darkColor-blue) 75%, white);
+	font-size: 0.9rem;
+	border-radius: 5px;
+	transition: 0.2s ease all;
+	pointer-events: none;
+}
+
+/* Float label when focused or has content */
+.floating-label-field input:focus + label,
+.floating-label-field input:not(:placeholder-shown) + label {
+	top: -19px;
+	left: 12px;
+	font-size: 0.8rem;
+	color: var(--darkColor-blue);
+	background-color: var(--bg-color-blue);
+}
+
 #editBookmarkModal .modal-buttons {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 11px;
+	margin-top: 4px;
 	gap: 20px;
 }
 
@@ -974,8 +1021,9 @@ body #bookmarkButton.bookmark-button.rotate {
 .todo-container {
 	display: grid;
 	gap: 10px;
-	padding: 10px 5px;
-	background-color: var(--bg-color-blue);
+	padding: 12px 6px 6px 6px;
+	background-color: var(--accentLightTint-blue);
+	opacity: 0.95;
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	border: 8px solid var(--bg-color-blue);
@@ -986,6 +1034,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	left: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	overflow-y: auto;
+	scroll-behavior: smooth;
 	box-sizing: border-box;
 	z-index: 3;
 }
@@ -1061,7 +1110,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todo-container .searchbar-content {
-	background: var(--accentLightTint-blue);
+	background: var(--bg-color-blue);
 	padding: 0;
 	border-radius: 20px;
 	width: 100%;
@@ -1811,12 +1860,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 30px;
 	background-color: var(--darkColor-blue);
 	border-radius: 100%;
-	margin-left: 4px;
+	margin-left: 5px;
 	padding: 3px;
 }
 
 .searchEnginesContainer .search-engine label {
-	margin: 0 14px 0 10px;
+	margin: 0 13px 0 10px;
 	cursor: pointer;
 }
 
@@ -2170,8 +2219,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 5px;
 	font-size: 1.1rem;
+	opacity: 0.96;
 }
 
 .ai-settings-modal .ai-close-button {
@@ -2182,18 +2231,13 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .ai-settings-modal #aiSettingsIntro {
 	font-size: 0.9rem;
-	margin-bottom: 2px;
-}
-
-.ai-settings-modal #aiSettingsNote {
 	margin-bottom: 20px;
-	font-size: 0.9rem;
-	opacity: 0.8;
 }
 
 .ai-settings-modal .ai-tools-list {
-	max-height: 240px;
+	max-height: 260px;
 	overflow-y: auto;
+	scroll-behavior: smooth;
 }
 
 .ai-settings-modal .ai-tools-list::-webkit-scrollbar {
@@ -2222,7 +2266,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option {
-	margin: 0 5px 10px 0;
+	margin: 0 4px 10px 0;
 	padding: 10px 16px;
 	display: flex;
 	justify-content: space-between;
@@ -2271,14 +2315,14 @@ body #bookmarkButton.bookmark-button.rotate {
 #aiToolsForm .ai-tool-reorder {
 	display: flex;
 	flex-direction: row;
-	gap: 7px;
+	gap: 6px;
 }
 
 #aiToolsForm .ai-tool-reorder button {
-	background: color-mix(in srgb, var(--whitishColor-blue) 50%, transparent);
+	background: color-mix(in srgb, var(--whitishColor-blue) 60%, transparent);
 	color: var(--darkColor-blue);
 	border: 1px solid var(--darkColor-blue);
-	border-radius: 5px;
+	border-radius: 6px;
 	width: 26px;
 	height: 22px;
 	font-size: 0.8rem;
@@ -2382,15 +2426,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	transform: translateX(100%);
 	opacity: 0;
 	overflow-y: scroll;
-	/* Allow vertical scrolling only */
 	overflow-x: hidden;
-	/* Hide horizontal overflow */
 }
 
 .menuCont .optCont .page {
 	width: 100%;
 	padding: 0 var(--gap) var(--gap) var(--gap);
 	position: absolute;
+	scroll-behavior: smooth;
 	transition: all 0.6s;
 }
 
