@@ -522,7 +522,8 @@ async function getWeatherData() {
                 const humidityMinWidth = {
                     idn: "47%",
                     hu: "48%",
-                    en: "42%", // Default for English and others
+                    de: "51%",
+                    en: "42%" // Default for English and others
                 };
                 const slider = document.getElementById("slider");
                 slider.style.minWidth = humidityMinWidth[currentLanguage] || humidityMinWidth["en"];

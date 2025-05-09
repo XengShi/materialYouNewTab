@@ -31,7 +31,7 @@ const en = {
 
     // Clock
     "hideClockBox": "Hide Clock",
-    "hideClockBoxInfo": "Show or hide the clock and date",
+    "hideClockBoxInfo": "Hide the clock and date",
     "digitalclocktitle": "Digital Clock",
     "digitalclockinfo": "Switch to the digital clock",
     "timeformattitle": "12-Hour Format",
