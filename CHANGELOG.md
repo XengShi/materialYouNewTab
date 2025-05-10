@@ -71,6 +71,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Throttle in Color Picker input for performance optimization ([@prem-k-r](https://github.com/prem-k-r)) ([#511](https://github.com/XengShi/materialYouNewTab/pull/511))
 - Added 5 more shared WeatherAPI keys ([@prem-k-r](https://github.com/prem-k-r)) ([916e3d6](https://github.com/XengShi/materialYouNewTab/pull/609/commits/916e3d6bd49c10fde9c2f24ac61a0570922c5c3a))
 - Made AI tools shortcut icons a bit larger ([@prem-k-r](https://github.com/prem-k-r)) ([27c592f](https://github.com/XengShi/materialYouNewTab/pull/624/commits/27c592fecbdf0c440fc750ea7503c060e4c4deaf))
+- Enhanced 'Sort by' and 'View as' buttons UI ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
+- Enhanced Todo list UI ([@XengShi](https://github.com/XengShi)) ([bff0a40](https://github.com/XengShi/materialYouNewTab/commit/bff0a4012ab8e05bc177dfdc1f3c7189be763a54))
+- New shortcut now auto-scrolls into view and focuses on URL input; and smooth scrolling for all scrollable areas ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
 
 ### Removed
 
@@ -95,6 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed bug where shortcut reset animation occurred only alternately; now it works every time ([@prem-k-r](https://github.com/prem-k-r)) ([c4cdd6c](https://github.com/XengShi/materialYouNewTab/pull/536/commits/c4cdd6c8719937b9fa93afc76cd111a94cf61350))
 - Corrected off-center Google menu icon alignment on certain devices ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Fixed delayed radio button animation when hiding search engines ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
+- Fixed disabled Save button in Edit Bookmark not re-enabling after entering URL ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
+- Fixed inactive Add Shortcut button after resetting maxed-out shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
 
 ### Localized
 
