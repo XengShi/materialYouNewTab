@@ -13,14 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Localized` - for updates related to translations, localization, or internationalization.
 - `Other` - for technical updates.
 
-## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3.1...main)
+## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3...main)
 
-### Localized
-
-- Updated translation for:
-  - Czech (@ceskyDJ)
-
-## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - Apr 2025
+<!-- ## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - May 2025 -->
 
 ### Added
 
@@ -102,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for Nepali ([@sthaB-kash](https://github.com/sthaB-kash)) ([#452](https://github.com/XengShi/materialYouNewTab/pull/452))
 - Added support for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
 - Added support for Urdu ([@prem-k-r](https://github.com/prem-k-r)), ([@asfand-dev](https://github.com/asfand-dev)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
+- Added support for German ([@prem-k-r](https://github.com/prem-k-r)) ([#641](https://github.com/XengShi/materialYouNewTab/pull/641))
 - Translation updated for:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))

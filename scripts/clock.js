@@ -147,6 +147,7 @@ async function initializeClock() {
                 sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
                 hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
                 ur: `${dayName}، ${dayOfMonth} ${monthName}`,
+                de: `${dayName}, ${dayOfMonth}. ${monthName}`,
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
             document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -273,6 +274,7 @@ async function initializeClock() {
             fr: `${dayName} ${dayOfMonth}`, // Mardi 11
             hu: `${dayName} ${dayOfMonth}`, // Kedd 11
             ur: `${dayName}، ${dayOfMonth}`,
+            de: `${dayOfMonth}. ${dayName}`,
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
         const dateString = dateFormats[currentLanguage] || dateFormats.default;
