@@ -23,7 +23,7 @@
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
     <script defer src="scripts/menu-shortcut-page.js"></script>
-    <!-- <script defer src="scripts/theme.js"></script> -->
+    <script defer src="scripts/theme.js"></script>
     <script defer src="scripts/alert-modal.js"></script>
     <script defer src="scripts/wallpaper.js"></script>
     <script defer src="scripts/clock.js"></script>
@@ -1567,20 +1567,6 @@
                                 <button class="savebtn" id="saveAPI">Save</button>
                             </div>
                         </div>
-                        <!-- ---🟡--- -->
-                        <div class="ttcont">
-                            <div class="texts">
-                                <div class="bigText" id="enableDarkMode">Dark Mode</div>
-                                <div class="infoText" id="enableDarkModeInfo">
-                                    Enable dark mode themes
-                                </div>
-                            </div>
-                            <label class="switch">
-                                <input id="enableDarkModeCheckbox" type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-                        <!-- ---🟡--- -->
 
                     </div>
                     <br>
@@ -1640,6 +1626,17 @@
                                     d="M14.2778 10C13.9684 10 13.6716 9.87708 13.4528 9.65829C13.234 9.4395 13.1111 9.14275 13.1111 8.83333C13.1111 8.52391 13.234 8.22717 13.4528 8.00837C13.6716 7.78958 13.9684 7.66667 14.2778 7.66667C14.5872 7.66667 14.8839 7.78958 15.1027 8.00837C15.3215 8.22717 15.4444 8.52391 15.4444 8.83333C15.4444 9.14275 15.3215 9.4395 15.1027 9.65829C14.8839 9.87708 14.5872 10 14.2778 10ZM11.9444 6.88889C11.635 6.88889 11.3383 6.76597 11.1195 6.54718C10.9007 6.32839 10.7778 6.03164 10.7778 5.72222C10.7778 5.4128 10.9007 5.11606 11.1195 4.89726C11.3383 4.67847 11.635 4.55556 11.9444 4.55556C12.2539 4.55556 12.5506 4.67847 12.7694 4.89726C12.9882 5.11606 13.1111 5.4128 13.1111 5.72222C13.1111 6.03164 12.9882 6.32839 12.7694 6.54718C12.5506 6.76597 12.2539 6.88889 11.9444 6.88889ZM8.05556 6.88889C7.74614 6.88889 7.44939 6.76597 7.2306 6.54718C7.0118 6.32839 6.88889 6.03164 6.88889 5.72222C6.88889 5.4128 7.0118 5.11606 7.2306 4.89726C7.44939 4.67847 7.74614 4.55556 8.05556 4.55556C8.36497 4.55556 8.66172 4.67847 8.88051 4.89726C9.09931 5.11606 9.22222 5.4128 9.22222 5.72222C9.22222 6.03164 9.09931 6.32839 8.88051 6.54718C8.66172 6.76597 8.36497 6.88889 8.05556 6.88889ZM5.72222 10C5.4128 10 5.11606 9.87708 4.89726 9.65829C4.67847 9.4395 4.55556 9.14275 4.55556 8.83333C4.55556 8.52391 4.67847 8.22717 4.89726 8.00837C5.11606 7.78958 5.4128 7.66667 5.72222 7.66667C6.03164 7.66667 6.32839 7.78958 6.54718 8.00837C6.76597 8.22717 6.88889 8.52391 6.88889 8.83333C6.88889 9.14275 6.76597 9.4395 6.54718 9.65829C6.32839 9.87708 6.03164 10 5.72222 10ZM10 3C8.14348 3 6.36301 3.7375 5.05025 5.05025C3.7375 6.36301 3 8.14348 3 10C3 11.8565 3.7375 13.637 5.05025 14.9497C6.36301 16.2625 8.14348 17 10 17C10.3094 17 10.6062 16.8771 10.825 16.6583C11.0437 16.4395 11.1667 16.1428 11.1667 15.8333C11.1667 15.53 11.05 15.2578 10.8633 15.0556C10.6844 14.8456 10.5678 14.5733 10.5678 14.2778C10.5678 13.9684 10.6907 13.6716 10.9095 13.4528C11.1283 13.234 11.425 13.1111 11.7344 13.1111H13.1111C14.1425 13.1111 15.1317 12.7014 15.861 11.9721C16.5903 11.2428 17 10.2536 17 9.22222C17 5.78444 13.8656 3 10 3Z"
                                     fill="#f00" />
                             </svg>
+                            <button class="darkmodeswitch" id="darkModeSwitch">
+                                <input id="enableDarkModeCheckbox" type="checkbox" hidden>
+                                <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                    <path fill="currentColor"
+                                        d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+                                </svg>
+                                <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                        d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+                                </svg>
+                            </button>
                         </div>
                         <!-- -------- -->
                         <div class="colorsContainer" id="colorsContainer">
@@ -1662,7 +1659,7 @@
                             <input class="colorPlate" id="darkTheme" name="color" type="radio" value="dark">
 
                             <!-- ----Color Picker || ColorPicker---- -->
-                            <label id="rangColor" class="colorPlate colorPickerLabel" for="colorPicker">Pick
+                            <label id="rangColor" for="colorPicker" class="colorPlate colorPickerLabel">Pick
                                 color</label>
                             <input type="color" id="colorPicker" autocomplete="off" value="#EA1010" />
                             <!-- ----End of Color Picker || ColorPicker---- -->
@@ -1820,6 +1817,46 @@
     </div>
     <!-- ------end of Menu-bar----------- -->
     <div id="menuButton"></div>
+
+    <!-- --------  Custom Theme Modal -------- -->
+    <div class="CustomThemeModal" id="customThemeModal">
+        <div class="modalContent">
+            <div class="modalHeader">
+                <h2>Custom Theme</h2>
+
+            </div>
+            <div class="modalBody">
+                <div class="modalBodyContentItem">
+                    <h3>Background</h3>
+                    <input type="color" id="backgroundColorPicker" value="#BBD6FD">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Accent</h3>
+                    <input type="color" id="accentColorPicker" value="#E2EEFF">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Primary</h3>
+                    <input type="color" id="primaryColorPicker" value="#4382EC">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Secondary</h3>
+                    <input type="color" id="secondaryColorPicker" value="#3569b2">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Text</h3>
+                    <input type="color" id="textColorPicker" value="#1b3041">
+                </div>
+                <div class="modalBodyContentItem">
+                    <h3>Highlight</h3>
+                    <input type="color" id="highlightColorPicker" value="#ffffff">
+                </div>
+            </div>
+            <div class="modalFooter">
+                <button class="closeModal" id="closeCustomThemeModal">Cancel<!--&#10006;--></button>
+                <button id="saveCustomTheme">Save</button>
+            </div>
+        </div>
+    </div>
     <!-- ending-of-body -->
 
 </body>

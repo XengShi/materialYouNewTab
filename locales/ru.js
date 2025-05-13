@@ -136,10 +136,6 @@ const ru = {
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
 
-    // Theme
-    "enableDarkMode": "Чёрная тема (Эксперимент)",
-    "enableDarkModeInfo": "Включить чёрную тему",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Загрузить обои",
     "rangColor": "Выбрать цвет",
