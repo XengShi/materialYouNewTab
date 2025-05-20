@@ -148,6 +148,7 @@ async function initializeClock() {
                 hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
                 ur: `${dayName}، ${dayOfMonth} ${monthName}`,
                 de: `${dayName}, ${dayOfMonth}. ${monthName}`,
+                fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
             document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -275,6 +276,7 @@ async function initializeClock() {
             hu: `${dayName} ${dayOfMonth}`, // Kedd 11
             ur: `${dayName}، ${dayOfMonth}`,
             de: `${dayOfMonth}. ${dayName}`,
+            fa: `${dayName} ${localizedDayOfMonth}`, // e.g. شنبه ۲۵
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
         const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -285,8 +287,8 @@ async function initializeClock() {
 
         // Array of languages to use "en-US" format
         const specialLanguages = ["tr", "zh", "zh_TW", "ja", "ko", "hu"]; // Languages with NaN in locale time format
-        const localizedLanguages = ["bn", "mr", "np"];
-        // Force the "en-US" format for Bengali, otherwise, it will be localized twice, resulting in NaN
+        const localizedLanguages = Object.keys(numberMappings);
+        // Force the "en-US" format for numeral-localized languages, otherwise, it will be localized twice, resulting in NaN
 
         // Set time options and determine locale based on the current language
         const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: hourformat };
@@ -295,11 +297,11 @@ async function initializeClock() {
 
         // Split the time and period (AM/PM) if in 12-hour format
         if (hourformat) {
-            [timeString, period] = timeString.split(' '); // Split AM/PM if present
+            [timeString, period] = timeString.split(" "); // Split AM/PM if present
         }
 
         // Split the hours and minutes from the localized time string
-        let [hours, minutes] = timeString.split(':');
+        let [hours, minutes] = timeString.split(":");
 
         // Remove leading zero from hours in 12-hour format
         if (hourformat) {
@@ -316,9 +318,15 @@ async function initializeClock() {
         document.getElementById("digiminutes").textContent = localizedMinutes;
 
         // Manually set the period for special languages if 12-hour format is enabled
-        if (hourformat && specialLanguages.includes(currentLanguage)) {
+        if (hourformat && (specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage))) {
             let realHours = new Date().getHours();
-            period = realHours < 12 ? "AM" : "PM";
+
+            if (currentLanguage === "fa") {
+                // Farsi specific AM/PM or equivalent
+                period = realHours < 12 ? "ق.ظ" : "ب.ظ"; // قبل از ظهر / بعد از ظهر
+            } else {
+                period = realHours < 12 ? "AM" : "PM";
+            }
         }
 
         // Display AM/PM if in 12-hour format
@@ -382,11 +390,11 @@ async function initializeClock() {
         const digitalClock = document.getElementById("digitalClock");
 
         if (clocktype === "analog") {
-            analogClock.style.display = "block"; // Show the analog clock
+            analogClock.style.display = "block";  // Show the analog clock
             digitalClock.style.display = "none";  // Hide the digital clock
         } else if (clocktype === "digital") {
             digitalClock.style.display = "block";  // Show the digital clock
-            analogClock.style.display = "none";     // Hide the analog clock
+            analogClock.style.display = "none";    // Hide the analog clock
         }
     }
 
