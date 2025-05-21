@@ -6,6 +6,11 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+// Get the current language from localStorage
+const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+const isRTL = rtlLanguages.includes(currentLanguage);
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");
@@ -21,7 +26,7 @@ function pageReset() {
     overviewPage.style.transform = "translateX(0)";
     overviewPage.style.opacity = "1";
     overviewPage.style.display = "block";
-    shortcutEditPage.style.transform = "translateX(120%)";
+    shortcutEditPage.style.transform = `translateX(${isRTL ? '-120%' : '120%'})`;
     shortcutEditPage.style.opacity = "0";
     shortcutEditPage.style.display = "none";
 }
@@ -29,12 +34,12 @@ function pageReset() {
 const closeMenuBar = () => {
     requestAnimationFrame(() => {
         optCont.style.opacity = "0"
-        optCont.style.transform = "translateX(100%)"
+        optCont.style.transform = `translateX(${isRTL ? '-100%' : '100%'})`;
     });
     setTimeout(() => {
         requestAnimationFrame(() => {
             menuBar.style.opacity = "0"
-            menuCont.style.transform = "translateX(100%)"
+            menuCont.style.transform = `translateX(${isRTL ? '-100%' : '100%'})`;
         });
     }, 14);
     setTimeout(() => {
@@ -99,7 +104,7 @@ shortcutEditButton.onclick = () => {
         shortcutEditPage.style.display = "block"
     });
     requestAnimationFrame(() => {
-        overviewPage.style.transform = "translateX(-120%)"
+        overviewPage.style.transform = `translateX(${isRTL ? '120%' : '-120%'})`;
         overviewPage.style.opacity = "0"
     });
     setTimeout(() => {
@@ -119,7 +124,7 @@ backButton.onclick = () => {
         overviewPage.style.display = "block"
     });
     requestAnimationFrame(() => {
-        shortcutEditPage.style.transform = "translateX(120%)";
+        shortcutEditPage.style.transform = `translateX(${isRTL ? '-120%' : '120%'})`;
         shortcutEditPage.style.opacity = "0";
     });
     setTimeout(() => {

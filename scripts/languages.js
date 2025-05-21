@@ -326,12 +326,9 @@ function applyLanguage(lang) {
         document.body.classList.remove("lang-ur");
     }
 
-    // Apply the direction to the elements based on the language
-    const rtlElements = [".menuBar", "#conditionText"];
-    rtlElements.forEach(selector => {
-        const element = document.querySelector(selector);
-        element.style.direction = rtlLanguages.includes(lang) ? "rtl" : "ltr";
-    });
+    // Apply the direction attribute for RTL languages
+    const isRTL = rtlLanguages.includes(lang);
+    document.documentElement.setAttribute("dir", isRTL ? "rtl" : "ltr");
 
     // Save the selected language in localStorage
     saveLanguageStatus("selectedLanguage", lang);

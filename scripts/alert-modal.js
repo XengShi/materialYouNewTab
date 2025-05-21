@@ -7,9 +7,6 @@
  */
 
 
-// Get the current language from localStorage
-const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
-
 // Create modal container if not already present
 (function setupCustomModal() {
     if (document.getElementById("prompt-modal-container")) return;
