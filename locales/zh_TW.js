@@ -144,6 +144,7 @@ const zh_TW = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
     "aiSettingsIntro": "選擇要顯示的 AI 工具",
     "resetAISettingsBtn": "重設",
 

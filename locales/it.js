@@ -134,9 +134,12 @@ const it = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
 
     // Theme
     "enableDarkMode": "Modalità Scura (Sperimentale)",
