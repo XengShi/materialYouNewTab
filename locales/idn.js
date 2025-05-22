@@ -144,6 +144,7 @@ const idn = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
     "aiSettingsIntro": "Pilih utilitas AI mana yang ditampilkan",
     "resetAISettingsBtn": "Atur Ulang",
 

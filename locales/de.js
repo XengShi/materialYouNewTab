@@ -144,6 +144,7 @@ const de = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
     "aiSettingsIntro": "Wählen Sie aus, welche KI-Tools angezeigt werden sollen",
     "resetAISettingsBtn": "Zurücksetzen",
 

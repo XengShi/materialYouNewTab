@@ -130,6 +130,7 @@ const mr = {
     "perplexity": "पर्प्लेक्सिटी",
     "deepseek": "डीपसीक",
     "metaAI": "मेटा AI",
+    "firefly": "अडोबी फायरफ्लाय",
     "resetAISettingsBtn": "रीसेट करा",
 
     // Wallpaper and settings

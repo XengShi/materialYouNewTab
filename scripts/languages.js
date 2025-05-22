@@ -168,6 +168,7 @@ function applyLanguage(lang) {
         "perplexity",
         "deepseek",
         "metaAI",
+        'firefly',
         "github",
         "googleAppsHover",
         "todoListHover",

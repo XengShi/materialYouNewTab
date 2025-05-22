@@ -17,6 +17,7 @@ const aiToolsRaw = [
     { id: "deepseek", visible: true, order: 6 },
     { id: "qwen", visible: false, order: 7 },
     { id: "perplexity", visible: false, order: 8 },
+    { id: "firefly", visible: false, order: 9 }
 ];
 // Translations for AI tools
 const aiTools = aiToolsRaw.map(tool => ({
