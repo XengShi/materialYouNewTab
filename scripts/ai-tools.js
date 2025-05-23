@@ -249,7 +249,7 @@ function toggleAITools(event) {
             shortcuts.style.display = "flex";
             aiToolName.style.opacity = "0";
             aiToolName.style.gap = "0";
-            aiToolName.style.transform = `translateX(${isRTL ? '100%' : '-100%'})`;
+            aiToolName.style.transform = "translateX(-100%)";
             setTimeout(() => {
                 aiToolName.style.display = "none";
                 shortcuts.style.display = "flex";
@@ -270,7 +270,7 @@ function toggleAITools(event) {
             shortcuts.style.display = "none";
             aiToolName.style.opacity = "0";
             aiToolName.style.gap = "0";
-            aiToolName.style.transform = `translateX(${isRTL ? '100%' : '-100%'})`;
+            aiToolName.style.transform = "translateX(-100%)";
             setTimeout(() => {
                 aiToolName.style.display = "none";
             }, 500);

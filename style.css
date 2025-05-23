@@ -343,10 +343,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	/* Set z-index */
 }
 
-:dir(rtl) .tooltip-text {
-	transform: translateX(50%);
-}
-
 /* Show tooltip on hover */
 .googleAppsCont:hover .tooltip-text {
 	visibility: visible;
@@ -576,10 +572,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	width: 30px;
 	height: 30px;
 	inset-inline-start: -30px;
-}
-
-:dir(rtl) .bookmark-sidebar .topOutRoundCorner {
-	transform: rotateY(180deg);
 }
 
 .bookmark-sidebar-header {
@@ -826,17 +818,12 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 48px;
 	height: 48px;
 	z-index: -1;
-	inset-inline-start: 50%;
+	left: 50%;
 	transform: translateX(-50%);
 	opacity: 0.35;
 	top: 12px;
 	box-sizing: border-box;
 	border-radius: 32px;
-}
-
-:dir(rtl) #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
-:dir(rtl) #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-	transform: translateX(50%);
 }
 
 #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
@@ -1082,7 +1069,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	justify-items: center;
 	position: fixed;
 	top: 85px;
-	inset-inline-start: 15px;
+	left: 15px;
 	max-height: calc(40px * 3 + 10px * 2 + 290px);
 	overflow-y: auto;
 	scroll-behavior: smooth;
@@ -1854,6 +1841,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	transition: border-radius 0.4s, margin-inline-start 0.4s;
 }
 
+:dir(rtl) .searchWithCont .hint {
+	z-index: 2;
+}
+
 .searchWithCont .hint:hover {
 	background-color: var(--darkColor-blue);
 	color: #fff;
@@ -1886,28 +1877,12 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .searchEnginesContainer.show {
-	animation: slideIn 0.3s ease-in-out forwards;
+	animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes slideIn {
 	from {
-		transform: translateX(100%);
-		opacity: 0.2;
-	}
-	to {
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-
-/* For RTL direction, override the animation */
-:dir(rtl) .searchEnginesContainer.show {
-	animation-name: slideInRTL 0.3s ease-in-out forwards;
-}
-
-@keyframes slideInRTL {
-	from {
-		transform: translateX(-100%);
+		transform: translateX(20px);
 		opacity: 0.2;
 	}
 	to {
@@ -2249,11 +2224,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 0.2;
 }
 
-:dir(rtl) .aiToolsCont .toolsCont {
-	transform-origin: right;
-	transform: scale(0.5) translateX(70px);
-}
-
 .aiToolsCont .toolsCont::before {
 	content: "";
 	position: absolute;
@@ -2466,19 +2436,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-end-start-radius: var(--round);
 }
 
-:dir(rtl) .menuBar .menuCont {
-	transform: translateX(-100%);
-}
-
 .menuBar .menuCont .topRounder {
 	width: var(--round);
 	height: var(--round);
 	position: absolute;
 	inset-inline-start: -30px;
-}
-
-:dir(rtl) .menuBar .menuCont .topRounder {
-	transform: rotateY(180deg);
 }
 
 .menuCont .topDiv {
@@ -2522,10 +2484,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 0;
 	overflow-y: scroll;
 	overflow-x: hidden;
-}
-
-:dir(rtl) .menuCont .optCont {
-	transform: translateX(-100%);
 }
 
 .menuCont .optCont .page {
@@ -2660,6 +2618,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	/* Background color when off */
 	transition: 0.4s;
 	border-radius: 34px;
+	direction: ltr;
+	unicode-bidi: isolate;
 }
 
 /* Styling for the slider when it's in the "on" position */
@@ -2688,10 +2648,6 @@ input:checked + .toggle:before {
 	inset-inline-start: 5px;
 	bottom: 5px;
 	transform: translateX(26px);
-}
-
-:dir(rtl) input:checked + .toggle:before {
-	transform: translateX(-26px);
 }
 
 /* --- END OF 🔴⚪🟡style for toggle buttons---- */
@@ -3546,15 +3502,9 @@ input:checked + .toggle:before {
 	.leftDiv {
 		transform: translateX(-50px);
 	}
-	:dir(rtl) .leftDiv {
-		transform: translateX(50px);
-	}
 
 	.rightDiv {
 		transform: translateX(50px);
-	}
-	:dir(rtl) .rightDiv {
-		transform: translateX(-50px) !important;
 	}
 }
 
@@ -3579,9 +3529,6 @@ input:checked + .toggle:before {
 		/* background-color: green; */
 		margin: var(--gap) 0;
 	}
-	:dir(rtl) .leftDiv {
-		transform: translateX(0px) !important;
-	}
 
 	.clock-padding-adjusted {
 		padding-top: 100px;
@@ -3592,9 +3539,6 @@ input:checked + .toggle:before {
         width: 640px; */
 		transform: translateX(0px);
 		/* background-color: rgba(0, 0, 255, 0.159); */
-	}
-	:dir(rtl) .rightDiv {
-		transform: translateX(0px) !important;
 	}
 
 	.ttteexxtt {
@@ -3649,14 +3593,8 @@ input:checked + .toggle:before {
 	.clock-shifted-right {
 		transform: translateX(30px);
 	}
-	:dir(rtl) .clock-shifted-right {
-		transform: translateX(-30px);
-	}
 	.clock-shifted-right-wide {
 		transform: translateX(100px);
-	}
-	:dir(rtl) .clock-shifted-right-wide {
-		transform: translateX(-100px);
 	}
 }
 
@@ -3721,8 +3659,6 @@ input:checked + .toggle:before {
 		flex-direction: column;
 		justify-content: start;
 		padding-top: 60px;
-		direction: ltr;
-		unicode-bidi: isolate;
 	}
 	.menuBar {
 		top: 0;

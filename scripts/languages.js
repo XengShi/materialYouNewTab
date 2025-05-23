@@ -326,9 +326,16 @@ function applyLanguage(lang) {
         document.body.classList.remove("lang-ur");
     }
 
-    // Apply the direction attribute for RTL languages
+    //  Apply the direction attribute to specific classes for RTL languages
     const isRTL = rtlLanguages.includes(lang);
-    document.documentElement.setAttribute("dir", isRTL ? "rtl" : "ltr");
+    const rtlClasses = ["rightDiv", "leftDiv", "shortcutsContainer", "page",
+        "bookmark-search-container", "bookmark-controls-container", "todo-container"]
+
+    rtlClasses.forEach(className => {
+        document.querySelectorAll(`.${className}`).forEach(el => {
+            el.setAttribute("dir", isRTL ? "rtl" : "ltr");
+        });
+    });
 
     // Save the selected language in localStorage
     saveLanguageStatus("selectedLanguage", lang);
