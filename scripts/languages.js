@@ -328,8 +328,8 @@ function applyLanguage(lang) {
 
     //  Apply the direction attribute to specific selectors for RTL languages
     const isRTL = rtlLanguages.includes(lang);
-    const rtlSelectors = [".topDiv", ".searchbar", ".resultBox", ".quotesCont", ".leftDiv",
-        ".shortcutsContainer", ".page", "#prompt-modal-box", ".todo-container",
+    const rtlSelectors = [".topDiv", ".searchbar", ".searchWithCont", ".resultBox", ".quotesCont",
+        ".leftDiv", ".shortcutsContainer", ".page", "#prompt-modal-box", ".todo-container",
         ".bookmark-search-container", ".bookmark-controls-container", "#editBookmarkModal"]
 
     rtlSelectors.forEach(selector => {
