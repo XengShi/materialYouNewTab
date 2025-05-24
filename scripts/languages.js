@@ -326,13 +326,14 @@ function applyLanguage(lang) {
         document.body.classList.remove("lang-ur");
     }
 
-    //  Apply the direction attribute to specific classes for RTL languages
+    //  Apply the direction attribute to specific selectors for RTL languages
     const isRTL = rtlLanguages.includes(lang);
-    const rtlClasses = ["topDiv", "searchbar", "resultBox", "leftDiv", "shortcutsContainer", "page",
-        "bookmark-search-container", "bookmark-controls-container", "todo-container"]
+    const rtlSelectors = [".topDiv", ".searchbar", ".resultBox", ".quotesCont", ".leftDiv",
+        ".shortcutsContainer", ".page", "#prompt-modal-box", ".todo-container",
+        ".bookmark-search-container", ".bookmark-controls-container", "#editBookmarkModal"]
 
-    rtlClasses.forEach(className => {
-        document.querySelectorAll(`.${className}`).forEach(el => {
+    rtlSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
             el.setAttribute("dir", isRTL ? "rtl" : "ltr");
         });
     });
