@@ -27,14 +27,14 @@ document.addEventListener("click", function (event) {
 });
 
 // Search mode function
-const searchWith = document.getElementById('searchWithHint');
-const searchEngines = document.querySelectorAll('.searchEnginesContainer .search-engine');
-const searchEnginesContainer = document.querySelector('.searchEnginesContainer');
+const searchWith = document.getElementById("searchWithHint");
+const searchEngines = document.querySelectorAll(".searchEnginesContainer .search-engine");
+const searchEnginesContainer = document.querySelector(".searchEnginesContainer");
 let activeSearchMode = localStorage.getItem("activeSearchMode") || "search-with";
 
-searchWith.addEventListener('click', function (event) {
-    activeSearchMode = (activeSearchMode === 'search-with') ? 'search-on' : 'search-with';
-    searchEnginesContainer.classList.toggle('show');
+searchWith.addEventListener("click", function (event) {
+    activeSearchMode = (activeSearchMode === "search-with") ? "search-on" : "search-with";
+    searchEnginesContainer.classList.toggle("show");
     toggleSearchEngines(activeSearchMode);
 
     event.stopPropagation();
@@ -42,24 +42,24 @@ searchWith.addEventListener('click', function (event) {
     searchbar.classList.add("active");
 
     setTimeout(() => {
-        searchEnginesContainer.classList.remove('show');
+        searchEnginesContainer.classList.remove("show");
     }, 300);
 });
 
 function toggleSearchEngines(category) {
     const defaultItems = {
-        'search-with': "engine0",
-        'search-on': "engine5",
+        "search-with": "engine0",
+        "search-on": "engine5",
     };
     const checkeditem = localStorage.getItem(`selectedSearchEngine-${category}`) || defaultItems[category];
     const searchModeName = category === "search-with" ? "searchWithHint" : "searchOnHint";
     searchWith.innerText = translations[currentLanguage][searchModeName] || translations["en"][searchModeName];
 
     searchEngines.forEach(engine => {
-        if (engine.getAttribute('data-category') === category) {
-            engine.style.display = 'flex';
+        if (engine.getAttribute("data-category") === category) {
+            engine.style.display = "flex";
         } else {
-            engine.style.display = 'none';
+            engine.style.display = "none";
         }
 
         if (engine.lastElementChild.value === checkeditem) {
