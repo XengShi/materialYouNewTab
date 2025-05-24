@@ -3760,7 +3760,7 @@ input:checked + .toggle:before {
 	#analogClock,
 	#digitalClock {
 		width: 45%;
-		margin-left: 5%;
+		margin-inline-start: 5%;
 		aspect-ratio: 1;
 		height: auto;
 	}
@@ -3843,7 +3843,7 @@ input:checked + .toggle:before {
 		width: calc(94vw / 0.75);
 		margin-left: calc(320px - 94vw);
 		transform-origin: top left;
-		&:dir(rtl){
+		&:dir(rtl) {
 			margin-right: calc(320px - 31vw);
 		}
 	}
