@@ -328,7 +328,7 @@ function applyLanguage(lang) {
 
     //  Apply the direction attribute to specific classes for RTL languages
     const isRTL = rtlLanguages.includes(lang);
-    const rtlClasses = ["rightDiv", "leftDiv", "shortcutsContainer", "page",
+    const rtlClasses = ["topDiv", "searchbar", "resultBox", "leftDiv", "shortcutsContainer", "page",
         "bookmark-search-container", "bookmark-controls-container", "todo-container"]
 
     rtlClasses.forEach(className => {

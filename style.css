@@ -3843,6 +3843,9 @@ input:checked + .toggle:before {
 		width: calc(94vw / 0.75);
 		margin-left: calc(320px - 94vw);
 		transform-origin: top left;
+		&:dir(rtl){
+			margin-right: calc(320px - 31vw);
+		}
 	}
 	.resultBox {
 		top: 120px;
