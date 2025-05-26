@@ -147,10 +147,6 @@ const idn = {
     "aiSettingsIntro": "Pilih utilitas AI mana yang ditampilkan",
     "resetAISettingsBtn": "Atur Ulang",
 
-    // Theme
-    "enableDarkMode": "Mode Gelap (Eksperimental)",
-    "enableDarkModeInfo": "Mengaktifkan tema mode gelap",
-
     // Wallpaper and settings
     "uploadWallpaperText": "Unggah Wallpaper",
     "rangColor": "Pilih warna",

@@ -149,10 +149,6 @@ const bn = {
     "aiSettingsIntro": "যে এআই টুলগুলো দেখাতে চান তা নির্বাচন করুন",
     "resetAISettingsBtn": "রিসেট করুন",
 
-    // Theme
-    "enableDarkMode": "ডার্ক মোড (পরীক্ষামূলক)",
-    "enableDarkModeInfo": "ডার্ক মোড থিম সক্রিয় করুন",
-
     // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",
     "rangColor": "রঙ নির্বাচন করুন",

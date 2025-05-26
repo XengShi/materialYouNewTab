@@ -147,10 +147,6 @@ const zh_TW = {
     "aiSettingsIntro": "選擇要顯示的 AI 工具",
     "resetAISettingsBtn": "重設",
 
-    // Theme
-    "enableDarkMode": "深色模式（實驗性）",
-    "enableDarkModeInfo": "啟用深色模式主題",
-
     // Wallpaper and settings
     "uploadWallpaperText": "上傳桌布",
     "rangColor": "選擇顏色",

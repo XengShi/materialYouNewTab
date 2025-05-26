@@ -118,7 +118,7 @@
 	--bg-color-dark: #171615;
 	--accentLightTint-dark: #3c3c3c;
 	--darkerColor-dark: #eeeeee;
-	--darkColor-dark: #212121;
+	--darkColor-dark: #bfbfbf;
 	--textColorDark-dark: #d6d6d6;
 	--whitishColor-dark: #cccccc;
 
@@ -182,41 +182,6 @@ body {
 	background-attachment: fixed;
 	height: 100%; /* Ensure the image fits the viewport height */
 	margin: 0; /* Remove margin to avoid unwanted spacing */
-}
-
-html:has(body[data-bg="color"] .menuBar #enableDarkModeCheckbox:checked):not(
-		:has(#darkTheme:checked)
-	) {
-	filter: invert(1) hue-rotate(180deg);
-	-webkit-filter: invert(1) hue-rotate(180deg);
-	& #darkTheme,
-	& .favicon {
-		filter: invert(1) hue-rotate(180deg);
-		-webkit-filter: invert(1) hue-rotate(180deg);
-	}
-	& .menuBar,
-	& #prompt-modal-blur {
-		background-color: #0000001f;
-	}
-	--whitishColor-blue: #f2f2f2;
-}
-
-body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
-		:has(#darkTheme:checked)
-	)
-	> *:not(.menuBar, #bookmarksContainer),
-body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
-		:has(#darkTheme:checked)
-	)
-	:is(.menuCont, .bookmark-sidebar) {
-	filter: invert(1) hue-rotate(180deg);
-	-webkit-filter: invert(1) hue-rotate(180deg);
-	& #darkTheme,
-	& .favicon {
-		filter: invert(1) hue-rotate(180deg);
-		-webkit-filter: invert(1) hue-rotate(180deg);
-	}
-	--whitishColor-blue: #f2f2f2;
 }
 
 /* Search suggestions box */
@@ -559,7 +524,7 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	top: 0;
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 	transition: right 0.3s ease;
 	z-index: 5;
 	display: block;
@@ -756,7 +721,7 @@ body #bookmarkButton.bookmark-button.rotate {
 #bookmarkGridCheckbox:checked ~ #bookmarkViewGrid,
 #bookmarkGridCheckbox:not(:checked) ~ #bookmarkViewList {
 	background-color: var(--darkColor-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 }
 
 #bookmarkList ul {
@@ -1136,10 +1101,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	background-color: #00000000;
 	padding: 0 2px;
 	font-size: 1rem;
-}
-
-.dark-theme #todoInput {
-	color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 /* Default placeholder color */
@@ -1513,6 +1475,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: var(--whitishColor-blue);
 }
 
 .tilesContainer .tiles span {
@@ -1701,6 +1664,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0 2px;
 	margin-left: 55px;
 	font-size: 1rem;
+	color: var(--textColorDark-blue);
 }
 
 /* Default placeholder color */
@@ -1787,7 +1751,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: none;
 	font-size: 1.1rem;
 	background-color: var(--darkColor-blue);
-	color: white;
+	color: var(--whitishColor-blue);
 	/* transition: all 0.3s; */
 }
 
@@ -2903,7 +2867,7 @@ input:checked + .toggle:before {
 }
 
 .delete button:hover {
-	fill: white;
+	fill: var(--whitishColor-blue);
 	background: var(--darkColor-blue);
 }
 
@@ -2913,7 +2877,7 @@ input:checked + .toggle:before {
 }
 
 .addShortcutContainer button {
-	fill: white;
+	fill: var(--whitishColor-blue);
 	background: var(--darkColor-blue);
 	position: absolute;
 	display: flex;
@@ -3092,6 +3056,7 @@ input:checked + .toggle:before {
 	aspect-ratio: 1/1;
 	right: 0;
 	border-radius: 100%;
+	cursor: pointer;
 	z-index: 2;
 }
 
@@ -3468,6 +3433,132 @@ input:checked + .toggle:before {
 
 .toggleTextsCont .ttcont:has(#hideWeatherBox) {
 	display: none;
+}
+
+/* ---------- Custom Theme Modal ---------- */
+.CustomThemeModal {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 1rem;
+	z-index: 9999;
+	/* backdrop-filter: blur(15px) saturate(160%); */
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s ease;
+}
+
+.CustomThemeModal.active {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.modalContent {
+	background-color: var(--accentLightTint-blue);
+	border-radius: 20px;
+	padding: 20px;
+	width: 280px;
+	letter-spacing: 0.05rem;
+	filter: drop-shadow(0px 0px 10px #0005);
+	-webkit-filter: drop-shadow(0px 0px 10px #0005);
+
+	& input[type="color"]::-moz-color-swatch {
+		border: none;
+	}
+
+	& input[type="color"]::-webkit-color-swatch-wrapper {
+		padding: 0;
+		border-radius: 0;
+	}
+
+	& input[type="color"]::-webkit-color-swatch {
+		border: none;
+	}
+}
+
+.modalHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	& h2 {
+		font-size: 1.35rem;
+	}
+	& > div {
+		width: fit-content;
+		background: var(--bg-color-blue);
+		transition: all 0.3s ease;
+		padding: 6px 6px 6px 24px;
+		border-radius: 50px;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		margin-top: 1rem;
+		& input[type="color"] {
+			all: unset;
+			width: 36px;
+			height: 36px;
+			margin: 0;
+			padding: 0;
+			border-radius: 50px;
+			cursor: pointer;
+		}
+	}
+}
+
+.modalBody {
+	margin-top: 8px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.modalBody {
+	display: flex;
+	flex-direction: column;
+	& .modalBodyContentItem {
+		padding: 8px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-end;
+		gap: 1rem;
+		& h3 {
+			opacity: 0.8;
+			font-size: 1.1rem;
+			font-weight: normal;
+		}
+		& input[type="color"] {
+			all: unset;
+			width: 60px;
+			height: 36px;
+			margin: 0;
+			padding: 0;
+			border-radius: 10px;
+			cursor: pointer;
+			&#accentColorPicker {
+				border: 1px solid var(--textColorDark-blue);
+			}
+		}
+	}
+}
+
+.modalFooter {
+	display: flex;
+	margin-top: 0.8rem;
+	justify-content: space-between;
+	& button {
+		background-color: var(--darkerColor-blue);
+		border: none !important;
+		outline: none !important;
+		cursor: pointer;
+		border-radius: 30px;
+		padding: 8px 20px;
+		color: var(--whitishColor-blue);
+	}
 }
 
 /* -------media query ------------------- */
@@ -3878,352 +3969,120 @@ input:checked + .toggle:before {
 	}
 }
 
-/* ------------------- Dark(Black) theme ------------------- */
-.dark-theme .search-engine input[type="radio"]:checked {
-	background-color: #2a2a2a;
-	border: 2px solid #919191;
-}
-
-.dark-theme .search-engine input[type="radio"] {
-	background-color: #9d9d9d;
-	border: 0px solid #000000;
-}
-
-.dark-theme .colorsContainer {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme #themeButton {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme #themeIconSvg,
-.dark-theme #languageSelectorIconSvg {
-	fill: #cdcdcd !important;
-}
-
-.dark-theme .languageIcon,
-.dark-theme .languageSelector {
-	background-color: var(--darkColor-dark);
-	scrollbar-color: var(--darkerColor-blue) transparent;
-}
-
-.dark-theme .languageSelector::-webkit-scrollbar-thumb,
-.dark-theme .languageSelector::-webkit-scrollbar-thumb:hover {
-	background-color: var(--darkerColor-blue);
-}
-
-.dark-theme .bottom a {
-	color: #a1a1a1;
-}
-
-.dark-theme .ttcont input {
-	background-color: var(--darkColor-dark) !important;
-}
-
-.dark-theme input:checked + .toggle {
-	background-color: #aaaaaa;
-}
-
-.dark-theme .tilesCont .tiles {
-	color: #e8e8e8;
-}
-
-.dark-theme .resetbtn:hover {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .resetbtn:active {
-	background-color: #4e4e4e;
-}
-
-.dark-theme .savebtn:hover {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .tiles:hover {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .bottom a:hover {
-	color: var(--darkerColor-blue);
-}
-
-.dark-theme #searchQ {
-	color: #fff;
-}
-
-.dark-theme .searchbar.active {
-	outline: 2px solid #696969;
-}
-
-.dark-theme #searchIconDark {
-	fill: #bbb !important;
-}
-
-.dark-theme .dropdown-item.selected:not(*[data-default]):before {
-	background-color: #707070;
-}
-
-.dark-theme .tilesContainer .tiles {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme #darkFeelsLikeIcon {
-	fill: #fff !important;
-}
-
-.dark-theme .humidityBar .thinLine {
-	background-color: #aaaaaa;
-}
-
-.dark-theme .search-engine .darkIconForDarkTheme,
-.dark-theme .aiDarkIcons {
-	fill: #bbbbbb !important;
-}
-
-.dark-theme .divider {
-	background-color: #cdcdcd;
-}
-
-.dark-theme .shorcutDarkColor {
-	fill: var(--accentLightTint-dark) !important;
-}
-
-.dark-theme #darkLightTint {
-	fill: #bfbfbf;
-}
-
-.dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
-	background: radial-gradient(circle, #bfbfbf 66%, transparent 66%);
-	&:not(:has(svg)) {
-		background: var(--accentLightTint-blue);
+/* Dark Theme CSS */
+body:has(#darkTheme:checked) {
+	background: #010103;
+	& .centerDiv,
+	& .tooltip-text,
+	& .todolistitem {
+		--darkColor-blue: #1a1a1a;
+		--whitishColor-blue: #ccd;
+	}
+	&
+		.optCont
+		#overviewPage
+		:is(
+			input:not([type="radio"]),
+			button:not(#shortcutEditButton),
+			.languageSelector,
+			.languageIcon,
+			.colorsContainer,
+			#themeButton
+		) {
+		background: #212121;
+	}
+	& .optCont #overviewPage button:not(#shortcutEditButton):hover {
+		background: #050708 !important;
+	}
+	& .tilesContainer .tiles span {
+		--textColorDark-blue: #1a1a1a;
+	}
+	& .shortcutsContainer .shortcuts {
+		--darkColor-blue: #3c3c3c;
+		--accentLightTint-blue: #bfbfbf;
+	}
+	& .searchIcon {
+		& > svg .accentColor {
+			--darkColor-blue: #bfbfbf;
+		}
+	}
+	& .searchbar.active {
+		outline: 2px solid #bfbfbf;
+	}
+	& #menuCloseButton {
+		--darkColor-blue: #3c3c3c;
+		--accentLightTint-blue: #bfbfbf;
+		--textColorDark-blue: #212121;
+	}
+	& #bookmarksContainer {
+		& #bookmarkSearch {
+			--whitishColor-blue: #212121;
+		}
+		& .bookmark-view-as-container .bookmark-view-as-button {
+			--darkColor-blue: #000;
+			color: #fff;
+		}
+	}
+	& .todolistitem .todoremovebtn,
+	& .todolistitem .todopinbtn {
+		--bg-color-blue: #7c7c7c;
+	}
+	& .CustomThemeModal.active {
+		--whitishColor-blue: #212121;
 	}
 }
 
-.dark-theme .digiclock {
-	fill: #909090;
+body:not(:has(#enableDarkModeCheckbox:disabled)):has(
+		#enableDarkModeCheckbox:checked
+	):not(:has(#darkTheme:checked, .colorPlate[value="peach"]:checked))
+	.topDiv
+	.cconnt {
+	--whitishColor-blue: #ccc;
+	& .tiles:first-of-type {
+		--whitishColor-blue: black;
+	}
 }
 
-.dark-theme .uploadButton,
-.dark-theme .randomButton {
-	background-color: var(--darkColor-blue);
-	color: var(--whitishColor-dark);
+.darkmodeswitch {
+	margin-top: 50px;
+	border-radius: 50%;
+	padding: 12px;
+	border: none;
+	display: flex;
+	cursor: pointer;
+	color: var(--darkColor-blue);
+	background: var(--whitishColor-blue);
+	& svg {
+		width: 26px;
+		height: 26px;
+	}
 }
 
-.dark-theme .clearButton {
-	color: var(--textColorDark-dark);
+.darkmodeswitch:has(#enableDarkModeCheckbox:disabled) {
+	opacity: 0.5;
+	pointer-events: none;
 }
 
-.dark-theme .clearButton:hover {
-	background-color: var(--whitishColor-dark);
-	color: var(--darkColor-dark);
+.darkmodeswitch:has(#enableDarkModeCheckbox:checked) .moon {
+	display: none;
 }
 
-.dark-theme .clearButton:active {
-	color: #000000;
+.darkmodeswitch:not(:has(#enableDarkModeCheckbox:checked)) .sun {
+	display: none;
 }
 
-.dark-theme .backupRestoreBtn {
-	background-color: var(--darkColor-dark);
+body:not(:has(#darkTheme:checked, .colorPlate[value="peach"]:checked))
+	#shortcuts-section:has(~ .menuBar #enableDarkModeCheckbox:checked)
+	.shortcutsContainer
+	.shortcuts:has(img) {
+	filter: invert(1) hue-rotate(180deg);
+	-webkit-filter: invert(1) hue-rotate(180deg);
+	& span {
+		filter: invert(1) hue-rotate(180deg);
+		-webkit-filter: invert(1) hue-rotate(180deg);
+	}
 }
-
-.dark-theme .backupRestoreBtn:hover,
-.dark-theme .uploadButton:hover,
-.dark-theme .randomButton:hover,
-.dark-theme #todoAdd:hover {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .uploadButton:active,
-.dark-theme .randomButton:active,
-.dark-theme .backupRestoreBtn:active,
-.dark-theme .resetbtn:active {
-	background-color: #0e0e0e;
-}
-
-.dark-theme .todolistitem .todoremovebtn {
-	color: #616161;
-}
-
-.dark-theme .todolistitem .todoremovebtn:hover {
-	color: #888888;
-}
-
-.dark-theme .bookmark-view-as-button,
-.dark-theme .bookmark-sort-button {
-	color: var(--darkerColor-dark);
-	border-color: var(--darkColor-blue);
-}
-
-.dark-theme #bookmarkViewGrid.active,
-.dark-theme #bookmarkViewList.active,
-.dark-theme .bookmark-sort-button.active {
-	background: var(--darkColor-blue);
-	color: white !important;
-}
-
-.dark-theme #bookmarkSearch {
-	background-color: var(--darkColor-dark) !important;
-}
-
-.dark-theme .bookmark-search-container::after {
-	filter: none;
-}
-
-.dark-theme .bookmark-button svg {
-	fill: var(--textColorDark-blue);
-}
-
-.dark-theme .button-group {
-	background-color: #333333;
-}
-
-.dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
-.dark-theme #bookmarkList:is(.grid-view) li a:has(.favicon)::before {
-	background: var(--darkColor-dark);
-}
-
-.dark-theme .ai-settings-modal .ai-reset-button:hover,
-.dark-theme .ai-settings-modal .ai-save-button:hover {
-	background: #353535;
-}
-
-.dark-theme .aiToolsCont .toolsCont a:hover {
-	box-shadow: inset 0 0 0 1px var(--darkerColor-dark);
-}
-
-.dark-theme .favicon {
-	filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
-}
-
-.dark-theme .micIcon,
-.dark-theme .floating-label-field input {
-	background-color: var(--whitishColor-dark);
-}
-
-.dark-theme .floating-label-field input:focus + label,
-.dark-theme .floating-label-field input:not(:placeholder-shown) + label {
-	color: var(--textColorDark-dark);
-}
-
-.dark-theme #editBookmarkModal button {
-	background-color: var(--accentLightTint-dark);
-}
-
-.dark-theme #editBookmarkModal button:hover {
-	background-color: #353535;
-}
-
-.dark-theme #minute,
-.dark-theme #minute::after,
-.dark-theme #second::after {
-	background-color: #909090;
-}
-
-.dark-theme .dot-icon {
-	fill: #bfbfbf;
-}
-
-.dark-theme .menuicon {
-	color: #c2c2c2;
-}
-
-.dark-theme #menuButton {
-	border: 6px solid var(--accentLightTint-blue);
-	box-shadow: inset 0 0 0 4px #858585,
-		inset 0 0 0 9.7px var(--accentLightTint-blue), inset 0 0 0 40px #bfbfbf;
-}
-
-.dark-theme #menuCloseButton,
-.dark-theme #menuCloseButton:hover {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme #menuCloseButton .icon {
-	background: radial-gradient(#cdcdcd 66%, transparent 66%);
-}
-
-.dark-theme #closeBtnX {
-	border: 2px solid #bdbdbd;
-	border-radius: 100px;
-}
-
-.dark-theme body {
-	background-color: #000000;
-}
-
-.dark-theme #aiIcon {
-	fill: #c2c2c2 !important;
-}
-
-.dark-theme .tempUnit {
-	color: #dadada;
-}
-
-.dark-theme #githab,
-.dark-theme #sujhaw {
-	fill: #b1b1b1;
-}
-
-.dark-theme .resultItem.active {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme .location-suggestion-box {
-	background-color: #272727;
-}
-
-.dark-theme .location-suggestion-item.active {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .shortcutSettingsEntry {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme .delete button {
-	background: #232221;
-}
-
-.dark-theme .delete button:hover {
-	background: #404040;
-}
-
-.dark-theme .prompt-modal-ok {
-	background: var(--bg-color-dark);
-	color: var(--textColorDark-dark);
-}
-
-.dark-theme .prompt-modal-cancel {
-	background: var(--darkColor-dark);
-	color: var(--textColorDark-dark);
-}
-
-.dark-theme .prompt-modal-ok:hover {
-	background: black;
-}
-
-.dark-theme .prompt-modal-cancel:hover {
-	background: var(--bg-color-dark);
-}
-
-.dark-theme .prompt-modal-button:focus {
-	outline: 2px solid black;
-}
-
-.dark-theme .tips {
-	background-color: var(--darkColor-dark);
-}
-
-.dark-theme #dontShowTips {
-	background-color: var(--bg-color-dark);
-}
-
-.dark-theme #dontShowTips:hover {
-	background-color: var(--accentLightTint-dark);
-}
-/* ---------------- End of Dark(Black) theme ---------------- */
+/* ---------------- End of Dark theme ---------------- */
 
 /* Alert & Confirm Modal */
 #prompt-modal-container {
