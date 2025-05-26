@@ -327,7 +327,7 @@ function applyLanguage(lang) {
         document.body.classList.remove("lang-ur");
     }
 
-    //  Apply the direction attribute to specific selectors for RTL languages
+    // Apply the direction attribute to specific selectors for RTL languages
     const isRTL = rtlLanguages.includes(lang);
     const rtlSelectors = [".topDiv", ".searchbar", ".searchWithCont", ".resultBox", ".quotesCont",
         ".leftDiv", ".shortcutsContainer", ".page", "#prompt-modal-box", ".todo-container",
@@ -338,6 +338,13 @@ function applyLanguage(lang) {
             el.setAttribute("dir", isRTL ? "rtl" : "ltr");
         });
     });
+
+    // Update feelsLike element styles for RTL languages
+    const feelsLikeElement = document.getElementById("feelsLike");
+    feelsLikeElement.style.left = isRTL ? "12px" : "";
+    feelsLikeElement.style.paddingRight = isRTL ? "43px" : "";
+    feelsLikeElement.style.width = isRTL ? "calc(100% - 12px)" : "";
+    feelsLikeElement.style.textAlign = isRTL ? "right" : "left";
 
     // Save the selected language in localStorage
     saveLanguageStatus("selectedLanguage", lang);
