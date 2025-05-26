@@ -446,13 +446,10 @@ async function getWeatherData() {
                 const localizedMinTempF = localizeNumbers(minTempF.toString(), currentLanguage);
                 const localizedMaxTempF = localizeNumbers(maxTempF.toString(), currentLanguage);
 
-                // Check if language is RTL
-                const isRTL = rtlLanguages.includes(currentLanguage);
-
                 // Set humidity level
                 const humidityLabel = translations[currentLanguage]?.humidityLevel || translations["en"].humidityLevel;
                 document.getElementById("humidityLevel").textContent = isRTL
-                    ? `${localizedHumidity}% ${humidityLabel}` // RTL: "76% ytidimuH"
+                    ? `${humidityLabel} %${localizedHumidity}` // RTL: "76% ytidimuH"
                     : `${humidityLabel} ${localizedHumidity}%`;
 
                 // Event Listener for the Fahrenheit toggle

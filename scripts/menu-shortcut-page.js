@@ -6,6 +6,11 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+// Get the current language from localStorage
+const currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+const isRTL = rtlLanguages.includes(currentLanguage);
+
 // ------------Showing & Hiding Menu-bar ---------------
 const menuButton = document.getElementById("menuButton");
 const menuBar = document.getElementById("menuBar");

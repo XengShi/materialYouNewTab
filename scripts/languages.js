@@ -1,8 +1,8 @@
-/* 
+/*
  * Material You NewTab
  * Copyright (c) 2023-2025 XengShi
  * Licensed under the GNU General Public License v3.0 (GPL-3.0)
- * You should have received a copy of the GNU General Public License along with this program. 
+ * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
@@ -31,7 +31,8 @@ const translations = {
     sl: sl, // Slovenian
     np: np, // Nepali
     ur: ur, // Urdu
-    de: de // German
+    de: de, // German
+    fa: fa, // Farsi
 };
 
 // Define the width of the menu container for each language
@@ -54,7 +55,8 @@ const menuWidths = {
     az: "418px",
     sl: "470px",
     np: "430px",
-    de: "460px"
+    de: "460px",
+    fa: "460px"
     // Add more languages and widths as needed
 };
 
@@ -62,6 +64,7 @@ const numberMappings = {
     "bn": { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯" },
     "mr": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
     "np": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
+    "fa": { 0: "۰", 1: "۱", 2: "۲", 3: "۳", 4: "۴", 5: "۵", 6: "۶", 7: "۷", 8: "۸", 9: "۹" }
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 
@@ -69,7 +72,7 @@ function localizeNumbers(text, language) {
     const map = numberMappings[language]; // Get the numeral map for the current language
 
     // Define languages that use a comma as the decimal separator instead of a dot
-    const specialDecimalLanguages = ["cs", "it", "pt", "ru", "tr", "vi", "uz", "es", "ko", "idn", "fr", "az", "sl", "hu", "de"]; // Add more languages here as needed
+    const specialDecimalLanguages = ["cs", "it", "pt", "ru", "tr", "vi", "uz", "es", "ko", "idn", "fr", "az", "sl", "hu", "de", "fa"]; // Add more languages here as needed
 
     if (specialDecimalLanguages.includes(language)) {
         // Replace decimal point with a comma for specific languages
@@ -79,11 +82,11 @@ function localizeNumbers(text, language) {
     if (map) {
         text = text.replace(/\d/g, (digit) => map[digit] || digit);
     }
-    return text;  // Return the localized text
+    return text; // Return the localized text
 }
 
 // Right-to-left languages
-const rtlLanguages = ["ur"];
+const rtlLanguages = ["ur", "fa"];
 
 // Function to apply the language to the page
 function applyLanguage(lang) {
@@ -254,8 +257,8 @@ function applyLanguage(lang) {
     }
 
     // Apply the translations
-    applyTranslations(placeholderMap, true); // For placeholders
-    applyTranslations(elementsMap, false);  // For innerTexts with different IDs and keys
+    applyTranslations(placeholderMap, true);   // For placeholders
+    applyTranslations(elementsMap, false);     // For innerTexts with different IDs and keys
     applyTranslations(translationMap, false);  // For innerTexts with same ID and keys
 
     // For userText
@@ -290,8 +293,8 @@ function applyLanguage(lang) {
                     height: ${(100 / widthh).toString()}dvh !important;
                     transform-origin: top right !important;
                 }
-            `
-            document.head.append(menuStyle)
+            `;
+            document.head.append(menuStyle);
         }
     }
 
@@ -315,16 +318,24 @@ function applyLanguage(lang) {
         loadFont("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap");
         root.style.setProperty("--main-font-family", `"Noto Sans Arabic", ${commonFontStack}`);
         document.body.classList.add("lang-ur"); // Apply special styles
+    } else if (lang === "fa") {
+        loadFont("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap"); // Using Vazirmatn for Farsi
+        root.style.setProperty("--main-font-family", `"Vazirmatn", ${commonFontStack}`);
     } else {
         root.style.setProperty("--main-font-family", commonFontStack);
         document.body.classList.remove("lang-ur");
     }
 
-    // Apply the direction to the elements based on the language
-    const rtlElements = [".menuBar", "#conditionText"];
-    rtlElements.forEach(selector => {
-        const element = document.querySelector(selector);
-        element.style.direction = rtlLanguages.includes(lang) ? "rtl" : "ltr";
+    //  Apply the direction attribute to specific selectors for RTL languages
+    const isRTL = rtlLanguages.includes(lang);
+    const rtlSelectors = [".topDiv", ".searchbar", ".searchWithCont", ".resultBox", ".quotesCont",
+        ".leftDiv", ".shortcutsContainer", ".page", "#prompt-modal-box", ".todo-container",
+        ".bookmark-search-container", ".bookmark-controls-container", "#editBookmarkModal"]
+
+    rtlSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            el.setAttribute("dir", isRTL ? "rtl" : "ltr");
+        });
     });
 
     // Save the selected language in localStorage
