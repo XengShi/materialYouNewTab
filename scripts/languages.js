@@ -32,7 +32,7 @@ const translations = {
     np: np, // Nepali
     ur: ur, // Urdu
     de: de, // German
-    fa: fa, // Farsi
+    fa: fa, // Farsi (Persian)
 };
 
 // Define the width of the menu container for each language
