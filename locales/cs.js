@@ -144,6 +144,7 @@ const cs = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
     "aiSettingsIntro": "Vyberte, jaké AI nástroje budou zobrazeny",
     "resetAISettingsBtn": "Resetovat",
 

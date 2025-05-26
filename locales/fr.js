@@ -132,7 +132,7 @@ const fr = {
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  
+    "gImagesEngine": "Images",
     "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
     "quoraEngine": "Quora",
@@ -148,6 +148,7 @@ const fr = {
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
     "aiSettingsIntro": "Sélectionnez les outils IA à afficher",
     "resetAISettingsBtn": "Réinitialiser",
 
