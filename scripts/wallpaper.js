@@ -122,22 +122,15 @@ async function applyRandomImage(showConfirmation = true) {
     }
 }
 
-// Function to update solid background behind userText, date, greeting and shortcut names
+// Function to update solid background behind shortcut names
 function updateTextBackground(hasWallpaper) {
-    const userText = document.getElementById("userText");
-    const date = document.getElementById("date");
     const shortcuts = document.querySelectorAll(".shortcuts .shortcut-name");
 
     if (hasWallpaper) {
-        document.body.setAttribute('data-bg', 'wallpaper')
+        document.body.setAttribute("data-bg", "wallpaper")
     } else {
-        document.body.setAttribute('data-bg', 'color')
+        document.body.setAttribute("data-bg", "color")
     }
-
-    // Change bg-color for userText and date
-    [userText, date].forEach(element => {
-        element.style.backgroundColor = hasWallpaper ? "var(--accentLightTint-blue)" : "";
-    });
 
     // Update styles for shortcuts
     shortcuts.forEach(shortcut => {
