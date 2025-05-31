@@ -372,7 +372,7 @@ async function getWeatherData() {
                 (weatherParsedLang !== currentLanguage)) {
 
                 // Language code for Weather API
-                let lang = currentLanguage.toLowerCase() === "zh_tw" ? currentLanguage : currentLanguage.split('_')[0];
+                let lang = currentLanguage === "zh_TW" ? currentLanguage : currentLanguage.split('_')[0];
 
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${currentUserLocation}&days=1&aqi=no&alerts=no&lang=${lang}`;
