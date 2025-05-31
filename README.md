@@ -26,7 +26,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-features">Features</a> •
   <a href="#-installation-guide">Installation Guide</a> •
   <a href="#download">Download</a> •
-  <a href="#-currently-supported-languages-25">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-26">Currently Supported Languages</a> •
   <a href="#-usage">Usage</a>
 <br>
   <a href="#-contributing">Contributing</a> •
@@ -204,6 +204,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/pk.svg' width=20> &nbsp; **Urdu** - اردو                        |  ur   | [Asfandiyar Khan](https://github.com/asfand-dev)                                      |
 | <img src='https://flagcdn.com/uz.svg' width=20> &nbsp; **Uzbek** - O'zbek                    |  uz   | [Firdavs](https://github.com/Firdavs9512/)                                            |
 | <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Vietnamese** - Tiếng Việt           |  vn   | [Diep](https://github.com/diepdo1810/), [Tuan](https://github.com/Tuan1-2-3)          |
+| <img src='https://flagcdn.com/vn.svg' width=20> &nbsp; **Arabic** - العربية          |  vn   | [Mazen](https://github.com/Mazen3Alharbi), [Mazen](https://github.com/Mazen3Alharbi)          |
 
 Check the [Translation Status Page](https://xengshi.github.io/materialYouNewTab/tools/languagesAnalysis.html) for an overview of completed languages and missing strings analysis.
 

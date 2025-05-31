@@ -33,6 +33,7 @@ const translations = {
     ur: ur, // Urdu
     de: de, // German
     fa: fa, // Farsi
+    ar_SA: ar_SA // Arabic (Saudi Arabia)
 };
 
 // Define the width of the menu container for each language
@@ -56,7 +57,8 @@ const menuWidths = {
     sl: "470px",
     np: "430px",
     de: "460px",
-    fa: "460px"
+    fa: "460px",
+    ar_SA: "460px"
     // Add more languages and widths as needed
 };
 
@@ -64,7 +66,8 @@ const numberMappings = {
     "bn": { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯" },
     "mr": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
     "np": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
-    "fa": { 0: "۰", 1: "۱", 2: "۲", 3: "۳", 4: "۴", 5: "۵", 6: "۶", 7: "۷", 8: "۸", 9: "۹" }
+    "fa": { 0: "۰", 1: "۱", 2: "۲", 3: "۳", 4: "۴", 5: "۵", 6: "۶", 7: "۷", 8: "۸", 9: "۹" },
+    "ar_SA": { "0": "٠", "1": "١", "2": "٢", "3": "٣", "4": "٤", "5": "٥", "6": "٦", "7": "٧", "8": "٨", "9": "٩" }
     // Add more languages as needed, Ensure it is supported in the fonts
 };
 
@@ -86,7 +89,7 @@ function localizeNumbers(text, language) {
 }
 
 // Right-to-left languages
-const rtlLanguages = ["ur", "fa"];
+const rtlLanguages = ["ur", "fa", "ar_SA"];
 
 // Function to apply the language to the page
 function applyLanguage(lang) {
