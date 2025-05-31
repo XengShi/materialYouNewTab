@@ -124,6 +124,7 @@ async function initializeClock() {
             // Localize the day of the month
             var localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
+            // DATE DISPLAY FOR ANALOG CLOCK
             const dateDisplay = {
                 bn: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
                 mr: `${dayName}, ${localizedDayOfMonth} ${monthName}`,
@@ -149,6 +150,7 @@ async function initializeClock() {
                 ur: `${dayName}، ${dayOfMonth} ${monthName}`,
                 de: `${dayName}, ${dayOfMonth}. ${monthName}`,
                 fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
+                ar_SA: `${dayName}, ${localizedDayOfMonth} ${monthName}`,	// e.g., الجمعة, 31 مايو
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
             document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -256,7 +258,7 @@ async function initializeClock() {
         // Localize the day of the month
         const localizedDayOfMonth = localizeNumbers(dayOfMonth.toString(), currentLanguage);
 
-        // Determine the translated short date string based on language
+        // DATE DISPLAY FOR DIGITAL CLOCK
         const dateFormats = {
             az: `${dayName} ${dayOfMonth}`,
             bn: `${dayName}, ${localizedDayOfMonth}`,
@@ -277,6 +279,7 @@ async function initializeClock() {
             ur: `${dayName}، ${dayOfMonth}`,
             de: `${dayOfMonth}. ${dayName}`,
             fa: `${dayName} ${localizedDayOfMonth}`, // e.g. شنبه ۲۵
+            ar_SA: `${dayName}, ${localizedDayOfMonth}`,	// e.g., الجمعة, 31
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
         const dateString = dateFormats[currentLanguage] || dateFormats.default;
@@ -321,9 +324,11 @@ async function initializeClock() {
         if (hourformat && (specialLanguages.includes(currentLanguage) || localizedLanguages.includes(currentLanguage))) {
             let realHours = new Date().getHours();
 
+            // lANGUAGE-SPECIFIC AM/PM 
             if (currentLanguage === "fa") {
-                // Farsi specific AM/PM or equivalent
                 period = realHours < 12 ? "ق.ظ" : "ب.ظ"; // قبل از ظهر / بعد از ظهر
+            } else if (currentLanguage === "ar_SA") {
+                period = realHours < 12 ? "ص" : "م"; // صباحاً / مساءً
             } else {
                 period = realHours < 12 ? "AM" : "PM";
             }

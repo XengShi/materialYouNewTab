@@ -1,3 +1,4 @@
+// Arabic
 const ar_SA = {
     // Menu Items
     github: "جيت‌هاب",
@@ -158,6 +159,7 @@ const ar_SA = {
     perplexity: "Perplexity",
     deepseek: "DeepSeek",
     metaAI: "Meta AI",
+    firefly: "Adobe Firefly",
     aiSettingsIntro: "اختر أدوات الذكاء الاصطناعي التي تريد عرضها",
     resetAISettingsBtn: "إعادة تعيين",
 
