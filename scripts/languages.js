@@ -346,6 +346,10 @@ function applyLanguage(lang) {
     feelsLikeElement.style.width = isRTL ? "calc(100% - 12px)" : "";
     feelsLikeElement.style.textAlign = isRTL ? "right" : "left";
 
+    const quotesText = document.querySelector(".quotesContainer");
+    quotesText.style.textAlign = isRTL ? "right" : "left";
+    quotesText.style.fontFamily = commonFontStack;
+
     // Save the selected language in localStorage
     saveLanguageStatus("selectedLanguage", lang);
 }
