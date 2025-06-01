@@ -540,7 +540,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 800);
     });
 
-    resetShortcutsButton.addEventListener("click", () => {
+    resetShortcutsButton.addEventListener("click", async () => {
+        if (!(await confirmPrompt(translations[currentLanguage]?.resetShortcutsPrompt || translations["en"].resetShortcutsPrompt)))
+            return;
+
+        // If user confirmed, reset all shortcuts
         resetShortcuts();
 
         // If newShortcutButton was previously inactive, reactivate it
