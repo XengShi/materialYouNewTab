@@ -103,7 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for Traditional Chinese ([@shmps40802](https://github.com/shmps40802)) ([#499](https://github.com/XengShi/materialYouNewTab/pull/499))
 - Added support for Urdu ([@prem-k-r](https://github.com/prem-k-r)), ([@asfand-dev](https://github.com/asfand-dev)) ([#548](https://github.com/XengShi/materialYouNewTab/pull/548))
 - Added support for German ([@prem-k-r](https://github.com/prem-k-r)) ([#641](https://github.com/XengShi/materialYouNewTab/pull/641))
-- Added support for Persian ([@AMIRHOSSEIN-AHMADI-IR](https://github.com/AMIRHOSSEIN-AHMADI-IR)) ([#645](https://github.com/XengShi/materialYouNewTab/pull/641))
+- Added support for Persian ([@AMIRHOSSEIN-AHMADI-IR](https://github.com/AMIRHOSSEIN-AHMADI-IR)) ([#645](https://github.com/XengShi/materialYouNewTab/pull/645))
+- Added support for Arabic ([@Mazen3Alharbi](https://github.com/Mazen3Alharbi)) ([#659](https://github.com/XengShi/materialYouNewTab/pull/659))
 - Translation updated for:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))

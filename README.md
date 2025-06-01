@@ -26,7 +26,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-features">Features</a> •
   <a href="#-installation-guide">Installation Guide</a> •
   <a href="#download">Download</a> •
-  <a href="#-currently-supported-languages-25">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-26">Currently Supported Languages</a> •
   <a href="#-usage">Usage</a>
 <br>
   <a href="#-contributing">Contributing</a> •
@@ -175,11 +175,12 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 
 [![Watch the video](https://img.youtube.com/vi/P4ryQPixfw8/0.jpg)](https://youtu.be/P4ryQPixfw8)
 
-## 🌐 Currently Supported Languages (25)
+## 🌐 Currently Supported Languages (26)
 
 | Language                                                                                     | Code  | Translator(s)                                                                         |
 | -------------------------------------------------------------------------------------------- | :---: | ------------------------------------------------------------------------------------- |
 | <img src='https://flagcdn.com/us.svg' width=20> &nbsp; **English**                           |  en   | [XengShi](https://github.com/XengShi/), [Prem](https://github.com/prem-k-r/)          |
+| <img src='https://flagcdn.com/sa.svg' width=20> &nbsp; **Arabic** - العربية                     | ar-SA | [Mazen](https://github.com/Mazen3Alharbi)                                             |
 | <img src='https://flagcdn.com/az.svg' width=20> &nbsp; **Azerbaijani** - Azərbaycanca        |  az   | [Hasan Bakhtiar](https://github.com/hasanbakhtiar/)                                   |
 | <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                     |  bn   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)      |
 | <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 简体中文    | zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0) |
