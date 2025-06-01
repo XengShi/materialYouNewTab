@@ -1679,7 +1679,7 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	unicode-bidi: isolate;
 }
 
-.humidityBar {
+.humidityBar, .opacityBar {
 	border-radius: 20px;
 	height: 40px;
 	width: 100%;
@@ -1701,7 +1701,8 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	border-radius: 100%;
 }
 
-.humidityBar .thinLine {
+.humidityBar .thinLine,
+.opacityBar .thinLine {
 	position: absolute;
 	width: calc(100% - 60px);
 	background-color: var(--whitishColor-blue);
@@ -1712,7 +1713,16 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	margin: auto;
 }
 
-.humidityBar .slider {
+.humidityBar .thinLine{
+	width: calc(100% - 60px);
+}
+
+.opacityBar .thinLine{
+	width: 100%;
+}
+
+.humidityBar .slider,
+.opacityBar .opacitySlider{
 	height: 100%;
 	width: calc(10% - 60px);
 	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
@@ -1720,6 +1730,12 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	background-color: var(--darkColor-blue);
 	border-radius: 100px;
 	position: absolute;
+}
+
+.humidityBar .slider{
+	width: calc(10% - 60px);
+	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
+	min-width: 42%;
 	transition: width 1s;
 }
 
@@ -1747,7 +1763,11 @@ body[data-bg="wallpaper"] .humidityBar .slider {
 	);
 }
 
-#humidityLevel {
+.opacityBar .opacitySlider {
+	min-width: 20%;
+}
+
+#humidityLevel, #opacityLevel {
 	color: var(--whitishColor-blue);
 	width: fit-content;
 	position: absolute;
@@ -4270,7 +4290,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 	background-color: var(--darkColor-dark) !important;
 }
 
-.dark-theme .humidityBar .thinLine {
+.dark-theme .humidityBar .thinLine, .dark-theme .opacityBar .timeline {
 	background-color: #aaaaaa;
 }
 
