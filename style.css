@@ -1604,6 +1604,8 @@ body[data-bg="wallpaper"] .tilesContainer .tiles {
 
 body[data-bg="wallpaper"] .tilesContainer .location {
 	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+}
+
 .tilesContainer #location {
 	inset-inline-start: 46px;
 }
