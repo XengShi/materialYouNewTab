@@ -1525,11 +1525,22 @@ body #bookmarkButton.bookmark-button.rotate {
 .tilesContainer .tiles span {
 	position: absolute;
 	top: 0;
-	inset-inline-start: 46px;
 	bottom: 0;
 	margin: auto;
 	color: var(--textColorDark-blue);
 	height: fit-content;
+}
+
+.tilesContainer #location {
+	inset-inline-start: 46px;
+}
+
+#feelsLike {
+	left: 46px;
+	padding-right: 12px;
+	width: calc(100% - 46px);
+	direction: ltr;
+	unicode-bidi: isolate;
 }
 
 .humidityBar {
@@ -1585,12 +1596,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin: auto;
 	inset-inline-start: 20px;
 	height: fit-content;
-}
-
-#feelsLike {
-	padding-right: 12px;
-	direction: ltr;
-	unicode-bidi: isolate;
 }
 
 /* End of _____________________- */
@@ -1958,6 +1963,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 20px;
 	padding: 20px;
 	line-height: 28px;
+	direction: ltr; /* Remove when multilingual quote is supported */
+	unicode-bidi: isolate;
 }
 
 .authorName {
@@ -1995,6 +2002,14 @@ body #bookmarkButton.bookmark-button.rotate {
 
 :dir(rtl) .authorName .qtRounder2 {
 	transform: rotate(-180deg);
+}
+
+.lang-ur .qtRounder {
+	bottom: -2px;
+}
+
+.lang-ur .qtRounder2 {
+	top: -18px;
 }
 
 /* ----------Shortcuts----------------- */
