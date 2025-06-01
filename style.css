@@ -161,8 +161,7 @@ body[data-bg="wallpaper"] .bgLightTint {
 	);
 }
 
-body[data-bg="wallpaper"] .lessDark {
-	background-color: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
+body[data-bg="wallpaper"] .lessDark.targeted {
 	fill: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
 }
 
