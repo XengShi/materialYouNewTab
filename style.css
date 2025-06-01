@@ -598,7 +598,19 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: 1.5rem;
 	flex-grow: 1;
 }
-
+.bookmark-fav-section-content {
+	border: 2px solid var(--bg-color-blue);
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px;
+    margin: 4px;
+}
+.bookmark-fav-section h2 {
+	color: var(--textColorDark-blue);
+	text-align: center;
+	font-size: 1.5rem;
+	flex-grow: 1;
+}
 .bookmark-search-container {
 	position: relative;
 	width: 100%;
@@ -766,28 +778,59 @@ body #bookmarkButton.bookmark-button.rotate {
 	list-style-type: none;
 	font-weight: normal;
 }
-
+#bookmarkFavList {
+	display: flex;
+    gap: calc(100% / 4 - 84px);
+	flex-wrap: wrap;
+    flex-direction: row;
+}
+#bookmarkFavList ul {
+	padding-inline-start: 10px;
+	list-style-type: none;
+	font-weight: normal;
+}
 #bookmarkList .folder ul {
 	padding-top: 10px;
 }
+#bookmarkFavList .folder ul {
+	padding-top: 10px;
+}
+
 
 #bookmarkList li {
 	padding: 2px;
 	border: none;
 	position: relative;
 }
+#bookmarkFavList li {
+	padding: 2px;
+	border: none;
+	position: relative;
+	margin: 2px 0;
+}
 #bookmarkList li:is(.folder) {
 	padding: 10px;
 	padding-inline-end: 0;
 }
+#bookmarkFavList li:is(.folder) {
+	padding: 10px;
+	padding-inline-end: 0;
+}
+
 
 #bookmarkList li:not(.folder) {
 	display: flex;
 	width: calc(100% - 10px);
 }
+#bookmarkFavList li:not(.folder) {
+	display: flex;
+	width: calc(100% - 10px);
+}
 
 #bookmarkList:is(.grid-view) ul:not(.hidden),
-#bookmarkList:is(.grid-view) .folder.open > ul {
+#bookmarkFavList:is(.grid-view) ul:not(.hidden),
+#bookmarkList:is(.grid-view) .folder.open > ul,
+#bookmarkFavList:is(.grid-view) .folder.open > ul {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 
@@ -800,18 +843,34 @@ body #bookmarkButton.bookmark-button.rotate {
 	width: 100%;
 	padding-bottom: 6px;
 }
+#bookmarkFavList:is(.grid-view) li:not(.folder) {
+	width: 24%;
+	background: linear-gradient(357deg, var(--bg-color-blue), var(--whitishColor-peach)) padding-box, linear-gradient(180deg, var(--bg-color-blue), var(--darkColor-blue)) border-box;
+    border: 1px solid transparent;
+    border-radius: 24px;
+}
+
 
 #bookmarkList:is(.grid-view) li a {
 	padding: 2px;
 	flex-direction: column;
 }
+#bookmarkFavList:is(.grid-view) li a {
+	padding: 2px;
+	flex-direction: column;
+}
+
 
 #bookmarkList:is(.grid-view) li a .favicon {
 	margin: 20px auto 24px auto;
 }
-
+#bookmarkFavList:is(.grid-view) li a .favicon {
+	margin: 20px auto 24px auto;
+}
 #bookmarkList:is(.grid-view) li a:has(.favicon)::after,
-#bookmarkList:is(.grid-view) li a:has(.favicon)::before {
+#bookmarkList:is(.grid-view) li a:has(.favicon)::before,
+#bookmarkFavList:is(.grid-view) li a:has(.favicon)::after,
+#bookmarkFavList:is(.grid-view) li a:has(.favicon)::before {
 	content: "";
 	background: var(--bg-color-blue);
 	position: absolute;
@@ -833,6 +892,13 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 1;
 	top: 18px;
 }
+#bookmarkFavList:is(.grid-view) li a:has(.favicon)::before {
+	background: var(--bg-color-blue);
+	width: 36px;
+	height: 36px;
+	opacity: 1;
+	top: 18px;
+}
 
 #bookmarkList li a {
 	color: var(--textColorDark-blue);
@@ -847,7 +913,27 @@ body #bookmarkButton.bookmark-button.rotate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
+#bookmarkFavList li a {
+	color: var(--textColorDark-blue);
+	text-decoration: none;
+	/* word-break: break-word; */
+	padding: 8px;
+	padding-inline-end: 24px;
+	border-radius: 8px;
+	width: 100%;
+	display: flex;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#bookmarkFavList li a span {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#bookmarkFavList:is(.grid-view) li a span {
+	text-align: center;
+}
 #bookmarkList li a span {
 	white-space: nowrap;
 	overflow: hidden;
@@ -864,6 +950,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	margin-inline-end: 5px;
 	vertical-align: middle;
 	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+#bookmarkFavList:is(.grid-view) .favicon {
+	width: 24px;
+	height: 24px;
 }
 
 #bookmarkList:is(.grid-view) .favicon {
@@ -904,6 +994,11 @@ body #bookmarkButton.bookmark-button.rotate {
 	inset-inline-end: 6px;
 }
 
+#bookmarkList:is(.grid-view) .bookmark-fav-button {
+	top: 12px;
+	inset-inline-start: 6px;
+}
+
 .bookmark-delete-button {
 	background: none;
 	border: none;
@@ -916,12 +1011,29 @@ body #bookmarkButton.bookmark-button.rotate {
 	opacity: 0;
 	pointer-events: none;
 }
-
+.bookmark-fav-button {
+	background: none;
+	border: none;
+	color: var(--darkColor-blue);
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0;
+	position: absolute;
+    right: 30px;
+    height: auto;
+    width: auto;
+}
 :hover > .bookmark-delete-button {
 	opacity: 1;
 	pointer-events: auto;
 }
-
+:hover > .bookmark-fav-button {
+	opacity: 1;
+	pointer-events: auto;
+}
 /* Modal Styling */
 #editBookmarkModal {
 	display: none;
