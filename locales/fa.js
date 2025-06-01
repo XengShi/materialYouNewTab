@@ -1,4 +1,4 @@
-// Farsi
+// Farsi (Persian)
 const fa = {
     // Menu Items
     github: "گیت‌هاب",
@@ -159,6 +159,7 @@ const fa = {
     perplexity: "Perplexity",
     deepseek: "DeepSeek",
     metaAI: "Meta AI",
+    firefly: "Adobe Firefly",
     aiSettingsIntro: "انتخاب کنید کدام ابزارهای هوش مصنوعی نمایش داده شوند",
     resetAISettingsBtn: "بازنشانی",
 
