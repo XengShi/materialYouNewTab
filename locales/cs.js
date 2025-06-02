@@ -192,4 +192,5 @@ const cs = {
     "invalidBackup": "Vybrali jste neplatný soubor se zálohou.",
     "deleteBookmark": "Opravdu si přejete smazat záložku „{title}“?",
     "UnsupportedBrowser": "Ve vašem prohlížeči nejsou záložky podporované",
+    "resetShortcutsPrompt": "Budou odstraněny všechny uložené zkratky a následně se obnoví výchozí sada zkratek. Přejete si pokračovat?",
 };
