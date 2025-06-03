@@ -192,4 +192,5 @@ const idn = {
     "invalidBackup": "File cadangan yang dipilih tidak valid",
     "deleteBookmark": "Apakah Anda yakin untuk menghapus markah buku \"{title}\"?",
     "UnsupportedBrowser": "Markah buku tidak didukung oleh browser Anda",
+    "resetShortcutsPrompt": "Semua pintasan yang tersimpan akan terhapus dan diatur ke default. Apakah Anda ingin melanjutkannya?"
 };
