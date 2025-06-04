@@ -2318,6 +2318,25 @@ body[data-bg="wallpaper"] .authorName {
 	border-radius: 100%;
 }
 
+.shortcutsContainer .shortcuts .shortcutLogoContainer img.adaptive-icon {
+	height: 70%;
+	width: 70%;
+	filter: grayscale(1);
+	mix-blend-mode: screen;
+	overflow: hidden;
+}
+
+.shortcutsContainer
+	.shortcuts
+	.shortcutLogoContainer
+	img.adaptive-icon-compact {
+	height: 60%;
+	width: 60%;
+	filter: grayscale(1);
+	mix-blend-mode: screen;
+	overflow: visible;
+}
+
 /* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */

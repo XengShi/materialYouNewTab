@@ -85,13 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const FAVICON_REQUEST_TIMEOUT = 5000;
 
-    const ADAPTIVE_ICON_CSS = `.shortcutsContainer .shortcuts .shortcutLogoContainer img {
-                height: calc(100% / sqrt(2)) !important;
-                width: calc(100% / sqrt(2)) !important;
-                filter: grayscale(1);
-                mix-blend-mode: screen;
-                }`;
-
     /* ------ Element selectors ------ */
 
     const shortcuts = document.getElementById("shortcuts-section");
@@ -454,21 +447,79 @@ document.addEventListener("DOMContentLoaded", function () {
      * @param urlString the url of the website for which the favicon is requested
      * @returns {HTMLImageElement} The img element representing the favicon
      */
-    function getFallbackFavicon(urlString) {
-        const logo = document.createElement("img");
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const accentLightTint = rootStyles
+        .getPropertyValue("--accentLightTint-blue")
+        .replace(/^#/, '');
+
+    const SIMPLE_ICONS_CDN = (slug) =>
+        `https://cdn.simpleicons.org/${slug}/${accentLightTint}`;
+
+    const OFFLINE_ICON_PATH = "./svgs/shortcuts_icons/offline.svg";
+
+    function guessSlug(domain) {
+        if (domain.startsWith("www.")) {
+            domain = domain.slice(4);
+        }
+
+        const parts = domain.trim().split(".");
+
+        if (parts.length === 2) {
+            return parts[0];
+        }
+
+        if (parts.length === 3) {
+            const [first, second, third] = parts;
+            if ((second.length >= 2 && second.length <= 3) && third.length === 2) {
+                return first;
+            }
+        }
+        return;
+    }
+
+    function updateIconImage(logo, urlString) {
         const hostname = new URL(urlString).hostname;
+        const slug = guessSlug(hostname);
+
+        logo.classList.remove("adaptive-icon", "adaptive-icon-compact");
 
         if (hostname === "github.com") {
             logo.src = "./svgs/shortcuts_icons/github-shortcut.svg";
-        } else {
-            logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
 
-            // Handle image loading error on offline scenario
-            logo.onerror = () => {
-                logo.src = "./svgs/shortcuts_icons/offline.svg";
-            };
+            if (adaptiveIconToggle.checked) logo.classList.add("adaptive-icon");
+
+            return;
         }
 
+        if (slug && adaptiveIconToggle.checked) {
+            logo.src = SIMPLE_ICONS_CDN(slug);
+            logo.classList.add("adaptive-icon-compact");
+
+            logo.onerror = () => {
+                applyGoogleFaviconFallback(logo, hostname);
+            };
+        }
+        else {
+            applyGoogleFaviconFallback(logo, hostname);
+        }
+    }
+
+    function applyGoogleFaviconFallback(logo, hostname) {
+        logo.src = GOOGLE_FAVICON_API_FALLBACK(hostname);
+
+        logo.classList.remove("adaptive-icon-compact");
+        if (adaptiveIconToggle.checked) logo.classList.add("adaptive-icon");
+
+        logo.onerror = () => {
+            logo.src = OFFLINE_ICON_PATH;
+        };
+    }
+
+    function getFallbackFavicon(urlString) {
+        const logo = document.createElement("img");
+        logo.dataset.url = urlString;
+        updateIconImage(logo, urlString);
         return logo;
     }
 
@@ -509,18 +560,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load checkbox state
     loadCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-    // Apply CSS based on initial state
-    document.head.appendChild(iconStyle);
-    iconStyle.textContent = adaptiveIconToggle.checked ? ADAPTIVE_ICON_CSS : "";
 
     // Add event listener for checkbox
     adaptiveIconToggle.addEventListener("change", function () {
         saveCheckboxState("adaptiveIconToggle", adaptiveIconToggle);
-        if (adaptiveIconToggle.checked) {
-            iconStyle.textContent = ADAPTIVE_ICON_CSS;
-        } else {
-            iconStyle.textContent = "";
-        }
+
+        document.querySelectorAll(".shortcutsContainer .shortcuts .shortcutLogoContainer img").forEach(img => {
+            const url = img.dataset.url;
+            if (!url) return;
+
+            updateIconImage(img, url);
+        });
     });
 
     let focusTimeoutId;
