@@ -2332,8 +2332,6 @@ body[data-bg="wallpaper"] .authorName {
 	img.adaptive-icon-compact {
 	height: 60%;
 	width: 60%;
-	filter: grayscale(1);
-	mix-blend-mode: screen;
 	overflow: visible;
 }
 

@@ -448,13 +448,10 @@ document.addEventListener("DOMContentLoaded", function () {
      * @returns {HTMLImageElement} The img element representing the favicon
      */
 
-    const rootStyles = getComputedStyle(document.documentElement);
-    const accentLightTint = rootStyles
-        .getPropertyValue("--accentLightTint-blue")
-        .replace(/^#/, '');
+    const currentAccentColor = localStorage.getItem("accentColor").replace(/^#/, '');
 
     const SIMPLE_ICONS_CDN = (slug) =>
-        `https://cdn.simpleicons.org/${slug}/${accentLightTint}`;
+        `https://cdn.simpleicons.org/${slug}/${currentAccentColor}`;
 
     const OFFLINE_ICON_PATH = "./svgs/shortcuts_icons/offline.svg";
 
@@ -462,6 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (domain.startsWith("www.")) {
             domain = domain.slice(4);
         }
+        domain = domain.replace(/-/g, "");
 
         const parts = domain.trim().split(".");
 
