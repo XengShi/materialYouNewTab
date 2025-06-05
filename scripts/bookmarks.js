@@ -11,6 +11,7 @@
 const bookmarkButton = document.getElementById("bookmarkButton");
 const bookmarkSidebar = document.getElementById("bookmarkSidebar");
 const bookmarkList = document.getElementById("bookmarkList");
+const bookmarkFavList = document.getElementById("bookmarkFavList");
 const bookmarkSearch = document.getElementById("bookmarkSearch");
 const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
 const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
@@ -38,6 +39,10 @@ if (isFirefox) {
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize sort buttons
     updateSortButtons();
+    loadFavBookmarks();
+    if (bookmarkFavList.children.length === 0) {
+        document.getElementsByClassName("bookmark-fav-section")[0].classList.add("hidden");
+    }
 
     bookmarkButton.addEventListener("click", function () {
         toggleBookmarkSidebar();
@@ -233,7 +238,45 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error loading bookmarks:", err);
         });
     }
+    function loadFavBookmarks() {
+        const favBookmarks = JSON.parse(localStorage.getItem("favBookmarks")) || [];
+        console.log("favBookmarks", favBookmarks);
+        bookmarkFavList.innerHTML = ''; // Clear existing content
+        displayFavBookmarks(favBookmarks);
+    }
 
+    function displayFavBookmarks(bookmarkNodes) {
+        // Create a document fragment to batch DOM updates
+        const fragment = document.createDocumentFragment();
+        
+        for (let node of bookmarkNodes) {
+            let item = document.createElement("li");
+            item.dataset.id = node.id;
+            item.dataset.url = node.url;
+
+            let link = document.createElement("a");
+            link.href = node.url;
+            
+            let span = document.createElement("span");
+            span.textContent = node.title;
+
+            let favicon = document.createElement("img");
+            favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
+            favicon.classList.add("favicon");
+            favicon.onerror = () => {
+                favicon.src = "./svgs/shortcuts_icons/offline.svg";
+            };
+
+            link.appendChild(favicon);
+            link.appendChild(span);
+            item.appendChild(link);
+            fragment.appendChild(item);
+        }
+        
+        // Append all items at once
+        bookmarkFavList.appendChild(fragment);
+        return bookmarkFavList;
+    }
     function displayBookmarks(bookmarkNodes) {
         let list = document.createElement("ul");
 
@@ -299,6 +342,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 favicon.onerror = () => {
                     favicon.src = "./svgs/shortcuts_icons/offline.svg";
                 };
+                //Create a button for adding to favs
+                let addToFavsButton = document.createElement("button");
+                addToFavsButton.textContent = "♡";
+                addToFavsButton.classList.add("bookmark-fav-button");   
+
+                // Check if bookmark is already in favorites
+                const isInFavorites = bookmarkFavList.querySelector(`[data-id="${node.id}"]`) !== null;
+                if (isInFavorites) {
+                    addToFavsButton.textContent = "♥";
+                }
+
+                addToFavsButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    const isFilledHeart = addToFavsButton.textContent === "♥";
+                    const actionText = isFilledHeart ? 
+                        (translations?.[currentLanguage]?.removeFromFavs || translations?.["en"]?.removeFromFavs || "Remove {title} from favorites?") :
+                        (translations?.[currentLanguage]?.addToFavs || translations?.["en"]?.addToFavs || "Add {title} to favorites?");
+                    
+                    const confirmMessage = actionText.replace("{title}", node.title || node.url);
+                    
+                    confirmPrompt(confirmMessage).then(confirmed => {
+                        if (!confirmed) {
+                            return;
+                        }
+                        
+                        if (isFilledHeart) {
+                            // Remove from favorites
+                            removeFromFavs(node);
+                            addToFavsButton.textContent = "♡";
+                        } else {
+                            // Add to favorites
+                            addToFavs(node);
+                            addToFavsButton.textContent = "♥";
+                        }
+                    });
+                });
+                   
 
                 // Create the delete button
                 let deleteButton = document.createElement("button");
@@ -333,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 link.appendChild(span);
                 item.appendChild(link);
                 item.appendChild(deleteButton); // Add delete button to the item
+                item.appendChild(addToFavsButton); // Add add to favs button to the item
 
                 // Open links in the current tab or new tab if ctrl pressed
                 link.addEventListener("click", function (event) {
@@ -431,6 +514,25 @@ document.addEventListener("DOMContentLoaded", function () {
         loadBookmarks();
     };
 
+    const favBookmarks = [];
+    function addToFavs(node) {
+        
+        favBookmarks.push(node);
+        localStorage.setItem("favBookmarks", JSON.stringify(favBookmarks));
+        loadFavBookmarks();
+        if (bookmarkFavList.children.length > 0) {
+            document.getElementsByClassName("bookmark-fav-section")[0].classList.remove("hidden");
+        }
+    }
+    function removeFromFavs(node) {
+        const favItem = bookmarkFavList.querySelector(`[data-id="${node.id}"]`);
+        if (favItem) {
+            favItem.remove();
+        }
+        if (bookmarkFavList.children.length === 0) {
+            document.getElementsByClassName("bookmark-fav-section")[0].classList.add("hidden");
+        }
+    }
     // Cancel button action
     cancelBookmarkEdit.onclick = function () {
         editBookmarkModal.style.display = "none";
@@ -521,8 +623,10 @@ document.addEventListener("DOMContentLoaded", function () {
         saveCheckboxState("bookmarkGridCheckboxState", bookmarkGridCheckbox);
         if (bookmarkGridCheckbox.checked) {
             bookmarkList.classList.add("grid-view");
+            bookmarkFavList.classList.add("grid-view");
         } else {
             bookmarkList.classList.remove("grid-view");
+            bookmarkFavList.classList.remove("grid-view");
         }
     });
 
