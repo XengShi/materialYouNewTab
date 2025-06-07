@@ -161,6 +161,10 @@ body[data-bg="wallpaper"] .bgLightTint {
 	);
 }
 
+.shortcutLogoContainer .bgLightTint {
+	fill: var(--accentLightTint-blue) !important;
+}
+
 body[data-bg="wallpaper"] .lessDark.targeted {
 	fill: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
 }
@@ -2265,6 +2269,9 @@ body[data-bg="wallpaper"] .authorName {
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
+	background-color: transparent;
+	padding: 0;
+	border-radius: 0;
 	opacity: 0;
 	transition: all 0.3s;
 	font-size: 1rem;
@@ -2272,6 +2279,16 @@ body[data-bg="wallpaper"] .authorName {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 120px;
+}
+
+body[data-bg="wallpaper"] .shortcuts .shortcut-name {
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) 90%,
+		transparent
+	);
+	padding: 0px 6px;
+	border-radius: 5px;
 }
 
 :dir(rtl) .shortcuts .shortcut-name {
@@ -4213,7 +4230,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme #darkLightTint {
-	fill: #bfbfbf;
+	fill: #bfbfbf !important;
 }
 
 .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
