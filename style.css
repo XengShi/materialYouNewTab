@@ -1679,6 +1679,22 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	unicode-bidi: isolate;
 }
 
+.opacityBarControl {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	pointer-events: none;/
+	position: relative;
+	height: 0;
+}
+
+body[data-bg="wallpaper"] .opacityBarControl.visible {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+	height: auto;
+}
+
 .humidityBar, .opacityBar {
 	border-radius: 20px;
 	height: 40px;
