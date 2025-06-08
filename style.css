@@ -1682,7 +1682,7 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 .opacityBarControl {
 	opacity: 0;
 	transform: translateY(20px);
-	transition: opacity 0.6s ease, transform 0.6s ease;
+	transition: opacity 0.3s ease, transform 0.6s ease;
 	pointer-events: none;
 	position: relative;
 	height: 0;
@@ -1965,7 +1965,7 @@ body[data-bg="wallpaper"] .searchbar {
 body[data-bg="wallpaper"] .micIcon {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) 90%,
+		var(--whitishColor-blue) var(--transparency),
 		transparent
 	);
 }
@@ -2037,13 +2037,17 @@ body[data-bg="wallpaper"] .micIcon {
 }
 
 body[data-bg="wallpaper"] #enterBtn {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 body[data-bg="wallpaper"] #enterBtn:hover {
 	background-color: color-mix(
 		in srgb,
-		var(--darkerColor-blue) 90%,
+		var(--darkerColor-blue) calc(var(--transparency) + 5%),
 		transparent
 	);
 }
@@ -2086,7 +2090,11 @@ body[data-bg="wallpaper"] #enterBtn:hover {
 }
 
 body[data-bg="wallpaper"] .searchWithCont .hint:hover {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) var(--transparency),
+		transparent
+	);
 }
 
 .searchWithCont .hint:active {
@@ -2231,13 +2239,17 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 body[data-bg="wallpaper"] .quotesContainer {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
 
 body[data-bg="wallpaper"] .authorName {
-	background-color: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--bg-color-blue) var(--transparency),
+		transparent
+	);
 }
 
 .lang-ur .qtRounder {
@@ -2371,6 +2383,16 @@ body[data-bg="wallpaper"] .authorName {
 	max-width: 120px;
 }
 
+body[data-bg="wallpaper"] .shortcuts .shortcut-name {
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) var(--transparency),
+		transparent
+	);
+	padding: 0px 6px;
+	border-radius: 5px;
+}
+
 :dir(rtl) .shortcuts .shortcut-name {
 	transform: translateX(50%);
 }
@@ -2453,7 +2475,7 @@ body[data-bg="wallpaper"] .authorName {
 body[data-bg="wallpaper"] .aiToolsCont .hangno {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -2518,7 +2540,7 @@ body[data-bg="wallpaper"] .aiToolsCont .hangno {
 body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -3561,11 +3583,7 @@ input:checked + .toggle:before {
 }
 
 body[data-bg="wallpaper"] #menuButton {
-	background-color: color-mix(
-		in srgb,
-		var(--accentLightTint-blue) 90%,
-		transparent
-	);
+	opacity: calc(var(--transparency) + 5%);
 }
 
 /* ---------------------- */
@@ -3698,7 +3716,7 @@ body[data-bg="wallpaper"] #menuButton {
 body[data-bg="wallpaper"] .dropdown-content {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 	backdrop-filter: blur(2px);
