@@ -1894,6 +1894,7 @@ body[data-bg="wallpaper"] .searchbar {
 	position: relative;
 	outline: 2px solid #00000000;
 	transition: outline 0.3s;
+	);
 }
 
 .searchbar.active {
