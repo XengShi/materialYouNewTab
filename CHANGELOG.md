@@ -69,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced 'Sort by' and 'View as' buttons UI ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
 - Enhanced Todo list UI ([@XengShi](https://github.com/XengShi)) ([bff0a40](https://github.com/XengShi/materialYouNewTab/commit/bff0a4012ab8e05bc177dfdc1f3c7189be763a54))
 - New shortcut now auto-scrolls into view and focuses on URL input; and smooth scrolling for all scrollable areas ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
+- Interactive Dynamic Transparency Adjustment Control Slider ([@tahirahmad01](https://github.com/TahirAhmad01)) ([#670](https://github.com/XengShi/materialYouNewTab/pull/670))
 
 ### Removed
 

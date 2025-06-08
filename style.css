@@ -1682,8 +1682,8 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 .opacityBarControl {
 	opacity: 0;
 	transform: translateY(20px);
-	transition: opacity 0.3s ease, transform 0.3s ease;
-	pointer-events: none;/
+	transition: opacity 0.6s ease, transform 0.6s ease;
+	pointer-events: none;
 	position: relative;
 	height: 0;
 }
@@ -1693,6 +1693,10 @@ body[data-bg="wallpaper"] .opacityBarControl.visible {
 	transform: translateY(0);
 	pointer-events: auto;
 	height: auto;
+}
+
+.opacityBar{
+	margin-top: 10px;
 }
 
 .humidityBar, .opacityBar {
