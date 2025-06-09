@@ -153,13 +153,13 @@
 	fill: var(--bg-color-blue);
 }
 
-body[data-bg="wallpaper"] .accentColor {
+/* body[data-bg="wallpaper"] .accentColor {
 	fill: color-mix(
 		in srgb,
-		var(--darkColor-blue) var(--transparency),
+		var(--darkColor-blue) var(--transparency)+55%,
 		transparent
 	);
-}
+} */
 
 body[data-bg="wallpaper"] .menuBar .accentColor,
 body[data-bg="wallpaper"] #shortcuts-section .accentColor {
@@ -1651,22 +1651,6 @@ body[data-bg="wallpaper"] #date {
 	height: fit-content;
 }
 
-body[data-bg="wallpaper"] .tilesContainer .tiles {
-	background-color: color-mix(
-		in srgb,
-		var(--whitishColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
-body[data-bg="wallpaper"] .tilesContainer .location {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
 .tilesContainer #location {
 	inset-inline-start: 46px;
 }
@@ -1759,26 +1743,10 @@ body[data-bg="wallpaper"] .opacityBarControl.visible {
 	transition: width 1s;
 }
 
-body[data-bg="wallpaper"] .humidityBar::after {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
 body[data-bg="wallpaper"] .humidityBar .thinLine {
 	background-color: color-mix(
 		in srgb,
 		var(--whitishColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
-body[data-bg="wallpaper"] .humidityBar .slider {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
 		transparent
 	);
 }
@@ -2035,14 +2003,6 @@ body[data-bg="wallpaper"] .micIcon {
 
 .theme-transition #enterBtn {
 	transition: all 0.3s;
-}
-
-body[data-bg="wallpaper"] #enterBtn {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
 }
 
 body[data-bg="wallpaper"] #enterBtn:hover {
