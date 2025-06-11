@@ -541,6 +541,7 @@ document.addEventListener("keydown", function (event) {
 
     if (bookmarksCheckbox.checked &&
         event.key === "ArrowRight" &&
+        !event.repeat &&
         event.target.tagName !== "INPUT" &&
         event.target.tagName !== "TEXTAREA" &&
         event.target.isContentEditable !== true
