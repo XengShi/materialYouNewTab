@@ -127,6 +127,7 @@
 	/* Global variables */
 	--gap: 30px;
 	--round: 30px;
+	--transparency: 90%;
 
 	/* Shortcut bar */
 	--max-shortcut-bar-width: 60vw;
@@ -152,17 +153,42 @@
 	fill: var(--bg-color-blue);
 }
 
-body[data-bg="wallpaper"] .bgLightTint {
-	fill: color-mix(in srgb, var(--accentLightTint-blue) 90%, transparent);
-	background-color: color-mix(
+body[data-bg="wallpaper"] .accentColor {
+	fill: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--darkColor-blue) var(--transparency),
 		transparent
 	);
 }
 
+body[data-bg="wallpaper"] .menuBar .accentColor,
+body[data-bg="wallpaper"] #shortcuts-section .accentColor {
+	fill: var(--darkColor-blue);
+}
+
+body[data-bg="wallpaper"] .bgLightTint:not(.notTargeted) {
+	fill: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) var(--transparency),
+		transparent
+	);
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) var(--transparency),
+		transparent
+	);
+}
+
+.shortcutLogoContainer .bgLightTint {
+	fill: var(--accentLightTint-blue) !important;
+}
+
 body[data-bg="wallpaper"] .lessDark.targeted {
-	fill: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
+	fill: color-mix(
+		in srgb,
+		var(--bg-color-blue) var(--transparency),
+		transparent
+	);
 }
 
 /* ⚫🟣🟡🔵🔴🟠⚪🟢 */
@@ -301,7 +327,11 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 
 body[data-bg="wallpaper"] .resultItem.active,
 body[data-bg="wallpaper"] .resultItem:hover {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) var(--transparency),
+		transparent
+	);
 }
 
 /* ----------------- Google App Menu CSS Setup ----------------- */
@@ -334,7 +364,7 @@ body[data-bg="wallpaper"] .resultItem:hover {
 body[data-bg="wallpaper"] .dot-icon {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -370,7 +400,11 @@ body[data-bg="wallpaper"] .dot-icon {
 }
 
 body[data-bg="wallpaper"] .tooltip-text {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) var(--transparency),
+		transparent
+	);
 }
 
 /* Show tooltip on hover */
@@ -485,7 +519,11 @@ body[data-bg="wallpaper"] .tooltip-text {
 /* Hover Effect for Icon Item */
 .icon-item:hover {
 	background-color: var(--bg-color-blue);
-	background-color: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--bg-color-blue) var(--transparency),
+		transparent
+	);
 	transform: translateY(-4px);
 }
 
@@ -573,7 +611,7 @@ body[data-bg="wallpaper"] .tooltip-text {
 body[data-bg="wallpaper"] .bookmark-button {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -1456,7 +1494,7 @@ body #bookmarkButton.bookmark-button.rotate {
 body[data-bg="wallpaper"] #userText {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -1477,7 +1515,7 @@ body[data-bg="wallpaper"] #userText {
 body[data-bg="wallpaper"] #date {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -1616,13 +1654,17 @@ body[data-bg="wallpaper"] #date {
 body[data-bg="wallpaper"] .tilesContainer .tiles {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) 90%,
+		var(--whitishColor-blue) calc(var(--transparency) + 5%),
 		transparent
 	);
 }
 
 body[data-bg="wallpaper"] .tilesContainer .location {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 .tilesContainer #location {
@@ -1682,19 +1724,27 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 }
 
 body[data-bg="wallpaper"] .humidityBar::after {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 body[data-bg="wallpaper"] .humidityBar .thinLine {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) 90%,
+		var(--whitishColor-blue) calc(var(--transparency) + 5%),
 		transparent
 	);
 }
 
 body[data-bg="wallpaper"] .humidityBar .slider {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 95%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 #humidityLevel {
@@ -1789,14 +1839,18 @@ body[data-bg="wallpaper"] .humidityBar .slider {
 	width: 100%;
 	height: 60px;
 	border-radius: var(--round);
-	background-color: color-mix(
-		in srgb,
-		var(--accentLightTint-blue) 95%,
-		transparent
-	) !important;
+	background-color: var(--accentLightTint-blue);
 	position: relative;
 	outline: 2px solid #00000000;
 	transition: outline 0.3s;
+}
+
+body[data-bg="wallpaper"] .searchbar {
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 .searchbar.active {
@@ -1868,7 +1922,7 @@ body[data-bg="wallpaper"] .humidityBar .slider {
 body[data-bg="wallpaper"] .micIcon {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) 90%,
+		var(--whitishColor-blue) var(--transparency),
 		transparent
 	);
 }
@@ -1940,13 +1994,17 @@ body[data-bg="wallpaper"] .micIcon {
 }
 
 body[data-bg="wallpaper"] #enterBtn {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) calc(var(--transparency) + 5%),
+		transparent
+	);
 }
 
 body[data-bg="wallpaper"] #enterBtn:hover {
 	background-color: color-mix(
 		in srgb,
-		var(--darkerColor-blue) 90%,
+		var(--darkerColor-blue) calc(var(--transparency) + 5%),
 		transparent
 	);
 }
@@ -1989,7 +2047,11 @@ body[data-bg="wallpaper"] #enterBtn:hover {
 }
 
 body[data-bg="wallpaper"] .searchWithCont .hint:hover {
-	background-color: color-mix(in srgb, var(--darkColor-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--darkColor-blue) var(--transparency),
+		transparent
+	);
 }
 
 .searchWithCont .hint:active {
@@ -2134,13 +2196,17 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 body[data-bg="wallpaper"] .quotesContainer {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
 
 body[data-bg="wallpaper"] .authorName {
-	background-color: color-mix(in srgb, var(--bg-color-blue) 90%, transparent);
+	background-color: color-mix(
+		in srgb,
+		var(--bg-color-blue) var(--transparency),
+		transparent
+	);
 }
 
 .lang-ur .qtRounder {
@@ -2265,6 +2331,9 @@ body[data-bg="wallpaper"] .authorName {
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
+	background-color: transparent;
+	padding: 0;
+	border-radius: 0;
 	opacity: 0;
 	transition: all 0.3s;
 	font-size: 1rem;
@@ -2272,6 +2341,16 @@ body[data-bg="wallpaper"] .authorName {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	max-width: 120px;
+}
+
+body[data-bg="wallpaper"] .shortcuts .shortcut-name {
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) var(--transparency),
+		transparent
+	);
+	padding: 0px 6px;
+	border-radius: 5px;
 }
 
 :dir(rtl) .shortcuts .shortcut-name {
@@ -2356,7 +2435,7 @@ body[data-bg="wallpaper"] .authorName {
 body[data-bg="wallpaper"] .aiToolsCont .hangno {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -2421,7 +2500,7 @@ body[data-bg="wallpaper"] .aiToolsCont .hangno {
 body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 }
@@ -3464,11 +3543,7 @@ input:checked + .toggle:before {
 }
 
 body[data-bg="wallpaper"] #menuButton {
-	background-color: color-mix(
-		in srgb,
-		var(--accentLightTint-blue) 90%,
-		transparent
-	);
+	opacity: calc(var(--transparency) + 5%);
 }
 
 /* ---------------------- */
@@ -3601,7 +3676,7 @@ body[data-bg="wallpaper"] #menuButton {
 body[data-bg="wallpaper"] .dropdown-content {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) 90%,
+		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
 	backdrop-filter: blur(2px);
@@ -4213,7 +4288,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme #darkLightTint {
-	fill: #bfbfbf;
+	fill: #bfbfbf !important;
 }
 
 .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
