@@ -153,13 +153,13 @@
 	fill: var(--bg-color-blue);
 }
 
-body[data-bg="wallpaper"] .accentColor {
+/* body[data-bg="wallpaper"] .accentColor {
 	fill: color-mix(
 		in srgb,
-		var(--darkColor-blue) var(--transparency),
+		var(--darkColor-blue) var(--transparency)+55%,
 		transparent
 	);
-}
+} */
 
 body[data-bg="wallpaper"] .menuBar .accentColor,
 body[data-bg="wallpaper"] #shortcuts-section .accentColor {
@@ -1651,22 +1651,6 @@ body[data-bg="wallpaper"] #date {
 	height: fit-content;
 }
 
-body[data-bg="wallpaper"] .tilesContainer .tiles {
-	background-color: color-mix(
-		in srgb,
-		var(--whitishColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
-body[data-bg="wallpaper"] .tilesContainer .location {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
-}
-
 .tilesContainer #location {
 	inset-inline-start: 46px;
 }
@@ -1679,7 +1663,27 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	unicode-bidi: isolate;
 }
 
-.humidityBar {
+.opacityBarControl {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.3s ease, transform 0.6s ease;
+	pointer-events: none;
+	position: relative;
+	height: 0;
+}
+
+body[data-bg="wallpaper"] .opacityBarControl.visible {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+	height: auto;
+}
+
+.opacityBar{
+	margin-top: 10px;
+}
+
+.humidityBar, .opacityBar {
 	border-radius: 20px;
 	height: 40px;
 	width: 100%;
@@ -1701,7 +1705,8 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	border-radius: 100%;
 }
 
-.humidityBar .thinLine {
+.humidityBar .thinLine,
+.opacityBar .thinLine {
 	position: absolute;
 	width: calc(100% - 60px);
 	background-color: var(--whitishColor-blue);
@@ -1712,7 +1717,16 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	margin: auto;
 }
 
-.humidityBar .slider {
+.humidityBar .thinLine{
+	width: calc(100% - 60px);
+}
+
+.opacityBar .thinLine{
+	width: 100%;
+}
+
+.humidityBar .slider,
+.opacityBar .opacitySlider{
 	height: 100%;
 	width: calc(10% - 60px);
 	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
@@ -1720,15 +1734,13 @@ body[data-bg="wallpaper"] .tilesContainer .location {
 	background-color: var(--darkColor-blue);
 	border-radius: 100px;
 	position: absolute;
-	transition: width 1s;
 }
 
-body[data-bg="wallpaper"] .humidityBar::after {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
+.humidityBar .slider{
+	width: calc(10% - 60px);
+	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
+	min-width: 42%;
+	transition: width 1s;
 }
 
 body[data-bg="wallpaper"] .humidityBar .thinLine {
@@ -1739,15 +1751,11 @@ body[data-bg="wallpaper"] .humidityBar .thinLine {
 	);
 }
 
-body[data-bg="wallpaper"] .humidityBar .slider {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
+.opacityBar .opacitySlider {
+	min-width: 20%;
 }
 
-#humidityLevel {
+#humidityLevel, #opacityLevel {
 	color: var(--whitishColor-blue);
 	width: fit-content;
 	position: absolute;
@@ -1850,6 +1858,10 @@ body[data-bg="wallpaper"] .searchbar {
 		in srgb,
 		var(--accentLightTint-blue) calc(var(--transparency) + 5%),
 		transparent
+	);
+	position: relative;
+	outline: 2px solid #00000000;
+	transition: outline 0.3s;
 	);
 }
 
@@ -1991,14 +2003,6 @@ body[data-bg="wallpaper"] .micIcon {
 
 .theme-transition #enterBtn {
 	transition: all 0.3s;
-}
-
-body[data-bg="wallpaper"] #enterBtn {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
 }
 
 body[data-bg="wallpaper"] #enterBtn:hover {
@@ -2331,9 +2335,6 @@ body[data-bg="wallpaper"] .authorName {
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
-	background-color: transparent;
-	padding: 0;
-	border-radius: 0;
 	opacity: 0;
 	transition: all 0.3s;
 	font-size: 1rem;
@@ -4270,7 +4271,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 	background-color: var(--darkColor-dark) !important;
 }
 
-.dark-theme .humidityBar .thinLine {
+.dark-theme .humidityBar .thinLine, .dark-theme .opacityBar .timeline {
 	background-color: #aaaaaa;
 }
 
@@ -4288,7 +4289,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme #darkLightTint {
-	fill: #bfbfbf !important;
+	fill: #bfbfbf;
 }
 
 .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {
