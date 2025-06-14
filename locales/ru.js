@@ -17,6 +17,8 @@ const ru = {
     "bookmarksInfo": "Показать боковую панель закладок",
     "ai_tools_button": "Инструменты ИИ",
     "enable_ai_tools": "Включить/Отключить ярлыки ИИ",
+    "aiToolsSettingsText": "Настройки ИИ",
+    "aiToolsSettingsInfo": "Управление ярлыками ИИ",
     "googleAppsMenuText": "Приложения Google",
     "googleAppsMenuInfo": "Показать ярлыки для приложений Google",
     "googleAppsHover": "Гугл приложения",
@@ -27,7 +29,9 @@ const ru = {
     "todoListHover": "To-do лист",
     "todoPlaceholder": "Добавить задачу...",
 
-    // Digital Clock
+    // Clock
+    "hideClockBox": "Скрыть часы",
+    "hideClockBoxInfo": "Скрыть часы и дату",
     "digitalclocktitle": "Цифровые часы",
     "digitalclockinfo": "Включить/Отключить цифровые часы",
     "timeformattitle": "12-часовой формат",
@@ -44,12 +48,12 @@ const ru = {
     "hideWeatherInfo": "Отключить виджеты погоды",
     "hideWeatherBox": "Скрыть карту погоды",
     "hideWeatherBoxInfo": "Показать только температуру",
+    "minMaxTempText": "Мин-Макс температура",
+    "minMaxTempSubText": "Заменить 'Ощущается' на минимальную/максимальную температуру",
 
     // Search
     "micIconTitle": "Скрыть значок микрофона",
     "micIconInfo": "Если голосовой ввод не работает",
-    "switchSearchModes": "Переключение режимов поиска",
-    "switchSearchModesInfo": "Нажмите на ‘Поиск с’, чтобы изменить режим",
     "hideSearchWith": "Скрыть поисковые системы",
     "hideSearchWithInfo": "Переключайте поисковые системы, щёлкая по их значку",
     "motivationalQuotesText": "Мотивационные цитаты",
@@ -101,6 +105,7 @@ const ru = {
     "conditionText": "Привет! Как ты сегодня?",
     "humidityLevel": "Влажность",
     "feelsLike": "Ощущается",
+    "minMaxTemp": "Мин ~ Макс",
     "location": "Земля",
     "enterBtn": "Поиск",
     "searchPlaceholder": "Ваш запрос...",
@@ -124,7 +129,9 @@ const ru = {
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
     "gImagesEngine": "Картинки",
+    "redditEngine": "Reddit",
     "wikipediaEngine": "Википедия",
+    "quoraEngine": "Quora",
 
     // AI Tools
     "ai_tools": "Нейросети",
@@ -132,9 +139,14 @@ const ru = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "claude": "Claude",
+    "grok": "Grok",
+    "qwen": "Qwen",
     "perplexity": "Perplexity",
     "deepseek": "DeepSeek",
     "metaAI": "Meta AI",
+    "firefly": "Adobe Firefly",
+    "aiSettingsIntro": "Выберите, какие инструменты искусственного интеллекта отображать",
+    "resetAISettingsBtn": "Сбросить",
 
     // Theme
     "enableDarkMode": "Чёрная тема (Эксперимент)",
@@ -147,6 +159,20 @@ const ru = {
     "restoreText": "Восстановить",
     "resetsettings": "Сброс настроек",
     "menuCloseText": "Закрыть",
+
+    // Tips
+    "switchSearchModes": "Переключение режимов поиска",
+    "switchSearchModesInfo": "Нажмите на ‘Поиск с’, чтобы изменить режим",
+    "adjustZoom": "Регулировка масштаба",
+    "adjustZoomInfo": "Нажмите Ctrl + \"+\" или Ctrl + \"-\" чтобы отрегулировать масштаб.",
+    "changeBrowserTheme": "Изменить тему браузера",
+    "chromeThemeInfo": "Нажмите на три точки (⋮) > Дополнительные инструменты > Настройка Chrome, затем выберите цвет, соответствующий теме расширения.",
+    "edgeThemeInfo": "Перейдите в Настройки > Внешний вид, затем выберите цвет, соответствующий теме расширения.",
+    "braveThemeInfo": 'Посетите <a href="https://chromewebstore.google.com/category/themes/" target="_blank">Chrome Theme Store</a>, загрузите и примените тему, соответствующую расширению.',
+    "firefoxThemeInfo": 'Посетите <a href="https://addons.mozilla.org/firefox/themes/" target="_blank">Firefox Themes</a>, загрузите и примените тему, соответствующую расширению.',
+    "updateFirefoxHomepage": "Обновить домашнюю страницу",
+    "updateFirefoxHomepageInfo": "Чтобы изменить свою домашнюю страницу на новую вкладку, посетите <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">this link</a> и следуйте инструкциям.",
+    "dontShowTips": "Не показывать снова",
 
     // Dialog boxes (alerts)
     "okText": "OK",
@@ -166,4 +192,5 @@ const ru = {
     "invalidBackup": "Недопустимый файл резервной копии.",
     "deleteBookmark": "Вы уверены, что хотите удалить эту закладку \"{title}\"?",
     "UnsupportedBrowser": "Закладки не поддерживаются в вашем браузере.",
+    "resetShortcutsPrompt": "Все сохраненные ярлыки будут удалены, и их значение будет восстановлено по умолчанию. Хотите продолжить?"
 };
