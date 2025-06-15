@@ -52,7 +52,7 @@ function startDrag() {
         e.preventDefault();
         handleDrag(e);
         startDrag();
-    });
+    }, { passive: false });
 });
 
 // Initialize with saved opacity value or default to 90%
