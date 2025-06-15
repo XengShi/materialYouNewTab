@@ -157,6 +157,8 @@ const bn = {
     // Wallpaper and settings
     "uploadWallpaperText": "ওয়ালপেপার দিন",
     "rangColor": "রঙ নির্বাচন করুন",
+    "opactityTitle": "অস্বচ্ছতা",
+    "adjustOpacityDesc": "ইন্টারফেসের স্বচ্ছতা সামঞ্জস্য করুন",
     "backupText": "ব্যাকআপ করুন",
     "restoreText": "পুনরুদ্ধার করুন",
     "resetsettings": "সেটিংস পুনরায় সেট করুন",

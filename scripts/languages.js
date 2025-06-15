@@ -203,7 +203,9 @@ function applyLanguage(lang) {
         "updateFirefoxHomepage",
         "dontShowTips",
         "aiSettingsIntro",
-        "resetAISettingsBtn"
+        "resetAISettingsBtn",
+        "opactityTitle",
+        "adjustOpacityDesc"
     ];
 
     // Specific mapping for placeholders
@@ -323,13 +325,11 @@ function applyLanguage(lang) {
     } else if (lang === "ur") {
         loadFont("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic&display=swap");
         root.style.setProperty("--main-font-family", `"Noto Sans Arabic", ${commonFontStack}`);
-        document.body.classList.add("lang-ur"); // Apply special styles
     } else if (lang === "fa") {
         loadFont("https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap"); // Using Vazirmatn for Farsi
         root.style.setProperty("--main-font-family", `"Vazirmatn", ${commonFontStack}`);
     } else {
         root.style.setProperty("--main-font-family", commonFontStack);
-        document.body.classList.remove("lang-ur");
     }
 
     // Apply the direction attribute to specific selectors for RTL languages
@@ -356,6 +356,7 @@ function applyLanguage(lang) {
     quotesText.style.fontFamily = commonFontStack;
 
     // Save the selected language in localStorage
+    document.documentElement.lang = currentLanguage;
     saveLanguageStatus("selectedLanguage", lang);
 }
 

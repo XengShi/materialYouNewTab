@@ -153,14 +153,6 @@
 	fill: var(--bg-color-blue);
 }
 
-/* body[data-bg="wallpaper"] .accentColor {
-	fill: color-mix(
-		in srgb,
-		var(--darkColor-blue) var(--transparency)+55%,
-		transparent
-	);
-} */
-
 body[data-bg="wallpaper"] .menuBar .accentColor,
 body[data-bg="wallpaper"] #shortcuts-section .accentColor {
 	fill: var(--darkColor-blue);
@@ -325,15 +317,6 @@ body[data-bg="wallpaper"]:has(.menuBar #enableDarkModeCheckbox:checked):not(
 	color: var(--whitishColor-blue);
 }
 
-body[data-bg="wallpaper"] .resultItem.active,
-body[data-bg="wallpaper"] .resultItem:hover {
-	background-color: color-mix(
-		in srgb,
-		var(--darkColor-blue) var(--transparency),
-		transparent
-	);
-}
-
 /* ----------------- Google App Menu CSS Setup ----------------- */
 /* Dot Icon Container Styling */
 .googleAppsCont {
@@ -364,9 +347,10 @@ body[data-bg="wallpaper"] .resultItem:hover {
 body[data-bg="wallpaper"] .dot-icon {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) var(--transparency),
+		var(--accentLightTint-blue) calc(var(--transparency) * 2),
 		transparent
 	);
+	backdrop-filter: blur(4px);
 }
 
 .theme-transition .dot-icon {
@@ -402,7 +386,7 @@ body[data-bg="wallpaper"] .dot-icon {
 body[data-bg="wallpaper"] .tooltip-text {
 	background-color: color-mix(
 		in srgb,
-		var(--darkColor-blue) var(--transparency),
+		var(--darkColor-blue) calc(var(--transparency) * 2),
 		transparent
 	);
 }
@@ -611,9 +595,10 @@ body[data-bg="wallpaper"] .tooltip-text {
 body[data-bg="wallpaper"] .bookmark-button {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) var(--transparency),
+		var(--accentLightTint-blue) calc(var(--transparency) * 2),
 		transparent
 	);
+	backdrop-filter: blur(4px);
 }
 
 .bookmark-button:has(~ .googleAppsCont[style="display: flex;"]) {
@@ -1188,6 +1173,10 @@ body #bookmarkButton.bookmark-button.rotate {
 	}
 }
 
+#todoListHeading {
+	font-size: 1.4rem;
+}
+
 .todo-container .addTaskCont {
 	background: white;
 	background-color: color-mix(in srgb, var(--accentLightTint-blue) 10%, white);
@@ -1666,24 +1655,41 @@ body[data-bg="wallpaper"] #date {
 .opacityBarControl {
 	opacity: 0;
 	transform: translateY(20px);
-	transition: opacity 0.3s ease, transform 0.6s ease;
 	pointer-events: none;
 	position: relative;
-	height: 0;
+	height: auto;
+	max-height: 0;
+	overflow: hidden;
+	transition: opacity 0.3s ease, transform 0.5s ease, max-height 0.4s ease;
 }
 
-body[data-bg="wallpaper"] .opacityBarControl.visible {
+body[data-bg="wallpaper"] .opacityBarControl {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;
-	height: auto;
+	max-height: 120px;
 }
 
-.opacityBar{
+/* Max-height for specific languages with different font */
+html[lang="vi"] body[data-bg="wallpaper"] .opacityBarControl {
+	max-height: 113px;
+}
+
+html[lang="ur"] body[data-bg="wallpaper"] .opacityBarControl {
+	max-height: 142px;
+}
+
+html[lang="fa"] body[data-bg="wallpaper"] .opacityBarControl {
+	max-height: 123px;
+}
+
+.opacityBar {
 	margin-top: 10px;
+	cursor: grab;
 }
 
-.humidityBar, .opacityBar {
+.humidityBar,
+.opacityBar {
 	border-radius: 20px;
 	height: 40px;
 	width: 100%;
@@ -1717,16 +1723,16 @@ body[data-bg="wallpaper"] .opacityBarControl.visible {
 	margin: auto;
 }
 
-.humidityBar .thinLine{
+.humidityBar .thinLine {
 	width: calc(100% - 60px);
 }
 
-.opacityBar .thinLine{
+.opacityBar .thinLine {
 	width: 100%;
 }
 
 .humidityBar .slider,
-.opacityBar .opacitySlider{
+.opacityBar .opacitySlider {
 	height: 100%;
 	width: calc(10% - 60px);
 	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
@@ -1736,7 +1742,7 @@ body[data-bg="wallpaper"] .opacityBarControl.visible {
 	position: absolute;
 }
 
-.humidityBar .slider{
+.humidityBar .slider {
 	width: calc(10% - 60px);
 	/*100-60px because humidityIconContainer is 40px Width and 20px is margin which is = to 60*/
 	min-width: 42%;
@@ -1746,7 +1752,7 @@ body[data-bg="wallpaper"] .opacityBarControl.visible {
 body[data-bg="wallpaper"] .humidityBar .thinLine {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) calc(var(--transparency) + 5%),
+		var(--whitishColor-blue) calc(var(--transparency) * 2),
 		transparent
 	);
 }
@@ -1755,7 +1761,8 @@ body[data-bg="wallpaper"] .humidityBar .thinLine {
 	min-width: 20%;
 }
 
-#humidityLevel, #opacityLevel {
+#humidityLevel,
+#opacityLevel {
 	color: var(--whitishColor-blue);
 	width: fit-content;
 	position: absolute;
@@ -1764,6 +1771,7 @@ body[data-bg="wallpaper"] .humidityBar .thinLine {
 	margin: auto;
 	inset-inline-start: 20px;
 	height: fit-content;
+	font-size: 1rem;
 }
 
 /* End of _____________________- */
@@ -1824,15 +1832,15 @@ body[data-bg="wallpaper"] .humidityBar .thinLine {
 	margin-inline-start: 50px;
 }
 
-.lang-ur .rightDiv .topDiv .rAndakar .wInfo {
+html[lang="ur"] .rightDiv .topDiv .rAndakar .wInfo {
 	height: 95%;
 }
 
-.lang-ur #temp {
+html[lang="ur"] #temp {
 	font-size: 3.3rem;
 }
 
-.lang-ur #wIcon {
+html[lang="ur"] #wIcon {
 	width: 70px;
 	height: 70px;
 }
@@ -1856,12 +1864,8 @@ body[data-bg="wallpaper"] .humidityBar .thinLine {
 body[data-bg="wallpaper"] .searchbar {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) calc(var(--transparency) + 5%),
+		var(--accentLightTint-blue) calc(var(--transparency) + 10%),
 		transparent
-	);
-	position: relative;
-	outline: 2px solid #00000000;
-	transition: outline 0.3s;
 	);
 }
 
@@ -1895,13 +1899,17 @@ body[data-bg="wallpaper"] .searchbar {
 	border: none;
 	background-color: #00000000;
 	padding: 0 2px;
-	margin-inline-start: 55px;
+	margin-inline-start: 58px;
 	font-size: 1rem;
 }
 
 /* Default placeholder color */
 #searchQ::placeholder {
 	color: #757575;
+}
+
+body[data-bg="wallpaper"] #searchQ::placeholder {
+	color: color-mix(in srgb, #757575 calc(var(--transparency) + 10%), #000);
 }
 
 .searchControls {
@@ -1934,7 +1942,7 @@ body[data-bg="wallpaper"] .searchbar {
 body[data-bg="wallpaper"] .micIcon {
 	background-color: color-mix(
 		in srgb,
-		var(--whitishColor-blue) var(--transparency),
+		var(--whitishColor-blue) calc(var(--transparency) * 2),
 		transparent
 	);
 }
@@ -2003,14 +2011,6 @@ body[data-bg="wallpaper"] .micIcon {
 
 .theme-transition #enterBtn {
 	transition: all 0.3s;
-}
-
-body[data-bg="wallpaper"] #enterBtn:hover {
-	background-color: color-mix(
-		in srgb,
-		var(--darkerColor-blue) calc(var(--transparency) + 5%),
-		transparent
-	);
 }
 
 /* ________________End of Searchbar______________________ */
@@ -2203,21 +2203,26 @@ body[data-bg="wallpaper"] .quotesContainer {
 		var(--accentLightTint-blue) var(--transparency),
 		transparent
 	);
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+.dark-theme body[data-bg="wallpaper"] .quotesContainer {
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 body[data-bg="wallpaper"] .authorName {
 	background-color: color-mix(
 		in srgb,
-		var(--bg-color-blue) var(--transparency),
+		var(--bg-color-blue) calc(var(--transparency) * 1.5),
 		transparent
 	);
 }
 
-.lang-ur .qtRounder {
+html[lang="ur"] .qtRounder {
 	bottom: -2px;
 }
 
-.lang-ur .qtRounder2 {
+html[lang="ur"] .qtRounder2 {
 	top: -18px;
 }
 
@@ -2335,6 +2340,9 @@ body[data-bg="wallpaper"] .authorName {
 	width: fit-content;
 	text-align: center;
 	color: var(--textColorDark-blue);
+	background-color: transparent;
+	padding: 0;
+	border-radius: 0;
 	opacity: 0;
 	transition: all 0.3s;
 	font-size: 1rem;
@@ -2436,7 +2444,7 @@ body[data-bg="wallpaper"] .shortcuts .shortcut-name {
 body[data-bg="wallpaper"] .aiToolsCont .hangno {
 	background-color: color-mix(
 		in srgb,
-		var(--accentLightTint-blue) var(--transparency),
+		var(--accentLightTint-blue) calc(var(--transparency) * 1.75),
 		transparent
 	);
 }
@@ -2474,6 +2482,14 @@ body[data-bg="wallpaper"] .aiToolsCont .hangno {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 6px;
 	inset-inline-start: -18px;
+}
+
+body[data-bg="wallpaper"] .aiToolsCont .toolsCont::before {
+	background-color: color-mix(
+		in srgb,
+		var(--accentLightTint-blue) calc(var(--transparency) * 1.5),
+		transparent
+	);
 }
 
 .aiToolsCont .toolsCont a {
@@ -3544,7 +3560,8 @@ input:checked + .toggle:before {
 }
 
 body[data-bg="wallpaper"] #menuButton {
-	opacity: calc(var(--transparency) + 5%);
+	opacity: calc(var(--transparency) * 3 - 10%);
+	backdrop-filter: blur(5px);
 }
 
 /* ---------------------- */
@@ -4271,7 +4288,8 @@ body[data-bg="wallpaper"] .dropdown-content {
 	background-color: var(--darkColor-dark) !important;
 }
 
-.dark-theme .humidityBar .thinLine, .dark-theme .opacityBar .timeline {
+.dark-theme .humidityBar .thinLine,
+.dark-theme .opacityBar .timeline {
 	background-color: #aaaaaa;
 }
 
@@ -4289,7 +4307,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme #darkLightTint {
-	fill: #bfbfbf;
+	fill: #bfbfbf !important;
 }
 
 .dark-theme .shortcutsContainer .shortcuts .shortcutLogoContainer {

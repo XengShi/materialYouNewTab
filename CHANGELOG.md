@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/XengShi/materialYouNewTab/compare/v3...main)
 
-<!-- ## [v3.1](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.1) - May 2025 -->
+<!-- ## [v3.2](https://github.com/XengShi/materialYouNewTab/compare/v3...v3.2) - July xy, 2025 -->
 
 ### Added
 
@@ -40,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added option to show Minimun-Maximum temperature instead of Feels like ([@prem-k-r](https://github.com/prem-k-r)) ([#615](https://github.com/XengShi/materialYouNewTab/pull/615))
 - Added Grok and Qwen to the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#624](https://github.com/XengShi/materialYouNewTab/pull/624))
 - Added the ability to choose which AI shortcuts to display and set the order in which they appear ([@prem-k-r](https://github.com/prem-k-r)) ([#624](https://github.com/XengShi/materialYouNewTab/pull/624))
+- Added transparency effect to widgets interface when wallpaper is set ([@prem-k-r](https://github.com/prem-k-r)) ([#660](https://github.com/XengShi/materialYouNewTab/pull/660))
+- Interactive transparency adjustment slider ([@tahirahmad01](https://github.com/TahirAhmad01)) ([#670](https://github.com/XengShi/materialYouNewTab/pull/670)), ([@prem-k-r](https://github.com/prem-k-r)) ([#678](https://github.com/XengShi/materialYouNewTab/pull/678))
 
 ### Changed
 
@@ -67,15 +69,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added 5 more shared WeatherAPI keys ([@prem-k-r](https://github.com/prem-k-r)) ([916e3d6](https://github.com/XengShi/materialYouNewTab/pull/609/commits/916e3d6bd49c10fde9c2f24ac61a0570922c5c3a))
 - Made AI tools shortcut icons a bit larger ([@prem-k-r](https://github.com/prem-k-r)) ([27c592f](https://github.com/XengShi/materialYouNewTab/pull/624/commits/27c592fecbdf0c440fc750ea7503c060e4c4deaf))
 - Enhanced 'Sort by' and 'View as' buttons UI ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
-- Enhanced Todo list UI ([@XengShi](https://github.com/XengShi)) ([bff0a40](https://github.com/XengShi/materialYouNewTab/commit/bff0a4012ab8e05bc177dfdc1f3c7189be763a54))
+- Enhanced Google apps and Todo list UI ([@XengShi](https://github.com/XengShi)) ([bff0a40](https://github.com/XengShi/materialYouNewTab/commit/bff0a4012ab8e05bc177dfdc1f3c7189be763a54)), ([@prem-k-r](https://github.com/prem-k-r))
 - New shortcut now auto-scrolls into view and focuses on URL input; and smooth scrolling for all scrollable areas ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
-- Interactive Dynamic Transparency Adjustment Control Slider ([@tahirahmad01](https://github.com/TahirAhmad01)) ([#670](https://github.com/XengShi/materialYouNewTab/pull/670))
+- Added confirmation alert before resetting shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#657](https://github.com/XengShi/materialYouNewTab/pull/657))
 
 ### Removed
 
 - Removed extension icon change ([@XengShi](https://github.com/XengShi))
 - Removed Instagram shortcut ([@prem-k-r](https://github.com/prem-k-r)) ([185a981](https://github.com/XengShi/materialYouNewTab/pull/523/commits/185a98128ab0a066d0002c074df1bfb6212c638d))
-- Removed Adobe Firefly from the list of AI Tools ([@prem-k-r](https://github.com/prem-k-r)) ([#544](https://github.com/XengShi/materialYouNewTab/pull/544))
 - Removed the vertical line that was present after 'Search With' ([@prem-k-r](https://github.com/prem-k-r))
 - Removed the invalid URL syntax check for shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([aa63c4a](https://github.com/XengShi/materialYouNewTab/pull/622/commits/aa63c4a0ee10c44baf63c22acf637ffb11621416))
 
@@ -96,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed delayed radio button animation when hiding search engines ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Fixed disabled Save button in Edit Bookmark not re-enabling after entering URL ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
 - Fixed inactive Add Shortcut button after resetting maxed-out shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
+- Prevent repeated toggle of bookmark on RightArrow key hold ([@prem-k-r](https://github.com/prem-k-r)) ([45ebd54](https://github.com/XengShi/materialYouNewTab/pull/669/commits/45ebd54a0767427f5c2b0b12a735d35f446eba3c))
 
 ### Localized
 
