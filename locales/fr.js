@@ -8,10 +8,10 @@ const fr = {
 
     // Shortcuts
     "shortcutsText": "Raccourcis",
-    "enableShortcutsText": "Afficher les raccourcis sauvegardés",
+    "enableShortcutsText": "Afficher les raccourcis enregistrés",
     "editShortcutsText": "Modifier les raccourcis",
     "shortcutsInfoText": "Choisir les raccourcis à afficher",
-    "editShortcutsList": "Raccourcis Sauvegardés",
+    "editShortcutsList": "Raccourcis Enregistrés",
     'editShortcutsListInfo': 'Vous pouvez ajouter de nouveaux raccourcis en cliquant sur l\'icône « + » ou modifier les raccourcis existants en cliquant sur le nom ou l\'URL du raccourci.',
     "adaptiveIconText": "Icônes Adaptatives",
     "adaptiveIconInfoText": "L'icône du raccourci correspondra à la couleur du thème et apparaîtra plus petite",
@@ -195,4 +195,5 @@ const fr = {
     "invalidBackup": "Fichier de sauvegarde invalide",
     "deleteBookmark": "Êtes-vous sûr de vouloir supprimer le favori \"{title}\"?",
     "UnsupportedBrowser": "Les favoris ne sont pas supportés dans votre navigateur.",
+    "resetShortcutsPrompt": "Tous les raccourcis enregistrés seront supprimés et réinitialisés par défaut. Voulez-vous continuer?"
 };
