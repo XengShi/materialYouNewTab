@@ -162,6 +162,8 @@ const fr = {
     "backupText": "Sauvegarder",
     "restoreText": "Restaurer",
     "rangColor": "Choisir la couleur",
+    "opactityTitle": "Opacité",
+    "adjustOpacityDesc": "Ajuster la transparence de l'interface",
 
     // Tips
     "switchSearchModes": "Changer de mode de recherche",
