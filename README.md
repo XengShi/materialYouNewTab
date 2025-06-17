@@ -1,7 +1,7 @@
 <!-- Initialized : Sun 20 Aug 2023 03:41:08 PM IST -->
 <h1 align="center">
 
-<a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="50"></a>
+<a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://github.com/user-attachments/assets/3dbf52ed-35bd-400b-9a3b-6d1befa3a575" width="50"></a>
 <br>
 Material You NewTab
 
@@ -116,7 +116,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
    - **Load Unpacked Extension**:
      - Click on **Load unpacked** and select your extracted extension folder.
 
-3. **Additional Steps ONLY for ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
+3. **Additional Steps ONLY for <img height="16" src="https://cdn.simpleicons.org/opera"/> Opera (or <img height="16" src="https://cdn.simpleicons.org/operagx"/> Opera GX)**:
 
 > [!NOTE]
 > Opera does **not support replacing the default New Tab**.  
@@ -175,7 +175,7 @@ Below are screenshots of the process to guide you through each step visually.
 
    - This will update both your homepage and new tab to the extension.
   
-3. **Additional Steps ONLY for Zen Browser** <img height="16" width="16" src="https://cdn.simpleicons.org/zenbrowser"/> :
+3. **Additional Steps ONLY for Zen Browser** <img height="16" src="https://cdn.simpleicons.org/zenbrowser"/> :
 
    - Open a new tab and go to `about:config`.
    - Accept the risk and continue if prompted.
