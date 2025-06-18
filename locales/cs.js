@@ -57,7 +57,7 @@ const cs = {
     "hideSearchWith": "Skrýt vyhledávače",
     "hideSearchWithInfo": "Mezi vyhledávači přepnete klepnutím na jejich ikonky",
     "motivationalQuotesText": "Motivační citáty",
-    "motivationalQuotesInfo": "Zobrazí citáty (zatím v angličtině) pod vyhledávacím polem",
+    "motivationalQuotesInfo": "Zobrazí citáty pod vyhledávacím polem",
     "search_suggestions_button": "Návrhy ve vyhledávání",
     "search_suggestions_text": "Zapne návrhy vyhledávání",
 
@@ -155,6 +155,8 @@ const cs = {
     // Wallpaper and settings
     "uploadWallpaperText": "Nahrát tapetu",
     "rangColor": "Vybrat barvu",
+    "opactityTitle": "Průhlednost",
+    "adjustOpacityDesc": "Upraví průhlednost uživatelského rozhraní",
     "backupText": "Zálohovat",
     "restoreText": "Obnovit",
     "resetsettings": "Resetovat nastavení",
