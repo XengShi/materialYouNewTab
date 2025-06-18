@@ -12,7 +12,7 @@ const hi = {
     "editShortcutsList": "सहेजे गए शॉर्टकट",
     "editShortcutsListInfo": "आप \"+\" आइकन पर क्लिक करके नए शॉर्टकट्स जोड़ सकते हैं या शॉर्टकट के नाम या URL पर क्लिक करके मौजूदा शॉर्टकट्स को संपादित कर सकते हैं।",
     "adaptiveIconText": "अनुकूलनीय आइकन",
-    "adaptiveIconInfoText": "शॉर्टकट आइकन थीम रंग से मेल खाते हुए छोटे आकार में दिखेंगे",
+    "adaptiveIconInfoText": "शॉर्टकट आइकन थीम से मेल खाते हुए दिखेंगे",
     "bookmarksText": "बुकमार्क्स",
     "bookmarksInfo": "बुकमार्क्स साइडबार दिखाएँ",
     "ai_tools_button": "AI उपकरण",
@@ -157,6 +157,8 @@ const hi = {
     // Wallpaper and settings
     "uploadWallpaperText": "वॉलपेपर सेट करें",
     "rangColor": "रंग चुनें",
+    "opactityTitle": "अपारदर्शिता",
+    "adjustOpacityDesc": "इंटरफ़ेस की पारदर्शिता समायोजित करें",
     "backupText": "बैकअप करें",
     "restoreText": "रिस्टोर करें",
     "resetsettings": "सेटिंग्स रीसेट करें",
