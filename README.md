@@ -1,7 +1,7 @@
 <!-- Initialized : Sun 20 Aug 2023 03:41:08 PM IST -->
 <h1 align="center">
 
-<a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://i.ibb.co/x11pGSs/icon-128.png" width="50"></a>
+<a href="https://xengshi.github.io/materialYouNewTab/"><img src="https://github.com/user-attachments/assets/3dbf52ed-35bd-400b-9a3b-6d1befa3a575" width="50"></a>
 <br>
 Material You NewTab
 
@@ -69,10 +69,15 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 2. **Stable Release** (v3.1)
 
 <p align="center">
-    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://img.shields.io/badge/GitHub-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=grey&color=blue" alt="Download from GitHub" height="47" /></a>
-    <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn"><img src="https://github.com/user-attachments/assets/20a6e44b-fd46-4e6c-8ea6-aad436035753" alt="Download from Chrome Web Store" height="48" /></a>
-    <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://github.com/user-attachments/assets/c0e99e6b-97cf-4af2-9737-099db7d3538b" alt="Download from Mozilla Add-ons" height="48" /></a>
-    <!-- <a href="https://microsoftedge.microsoft.com/addons/detail/glloabhodjfmeoccmdngmhkpmdlakfbn"><img height="48" src="https://github.com/user-attachments/assets/204157eb-4cae-4c0e-b2cb-db514419fd9e" alt="Download from the Edge Add-ons" /></a> -->
+    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://github.com/user-attachments/assets/b421b796-599f-4ae8-aa56-3c9933e79e23" alt="Download from GitHub" height="48" /></a>
+    <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/a65e60b5-8ddc-432d-80dc-9c2dd975c6a9" height="48">
+            <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/a67c750c-64a3-4448-a1ae-f747a096bd1d" height="48">
+            <img src="https://github.com/user-attachments/assets/a67c750c-64a3-4448-a1ae-f747a096bd1d" alt="Download from Chrome Web Store" height="48">
+        </picture>
+    </a>
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/material-you-newtab/"><img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="Download from Mozilla Add-ons" height="48" /></a>
 </p>
 
 ---
@@ -111,16 +116,33 @@ Material You NewTab is a versatile browser extension that personalizes your New 
    - **Load Unpacked Extension**:
      - Click on **Load unpacked** and select your extracted extension folder.
 
-3. **Additional Steps ONLY for ![Opera](https://img.icons8.com/color/20/000000/opera--v1.png) Opera (or ![Opera GX](https://img.icons8.com/color/20/000000/opera-gx.png) Opera GX)**:
+3. **Additional Steps ONLY for <img height="16" src="https://cdn.simpleicons.org/opera"/> Opera (or <img height="16" src="https://cdn.simpleicons.org/operagx"/> Opera GX)**:
 
-   - Go to the **Settings** of Opera or Opera GX.
-   - Scroll to the **On startup** section.
+> [!NOTE]
+> Opera does **not support replacing the default New Tab**.  
+> This method only sets the extension as a **startup page**, not a true new tab.
+
+<details><summary>Click here for the workaround</summary>
+
+   - Go to the **Settings**.
+   - Scroll to the **On startup** section (use the search option if needed).
    - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-   - Add the following to the **Site URL**:
+   - Add the following (replace 32-character extension ID if installed manually) to the **Site URL**:
 
       ```text
       chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
       ```
+
+   To find the extension ID:
+
+   - Go to `opera://extensions`, find the extension, and copy the 32-character ID from its details.
+
+   To simulate new tabs:
+
+   - Bookmark the extension page to access new tab pages manually.
+
+   - Or, right-click the tab and select **Duplicate tab**.
+</details>
 
 Below are screenshots of the process to guide you through each step visually.
 
@@ -152,8 +174,22 @@ Below are screenshots of the process to guide you through each step visually.
      ```
 
    - This will update both your homepage and new tab to the extension.
+  
+3. **Additional Steps ONLY for Zen Browser** <img height="16" src="https://cdn.simpleicons.org/zenbrowser"/> :
 
-3. **Manual Installation (Temporary)**:
+   - Open a new tab and go to `about:config`.
+   - Accept the risk and continue if prompted.
+   - In the search bar, type:
+
+     ```text
+     zen.urlbar.replace-newtab
+     ```
+
+   - Set its value to **false** by clicking the toggle icon.
+
+   This ensures the browser does not override the custom New Tab page set by the extension.
+
+4. **Manual Installation (Temporary)**:
 
    - Clone the repository or download and extract the ZIP file.
    - **Prepare the Manifest**:
@@ -166,8 +202,6 @@ Below are screenshots of the process to guide you through each step visually.
      - Browse and select the updated `manifest.json`.
 
 ---
-
-<!-- #### ![Safari](https://img.icons8.com/color/20/000000/safari--v1.png) Safari -->
 
 ### Installation Video
 
