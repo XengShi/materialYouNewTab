@@ -12,11 +12,11 @@ const aiToolsRaw = [
     { id: "gemini", visible: true, order: 1 },
     { id: "copilot", visible: true, order: 2 },
     { id: "claude", visible: true, order: 3 },
-    { id: "grok", visible: true, order: 4 },
-    { id: "metaAI", visible: true, order: 5 },
-    { id: "deepseek", visible: true, order: 6 },
-    { id: "qwen", visible: false, order: 7 },
-    { id: "perplexity", visible: false, order: 8 },
+    { id: "deepseek", visible: true, order: 4 },
+    { id: "perplexity", visible: false, order: 5 },
+    { id: "grok", visible: false, order: 6 },
+    { id: "metaAI", visible: false, order: 7 },
+    { id: "qwen", visible: false, order: 8 },
     { id: "firefly", visible: false, order: 9 }
 ];
 // Translations for AI tools
