@@ -147,6 +147,7 @@ async function initializeClock() {
                 az: `${dayName.substring(0, 3)}, ${dayOfMonth} ${monthName.substring(0, 3)}`,
                 sl: `${dayName}, ${dayOfMonth}. ${monthName.substring(0, 3)}.`,
                 hu: `${monthName.substring(0, 3)} ${dayOfMonth}, ${dayName}`,	// Dec 22, Kedd
+                ta: `${monthName} ${localizedDayOfMonth}, ${dayName}`,	// e.g.,மார்கழி 31, ஞாயிறு
                 ur: `${dayName}، ${dayOfMonth} ${monthName}`,
                 de: `${dayName}, ${dayOfMonth}. ${monthName}`,
                 fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
@@ -273,6 +274,7 @@ async function initializeClock() {
             ko: `${dayOfMonth}일 (${dayName[0]})`,
             pt: `${dayName}, ${dayOfMonth}`,
             ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
+            ta: `${dayOfMonth} ${dayName.substring(0, 2)}`,
             vi: `${dayOfMonth} ${dayName}`,
             idn: `${dayOfMonth} ${dayName}`,
             fr: `${dayName} ${dayOfMonth}`, // Mardi 11
@@ -331,6 +333,22 @@ async function initializeClock() {
                 period = realHours < 12 ? "ق.ظ" : "ب.ظ"; // قبل از ظهر / بعد از ظهر
             } else if (currentLanguage === "ar_SA") {
                 period = realHours < 12 ? "ص" : "م"; // صباحاً / مساءً
+            } else if (currentLanguage === "ta") {
+                if (realHours < 2 ){
+                    period =  "யாமம்"
+                } else if (realHours < 6) {
+                    period =  "வைகறை"
+                } else if (realHours < 10) {
+                    period =  "காலை"
+                } else if (realHours < 14) {
+                    period =  "நண்பகல்"
+                } else if (realHours < 18) {
+                    period =  "எற்பாடு"
+                } else if (realHours < 22) {
+                    period =  "மாலை"
+                } else {
+                    period =  "யாமம்"
+                }
             } else {
                 period = realHours < 12 ? "AM" : "PM";
             }

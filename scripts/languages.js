@@ -9,6 +9,7 @@
 // Translation data
 const translations = {
     en: en, // English
+    ta: ta, // தமிழ்
     pt: pt, // Portuguese-BR (Brazil)
     zh: zh, // Chinese (Simplified)
     zh_TW: zh_TW, // Chinese (Traditional)
@@ -40,6 +41,7 @@ const translations = {
 // Define the width of the menu container for each language
 const menuWidths = {
     en: "400px",
+    ta: "480px",
     pt: "470px",
     bn: "416px",
     uz: "455px",
@@ -66,6 +68,7 @@ const menuWidths = {
 
 const numberMappings = {
     "bn": { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯" },
+    "ta": { "0": "௦", "1": "௧", "2": "௨", "3": "௩", "4": "௪", "5": "௫", "6": "௬", "7": "௭", "8": "௮", "9": "௯" },
     "mr": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
     "np": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
     "fa": { 0: "۰", 1: "۱", 2: "۲", 3: "۳", 4: "۴", 5: "۵", 6: "۶", 7: "۷", 8: "۸", 9: "۹" },
