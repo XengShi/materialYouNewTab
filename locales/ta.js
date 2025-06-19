@@ -2,71 +2,71 @@
 const ta = {
     // Menu Items
     "github": "அறிவிலிமையம்",
-    "feedback": "Feedback",
+    "feedback": "பின்னூட்டம்",
 
-    // Shortcuts
-    "shortcutsText": "Shortcuts",
-    "enableShortcutsText": "Show saved shortcuts",
-    "editShortcutsText": "Edit Shortcuts",
-    "shortcutsInfoText": "Choose which shortcuts get shown",
-    "editShortcutsList": "Saved Shortcuts",
-    "editShortcutsListInfo": "You can add new shortcuts by clicking the \"+\" icon or edit existing ones by clicking on the shortcut name or URL.",
-    "adaptiveIconText": "Adaptive Icons",
-    "adaptiveIconInfoText": "Shortcut icons will adapt to theme",
-    "bookmarksText": "Bookmarks",
-    "bookmarksInfo": "Show bookmarks sidebar",
-    "ai_tools_button": "AI Tools",
-    "enable_ai_tools": "Show shortcuts for AI tools",
-    "aiToolsSettingsText": "AI Tools Settings",
-    "aiToolsSettingsInfo": "Manage AI tools shortcuts",
-    "googleAppsMenuText": "Google Apps",
-    "googleAppsMenuInfo": "Show shortcuts for Google Apps",
-    "googleAppsHover": "Google Apps",    // Keep this shorter
+    // குறுக்குவழிகள்
+    "shortcutsText": "குறுக்குவழிகள்",
+    "enableShortcutsText": "சேமித்த குறுக்குவழிகளைக் காட்டு",
+    "editShortcutsText": "குறுக்குவழிகளைத் திருத்து",
+    "shortcutsInfoText": "எந்த குறுக்குவழிகள் காண்பிக்கப்பட வேண்டும் என்பதைத் தேர்வுசெய்க",
+    "editShortcutsList": "சேமித்த குறுக்குவழிகள்",
+    "editShortcutsListInfo": "\"+\" சின்னத்தைக் சொடுக்குவதன் மூலம் புதிய குறுக்குவழிகளைச் சேர்க்கலாம் அல்லது குறுக்குவழி பெயர் அல்லது முகவரியை சொடுக்குவதன் மூலம் ஏற்கனவே உள்ளவற்றைத் திருத்தலாம்.",
+    "adaptiveIconText": "தகவமைப்பு சின்னகள்",
+    "adaptiveIconInfoText": "குறுக்குவழி சின்னகள் கருப்பொருளுக்கு ஏற்ப மாறும்",
+    "bookmarksText": "புத்தக்குறிகள்",
+    "bookmarksInfo": "புத்தக்குறிகள் பக்கப்பட்டியைக் காட்டு",
+    "ai_tools_button": "செஅ கருவிகள்",
+    "enable_ai_tools": "செஅ கருவிகளுக்கான குறுக்குவழிகளைக் காட்டு",
+    "aiToolsSettingsText": "செஅ கருவிகள் அமைப்புகள்",
+    "aiToolsSettingsInfo": "செஅ கருவிகள் குறுக்குவழிகளை நிர்வகி",
+    "googleAppsMenuText": "கூகிள் பயன்கள்",
+    "googleAppsMenuInfo": "கூகிள் பயன்களுக்கான குறுக்குவழிகளைக் காட்டு",
+    "googleAppsHover": "கூகிள் பயன்கள்",    // இதைச் சிறியதாக வைத்திரு
 
-    // To-do List
-    "todoListText": "To Do List",
-    "todoListInfo": "Show a daily To Do list",
-    "todoListHover": "ToDo List",    // Keep this short
-    "todoPlaceholder": "Add task...",
+    // செய்ய வேண்டிய பட்டியல்
+    "todoListText": "செய்ய வேண்டிய பட்டியல்",
+    "todoListInfo": "தினசரி செய்ய வேண்டிய பட்டியலைக் காட்டு",
+    "todoListHover": "செய்ய வேண்டிய பட்டியல்",    // இதைச் சிறியதாக வைத்திரு
+    "todoPlaceholder": "பணியைச் சேர்...",
 
-    // Clock
-    "hideClockBox": "Hide Clock",
-    "hideClockBoxInfo": "Hide the clock and date",
-    "digitalclocktitle": "Digital Clock",
-    "digitalclockinfo": "Switch to the digital clock",
-    "timeformattitle": "12-Hour Format",
-    "timeformatinfo": "Use 12-hour time format",
-    "greetingtitle": "Greeting",
-    "greetinginfo": "Show greeting below custom text",
+    // கடிகாரம்
+    "hideClockBox": "கடிகாரத்தை மறை",
+    "hideClockBoxInfo": "கடிகாரத்தையும் தேதியையும் மறை",
+    "digitalclocktitle": "எண்முறை கடிகாரம்",
+    "digitalclockinfo": "எண்முறை கடிகாரத்திற்கு மாறு",
+    "timeformattitle": "12-மணிநேர வடிவமைப்பு",
+    "timeformatinfo": "12-மணிநேர வடிவமைப்பைப் பயன்படுத்து",
+    "greetingtitle": "வாழ்த்து",
+    "greetinginfo": "தனிப்பயன் உரைக்கு கீழே வாழ்த்துக்களைக் காட்டு",
 
-    // Misc
-    "userTextTitle": "Customizable Text",
-    "userTextInfo": "Show custom text below the clock",
-    "fahrenheitCelsiusCheckbox": "Switch to Fahrenheit",
-    "fahrenheitCelsiusText": "Refresh the page to apply changes",
-    "hideWeatherTitle": "Hide Weather",
-    "hideWeatherInfo": "Disable the weather widgets",
-    "hideWeatherBox": "Hide Weather Card",    // Toggle for mobile devices only
-    "hideWeatherBoxInfo": "Show only temperature pill",
-    "minMaxTempText": "Min-Max Temperature",
-    "minMaxTempSubText": "Replace 'Feels Like' with minimum and maximum temperature",
+    // மற்றவை
+    "userTextTitle": "தனிப்பயனாக்கக்கூடிய உரை",
+    "userTextInfo": "கடிகாரத்திற்கு கீழே தனிப்பயன் உரையைக் காட்டு",
+    "fahrenheitCelsiusCheckbox": "பரனைற்றுக்கு மாறு",
+    "fahrenheitCelsiusText": "மாற்றங்களைப் பயன்படுத்த பக்கத்தைப் புதுப்பி",
+    "hideWeatherTitle": "வானிலையை மறை",
+    "hideWeatherInfo": "வானிலை நிரல்பலகைகளை முடக்கு",
+    "hideWeatherBox": "வானிலை அட்டையை மறை",    // மொபைல் சாதனங்களுக்கு மட்டும் மாற்று
+    "hideWeatherBoxInfo": "வெப்பநிலை மாத்திரையை மட்டும் காட்டு",
+    "minMaxTempText": "குறைந்தஅளவு-அதிகஅளவு வெப்பநிலை",
+    "minMaxTempSubText": "குறைந்தஅளவு மற்றும் அதிகஅளவு வெப்பநிலையுடன் 'உணர்கிறேன்' என்பதை மாற்று",
 
-    // Search
-    "micIconTitle": "Hide Microphone Icon",
-    "micIconInfo": "If voice typing is not working",
-    "hideSearchWith": "Hide Search Engines",
-    "hideSearchWithInfo": "Switch between search engines by clicking its icon",
-    "motivationalQuotesText": "Motivational Quotes",
-    "motivationalQuotesInfo": "Show quotes below the searchbar",
-    "search_suggestions_button": "Search Suggestions",
-    "search_suggestions_text": "Enable search suggestions",
+    // தேடல்
+    "micIconTitle": "ஒலிவாங்கி சின்னத்தை மறை",
+    "micIconInfo": "குரல் தட்டச்சு வேலை செய்யவில்லை என்றால்",
+    "hideSearchWith": "தேடல் பொறிகளை மறை",
+    "hideSearchWithInfo": "அதன் சின்னத்தைக் சொடுக்குவதன் மூலம் தேடுபொறிகளுக்கு இடையில் மாறு",
+    "motivationalQuotesText": "ஊக்கமளிக்கும் மேற்கோள்கள்",
+    "motivationalQuotesInfo": "தேடல் பட்டியின் கீழே மேற்கோள்களைக் காட்டு",
+    "search_suggestions_button": "தேடல் பரிந்துரைகள்",
+    "search_suggestions_text": "தேடல் பரிந்துரைகளை இயக்கு",
 
-    // Proxy
-    "useproxytitletext": "Proxy Bypass",
-    "useproxyText": "If search suggestions aren't working",
-    "ProxyText": "CORS Bypass Proxy",
-    "ProxySubtext": "Add your own CORS bypass proxy",
-    "HostproxyButton": "Host your own proxy",
+    // பதிலாள்
+    "useproxytitletext": "கடந்து செல் பதிலாள்",
+    "useproxyText": "தேடல் பரிந்துரைகள் வேலை செய்யவில்லை என்றால்",
+    "ProxyText": "CORS கடந்து செல் பதிலாள்",
+    "ProxySubtext": "உங்கள் சொந்த CORS கடந்து செல் பதிலாளைச் சேர்",
+    "HostproxyButton": "உங்கள் சொந்த பதிலாளை புரவலன் செய்யவும்",
 
     // இருப்பிடம்
     "useGPS": "இடம் காட்டியைப் பயன்படுத்து",
