@@ -1,10 +1,10 @@
 // தமிழ் (Tamil)
 const ta = {
     // Menu Items
-    "github": "கிட்ஹப்",
+    "github": "அறிவிலிமையம்",
     "feedback": "பின்னூட்டம்",
 
-    // Shortcuts
+    // குறுக்குவழிகள்
     "shortcutsText": "குறுக்குவழிகள்",
     "enableShortcutsText": "சேமித்த குறுக்குவழிகளைக் காட்டு",
     "editShortcutsText": "குறுக்குவழிகளைத் திருத்து",
@@ -21,15 +21,15 @@ const ta = {
     "aiToolsSettingsInfo": "செஅ கருவிகள் குறுக்குவழிகளை நிர்வகி",
     "googleAppsMenuText": "கூகிள் பயன்கள்",
     "googleAppsMenuInfo": "கூகிள் பயன்களுக்கான குறுக்குவழிகளைக் காட்டு",
-    "googleAppsHover": "கூகிள் பயன்கள்",
+    "googleAppsHover": "கூகிள் பயன்கள்",    // இதைச் சிறியதாக வைத்திரு
 
-    // To-do List
+    // செய்ய வேண்டிய பட்டியல்
     "todoListText": "செய்ய வேண்டிய பட்டியல்",
     "todoListInfo": "தினசரி செய்ய வேண்டிய பட்டியலைக் காட்டு",
-    "todoListHover": "செய்ய வேண்டிய பட்டியல்",
+    "todoListHover": "செய்ய வேண்டிய பட்டியல்",    // இதைச் சிறியதாக வைத்திரு
     "todoPlaceholder": "பணியைச் சேர்...",
 
-    // Clock
+    // கடிகாரம்
     "hideClockBox": "கடிகாரத்தை மறை",
     "hideClockBoxInfo": "கடிகாரத்தையும் தேதியையும் மறை",
     "digitalclocktitle": "எண்முறை கடிகாரம்",
@@ -39,19 +39,19 @@ const ta = {
     "greetingtitle": "வாழ்த்து",
     "greetinginfo": "தனிப்பயன் உரைக்கு கீழே வாழ்த்துக்களைக் காட்டு",
 
-    // Misc
+    // மற்றவை
     "userTextTitle": "தனிப்பயனாக்கக்கூடிய உரை",
     "userTextInfo": "கடிகாரத்திற்கு கீழே தனிப்பயன் உரையைக் காட்டு",
     "fahrenheitCelsiusCheckbox": "பரனைற்றுக்கு மாறு",
     "fahrenheitCelsiusText": "மாற்றங்களைப் பயன்படுத்த பக்கத்தைப் புதுப்பி",
     "hideWeatherTitle": "வானிலையை மறை",
     "hideWeatherInfo": "வானிலை நிரல்பலகைகளை முடக்கு",
-    "hideWeatherBox": "வானிலை அட்டையை மறை",
+    "hideWeatherBox": "வானிலை அட்டையை மறை",    // மொபைல் சாதனங்களுக்கு மட்டும் மாற்று
     "hideWeatherBoxInfo": "வெப்பநிலை மாத்திரையை மட்டும் காட்டு",
     "minMaxTempText": "குறைந்தஅளவு-அதிகஅளவு வெப்பநிலை",
     "minMaxTempSubText": "குறைந்தஅளவு மற்றும் அதிகஅளவு வெப்பநிலையுடன் 'உணர்கிறேன்' என்பதை மாற்று",
 
-    // Search
+    // தேடல்
     "micIconTitle": "ஒலிவாங்கி சின்னத்தை மறை",
     "micIconInfo": "குரல் தட்டச்சு வேலை செய்யவில்லை என்றால்",
     "hideSearchWith": "தேடல் பொறிகளை மறை",
@@ -61,7 +61,7 @@ const ta = {
     "search_suggestions_button": "தேடல் பரிந்துரைகள்",
     "search_suggestions_text": "தேடல் பரிந்துரைகளை இயக்கு",
 
-    // Proxy
+    // பதிலாள்
     "useproxytitletext": "கடந்து செல் பதிலாள்",
     "useproxyText": "தேடல் பரிந்துரைகள் வேலை செய்யவில்லை என்றால்",
     "ProxyText": "CORS கடந்து செல் பதிலாள்",
