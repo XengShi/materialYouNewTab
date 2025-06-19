@@ -47,7 +47,13 @@ function shouldRefreshQuotes(lang, quotesData, metadata) {
     // Check if metadata has been updated since our last fetch
     const metadataTimestamp = localStorage.getItem("quotes_metadata_timestamp");
     if (!metadataTimestamp || metadataTimestamp !== metadata.lastUpdated) {
-        return true;
+        // Metadata changed, but check if THIS language's count changed
+        const storedQuoteCount = localStorage.getItem(`quotes_${lang}_count`);
+        const currentCount = metadata.files[`${lang}.json`].count || 0;
+
+        if (!storedQuoteCount || parseInt(storedQuoteCount) !== currentCount) {
+            return true;
+        }
     }
 
     // Time-based validation
@@ -97,6 +103,10 @@ async function fetchQuotes(lang, metadata) {
 
         // Store metadata timestamp to track when we last checked for updates
         localStorage.setItem("quotes_metadata_timestamp", metadata.lastUpdated);
+
+        // Store the quote count for this language
+        const quoteCount = metadata.files[`${lang}.json`].count || quotes.length;
+        localStorage.setItem(`quotes_${lang}_count`, quoteCount.toString());
 
         return quotes;
     } catch (error) {
