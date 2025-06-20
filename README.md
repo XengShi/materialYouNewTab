@@ -26,7 +26,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
   <a href="#-features">Features</a> •
   <a href="#-installation-guide">Installation Guide</a> •
   <a href="#download">Download</a> •
-  <a href="#-currently-supported-languages-27">Currently Supported Languages</a> •
+  <a href="#-currently-supported-languages-28">Currently Supported Languages</a> •
   <a href="#-usage">Usage</a>
 <br>
   <a href="#-contributing">Contributing</a> •
@@ -124,10 +124,10 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 <details><summary>Click here for the workaround</summary>
 
-   - Go to the **Settings**.
-   - Scroll to the **On startup** section (use the search option if needed).
-   - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
-   - Add the following (replace 32-character extension ID if installed manually) to the **Site URL**:
+- Go to the **Settings**.
+- Scroll to the **On startup** section (use the search option if needed).
+- Click on **Open a specific page or set of pages** and then click on **Add a new page**.
+- Add the following (replace 32-character extension ID if installed manually) to the **Site URL**:
 
       ```text
       chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
@@ -135,13 +135,14 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
    To find the extension ID:
 
-   - Go to `opera://extensions`, find the extension, and copy the 32-character ID from its details.
+- Go to `opera://extensions`, find the extension, and copy the 32-character ID from its details.
 
    To simulate new tabs:
 
-   - Bookmark the extension page to access new tab pages manually.
+- Bookmark the extension page to access new tab pages manually.
 
-   - Or, right-click the tab and select **Duplicate tab**.
+- Or, right-click the tab and select **Duplicate tab**.
+
 </details>
 
 Below are screenshots of the process to guide you through each step visually.
