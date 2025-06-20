@@ -560,12 +560,17 @@ async function getWeatherData() {
                     return isLocationHidden ? "./svgs/location-show.svg" : "./svgs/location-hide.svg";
                 }
 
-                // Hover icon switch
+                // Switch icon on hover
+                let hoverTimeout;
+
                 locationTile.addEventListener("mouseenter", () => {
-                    locationIcon.src = getToggleIcon();
+                    hoverTimeout = setTimeout(() => {
+                        locationIcon.src = getToggleIcon();
+                    }, 120);
                 });
 
                 locationTile.addEventListener("mouseleave", () => {
+                    clearTimeout(hoverTimeout);
                     locationIcon.src = "./svgs/location.svg";
                 });
 
