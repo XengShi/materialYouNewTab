@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added transparency effect to widgets interface when wallpaper is set ([@prem-k-r](https://github.com/prem-k-r)) ([#660](https://github.com/XengShi/materialYouNewTab/pull/660))
 - Interactive transparency adjustment slider ([@tahirahmad01](https://github.com/TahirAhmad01)) ([#670](https://github.com/XengShi/materialYouNewTab/pull/670)), ([@prem-k-r](https://github.com/prem-k-r)) ([#678](https://github.com/XengShi/materialYouNewTab/pull/678))
 - Added Multilingual Support for Motivational Quotes ([@prem-k-r](https://github.com/prem-k-r)) ([#683](https://github.com/XengShi/materialYouNewTab/pull/683))
+- Added toggle to hide or show location in the location tile ([@prem-k-r](https://github.com/prem-k-r)) ([#685](https://github.com/XengShi/materialYouNewTab/pull/685))
 
 ### Changed
 
