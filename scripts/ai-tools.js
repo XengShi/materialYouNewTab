@@ -67,9 +67,11 @@ function saveAIToolsSettings() {
 // Function to apply saved settings (visibility and order)
 function applyAIToolsSettings() {
     const savedSettings = JSON.parse(localStorage.getItem("aiToolsSettings") || "null");
+    let settingsToApply;
+
     if (!savedSettings || !Array.isArray(savedSettings)) {
         // If no settings found, initialize with default values
-        const defaultSettings = aiTools.map(tool => {
+        settingsToApply = aiTools.map(tool => {
             if (tool.visible) {
                 return tool.id;
             } else {
@@ -78,8 +80,9 @@ function applyAIToolsSettings() {
                 return hiddenTool;
             }
         });
-        localStorage.setItem("aiToolsSettings", JSON.stringify(defaultSettings));
-        return;
+        localStorage.setItem("aiToolsSettings", JSON.stringify(settingsToApply));
+    } else {
+        settingsToApply = savedSettings;
     }
 
     // First, set display:none for all tools to temporarily hide them
@@ -92,7 +95,7 @@ function applyAIToolsSettings() {
     const fragment = document.createDocumentFragment();
 
     // Process each item in the saved settings array
-    savedSettings.forEach(item => {
+    settingsToApply.forEach(item => {
         let toolId, isVisible;
 
         if (typeof item === 'string') {
@@ -315,7 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
     aiToolsEditButton.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        closeMenuBar();
         showAIToolsSettings();
     });
 
@@ -383,6 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
             aiToolsCont.style.display = "flex";
             saveDisplayStatus("aiToolsDisplayStatus", "flex");
             aiToolsEditField.classList.remove("inactive");
+            showAIToolsSettings();
         } else {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
