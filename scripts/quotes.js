@@ -127,17 +127,24 @@ async function getQuotesForLanguage(forceRefresh = false) {
         // Update last known language
         lastKnownLanguage = currentLanguage;
 
-        // First, fetch the latest metadata to check for updates
-        const metadata = await fetchMetadata();
-
         let targetLang = currentLanguage;
         let quotesData = null;
 
-        // Determine which language to use based on quote availability
-        if (currentLanguage !== "en") {
-            const langFile = metadata.files[`${currentLanguage}.json`];
-            if (!langFile || langFile.count < 100) {
-                targetLang = "en";
+        // Try to fetch the latest metadata to check for updates, but only if we are online
+        let metadata = null;
+        if (navigator.onLine) {
+            try {
+                metadata = await fetchMetadata();
+
+                // Determine which language to use based on quote availability
+                if (currentLanguage !== "en") {
+                    const langFile = metadata.files[`${currentLanguage}.json`];
+                    if (!langFile || langFile.count < 100) {
+                        targetLang = "en";
+                    }
+                }
+            } catch (error) {
+                console.log("Failed to fetch metadata, working offline");
             }
         }
 
@@ -152,8 +159,8 @@ async function getQuotesForLanguage(forceRefresh = false) {
             quotesData = JSON.parse(storedQuotes);
         }
 
-        // Check if we need to fetch new quotes
-        if (forceRefresh || shouldRefreshQuotes(targetLang, quotesData, metadata)) {
+        // Check if we need to fetch new quotes (only when online)
+        if (navigator.onLine && (forceRefresh || shouldRefreshQuotes(targetLang, quotesData, metadata))) {
             quotesData = await fetchQuotes(targetLang, metadata);
 
             // Clear other language data after successfully fetching new data
