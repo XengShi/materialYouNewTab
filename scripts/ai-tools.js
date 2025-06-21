@@ -12,11 +12,11 @@ const aiToolsRaw = [
     { id: "gemini", visible: true, order: 1 },
     { id: "copilot", visible: true, order: 2 },
     { id: "claude", visible: true, order: 3 },
-    { id: "grok", visible: true, order: 4 },
-    { id: "metaAI", visible: true, order: 5 },
-    { id: "deepseek", visible: true, order: 6 },
-    { id: "qwen", visible: false, order: 7 },
-    { id: "perplexity", visible: false, order: 8 },
+    { id: "deepseek", visible: true, order: 4 },
+    { id: "perplexity", visible: false, order: 5 },
+    { id: "grok", visible: false, order: 6 },
+    { id: "metaAI", visible: false, order: 7 },
+    { id: "qwen", visible: false, order: 8 },
     { id: "firefly", visible: false, order: 9 }
 ];
 // Translations for AI tools
@@ -383,12 +383,10 @@ document.addEventListener("DOMContentLoaded", function () {
             aiToolsCont.style.display = "flex";
             saveDisplayStatus("aiToolsDisplayStatus", "flex");
             aiToolsEditField.classList.remove("inactive");
-            saveActiveStatus("aiToolsEditField", "active")
         } else {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
             aiToolsEditField.classList.add("inactive");
-            saveActiveStatus("aiToolsEditField", "inactive")
             toggleAITools();
         }
     });
@@ -396,7 +394,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load saved state
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
-    loadActiveStatus("aiToolsEditField", aiToolsEditField);
+    if (aiToolsCheckbox.checked) {
+        aiToolsEditField.classList.remove("inactive");
+    } else {
+        aiToolsEditField.classList.add("inactive");
+    }
 
     // Collapse when clicking outside toolsCont
     document.addEventListener("click", (event) => {
