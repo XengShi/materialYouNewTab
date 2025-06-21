@@ -6,6 +6,10 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Global variables to track intervals
+let analogIntervalId = null;
+let digitalIntervalId = null;
+
 // ---------------------- Hiding clock func ----------------------
 // Select elements
 const leftDiv = document.getElementById("leftDiv");
@@ -78,8 +82,17 @@ window.addEventListener("resize", handleClockVisibility);
 
 // ---------------------- Clock func ----------------------
 async function initializeClock() {
+    // Clear any existing intervals first
+    if (analogIntervalId) {
+        clearInterval(analogIntervalId);
+        analogIntervalId = null;
+    }
+    if (digitalIntervalId) {
+        clearInterval(digitalIntervalId);
+        digitalIntervalId = null;
+    }
+
     let clocktype;
-    let intervalId;
     // Retrieve current time and calculate initial angles
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
@@ -372,41 +385,65 @@ async function initializeClock() {
         }
     }
 
-    // Function to start the clock
-    function startClock() {
-        if (!intervalId) { // Only set interval if not already set
-            intervalId = setInterval(updateanalogclock, 500);
+    // Function to start the analog clock
+    function startAnalogClock() {
+        if (!analogIntervalId) { // Only set interval if not already set
+            analogIntervalId = setInterval(updateanalogclock, 500);
         }
     }
 
-    // Function to stop the clock
-    function stopClock() {
-        clearInterval(intervalId);
-        intervalId = null; // Reset intervalId
+    // Function to stop the analog clock
+    function stopAnalogClock() {
+        if (analogIntervalId) {
+            clearInterval(analogIntervalId);
+            analogIntervalId = null; // Reset intervalId
+        }
+    }
+
+    // Function to start the digital clock
+    function startDigitalClock() {
+        if (!digitalIntervalId) {
+            digitalIntervalId = setInterval(updatedigiClock, 1000);
+        }
+    }
+
+    // Function to stop the digital clock
+    function stopDigitalClock() {
+        if (digitalIntervalId) {
+            clearInterval(digitalIntervalId);
+            digitalIntervalId = null;
+        }
     }
 
     // Initial clock display
     displayClock();
     updateanalogclock();
-    setInterval(updatedigiClock, 1000); // Update digital clock every second
 
-    // Start or stop clocks based on clock type and visibility state
+    // Start appropriate clock based on type
     if (clocktype === "digital") {
         updatedigiClock();
+        startDigitalClock();
+        stopAnalogClock();
     } else if (clocktype === "analog") {
         if (document.visibilityState === "visible") {
-            startClock();
+            startAnalogClock();
             updateDate(); // Immediately update date when clock is analog
         }
+        stopDigitalClock();
     }
 
     // Event listener for visibility change
     document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") {
-            startClock(); // Start the clock if the tab is focused
-            updateDate(); // Update date when the tab becomes visible
+            if (clocktype === "analog") {
+                startAnalogClock(); // Start the analog clock if the tab is focused
+                updateDate(); // Update date when the tab becomes visible
+            } else if (clocktype === "digital") {
+                startDigitalClock(); // Start the digital clock if the tab is focused
+            }
         } else {
-            stopClock(); // Stop the clock if the tab is not focused
+            stopAnalogClock(); // Stop the analog clock if the tab is not focused
+            stopDigitalClock(); // Stop the digital clock if the tab is not focused
         }
     });
 
@@ -449,7 +486,9 @@ async function initializeClock() {
                 localStorage.setItem("clocktype", "digital");
                 clocktype = localStorage.getItem("clocktype");
                 displayClock();
-                stopClock();
+                stopAnalogClock();
+                startDigitalClock();
+                updatedigiClock();
                 saveActiveStatus("timeformatField", "active");
                 saveActiveStatus("greetingField", "active");
             } else {
@@ -458,8 +497,9 @@ async function initializeClock() {
                 greetingCheckbox.disabled = true; // Disable greeting toggle
                 localStorage.setItem("clocktype", "analog");
                 clocktype = localStorage.getItem("clocktype");
-                stopClock();
-                startClock();
+                stopDigitalClock();
+                startAnalogClock();
+                updateanalogclock();
                 displayClock();
                 saveActiveStatus("timeformatField", "inactive");
                 saveActiveStatus("greetingField", "inactive");
