@@ -9,7 +9,6 @@
 // Translation data
 const translations = {
     en: en, // English
-    ta: ta, // தமிழ்
     pt: pt, // Portuguese-BR (Brazil)
     zh: zh, // Chinese (Simplified)
     zh_TW: zh_TW, // Chinese (Traditional)
@@ -35,7 +34,8 @@ const translations = {
     de: de, // German
     fa: fa, // Farsi (Persian)
     ar_SA: ar_SA, // Arabic (Saudi Arabia)
-    el: el // Greek
+    el: el, // Greek
+    ta: ta // தமிழ்
 };
 
 // Define the width of the menu container for each language

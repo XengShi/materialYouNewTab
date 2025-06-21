@@ -110,6 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for Persian ([@AMIRHOSSEIN-AHMADI-IR](https://github.com/AMIRHOSSEIN-AHMADI-IR)) ([#645](https://github.com/XengShi/materialYouNewTab/pull/645))
 - Added support for Arabic ([@Mazen3Alharbi](https://github.com/Mazen3Alharbi)) ([#659](https://github.com/XengShi/materialYouNewTab/pull/659))
 - Added support for Greek ([@trlef19](https://github.com/trlef19)) ([#674](https://github.com/XengShi/materialYouNewTab/pull/674))
+- Added support for Tamil ([@TamilNeram](https://github.com/TamilNeram)) ([#682](https://github.com/XengShi/materialYouNewTab/pull/682))
 - Translation updated for:
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
   - Bengali ([@prem-k-r](https://github.com/prem-k-r)), ([@itz-rj-here](https://github.com/itz-rj-here))

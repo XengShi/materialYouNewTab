@@ -375,12 +375,14 @@ body[data-bg="wallpaper"] .dot-icon {
 	/* Position below the icon */
 	inset-inline-start: 50%;
 	transform: translateX(-50%);
-	font-size: 12px;
+	font-size: 0.75rem;
 	opacity: 0;
 	transition: opacity 0.3s ease;
-	white-space: nowrap;
+	max-width: 115px;
+	min-width: 50px;
+	width: max-content;
+	white-space: normal;
 	z-index: 3;
-	/* Set z-index */
 }
 
 body[data-bg="wallpaper"] .tooltip-text {
@@ -1175,6 +1177,7 @@ body #bookmarkButton.bookmark-button.rotate {
 
 #todoListHeading {
 	font-size: 1.4rem;
+	text-align: center;
 }
 
 .todo-container .addTaskCont {
@@ -1542,6 +1545,10 @@ body[data-bg="wallpaper"] #date {
 	}
 }
 
+html[lang="ta"] .digiclock {
+	font-size: 6.4rem;
+}
+
 .clockRegion {
 	transition: transform 0.25s ease-in-out;
 }
@@ -1843,6 +1850,12 @@ html[lang="ur"] #temp {
 html[lang="ur"] #wIcon {
 	width: 70px;
 	height: 70px;
+}
+
+html[lang="ta"] #temp {
+	position: relative;
+	font-size: 3.3rem;
+	left: -13px;
 }
 
 /* ------------End of Weather Pill------------- */

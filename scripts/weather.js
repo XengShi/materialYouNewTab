@@ -372,7 +372,7 @@ async function getWeatherData() {
                 (weatherParsedLang !== currentLanguage)) {
 
                 // Language code for Weather API
-                let lang = currentLanguage === "zh_TW" ? currentLanguage : currentLanguage.split('_')[0];
+                let lang = currentLanguage === "zh_TW" ? currentLanguage : currentLanguage.split("_")[0];
 
                 // Fetch weather data using Weather API
                 let weatherApi = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${currentUserLocation}&days=1&aqi=no&alerts=no&lang=${lang}`;
@@ -463,7 +463,7 @@ async function getWeatherData() {
                     const feelsLikeLabel = translations[currentLanguage]?.feelsLike || translations["en"].feelsLike;
 
                     // List of languages where a space before °F or °C is required
-                    const langWithSpaceBeforeDegree = ['cs'];
+                    const langWithSpaceBeforeDegree = ["cs"];
 
                     // Range separator for min-max temperature
                     const rangeSeparator = {
@@ -482,7 +482,7 @@ async function getWeatherData() {
                         tempElement.appendChild(tempUnitF);
 
                         // Update feels like or Min-Max temp
-                        const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °F' : '°F';
+                        const feelsLikeFUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? " °F" : "°F";
                         if (isMinMaxEnabled) {
                             feelsLikeElement.textContent = `${localizedMinTempF} ${separator} ${localizedMaxTempF}${feelsLikeFUnit}`;
                         }
@@ -500,7 +500,7 @@ async function getWeatherData() {
                         tempElement.appendChild(tempUnitC);
 
                         // Update feels like or Min-Max temp
-                        const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? ' °C' : '°C';
+                        const feelsLikeCUnit = langWithSpaceBeforeDegree.includes(currentLanguage) ? " °C" : "°C";
                         if (isMinMaxEnabled) {
                             feelsLikeElement.textContent = `${localizedMinTempC} ${separator} ${localizedMaxTempC}${feelsLikeCUnit}`;
                         }
@@ -523,6 +523,7 @@ async function getWeatherData() {
                     idn: "47%",
                     hu: "48%",
                     de: "51%",
+                    ta: "46%",
                     en: "42%" // Default for English and others
                 };
                 const slider = document.getElementById("slider");
@@ -534,11 +535,58 @@ async function getWeatherData() {
                 }
 
                 // Update location
-                var city = parsedData.location.name;
-                // var city = "Thiruvananthapuram";
-                var maxLength = 10;
-                var limitedText = city.length > maxLength ? city.substring(0, maxLength) + "..." : city;
-                document.getElementById("location").textContent = limitedText;
+                let city = parsedData.location.name;
+                let maxLength = 10;
+                let isLocationHidden = localStorage.getItem("locationHidden") === "true";
+
+                const locationTile = document.querySelector(".tiles.location");
+                const locationIcon = locationTile.querySelector(".location-icon");
+                const locationText = document.getElementById("location");
+
+                // Apply initial content
+                function updateLocationText() {
+                    if (isLocationHidden) {
+                        locationText.textContent = translations[currentLanguage]?.location || translations.en.location;
+                    } else {
+                        const limitedText = city.length > maxLength ? city.slice(0, maxLength) + "..." : city;
+                        locationText.textContent = limitedText;
+                    }
+                }
+
+                // Initialize content on load
+                updateLocationText();
+
+                // Return the toggle icon based on the state
+                function getToggleIcon() {
+                    return isLocationHidden ? "./svgs/location-show.svg" : "./svgs/location-hide.svg";
+                }
+
+                // Switch icon on hover
+                let hoverTimeout;
+
+                locationTile.addEventListener("mouseenter", () => {
+                    hoverTimeout = setTimeout(() => {
+                        locationIcon.src = getToggleIcon();
+                    }, 120);
+                });
+
+                locationTile.addEventListener("mouseleave", () => {
+                    clearTimeout(hoverTimeout);
+                    locationIcon.src = "./svgs/location.svg";
+                });
+
+                // Toggle on click
+                locationIcon.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    isLocationHidden = !isLocationHidden;
+                    localStorage.setItem("locationHidden", isLocationHidden);
+                    updateLocationText();
+
+                    // Update icon immediately
+                    if (locationTile.matches(":hover")) {
+                        locationIcon.src = getToggleIcon();
+                    }
+                });
             }
         } catch (error) {
             console.error("Error fetching weather data:", error);

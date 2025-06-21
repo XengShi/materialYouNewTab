@@ -274,7 +274,7 @@ async function initializeClock() {
             ko: `${dayOfMonth}일 (${dayName[0]})`,
             pt: `${dayName}, ${dayOfMonth}`,
             ru: `${dayOfMonth} ${dayName.substring(0, 2)}`,
-            ta: `${dayOfMonth} ${dayName.substring(0, 2)}`,
+            ta: `${localizedDayOfMonth} ${dayName.substring(0, 2)}`,
             vi: `${dayOfMonth} ${dayName}`,
             idn: `${dayOfMonth} ${dayName}`,
             fr: `${dayName} ${dayOfMonth}`, // Mardi 11
@@ -334,20 +334,20 @@ async function initializeClock() {
             } else if (currentLanguage === "ar_SA") {
                 period = realHours < 12 ? "ص" : "م"; // صباحاً / مساءً
             } else if (currentLanguage === "ta") {
-                if (realHours < 2 ){
-                    period =  "யாமம்"
+                if (realHours < 2) {
+                    period = "யாமம்"
                 } else if (realHours < 6) {
-                    period =  "வைகறை"
+                    period = "வைகறை"
                 } else if (realHours < 10) {
-                    period =  "காலை"
+                    period = "காலை"
                 } else if (realHours < 14) {
-                    period =  "நண்பகல்"
+                    period = "நண்பகல்"
                 } else if (realHours < 18) {
-                    period =  "எற்பாடு"
+                    period = "எற்பாடு"
                 } else if (realHours < 22) {
-                    period =  "மாலை"
+                    period = "மாலை"
                 } else {
-                    period =  "யாமம்"
+                    period = "யாமம்"
                 }
             } else {
                 period = realHours < 12 ? "AM" : "PM";
