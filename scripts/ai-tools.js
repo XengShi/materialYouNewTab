@@ -383,12 +383,10 @@ document.addEventListener("DOMContentLoaded", function () {
             aiToolsCont.style.display = "flex";
             saveDisplayStatus("aiToolsDisplayStatus", "flex");
             aiToolsEditField.classList.remove("inactive");
-            saveActiveStatus("aiToolsEditField", "active")
         } else {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
             aiToolsEditField.classList.add("inactive");
-            saveActiveStatus("aiToolsEditField", "inactive")
             toggleAITools();
         }
     });
@@ -396,7 +394,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load saved state
     loadCheckboxState("aiToolsCheckboxState", aiToolsCheckbox);
     loadDisplayStatus("aiToolsDisplayStatus", aiToolsCont);
-    loadActiveStatus("aiToolsEditField", aiToolsEditField);
+    if (aiToolsCheckbox.checked) {
+        aiToolsEditField.classList.remove("inactive");
+    } else {
+        aiToolsEditField.classList.add("inactive");
+    }
 
     // Collapse when clicking outside toolsCont
     document.addEventListener("click", (event) => {
