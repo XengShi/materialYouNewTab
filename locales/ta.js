@@ -21,12 +21,12 @@ const ta = {
     "aiToolsSettingsInfo": "செஅ கருவிகள் குறுக்குவழிகளை நிர்வகி",
     "googleAppsMenuText": "கூகிள் பயன்கள்",
     "googleAppsMenuInfo": "கூகிள் பயன்களுக்கான குறுக்குவழிகளைக் காட்டு",
-    "googleAppsHover": "கூகிள் பயன்கள்",    // இதைச் சிறியதாக வைத்திரு
+    "googleAppsHover": "கூகிள் பயன்கள்",
 
     // செய்ய வேண்டிய பட்டியல்
     "todoListText": "செய்ய வேண்டிய பட்டியல்",
     "todoListInfo": "தினசரி செய்ய வேண்டிய பட்டியலைக் காட்டு",
-    "todoListHover": "செய்ய வேண்டிய பட்டியல்",    // இதைச் சிறியதாக வைத்திரு
+    "todoListHover": "செய்ய வேண்டிய பட்டியல்",
     "todoPlaceholder": "பணியைச் சேர்...",
 
     // கடிகாரம்
@@ -94,8 +94,8 @@ const ta = {
     "sortAlphabetical": "அ-ஔ",
     "sortTimeAdded": "பழைய-புதிய",
     "bookmarkViewAs": "இவ்வாறு காண்க",
-    "bookmarkViewGrid": "கட்டம்", // இதை சிறியதாக வைத்திரு
-    "bookmarkViewList": "பட்டியல்", // இதை சிறியதாக வைத்திரு
+    "bookmarkViewGrid": "கட்டம்",
+    "bookmarkViewList": "பட்டியல்",
     "bookmarkSearch": "புத்தக்குறியைத் தேடு",
     "editBookmarkHeading": "புத்தக்குறியைத் திருத்து",
     "editBookmarkName": "புத்தக்குறியின் பெயர்",
@@ -124,7 +124,7 @@ const ta = {
     // தேடுபொறிகள்
     "defaultEngine": "இயல்புநிலை",
     "googleEngine": "கூகிள்",
-    "duckEngine": "வாத்து",    // வாத்துவாத்துபோ
+    "duckEngine": "வாத்துவாத்துபோ", 
     "bingEngine": "பிங்",
     "braveEngine": "துணிச்சல்",
     "youtubeEngine": "யூடியூப்",
@@ -153,8 +153,8 @@ const ta = {
     "enableDarkModeInfo": "இருள் முறை கருப்பொருள்கள் இயக்கு",
 
     // பின்னணி மற்றும் அமைப்புகள்
-    "uploadWallpaperText": "பின்படத்தை பதிவேற்று",    // இதை சிறியதாக வைத்திரு
-    "rangColor": "நிறம் எடு",    // இதை சிறியதாக வைத்திரு
+    "uploadWallpaperText": "பின்படத்தை பதிவேற்று",
+    "rangColor": "நிறம் எடு",
     "opactityTitle": "ஒளிபுகாநிலை",
     "adjustOpacityDesc": "இடைமுக வெளிப்படைத்தன்மையை சரிசெய்",
     "backupText": "காப்புப்பிரதி",
@@ -192,7 +192,7 @@ const ta = {
     "restorecompleted": "மீட்டெடுப்பு வெற்றிகரமாக முடிந்தது!",
     "restorefailed": "மீட்டெடுப்பு தோல்வியடைந்தது: ",
     "invalidBackup": "தவறான காப்புப்பிரதி கோப்பு தேர்ந்தெடுக்கப்பட்டது.",
-    "deleteBookmark": "\"{title}\"என்ற புத்தக்குறியை நீக்க விரும்புகிறீர்களா?",  // {title}ஐ மொழிபெயர்க்க வேண்டாம்
+    "deleteBookmark": "\"{title}\"என்ற புத்தக்குறியை நீக்கவா?",
     "UnsupportedBrowser": "உங்கள் உலாவியில் புத்தக்குறிகள் ஆதரிக்கப்படவில்லை.",
     "resetShortcutsPrompt": "சேமிக்கப்பட்ட அனைத்து குறுக்குவழிகளும் நீக்கப்பட்டு இயல்புநிலைக்கு மீட்டமைக்கப்படும். நீங்கள் தொடர விரும்புகிறீர்களா?",
 };
