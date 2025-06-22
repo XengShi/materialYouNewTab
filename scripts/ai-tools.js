@@ -451,11 +451,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Briefly disable the reset button to prevent multiple clicks
         resetAISettingsBtn.disabled = true;
 
-        // Clean up animations and restore button
+        // Clean up all animation properties and restore button
         setTimeout(() => {
             toolsList.style.animation = "";
             toolOptions.forEach(option => {
                 option.style.animation = "";
+                option.style.transform = "";
+                option.style.backgroundColor = "";
             });
             resetAISettingsBtn.disabled = false;
         }, 700);

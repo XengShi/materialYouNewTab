@@ -2723,13 +2723,13 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 @keyframes resetShake {
 	0%,
 	100% {
-		transform: translateX(0);
+		margin-left: 0;
 	}
 	25% {
-		transform: translateX(-1px);
+		margin-left: -1px;
 	}
 	75% {
-		transform: translateX(1px);
+		margin-left: 1px;
 	}
 }
 
