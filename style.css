@@ -1854,8 +1854,9 @@ html[lang="ur"] #wIcon {
 
 html[lang="ta"] #temp {
 	position: relative;
-	font-size: 3.3rem;
-	left: -13px;
+	font-size: 3rem;
+	left: -14px;
+	padding-bottom: 12px;
 }
 
 /* ------------End of Weather Pill------------- */
@@ -2549,7 +2550,7 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	transform: translate(-50%, -50%);
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
-	border-radius: 20px;
+	border-radius: var(--round);
 	padding: 30px 35px;
 	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
 	z-index: 1001;
@@ -2617,6 +2618,7 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	border: none;
 	border-radius: 10px;
 	font-size: 0.95rem;
+	will-change: transform;
 }
 
 .ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option:last-child {
@@ -2639,10 +2641,10 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 
 .ai-settings-modal .ai-reset-button,
 .ai-settings-modal .ai-save-button {
-	min-width: 110px;
+	width: 140px;
 	padding: 10px 15px;
 	font-size: 0.9rem;
-	border-radius: 10px;
+	border-radius: 20px;
 	background: var(--darkColor-blue);
 	color: var(--whitishColor-blue);
 	border: none;
@@ -2709,10 +2711,6 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ai-tool-option {
-	will-change: transform;
-}
-
 /* Disabled reset button styling */
 .ai-settings-modal .ai-reset-button:disabled {
 	opacity: 0.5;
@@ -2734,7 +2732,8 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 }
 
 @keyframes resetFlash {
-	0% {
+	0%,
+	100% {
 		background-color: var(--accentLightTint-blue);
 		transform: scale(1);
 	}
@@ -2745,10 +2744,6 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 			var(--accentLightTint-blue)
 		);
 		transform: scale(1.02);
-	}
-	100% {
-		background-color: var(--accentLightTint-blue);
-		transform: scale(1);
 	}
 }
 /* -----------End of Ai-Tools---------- */

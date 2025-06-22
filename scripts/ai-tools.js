@@ -39,11 +39,6 @@ const aiToolsEditButton = document.getElementById("aiToolsEditButton");
 const aiToolsCont = document.getElementById("aiToolsCont");
 const aiToolsEditField = document.getElementById("aiToolsEditField");
 
-// Helper function for swapping disabled button states
-function swapButtonStates(btn1, btn2) {
-    [btn1.disabled, btn2.disabled] = [btn2.disabled, btn1.disabled];
-}
-
 // Animation helper function
 function animateReorder(element1, element2, direction) {
     return new Promise((resolve) => {
@@ -79,8 +74,8 @@ function animateReorder(element1, element2, direction) {
 
         // Update button states at halfway point
         setTimeout(() => {
-            swapButtonStates(element1UpBtn, element2UpBtn);
-            swapButtonStates(element1DownBtn, element2DownBtn);
+            [element1UpBtn.disabled, element2UpBtn.disabled] = [element2UpBtn.disabled, element1UpBtn.disabled];
+            [element1DownBtn.disabled, element2DownBtn.disabled] = [element2DownBtn.disabled, element1DownBtn.disabled];
         }, 150);
 
         // Complete animation
