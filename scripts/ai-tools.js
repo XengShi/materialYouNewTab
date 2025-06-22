@@ -37,6 +37,7 @@ const resetAISettingsBtn = document.getElementById("resetAISettingsBtn");
 const saveAISettingsBtn = document.getElementById("saveAISettingsBtn");
 const aiToolsEditButton = document.getElementById("aiToolsEditButton");
 const aiToolsCont = document.getElementById("aiToolsCont");
+const aiToolsEditField = document.getElementById("aiToolsEditField");
 
 // Helper function for swapping disabled button states
 function swapButtonStates(btn1, btn2) {
@@ -54,26 +55,26 @@ function animateReorder(element1, element2, direction) {
         const distance = Math.abs(rect1.top - rect2.top);
 
         // Set CSS custom properties for the distance
-        element1.style.setProperty('--move-distance', `${distance}px`);
-        element2.style.setProperty('--move-distance', `${distance}px`);
+        element1.style.setProperty("--move-distance", `${distance}px`);
+        element2.style.setProperty("--move-distance", `${distance}px`);
 
         // Get button references
-        const element1UpBtn = element1.querySelector('.reorder-up');
-        const element1DownBtn = element1.querySelector('.reorder-down');
-        const element2UpBtn = element2.querySelector('.reorder-up');
-        const element2DownBtn = element2.querySelector('.reorder-down');
+        const element1UpBtn = element1.querySelector(".reorder-up");
+        const element1DownBtn = element1.querySelector(".reorder-down");
+        const element2UpBtn = element2.querySelector(".reorder-up");
+        const element2DownBtn = element2.querySelector(".reorder-down");
 
         // Disable interactions
-        element1.style.pointerEvents = 'none';
-        element2.style.pointerEvents = 'none';
+        element1.style.pointerEvents = "none";
+        element2.style.pointerEvents = "none";
 
         // Add animation classes
-        if (direction === 'up') {
-            element1.classList.add('reorder-animate-up');
-            element2.classList.add('reorder-animate-down');
+        if (direction === "up") {
+            element1.classList.add("reorder-animate-up");
+            element2.classList.add("reorder-animate-down");
         } else {
-            element1.classList.add('reorder-animate-down');
-            element2.classList.add('reorder-animate-up');
+            element1.classList.add("reorder-animate-down");
+            element2.classList.add("reorder-animate-up");
         }
 
         // Update button states at halfway point
@@ -85,7 +86,7 @@ function animateReorder(element1, element2, direction) {
         // Complete animation
         setTimeout(() => {
             // Perform DOM swap
-            if (direction === 'up') {
+            if (direction === "up") {
                 aiToolsForm.insertBefore(element1, element2);
             } else {
                 aiToolsForm.insertBefore(element2, element1);
@@ -93,9 +94,9 @@ function animateReorder(element1, element2, direction) {
 
             // Clean up
             [element1, element2].forEach(el => {
-                el.classList.remove('reorder-animate-up', 'reorder-animate-down');
-                el.style.removeProperty('--move-distance');
-                el.style.pointerEvents = '';
+                el.classList.remove("reorder-animate-up", "reorder-animate-down");
+                el.style.removeProperty("--move-distance");
+                el.style.pointerEvents = "";
             });
 
             updateReorderButtonStates();
@@ -107,7 +108,7 @@ function animateReorder(element1, element2, direction) {
 // Function to save AI tools settings
 function saveAIToolsSettings() {
     const aiToolsSettings = [];
-    const toolOptions = document.querySelectorAll('.ai-tool-option');
+    const toolOptions = document.querySelectorAll(".ai-tool-option");
 
     // Save each tool's visibility based on current order
     toolOptions.forEach((option) => {
@@ -152,7 +153,7 @@ function applyAIToolsSettings() {
     }
 
     // First, set display:none for all tools to temporarily hide them
-    const allToolLinks = aiToolName.querySelectorAll('a');
+    const allToolLinks = aiToolName.querySelectorAll("a");
     allToolLinks.forEach(link => {
         link.style.display = "none";
     });
@@ -164,7 +165,7 @@ function applyAIToolsSettings() {
     settingsToApply.forEach(item => {
         let toolId, isVisible;
 
-        if (typeof item === 'string') {
+        if (typeof item === "string") {
             // It's a visible tool
             toolId = item;
             isVisible = true;
@@ -177,7 +178,7 @@ function applyAIToolsSettings() {
         // Find and append the tool element
         const labelElement = document.getElementById(toolId);
         if (labelElement) {
-            const linkElement = labelElement.closest('a');
+            const linkElement = labelElement.closest("a");
             if (linkElement) {
                 const clone = linkElement.cloneNode(true);
                 clone.style.display = isVisible ? "flex" : "none";
@@ -202,7 +203,7 @@ function generateAIToolsForm(settings) {
     settings.forEach((settingItem, index) => {
         let toolId, isVisible;
 
-        if (typeof settingItem === 'string') {
+        if (typeof settingItem === "string") {
             toolId = settingItem;
             isVisible = true;
         } else {
@@ -213,62 +214,62 @@ function generateAIToolsForm(settings) {
         const originalTool = aiTools.find(t => t.id === toolId);
         const toolLabel = originalTool ? originalTool.label : toolId;
 
-        const toolOption = document.createElement('div');
-        toolOption.className = 'ai-tool-option';
+        const toolOption = document.createElement("div");
+        toolOption.className = "ai-tool-option";
         toolOption.dataset.toolId = toolId;
         toolOption.innerHTML = `
             <div class="ai-tool-controls">
-                <input type="checkbox" id="setting_${toolId}" ${isVisible ? 'checked' : ''}>
+                <input type="checkbox" id="setting_${toolId}" ${isVisible ? "checked" : ""}>
                 <label for="setting_${toolId}">${toolLabel}</label>
             </div>
             <div class="ai-tool-reorder">
-                <button type="button" class="reorder-up" ${index === 0 ? 'disabled' : ''}>▲</button>
-                <button type="button" class="reorder-down" ${index === settings.length - 1 ? 'disabled' : ''}>▼</button>
+                <button type="button" class="reorder-up" ${index === 0 ? "disabled" : ""}>▲</button>
+                <button type="button" class="reorder-down" ${index === settings.length - 1 ? "disabled" : ""}>▼</button>
             </div>
         `;
         aiToolsForm.appendChild(toolOption);
     });
 
     // Add event listeners for reorder buttons
-    document.querySelectorAll('.reorder-up').forEach(button => {
-        button.addEventListener('click', async function () {
+    document.querySelectorAll(".reorder-up").forEach(button => {
+        button.addEventListener("click", async function () {
             // Skip if button is disabled
             if (this.disabled) return;
 
             // Prevent multiple clicks during animation
-            if (this.dataset.animating === 'true') return;
-            this.dataset.animating = 'true';
+            if (this.dataset.animating === "true") return;
+            this.dataset.animating = "true";
 
-            const toolOption = this.closest('.ai-tool-option');
+            const toolOption = this.closest(".ai-tool-option");
             const prevToolOption = toolOption.previousElementSibling;
 
             if (prevToolOption) {
                 // Animate the reorder
-                await animateReorder(toolOption, prevToolOption, 'up');
+                await animateReorder(toolOption, prevToolOption, "up");
             }
 
-            this.dataset.animating = 'false';
+            this.dataset.animating = "false";
         });
     });
 
-    document.querySelectorAll('.reorder-down').forEach(button => {
-        button.addEventListener('click', async function () {
+    document.querySelectorAll(".reorder-down").forEach(button => {
+        button.addEventListener("click", async function () {
             // Skip if button is disabled
             if (this.disabled) return;
 
             // Prevent multiple clicks during animation
-            if (this.dataset.animating === 'true') return;
-            this.dataset.animating = 'true';
+            if (this.dataset.animating === "true") return;
+            this.dataset.animating = "true";
 
-            const toolOption = this.closest('.ai-tool-option');
+            const toolOption = this.closest(".ai-tool-option");
             const nextToolOption = toolOption.nextElementSibling;
 
             if (nextToolOption) {
                 // Animate the reorder
-                await animateReorder(toolOption, nextToolOption, 'down');
+                await animateReorder(toolOption, nextToolOption, "down");
             }
 
-            this.dataset.animating = 'false';
+            this.dataset.animating = "false";
         });
     });
 }
@@ -298,17 +299,17 @@ function showAIToolsSettings() {
     generateAIToolsForm(savedSettings);
 
     // Show modal and overlay
-    aiToolsSettingsModal.style.display = 'block';
-    aiToolsSettingsOverlay.style.display = 'block';
+    aiToolsSettingsModal.style.display = "block";
+    aiToolsSettingsOverlay.style.display = "block";
 }
 
 // Function to update the enabled/disabled state of reorder buttons
 function updateReorderButtonStates() {
-    const toolOptions = document.querySelectorAll('.ai-tool-option');
+    const toolOptions = document.querySelectorAll(".ai-tool-option");
 
     toolOptions.forEach((option, index) => {
-        const upButton = option.querySelector('.reorder-up');
-        const downButton = option.querySelector('.reorder-down');
+        const upButton = option.querySelector(".reorder-up");
+        const downButton = option.querySelector(".reorder-down");
 
         if (upButton) {
             // Disable the first up button
@@ -324,8 +325,8 @@ function updateReorderButtonStates() {
 
 // Function to close settings modal
 function closeAIToolsSettings() {
-    aiToolsSettingsModal.style.display = 'none';
-    aiToolsSettingsOverlay.style.display = 'none';
+    aiToolsSettingsModal.style.display = "none";
+    aiToolsSettingsOverlay.style.display = "none";
 }
 
 // Function to toggle AI Tools panel
@@ -384,7 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
     applyAIToolsSettings();
 
     // Allow horizontal scrolling with the mouse wheel
-    aiToolsCont.addEventListener('wheel', (event) => {
+    aiToolsCont.addEventListener("wheel", (event) => {
         // Check if the container is scrollable in x-axis
         if (aiToolsCont.scrollWidth > aiToolsCont.clientWidth) {
             if (event.deltaY !== 0) {
@@ -423,12 +424,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Generate the form with default settings
         generateAIToolsForm(defaultSettings);
+
+        // Animate the list reset
+        const toolsList = document.querySelector(".ai-tools-list");
+        const toolOptions = document.querySelectorAll(".ai-tool-option");
+
+        // Add shake animation to the entire list
+        toolsList.style.animation = "resetShake 0.6s ease-in-out";
+
+        // Staggered fade effect for each option
+        toolOptions.forEach((option, index) => {
+            setTimeout(() => {
+                option.style.animation = "resetFlash 0.4s ease-in-out";
+
+                // Update checkbox during animation
+                const toolId = option.dataset.toolId;
+                const checkbox = document.getElementById(`setting_${toolId}`);
+                const defaultTool = aiTools.find(t => t.id === toolId);
+
+                if (defaultTool && checkbox) {
+                    checkbox.checked = defaultTool.visible;
+                }
+            }, index * 50); // Stagger by 50ms
+        });
+
+        // Briefly disable the reset button to prevent multiple clicks
+        resetAISettingsBtn.disabled = true;
+
+        // Clean up animations and restore button
+        setTimeout(() => {
+            toolsList.style.animation = "";
+            toolOptions.forEach(option => {
+                option.style.animation = "";
+            });
+            resetAISettingsBtn.disabled = false;
+        }, 700);
     });
 
     // Save button in settings modal
     saveAISettingsBtn.addEventListener("click", function () {
         const newSettings = [];
-        const toolOptions = document.querySelectorAll('.ai-tool-option');
+        const toolOptions = document.querySelectorAll(".ai-tool-option");
 
         // Save each tool's visibility based on current order in the form
         toolOptions.forEach((option) => {
