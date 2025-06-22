@@ -2684,6 +2684,34 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 #aiToolsForm .ai-tool-reorder button:active {
 	transform: scale(0.95);
 }
+
+#aiToolsForm .ai-tool-reorder button:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+
+#aiToolsForm .ai-tool-reorder button:disabled:hover {
+	transform: none;
+}
+
+/* Animation classes for reordering */
+.reorder-animate-up {
+	position: relative;
+	z-index: 10;
+	transform: translateY(calc(-1 * var(--move-distance)));
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reorder-animate-down {
+	position: relative;
+	z-index: 5;
+	transform: translateY(var(--move-distance));
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-tool-option {
+	will-change: transform;
+}
 /* -----------End of Ai-Tools---------- */
 
 /* ---------------Menu-bar-css---------------- */

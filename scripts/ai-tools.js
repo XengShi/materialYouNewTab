@@ -38,6 +38,72 @@ const saveAISettingsBtn = document.getElementById("saveAISettingsBtn");
 const aiToolsEditButton = document.getElementById("aiToolsEditButton");
 const aiToolsCont = document.getElementById("aiToolsCont");
 
+// Helper function for swapping disabled button states
+function swapButtonStates(btn1, btn2) {
+    [btn1.disabled, btn2.disabled] = [btn2.disabled, btn1.disabled];
+}
+
+// Animation helper function
+function animateReorder(element1, element2, direction) {
+    return new Promise((resolve) => {
+        // Get the current positions
+        const rect1 = element1.getBoundingClientRect();
+        const rect2 = element2.getBoundingClientRect();
+
+        // Calculate the distance to move
+        const distance = Math.abs(rect1.top - rect2.top);
+
+        // Set CSS custom properties for the distance
+        element1.style.setProperty('--move-distance', `${distance}px`);
+        element2.style.setProperty('--move-distance', `${distance}px`);
+
+        // Get button references
+        const element1UpBtn = element1.querySelector('.reorder-up');
+        const element1DownBtn = element1.querySelector('.reorder-down');
+        const element2UpBtn = element2.querySelector('.reorder-up');
+        const element2DownBtn = element2.querySelector('.reorder-down');
+
+        // Disable interactions
+        element1.style.pointerEvents = 'none';
+        element2.style.pointerEvents = 'none';
+
+        // Add animation classes
+        if (direction === 'up') {
+            element1.classList.add('reorder-animate-up');
+            element2.classList.add('reorder-animate-down');
+        } else {
+            element1.classList.add('reorder-animate-down');
+            element2.classList.add('reorder-animate-up');
+        }
+
+        // Update button states at halfway point
+        setTimeout(() => {
+            swapButtonStates(element1UpBtn, element2UpBtn);
+            swapButtonStates(element1DownBtn, element2DownBtn);
+        }, 150);
+
+        // Complete animation
+        setTimeout(() => {
+            // Perform DOM swap
+            if (direction === 'up') {
+                aiToolsForm.insertBefore(element1, element2);
+            } else {
+                aiToolsForm.insertBefore(element2, element1);
+            }
+
+            // Clean up
+            [element1, element2].forEach(el => {
+                el.classList.remove('reorder-animate-up', 'reorder-animate-down');
+                el.style.removeProperty('--move-distance');
+                el.style.pointerEvents = '';
+            });
+
+            updateReorderButtonStates();
+            resolve();
+        }, 300);
+    });
+}
+
 // Function to save AI tools settings
 function saveAIToolsSettings() {
     const aiToolsSettings = [];
@@ -156,8 +222,8 @@ function generateAIToolsForm(settings) {
                 <label for="setting_${toolId}">${toolLabel}</label>
             </div>
             <div class="ai-tool-reorder">
-                <button type="button" class="reorder-up" style="visibility: ${index === 0 ? 'hidden' : 'visible'}">▲</button>
-                <button type="button" class="reorder-down" style="visibility: ${index === settings.length - 1 ? 'hidden' : 'visible'}">▼</button>
+                <button type="button" class="reorder-up" ${index === 0 ? 'disabled' : ''}>▲</button>
+                <button type="button" class="reorder-down" ${index === settings.length - 1 ? 'disabled' : ''}>▼</button>
             </div>
         `;
         aiToolsForm.appendChild(toolOption);
@@ -165,26 +231,44 @@ function generateAIToolsForm(settings) {
 
     // Add event listeners for reorder buttons
     document.querySelectorAll('.reorder-up').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
+            // Skip if button is disabled
+            if (this.disabled) return;
+
+            // Prevent multiple clicks during animation
+            if (this.dataset.animating === 'true') return;
+            this.dataset.animating = 'true';
+
             const toolOption = this.closest('.ai-tool-option');
             const prevToolOption = toolOption.previousElementSibling;
 
             if (prevToolOption) {
-                aiToolsForm.insertBefore(toolOption, prevToolOption);
-                updateReorderButtonStates();
+                // Animate the reorder
+                await animateReorder(toolOption, prevToolOption, 'up');
             }
+
+            this.dataset.animating = 'false';
         });
     });
 
     document.querySelectorAll('.reorder-down').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
+            // Skip if button is disabled
+            if (this.disabled) return;
+
+            // Prevent multiple clicks during animation
+            if (this.dataset.animating === 'true') return;
+            this.dataset.animating = 'true';
+
             const toolOption = this.closest('.ai-tool-option');
             const nextToolOption = toolOption.nextElementSibling;
 
             if (nextToolOption) {
-                aiToolsForm.insertBefore(nextToolOption, toolOption);
-                updateReorderButtonStates();
+                // Animate the reorder
+                await animateReorder(toolOption, nextToolOption, 'down');
             }
+
+            this.dataset.animating = 'false';
         });
     });
 }
@@ -227,13 +311,13 @@ function updateReorderButtonStates() {
         const downButton = option.querySelector('.reorder-down');
 
         if (upButton) {
-            // Hide the first up button
-            upButton.style.visibility = index === 0 ? 'hidden' : 'visible';
+            // Disable the first up button
+            upButton.disabled = index === 0;
         }
 
         if (downButton) {
-            // Hide the last down button
-            downButton.style.visibility = index === toolOptions.length - 1 ? 'hidden' : 'visible';
+            // Disable the last down button
+            downButton.disabled = index === toolOptions.length - 1;
         }
     });
 }
