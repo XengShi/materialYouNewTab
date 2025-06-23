@@ -1,10 +1,10 @@
 // தமிழ் (Tamil)
 const ta = {
-    // பட்டியல் உருப்படிகள்
+    // Menu Items
     "github": "அறிவிலிமையம்",
     "feedback": "பின்னூட்டம்",
 
-    // குறுக்குவழிகள்
+    // Shortcuts
     "shortcutsText": "குறுக்குவழிகள்",
     "enableShortcutsText": "சேமித்த குறுக்குவழிகளைக் காட்டு",
     "editShortcutsText": "குறுக்குவழிகளைத் திருத்து",
@@ -23,13 +23,13 @@ const ta = {
     "googleAppsMenuInfo": "கூகிள் பயன்களுக்கான குறுக்குவழிகளைக் காட்டு",
     "googleAppsHover": "கூகிள் பயன்கள்",
 
-    // செய்ய வேண்டிய பட்டியல்
+    // To-do List
     "todoListText": "செய்ய வேண்டிய பட்டியல்",
     "todoListInfo": "தினசரி செய்ய வேண்டிய பட்டியலைக் காட்டு",
     "todoListHover": "செய்ய வேண்டிய பட்டியல்",
     "todoPlaceholder": "பணியைச் சேர்...",
 
-    // கடிகாரம்
+    // Clock
     "hideClockBox": "கடிகாரத்தை மறை",
     "hideClockBoxInfo": "கடிகாரத்தையும் தேதியையும் மறை",
     "digitalclocktitle": "எண்முறை கடிகாரம்",
@@ -39,19 +39,19 @@ const ta = {
     "greetingtitle": "வாழ்த்து",
     "greetinginfo": "தனிப்பயன் உரைக்கு கீழே வாழ்த்துக்களைக் காட்டு",
 
-    // மற்றவை
+    // Misc
     "userTextTitle": "தனிப்பயனாக்கக்கூடிய உரை",
     "userTextInfo": "கடிகாரத்திற்கு கீழே தனிப்பயன் உரையைக் காட்டு",
     "fahrenheitCelsiusCheckbox": "பரனைற்றுக்கு மாறு",
     "fahrenheitCelsiusText": "மாற்றங்களைப் பயன்படுத்த பக்கத்தைப் புதுப்பி",
     "hideWeatherTitle": "வானிலையை மறை",
     "hideWeatherInfo": "வானிலை நிரல்பலகைகளை முடக்கு",
-    "hideWeatherBox": "வானிலை அட்டையை மறை",    // மொபைல் சாதனங்களுக்கு மட்டும் மாற்று
+    "hideWeatherBox": "வானிலை அட்டையை மறை",
     "hideWeatherBoxInfo": "வெப்பநிலை மாத்திரையை மட்டும் காட்டு",
     "minMaxTempText": "குறைந்தஅளவு-அதிகஅளவு வெப்பநிலை",
     "minMaxTempSubText": "குறைந்தஅளவு மற்றும் அதிகஅளவு வெப்பநிலையுடன் 'உணர்கிறேன்' என்பதை மாற்று",
 
-    // தேடல்
+    // Search
     "micIconTitle": "ஒலிவாங்கி சின்னத்தை மறை",
     "micIconInfo": "குரல் தட்டச்சு வேலை செய்யவில்லை என்றால்",
     "hideSearchWith": "தேடல் பொறிகளை மறை",
@@ -61,14 +61,14 @@ const ta = {
     "search_suggestions_button": "தேடல் பரிந்துரைகள்",
     "search_suggestions_text": "தேடல் பரிந்துரைகளை இயக்கு",
 
-    // பதிலாள்
+    // Proxy
     "useproxytitletext": "கடந்து செல் பதிலாள்",
     "useproxyText": "தேடல் பரிந்துரைகள் வேலை செய்யவில்லை என்றால்",
     "ProxyText": "CORS கடந்து செல் பதிலாள்",
     "ProxySubtext": "உங்கள் சொந்த CORS கடந்து செல் பதிலாளைச் சேர்",
     "HostproxyButton": "உங்கள் சொந்த பதிலாளை புரவலன் செய்யவும்",
 
-    // இருப்பிடம்
+    // Location
     "useGPS": "இடம் காட்டியைப் பயன்படுத்து",
     "useGPSInfo": "நேரடி இருப்பிட புதுப்பிப்புகளுக்கு இடம் காட்டியை இயக்கு",
     "UserLocText": "உங்கள் இருப்பிடத்தை உள்ளிடவும்",
@@ -83,12 +83,12 @@ const ta = {
     "LearnMoreButton": "மேலும் அறிக",
     "saveAPI": "சேமி",
 
-    // உடல் உருப்படிகள்
-    // நாள்காட்டி
+    // Body Items
+    // Calendar
     "days": ['ஞாயிறு', 'திங்கள்', 'செவ்வாய்', 'அறிவன்', 'வியாழன்', 'வெள்ளி', 'காரி'],
     "months": ['மா-தை', 'தை-மாசி', 'மா-பங்குனி', 'ப-சித்திரை', 'சி-வைகாசி', 'வை-ஆனி', 'ஆ-ஆடி', 'ஆ-ஆவணி', 'ஆ-புரட்டாசி', 'பு-ஐப்பசி', 'ஐ-கார்த்திகை', 'கா-மார்கழி'],
 
-    // புத்தக்குறிகள்
+    // Bookmarks
     "bookmarksHeading": "புத்தக்குறிகள்",
     "bookmarkSortBy": "வரிசைப்படுத்து",
     "sortAlphabetical": "அ-ஔ",
@@ -101,7 +101,7 @@ const ta = {
     "editBookmarkName": "புத்தக்குறியின் பெயர்",
     "editBookmarkURL": "புத்தக்குறி முகவரி",
 
-    // புதிய தாவல் உருப்படி
+    // New Tab Item
     "conditionText": "வணக்கம்! இன்று நீங்கள் எப்படி இருக்கிறீர்கள்?",
     "humidityLevel": "ஈரப்பதம்",
     "feelsLike": "உணர்கிறது",
@@ -114,26 +114,26 @@ const ta = {
     "searchOnHint": "மேல் தேடு",
     "userText": "திருத்த இங்கே சொடுக்கு",
 
-    // வாழ்த்து
+    // Greeting
     greeting: {
         "morning": "காலை வணக்கம்!",
         "afternoon": "பகல் வணக்கம்!",
         "evening": "மாலை வணக்கம்!"
     },
 
-    // தேடுபொறிகள்
+    // Search Engines
     "defaultEngine": "இயல்புநிலை",
     "googleEngine": "கூகிள்",
     "duckEngine": "வாத்துவாத்துபோ", 
     "bingEngine": "பிங்",
     "braveEngine": "துணிச்சல்",
     "youtubeEngine": "யூடியூப்",
-    "gImagesEngine": "படங்கள்",  // கூகிள் படங்கள், https://www.google.com/search?q=check&hl=bn
+    "gImagesEngine": "படங்கள்",
     "redditEngine": "ரெடிட்",
     "wikipediaEngine": "விக்கிபீடியா",
     "quoraEngine": "குரா",
 
-    // செஅ கருவிகள்
+    // AI Tools
     "ai_tools": "செஅ கருவிகள்",
     "chatGPT": "அரட்டைசீபிடி",
     "gemini": "செமினி",
@@ -148,11 +148,11 @@ const ta = {
     "aiSettingsIntro": "எந்த செஅ கருவிகளைக் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடு",
     "resetAISettingsBtn": "மீட்டமை",
 
-    // கருப்பொருள்
+    // Theme
     "enableDarkMode": "இருள் முறை(பரிசோதனை)",
     "enableDarkModeInfo": "இருள் முறை கருப்பொருள்கள் இயக்கு",
 
-    // பின்னணி மற்றும் அமைப்புகள்
+    // Wallpaper and settings
     "uploadWallpaperText": "பின்படத்தை பதிவேற்று",
     "rangColor": "நிறம் எடு",
     "opactityTitle": "ஒளிபுகாநிலை",
@@ -162,7 +162,7 @@ const ta = {
     "resetsettings": "அமைப்புகளை மீட்டமை",
     "menuCloseText": "மூடு",
 
-    // குறிப்புகள்
+    // Tips
     "switchSearchModes": "தேடல் முறைகளை மாற்று",
     "switchSearchModesInfo": "பயன்முறையை மாற்ற 'உடன் தேடு' என்பதைக் சொடுக்கு.",
     "adjustZoom": "பெரிதாக்கத்தை சரிசெய்",
@@ -176,7 +176,7 @@ const ta = {
     "updateFirefoxHomepageInfo": "புதிய தாவலைப் போல உங்கள் முகப்புப் பக்கத்தையும் மாற்ற, <a href=\"https://github.com/XengShi/materialYouNewTab#-firefox\" target=\"_blank\">இந்த இணைப்பைப்</a> பார்வையிட்டு வழிமுறைகளைப் பின்பற்றவும்.",
     "dontShowTips": "மீண்டும் காட்ட வேண்டாம்",
 
-    // உரையாடல் பெட்டிகள் (முன்னறிவிப்புகள்)
+    // Dialog boxes (alerts)
     "okText": "சரி",
     "yesText": "ஆம்",
     "noText": "இல்லை",
