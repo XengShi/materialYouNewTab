@@ -77,7 +77,7 @@ const ta = {
     "PrivacyPolicy": "தனியுரிமைக் கொள்கை",
 
     // Weather
-    "WeatherApiText": "உங்கள் WeatherAPI விசையை உள்ளிடவும்",    // 'வானிலைபநிஇ' சரத்திற்கு, ஒலிபெயர்ப்பு மட்டும்
+    "WeatherApiText": "உங்கள் வானிலைபநிஇ விசையை உள்ளிடவும்",
     "WeatherApiSubtext": "வானிலை செயல்பாடு வேலை செய்யவில்லை என்றால்",
     "userAPI": "உங்கள் வானிலைபநிஇ விசை",
     "LearnMoreButton": "மேலும் அறிக",
