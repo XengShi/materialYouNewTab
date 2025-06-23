@@ -132,69 +132,49 @@ function applyAIToolsSettings() {
     let settingsToApply;
 
     if (!savedSettings || !Array.isArray(savedSettings)) {
-        // If no settings found, initialize with default values
-        settingsToApply = aiTools.map(tool => {
-            if (tool.visible) {
-                return tool.id;
-            } else {
-                const hiddenTool = {};
-                hiddenTool[tool.id] = false;
-                return hiddenTool;
-            }
-        });
+        // Initialize with default values if no settings exist
+        settingsToApply = aiTools.map(tool => tool.visible ? tool.id : { [tool.id]: false });
         localStorage.setItem("aiToolsSettings", JSON.stringify(settingsToApply));
     } else {
         settingsToApply = savedSettings;
     }
 
-    // First, set display:none for all tools to temporarily hide them
+    // Create a map of current tool elements for quick lookup
+    const toolElements = new Map();
     const allToolLinks = aiToolName.querySelectorAll("a");
     allToolLinks.forEach(link => {
-        link.style.display = "none";
+        const toolId = [...link.children].find(el => aiToolsRaw.some(t => t.id === el.id))?.id;
+        if (toolId) toolElements.set(toolId, link);
     });
 
-    // Create fragment for reordering
-    const fragment = document.createDocumentFragment();
+    // Clear container
+    aiToolName.innerHTML = "";
 
-    // Process each item in the saved settings array
+    // Append tools in order based on settings
     settingsToApply.forEach(item => {
         let toolId, isVisible;
 
         if (typeof item === "string") {
-            // It's a visible tool
             toolId = item;
             isVisible = true;
         } else {
-            // It's an object with a hidden tool
             toolId = Object.keys(item)[0];
             isVisible = false;
         }
 
-        // Find and append the tool element
-        const labelElement = document.getElementById(toolId);
-        if (labelElement) {
-            const linkElement = labelElement.closest("a");
-            if (linkElement) {
-                const clone = linkElement.cloneNode(true);
-                clone.style.display = isVisible ? "flex" : "none";
-                fragment.appendChild(clone);
-            }
+        const toolElement = toolElements.get(toolId);
+        if (toolElement) {
+            toolElement.style.display = isVisible ? "flex" : "none";
+            aiToolName.appendChild(toolElement);
         }
     });
-
-    // Replace contents with reordered tools
-    while (aiToolName.firstChild) {
-        aiToolName.removeChild(aiToolName.firstChild);
-    }
-    aiToolName.appendChild(fragment);
 }
 
-// Function to generate form elements for AI tools
+// Function to generate the AI Tools settings form elements
 function generateAIToolsForm(settings) {
-    // Clear previous form content
     aiToolsForm.innerHTML = "";
 
-    // Create a toggle for each AI tool
+    // Create form elements
     settings.forEach((settingItem, index) => {
         let toolId, isVisible;
 
@@ -207,7 +187,7 @@ function generateAIToolsForm(settings) {
         }
 
         const originalTool = aiTools.find(t => t.id === toolId);
-        const toolLabel = originalTool ? originalTool.label : toolId;
+        const toolLabel = originalTool?.label || toolId;
 
         const toolOption = document.createElement("div");
         toolOption.className = "ai-tool-option";
@@ -225,48 +205,36 @@ function generateAIToolsForm(settings) {
         aiToolsForm.appendChild(toolOption);
     });
 
-    // Add event listeners for reorder buttons
-    document.querySelectorAll(".reorder-up").forEach(button => {
-        button.addEventListener("click", async function () {
-            // Skip if button is disabled
-            if (this.disabled) return;
+    // Single event listener for all reorder buttons
+    aiToolsForm.addEventListener("click", async (event) => {
+        const upButton = event.target.closest(".reorder-up");
+        const downButton = event.target.closest(".reorder-down");
 
-            // Prevent multiple clicks during animation
-            if (this.dataset.animating === "true") return;
-            this.dataset.animating = "true";
+        if (!upButton && !downButton) return;
 
-            const toolOption = this.closest(".ai-tool-option");
+        const toolOption = event.target.closest(".ai-tool-option");
+        if (!toolOption) return;
+
+        // Skip if button is disabled or animation in progress
+        if (event.target.disabled || event.target.dataset.animating === "true") return;
+        event.target.dataset.animating = "true";
+
+        if (upButton) {
             const prevToolOption = toolOption.previousElementSibling;
-
             if (prevToolOption) {
-                // Animate the reorder
                 await animateReorder(toolOption, prevToolOption, "up");
             }
-
-            this.dataset.animating = "false";
-        });
-    });
-
-    document.querySelectorAll(".reorder-down").forEach(button => {
-        button.addEventListener("click", async function () {
-            // Skip if button is disabled
-            if (this.disabled) return;
-
-            // Prevent multiple clicks during animation
-            if (this.dataset.animating === "true") return;
-            this.dataset.animating = "true";
-
-            const toolOption = this.closest(".ai-tool-option");
+        } else if (downButton) {
             const nextToolOption = toolOption.nextElementSibling;
-
             if (nextToolOption) {
-                // Animate the reorder
                 await animateReorder(toolOption, nextToolOption, "down");
             }
+        }
 
-            this.dataset.animating = "false";
-        });
+        event.target.dataset.animating = "false";
     });
+
+    updateReorderButtonStates();
 }
 
 // Function to show AI Tools settings modal
@@ -327,51 +295,40 @@ function closeAIToolsSettings() {
 // Function to toggle AI Tools panel
 function toggleAITools(event) {
     const shortcutsCheckbox = document.getElementById("shortcutsCheckbox");
+    const isAIToolVisible = aiToolName.style.display === "flex";
 
-    if (shortcutsCheckbox.checked) {
-        if (aiToolName.style.display === "flex") {
-            shortcuts.style.display = "flex";
-            aiToolName.style.opacity = "0";
-            aiToolName.style.gap = "0";
-            aiToolName.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                aiToolName.style.display = "none";
-                shortcuts.style.display = "flex";
-            }, 500);
-        } else {
-            shortcuts.style.display = "none";
-            aiToolName.style.display = "flex";
-            setTimeout(() => {
-                aiToolName.style.opacity = "1";
-                aiToolName.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                aiToolName.style.gap = "12px";
-            }, 300);
-        }
-    } else {
-        if (aiToolName.style.display === "flex") {
-            shortcuts.style.display = "none";
-            aiToolName.style.opacity = "0";
-            aiToolName.style.gap = "0";
-            aiToolName.style.transform = "translateX(-100%)";
-            setTimeout(() => {
-                aiToolName.style.display = "none";
-            }, 500);
-        } else {
-            shortcuts.style.display = "none";
-            aiToolName.style.display = "flex";
-            setTimeout(() => {
-                aiToolName.style.opacity = "1";
-                aiToolName.style.transform = "translateX(0)";
-            }, 1);
-            setTimeout(() => {
-                aiToolName.style.gap = "12px";
-            }, 300);
-        }
-    }
     // Prevent outside click handler from triggering
     if (event) event.stopPropagation();
+
+    if (isAIToolVisible) {
+        // Hide AI Tool panel
+        if (shortcutsCheckbox.checked) {
+            shortcuts.style.display = "flex";
+        } else {
+            shortcuts.style.display = "none";
+        }
+
+        aiToolName.style.opacity = "0";
+        aiToolName.style.gap = "0";
+        aiToolName.style.transform = "translateX(-100%)";
+
+        setTimeout(() => {
+            aiToolName.style.display = "none";
+        }, 500);
+    } else {
+        // Show AI Tool panel
+        shortcuts.style.display = "none";
+        aiToolName.style.display = "flex";
+
+        setTimeout(() => {
+            aiToolName.style.opacity = "1";
+            aiToolName.style.transform = "translateX(0)";
+        }, 1);
+
+        setTimeout(() => {
+            aiToolName.style.gap = "12px";
+        }, 300);
+    }
 }
 
 // Event Listeners
