@@ -178,7 +178,7 @@ body[data-bg="wallpaper"] .bgLightTint:not(.notTargeted) {
 body[data-bg="wallpaper"] .lessDark.targeted {
 	fill: color-mix(
 		in srgb,
-		var(--bg-color-blue) var(--transparency),
+		var(--bg-color-blue) calc(var(--transparency) * 1.5),
 		transparent
 	);
 }
@@ -2417,8 +2417,17 @@ body[data-bg="wallpaper"] .shortcuts .shortcut-name {
 	height: 100%;
 	width: 100%;
 	border-radius: 100%;
+	filter: none;
+	mix-blend-mode: normal;
 }
 
+/* Adaptive Icons styling */
+.adaptive-icons .shortcuts .shortcutLogoContainer img {
+	height: calc(100% * 0.7071) !important;
+	width: calc(100% * 0.7071) !important;
+	filter: grayscale(1);
+	mix-blend-mode: screen;
+}
 /* ----------end of Shortcuts----------------- */
 
 /* -----------Ai-Tools----------------- */
@@ -3120,18 +3129,26 @@ input:checked + .toggle:before {
 	transition: transform 0.3s ease;
 }
 
-#newShortcutButton:active svg {
+#newShortcutButton:not(.inactive):active svg {
 	transform: scale(1.2);
-}
-
-.rotateResetButton {
-	transform: rotate(-360deg);
-	transition: transform 0.3s ease;
 }
 
 #newShortcutButton.inactive {
 	opacity: 0.5;
-	pointer-events: none;
+	cursor: not-allowed;
+}
+
+.rotate-animation {
+	animation: rotate-button 0.5s ease;
+}
+
+@keyframes rotate-button {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
 }
 
 .pageTitle {
@@ -3158,8 +3175,12 @@ input:checked + .toggle:before {
 	margin-bottom: 16px;
 	background-color: var(--bg-color-blue);
 	border-radius: 13px;
-	padding: 15px;
-	padding-inline-end: 10px;
+	padding: 15px 10px;
+	padding-inline-start: 8px;
+	position: relative;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) opacity 0.2s ease;
+	/* Enable hardware acceleration */
+	will-change: transform, opacity, box-shadow;
 }
 
 .shortcutSettingsEntry:last-child {
@@ -3167,23 +3188,69 @@ input:checked + .toggle:before {
 }
 
 .shortcutSettingsEntry input {
-	width: 95%;
+	width: calc(100% - 18px);
 	background: none;
 	border: none;
+	margin-inline-start: 8px;
+	color: var(--textColorDark-blue);
+	text-overflow: ellipsis;
 }
 
 .shortcutSettingsEntry .shortcutName {
 	font-size: 1.1rem;
-	color: var(--textColorDark-blue);
-	text-overflow: ellipsis;
 }
 
 .shortcutSettingsEntry .URL {
 	font-size: 0.84rem;
-	color: var(--textColorDark-blue);
 	opacity: 0.9;
 	margin-top: -3px;
-	text-overflow: ellipsis;
+}
+
+/* Drag and drop styles */
+.shortcutSettingsEntry.dragging {
+	opacity: 0.5;
+	transform: scale(1.02);
+	pointer-events: none;
+	transition: none;
+	z-index: 1000;
+	backface-visibility: hidden;
+}
+
+.grip-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 54px;
+	padding: 0 6px;
+	cursor: grab;
+	color: var(--textColor);
+	opacity: 0.5;
+}
+
+.grip-container:hover {
+	opacity: 1;
+}
+
+.grip-container svg {
+	pointer-events: none;
+	transition: transform 0.2s ease;
+}
+
+.grip-container:hover svg {
+	transform: scale(1.1);
+}
+
+.shortcutSettingsEntry.dragging .grip-container {
+	pointer-events: none;
+}
+
+/* Disable hover effects during dragging */
+.dragging-ongoing .shortcutSettingsEntry .grip-container:hover {
+	opacity: 0.5;
+}
+
+.dragging-ongoing .shortcutSettingsEntry .grip-container:hover svg {
+	transform: none;
 }
 
 .delete button {
@@ -3200,14 +3267,14 @@ input:checked + .toggle:before {
 	transition: 0.3s all;
 }
 
-.delete button:hover {
+.delete button:not(.inactive):hover {
 	fill: white;
 	background: var(--darkColor-blue);
 }
 
 .delete button.inactive {
 	opacity: 0.5;
-	pointer-events: none;
+	cursor: not-allowed;
 }
 
 .addShortcutContainer button {

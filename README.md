@@ -51,7 +51,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 ### Download
 
-1. **Development Version** (v3.1.*)
+1. **Development Version** (v3.2.*)
 
     - **Clone the Repository**:
       Use the following command to clone the repository:
@@ -66,10 +66,10 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
     - You can also download the ZIP file by clicking on the Code button. On the repository page, look for a green button labeled **Code**. Click on the **Code** button, and in the dropdown menu, select **Download ZIP**.
 
-2. **Stable Release** (v3.1)
+2. **Stable Release** (v3.2)
 
 <p align="center">
-    <a href="https://github.com/XengShi/materialYouNewTab/archive/refs/tags/v3.zip"><img src="https://github.com/user-attachments/assets/b421b796-599f-4ae8-aa56-3c9933e79e23" alt="Download from GitHub" height="48" /></a>
+    <a href="https://github.com/XengShi/materialYouNewTab/releases/latest"><img src="https://github.com/user-attachments/assets/b421b796-599f-4ae8-aa56-3c9933e79e23" alt="Download from GitHub" height="48" /></a>
     <a href="https://chromewebstore.google.com/detail/material-you-newtab/glloabhodjfmeoccmdngmhkpmdlakfbn">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/a65e60b5-8ddc-432d-80dc-9c2dd975c6a9" height="48">
