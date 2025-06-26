@@ -120,7 +120,7 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 
 > [!NOTE]
 > Opera does **not support replacing the default New Tab**.  
-> This method only sets the extension as a **startup page**, not a true new tab.
+> This method only sets the extension as a **startup page**.
 
 <details><summary>Click here for the workaround</summary>
 
@@ -129,19 +129,19 @@ Material You NewTab is a versatile browser extension that personalizes your New 
 - Click on **Open a specific page or set of pages** and then click on **Add a new page**.
 - Add the following (replace 32-character extension ID if installed manually) to the **Site URL**:
 
-      ```text
-      chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
-      ```
+```text
+chrome-extension://glloabhodjfmeoccmdngmhkpmdlakfbn/index.html
+```
 
-   To find the extension ID:
+- To find the extension ID:
 
-- Go to `opera://extensions`, find the extension, and copy the 32-character ID from its details.
+  - Go to `opera://extensions`, find the extension, and copy the 32-character ID from its details.
 
-   To simulate new tabs:
+- To simulate new tabs:
 
-- Bookmark the extension page to access new tab pages manually.
+  - Bookmark the extension page to access new tab pages manually.
 
-- Or, right-click the tab and select **Duplicate tab**.
+  - Or, right-click the tab and select **Duplicate tab**.
 
 </details>
 

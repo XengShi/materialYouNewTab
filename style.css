@@ -1854,8 +1854,9 @@ html[lang="ur"] #wIcon {
 
 html[lang="ta"] #temp {
 	position: relative;
-	font-size: 3.3rem;
-	left: -13px;
+	font-size: 3rem;
+	left: -14px;
+	padding-bottom: 12px;
 }
 
 /* ------------End of Weather Pill------------- */
@@ -2558,7 +2559,7 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	transform: translate(-50%, -50%);
 	background-color: var(--bg-color-blue);
 	color: var(--textColorDark-blue);
-	border-radius: 20px;
+	border-radius: var(--round);
 	padding: 30px 35px;
 	box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
 	z-index: 1001;
@@ -2626,6 +2627,7 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	border: none;
 	border-radius: 10px;
 	font-size: 0.95rem;
+	will-change: transform;
 }
 
 .ai-settings-modal .ai-tools-list #aiToolsForm .ai-tool-option:last-child {
@@ -2648,10 +2650,10 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 
 .ai-settings-modal .ai-reset-button,
 .ai-settings-modal .ai-save-button {
-	min-width: 110px;
+	width: 140px;
 	padding: 10px 15px;
 	font-size: 0.9rem;
-	border-radius: 10px;
+	border-radius: 20px;
 	background: var(--darkColor-blue);
 	color: var(--whitishColor-blue);
 	border: none;
@@ -2692,6 +2694,66 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 
 #aiToolsForm .ai-tool-reorder button:active {
 	transform: scale(0.95);
+}
+
+#aiToolsForm .ai-tool-reorder button:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+
+#aiToolsForm .ai-tool-reorder button:disabled:hover {
+	transform: none;
+}
+
+/* Animation classes for reordering */
+.reorder-animate-up {
+	position: relative;
+	z-index: 10;
+	transform: translateY(calc(-1 * var(--move-distance)));
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reorder-animate-down {
+	position: relative;
+	z-index: 5;
+	transform: translateY(var(--move-distance));
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disabled reset button styling */
+.ai-settings-modal .ai-reset-button:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* Reset Animation Styles */
+@keyframes resetShake {
+	0%,
+	100% {
+		margin-left: 0;
+	}
+	25% {
+		margin-left: -1px;
+	}
+	75% {
+		margin-left: 1px;
+	}
+}
+
+@keyframes resetFlash {
+	0%,
+	100% {
+		background-color: var(--accentLightTint-blue);
+		transform: scale(1);
+	}
+	50% {
+		background-color: color-mix(
+			in srgb,
+			var(--darkColor-blue) 20%,
+			var(--accentLightTint-blue)
+		);
+		transform: scale(1.02);
+	}
 }
 /* -----------End of Ai-Tools---------- */
 
