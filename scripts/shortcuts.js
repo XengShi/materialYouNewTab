@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Gmail",
             url: "mail.google.com",
             domains: ["gmail.com", "mail.google.com"],
-            svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/><g style="transform: scale(0.6); transform-origin: center;"><path class="bgLightTint" id="darkLightTint" 
+            svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" class="accentColor shorcutDarkColor"/><g style="transform: scale(0.58); transform-origin: center;"><path class="bgLightTint" id="darkLightTint" 
                     d="m8.606 13.6 3.396 2.323 3.274-2.259 7.338 7.24q-.29.095-.614.096H2c-.264 0-.516-.052-.747-.144zM24 7.652V19a2 2 0 0 1-.18.83l-7.193-7.097zM0 7.715l7.25 4.958-7.123 7.03A2.04 2.04 0 0 1 0 19ZM22 3a2 2 0 0 1 2 2v.704l-12.002 8.274L0 5.772V5a2 2 0 0 1 2-2Z"/></g></svg>`
         },
         {
@@ -127,8 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
         urlInput.scrollIntoView({ behavior: "smooth", block: "center" });
 
         clearTimeout(focusTimeoutId);
+        const modalContainer = document.getElementById("prompt-modal-container");
         focusTimeoutId = setTimeout(() => {
-            urlInput.focus();
+            if (modalContainer?.style.display !== "flex")
+                urlInput.focus();
         }, 800);
     }
 
@@ -319,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         el.style.transition = 'none';
                         el.style.transform = `translateY(${delta}px)`;
                         requestAnimationFrame(() => {
-                            el.style.transition = 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)';
+                            el.style.transition = 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1)';
                             el.style.transform = 'none';
                         });
                     }
@@ -514,13 +516,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Prevent context menu on long press for better touch experience
-        dom.shortcutSettingsContainer.addEventListener("contextmenu", e => {
-            if (isDragging) {
-                e.preventDefault();
-            }
-        });
-
         // Handle window blur for cleanup
         window.addEventListener("blur", () => {
             if (isReordering || isDragging) {
@@ -673,6 +668,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!(await confirmPrompt(translations[currentLanguage]?.resetShortcutsPrompt || translations["en"].resetShortcutsPrompt)))
             return;
 
+        // Animation for shortcut elements
+        const shortcutEntries = [...dom.shortcutSettingsContainer.querySelectorAll('.shortcutSettingsEntry')];
+        shortcutEntries.forEach(el => el.classList.add("reset-shift-animation"));
+
+        // Animation for reset button
+        const svg = dom.resetShortcutsButton.querySelector("svg");
+        svg.classList.add("rotate-animation");
+
         // Clear storage
         for (let i = 0; i < (localStorage.getItem("shortcutAmount") || 0); i++) {
             localStorage.removeItem(`shortcutName${i}`);
@@ -680,14 +683,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         localStorage.removeItem("shortcutAmount");
 
+        // Wait for animations of shortcut elements to complete
+        await new Promise(resolve => setTimeout(resolve, 300));
+
         // Reset UI
         dom.shortcutSettingsContainer.innerHTML = "";
         dom.shortcutsContainer.innerHTML = "";
         dom.newShortcutButton.classList.remove("inactive");
-
-        // Animation
-        const svg = dom.resetShortcutsButton.querySelector("svg");
-        svg.classList.add("rotate-animation");
         setTimeout(() => svg.classList.remove("rotate-animation"), 500);
 
         // Reload

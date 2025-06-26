@@ -3138,6 +3138,20 @@ input:checked + .toggle:before {
 	cursor: not-allowed;
 }
 
+.reset-shift-animation {
+	animation: resetShift 0.3s ease;
+}
+
+@keyframes resetShift {
+	0%,
+	100% {
+		margin-left: 0;
+	}
+	50% {
+		margin-left: 3px;
+	}
+}
+
 .rotate-animation {
 	animation: rotate-button 0.5s ease;
 }
@@ -3180,7 +3194,7 @@ input:checked + .toggle:before {
 	position: relative;
 	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) opacity 0.2s ease;
 	/* Enable hardware acceleration */
-	will-change: transform, opacity, box-shadow;
+	will-change: transform, opacity;
 }
 
 .shortcutSettingsEntry:last-child {
