@@ -6,99 +6,221 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Multilingual quotes API.
+const metadataUrl = "https://xengshi.github.io/multilingual-quotes-api/minified/metadata.json";
+const baseQuoteUrl = "https://xengshi.github.io/multilingual-quotes-api/minified/";
 
-const apiUrl = "https://quotes-api-self.vercel.app/quote/";
-// Credits: https://github.com/well300/quotes-api
+const quotesContainer = document.querySelector(".quotesContainer");
+const authorName = document.querySelector(".authorName span");
 
-const quotesContainer = document.querySelector('.quotesContainer');
-const authorName = document.querySelector('.authorName span');
-
-// Set character limits for quotes
-const MIN_QUOTE_LENGTH = 60;
 const MAX_QUOTE_LENGTH = 140;
-const QUOTE_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 minutes in milliseconds
+let lastKnownLanguage = null;
 
-// Default quotes for offline or error scenarios
-const defaultQuotes = [
-    { quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
-    { quote: "What lies behind us and what lies before us are tiny matters compared to what lies within us.", author: "Ralph Waldo Emerson" },
-    { quote: "Keep your face always toward the sunshine and shadows will fall behind you.", author: "Walt Whitman" },
-    { quote: "Since light travels faster than sound, some people appear bright until you hear them speak.", author: "Alan Dundes" }
-];
+// Clear all quotes-related data from localStorage
+function clearQuotesStorage() {
+    const keys = Object.keys(localStorage);
 
-// Fetch and display a quote
-async function fetchAndDisplayQuote() {
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        let { quote, author } = data;
-
-        // Check if the quote length meets the criteria
-        if (quote.length + author.length >= MIN_QUOTE_LENGTH && quote.length + author.length <= MAX_QUOTE_LENGTH) {
-            const quoteData = { quote, author };
-
-            // Store in local storage
-            localStorage.setItem("currentQuote", JSON.stringify(quoteData));
-            localStorage.setItem("lastQuoteUpdate", Date.now().toString());
-
-            // Display the quote
-            displayQuote(quoteData);
-        } else {
-            // Fetch again if the quote does not meet character length requirements
-            fetchAndDisplayQuote();
+    keys.forEach(key => {
+        if (key.startsWith("quotes_")) {
+            localStorage.removeItem(key);
         }
-    } catch (error) {
-        console.error("Error fetching quote:", error);
-        useDefaultQuote();
+    });
+
+    // Clear the quotes display
+    quotesContainer.textContent = "";
+    authorName.textContent = "";
+}
+
+// Check if quotes data needs to be refreshed
+function shouldRefreshQuotes(lang, quotesData, metadata) {
+    // Check if quotes data exists and is an array
+    if (!quotesData || !Array.isArray(quotesData) || quotesData.length === 0) {
+        return true;
     }
-}
 
-// Display a quote on the page
-function displayQuote(quoteData) {
-    const { quote, author } = quoteData || defaultQuotes[0];
-    quotesContainer.textContent = quote;
-    authorName.textContent = author;
-}
+    // Check if we have stored timestamp for this language
+    const storedTimestamp = localStorage.getItem(`quotes_${lang}_timestamp`);
+    if (!storedTimestamp) {
+        return true;
+    }
 
-// Use a default quote in case of errors
-function useDefaultQuote() {
-    let defaultQuoteIndex = parseInt(localStorage.getItem("defaultQuoteIndex")) || 0;
-    const fallback = defaultQuotes[defaultQuoteIndex];
+    // Check if metadata has been updated since our last fetch
+    const metadataTimestamp = localStorage.getItem("quotes_metadata_timestamp");
+    if (!metadataTimestamp || metadataTimestamp !== metadata.lastUpdated) {
+        // Metadata changed, but check if THIS language's count changed
+        const storedQuoteCount = localStorage.getItem(`quotes_${lang}_count`);
+        const currentCount = metadata.files[`${lang}.json`].count || 0;
 
-    defaultQuoteIndex = (defaultQuoteIndex + 1) % defaultQuotes.length;
+        if (!storedQuoteCount || parseInt(storedQuoteCount) !== currentCount) {
+            return true;
+        }
+    }
 
-    localStorage.setItem("defaultQuoteIndex", defaultQuoteIndex.toString());
-    localStorage.setItem("currentQuote", JSON.stringify(fallback));
-    localStorage.setItem("lastQuoteUpdate", Date.now().toString());
-
-    displayQuote(fallback);
-}
-
-// Refresh the quote if needed
-function refreshQuoteIfNeeded() {
-    const lastUpdated = parseInt(localStorage.getItem("lastQuoteUpdate")) || 0;
+    // Time-based validation
     const now = Date.now();
+    const timeDiff = now - new Date(storedTimestamp).getTime();
+    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+    const oneDay = 24 * 60 * 60 * 1000;
 
-    if ((now - lastUpdated) >= QUOTE_REFRESH_INTERVAL) {
-        fetchAndDisplayQuote()
-            .catch(() => {
-                useDefaultQuote();
-            });
-    } else {
-        const currentQuote = JSON.parse(localStorage.getItem("currentQuote") || "null");
-        if (currentQuote) {
-            displayQuote(currentQuote);
-        } else {
-            fetchAndDisplayQuote()
-                .catch(() => {
-                    useDefaultQuote();
-                });
-        }
+    const fileInfo = metadata.files[`${lang}.json`];
+    const quoteCount = fileInfo ? fileInfo.count : 0;
+
+    // For languages with less than 100 quotes, check daily
+    if (quoteCount < 100 && timeDiff > oneDay) {
+        return true;
+    }
+
+    // For languages with 100+ quotes, check weekly
+    if (quoteCount >= 100 && timeDiff > sevenDays) {
+        return true;
+    }
+
+    return false;
+}
+
+// Fetch metadata from the API
+async function fetchMetadata() {
+    try {
+        const response = await fetch(metadataUrl);
+        const metadata = await response.json();
+        return metadata;
+    } catch (error) {
+        console.error("Error fetching metadata:", error);
+        throw error;
     }
 }
 
+// Fetch quotes for a specific language and store them locally
+async function fetchQuotes(lang, metadata) {
+    try {
+        const url = `${baseQuoteUrl}${lang}.json`;
+        const response = await fetch(url);
+        const quotes = await response.json();
+
+        // Store quotes and timestamp in localStorage
+        localStorage.setItem(`quotes_${lang}`, JSON.stringify(quotes));
+        localStorage.setItem(`quotes_${lang}_timestamp`, new Date().toISOString());
+
+        // Store metadata timestamp to track when we last checked for updates
+        localStorage.setItem("quotes_metadata_timestamp", metadata.lastUpdated);
+
+        // Store the quote count for this language
+        const quoteCount = metadata.files[`${lang}.json`].count || quotes.length;
+        localStorage.setItem(`quotes_${lang}_count`, quoteCount.toString());
+
+        return quotes;
+    } catch (error) {
+        console.error(`Error fetching quotes for ${lang}:`, error);
+        throw error;
+    }
+}
+
+// Get quotes for the current language with fallback logic
+async function getQuotesForLanguage(forceRefresh = false) {
+    try {
+        // Check if language has changed
+        const languageChanged = lastKnownLanguage !== null && lastKnownLanguage !== currentLanguage;
+        if (languageChanged) {
+            forceRefresh = true;
+        }
+
+        // Update last known language
+        lastKnownLanguage = currentLanguage;
+
+        let targetLang = currentLanguage;
+        let quotesData = null;
+
+        // Try to fetch the latest metadata to check for updates, but only if we are online
+        let metadata = null;
+        if (navigator.onLine) {
+            try {
+                metadata = await fetchMetadata();
+
+                // Determine which language to use based on quote availability
+                if (currentLanguage !== "en") {
+                    const langFile = metadata.files[`${currentLanguage}.json`];
+                    if (!langFile || langFile.count < 100) {
+                        targetLang = "en";
+                    }
+                }
+            } catch (error) {
+                console.log("Failed to fetch metadata, working offline");
+            }
+        }
+
+        // If language changed, clear old data for the previous language
+        if (languageChanged) {
+            clearQuotesStorage();
+        }
+
+        // Try to get stored quotes first
+        const storedQuotes = localStorage.getItem(`quotes_${targetLang}`);
+        if (storedQuotes) {
+            quotesData = JSON.parse(storedQuotes);
+        }
+
+        // Check if we need to fetch new quotes (only when online)
+        if (navigator.onLine && (forceRefresh || shouldRefreshQuotes(targetLang, quotesData, metadata))) {
+            quotesData = await fetchQuotes(targetLang, metadata);
+
+            // Clear other language data after successfully fetching new data
+            if (!languageChanged) {
+                const keys = Object.keys(localStorage);
+                keys.forEach(key => {
+                    if (key.startsWith("quotes_") && !key.includes(targetLang) && key !== "quotes_metadata_timestamp") {
+                        localStorage.removeItem(key);
+                    }
+                });
+            }
+        }
+
+        return quotesData;
+    } catch (error) {
+        console.error("Error getting quotes:", error);
+        // Return fallback quote if everything fails
+        return [{ quote: "Don’t watch the clock; do what it does. Keep going.", author: "Sam Levenson" }];
+    }
+}
+
+// Display a random quote that meets the length requirements
+function displayRandomQuote(quotes) {
+    if (!quotes || quotes.length === 0) {
+        quotesContainer.textContent = "Don’t watch the clock; do what it does. Keep going.";
+        authorName.textContent = "Sam Levenson";
+        return;
+    }
+
+    let selectedQuote;
+    const maxAttempts = 15; // Prevent infinite loop
+
+    // Try to find a quote that fits within the character limit
+    for (let attempts = 0; attempts < maxAttempts; attempts++) {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        selectedQuote = quotes[randomIndex];
+
+        const totalLength = selectedQuote.quote.length + selectedQuote.author.length;
+        if (totalLength <= MAX_QUOTE_LENGTH) {
+            break;
+        }
+    }
+
+    // Display the selected quote
+    quotesContainer.textContent = selectedQuote.quote;
+    authorName.textContent = selectedQuote.author;
+}
+
+// Main function to load and display a quote
+async function loadAndDisplayQuote(forceRefresh = false) {
+    try {
+        const quotes = await getQuotesForLanguage(forceRefresh);
+        displayRandomQuote(quotes);
+    } catch (error) {
+        console.error("Error loading quote:", error);
+        // Display fallback quote on any error
+        quotesContainer.textContent = "Don’t watch the clock; do what it does. Keep going.";
+        authorName.textContent = "Sam Levenson";
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const hideSearchWith = document.getElementById("shortcut_switchcheckbox");
@@ -111,19 +233,10 @@ document.addEventListener("DOMContentLoaded", () => {
     hideSearchWith.checked = localStorage.getItem("showShortcutSwitch") === "true";
     motivationalQuotesCheckbox.checked = localStorage.getItem("motivationalQuotesVisible") !== "false";
 
-    let quoteInterval = null;
-    const clearQuotes = () => {
-        localStorage.removeItem("currentQuote"); // Remove stored quote
-        localStorage.removeItem("lastQuoteUpdate");
-        localStorage.removeItem("defaultQuoteIndex");
+    // Initialize language tracking
+    lastKnownLanguage = currentLanguage;
 
-        if (quoteInterval) {
-            clearInterval(quoteInterval);
-            quoteInterval = null;
-        }
-    }
-
-    // Function to update quotes visibility
+    // Function to update quotes visibility and handle state changes
     const updateMotivationalQuotesState = () => {
         const isHideSearchWithEnabled = hideSearchWith.checked;
         const isMotivationalQuotesEnabled = motivationalQuotesCheckbox.checked;
@@ -131,24 +244,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // Save state to localStorage
         localStorage.setItem("motivationalQuotesVisible", isMotivationalQuotesEnabled);
 
+        // Handle visibility based on settings
         if (!isHideSearchWithEnabled) {
             quotesToggle.classList.add("inactive");
             motivationalQuotesCont.style.display = "none";
-            clearQuotes();
+            clearQuotesStorage();
             return;
         }
 
+        // Update UI visibility
         quotesToggle.classList.remove("inactive");
         searchWithContainer.style.display = isMotivationalQuotesEnabled ? "none" : "flex";
         motivationalQuotesCont.style.display = isMotivationalQuotesEnabled ? "flex" : "none";
 
+        // Load quotes if motivational quotes are enabled
         if (isMotivationalQuotesEnabled) {
-            refreshQuoteIfNeeded();
-
-            if (!quoteInterval) {
-                quoteInterval = setInterval(refreshQuoteIfNeeded, 60 * 1000);
-            }
-        } else clearQuotes();
+            loadAndDisplayQuote(false);
+        } else {
+            clearQuotesStorage();
+        }
     };
 
     // Apply initial state
@@ -159,5 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
         searchWithContainer.style.display = "flex";
         updateMotivationalQuotesState();
     });
+
     motivationalQuotesCheckbox.addEventListener("change", updateMotivationalQuotesState);
 });
