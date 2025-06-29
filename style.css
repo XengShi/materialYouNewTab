@@ -2160,6 +2160,8 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	position: relative;
 	display: flex;
 	font-size: 1rem;
+	direction: ltr; /* Remove when multilingual quote is supported */
+	unicode-bidi: isolate;
 }
 
 .quotesContainer {
@@ -2170,45 +2172,53 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	border-radius: 20px;
 	padding: 20px;
 	line-height: 28px;
-	direction: ltr; /* Remove when multilingual quote is supported */
-	unicode-bidi: isolate;
+}
+
+.authorWrapper {
+	position: absolute;
+	bottom: 0;
+	inset-inline-end: 0;
+	display: flex;
+	align-items: flex-end;
 }
 
 .authorName {
 	background: var(--bg-color-blue);
-	position: absolute;
-	bottom: 0;
-	inset-inline-end: 0;
+	position: relative;
 	padding: 6px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 40px;
+	width: 70px;
 	border-start-start-radius: 20px;
 	border-end-end-radius: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	transition: width 0.3s ease-in-out;
+	box-sizing: border-box;
 }
 
-.authorName .qtRounder {
+.authorName span {
+	display: inline-block;
+	padding: 0;
+}
+
+.qtRounder {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	inset-inline-start: -20px;
 	transform: rotate(90deg);
-	bottom: 0;
 }
 
-:dir(rtl) .authorName .qtRounder {
-	transform: rotate(-180deg);
-}
-
-.authorName .qtRounder2 {
+.qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	inset-inline-end: 0;
-	transform: rotate(90deg);
 	top: -20px;
-}
-
-:dir(rtl) .authorName .qtRounder2 {
-	transform: rotate(-180deg);
+	transform: rotate(90deg);
 }
 
 body[data-bg="wallpaper"] .quotesContainer {
@@ -2233,11 +2243,11 @@ body[data-bg="wallpaper"] .authorName {
 }
 
 html[lang="ur"] .qtRounder {
-	bottom: -2px;
+	left: -18.5px;
 }
 
 html[lang="ur"] .qtRounder2 {
-	top: -18px;
+	right: -1.5px;
 }
 
 /* ----------Shortcuts----------------- */

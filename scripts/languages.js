@@ -355,7 +355,7 @@ function applyLanguage(lang) {
     feelsLikeElement.style.textAlign = isRTL ? "right" : "left";
 
     const quotesText = document.querySelector(".quotesContainer");
-    quotesText.style.textAlign = isRTL ? "right" : "left";
+    // quotesText.style.textAlign = isRTL ? "right" : "left";
     quotesText.style.fontFamily = commonFontStack;
 
     // Save the selected language in localStorage
