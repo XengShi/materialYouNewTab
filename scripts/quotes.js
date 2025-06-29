@@ -12,6 +12,7 @@ const baseQuoteUrl = "https://xengshi.github.io/multilingual-quotes-api/minified
 
 const quotesContainer = document.querySelector(".quotesContainer");
 const authorName = document.querySelector(".authorName span");
+const authorContainer = document.querySelector(".authorName");
 
 const MAX_QUOTE_LENGTH = 140;
 let lastKnownLanguage = null;
@@ -207,6 +208,13 @@ function displayRandomQuote(quotes) {
     // Display the selected quote
     quotesContainer.textContent = selectedQuote.quote;
     authorName.textContent = selectedQuote.author;
+
+    // Animate .authorName width to fit content
+    requestAnimationFrame(() => {
+        const fullWidth = authorName.scrollWidth;
+        const padding = 16;
+        authorContainer.style.width = (fullWidth + padding * 2) + "px";
+    });
 }
 
 // Main function to load and display a quote
