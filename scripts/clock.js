@@ -94,10 +94,10 @@ async function initializeClock() {
 
     let clocktype;
 
-    // Track cumulative rotations to avoid backward jumps
-    let totalSecondRotation = 0;
-    let totalMinuteRotation = 0;
-    let totalHourRotation = 0;
+    // Track cumulative rotations
+    let cumulativeSecondRotation = 0;
+    let cumulativeMinuteRotation = 0;
+    let cumulativeHourRotation = 0;
 
     // Initialize on first load
     let isFirstLoad = true;
@@ -109,14 +109,14 @@ async function initializeClock() {
     var initialHours = currentTime.getHours();
 
     // Initialize cumulative rotations
-    totalSecondRotation = initialSeconds * 6;
-    totalMinuteRotation = initialMinutes * 6 + (initialSeconds / 10);
-    totalHourRotation = (30 * initialHours + initialMinutes / 2);
+    cumulativeSecondRotation = initialSeconds * 6;
+    cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10);
+    cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
 
     // Apply initial rotations (no need to wait 1s now)
-    document.getElementById("second").style.transform = `rotate(${totalSecondRotation}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${totalMinuteRotation}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${totalHourRotation}deg)`;
+    document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
+    document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
+    document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
 
     function initializeClockType() {
         const savedClockType = localStorage.getItem("clocktype");
@@ -205,6 +205,7 @@ async function initializeClock() {
 
         return newTotal;
     }
+
     function updateanalogclock() {
         var currentTime = new Date();
         var currentSeconds = currentTime.getSeconds();
@@ -222,9 +223,9 @@ async function initializeClock() {
         const hourReset = currentHours % 12 === 0 && currentMinutes === 0 && currentSeconds === 0;
 
         // Update each hand using the helper function
-        totalSecondRotation = updateHandRotation("second", newSecondRotation, totalSecondRotation, secondReset);
-        totalMinuteRotation = updateHandRotation("minute", newMinuteRotation, totalMinuteRotation, minuteReset);
-        totalHourRotation = updateHandRotation("hour", newHourRotation, totalHourRotation, hourReset);
+        cumulativeSecondRotation = updateHandRotation("second", newSecondRotation, cumulativeSecondRotation, secondReset);
+        cumulativeMinuteRotation = updateHandRotation("minute", newMinuteRotation, cumulativeMinuteRotation, minuteReset);
+        cumulativeHourRotation = updateHandRotation("hour", newHourRotation, cumulativeHourRotation, hourReset);
 
         // Mark that we're no longer on first load
         isFirstLoad = false;
