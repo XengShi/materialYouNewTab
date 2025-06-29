@@ -2119,6 +2119,7 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	width: 30px;
 	height: 30px;
 	background-color: var(--darkColor-blue);
+	fill: #fffffff0;
 	border-radius: 100%;
 	margin-inline-start: 5px;
 	padding: 3px;
@@ -3905,8 +3906,9 @@ body[data-bg="wallpaper"] .dropdown-content {
 	width: 33px;
 	height: 33px;
 	margin-inline-start: 0;
-	padding: 2px;
+	padding: 4px;
 	background-color: var(--darkColor-blue);
+	fill: white;
 	border-radius: 100%;
 }
 
@@ -4459,7 +4461,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 	background-color: #aaaaaa;
 }
 
-.dark-theme .search-engine .darkIconForDarkTheme,
+.dark-theme .search-engine .search-engine-icon,
 .dark-theme .aiDarkIcons {
 	fill: #bbbbbb !important;
 }
@@ -4582,6 +4584,18 @@ body[data-bg="wallpaper"] .dropdown-content {
 .dark-theme .micIcon,
 .dark-theme .floating-label-field input {
 	background-color: var(--whitishColor-dark);
+}
+
+.dark-theme body[data-bg="wallpaper"] .micIcon {
+	background-color: color-mix(
+		in srgb,
+		var(--whitishColor-dark) calc(var(--transparency) * 2),
+		transparent
+	);
+}
+
+.dark-theme #searchQ::placeholder {
+	color: #909090 !important;
 }
 
 .dark-theme .floating-label-field input:focus + label,
