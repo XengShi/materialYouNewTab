@@ -166,6 +166,7 @@ async function initializeClock() {
                 fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
                 ar_SA: `${dayName}, ${localizedDayOfMonth} ${monthName}`,	// e.g., الجمعة, 31 مايو
                 el: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName}`, // Κυρ 22 Δεκ
+                th: `วัน${dayName}ที่ ${dayOfMonth} ${monthName}`, // วันอาทิตย์ที่ 22 ธันวาคม
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
             document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
@@ -297,6 +298,7 @@ async function initializeClock() {
             fa: `${dayName} ${localizedDayOfMonth}`, // e.g. شنبه ۲۵
             ar_SA: `${dayName}, ${localizedDayOfMonth}`,	// e.g., الجمعة, 31
             el: `${dayName.substring(0, 3)} ${dayOfMonth}`, // Κυρ 22
+            th: `${dayName}ที่ ${dayOfMonth}`,
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
         const dateString = dateFormats[currentLanguage] || dateFormats.default;
