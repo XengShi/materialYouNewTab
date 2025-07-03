@@ -842,8 +842,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	position: relative;
 }
 #bookmarkList li:is(.folder) {
-	padding: 10px;
-	padding-inline-end: 0;
+	padding: 10px 0;
 }
 
 #bookmarkList li:not(.folder) {
@@ -940,6 +939,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	cursor: pointer;
 	font-weight: bolder;
 	color: var(--textColorDark-blue);
+	position: relative;
 }
 
 .hidden {
@@ -956,12 +956,25 @@ body #bookmarkButton.bookmark-button.rotate {
 	vertical-align: middle; /* Aligns the icon with the text */
 }
 
-.folder ul {
-	padding-inline-start: 20px;
-}
-
 .folder.open > ul {
 	display: block;
+}
+
+.folder::before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-right: 8px;
+	vertical-align: middle;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid currentColor;
+	transition: transform 0.2s ease;
+}
+
+.folder:not(.open)::before {
+	transform: rotate(-90deg);
 }
 
 #bookmarkList:is(.grid-view) .bookmark-delete-button {
