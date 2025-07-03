@@ -1,4 +1,4 @@
-// ภาษาไทย
+// ภาษาไทย (Thai)
 const th = {
     // Menu Items
     "github": "GitHub",
@@ -21,12 +21,12 @@ const th = {
     "aiToolsSettingsInfo": "จัดการคำสั่งลัดสำหรับเครื่องมือ AI",
     "googleAppsMenuText": "Google Apps",
     "googleAppsMenuInfo": "แสดงคำสั่งลัดสำหรับ Google Apps",
-    "googleAppsHover": "Google Apps",    // Keep this shorter
+    "googleAppsHover": "Google Apps",
 
     // To-do List
     "todoListText": "To Do List",
     "todoListInfo": "แสดงรายการสิ่งที่ต้องทำประจำวัน",
-    "todoListHover": "ToDo List",    // Keep this short
+    "todoListHover": "ToDo List",
     "todoPlaceholder": "เพิ่มรายการ...",
 
     // Clock
@@ -45,7 +45,7 @@ const th = {
     "fahrenheitCelsiusText": "รีเฟรชเพื่อใช้งานการเปลี่ยนแปลง",
     "hideWeatherTitle": "ปิดการแสดงสภาพอากาศ",
     "hideWeatherInfo": "ปิดการใช้งานวิดเจ็ตสภาพอากาศ",
-    "hideWeatherBox": "ปิดการแสดงรายละเอียดสภาพอากาศ",    // Toggle for mobile devices only
+    "hideWeatherBox": "ปิดการแสดงรายละเอียดสภาพอากาศ",
     "hideWeatherBoxInfo": "แสดงผลเพียงอุณหภูมิ",
     "minMaxTempText": "อุณหภูมิต่ำสุด-สูงสุด",
     "minMaxTempSubText": "แสดงอุณหภูมิต่ำสุด/สูงสุดแทน 'รู้สึกเหมือน'",
@@ -76,7 +76,7 @@ const th = {
     "PrivacyPolicy": "นโยบายความเป็นส่วนตัว",
 
     // Weather
-    "WeatherApiText": "ป้อน WeatherAPI key ของคุณ",    // For 'WeatherAPI' string, only transliterate
+    "WeatherApiText": "ป้อน WeatherAPI key ของคุณ",
     "WeatherApiSubtext": "หากฟังก์ชันสภาพอากาศไม่ทำงาน",
     "userAPI": "weatherAPI key ของคุณ",
     "LearnMoreButton": "เรียนรู้เพิ่มเติม",
@@ -93,8 +93,8 @@ const th = {
     "sortAlphabetical": "A-Z",
     "sortTimeAdded": "เก่า-ใหม่",
     "bookmarkViewAs": "แสดงผลแบบ",
-    "bookmarkViewGrid": "กริด",    // Keep this shorter
-    "bookmarkViewList": "ลิสต์",    // Keep this shorter
+    "bookmarkViewGrid": "กริด",
+    "bookmarkViewList": "ลิสต์",
     "bookmarkSearch": "ค้นหาบุ๊กมาร์ก",
     "editBookmarkHeading": "แก้ไขบุ๊กมาร์ก",
     "editBookmarkName": "ชื่อบุ๊กมาร์ก",
@@ -123,11 +123,11 @@ const th = {
     // Search Engines
     "defaultEngine": "ค่าเริ่มต้น",
     "googleEngine": "Google",
-    "duckEngine": "Duck",    // DuckDuckGo
+    "duckEngine": "Duck",
     "bingEngine": "Bing",
     "braveEngine": "Brave",
     "youtubeEngine": "YouTube",
-    "gImagesEngine": "Images",  // Google Images, https://www.google.com/search?q=check&hl=bn
+    "gImagesEngine": "Images",
     "redditEngine": "Reddit",
     "wikipediaEngine": "Wikipedia",
     "quoraEngine": "Quora",
@@ -152,8 +152,8 @@ const th = {
     "enableDarkModeInfo": "เปิดใช้งานธีมโหมดมืด",
 
     // Wallpaper and settings
-    "uploadWallpaperText": "อัปโหลดวอลเปเปอร์",    // Keep this short
-    "rangColor": "เลือกสี",    // Keep this short
+    "uploadWallpaperText": "อัปโหลดวอลเปเปอร์",
+    "rangColor": "เลือกสี",
     "opactityTitle": "ความทึบแสง",
     "adjustOpacityDesc": "ปรับความโปร่งใสของอินเทอร์เฟซ",
     "backupText": "สำรองข้อมูล",
@@ -191,7 +191,7 @@ const th = {
     "restorecompleted": "กู้คืนข้อมูลสำเร็จ!",
     "restorefailed": "กู้คืนข้อมูลล้มเหลว: ",
     "invalidBackup": "เลือกไฟล์สำรองข้อมูลไม่ถูกต้อง",
-    "deleteBookmark": "คุณแน่ใจหรือไม่ว่าต้องการลบบุ๊กมาร์ก \"{title}\"?",  // Do not translate {title}
+    "deleteBookmark": "คุณแน่ใจหรือไม่ว่าต้องการลบบุ๊กมาร์ก \"{title}\"?",
     "UnsupportedBrowser": "เบราว์เซอร์ของคุณไม่รองรับบุ๊กมาร์ก",
     "resetShortcutsPrompt": "คำสั่งลัดทั้งหมดที่บันทึกไว้จะถูกลบและรีเซ็ตเป็นค่าเริ่มต้น คุณต้องการดำเนินการต่อหรือไม่?"
 };
