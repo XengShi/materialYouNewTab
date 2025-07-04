@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add("favicon");
                 favicon.onerror = () => {
-                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
+                    favicon.src = "./svgs/offline.svg";
                 };
 
                 // Create the delete button
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
         editBookmarkURL.value = bookmarkURL;
         editBookmarkFavicon.src = faviconURL;
         editBookmarkFavicon.onerror = () => {
-            editBookmarkFavicon.src = "./svgs/shortcuts_icons/offline.svg";
+            editBookmarkFavicon.src = "./svgs/offline.svg";
         };
 
         // Show modal
