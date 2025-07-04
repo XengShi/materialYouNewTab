@@ -667,7 +667,8 @@ body #bookmarkButton.bookmark-button.rotate {
 .bookmark-search-container {
 	position: relative;
 	width: 100%;
-	padding: 30px 10px 16px 10px;
+	padding: 10px;
+	padding-top: 25px;
 	border-radius: var(--round);
 	display: flex;
 	align-items: center;
@@ -684,7 +685,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 18px;
 	opacity: 0.5;
 	inset-inline-start: 9%;
-	top: calc(50% + 7px);
+	top: calc(50% + 8px);
 	transform: translateY(-50%);
 	position: absolute;
 }
@@ -728,7 +729,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: start;
-	height: calc(100% - 260px);
+	height: calc(100% - 242px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	scroll-behavior: smooth;
 	overflow-x: hidden;
@@ -764,7 +765,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	justify-content: space-between;
 	gap: 40px; /* Space between Sort by and View as sections */
-	padding: 6px 32px 13px;
+	padding: 6px 32px;
 }
 
 .bookmark-control-group {
@@ -827,22 +828,16 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #bookmarkList ul {
+	padding: 7px 0;
 	padding-inline-start: 10px;
 	list-style-type: none;
 	font-weight: normal;
-}
-
-#bookmarkList .folder ul {
-	padding-top: 10px;
 }
 
 #bookmarkList li {
 	padding: 2px;
 	border: none;
 	position: relative;
-}
-#bookmarkList li:is(.folder) {
-	padding: 10px 0;
 }
 
 #bookmarkList li:not(.folder) {
