@@ -128,7 +128,7 @@ const ja = {
     "failedbackup": "バックアップに失敗しました: ",
     "restorecompleted": "復元が完了しました！",
     "restorefailed": "復元に失敗しました: ",
-    // "invalidBackup": "Invalid backup file selected.",
-    // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
-    // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
+    "invalidBackup": "このバックアップファイルは無効です。",
+    "deleteBookmark": "ブックマーク「\"{title}\"」を削除しますか?",  // Do not translate {title}
+    "UnsupportedBrowser": "お使いのブラウザではブックマークはサポートされていません",
 };
