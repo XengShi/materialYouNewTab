@@ -15,8 +15,8 @@ const ja = {
     "editShortcutsListInfo": "\"+\" アイコンをクリックして新しいショートカットを追加したり、ショートカット名またはURLをクリックして既存のショートカットを編集したりできます",
     "adaptiveIconText": "アダプティブアイコン",
     "adaptiveIconInfoText": "ショートカットアイコンは小さく表示されます",
-    // "bookmarksText": "Bookmarks",
-    // "bookmarksInfo": "Show bookmarks sidebar",
+    "bookmarksText": "ブックマーク",
+    "bookmarksInfo": "ブックマークのサイドバーを表示",
     "ai_tools_button": "AIツール",
     "enable_ai_tools": "AIツールのショートカットを表示",
     "googleAppsMenuText": "Googleアプリ",
@@ -24,10 +24,10 @@ const ja = {
     "googleAppsHover": "Googleアプリ",
 
     // To-do List
-    // "todoListText": "To Do List",
-    // "todoListInfo": "Show a daily To Do list",
-    // "todoListHover": "ToDo List",   // Keep this short
-    // "todoPlaceholder": "Add task...",
+    "todoListText": "To Doリスト",
+    "todoListInfo": "毎日のTo Doリストを表示",
+    "todoListHover": "To Doリスト",   // Keep this short
+    "todoPlaceholder": "タスクをここに追加",
 
     // Digital Clock
     "digitalclocktitle": "デジタル時計",
@@ -44,13 +44,13 @@ const ja = {
     "fahrenheitCelsiusText": "変更を適用するにはページを再読み込み",
     "micIconTitle": "マイクアイコンを非表示",
     "micIconInfo": "音声入力が動作しない場合",
-    // "hideSearchWith": "Hide Search Engines",
-    // "hideSearchWithInfo": "Switch between search engines by clicking its icon",
+    "hideSearchWith": "検索エンジンを隠す",
+    "hideSearchWithInfo": "アイコンをクリックして検索エンジンを切り替える",
     "search_suggestions_button": "検索候補",
     "search_suggestions_text": "検索候補を有効にする",
 
     // Proxy
-    "useproxytitletext": "プロキシ使用",
+    "useproxytitletext": "プロキシを使用",
     "useproxyText": "検索候補が機能しない場合",
     "ProxyText": "デフォルトCORSプロキシ",
     "ProxySubtext": "独自のCORSプロキシを追加",
@@ -74,11 +74,11 @@ const ja = {
     "months": ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 
     // Bookmarks
-    // "bookmarksHeading": "Bookmarks",
-    // "bookmarkViewAs": "View as",
-    // "bookmarkViewAsGrid": "Grid",   // Keep this shorter
-    // "bookmarkViewAsList": "List",   // Keep this shorter
-    // "bookmarkSearch": "Search bookmark",
+    "bookmarksHeading": "ブックマーク",
+    "bookmarkViewAs": "表示方法",
+    "bookmarkViewAsGrid": "グリッド",   // Keep this shorter
+    "bookmarkViewAsList": "リスト",   // Keep this shorter
+    "bookmarkSearch": "ブックマークを検索",
 
     // New Tab Item
     "conditionText": "こんにちは！本日の調子はいかがですか？",
@@ -111,23 +111,23 @@ const ja = {
     "gemini": "Gemini",
     "copilot": "Copilot",
     "perplexity": "Perplexity",
-    // "metaAI": "Meta AI",
+    "metaAI": "Meta AI",
 
     // Wallpaper and misc
-    // "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
-    // "backupText": "Backup",
-    // "restoreText": "Restore",
-    // "rangColor": "Pick color",    // Keep this short
+    "uploadWallpaperText": "壁紙をアップロード",    // Keep this short
+    "backupText": "バックアップ",
+    "restoreText": "復元",
+    "rangColor": "色を選択",    // Keep this short
 
     // Dialog boxes (alerts)
-    // "confirmWallpaper": "Would you like to set a new image as your wallpaper for the day?",
-    // "confirmRestore": "Are you sure you want to reset your settings? This action cannot be undone.",
-    // "Nobackgroundset": "No background image is currently set.",
-    // "clearbackgroundimage": "Are you sure you want to clear the background image?",
-    // "ProxyDisclaimer": "All proxy features are off by default.\n\nIf you enable search suggestions and CORS bypass proxy, it is strongly recommended to host your own proxy for enhanced privacy.\n\nBy default, the proxy will be set to https://mynt-proxy.rhythmcorehq.com, meaning all your data will go through this service, which may pose privacy concerns.",
-    // "failedbackup": "Backup failed: ",
-    // "restorecompleted": "Restore completed successfully!",
-    // "restorefailed": "Restore failed: ",
+    "confirmWallpaper": "新しい画像を現在の壁紙として設定しますか?",
+    "confirmRestore": "設定をリセットしてもよろしいですか? この操作は元に戻せません。",
+    "Nobackgroundset": "現在の背景画像がありません。",
+    "clearbackgroundimage": "背景の画像を削除しますか？",
+    "ProxyDisclaimer": "すべてのプロキシ機能はデフォルトでオフになっています。\n\n検索候補と CORS バイパス プロキシを有効にする場合は、プライバシーを強化するために独自のプロキシをホストすることを強くお勧めします。\n\nデフォルトでは、プロキシは https://mynt-proxy.rhythmcorehq.com に設定されるため、すべてのデータがこのサービスを通過することになり、プライバシーに関する懸念が生じる可能性があります。",
+    "failedbackup": "バックアップに失敗しました: ",
+    "restorecompleted": "復元が完了しました！",
+    "restorefailed": "復元に失敗しました: ",
     // "invalidBackup": "Invalid backup file selected.",
     // "deleteBookmark": "Are you sure you want to delete the bookmark \"{title}\"?",  // Do not translate {title}
     // "UnsupportedBrowser": "Bookmarks are not supported in your browser",
