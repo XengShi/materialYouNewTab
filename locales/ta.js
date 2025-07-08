@@ -1,7 +1,7 @@
 // தமிழ் (Tamil)
 const ta = {
     // Menu Items
-    "github": "கிட்ஹப்",
+    "github": "அறிவிலிமையம்",
     "feedback": "பின்னூட்டம்",
 
     // Shortcuts
@@ -77,7 +77,7 @@ const ta = {
     "PrivacyPolicy": "தனியுரிமைக் கொள்கை",
 
     // Weather
-    "WeatherApiText": "உங்கள் WeatherAPI விசையை உள்ளிடவும்",
+    "WeatherApiText": "உங்கள் வானிலைபநிஇ விசையை உள்ளிடவும்",
     "WeatherApiSubtext": "வானிலை செயல்பாடு வேலை செய்யவில்லை என்றால்",
     "userAPI": "உங்கள் வானிலைபநிஇ விசை",
     "LearnMoreButton": "மேலும் அறிக",
@@ -124,9 +124,9 @@ const ta = {
     // Search Engines
     "defaultEngine": "இயல்புநிலை",
     "googleEngine": "கூகிள்",
-    "duckEngine": "டக்டக்கோ",
+    "duckEngine": "வாத்துவாத்துபோ", 
     "bingEngine": "பிங்",
-    "braveEngine": "ப்ரேவ்",
+    "braveEngine": "துணிச்சல்",
     "youtubeEngine": "யூடியூப்",
     "gImagesEngine": "படங்கள்",
     "redditEngine": "ரெடிட்",
@@ -143,7 +143,7 @@ const ta = {
     "qwen": "க்வென்",
     "perplexity": "குழப்பம்",
     "deepseek": "ஆழமாகதேடு",
-    "metaAI": "மெட்டா செஅ",
+    "metaAI": "தரவு செஅ",
     "firefly": "அடோப் தீஈ",
     "aiSettingsIntro": "எந்த செஅ கருவிகளைக் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடு",
     "resetAISettingsBtn": "மீட்டமை",
@@ -155,6 +155,8 @@ const ta = {
     // Wallpaper and settings
     "uploadWallpaperText": "பின்படத்தை பதிவேற்று",
     "rangColor": "நிறம் எடு",
+    "opactityTitle": "ஒளிபுகாநிலை",
+    "adjustOpacityDesc": "இடைமுக வெளிப்படைத்தன்மையை சரிசெய்",
     "backupText": "காப்புப்பிரதி",
     "restoreText": "மீட்டெடு",
     "resetsettings": "அமைப்புகளை மீட்டமை",
@@ -190,7 +192,7 @@ const ta = {
     "restorecompleted": "மீட்டெடுப்பு வெற்றிகரமாக முடிந்தது!",
     "restorefailed": "மீட்டெடுப்பு தோல்வியடைந்தது: ",
     "invalidBackup": "தவறான காப்புப்பிரதி கோப்பு தேர்ந்தெடுக்கப்பட்டது.",
-    "deleteBookmark": "\"{title}\"என்ற புத்தக்குறியை நீக்க விரும்புகிறீர்களா?",
+    "deleteBookmark": "\"{title}\"என்ற புத்தக்குறியை நீக்கவா?",
     "UnsupportedBrowser": "உங்கள் உலாவியில் புத்தக்குறிகள் ஆதரிக்கப்படவில்லை.",
     "resetShortcutsPrompt": "சேமிக்கப்பட்ட அனைத்து குறுக்குவழிகளும் நீக்கப்பட்டு இயல்புநிலைக்கு மீட்டமைக்கப்படும். நீங்கள் தொடர விரும்புகிறீர்களா?",
 };
