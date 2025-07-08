@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         shortcutsContainer: document.getElementById("shortcutsContainer"),
         newShortcutButton: document.getElementById("newShortcutButton"),
         resetShortcutsButton: document.getElementById("resetButton"),
-        iconStyle: document.getElementById("iconStyle")
     };
 
     // Preset Data
