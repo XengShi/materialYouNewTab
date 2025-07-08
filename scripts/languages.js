@@ -35,7 +35,8 @@ const translations = {
     fa: fa, // Farsi (Persian)
     ar_SA: ar_SA, // Arabic (Saudi Arabia)
     el: el, // Greek
-    ta: ta // தமிழ்
+    ta: ta, // தமிழ்
+    th: th, // Thai
 };
 
 // Define the width of the menu container for each language
@@ -62,7 +63,8 @@ const menuWidths = {
     de: "460px",
     fa: "460px",
     ar_SA: "440px",
-    el: "455px"
+    el: "455px", 
+    th: "455px",
     // Add more languages and widths as needed
 };
 

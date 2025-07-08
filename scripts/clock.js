@@ -93,6 +93,15 @@ async function initializeClock() {
     }
 
     let clocktype;
+
+    // Track cumulative rotations
+    let cumulativeSecondRotation = 0;
+    let cumulativeMinuteRotation = 0;
+    let cumulativeHourRotation = 0;
+
+    // Initialize on first load
+    let isFirstLoad = true;
+
     // Retrieve current time and calculate initial angles
     var currentTime = new Date();
     var initialSeconds = currentTime.getSeconds();
@@ -100,9 +109,9 @@ async function initializeClock() {
     var initialHours = currentTime.getHours();
 
     // Initialize cumulative rotations
-    let cumulativeSecondRotation = initialSeconds * 6;
-    let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10);
-    let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
+    cumulativeSecondRotation = initialSeconds * 6;
+    cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10);
+    cumulativeHourRotation = (30 * initialHours + initialMinutes / 2);
 
     // Apply initial rotations (no need to wait 1s now)
     document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
@@ -166,70 +175,62 @@ async function initializeClock() {
                 fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
                 ar_SA: `${dayName}, ${localizedDayOfMonth} ${monthName}`,	// e.g., الجمعة, 31 مايو
                 el: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName}`, // Κυρ 22 Δεκ
+                th: `วัน${dayName}ที่ ${dayOfMonth} ${monthName}`, // วันอาทิตย์ที่ 22 ธันวาคม
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
             document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
         }
     }
 
+    // Helper function to update hand rotation smoothly
+    function updateHandRotation(handId, newRotation, currentTotal, isResetCondition) {
+        let newTotal;
+
+        // Always calculate the shortest path for smooth transitions
+        const diff = newRotation - (currentTotal % 360);
+
+        if (isFirstLoad) {
+            // On first load, just set the initial position
+            newTotal = newRotation;
+        } else if (isResetCondition && Math.abs(diff + 360) < Math.abs(diff)) {
+            // When resetting (like 59s→0s), choose the forward path if it's shorter
+            newTotal = newRotation + (Math.floor(currentTotal / 360) + 1) * 360;
+        } else {
+            // Normal case - maintain current rotation count
+            newTotal = newRotation + Math.floor(currentTotal / 360) * 360;
+        }
+
+        // Apply the smooth transition
+        document.getElementById(handId).style.transition = "transform 1s ease";
+        document.getElementById(handId).style.transform = `rotate(${newTotal}deg)`;
+
+        return newTotal;
+    }
+
     function updateanalogclock() {
         var currentTime = new Date();
-        var initialSeconds = currentTime.getSeconds();
-        var initialMinutes = currentTime.getMinutes();
-        var initialHours = currentTime.getHours();
-        let secondreset = false;
-        let hourreset = false;
-        let minreset = false;
+        var currentSeconds = currentTime.getSeconds();
+        var currentMinutes = currentTime.getMinutes();
+        var currentHours = currentTime.getHours();
 
-        // Initialize cumulative rotations
-        let cumulativeSecondRotation = initialSeconds * 6; // 6° per second
-        let cumulativeMinuteRotation = initialMinutes * 6 + (initialSeconds / 10); // 6° per minute + adjustment for seconds
-        let cumulativeHourRotation = (30 * initialHours + initialMinutes / 2); // 30° per hour + adjustment for minutes
+        // Calculate the new rotation values
+        let newSecondRotation = currentSeconds * 6; // 6° per second
+        let newMinuteRotation = currentMinutes * 6 + (currentSeconds / 10); // 6° per minute + adjustment for seconds
+        let newHourRotation = (30 * (currentHours % 12) + currentMinutes / 2); // 30° per hour + adjustment for minutes, 12-hour cycle
 
-        if (secondreset) {
-            document.getElementById("second").style.transition = "none";
-            document.getElementById("second").style.transform = `rotate(0deg)`;
-            secondreset = false;
-            return;
-        }
-        if (minreset) {
-            document.getElementById("minute").style.transition = "none";
-            document.getElementById("minute").style.transform = `rotate(0deg)`;
-            minreset = false;
-            return;
-        }
-        if (hourreset) {
-            document.getElementById("hour").style.transition = "none";
-            document.getElementById("hour").style.transform = `rotate(0deg)`;
-            hourreset = false;
-            return;
-        }
-        if (cumulativeSecondRotation === 0) {
-            document.getElementById("second").style.transition = "transform 1s ease";
-            document.getElementById("second").style.transform = `rotate(361deg)`;
-            secondreset = true;
-        } else {
-            document.getElementById("second").style.transition = "transform 1s ease";
-            document.getElementById("second").style.transform = `rotate(${cumulativeSecondRotation}deg)`;
-        }
+        // Define reset conditions
+        const secondReset = currentSeconds === 0;
+        const minuteReset = currentMinutes === 0 && currentSeconds === 0;
+        const hourReset = currentHours % 12 === 0 && currentMinutes === 0 && currentSeconds === 0;
 
-        if (cumulativeMinuteRotation === 0) {
-            document.getElementById("minute").style.transition = "transform 1s ease";
-            document.getElementById("minute").style.transform = `rotate(361deg)`;
-            minreset = true;
-        } else if (minreset !== true) {
-            document.getElementById("minute").style.transition = "transform 1s ease";
-            document.getElementById("minute").style.transform = `rotate(${cumulativeMinuteRotation}deg)`;
-        }
+        // Update each hand using the helper function
+        cumulativeSecondRotation = updateHandRotation("second", newSecondRotation, cumulativeSecondRotation, secondReset);
+        cumulativeMinuteRotation = updateHandRotation("minute", newMinuteRotation, cumulativeMinuteRotation, minuteReset);
+        cumulativeHourRotation = updateHandRotation("hour", newHourRotation, cumulativeHourRotation, hourReset);
 
-        if (cumulativeHourRotation === 0 && currentTime.getHours() === 0 && currentTime.getMinutes() === 0) {
-            document.getElementById("hour").style.transition = "none"; // Instantly reset at midnight
-            document.getElementById("hour").style.transform = `rotate(0deg)`;
-            hourreset = true;
-        } else if (hourreset !== true) {
-            document.getElementById("hour").style.transition = "transform 1s ease";
-            document.getElementById("hour").style.transform = `rotate(${cumulativeHourRotation}deg)`;
-        }
+        // Mark that we're no longer on first load
+        isFirstLoad = false;
+
         // Update date immediately
         updateDate();
     }
@@ -297,6 +298,7 @@ async function initializeClock() {
             fa: `${dayName} ${localizedDayOfMonth}`, // e.g. شنبه ۲۵
             ar_SA: `${dayName}, ${localizedDayOfMonth}`,	// e.g., الجمعة, 31
             el: `${dayName.substring(0, 3)} ${dayOfMonth}`, // Κυρ 22
+            th: `${dayName}ที่ ${dayOfMonth}`,
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
         const dateString = dateFormats[currentLanguage] || dateFormats.default;
