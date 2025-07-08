@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Multilingual Support for Motivational Quotes ([@prem-k-r](https://github.com/prem-k-r)) ([#683](https://github.com/XengShi/materialYouNewTab/pull/683))
 - Added toggle to hide or show location in the location tile ([@prem-k-r](https://github.com/prem-k-r)) ([#685](https://github.com/XengShi/materialYouNewTab/pull/685))
 - Added drag and drop functionality for reordering shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#695](https://github.com/XengShi/materialYouNewTab/pull/695))
-
+- Added Japanese Translation ([@kons10](http://github.com/kons10)) ([#706](https://github.com/XengShi/materialYouNewTab/pull/706))
 ### Changed
 
 - Weather retention time set to 7.25 minutes for user-entered API keys and 16 minutes otherwise ([@prem-k-r](https://github.com/prem-k-r)) ([#428](https://github.com/XengShi/materialYouNewTab/pull/428))
