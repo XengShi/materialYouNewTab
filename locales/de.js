@@ -155,6 +155,8 @@ const de = {
     // Wallpaper and settings
     "uploadWallpaperText": "Hintergrundbild hochladen",
     "rangColor": "Farbe auswählen",
+    "opactityTitle": "Opazität",
+    "adjustOpacityDesc": "Transparenz der Schnittstelle anpassen",
     "backupText": "Sicherung",
     "restoreText": "Wiederherstellen",
     "resetsettings": "Einstellungen zurücksetzen",
@@ -192,4 +194,5 @@ const de = {
     "invalidBackup": "Ungültige Sicherungsdatei ausgewählt.",
     "deleteBookmark": "Sind Sie sicher, dass Sie das Lesezeichen „{title}“ löschen wollen?",
     "UnsupportedBrowser": "Lesezeichen werden von Ihrem Browser nicht unterstützt.",
+    "resetShortcutsPrompt": "Alle gespeicherten Verknüpfungen werden gelöscht und auf die Standardwerte zurückgesetzt. Möchten Sie fortfahren?"
 };
