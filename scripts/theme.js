@@ -13,6 +13,13 @@ const colorPicker = document.getElementById("colorPicker");
 const colorPickerLabel = document.getElementById("rangColor");
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Forced Dark Mode
+    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
+    enableDarkModeCheckbox.addEventListener("change", function () {
+        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
+    });
+    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
+
     // Check for custom color
     const storedCustomColor = localStorage.getItem(customThemeStorageKey);
     if (storedCustomColor) {
@@ -41,13 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         document.documentElement.classList.add("theme-transition");
     }, 25);
-
-    // ------------------------------ Dark Mode ------------------------------
-    const enableDarkModeCheckbox = document.getElementById("enableDarkModeCheckbox");
-    enableDarkModeCheckbox.addEventListener("change", function () {
-        saveCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
-    });
-    loadCheckboxState("enableDarkModeCheckboxState", enableDarkModeCheckbox);
 });
 
 // Function to load background color 
