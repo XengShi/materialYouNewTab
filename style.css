@@ -1690,6 +1690,10 @@ html[lang="fa"] body[data-bg="wallpaper"] .opacityBarControl {
 	max-height: 123px;
 }
 
+html[lang="ja"] body[data-bg="wallpaper"] .opacityBarControl {
+	max-height: 124px;
+}
+
 .opacityBar {
 	margin-top: 10px;
 	cursor: grab;

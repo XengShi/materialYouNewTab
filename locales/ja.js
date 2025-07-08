@@ -28,7 +28,7 @@ const ja = {
     // To-do List
     "todoListText": "To Doリスト",
     "todoListInfo": "毎日のTo Doリストを表示",
-    "todoListHover": "To Doリスト",   // 文は短いまま
+    "todoListHover": "To Doリスト",
     "todoPlaceholder": "タスクをここに追加",
 
     // Digital Clock
@@ -149,10 +149,10 @@ const ja = {
     "resetAISettingsBtn": "リセット",
 
     // Wallpaper and misc
-    "uploadWallpaperText": "壁紙をアップロード",    // 文は短いまま
+    "uploadWallpaperText": "壁紙をアップロード",
     "backupText": "バックアップ",
     "restoreText": "復元",
-    "rangColor": "色を選択",    // Keep this short
+    "rangColor": "色を選択",
     "enableDarkMode": "ダークモード（実験的）",
     "enableDarkModeInfo": "ダークモードテーマを有効化",
     "opactityTitle": "不透明度",
@@ -169,7 +169,7 @@ const ja = {
     "restorecompleted": "復元が完了しました！",
     "restorefailed": "復元に失敗しました: ",
     "invalidBackup": "このバックアップファイルは無効です。",
-    "deleteBookmark": "ブックマーク「\"{title}\"」を削除しますか?",  // Do not translate {title}
+    "deleteBookmark": "ブックマーク「{title}」を削除しますか?",
     "UnsupportedBrowser": "お使いのブラウザではブックマークはサポートされていません",
     "okText": "OK",
     "yesText": "はい",
