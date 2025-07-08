@@ -516,7 +516,11 @@ async function getWeatherData() {
                 // Setting weather Icon
                 const newWIcon = parsedData.current.condition.icon;
                 const weatherIcon = newWIcon.replace("//cdn.weatherapi.com/weather/64x64/", "https://cdn.weatherapi.com/weather/128x128/");
-                document.getElementById("wIcon").src = weatherIcon;
+                const wIcon = document.getElementById("wIcon");
+                wIcon.onerror = () => {
+                    wIcon.src = './svgs/defaultWeather.svg';
+                };
+                wIcon.src = weatherIcon;
 
                 // Define minimum width for the slider based on the language
                 const humidityMinWidth = {

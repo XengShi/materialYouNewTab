@@ -134,6 +134,10 @@
 	--shortcut-bar-gap-and-padding: 10px;
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
+
+	--md-motion-ease: cubic-bezier(0.4, 0, 0.2, 1); /* standard */
+	/* --md-motion-decelerate: cubic-bezier(0, 0, 0.2, 1); entering 
+	--md-motion-accelerate: cubic-bezier(0.4, 0, 1, 1); exiting */
 }
 
 /* Theme */
@@ -667,7 +671,8 @@ body #bookmarkButton.bookmark-button.rotate {
 .bookmark-search-container {
 	position: relative;
 	width: 100%;
-	padding: 30px 10px 16px 10px;
+	padding: 10px;
+	padding-top: 25px;
 	border-radius: var(--round);
 	display: flex;
 	align-items: center;
@@ -684,7 +689,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	height: 18px;
 	opacity: 0.5;
 	inset-inline-start: 9%;
-	top: calc(50% + 7px);
+	top: calc(50% + 8px);
 	transform: translateY(-50%);
 	position: absolute;
 }
@@ -728,7 +733,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	padding: 0;
 	margin: 0;
 	text-align: start;
-	height: calc(100% - 260px);
+	height: calc(100% - 242px);
 	overflow-y: auto; /* Add vertical scrollbar */
 	scroll-behavior: smooth;
 	overflow-x: hidden;
@@ -764,7 +769,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: flex;
 	justify-content: space-between;
 	gap: 40px; /* Space between Sort by and View as sections */
-	padding: 6px 32px 13px;
+	padding: 6px 32px;
 }
 
 .bookmark-control-group {
@@ -827,23 +832,16 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 #bookmarkList ul {
+	padding: 7px 0;
 	padding-inline-start: 10px;
 	list-style-type: none;
 	font-weight: normal;
-}
-
-#bookmarkList .folder ul {
-	padding-top: 10px;
 }
 
 #bookmarkList li {
 	padding: 2px;
 	border: none;
 	position: relative;
-}
-#bookmarkList li:is(.folder) {
-	padding: 10px;
-	padding-inline-end: 0;
 }
 
 #bookmarkList li:not(.folder) {
@@ -940,6 +938,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	cursor: pointer;
 	font-weight: bolder;
 	color: var(--textColorDark-blue);
+	position: relative;
 }
 
 .hidden {
@@ -956,12 +955,25 @@ body #bookmarkButton.bookmark-button.rotate {
 	vertical-align: middle; /* Aligns the icon with the text */
 }
 
-.folder ul {
-	padding-inline-start: 20px;
-}
-
 .folder.open > ul {
 	display: block;
+}
+
+.folder::before {
+	content: "";
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-right: 8px;
+	vertical-align: middle;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid currentColor;
+	transition: transform 0.2s ease;
+}
+
+.folder:not(.open)::before {
+	transform: rotate(-90deg);
 }
 
 #bookmarkList:is(.grid-view) .bookmark-delete-button {
@@ -2093,7 +2105,7 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 }
 
 .searchEnginesContainer.show {
-	animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	animation: slideIn 0.3s var(--md-motion-ease) forwards;
 }
 
 @keyframes slideIn {
@@ -2123,6 +2135,7 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	width: 30px;
 	height: 30px;
 	background-color: var(--darkColor-blue);
+	fill: #fffffff0;
 	border-radius: 100%;
 	margin-inline-start: 5px;
 	padding: 3px;
@@ -2164,6 +2177,8 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	position: relative;
 	display: flex;
 	font-size: 1rem;
+	direction: ltr; /* Remove when multilingual quote is supported */
+	unicode-bidi: isolate;
 }
 
 .quotesContainer {
@@ -2174,45 +2189,53 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	border-radius: 20px;
 	padding: 20px;
 	line-height: 28px;
-	direction: ltr; /* Remove when multilingual quote is supported */
-	unicode-bidi: isolate;
+}
+
+.authorWrapper {
+	position: absolute;
+	bottom: 0;
+	inset-inline-end: 0;
+	display: flex;
+	align-items: flex-end;
 }
 
 .authorName {
 	background: var(--bg-color-blue);
-	position: absolute;
-	bottom: 0;
-	inset-inline-end: 0;
+	position: relative;
 	padding: 6px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 40px;
+	width: 70px;
 	border-start-start-radius: 20px;
 	border-end-end-radius: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	transition: width 0.2s var(--md-motion-ease);
+	box-sizing: border-box;
 }
 
-.authorName .qtRounder {
+.authorName span {
+	display: inline-block;
+	padding: 0;
+}
+
+.qtRounder {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	inset-inline-start: -20px;
 	transform: rotate(90deg);
-	bottom: 0;
 }
 
-:dir(rtl) .authorName .qtRounder {
-	transform: rotate(-180deg);
-}
-
-.authorName .qtRounder2 {
+.qtRounder2 {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	inset-inline-end: 0;
-	transform: rotate(90deg);
 	top: -20px;
-}
-
-:dir(rtl) .authorName .qtRounder2 {
-	transform: rotate(-180deg);
+	transform: rotate(90deg);
 }
 
 body[data-bg="wallpaper"] .quotesContainer {
@@ -2237,11 +2260,11 @@ body[data-bg="wallpaper"] .authorName {
 }
 
 html[lang="ur"] .qtRounder {
-	bottom: -2px;
+	left: -18.5px;
 }
 
 html[lang="ur"] .qtRounder2 {
-	top: -18px;
+	right: -1.5px;
 }
 
 /* ----------Shortcuts----------------- */
@@ -2714,14 +2737,14 @@ body[data-bg="wallpaper"] .aiToolsCont .toolsCont a {
 	position: relative;
 	z-index: 10;
 	transform: translateY(calc(-1 * var(--move-distance)));
-	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: transform 0.3s var(--md-motion-ease);
 }
 
 .reorder-animate-down {
 	position: relative;
 	z-index: 5;
 	transform: translateY(var(--move-distance));
-	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: transform 0.3s var(--md-motion-ease);
 }
 
 /* Disabled reset button styling */
@@ -3258,7 +3281,7 @@ input:checked + .toggle:before {
 	padding: 15px 10px;
 	padding-inline-start: 8px;
 	position: relative;
-	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) opacity 0.2s ease;
+	transition: transform 0.3s var(--md-motion-ease) opacity 0.2s ease;
 	/* Enable hardware acceleration */
 	will-change: transform, opacity;
 }
@@ -3899,8 +3922,9 @@ body[data-bg="wallpaper"] .dropdown-content {
 	width: 33px;
 	height: 33px;
 	margin-inline-start: 0;
-	padding: 2px;
+	padding: 4px;
 	background-color: var(--darkColor-blue);
+	fill: white;
 	border-radius: 100%;
 }
 
@@ -4453,7 +4477,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 	background-color: #aaaaaa;
 }
 
-.dark-theme .search-engine .darkIconForDarkTheme,
+.dark-theme .search-engine .search-engine-icon,
 .dark-theme .aiDarkIcons {
 	fill: #bbbbbb !important;
 }
@@ -4576,6 +4600,18 @@ body[data-bg="wallpaper"] .dropdown-content {
 .dark-theme .micIcon,
 .dark-theme .floating-label-field input {
 	background-color: var(--whitishColor-dark);
+}
+
+.dark-theme body[data-bg="wallpaper"] .micIcon {
+	background-color: color-mix(
+		in srgb,
+		var(--whitishColor-dark) calc(var(--transparency) * 2),
+		transparent
+	);
+}
+
+.dark-theme #searchQ::placeholder {
+	color: #909090 !important;
 }
 
 .dark-theme .floating-label-field input:focus + label,
