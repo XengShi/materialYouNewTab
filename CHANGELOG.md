@@ -126,6 +126,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Turkish ([@kerimlcr](https://github.com/kerimlcr))
   - Portuguese (Brazil) ([@MestreWalla](https://github.com/MestreWalla))
   - Russian ([@giwih](https://github.com/giwih))
+  - Japanese ([@kons10](http://github.com/kons10))
 
 ### Other
 
