@@ -94,8 +94,6 @@ const ja = {
     "sortAlphabetical": "A-Z",
     "sortTimeAdded": "追加順",
     "bookmarkViewAs": "表示方法",
-    "bookmarkViewAsGrid": "グリッド",   // 文は短いまま
-    "bookmarkViewAsList": "リスト",   // 文は短いまま
     "bookmarkSearch": "ブックマークを検索",
     "bookmarkViewGrid": "グリッド",
     "bookmarkViewList": "リスト",
