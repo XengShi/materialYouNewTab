@@ -1689,7 +1689,7 @@ body[data-bg="wallpaper"] .opacityBarControl {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;
-	max-height: 120px;
+	max-height: 121px;
 }
 
 /* Max-height for specific languages with different font */
