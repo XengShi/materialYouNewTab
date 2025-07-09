@@ -286,12 +286,32 @@ document.addEventListener("DOMContentLoaded", function () {
         return await confirmPrompt(message, agreeText, cancelText);
     }
 
+    // Requests optional host permissions for suggestion APIs
+    async function requestHostPermissions() {
+        return new Promise((resolve) => {
+            chrome.permissions.request({
+                origins: [
+                    "https://www.google.com/complete/search?client=*",
+                    "https://duckduckgo.com/ac/?q=*",
+                    "https://search.brave.com/api/suggest?q=*",
+                    "https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
+                ]
+            }, (granted) => {
+                resolve(granted);
+            });
+        });
+    }
+
     // Add change event listeners for the checkboxes
-    searchsuggestionscheckbox.addEventListener("change", function () {
+    searchsuggestionscheckbox.addEventListener("change", async function () {
         saveCheckboxState("searchsuggestionscheckboxState", searchsuggestionscheckbox);
         if (searchsuggestionscheckbox.checked) {
             proxybypassField.classList.remove("inactive");
             saveActiveStatus("proxybypassField", "active");
+
+            if (!isFirefoxAll) {
+                await requestHostPermissions();
+            }
         } else {
             proxybypassField.classList.add("inactive");
             saveActiveStatus("proxybypassField", "inactive");
