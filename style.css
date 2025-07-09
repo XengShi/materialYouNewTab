@@ -135,9 +135,12 @@
 	--shortcut-size: 50px;
 	--always-show-dock-background: 0;
 
-	--md-motion-ease: cubic-bezier(0.4, 0, 0.2, 1); /* standard */
-	/* --md-motion-decelerate: cubic-bezier(0, 0, 0.2, 1); entering 
-	--md-motion-accelerate: cubic-bezier(0.4, 0, 1, 1); exiting */
+	/* standard: Smooth start and end */
+	--md-motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+	/* entering: Fast start, slow end (Snappy opening, glides to stop)
+	--md-motion-decelerate: cubic-bezier(0, 0, 0.2, 1);
+	exiting: Slow start, fast end (Pushes out quickly at the end)
+	--md-motion-accelerate: cubic-bezier(0.4, 0, 1, 1); */
 }
 
 /* Theme */
@@ -629,7 +632,7 @@ body[data-bg="wallpaper"] .bookmark-button {
 	height: 100%;
 	background-color: var(--accentLightTint-blue);
 	color: white;
-	transition: inset-inline-end 0.3s ease;
+	transition: inset-inline-end 0.3s var(--md-motion-ease);
 	z-index: 5;
 	display: block;
 	border-end-start-radius: var(--round);
