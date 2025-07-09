@@ -188,12 +188,15 @@ async function verifyBookmarkPermission() {
     }
 
     // Chromium-based browsers
+    // Opera doesn't have favicon permission yet
+    const requiredPermissions = isOpera ? ["bookmarks"] : ["bookmarks", "favicon"];
+
     const hasPermission = await new Promise(resolve =>
-        chrome.permissions.contains({ permissions: ["bookmarks", "favicon"] }, resolve));
+        chrome.permissions.contains({ permissions: requiredPermissions }, resolve));
 
     if (!hasPermission) {
         const granted = await new Promise(resolve =>
-            chrome.permissions.request({ permissions: ["bookmarks", "favicon"] }, resolve));
+            chrome.permissions.request({ permissions: requiredPermissions }, resolve));
 
         if (!granted) {
             updateBookmarkUI(false);
@@ -296,7 +299,7 @@ function setBookmarkFavicon(faviconElement, pageUrl) {
     };
 
     // Try browser-specific favicon first (Chromium only)
-    if (!isFirefox) {
+    if (!isFirefox || !isOpera) {
         faviconElement.src = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(pageUrl)}&size=32`;
         faviconElement.onerror = googleFallback;
     } else {
