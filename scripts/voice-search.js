@@ -125,7 +125,7 @@ function initializeSpeechRecognition() {
             }
         });
     } else {
-        console.warn("Speech Recognition API not supported in this browser.");
+        console.info("Speech Recognition API not supported in this browser.");
     }
 }
 
