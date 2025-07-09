@@ -15,6 +15,7 @@ const bookmarkSearch = document.getElementById("bookmarkSearch");
 const bookmarkSearchClearButton = document.getElementById("clearSearchButton");
 const bookmarkViewGrid = document.getElementById("bookmarkViewGrid");
 const bookmarkViewList = document.getElementById("bookmarkViewList");
+const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
 
 const editBookmarkModal = document.getElementById("editBookmarkModal");
 const editBookmarkName = document.getElementById("editBookmarkName");
@@ -160,8 +161,54 @@ bookmarkSearchClearButton.addEventListener("click", function () {
     bookmarkSearch.dispatchEvent(new Event("input")); // Trigger input event to clear search results
 });
 
+function updateBookmarkUI(enabled) {
+    bookmarksCheckbox.checked = enabled;
+    bookmarkButton.style.display = enabled ? "flex" : "none";
+    saveDisplayStatus("bookmarksDisplayStatus", enabled ? "flex" : "none");
+    saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+}
+
+async function verifyBookmarkPermission() {
+    // Early exit for unsupported browsers
+    let bookmarksPermission;
+    if (isFirefox) bookmarksPermission = browser.permissions;
+    else if (isChromiumBased) bookmarksPermission = chrome.permissions;
+
+    if (!bookmarksPermission) {
+        await alertPrompt(translations[currentLanguage]?.UnsupportedBrowser ||
+            translations['en'].UnsupportedBrowser);
+        updateBookmarkUI(false);
+        return false;
+    }
+
+    // Firefox always has permission
+    if (isFirefox) {
+        updateBookmarkUI(true);
+        return true;
+    }
+
+    // Chromium-based browsers
+    const hasPermission = await new Promise(resolve =>
+        chrome.permissions.contains({ permissions: ["bookmarks", "favicon"] }, resolve));
+
+    if (!hasPermission) {
+        const granted = await new Promise(resolve =>
+            chrome.permissions.request({ permissions: ["bookmarks", "favicon"] }, resolve));
+
+        if (!granted) {
+            updateBookmarkUI(false);
+            return false;
+        }
+        bookmarksAPI = chrome.bookmarks; // Initialize if just granted
+    }
+
+    // Success case
+    updateBookmarkUI(true);
+    return true;
+}
+
 async function toggleBookmarkSidebar() {
-    const hasPermission = await checkBookmarkPermission();
+    const hasPermission = await verifyBookmarkPermission();
     if (hasPermission) {
         bookmarkSidebar.classList.toggle("open");
         bookmarkButton.classList.toggle("rotate");
@@ -169,43 +216,6 @@ async function toggleBookmarkSidebar() {
         if (bookmarkSidebar.classList.contains("open")) {
             loadBookmarks();
         }
-    }
-}
-
-async function checkBookmarkPermission() {
-    try {
-        if (!isFirefox) {
-            return new Promise(resolve => {
-                chrome.permissions.contains({
-                    permissions: ["bookmarks"]
-                }, (hasPermission) => {
-                    if (hasPermission) {
-                        resolve(true);
-                    } else {
-                        chrome.permissions.request({
-                            permissions: ["bookmarks"]
-                        }, (granted) => {
-                            if (granted) {
-                                // Initialize API immediately after permission is granted
-                                bookmarksAPI = chrome.bookmarks;
-                                resolve(true);
-                            } else {
-                                // Permission denied
-                                bookmarkButton.style.display = "none";
-                                bookmarksCheckbox.checked = false;
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                                resolve(false);
-                            }
-                        });
-                    }
-                });
-            });
-        }
-        // For Firefox, we always have permission if the API is available
-        return !!bookmarksAPI;
-    } catch (error) {
-        console.error("Permission check failed:", error);
-        return false;
     }
 }
 
@@ -274,6 +284,26 @@ function loadBookmarks() {
     });
 }
 
+// Function to set the favicon for a bookmark
+function setBookmarkFavicon(faviconElement, pageUrl) {
+    // Final fallback to local offline icon
+    const offlineFallback = () => faviconElement.src = "./svgs/offline.svg";
+
+    // Google favicon api fallback
+    const googleFallback = () => {
+        faviconElement.src = `https://www.google.com/s2/favicons?domain=${new URL(pageUrl).hostname}&sz=32`;
+        faviconElement.onerror = offlineFallback;
+    };
+
+    // Try browser-specific favicon first (Chromium only)
+    if (!isFirefox) {
+        faviconElement.src = `chrome-extension://${chrome.runtime.id}/_favicon/?pageUrl=${encodeURIComponent(pageUrl)}&size=32`;
+        faviconElement.onerror = googleFallback;
+    } else {
+        googleFallback();
+    }
+}
+
 function displayBookmarks(bookmarkNodes) {
     let list = document.createElement("ul");
 
@@ -332,12 +362,9 @@ function displayBookmarks(bookmarkNodes) {
             let span = document.createElement("span");
             span.textContent = node.title;
 
-            let favicon = document.createElement("img");
-            favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
+            const favicon = document.createElement("img");
+            setBookmarkFavicon(favicon, node.url);
             favicon.classList.add("favicon");
-            favicon.onerror = () => {
-                favicon.src = "./svgs/offline.svg";
-            };
 
             // Create the delete button
             let deleteButton = document.createElement("button");
@@ -420,15 +447,10 @@ bookmarkList.addEventListener("contextmenu", function (event) {
     const bookmarkTitle = bookmarkItem.querySelector("a").textContent.trim();
     const bookmarkURL = bookmarkItem.dataset.url;
 
-    const faviconURL = `https://www.google.com/s2/favicons?domain=${new URL(bookmarkURL).hostname}&sz=256`;
-
     // Populate modal fields
     editBookmarkName.value = bookmarkTitle;
     editBookmarkURL.value = bookmarkURL;
-    editBookmarkFavicon.src = faviconURL;
-    editBookmarkFavicon.onerror = () => {
-        editBookmarkFavicon.src = "./svgs/offline.svg";
-    };
+    setBookmarkFavicon(editBookmarkFavicon, bookmarkURL);
 
     // Show modal
     editBookmarkModal.style.display = "block";
@@ -508,51 +530,12 @@ editBookmarkURL.addEventListener("keydown", (event) => {
 
 // Save and load the state of the bookmarks toggle
 document.addEventListener("DOMContentLoaded", function () {
-    const bookmarksCheckbox = document.getElementById("bookmarksCheckbox");
-
     bookmarksCheckbox.addEventListener("change", async function () {
-        let bookmarksPermission;
-        if (isFirefox) {
-            bookmarksPermission = browser.permissions;
-        } else if (isChromiumBased) {
-            bookmarksPermission = chrome.permissions;
-        }
-        if (bookmarksPermission !== undefined) {
-            if (bookmarksCheckbox.checked) {
-                bookmarksPermission.contains({
-                    permissions: ["bookmarks"]
-                }, function (alreadyGranted) {
-                    if (alreadyGranted) {
-                        bookmarkButton.style.display = "flex";
-                        saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                        saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                    } else {
-                        bookmarksPermission.request({
-                            permissions: ["bookmarks"]
-                        }, function (granted) {
-                            if (granted) {
-                                bookmarksAPI = chrome.bookmarks;
-                                bookmarkButton.style.display = "flex";
-                                saveDisplayStatus("bookmarksDisplayStatus", "flex");
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            } else {
-                                bookmarksCheckbox.checked = false;
-                                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-                            }
-                        });
-                    }
-                });
-            } else {
-                bookmarkButton.style.display = "none";
-                saveDisplayStatus("bookmarksDisplayStatus", "none");
-                saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
-            }
-        } else {
-            await alertPrompt(translations[currentLanguage]?.UnsupportedBrowser || translations['en'].UnsupportedBrowser);
-            bookmarksCheckbox.checked = false;
-            saveCheckboxState("bookmarksCheckboxState", bookmarksCheckbox);
+        if (!bookmarksCheckbox.checked) {
+            updateBookmarkUI(false);
             return;
         }
+        await verifyBookmarkPermission();
     });
 
     bookmarkGridCheckbox.addEventListener("change", function () {

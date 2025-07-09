@@ -4,7 +4,7 @@
 	"version": "3.2",
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
 	"permissions": ["search"],
-	"optional_permissions": ["bookmarks"],
+	"optional_permissions": ["bookmarks", "favicon"],
 	"host_permissions": [
 		"https://www.google.com/complete/search?client=*",
 		"https://duckduckgo.com/ac/?q=*",
