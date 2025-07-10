@@ -464,7 +464,6 @@ document.addEventListener("DOMContentLoaded", function () {
             aiToolsCont.style.display = "none";
             saveDisplayStatus("aiToolsDisplayStatus", "none");
             aiToolsEditField.classList.add("inactive");
-            toggleAITools();
         }
     });
 

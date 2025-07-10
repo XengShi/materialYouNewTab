@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to load bookmarks
     function loadBookmarks() {
-        if (!bookmarksAPI || !bookmarksAPI.getTree) {
+        if (!bookmarksAPI?.getTree) {
             console.error("Bookmarks API is unavailable. Please check permissions or context.");
             return;
         }
@@ -200,34 +200,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 const menuNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Bookmarks Menu");
                 const otherNode = bookmarkTreeNodes[0]?.children?.find(node => node.title === "Other Bookmarks");
 
-                if (toolbarNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
-                }
-                if (menuNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(menuNode.children));
-                }
-                if (otherNode?.children) {
-                    bookmarkList.appendChild(displayBookmarks(otherNode.children));
-                }
-            } else {
+                if (toolbarNode?.children) bookmarkList.appendChild(displayBookmarks(toolbarNode.children));
+                if (menuNode?.children) bookmarkList.appendChild(displayBookmarks(menuNode.children));
+                if (otherNode?.children) bookmarkList.appendChild(displayBookmarks(otherNode.children));
+            }
+            else {
                 let default_folder = "Bookmarks bar";
-                if (isEdge) {
-                    default_folder = "Favorites bar";
-                } else if (isBrave) {
-                    default_folder = "Bookmarks";
-                }
-                // Extract the "Main bookmarks" node and display its Children
-                const mainBookmarks = bookmarkTreeNodes[0]?.children?.find(node => node.title === default_folder);
+                if (isEdge) default_folder = "Favorites bar";
+                if (isBrave) default_folder = "Bookmarks";
 
-                if (mainBookmarks && mainBookmarks.children) {
+                // Get the children of the root bookmark folder
+                const rootChildren = bookmarkTreeNodes[0]?.children || [];
+
+                // Find and process the default bookmarks folder
+                const mainBookmarks = rootChildren.find(node =>
+                    node.title === default_folder ||
+                    node.folderType === "bookmarks-bar"
+                );
+
+                // If the default folder has children, display its bookmarks
+                if (mainBookmarks?.children) {
                     bookmarkList.appendChild(displayBookmarks(mainBookmarks.children));
                 }
 
-                // Extract the other "Bookmarks" folders and display them
-                const bookmarksBar = bookmarkTreeNodes.find(node => node.id === "0");
-                if (bookmarksBar && bookmarksBar.children) {
-                    bookmarkList.appendChild(displayBookmarks(bookmarksBar.children));
-                }
+                // Process all other root-level folders
+                rootChildren.forEach(node => {
+                    if (node !== mainBookmarks && node.id !== "1" && node.children) {
+                        bookmarkList.appendChild(displayBookmarks([node]));
+                    }
+                });
             }
         }).catch(err => {
             console.error("Error loading bookmarks:", err);
@@ -250,8 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
             bookmarks.sort((a, b) => (a.dateAdded || 0) - (b.dateAdded || 0));
         }
 
-        // Combine folders and bookmarks, placing folders first
-        const sortedNodes = [...folders, ...bookmarks];
+        // Combine folders and bookmarks
+        const sortedNodes = [...bookmarks, ...folders];
 
         for (let node of sortedNodes) {
             if (node.id === "1") continue;
@@ -267,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 folderItem.appendChild(folderIcon);
 
                 folderItem.appendChild(document.createTextNode(node.title));
-                folderItem.classList.add("folder");
+                folderItem.classList.add("folder", "open");
 
                 // Add event listener for unfolding/folding
                 folderItem.addEventListener("click", function (event) {
@@ -280,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 let subList = displayBookmarks(node.children);
-                subList.classList.add("hidden");
                 folderItem.appendChild(subList);
 
                 list.appendChild(folderItem);
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}&sz=48`;
                 favicon.classList.add("favicon");
                 favicon.onerror = () => {
-                    favicon.src = "./svgs/shortcuts_icons/offline.svg";
+                    favicon.src = "./svgs/offline.svg";
                 };
 
                 // Create the delete button
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
         editBookmarkURL.value = bookmarkURL;
         editBookmarkFavicon.src = faviconURL;
         editBookmarkFavicon.onerror = () => {
-            editBookmarkFavicon.src = "./svgs/shortcuts_icons/offline.svg";
+            editBookmarkFavicon.src = "./svgs/offline.svg";
         };
 
         // Show modal

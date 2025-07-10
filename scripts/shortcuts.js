@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const hostname = new URL(normalizeUrl(url)).hostname.replace("www.", "");
 
         if (hostname === "github.com") {
-            return `<img src="./svgs/shortcuts_icons/github-shortcut.svg" alt="">`;
+            return `<img src="./svgs/github-shortcut.svg" alt="">`;
         }
 
         // Check presets for matching domain
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Fetch favicon from Google 
         return `<img src="https://s2.googleusercontent.com/s2/favicons?domain_url=https://${hostname}&sz=256" 
-                onerror="this.src='./svgs/shortcuts_icons/offline.svg'" alt="">`;
+                onerror="this.src='./svgs/offline.svg'" alt="">`;
     }
 
     // Attaches event listeners to shortcut input fields
