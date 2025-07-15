@@ -76,6 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced Google apps and Todo list UI ([@XengShi](https://github.com/XengShi)) ([bff0a40](https://github.com/XengShi/materialYouNewTab/commit/bff0a4012ab8e05bc177dfdc1f3c7189be763a54)), ([@prem-k-r](https://github.com/prem-k-r))
 - New shortcut now auto-scrolls into view and focuses on URL input; and smooth scrolling for all scrollable areas ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
 - Added confirmation alert before resetting shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#657](https://github.com/XengShi/materialYouNewTab/pull/657))
+- Use browser-cached bookmark favicons ([@prem-k-r](https://github.com/prem-k-r)) ([#710](https://github.com/XengShi/materialYouNewTab/pull/710))
 
 ### Removed
 
