@@ -5,7 +5,7 @@
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
 	"permissions": ["search"],
 	"optional_permissions": ["bookmarks"],
-	"host_permissions": [
+	"optional_host_permissions": [
 		"https://www.google.com/complete/search?client=*",
 		"https://duckduckgo.com/ac/?q=*",
 		"https://search.brave.com/api/suggest?q=*",

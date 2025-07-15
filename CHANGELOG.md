@@ -54,6 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated toggle switch design; adjusted the inner thumb size based on state and reduced animation speed ([@vchib1](https://github.com/vchib1)) ([#558](https://github.com/XengShi/materialYouNewTab/pull/558))
 - Reduced radio buttons size in search engines ([@vchib1](https://github.com/vchib1)), ([@prem-k-r](https://github.com/prem-k-r))
 - Added throttle to Reddit search suggestions to prevent hitting rate limits during rapid typing ([@prem-k-r](https://github.com/prem-k-r)) ([#626](https://github.com/XengShi/materialYouNewTab/pull/626))
+- Made host permissions optional (used for search suggestions) ([@prem-k-r](https://github.com/prem-k-r)) ([#709](https://github.com/XengShi/materialYouNewTab/pull/709))
 
 ### Improved
 
