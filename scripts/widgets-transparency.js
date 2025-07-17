@@ -23,7 +23,6 @@ function setSliderPosition(percentage) {
 
 // Handle drag or click interaction on opacity bar
 function handleDrag(e) {
-    e.preventDefault();
     const clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
     const rect = opacityBar.getBoundingClientRect();
     let newPos = isRTL

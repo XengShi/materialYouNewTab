@@ -2210,12 +2210,12 @@ body[data-bg="wallpaper"] .searchWithCont .hint:hover {
 	align-items: center;
 	justify-content: center;
 	height: 40px;
-	width: 70px;
+	width: 40px;
 	border-start-start-radius: 20px;
 	border-end-end-radius: 20px;
 	white-space: nowrap;
 	overflow: hidden;
-	transition: width 0.2s var(--md-motion-ease);
+	transition: width 0.4s var(--md-motion-ease);
 	box-sizing: border-box;
 }
 
@@ -3745,11 +3745,6 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
-body[data-bg="wallpaper"] #menuButton {
-	opacity: calc(var(--transparency) * 3 - 10%);
-	backdrop-filter: blur(5px);
-}
-
 /* ---------------------- */
 #menuCloseButton {
 	position: relative;
@@ -4851,7 +4846,7 @@ body[data-bg="wallpaper"] .dropdown-content {
 	padding: 6px 10px;
 	background-color: var(--darkColor-blue);
 	color: white;
-	border-radius: 10px;
+	border-radius: 16px;
 	margin-top: 5px;
 }
 

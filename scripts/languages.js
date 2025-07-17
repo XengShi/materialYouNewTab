@@ -63,7 +63,7 @@ const menuWidths = {
     de: "460px",
     fa: "460px",
     ar_SA: "440px",
-    el: "455px", 
+    el: "455px",
     th: "455px",
     // Add more languages and widths as needed
 };

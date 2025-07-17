@@ -6,7 +6,7 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Multilingual quotes API.
+// Multilingual quotes API
 const metadataUrl = "https://xengshi.github.io/multilingual-quotes-api/minified/metadata.json";
 const baseQuoteUrl = "https://xengshi.github.io/multilingual-quotes-api/minified/";
 
@@ -15,179 +15,230 @@ const authorName = document.querySelector(".authorName span");
 const authorContainer = document.querySelector(".authorName");
 
 const MAX_QUOTE_LENGTH = 140;
+const MIN_QUOTES_FOR_LANG = 100;
+const ONE_DAY = 24 * 60 * 60 * 1000;
+
+// Fallback quote for when everything fails
+const FALLBACK_QUOTE = {
+    quote: "Don't watch the clock; do what it does. Keep going.",
+    author: "Sam Levenson"
+};
+
 let lastKnownLanguage = null;
 
 // Clear all quotes-related data from localStorage
 function clearQuotesStorage() {
     const keys = Object.keys(localStorage);
-
     keys.forEach(key => {
         if (key.startsWith("quotes_")) {
             localStorage.removeItem(key);
         }
     });
 
-    // Clear the quotes display
     quotesContainer.textContent = "";
     authorName.textContent = "";
 }
 
-// Check if quotes data needs to be refreshed
-function shouldRefreshQuotes(lang, quotesData, metadata) {
-    // Check if quotes data exists and is an array
-    if (!quotesData || !Array.isArray(quotesData) || quotesData.length === 0) {
-        return true;
-    }
-
-    // Check if we have stored timestamp for this language
-    const storedTimestamp = localStorage.getItem(`quotes_${lang}_timestamp`);
-    if (!storedTimestamp) {
-        return true;
-    }
-
-    // Check if metadata has been updated since our last fetch
-    const metadataTimestamp = localStorage.getItem("quotes_metadata_timestamp");
-    if (!metadataTimestamp || metadataTimestamp !== metadata.lastUpdated) {
-        // Metadata changed, but check if THIS language's count changed
-        const storedQuoteCount = localStorage.getItem(`quotes_${lang}_count`);
-        const currentCount = metadata.files[`${lang}.json`].count || 0;
-
-        if (!storedQuoteCount || parseInt(storedQuoteCount) !== currentCount) {
-            return true;
+// Clear quotes for all languages except the specified one
+function clearOtherLanguageQuotes(exceptLang) {
+    const keys = Object.keys(localStorage);
+    keys.forEach(key => {
+        if (
+            key.startsWith("quotes_") &&
+            !key.includes(`quotes_${exceptLang}`) &&
+            key !== "quotes_metadata_timestamp"
+        ) {
+            localStorage.removeItem(key);
         }
-    }
+    });
+}
 
-    // Time-based validation
-    const now = Date.now();
-    const timeDiff = now - new Date(storedTimestamp).getTime();
-    const sevenDays = 7 * 24 * 60 * 60 * 1000;
-    const oneDay = 24 * 60 * 60 * 1000;
+// Check if we need to fetch data for a language
+function needsDataFetch(lang) {
+    // Always fetch if offline
+    if (!navigator.onLine) return false;
 
-    const fileInfo = metadata.files[`${lang}.json`];
-    const quoteCount = fileInfo ? fileInfo.count : 0;
-
-    // For languages with less than 100 quotes, check daily
-    if (quoteCount < 100 && timeDiff > oneDay) {
+    // Check if language changed
+    if (lastKnownLanguage !== null && lastKnownLanguage !== currentLanguage) {
         return true;
     }
 
-    // For languages with 100+ quotes, check weekly
-    if (quoteCount >= 100 && timeDiff > sevenDays) {
+    // Check if any required data is missing
+    const requiredKeys = [
+        `quotes_${lang}`,
+        `quotes_${lang}_timestamp`,
+        `quotes_${lang}_count`
+    ];
+
+    if (requiredKeys.some(key => !localStorage.getItem(key))) {
         return true;
     }
 
-    return false;
+    // Check if data is stale based on quote count
+    const storedCount = parseInt(localStorage.getItem(`quotes_${lang}_count`)) || 0;
+    const storedTimestamp = localStorage.getItem(`quotes_${lang}_timestamp`);
+    const timeDiff = Date.now() - new Date(storedTimestamp).getTime();
+
+    // If count is 0, it means no data available for this language
+    // Only refresh after 1 day to check if quotes were added
+    if (storedCount === 0) {
+        return timeDiff > ONE_DAY;
+    }
+
+    // Time-based validation for languages with actual quotes
+    const maxAge = storedCount < MIN_QUOTES_FOR_LANG ? ONE_DAY : 7 * ONE_DAY;
+    return timeDiff > maxAge;
+}
+
+// Determine target language based on availability
+function getTargetLanguage(currentLang, metadata) {
+    // If current language is English, use it
+    if (currentLang === "en") {
+        return "en";
+    }
+
+    // Check if current language has enough quotes
+    const langFile = metadata?.files?.[`${currentLang}.json`];
+    if (langFile && langFile.count >= MIN_QUOTES_FOR_LANG) {
+        return currentLang;
+    }
+
+    // Fallback to English
+    return "en";
 }
 
 // Fetch metadata from the API
 async function fetchMetadata() {
     try {
         const response = await fetch(metadataUrl);
-        const metadata = await response.json();
-        return metadata;
+        return await response.json();
     } catch (error) {
         console.error("Error fetching metadata:", error);
         throw error;
     }
 }
 
-// Fetch quotes for a specific language and store them locally
-async function fetchQuotes(lang, metadata) {
+// Fetch quotes for a specific language
+async function fetchQuotes(lang) {
     try {
         const url = `${baseQuoteUrl}${lang}.json`;
         const response = await fetch(url);
-        const quotes = await response.json();
-
-        // Store quotes and timestamp in localStorage
-        localStorage.setItem(`quotes_${lang}`, JSON.stringify(quotes));
-        localStorage.setItem(`quotes_${lang}_timestamp`, new Date().toISOString());
-
-        // Store metadata timestamp to track when we last checked for updates
-        localStorage.setItem("quotes_metadata_timestamp", metadata.lastUpdated);
-
-        // Store the quote count for this language
-        const quoteCount = metadata.files[`${lang}.json`].count || quotes.length;
-        localStorage.setItem(`quotes_${lang}_count`, quoteCount.toString());
-
-        return quotes;
+        return await response.json();
     } catch (error) {
         console.error(`Error fetching quotes for ${lang}:`, error);
         throw error;
     }
 }
 
-// Get quotes for the current language with fallback logic
+// Store quotes and metadata in localStorage
+function storeQuotesData(lang, quotes, metadata) {
+    const timestamp = new Date().toISOString();
+
+    localStorage.setItem(`quotes_${lang}`, JSON.stringify(quotes));
+    localStorage.setItem(`quotes_${lang}_timestamp`, timestamp);
+
+    if (metadata) {
+        localStorage.setItem("quotes_metadata_timestamp", metadata.lastUpdated);
+        const quoteCount = metadata.files?.[`${lang}.json`]?.count || quotes.length;
+        localStorage.setItem(`quotes_${lang}_count`, quoteCount.toString());
+    }
+}
+
+// Store "no data available" information for languages without quotes
+function storeNoDataInfo(lang, metadata) {
+    const timestamp = new Date().toISOString();
+
+    localStorage.setItem(`quotes_${lang}`, JSON.stringify([])); // Empty array
+    localStorage.setItem(`quotes_${lang}_timestamp`, timestamp);
+    localStorage.setItem(`quotes_${lang}_count`, "0"); // 0 indicates no data available
+
+    if (metadata) {
+        localStorage.setItem("quotes_metadata_timestamp", metadata.lastUpdated);
+    }
+}
+
+// Get stored quotes for a language
+function getStoredQuotes(lang) {
+    const storedQuotes = localStorage.getItem(`quotes_${lang}`);
+    return storedQuotes ? JSON.parse(storedQuotes) : null;
+}
+
+// Display fallback quote
+function displayFallbackQuote() {
+    quotesContainer.textContent = FALLBACK_QUOTE.quote;
+    authorName.textContent = FALLBACK_QUOTE.author;
+}
+
+// Get quotes for the current language
 async function getQuotesForLanguage(forceRefresh = false) {
     try {
         // Check if language has changed
         const languageChanged = lastKnownLanguage !== null && lastKnownLanguage !== currentLanguage;
-        if (languageChanged) {
-            forceRefresh = true;
-        }
-
-        // Update last known language
         lastKnownLanguage = currentLanguage;
 
-        let targetLang = currentLanguage;
-        let quotesData = null;
+        // Check if we need to fetch new data
+        const shouldFetch = forceRefresh || needsDataFetch(currentLanguage);
 
-        // Try to fetch the latest metadata to check for updates, but only if we are online
-        let metadata = null;
-        if (navigator.onLine) {
-            try {
-                metadata = await fetchMetadata();
+        if (shouldFetch) {
+            // Fetch metadata first to determine availability
+            const metadata = await fetchMetadata();
+            const targetLang = getTargetLanguage(currentLanguage, metadata);
 
-                // Determine which language to use based on quote availability
-                if (currentLanguage !== "en") {
-                    const langFile = metadata.files[`${currentLanguage}.json`];
-                    if (!langFile || langFile.count < 100) {
-                        targetLang = "en";
-                    }
+            // Store info about current language availability
+            const currentLangFile = metadata.files?.[`${currentLanguage}.json`];
+            const currentLangCount = currentLangFile?.count || 0;
+
+            // If current language has no quotes, store that info
+            if (currentLangCount === 0 && currentLanguage !== "en") {
+                storeNoDataInfo(currentLanguage, metadata);
+            }
+
+            // Fetch quotes for target language
+            const quotes = await fetchQuotes(targetLang);
+            storeQuotesData(targetLang, quotes, metadata);
+            clearOtherLanguageQuotes(currentLanguage || targetLang);
+            return quotes;
+
+        } else {
+            // Use stored data
+            const storedCount = parseInt(localStorage.getItem(`quotes_${currentLanguage}_count`)) || 0;
+
+            // If current language has no quotes (count is 0), use English fallback
+            if (storedCount === 0 && currentLanguage !== "en") {
+                let englishQuotes = getStoredQuotes("en");
+
+                // If no English quotes stored, we need to fetch them
+                if (!englishQuotes || englishQuotes.length === 0) {
+                    const metadata = await fetchMetadata();
+                    englishQuotes = await fetchQuotes("en");
+                    storeQuotesData("en", englishQuotes, metadata);
                 }
-            } catch (error) {
-                console.log("Failed to fetch metadata, working offline");
+
+                return englishQuotes;
             }
+
+            // Return stored quotes for current language
+            return getStoredQuotes(currentLanguage);
         }
-
-        // If language changed, clear old data for the previous language
-        if (languageChanged) {
-            clearQuotesStorage();
-        }
-
-        // Try to get stored quotes first
-        const storedQuotes = localStorage.getItem(`quotes_${targetLang}`);
-        if (storedQuotes) {
-            quotesData = JSON.parse(storedQuotes);
-        }
-
-        // Check if we need to fetch new quotes (only when online)
-        if (navigator.onLine && (forceRefresh || shouldRefreshQuotes(targetLang, quotesData, metadata))) {
-            quotesData = await fetchQuotes(targetLang, metadata);
-
-            // Clear other language data after successfully fetching new data
-            if (!languageChanged) {
-                const keys = Object.keys(localStorage);
-                keys.forEach(key => {
-                    if (key.startsWith("quotes_") && !key.includes(targetLang) && key !== "quotes_metadata_timestamp") {
-                        localStorage.removeItem(key);
-                    }
-                });
-            }
-        }
-
-        return quotesData;
     } catch (error) {
         console.error("Error getting quotes:", error);
-        // Return fallback quote if everything fails
-        return [{ quote: "Don’t watch the clock; do what it does. Keep going.", author: "Sam Levenson" }];
+
+        // Try to use any stored data as fallback
+        let quotes = getStoredQuotes(currentLanguage) || getStoredQuotes("en");
+
+        if (!quotes || quotes.length === 0) {
+            // Return hardcoded fallback quote if everything fails
+            return [FALLBACK_QUOTE];
+        }
+
+        return quotes;
     }
 }
 
 // Display a random quote that meets the length requirements
 function displayRandomQuote(quotes) {
     if (!quotes || quotes.length === 0) {
-        quotesContainer.textContent = "Don’t watch the clock; do what it does. Keep going.";
-        authorName.textContent = "Sam Levenson";
+        displayFallbackQuote();
         return;
     }
 
@@ -224,9 +275,7 @@ async function loadAndDisplayQuote(forceRefresh = false) {
         displayRandomQuote(quotes);
     } catch (error) {
         console.error("Error loading quote:", error);
-        // Display fallback quote on any error
-        quotesContainer.textContent = "Don’t watch the clock; do what it does. Keep going.";
-        authorName.textContent = "Sam Levenson";
+        displayFallbackQuote();
     }
 }
 
