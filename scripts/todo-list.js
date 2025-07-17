@@ -48,6 +48,10 @@ function addtodoItem() {
 function createTodoItemDOM(id, title, status, pinned) {
     let li = document.createElement("li");
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
+    const editbtn = document.createElement("span"); // Create the Edit Icon
+    editbtn.setAttribute("class", "todoeditbtn");
+    editbtn.textContent = "\u270E";
+    li.appendChild(editbtn); // Add the Edit icon to the LI tag
     const removebtn = document.createElement("span"); // Create the Cross Icon
     removebtn.setAttribute("class", "todoremovebtn");
     removebtn.textContent = "\u00d7";
@@ -56,9 +60,9 @@ function createTodoItemDOM(id, title, status, pinned) {
     if (status === "completed") {
         li.classList.add("checked");
     }
-    const pinbtn = document.createElement("span"); // Create the Cross Icon
+    const pinbtn = document.createElement("span"); // Create the Pin Icon
     pinbtn.setAttribute("class", "todopinbtn");
-    li.appendChild(pinbtn); // Add the cross icon to the LI tag
+    li.appendChild(pinbtn); // Add the Pin icon to the LI tag
     if (pinned) {
         li.classList.add("pinned");
     }
@@ -83,6 +87,45 @@ todoulList.addEventListener("click", (event) => {
         let id = event.target.parentElement.dataset.todoitem;
         todoList[id].pinned = (todoList[id].pinned !== true); // Update status
         SaveToDoData(); // Save Changes
+    } else if (event.target.classList.contains("todoeditbtn")) {
+        const li = event.target.parentElement;
+        const id = li.dataset.todoitem;
+        const todo = todoList[id];
+        const previousTitle = todo.title;
+
+        li.classList.toggle("edit");
+        if (li.classList.contains("edit")) {
+            // Find the text node in the LI (the title)
+            const titleNode = Array.from(li.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
+            //Safe check
+            if (!titleNode) {
+                console.warn("Title text node not found.");
+                return;
+            }
+            const input = document.createElement("input");
+            input.type = "text";
+            input.className = "edit-input";
+            input.value = previousTitle;
+            li.insertBefore(input, titleNode);
+            li.removeChild(titleNode);
+            input.focus();
+            // Save on blur or Enter
+            function saveEdit() {
+                const newTitle = input.value.trim();
+                todo.title = (newTitle !== "")?(newTitle):(previousTitle);  //Check for empty title 
+                const textNode = document.createTextNode(todo.title);
+                li.insertBefore(textNode, input);
+                li.removeChild(input);
+                li.classList.remove("edit");
+                SaveToDoData(); // Save changes
+            }
+            input.addEventListener("blur", saveEdit);
+            input.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    input.blur(); // triggers saveEdit
+                }
+            });
+        }
     }
 });
 
