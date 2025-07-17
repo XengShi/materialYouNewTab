@@ -6,12 +6,9 @@
  * If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Global variables to track intervals and last date strings
+// Global variables to track intervals
 let analogIntervalId = null;
 let digitalIntervalId = null;
-let lastDateString = null;
-let lastDigitalDateString = null;
-let lastGreetingString = null;
 
 // ---------------------- Hiding clock func ----------------------
 // Select elements
@@ -181,13 +178,7 @@ async function initializeClock() {
                 th: `วัน${dayName}ที่ ${dayOfMonth} ${monthName}`, // วันอาทิตย์ที่ 22 ธันวาคม
                 default: `${dayName.substring(0, 3)}, ${monthName.substring(0, 3)} ${dayOfMonth}`	// Sun, Dec 22
             };
-
-            const newDateString = dateDisplay[currentLanguage] || dateDisplay.default;
-            // Update date if date actually changed or if it's the first time
-            if (newDateString !== lastDateString) {
-                document.getElementById("date").innerText = newDateString;
-                lastDateString = newDateString;
-            }
+            document.getElementById("date").innerText = dateDisplay[currentLanguage] || dateDisplay.default;
         }
     }
 
@@ -310,13 +301,7 @@ async function initializeClock() {
             th: `${dayName}ที่ ${dayOfMonth}`,
             default: `${dayOfMonth} ${dayName.substring(0, 3)}`,	// 24 Thu
         };
-
-        const newDigitalDateString = dateFormats[currentLanguage] || dateFormats.default;
-        // Update date if date actually changed or if it's the first time
-        if (newDigitalDateString !== lastDigitalDateString) {
-            document.getElementById("digidate").textContent = newDigitalDateString;
-            lastDigitalDateString = newDigitalDateString;
-        }
+        const dateString = dateFormats[currentLanguage] || dateFormats.default;
 
         // Handle time formatting based on the selected language
         let timeString;
@@ -391,17 +376,14 @@ async function initializeClock() {
             document.getElementById("amPm").textContent = ""; // Clear AM/PM for 24-hour format
         }
 
+        // Update the translated date
+        document.getElementById("digidate").textContent = dateString;
+
         const clocktype1 = localStorage.getItem("clocktype");
-        const dateElement = document.getElementById("date");
         if (clocktype1 === "digital" && isGreetingEnabled) {
-            const newGreeting = getGreeting();
-            if (newGreeting !== lastGreetingString) {
-                dateElement.style.display = "block";
-                dateElement.innerText = newGreeting;
-                lastGreetingString = newGreeting;
-            }
+            document.getElementById("date").innerText = getGreeting();
         } else if (clocktype1 === "digital") {
-            dateElement.style.display = "none";  // Hide the greeting
+            document.getElementById("date").innerText = ""; // Hide the greeting
         }
     }
 
