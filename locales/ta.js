@@ -144,7 +144,7 @@ const ta = {
     "perplexity": "பெர்ப்லெக்சிடி",
     "deepseek": "டீப்சீக்",
     "metaAI": "மெட்டா ஏஐ",
-    "firefly": "அடோப் ஃபயர்ஃபிளை",
+    "firefly": "ஃபயர்ஃபிளை",
     "aiSettingsIntro": "எந்த செஅ கருவிகளைக் காட்ட வேண்டும் என்பதைத் தேர்ந்தெடு",
     "resetAISettingsBtn": "மீட்டமை",
 
