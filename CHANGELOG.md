@@ -103,6 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed disabled Save button in Edit Bookmark not re-enabling after entering URL ([@prem-k-r](https://github.com/prem-k-r)) ([#635](https://github.com/XengShi/materialYouNewTab/pull/635))
 - Fixed inactive Add Shortcut button after resetting maxed-out shortcuts ([@prem-k-r](https://github.com/prem-k-r)) ([#638](https://github.com/XengShi/materialYouNewTab/pull/638))
 - Prevent repeated toggle of bookmark on RightArrow key hold ([@prem-k-r](https://github.com/prem-k-r)) ([45ebd54](https://github.com/XengShi/materialYouNewTab/pull/669/commits/45ebd54a0767427f5c2b0b12a735d35f446eba3c))
+- Prevent flash of default blue color on page load when using custom theme from color picker ([@prem-k-r](https://github.com/prem-k-r)) ([#708](https://github.com/XengShi/materialYouNewTab/pull/708))
 
 ### Localized
 
