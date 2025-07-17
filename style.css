@@ -3745,11 +3745,6 @@ input:checked + .toggle:before {
 	cursor: pointer;
 }
 
-body[data-bg="wallpaper"] #menuButton {
-	opacity: calc(var(--transparency) * 3 - 10%);
-	backdrop-filter: blur(5px);
-}
-
 /* ---------------------- */
 #menuCloseButton {
 	position: relative;
