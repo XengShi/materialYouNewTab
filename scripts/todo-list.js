@@ -14,6 +14,8 @@ const todoulList = document.getElementById("todoullist");
 const todoAdd = document.getElementById("todoAdd");
 const todoInput = document.getElementById("todoInput");
 let todoList = {}; // Initialize todoList JSON
+let suppressNextClick = false;
+let suppressTimeout = null;
 
 // Add event listeners for Add button click or Enter key press
 todoAdd.addEventListener("click", addtodoItem);
@@ -73,6 +75,7 @@ function createTodoItemDOM(id, title, status, pinned) {
 // Event delegation for task check and remove
 todoulList.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
+        if (suppressNextClick) return;  // Prevent misclick on LI
         event.target.classList.toggle("checked"); // Check the clicked LI tag
         let id = event.target.dataset.todoitem;
         todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
@@ -95,6 +98,7 @@ todoulList.addEventListener("click", (event) => {
 
         li.classList.toggle("edit");
         if (li.classList.contains("edit")) {
+            suppressNextClick = true; // prevent mis-clicks on next action
             // Find the text node in the LI (the title)
             const titleNode = Array.from(li.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
             //Safe check
@@ -118,6 +122,11 @@ todoulList.addEventListener("click", (event) => {
                 li.removeChild(input);
                 li.classList.remove("edit");
                 SaveToDoData(); // Save changes
+                 // Delay resetting to allow click suppression
+                clearTimeout(suppressTimeout);
+                suppressTimeout = setTimeout(() => {
+                    suppressNextClick = false;
+                }, 200);
             }
             input.addEventListener("blur", saveEdit);
             input.addEventListener("keydown", function (e) {
