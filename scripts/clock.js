@@ -481,6 +481,14 @@ async function initializeClock() {
     }
 
     // ----------------------- End of clock display -------------------------
+    function resetDateDisplay() {
+        const dateElement = document.getElementById("date");
+        dateElement.style.display = "block";
+        dateElement.innerText = "";
+        lastGreetingString = null;
+        lastDateString = null;
+        updateDate();
+    }
 
     // Save and load toggle state
     document.addEventListener("DOMContentLoaded", function () {
@@ -521,6 +529,7 @@ async function initializeClock() {
                 startAnalogClock();
                 updateanalogclock();
                 displayClock();
+                resetDateDisplay();
                 saveActiveStatus("timeformatField", "inactive");
                 saveActiveStatus("greetingField", "inactive");
             }
