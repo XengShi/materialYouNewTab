@@ -116,7 +116,7 @@ todoulList.addEventListener("click", (event) => {
             // Save on blur or Enter
             function saveEdit() {
                 const newTitle = input.value.trim();
-                todo.title = (newTitle !== "")?(newTitle):(previousTitle);  //Check for empty title 
+                todo.title = (newTitle !== "") ? sanitizeInput(newTitle) : previousTitle;  //Check for empty title 
                 const textNode = document.createTextNode(todo.title);
                 li.insertBefore(textNode, input);
                 li.removeChild(input);
