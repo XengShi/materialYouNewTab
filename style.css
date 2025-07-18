@@ -1285,7 +1285,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: 1rem;
 	padding-block: 12px;
 	padding-inline-start: 32px;
-	padding-inline-end: 56px;
+	padding-inline-end: 86px;
 	user-select: none;
 	cursor: pointer;
 	position: relative;
@@ -1320,12 +1320,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	display: none;
 }
 
-.todolist .edit-input{
+.todolist .edit-input {
 	color: inherit;
-	border: none;
 	outline: none;
+	border: 1px solid #ccc;
 	font-size: inherit;
+	border-radius: 6px;
 	background-color: transparent;
+	padding-left: 2px;
 }
 
 
@@ -1351,6 +1353,10 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem .todoremovebtn:hover {
+	color: var(--whitishColor-blue);
+}
+
+.todolistitem .todoeditbtn:hover {
 	color: var(--whitishColor-blue);
 }
 
@@ -4562,6 +4568,14 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme .todolistitem .todoremovebtn:hover {
+	color: #888888;
+}
+
+.dark-theme .todolistitem .todoeditbtn {
+	color: #616161;
+}
+
+.dark-theme .todolistitem .todoeditbtn:hover {
 	color: #888888;
 }
 
