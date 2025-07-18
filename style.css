@@ -1322,7 +1322,7 @@ body #bookmarkButton.bookmark-button.rotate {
 }
 
 .todolistitem.edit .todoeditbtn {
-	display: none;
+	background-image: url("./svgs/todo-edit-done.svg");
 }
 
 .todolist .edit-input {
@@ -1333,6 +1333,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: inherit;
 	border-radius: 6px;
 	background-color: transparent;
+	margin-left: -1px;
 }
 
 
@@ -1361,13 +1362,14 @@ body #bookmarkButton.bookmark-button.rotate {
 	color: var(--whitishColor-blue);
 }
 
-.todolistitem .todoeditbtn:hover {
-	color: var(--whitishColor-blue);
-}
-
 .todolistitem .todopinbtn{
 	inset-inline-end: 28px;
 	background: url("./svgs/todo-pin-stroke.svg") no-repeat center center /
+		contain;
+}
+
+.todolistitem .todoeditbtn{
+	background: url("./svgs/todo-edit-do.svg") no-repeat center center /
 		contain;
 }
 

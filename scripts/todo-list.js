@@ -52,7 +52,6 @@ function createTodoItemDOM(id, title, status, pinned) {
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
     const editbtn = document.createElement("span"); // Create the Edit Icon
     editbtn.setAttribute("class", "todoeditbtn");
-    editbtn.textContent = "\u270E";
     li.appendChild(editbtn); // Add the Edit icon to the LI tag
     const removebtn = document.createElement("span"); // Create the Cross Icon
     removebtn.setAttribute("class", "todoremovebtn");
@@ -91,6 +90,7 @@ todoulList.addEventListener("click", (event) => {
         todoList[id].pinned = (todoList[id].pinned !== true); // Update status
         SaveToDoData(); // Save Changes
     } else if (event.target.classList.contains("todoeditbtn")) {
+        if (suppressNextClick) return;
         const li = event.target.parentElement;
         const id = li.dataset.todoitem;
         const todo = todoList[id];
