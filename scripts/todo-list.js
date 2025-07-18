@@ -126,7 +126,7 @@ todoulList.addEventListener("click", (event) => {
                 clearTimeout(suppressTimeout);
                 suppressTimeout = setTimeout(() => {
                     suppressNextClick = false;
-                }, 200);
+                }, 500);
             }
             // Cancel function for escape key
             function cancelEdit() {
