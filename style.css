@@ -1330,6 +1330,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	outline: none;
 	border: 1px solid #ccc;
 	height: 24px;
+	width: inherit;
 	font-size: inherit;
 	border-radius: 6px;
 	background-color: transparent;
