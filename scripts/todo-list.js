@@ -128,10 +128,30 @@ todoulList.addEventListener("click", (event) => {
                     suppressNextClick = false;
                 }, 200);
             }
+            // Cancel function for escape key
+            function cancelEdit() {
+                // Remove the blur event to prevent saveEdit from running
+                input.removeEventListener("blur", saveEdit);
+
+                // Safe Check: Only remove input if it's still in the DOM
+                if (li.contains(input)) {
+                    const textNode = document.createTextNode(previousTitle);
+                    li.insertBefore(textNode, input);
+                    li.removeChild(input);
+                    li.classList.remove("edit");
+
+                    clearTimeout(suppressTimeout);
+                    suppressTimeout = setTimeout(() => {
+                        suppressNextClick = false;
+                    }, 200);
+                }
+            }
             input.addEventListener("blur", saveEdit);
             input.addEventListener("keydown", function (e) {
                 if (e.key === "Enter") {
                     input.blur(); // triggers saveEdit
+                } else if (e.key === "Escape") {
+                cancelEdit();
                 }
             });
         }
