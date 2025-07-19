@@ -1127,7 +1127,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: none;
 	cursor: pointer;
 	z-index: 2;
-	/* Set z-index */
 }
 
 /* Show tooltip on hover */
@@ -1150,7 +1149,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 320px;
+	grid-template-columns: 330px;
 	justify-items: center;
 	position: fixed;
 	top: 85px;
@@ -1284,8 +1283,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	list-style-type: none;
 	font-size: 1rem;
 	padding-block: 12px;
-	padding-inline-start: 32px;
-	padding-inline-end: 56px;
+	padding-inline-start: 36px;
+	padding-inline-end: 88px;
 	user-select: none;
 	cursor: pointer;
 	position: relative;
@@ -1316,8 +1315,31 @@ body #bookmarkButton.bookmark-button.rotate {
 	text-decoration: line-through;
 }
 
+.todolistitem.edit {
+	color: white;
+	text-decoration: none !important;
+}
+
+.todolistitem.edit .todoeditbtn {
+	background-image: url("./svgs/todo-edit-done.svg");
+}
+
+.todolist .edit-input {
+	color: inherit;
+	outline: none;
+	border: 1px solid #ccc;
+	height: 24px;
+	width: inherit;
+	font-size: inherit;
+	border-radius: 6px;
+	background-color: transparent;
+	padding: 0 3px;
+	margin-inline-start: -4px;
+}
+
 .todolistitem .todoremovebtn,
-.todolistitem .todopinbtn {
+.todolistitem .todopinbtn,
+.todoeditbtn {
 	position: absolute;
 	inset-inline-end: 6px;
 	top: 50%;
@@ -1328,7 +1350,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	line-height: 1.2;
 	color: var(--bg-color-blue);
 	text-align: center;
-	border-radius: 50%;
 	transition: all 0.3s ease;
 	user-select: none;
 }
@@ -1345,6 +1366,19 @@ body #bookmarkButton.bookmark-button.rotate {
 	inset-inline-end: 28px;
 	background: url("./svgs/todo-pin-stroke.svg") no-repeat center center /
 		contain;
+}
+
+.todolistitem .todoeditbtn {
+	background: url("./svgs/todo-edit-do.svg") no-repeat center center / contain;
+}
+
+.todoeditbtn {
+	inset-inline-end: 56px;
+	opacity: 0.8;
+}
+
+.todoeditbtn:hover {
+	opacity: 1;
 }
 
 .todolistitem.pinned .todopinbtn {
@@ -4545,6 +4579,14 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .dark-theme .todolistitem .todoremovebtn:hover {
+	color: #888888;
+}
+
+.dark-theme .todolistitem .todoeditbtn {
+	color: #616161;
+}
+
+.dark-theme .todolistitem .todoeditbtn:hover {
 	color: #888888;
 }
 
