@@ -1127,7 +1127,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	border: none;
 	cursor: pointer;
 	z-index: 2;
-	/* Set z-index */
 }
 
 /* Show tooltip on hover */
@@ -1150,7 +1149,7 @@ body #bookmarkButton.bookmark-button.rotate {
 	border-radius: 30px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 	border: 8px solid var(--bg-color-blue);
-	grid-template-columns: 320px;
+	grid-template-columns: 330px;
 	justify-items: center;
 	position: fixed;
 	top: 85px;
@@ -1284,8 +1283,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	list-style-type: none;
 	font-size: 1rem;
 	padding-block: 12px;
-	padding-inline-start: 32px;
-	padding-inline-end: 86px;
+	padding-inline-start: 36px;
+	padding-inline-end: 88px;
 	user-select: none;
 	cursor: pointer;
 	position: relative;
@@ -1334,7 +1333,8 @@ body #bookmarkButton.bookmark-button.rotate {
 	font-size: inherit;
 	border-radius: 6px;
 	background-color: transparent;
-	margin-left: -1px;
+	padding: 0 3px;
+	margin-inline-start: -4px;
 }
 
 .todolistitem .todoremovebtn,
