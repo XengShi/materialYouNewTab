@@ -34,12 +34,12 @@ function sanitizeInput(input) {
 
 // Function to add items to the TODO list
 function addtodoItem() {
-    const inputText = todoInput.value.trim(); // Remove useless whitespaces
-    if (inputText === "") {
-        return; // Return the function when the input is empty
-    }
+    const inputText = todoInput.value.trim();
+    if (inputText === "") return;
+
     const t = "t" + Date.now(); // Generate a Unique ID
     const rawText = inputText;
+
     todoList[t] = { title: rawText, status: "pending", pinned: false }; // Add data to the JSON variable
     const li = createTodoItemDOM(t, rawText, "pending", false); // Create List item
     todoulList.appendChild(li); // Append the new item to the DOM immediately
@@ -50,23 +50,33 @@ function addtodoItem() {
 function createTodoItemDOM(id, title, status, pinned) {
     let li = document.createElement("li");
     li.innerHTML = sanitizeInput(title); // Sanitize before rendering in DOM
-    const editbtn = document.createElement("span"); // Create the Edit Icon
+
+    // Create and append edit button
+    const editbtn = document.createElement("span");
     editbtn.setAttribute("class", "todoeditbtn");
-    li.appendChild(editbtn); // Add the Edit icon to the LI tag
-    const removebtn = document.createElement("span"); // Create the Cross Icon
+    li.appendChild(editbtn);
+
+    // Create and append remove button
+    const removebtn = document.createElement("span");
     removebtn.setAttribute("class", "todoremovebtn");
     removebtn.textContent = "\u00d7";
-    li.appendChild(removebtn); // Add the cross icon to the LI tag
+    li.appendChild(removebtn);
+
+    // Set base class and status
     li.setAttribute("class", "todolistitem");
     if (status === "completed") {
         li.classList.add("checked");
     }
-    const pinbtn = document.createElement("span"); // Create the Pin Icon
+
+    // Create and append pin button
+    const pinbtn = document.createElement("span");
     pinbtn.setAttribute("class", "todopinbtn");
-    li.appendChild(pinbtn); // Add the Pin icon to the LI tag
+    li.appendChild(pinbtn);
+
     if (pinned) {
         li.classList.add("pinned");
     }
+
     li.setAttribute("data-todoitem", id); // Set a data attribute to the li so that we can uniquely identify which li has been modified or deleted
     return li; // Return the created `li` element
 }
@@ -79,18 +89,22 @@ todoulList.addEventListener("click", (event) => {
         let id = event.target.dataset.todoitem;
         todoList[id].status = ((todoList[id].status === "completed") ? "pending" : "completed"); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains("todoremovebtn")) {
+    }
+    else if (event.target.classList.contains("todoremovebtn")) {
         let id = event.target.parentElement.dataset.todoitem;
         event.target.parentElement.remove(); // Remove the clicked LI tag
         delete todoList[id]; // Remove the deleted List item data
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains("todopinbtn")) {
+    }
+    else if (event.target.classList.contains("todopinbtn")) {
         event.target.parentElement.classList.toggle("pinned"); // Check the clicked LI tag
         let id = event.target.parentElement.dataset.todoitem;
         todoList[id].pinned = (todoList[id].pinned !== true); // Update status
         SaveToDoData(); // Save Changes
-    } else if (event.target.classList.contains("todoeditbtn")) {
+    }
+    else if (event.target.classList.contains("todoeditbtn")) {
         if (suppressNextClick) return;
+
         const li = event.target.parentElement;
         const id = li.dataset.todoitem;
         const todo = todoList[id];
@@ -99,13 +113,16 @@ todoulList.addEventListener("click", (event) => {
         li.classList.toggle("edit");
         if (li.classList.contains("edit")) {
             suppressNextClick = true; // prevent mis-clicks on next action
+
             // Find the text node in the LI (the title)
             const titleNode = Array.from(li.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "");
+
             //Safe check
             if (!titleNode) {
                 console.warn("Title text node not found.");
                 return;
             }
+
             const input = document.createElement("input");
             input.type = "text";
             input.className = "edit-input";
@@ -113,6 +130,7 @@ todoulList.addEventListener("click", (event) => {
             li.insertBefore(input, titleNode);
             li.removeChild(titleNode);
             input.focus();
+
             // Save on blur or Enter
             function saveEdit() {
                 const newTitle = input.value.trim();
@@ -122,12 +140,14 @@ todoulList.addEventListener("click", (event) => {
                 li.removeChild(input);
                 li.classList.remove("edit");
                 SaveToDoData(); // Save changes
-                 // Delay resetting to allow click suppression
+
+                // Delay resetting to allow click suppression
                 clearTimeout(suppressTimeout);
                 suppressTimeout = setTimeout(() => {
                     suppressNextClick = false;
                 }, 500);
             }
+
             // Cancel function for escape key
             function cancelEdit() {
                 // Remove the blur event to prevent saveEdit from running
@@ -146,12 +166,13 @@ todoulList.addEventListener("click", (event) => {
                     }, 200);
                 }
             }
+
             input.addEventListener("blur", saveEdit);
             input.addEventListener("keydown", function (e) {
                 if (e.key === "Enter") {
                     input.blur(); // triggers saveEdit
                 } else if (e.key === "Escape") {
-                cancelEdit();
+                    cancelEdit();
                 }
             });
         }
@@ -168,11 +189,13 @@ function ShowToDoList() {
     try {
         todoList = JSON.parse(localStorage.getItem("todoList")) || {}; // Parse stored data or initialize empty
         const fragment = document.createDocumentFragment(); // Create a DocumentFragment
+
         for (let id in todoList) {
             const todo = todoList[id];
             const li = createTodoItemDOM(id, todo.title, todo.status, todo.pinned); // Create `li` elements
             fragment.appendChild(li); // Add `li` to the fragment
         }
+
         todoulList.appendChild(fragment); // Append all `li` to the `ul` at once
     } catch (error) {
         console.error("Error loading from localStorage:", error);
@@ -183,12 +206,14 @@ function ShowToDoList() {
 // Code to reset the List on the Next Day
 let todoLastUpdateDate = localStorage.getItem("todoLastUpdateDate"); // Get the date of last update
 let todoCurrentDate = new Date().toLocaleDateString(); // Get current date
+
 if (todoLastUpdateDate === todoCurrentDate) {
     ShowToDoList();
 } else {
     // Modify the list when last update date and the current date does not match
     localStorage.setItem("todoLastUpdateDate", todoCurrentDate);
     todoList = JSON.parse(localStorage.getItem("todoList")) || {};
+
     for (let id in todoList) {
         if (todoList[id].pinned === false) {
             if (todoList[id].status === "completed") {
@@ -198,6 +223,7 @@ if (todoLastUpdateDate === todoCurrentDate) {
             todoList[id].status = "pending"; // Reset status of pinned items
         }
     }
+
     SaveToDoData();
     ShowToDoList();
 }
