@@ -1350,7 +1350,6 @@ body #bookmarkButton.bookmark-button.rotate {
 	line-height: 1.2;
 	color: var(--bg-color-blue);
 	text-align: center;
-	border-radius: 50%;
 	transition: all 0.3s ease;
 	user-select: none;
 }
@@ -1375,6 +1374,11 @@ body #bookmarkButton.bookmark-button.rotate {
 
 .todoeditbtn {
 	inset-inline-end: 56px;
+	opacity: 0.8;
+}
+
+.todoeditbtn:hover {
+	opacity: 1;
 }
 
 .todolistitem.pinned .todopinbtn {
